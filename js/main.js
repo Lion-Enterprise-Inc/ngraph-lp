@@ -8,8 +8,8 @@
   const MAX_PARTICLES = 80;
 
   function resize() {
-    w = canvas.width = canvas.offsetWidth;
-    h = canvas.height = canvas.offsetHeight;
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
   }
 
   function createParticle() {
@@ -74,7 +74,7 @@
 
 // ===== Counter Animation =====
 (function () {
-  const counters = document.querySelectorAll('.stat-num[data-target]');
+  const counters = document.querySelectorAll('.stat-value[data-target]');
   if (!counters.length) return;
 
   const observer = new IntersectionObserver(

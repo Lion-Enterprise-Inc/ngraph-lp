@@ -4,305 +4,347 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NGraph — 食を正しく伝える、データインフラ</title>
-  <meta name="description" content="NGraphは飲食店のメニューをAIで構造化し、多言語・アレルゲン対応を無料で実現するデータインフラです。QRコードを置くだけで導入完了。">
-  <meta name="keywords" content="NGraph,飲食店,多言語対応,アレルゲン,インバウンド,メニュー,AI,Food Graph">
+  <meta name="description" content="NGraphは、料理の意味を構造化する世界初のデータ規格NFGを通じて、飲食店のメニュー情報をAIが正しく理解できる形に変換します。">
+  <meta name="keywords" content="NGraph,飲食店,多言語対応,アレルゲン,インバウンド,メニュー,AI,Food Graph,NFG">
   <meta property="og:title" content="NGraph — 食を正しく伝える、データインフラ">
-  <meta property="og:description" content="飲食店のメニューをAIで構造化。多言語・アレルゲン対応を無料で。">
+  <meta property="og:description" content="料理の意味を構造化する新しいデータ規格NFG。多言語・アレルゲン対応を無料で。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ngraph.jp">
   <meta property="og:image" content="https://ngraph.jp/assets/ngraph-logo.svg">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="header-logo">
-        <img src="/assets/ngraph-text-logo.svg" alt="NGraph" height="40">
-      </a>
-      <nav class="header-nav">
-        <a href="#features">特徴</a>
-        <a href="#about">NFGとは</a>
-        <a href="#company">会社概要</a>
-        <a href="#apply" class="btn-header">導入申込み</a>
-      </nav>
+
+  <!-- ===== NAV ===== -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">N<span>Graph</span></a>
+      <ul class="nav-links">
+        <li><a href="#problem">課題</a></li>
+        <li><a href="#nfg">NFG規格</a></li>
+        <li><a href="#how">導入方法</a></li>
+        <li><a href="#why">なぜ今か</a></li>
+        <li><a href="#apply" class="nav-cta">無料で導入する</a></li>
+      </ul>
       <button class="hamburger" aria-label="メニュー">
         <span></span><span></span><span></span>
       </button>
     </div>
-  </header>
+  </nav>
 
   <!-- ===== MOBILE NAV ===== -->
   <div class="mobile-nav">
-    <a href="#features">特徴</a>
-    <a href="#about">NFGとは</a>
-    <a href="#company">会社概要</a>
-    <a href="#apply" class="btn-mobile-cta">導入申込み</a>
+    <a href="#problem">課題</a>
+    <a href="#nfg">NFG規格</a>
+    <a href="#how">導入方法</a>
+    <a href="#why">なぜ今か</a>
+    <a href="#apply" class="btn-mobile-cta">無料で導入する</a>
   </div>
 
   <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
+  <section class="hero" id="top">
     <canvas id="hero-canvas"></canvas>
     <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="hero-title-main">食を正しく伝える、</span>
-        <span class="hero-title-accent">データインフラ</span>
+      <div class="hero-eyebrow"><span class="eyebrow-line"></span>Nicomacos Food Graph</div>
+      <h1>
+        AIが食を正しく<br>
+        理解するための<em>規格</em>
       </h1>
-      <p class="hero-subtitle">
-        AIがメニューを構造化。14言語・32アレルゲン品目に自動対応。<br>
-        QRコードを置くだけで、世界中のお客様に正確な情報を届けます。
+      <p class="hero-sub">
+        NGraphは、料理の意味を構造化する新しいデータ規格<strong>NFG</strong>を通じて、
+        あなたのメニューをAIが正確に理解・推薦できる形に変換します。<br>
+        翻訳ではなく、構造化。推測ではなく、正解。
       </p>
       <div class="hero-cta">
         <a href="#apply" class="btn-primary">無料で導入する</a>
-        <a href="https://app.ngraph.jp/capture?restaurant=kani-to-kaisenbonta" class="btn-secondary" target="_blank" rel="noopener">デモを試す →</a>
+        <a href="https://app.ngraph.jp/capture?restaurant=kani-to-kaisenbonta" class="btn-secondary" target="_blank" rel="noopener">デモを見る →</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ===== PROBLEMS ===== -->
-  <section class="section" id="problems">
-    <div class="container">
-      <h2 class="section-title">飲食店が抱える<span class="text-gradient">3つの課題</span></h2>
-      <div class="cards-3">
-        <div class="card glass fade-in">
-          <div class="card-icon">🌏</div>
-          <h3>外国人対応</h3>
-          <p>インバウンド増加で多言語対応は急務。しかし翻訳コストは高く、メニュー変更のたびに更新が必要。</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-value" data-target="2000">0</span>
+          <span class="stat-unit">構造化メニュー</span>
         </div>
-        <div class="card glass fade-in">
-          <div class="card-icon">⚠️</div>
-          <h3>アレルギー対応</h3>
-          <p>食物アレルギーは命に関わる。しかし全メニューの成分を正確に把握・表示するのは膨大な手間。</p>
+        <div class="hero-stat">
+          <span class="stat-value" data-target="14">0</span>
+          <span class="stat-unit">対応言語</span>
         </div>
-        <div class="card glass fade-in">
-          <div class="card-icon">📋</div>
-          <h3>情報の正確性</h3>
-          <p>グルメサイトの情報は古く、間違いも多い。正しい情報を発信する手段がない。</p>
+        <div class="hero-stat">
+          <span class="stat-value" data-target="32">0</span>
+          <span class="stat-unit">アレルゲン品目</span>
+        </div>
+        <div class="hero-stat">
+          <span class="stat-value" data-target="10">0</span>
+          <span class="stat-unit">導入店舗</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== SERVICE ===== -->
-  <section class="section section-alt" id="service">
-    <div class="container">
-      <h2 class="section-title">NGraphが<span class="text-gradient">すべて解決</span></h2>
-      <div class="service-flow">
-        <div class="flow-step fade-in">
-          <div class="flow-num">1</div>
-          <div class="flow-body">
-            <h3>QRコードを置くだけ</h3>
-            <p>お店専用のQRコードをテーブルに設置。お客様がスマホで読み取るだけ。</p>
-          </div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step fade-in">
-          <div class="flow-num">2</div>
-          <div class="flow-body">
-            <h3>AIが多言語で案内</h3>
-            <p>お客様の言語を自動検出。チャットで料理の特徴・アレルゲン情報を対話的に案内。</p>
-          </div>
-        </div>
-        <div class="flow-arrow">→</div>
-        <div class="flow-step fade-in">
-          <div class="flow-num">3</div>
-          <div class="flow-body">
-            <h3>正確なデータが蓄積</h3>
-            <p>お店の「正解データ」がNFG規格で構造化。AIエージェント時代の基盤になる。</p>
-          </div>
-        </div>
+  <!-- ===== PROBLEM ===== -->
+  <section class="problem fade-in" id="problem">
+    <div class="problem-grid">
+      <div class="problem-text">
+        <div class="section-label">// The Problem</div>
+        <h2>AIは、あなたの料理を<br><em>理解していない</em></h2>
+        <p>
+          Google翻訳は「越前おろしそば」を正しく伝えられません。
+          AIエージェントはアレルゲン情報を推測で返します。
+          構造化されていない情報は、いくらAIが進化しても正しく扱えません。<br><br>
+          これは翻訳の問題ではなく、<strong>データの問題</strong>です。
+        </p>
       </div>
-      <div class="service-demo fade-in">
-        <a href="https://app.ngraph.jp/capture?restaurant=kani-to-kaisenbonta" target="_blank" rel="noopener" class="btn-secondary">
-          「蟹と海鮮ぼんた」のデモを見る →
-        </a>
+      <div class="problem-cards">
+        <div class="problem-card">
+          <span class="problem-icon">🌐</span>
+          <h3>多言語の壁</h3>
+          <p>外国人観光客の57%が「メニューが読めない」ことを飲食店選びの障壁と回答</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">⚠️</span>
+          <h3>安全の壁</h3>
+          <p>アレルギー・宗教上の食事制約に対する情報が構造化されておらず、事故リスクが残る</p>
+        </div>
+        <div class="problem-card">
+          <span class="problem-icon">🤖</span>
+          <h3>AI推薦の壁</h3>
+          <p>構造化データのない店舗は、AIエージェント時代に「推薦されない店」になる</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== NFG ABOUT ===== -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title"><span class="text-gradient">NFG</span>とは</h2>
-      <div class="nfg-explain fade-in">
-        <div class="nfg-text">
-          <p class="nfg-full-name">Nicomacos Food Graph</p>
-          <p>NFGは、料理の「意味」を構造化する新しいデータ規格です。</p>
-          <p>材料・調理法・アレルゲン・宗教制約・味の特徴・文化的背景——あらゆる情報を機械が理解できる形で記録します。</p>
-          <p>これにより、AIは「この料理にエビは入っていますか？」という問いに、推測ではなく<strong>正解データ</strong>で答えられるようになります。</p>
-        </div>
-        <div class="nfg-visual">
-          <div class="nfg-card glass">
-            <div class="nfg-card-header">
-              <span class="nfg-badge">NFG</span>
-              <span>越前おろしそば</span>
-            </div>
-            <div class="nfg-card-body">
-              <div class="nfg-row"><span class="nfg-label">材料</span><span>そば粉, 大根, ねぎ, 鰹節, だし</span></div>
-              <div class="nfg-row"><span class="nfg-label">アレルゲン</span><span class="nfg-allergen">そば, 小麦</span></div>
-              <div class="nfg-row"><span class="nfg-label">調理法</span><span>茹でる</span></div>
-              <div class="nfg-row"><span class="nfg-label">制約</span><span>ベジタリアン ✗（鰹節）</span></div>
-              <div class="nfg-row"><span class="nfg-label">信頼度</span><span class="nfg-rank">A — 店主確認済み</span></div>
-            </div>
-          </div>
-        </div>
+  <!-- ===== NFG ===== -->
+  <section class="nfg fade-in" id="nfg">
+    <div class="nfg-header">
+      <div class="section-label">// NFG — Nicomacos Food Graph</div>
+      <h2>料理の<em>意味</em>を、<br>世界標準で構造化する</h2>
+      <p>
+        NFGは、一つの料理に対して材料・調理法・アレルゲン・宗教制約・味覚プロファイル・カロリーを
+        8つの構造レイヤーで定義する、世界初の食のデータ規格です。
+      </p>
+    </div>
+
+    <div class="nfg-code-block">
+      <div class="nfg-code-header">
+        <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+        <span>nfg_schema.json — 越前おろしそば</span>
+      </div>
+      <div class="nfg-code-body">
+{<br>
+&nbsp;&nbsp;<span class="key">"dish"</span>: <span class="str">"越前おろしそば"</span>,<br>
+&nbsp;&nbsp;<span class="key">"name_en"</span>: <span class="str">"Echizen Oroshi Soba"</span>,<br>
+&nbsp;&nbsp;<span class="key">"allergens"</span>: [<span class="str">"小麦"</span>, <span class="str">"そば"</span>],<br>
+&nbsp;&nbsp;<span class="key">"dietary"</span>: { <span class="key">"vegan"</span>: <span class="bool">false</span>, <span class="key">"halal"</span>: <span class="bool">true</span> },<br>
+&nbsp;&nbsp;<span class="key">"ingredients"</span>: [<span class="str">"そば粉"</span>, <span class="str">"大根"</span>, <span class="str">"ねぎ"</span>, <span class="str">"鰹節"</span>],<br>
+&nbsp;&nbsp;<span class="key">"taste_profile"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="key">"umami"</span>: <span class="num">8</span>, <span class="key">"refreshing"</span>: <span class="num">9</span>, <span class="key">"spicy"</span>: <span class="num">3</span><br>
+&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;<span class="key">"calorie_range"</span>: <span class="str">"350-450 kcal"</span>,<br>
+&nbsp;&nbsp;<span class="key">"verified"</span>: <span class="bool">true</span> &nbsp;<span class="comment">// 店主承認済み (VAD)</span><br>
+}
+      </div>
+    </div>
+
+    <div class="nfg-features">
+      <div class="nfg-feature">
+        <div class="tag">LAYER 1-3</div>
+        <h3>料理の実体</h3>
+        <p>店舗情報・料理マスタ・185種の材料を網羅。地元食材も構造化データとして保持します。</p>
+      </div>
+      <div class="nfg-feature">
+        <div class="tag">LAYER 4-6</div>
+        <h3>安全の保証</h3>
+        <p>調理法・食事制約・アレルゲンの3層で「食の安全」を構造化。32品目対応、ハラール・ヴィーガン判定付き。</p>
+      </div>
+      <div class="nfg-feature">
+        <div class="tag">LAYER 7-8</div>
+        <h3>味の可視化</h3>
+        <p>8次元の味覚プロファイルとカロリーレンジで、AIによるパーソナライズ推薦の精度を向上。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW ===== -->
+  <section class="how fade-in" id="how">
+    <div class="how-header">
+      <div class="section-label">// How It Works</div>
+      <h2>店主の負担は、ほぼゼロ</h2>
+      <p class="how-desc">
+        AIが9割を自動構造化。信頼度の低い箇所だけ、店主が確認・修正する仕組みです。
+      </p>
+    </div>
+
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-circle">1</div>
+        <h3>メニューをアップロード</h3>
+        <p>写真・PDF・URLなど、手元にあるメニュー情報をそのまま送るだけ。手入力は不要です。</p>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">2</div>
+        <h3>AIが自動構造化</h3>
+        <p>NFG形式に自動変換。材料・アレルゲン・味覚プロファイルまで、AIが一括で生成します。</p>
+      </div>
+      <div class="how-step">
+        <div class="step-circle">3</div>
+        <h3>QR設置・運用開始</h3>
+        <p>店主が確認したら、お店専用QRコードを設置。14言語対応のAIコンシェルジュが即日稼働します。</p>
+      </div>
+    </div>
+
+    <div class="how-demo">
+      <a href="https://app.ngraph.jp/capture?restaurant=kani-to-kaisenbonta" target="_blank" rel="noopener" class="btn-secondary">
+        「蟹と海鮮ぼんた」のデモを見る →
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== WHY NOW ===== -->
+  <section class="why fade-in" id="why">
+    <div class="why-header">
+      <div class="section-label">// Why Now</div>
+      <h2>なぜ<em>今</em>、<br>食のデータ規格が必要なのか</h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <span class="why-num">01</span>
+        <h3>AIエージェント時代の到来</h3>
+        <p>ChatGPT、Gemini、Perplexity — AIが「今夜どこで食べる？」に答える時代。構造化データのない店は、推薦候補にすら入らなくなります。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">02</span>
+        <h3>インバウンド6,000万人時代</h3>
+        <p>日本政府が掲げる2030年目標。多言語対応は「あったらいいね」から「なければ選ばれない」インフラへ。</p>
+      </div>
+      <div class="why-card">
+        <span class="why-num">03</span>
+        <h3>正解データという参入障壁</h3>
+        <p>店主が承認した一次データは、Webスクレイピングでは手に入りません。先に集めた者が規格を握る。これはタイミングの問題です。</p>
       </div>
     </div>
   </section>
 
   <!-- ===== FEATURES ===== -->
-  <section class="section section-alt" id="features">
-    <div class="container">
-      <h2 class="section-title">NGraphの<span class="text-gradient">特徴</span></h2>
-      <div class="cards-4">
-        <div class="card glass fade-in">
-          <div class="card-icon-large">¥0</div>
-          <h3>完全無料</h3>
-          <p>初期費用・月額費用ゼロ。店舗側の負担は一切ありません。</p>
-        </div>
-        <div class="card glass fade-in">
-          <div class="card-icon-large">🤖</div>
-          <h3>入力不要</h3>
-          <p>メニュー写真をAIが自動解析。手作業での入力は不要です。</p>
-        </div>
-        <div class="card glass fade-in">
-          <div class="card-icon-large">14</div>
-          <h3>14言語対応</h3>
-          <p>日・英・中(簡/繁)・韓・仏・西・独・伊・葡・露・泰・越・印尼</p>
-        </div>
-        <div class="card glass fade-in">
-          <div class="card-icon-large">32</div>
-          <h3>32アレルゲン品目</h3>
-          <p>日本8品目+EU14品目+各国独自品目まで、5カ国基準に対応。</p>
-        </div>
+  <section class="features fade-in" id="features">
+    <div class="features-header">
+      <div class="section-label">// Features</div>
+      <h2>NGraphの<em>特徴</em></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-value">¥0</div>
+        <h3>完全無料</h3>
+        <p>初期費用・月額費用ゼロ。店舗側の負担は一切ありません。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-value">AI</div>
+        <h3>入力不要</h3>
+        <p>メニュー写真をAIが自動解析。手作業での入力は不要です。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-value">14</div>
+        <h3>14言語対応</h3>
+        <p>日・英・中(簡/繁)・韓・仏・西・独・伊・葡・露・泰・越・印尼</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-value">32</div>
+        <h3>32アレルゲン品目</h3>
+        <p>日本8品目+EU14品目+各国独自品目まで、5カ国基準に対応。</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== STEPS ===== -->
-  <section class="section" id="steps">
-    <div class="container">
-      <h2 class="section-title">導入の<span class="text-gradient">流れ</span></h2>
-      <div class="steps">
-        <div class="step fade-in">
-          <div class="step-num">01</div>
-          <h3>お申込み</h3>
-          <p>下のフォームから申込み。最短翌営業日にご連絡します。</p>
-        </div>
-        <div class="step fade-in">
-          <div class="step-num">02</div>
-          <h3>データ構造化</h3>
-          <p>メニュー写真やPDFからAIが自動でNFGデータを生成。店主に確認していただきます。</p>
-        </div>
-        <div class="step fade-in">
-          <div class="step-num">03</div>
-          <h3>QR設置・運用開始</h3>
-          <p>お店専用QRコードをお届け。テーブルに置くだけで運用開始。</p>
-        </div>
-      </div>
+  <!-- ===== TRACTION ===== -->
+  <section class="traction fade-in" id="traction">
+    <div class="traction-header">
+      <div class="section-label">// Traction</div>
+      <h2>すでに、動き始めています</h2>
     </div>
-  </section>
-
-  <!-- ===== STATS ===== -->
-  <section class="section section-alt" id="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat fade-in">
-          <div class="stat-num" data-target="10">0</div>
-          <div class="stat-label">導入店舗 +</div>
-        </div>
-        <div class="stat fade-in">
-          <div class="stat-num" data-target="2000">0</div>
-          <div class="stat-label">構造化メニュー +</div>
-        </div>
-        <div class="stat fade-in">
-          <div class="stat-num" data-target="14">0</div>
-          <div class="stat-label">対応言語</div>
-        </div>
-        <div class="stat fade-in">
-          <div class="stat-num" data-target="32">0</div>
-          <div class="stat-label">アレルゲン品目</div>
-        </div>
-      </div>
+    <div class="partner-logos">
+      <span>ぼんたグループ</span>
+      <span>福井県立大学</span>
+      <span>福井市</span>
+      <span>福井食団連</span>
+      <span>フクイAIシステムズ</span>
     </div>
   </section>
 
   <!-- ===== COMPANY ===== -->
-  <section class="section" id="company">
-    <div class="container">
-      <h2 class="section-title">会社<span class="text-gradient">概要</span></h2>
-      <div class="company-table fade-in">
-        <table>
-          <tbody>
-            <tr><th>会社名</th><td>株式会社NGraph</td></tr>
-            <tr><th>代表取締役</th><td>髙橋 真吾</td></tr>
-            <tr><th>所在地</th><td>福井県福井市</td></tr>
-            <tr><th>事業内容</th><td>外食産業向けデータインフラ事業<br>Nicomacos Food Graph (NFG) の開発・運営</td></tr>
-            <tr><th>設立</th><td>2025年</td></tr>
-          </tbody>
-        </table>
-      </div>
+  <section class="company fade-in" id="company">
+    <div class="section-label">// Company</div>
+    <h2>会社概要</h2>
+    <div class="company-table">
+      <table>
+        <tbody>
+          <tr><th>会社名</th><td>株式会社NGraph</td></tr>
+          <tr><th>代表取締役</th><td>髙橋 真吾</td></tr>
+          <tr><th>所在地</th><td>福井県福井市</td></tr>
+          <tr><th>事業内容</th><td>外食産業向けデータインフラ事業<br>Nicomacos Food Graph (NFG) の開発・運営</td></tr>
+          <tr><th>設立</th><td>2025年</td></tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
   <!-- ===== APPLY FORM ===== -->
-  <section class="section section-alt" id="apply">
-    <div class="container">
-      <h2 class="section-title">無料<span class="text-gradient">導入申込み</span></h2>
-      <p class="section-desc">以下のフォームからお申込みください。最短翌営業日にご連絡いたします。</p>
-      <form id="apply-form" class="apply-form glass fade-in">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="restaurant_name">店舗名 <span class="required">*</span></label>
-            <input type="text" id="restaurant_name" name="restaurant_name" required placeholder="例: 蟹と海鮮ぼんた">
-          </div>
-          <div class="form-group">
-            <label for="contact_name">お名前 <span class="required">*</span></label>
-            <input type="text" id="contact_name" name="contact_name" required placeholder="例: 山田 太郎">
-          </div>
-          <div class="form-group">
-            <label for="email">メールアドレス <span class="required">*</span></label>
-            <input type="email" id="email" name="email" required placeholder="例: info@example.com">
-          </div>
-          <div class="form-group">
-            <label for="phone">電話番号</label>
-            <input type="tel" id="phone" name="phone" placeholder="例: 0776-00-0000">
-          </div>
-          <div class="form-group full-width">
-            <label for="address">店舗所在地 <span class="required">*</span></label>
-            <input type="text" id="address" name="address" required placeholder="例: 福井県福井市中央1-1-1">
-          </div>
-          <div class="form-group">
-            <label for="menu_count">メニュー数（おおよそ）</label>
-            <input type="number" id="menu_count" name="menu_count" placeholder="例: 50">
-          </div>
-          <div class="form-group full-width">
-            <label for="message">ご質問・ご要望</label>
-            <textarea id="message" name="message" rows="4" placeholder="気になることがあればお気軽にどうぞ"></textarea>
-          </div>
+  <section class="apply fade-in" id="apply">
+    <div class="section-label">// Get Started</div>
+    <h2>あなたの店の<em>正解データ</em>を、<br>世界に届けませんか</h2>
+    <p class="apply-desc">
+      初期費用は不要です。まずはメニューの構造化からスタート。<br>
+      データの質を確認してから導入を決められます。
+    </p>
+    <form id="apply-form" class="apply-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="restaurant_name">店舗名 <span class="required">*</span></label>
+          <input type="text" id="restaurant_name" name="restaurant_name" required placeholder="例: 蟹と海鮮ぼんた">
         </div>
-        <button type="submit" class="btn-primary btn-submit">申込みを送信する</button>
-        <div id="form-status" class="form-status"></div>
-      </form>
-    </div>
+        <div class="form-group">
+          <label for="contact_name">お名前 <span class="required">*</span></label>
+          <input type="text" id="contact_name" name="contact_name" required placeholder="例: 山田 太郎">
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="例: info@example.com">
+        </div>
+        <div class="form-group">
+          <label for="phone">電話番号</label>
+          <input type="tel" id="phone" name="phone" placeholder="例: 0776-00-0000">
+        </div>
+        <div class="form-group full-width">
+          <label for="address">店舗所在地 <span class="required">*</span></label>
+          <input type="text" id="address" name="address" required placeholder="例: 福井県福井市中央1-1-1">
+        </div>
+        <div class="form-group">
+          <label for="menu_count">メニュー数（おおよそ）</label>
+          <input type="number" id="menu_count" name="menu_count" placeholder="例: 50">
+        </div>
+        <div class="form-group full-width">
+          <label for="message">ご質問・ご要望</label>
+          <textarea id="message" name="message" rows="4" placeholder="気になることがあればお気軽にどうぞ"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary btn-submit">申込みを送信する</button>
+      <div id="form-status" class="form-status"></div>
+    </form>
   </section>
 
   <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-logo">
-        <img src="/assets/ngraph-text-logo.svg" alt="NGraph" height="32">
-      </div>
-      <div class="footer-links">
-        <a href="https://app.ngraph.jp" target="_blank" rel="noopener">アプリ</a>
-        <a href="/privacy.html">プライバシーポリシー</a>
-        <a href="#apply">導入申込み</a>
-      </div>
-      <p class="footer-copy">&copy; 2025 NGraph Inc. All rights reserved.</p>
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">N<span>Graph</span></div>
+      <ul class="footer-links">
+        <li><a href="https://app.ngraph.jp" target="_blank" rel="noopener">App</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="mailto:info@ngraph.jp">Contact</a></li>
+      </ul>
+      <div class="footer-copy">&copy; 2025 NGraph Inc. All rights reserved.</div>
     </div>
   </footer>
 
