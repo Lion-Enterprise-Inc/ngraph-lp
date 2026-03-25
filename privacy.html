@@ -1,75 +1,86 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プライバシーポリシー — NGraph</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .privacy { max-width: 720px; margin: 0 auto; padding: 120px 24px 80px; }
-    .privacy h1 { font-family: var(--font-serif); font-size: 28px; margin-bottom: 40px; }
-    .privacy h2 { font-size: 18px; margin: 32px 0 12px; color: var(--text); }
-    .privacy p, .privacy li { font-size: 14px; color: var(--text-secondary); line-height: 1.9; }
-    .privacy ul { padding-left: 20px; margin: 8px 0; }
-    .privacy .back { display: inline-block; margin-top: 40px; font-size: 14px; color: var(--text-muted); }
-    .privacy .back:hover { color: var(--text-secondary); }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>プライバシーポリシー — NGraph</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/common.css">
+<style>
+.privacy{max-width:720px;margin:0 auto}
+.privacy-lead{font-size:.9rem;color:var(--text-secondary);line-height:1.9;margin-bottom:40px}
+.privacy-card{padding:48px}
+.privacy-card h2{font-size:1rem;font-weight:700;margin:32px 0 10px;color:var(--text-primary)}
+.privacy-card h2:first-child{margin-top:0}
+.privacy-card p{font-size:.88rem;color:var(--text-secondary);line-height:1.9;margin-bottom:8px}
+.privacy-card ul{padding-left:20px;margin:8px 0 16px}
+.privacy-card li{font-size:.88rem;color:var(--text-secondary);line-height:1.9}
+.privacy-card .note{font-size:.78rem;color:var(--text-muted);margin-top:4px}
+.privacy-card strong{color:var(--text-primary);font-weight:600}
+.back-bottom{display:inline-flex;align-items:center;gap:6px;margin-top:48px;font-size:.85rem;color:var(--accent);font-weight:500;transition:opacity .2s}
+.back-bottom:hover{opacity:.7}
+@media(max-width:768px){.privacy-card{padding:32px 24px}}
+</style>
 </head>
 <body>
-  <header class="header">
-    <div class="header-inner">
-      <a href="/" class="header-logo">
-        <img src="/assets/ngraph-text-logo.svg" alt="NGraph" height="36">
-      </a>
-    </div>
-  </header>
+<header class="header">
+<div class="header-inner">
+  <a href="/"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:26px;width:26px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.15rem;font-weight:400;letter-spacing:.06em;color:#1a1a1a">NGraph</span></a>
+  <a href="/" class="back-link">← トップに戻る</a>
+</div>
+</header>
 
+<section class="page-hero">
+  <div class="page-hero-label">Privacy Policy</div>
+  <h1>プライバシーポリシー</h1>
+</section>
+
+<section class="section">
+<div class="container">
   <div class="privacy">
-    <h1>プライバシーポリシー</h1>
-
-    <h2>1. 個人情報の収集</h2>
-    <p>当社は、導入申込みフォームを通じて以下の情報を収集します。</p>
-    <ul>
-      <li>店舗名、ご担当者名</li>
-      <li>メールアドレス、電話番号</li>
-      <li>店舗所在地</li>
-      <li>その他お客様が任意で入力された情報</li>
-    </ul>
-
-    <h2>2. 利用目的</h2>
-    <p>収集した個人情報は、以下の目的で利用します。</p>
-    <ul>
-      <li>サービス導入に関するご連絡</li>
-      <li>サービスの提供・改善</li>
-      <li>お問い合わせへの対応</li>
-    </ul>
-
-    <h2>3. 第三者提供</h2>
-    <p>法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
-
-    <h2>4. 安全管理</h2>
-    <p>個人情報の漏洩、滅失またはき損を防止するため、適切な安全管理措置を講じます。</p>
-
-    <h2>5. Cookie・アクセス解析</h2>
-    <p>当サイトではGoogle Analyticsを使用してアクセス情報を収集する場合があります。収集されるデータは匿名であり、個人を特定するものではありません。</p>
-
-    <h2>6. お問い合わせ</h2>
-    <p>個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。</p>
-    <p>株式会社NGraph<br>メール: info@ngraph.jp</p>
-
-    <p style="margin-top: 32px; font-size: 13px; color: var(--text-muted);">制定日: 2025年2月27日</p>
-
-    <a href="/" class="back">← トップページに戻る</a>
-  </div>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p class="footer-copy">&copy; 2025 NGraph Inc. All rights reserved.</p>
+    <p class="privacy-lead">株式会社NGraph（以下「当社」）は、当社が提供するサービス「NGraph」（以下「本サービス」）において、ユーザーおよび導入店舗（以下総称して「利用者」）の個人情報を以下の方針に基づき適切に取り扱います。</p>
+    <div class="privacy-card glass-card">
+      <h2>1. 取得する情報</h2>
+      <p>当社は、本サービスの提供にあたり、以下の情報を取得する場合があります。</p>
+      <p><strong>(1) 利用者から提供される情報</strong></p>
+      <ul><li>店舗名、担当者名、連絡先（メールアドレス、電話番号等）</li><li>店舗情報（所在地、営業時間、提供メニュー等）</li><li>お問い合わせ・導入申請時に入力された情報</li></ul>
+      <p><strong>(2) サービス利用に伴い自動的に取得される情報</strong></p>
+      <ul><li>アクセスログ、IPアドレス、ブラウザ情報、端末情報</li><li>クッキー（Cookie）等を用いて取得される利用状況データ</li></ul>
+      <p class="note">※ 本サービスは、原則として個人を特定する目的での利用者行動の追跡を行いません。</p>
+      <h2>2. 情報の利用目的</h2>
+      <p>取得した情報は、以下の目的の範囲内で利用します。</p>
+      <ul><li>本サービスの提供・運営・改善</li><li>メニュー情報・料理情報の構造化および案内精度の向上</li><li>利用者からのお問い合わせ対応</li><li>新機能、重要なお知らせ等の案内</li><li>法令または利用規約に違反する行為への対応</li></ul>
+      <h2>3. メニュー・料理情報の取り扱いについて</h2>
+      <p>本サービスにおいて取り扱うメニュー情報・料理情報は、店舗が提供・確認した内容をもとに構造化された情報であり、個人情報を含むことを前提としていません。</p>
+      <p>これらの情報は、サービス提供および品質向上の目的に限り利用されます。</p>
+      <h2>4. 第三者提供について</h2>
+      <p>当社は、以下の場合を除き、取得した情報を第三者に提供することはありません。</p>
+      <ul><li>利用者の同意がある場合</li><li>法令に基づく開示要請があった場合</li><li>業務委託先に対し、必要な範囲で情報を共有する場合（この場合、適切な管理・監督を行います）</li></ul>
+      <h2>5. 情報の管理</h2>
+      <p>当社は、取得した情報について、不正アクセス、漏えい、滅失、改ざん等を防止するため、合理的な安全管理措置を講じます。</p>
+      <h2>6. クッキー（Cookie）について</h2>
+      <p>本サービスでは、利便性向上および利用状況の把握のため、Cookieを使用する場合があります。利用者は、ブラウザ設定によりCookieの使用を制限または拒否することができます。</p>
+      <h2>7. 開示・訂正・削除について</h2>
+      <p>利用者は、当社が保有する自己の情報について、開示・訂正・削除等を求めることができます。ご希望の場合は、下記お問い合わせ窓口までご連絡ください。</p>
+      <h2>8. プライバシーポリシーの変更</h2>
+      <p>本ポリシーの内容は、法令の改正やサービス内容の変更等に応じて、事前の予告なく変更される場合があります。変更後の内容は、本サービス上に掲載した時点で効力を生じるものとします。</p>
+      <h2>9. お問い合わせ窓口</h2>
+      <p>株式会社NGraph<br>お問い合わせ：shingotakahashi@ngraph.jp</p>
     </div>
-  </footer>
+    <div style="text-align:center"><a href="/" class="back-bottom">← トップページに戻る</a></div>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+  <div><div class="footer-brand"><span style="display:flex;align-items:center;gap:8px"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:24px;width:24px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.1rem;font-weight:400;letter-spacing:.06em;color:#fff">NGraph</span></span></div><p>AIで飲食店のメニューを多言語案内する仕組みです。</p></div>
+  <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="/entry.html">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
+</div>
+<div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
 </body>
 </html>

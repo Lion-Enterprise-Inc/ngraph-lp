@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 32" width="140" height="32">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&amp;display=swap');
+    </style>
+  </defs>
+  <text x="0" y="22" font-family="'Noto Serif JP', 'Georgia', serif" font-size="26" letter-spacing="0.08em">
+    <tspan fill="#1a1a1a" font-weight="400">N</tspan><tspan fill="#1a1a1a" font-weight="300">Graph</tspan>
+  </text>
+</svg>

@@ -1,2 +1,5 @@
 # Cloudflare Pages redirects
-/apply    /index.html#apply   301
+/apply        /entry.html   301
+/Entry-form   /entry.html   301
+/Company      /company.html 301
+/Legal        /legal.html   301

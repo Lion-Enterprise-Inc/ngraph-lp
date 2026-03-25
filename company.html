@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>会社情報 — NGraph</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/common.css">
+<style>
+/* Mission card */
+.mission-card{padding:48px;margin-top:48px}
+.mission-card h2{font-size:1.3rem;font-weight:800;color:var(--text-primary);line-height:1.5;margin-bottom:16px}
+.mission-card p{font-size:.9rem;color:var(--text-secondary);line-height:2.1;margin-bottom:10px}
+
+/* Concept full-bleed */
+.concept-section{position:relative;overflow:hidden}
+.concept-img-wrap{position:relative;max-height:420px;overflow:hidden}
+.concept-img-wrap img{width:100%;object-fit:cover;object-position:center}
+.concept-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.65) 100%)}
+.concept-overlay .section-label{color:rgba(232,100,44,.9)}
+.concept-overlay h2{font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:16px;line-height:1.5}
+.concept-overlay p{font-size:.88rem;color:rgba(255,255,255,.7);max-width:520px;line-height:1.9}
+.concept-detail{max-width:720px;margin:0 auto;padding:48px 0}
+.concept-detail p{font-size:.9rem;color:var(--text-secondary);line-height:2.1;margin-bottom:12px}
+
+/* Message */
+.message-grid{display:grid;grid-template-columns:180px 1fr;gap:48px;align-items:start;margin-top:32px}
+.message-portrait img{width:100%;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.06);border:1px solid var(--border)}
+.message-caption{font-size:.72rem;color:var(--text-muted);margin-top:10px;text-align:center;font-weight:500}
+.message-text p{font-size:.9rem;color:var(--text-secondary);line-height:2.1;margin-bottom:12px}
+.message-text p:first-child{font-size:1.05rem;font-weight:600;color:var(--text-primary);line-height:1.7;margin-bottom:20px}
+
+/* About 2-col */
+.about-grid{display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:start;margin-top:32px}
+.about-logo{display:flex;flex-direction:column;align-items:center;padding-top:8px}
+.about-logo img{width:150px;height:150px;border-radius:50%;object-fit:cover;box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.about-logo .logo-caption{font-size:.72rem;color:var(--text-muted);margin-top:12px;font-weight:500}
+.info-card{border-radius:20px;overflow:hidden}
+.info-table{width:100%;border-collapse:collapse}
+.info-table tr{border-bottom:1px solid var(--border)}
+.info-table tr:last-child{border-bottom:none}
+.info-table th{text-align:left;font-size:.8rem;font-weight:600;color:var(--text-muted);padding:20px 24px;width:120px;vertical-align:top;white-space:nowrap;background:var(--bg-card-alt)}
+.info-table td{font-size:.88rem;color:var(--text-primary);padding:20px 24px;line-height:1.9}
+
+.section-alt{background:var(--bg-card)}
+
+@media(max-width:768px){
+  .mission-card{padding:32px 24px}
+  .concept-overlay h2{font-size:1.2rem}
+  .message-grid{grid-template-columns:1fr;gap:24px}
+  .message-portrait{width:160px;margin:0 auto}
+  .about-grid{grid-template-columns:1fr;gap:24px}
+  .about-logo img{width:120px;height:120px}
+  .info-table th{display:block;padding:16px 20px 0;width:100%}
+  .info-table td{display:block;padding:4px 20px 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-inner">
+  <a href="/"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:26px;width:26px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.15rem;font-weight:400;letter-spacing:.06em;color:#1a1a1a">NGraph</span></a>
+  <a href="/" class="back-link">← トップに戻る</a>
+</div>
+</header>
+
+<section class="page-hero">
+  <div class="page-hero-label">Company</div>
+  <h1>会社情報</h1>
+  <p class="page-hero-sub">現実世界の「意味」を、AIが理解できる形に変換する。</p>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-inner">
+    <div class="section-label">Our Mission</div>
+    <div class="mission-card glass-card">
+      <h2>「正解データが生まれる仕組み」を実装する</h2>
+      <p>NGraphは、料理・食文化という世界で最も複雑で非構造なデータ領域を対象に、人間の知識と判断を組み込んだ構造化技術を開発しています。</p>
+      <p>AIが誤解し、推測し、ハルシネーションを起こす領域に対して、「正解データが生まれる仕組み」そのものを実装すること。それが、NGraphのミッションです。</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="concept-section">
+  <div class="concept-img-wrap">
+    <img src="/assets/concept-visual.png" alt="NGraph Concept">
+    <div class="concept-overlay">
+      <div class="section-label">Concept</div>
+      <h2>AIの未来と Nicomacos の哲学</h2>
+      <p>AIに欠けているのは、判断のための「価値の基準」。NGraphは、人間が意味をどう捉え判断するかという普遍的な型を、データとして構造化した基盤です。</p>
+    </div>
+  </div>
+</section>
+<section class="section">
+<div class="container">
+  <div class="concept-detail">
+    <p>Nicomacosは、人間が"意味をどう捉え、どう判断するか"を導く〈中庸・目的・徳〉という普遍的な型を示しました。</p>
+    <p>NGraphは、この"意味の型"を世界で新たにデータとして構造化した基盤です。AIエージェント時代、意図・文脈・意味を扱うための基準は Nicomacosに回帰し、そのデジタル実装が NGraph です。</p>
+  </div>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section section-alt">
+<div class="container">
+  <div class="section-inner">
+    <div class="section-label">Message</div>
+    <h2 class="section-title">代表メッセージ</h2>
+    <div class="message-grid">
+      <div class="message-portrait">
+        <img src="/assets/ceo-portrait.png" alt="髙橋 真吾">
+        <div class="message-caption">代表取締役 髙橋 真吾</div>
+      </div>
+      <div class="message-text">
+        <p>AIが進化するほど、「意味を定義する責任」は人間に戻ってくる。</p>
+        <p>私たちは、AIが万能になる未来を前提にしていません。むしろ、AIが社会に深く入り込むほど、誤り・曖昧さ・責任の所在が、より深刻な問題になると考えています。</p>
+        <p>NGraphは、「AIに何を任せ、何を人間が担うのか」を設計と実装で答える会社です。</p>
+        <p>食という日常であり文化であり、同時に高いリスクを含む領域から、AIと人間の正しい関係をつくっていきます。</p>
+        <p>これは単なるテクノロジーの話ではありません。次の社会の"前提"をどう設計するか、という挑戦です。</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+<div class="container">
+  <div class="section-inner">
+    <div class="section-label">About</div>
+    <h2 class="section-title">会社概要</h2>
+    <div class="about-grid">
+      <div class="about-logo">
+        <img src="/assets/ngraph-logo-circle.png" alt="NGraph">
+        <div class="logo-caption">株式会社NGraph</div>
+      </div>
+      <div class="info-card glass-card">
+        <table class="info-table">
+          <tr><th>会社名</th><td>株式会社NGraph</td></tr>
+          <tr><th>代表者</th><td>髙橋 真吾</td></tr>
+          <tr><th>設立</th><td>2025年12月</td></tr>
+          <tr><th>資本金</th><td>300万円</td></tr>
+          <tr><th>事業内容</th><td>料理・食データの構造化基盤「Nicomacos Food Graph（NFG）」の研究・開発<br>AIエージェント時代に向けた飲食データインフラの構築<br>MEO / 観光 / 行政 / 企業向けPoCおよび共同開発</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+  <div><div class="footer-brand"><span style="display:flex;align-items:center;gap:8px"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:24px;width:24px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.1rem;font-weight:400;letter-spacing:.06em;color:#fff">NGraph</span></span></div><p>AIで飲食店のメニューを多言語案内する仕組みです。</p></div>
+  <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="/entry.html">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
+</div>
+<div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+</body>
+</html>

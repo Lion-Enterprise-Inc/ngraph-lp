@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>無料導入のお申込み — NGraph</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/common.css">
+<style>
+.entry-layout{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:start;padding:160px 0 80px}
+.entry-left{padding-top:40px}
+.entry-left .section-label{margin-bottom:16px}
+.entry-left h1{font-size:2rem;font-weight:800;color:var(--text-primary);line-height:1.4;margin-bottom:20px;letter-spacing:-.02em}
+.entry-left p{font-size:.92rem;color:var(--text-secondary);line-height:2;margin-bottom:32px}
+/* Benefits */
+.benefits{display:flex;flex-direction:column;gap:12px}
+.benefit{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.02)}
+.benefit-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.benefit-icon svg{width:20px;height:20px;color:var(--accent)}
+.benefit-text{font-size:.85rem;color:var(--text-secondary);font-weight:500}
+.benefit-text strong{color:var(--text-primary);font-weight:700}
+/* Form card */
+.form-card{padding:40px 36px;position:relative}
+.form-card::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:2px}
+.form-card h2{font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px}
+.form-card .form-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:28px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:.78rem;font-weight:600;margin-bottom:6px;color:var(--text-secondary)}
+.form-label .req{color:var(--accent);font-size:.7rem;margin-left:4px}
+.form-input,.form-textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:.88rem;font-family:inherit;background:var(--bg-primary);color:var(--text-primary);transition:all .2s;outline:none}
+.form-input:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,100,44,.08)}
+.form-textarea{min-height:100px;resize:vertical}
+.form-input::placeholder,.form-textarea::placeholder{color:#ccc}
+.form-check{display:flex;align-items:center;gap:10px;margin:24px 0}
+.form-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.form-check label{font-size:.78rem;color:var(--text-muted);cursor:pointer}
+.form-check a{color:var(--accent);text-decoration:underline}
+.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#fff;padding:15px 40px;border-radius:14px;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(232,100,44,.25)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,100,44,.35)}
+.form-submit:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.form-note{font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:14px}
+.success-msg{display:none;text-align:center;padding:60px 24px}
+.success-msg h2{font-size:1.3rem;font-weight:800;margin-bottom:12px;color:var(--accent)}
+.success-msg p{font-size:.9rem;color:var(--text-secondary);line-height:1.8}
+.success-msg a{display:inline-block;margin-top:24px;color:var(--accent);font-weight:600}
+@media(max-width:768px){
+  .entry-layout{grid-template-columns:1fr;gap:40px;padding:120px 0 60px}
+  .entry-left{padding-top:0;text-align:center}
+  .entry-left h1{font-size:1.5rem}
+  .form-card{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+<div class="header-inner">
+  <a href="/"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:26px;width:26px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.15rem;font-weight:400;letter-spacing:.06em;color:#1a1a1a">NGraph</span></a>
+  <a href="/" class="back-link">← トップに戻る</a>
+</div>
+</header>
+
+<div class="container">
+<div class="entry-layout">
+  <div class="entry-left">
+    <div class="section-label">Entry</div>
+    <h1>無料導入の<br>お申込み</h1>
+    <p>QRを置くだけで、AIが130ヶ国語でメニューをご案内。<br>先行導入期間中は、すべて無料でご利用いただけます。</p>
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div class="benefit-text"><strong>初期費用・月額0円</strong> — 完全無料で導入</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
+        <div class="benefit-text"><strong>設定はすべてお任せ</strong> — メニュー写真を送るだけ</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg></div>
+        <div class="benefit-text"><strong>130ヶ国語対応</strong> — アレルギー・宗教食も自動</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card glass-card">
+    <h2>以下を入力するだけ</h2>
+    <p class="form-sub">1分で完了します</p>
+    <form id="entry-form" action="https://formsubmit.co/shingotakahashi@ngraph.jp" method="POST">
+      <input type="hidden" name="_subject" value="NGraph 新規導入申込み">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="">
+      <input type="text" name="_honey" style="display:none">
+      <div class="form-group"><label class="form-label">ご担当者名<span class="req">*</span></label><input type="text" name="Name" class="form-input" placeholder="田中 太郎" required></div>
+      <div class="form-group"><label class="form-label">メールアドレス<span class="req">*</span></label><input type="email" name="E-mail" class="form-input" placeholder="info@example.com" required></div>
+      <div class="form-group"><label class="form-label">店舗名<span class="req">*</span></label><input type="text" name="Shop Name" class="form-input" placeholder="居酒屋 まるまる" required></div>
+      <div class="form-group"><label class="form-label">店舗住所<span class="req">*</span></label><input type="text" name="Shop Location" class="form-input" placeholder="福井県福井市中央1-1-1" required></div>
+      <div class="form-group"><label class="form-label">店舗URL</label><input type="text" name="Shop URL" class="form-input" placeholder="https://example.com（任意）"></div>
+      <div class="form-group"><label class="form-label">補足・ご質問</label><textarea name="Message" class="form-textarea" placeholder="気になることがあればお気軽にどうぞ（任意）"></textarea></div>
+      <div class="form-check"><input type="checkbox" id="agree" required><label for="agree"><a href="/privacy.html" target="_blank">プライバシーポリシー</a>に同意します</label></div>
+      <button type="submit" class="form-submit" id="submit-btn">送信する</button>
+      <div class="form-note">※ 先行導入枠に限りがあります</div>
+    </form>
+    <div class="success-msg" id="success">
+      <h2>送信完了しました</h2>
+      <p>お申込みありがとうございます。<br>内容を確認の上、メールにてご連絡いたします。</p>
+      <a href="/">← トップページに戻る</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-inner">
+  <div><div class="footer-brand"><span style="display:flex;align-items:center;gap:8px"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:24px;width:24px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.1rem;font-weight:400;letter-spacing:.06em;color:#fff">NGraph</span></span></div><p>AIで飲食店のメニューを多言語案内する仕組みです。</p></div>
+  <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="/entry.html">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
+</div>
+<div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+
+<script>
+const form=document.getElementById('entry-form');
+const success=document.getElementById('success');
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='送信中...';
+  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
+  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block'}else{alert('送信に失敗しました。');btn.disabled=false;btn.textContent='送信する'}})
+  .catch(()=>{alert('送信に失敗しました。');btn.disabled=false;btn.textContent='送信する'});
+});
+</script>
+</body>
+</html>

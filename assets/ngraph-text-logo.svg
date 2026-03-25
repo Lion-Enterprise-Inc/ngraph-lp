@@ -1,17 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 32" width="140" height="32">
   <defs>
-    <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#10a37f" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#10a37f" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#10a37f" stop-opacity="0"/>
-    </linearGradient>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&amp;display=swap');
     </style>
   </defs>
-  <text x="200" y="58" text-anchor="middle" font-family="'Noto Serif JP', 'Georgia', serif" font-size="52" letter-spacing="0.15em">
+  <text x="0" y="22" font-family="'Noto Serif JP', 'Georgia', serif" font-size="26" letter-spacing="0.08em">
     <tspan fill="#ffffff" font-weight="400">N</tspan><tspan fill="#ffffff" font-weight="300">Graph</tspan>
   </text>
-  <line x1="100" y1="72" x2="300" y2="72" stroke="url(#line-grad)" stroke-width="1"/>
-  <text x="200" y="94" text-anchor="middle" font-family="'Noto Serif JP', 'Georgia', serif" font-size="13" fill="#10a37f" letter-spacing="0.18em" font-weight="300">Nicomacos Food Graph</text>
 </svg>
