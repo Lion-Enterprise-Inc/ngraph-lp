@@ -266,8 +266,8 @@ img{max-width:100%;display:block}
   .hero-metrics{flex-direction:column}
   .hero-metric{border-right:none;border-bottom:1px solid rgba(0,0,0,.06)}
   .hero-metric:last-child{border-bottom:none}
-  .feature-main .bento-card{grid-template-columns:1fr!important}
-  .feature-row{grid-template-columns:1fr!important}
+  .story-step{grid-template-columns:1fr!important;text-align:center}
+  .story-step > div:first-child{order:0!important}
   .showcase-grid{grid-template-columns:1fr;gap:40px}
   .showcase-phone{width:200px}
   .compare-grid{grid-template-columns:1fr;gap:16px}
@@ -292,7 +292,7 @@ img{max-width:100%;display:block}
   </a>
   <nav class="nav">
     <a href="#features">特徴</a>
-    <a href="#how">使い方</a>
+    <a href="#features">仕組み</a>
     <a href="#pricing">料金</a>
     <a href="#faq">FAQ</a>
     <a href="/entry.html" class="nav-cta">無料で始める</a>
@@ -358,121 +358,77 @@ img{max-width:100%;display:block}
 </div>
 </div>
 
-<!-- BENTO FEATURES -->
-<section class="bento" id="features">
+<!-- HOW IT WORKS — ストーリー型 -->
+<section id="features" style="padding:100px 0;background:#fff">
 <div class="container text-center">
-  <div class="section-label reveal">Features</div>
-  <h2 class="section-title reveal">NGraphが選ばれる理由</h2>
-  <p class="section-desc reveal">文字が読めなくても、言葉が通じなくても。<br>お客様のスマホが、あなたの店のベストスタッフになります。</p>
-  <!-- Row 1: メインカード full width -->
-  <div class="feature-main reveal" style="margin-top:56px">
-    <div class="bento-card bento-orange" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
-      <div>
-        <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-        <h3>「おすすめは？」に、AIが130ヶ国語で答えます</h3>
-        <p>お客様がスマホから質問するだけ。料理の魅力、食材、アレルギー情報をAIが母国語でご案内。スタッフが忙しい時間帯でも、丁寧な接客が自動で実現します。</p>
+  <div class="section-label reveal">How NGraph Works</div>
+  <h2 class="section-title reveal">NGraphの仕組み</h2>
+  <p class="section-desc reveal">お店がやることは「メニュー写真を送る」だけ。<br>あとはAIが学習し、確認し、お客様に届けます。</p>
+</div>
+
+<!-- Step 1 -->
+<div class="container" style="margin-top:72px">
+  <div class="story-step reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div>
+      <div class="story-num" style="font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.16em;margin-bottom:12px">Step 1</div>
+      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:12px;line-height:1.4">メニュー写真を送るだけ</h3>
+      <p style="font-size:.92rem;color:#666;line-height:2">紙のメニューでも黒板でもOK。写真を送ると、AIが料理名・食材・アレルゲン・調理法をすべて自動で読み取り、構造化します。</p>
+    </div>
+    <div style="text-align:center">
+      <div class="showcase-phone" style="width:200px;margin:0 auto;background:#0a0a0a;border-radius:26px;padding:3px;box-shadow:0 20px 60px rgba(0,0,0,.1)">
+        <img src="/assets/screen-menu-list.png" alt="メニュー一覧" style="width:100%;border-radius:23px;display:block">
       </div>
-      <div class="mini-demo" style="flex-direction:column">
+    </div>
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="container" style="margin-top:80px">
+  <div class="story-step reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div style="text-align:center;order:-1">
+      <div class="showcase-phone" style="width:200px;margin:0 auto;background:#0a0a0a;border-radius:26px;padding:3px;box-shadow:0 20px 60px rgba(0,0,0,.1)">
+        <img src="/assets/screen-survey.png" alt="ヒアリング画面" style="width:100%;border-radius:23px;display:block">
+      </div>
+    </div>
+    <div>
+      <div class="story-num" style="font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.16em;margin-bottom:12px">Step 2</div>
+      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:12px;line-height:1.4">わからない点だけ、AIが店主に聞く</h3>
+      <p style="font-size:.92rem;color:#666;line-height:2">「この料理にバターは使っていますか？」——AIが判断できない点だけを選択式で確認。タップで答えるだけだから、1品あたり数秒で完了します。推測で表示することは一切ありません。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="container" style="margin-top:80px">
+  <div class="story-step reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center">
+    <div>
+      <div class="story-num" style="font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.16em;margin-bottom:12px">Step 3</div>
+      <h3 style="font-size:1.4rem;font-weight:800;margin-bottom:12px;line-height:1.4">正解データが完成。130ヶ国語でお客様に届く</h3>
+      <p style="font-size:.92rem;color:#666;line-height:2">店主が確認した正確なデータを元に、AIがお客様の母国語でメニューをご案内。アレルギー・ハラル・ヴィーガンにも自動対応します。QRを置くだけ。アプリも機器も不要です。</p>
+      <div class="mini-demo" style="margin-top:20px">
         <div class="mini-demo-lang"><strong>English</strong>Crispy avocado tempura</div>
         <div class="mini-demo-lang"><strong>中文</strong>酥脆牛油果天妇罗</div>
         <div class="mini-demo-lang"><strong>한국어</strong>바삭한 아보카도 튀김</div>
         <div class="mini-demo-lang"><strong>ไทย</strong>เทมปุระอะโวคาโด</div>
       </div>
     </div>
-  </div>
-  <!-- Row 2: 3カード均等 -->
-  <div class="feature-row reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
-    <div class="bento-card bento-green">
-      <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-      <h3>アレルギー・ハラル・ヴィーガン自動表示</h3>
-      <p>食事制限のあるお客様にも多言語で正確に表示。「これ食べても大丈夫？」への不安を解消します。</p>
-    </div>
-    <div class="bento-card bento-blue">
-      <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-      <h3>QRを置くだけ。機器もアプリも不要</h3>
-      <p>導入に必要なのはQRコードだけ。工事も機器購入もアプリも不要。届いたその日から使えます。</p>
-    </div>
-    <div class="bento-card bento-purple">
-      <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-      <h3>初期設定はすべてNGraphにお任せ</h3>
-      <p>メニュー写真を送るだけ。解析・設定・調整はすべてNGraphが行います。お店の手間はゼロです。</p>
-    </div>
-  </div>
-  <!-- Row 3: 2カード均等（画像付き + テキスト） -->
-  <div class="feature-row reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
-    <div class="bento-card bento-orange" style="display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:center">
-      <div>
-        <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
-        <h3>店主の確認はタップだけ</h3>
-        <p>AIが迷った点は選択式で確認。タップで答えるだけで、正確なAI案内が完成します。</p>
+    <div style="text-align:center">
+      <div class="showcase-phone" style="width:200px;margin:0 auto;background:#0a0a0a;border-radius:26px;padding:3px;box-shadow:0 20px 60px rgba(0,0,0,.1)">
+        <img src="/assets/screen-nfg-card.png" alt="NFGカード" style="width:100%;border-radius:23px;display:block">
       </div>
-      <img src="/assets/screen-survey.png" alt="NGraph ヒアリング画面" style="width:100%;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)">
-    </div>
-    <div class="bento-card bento-green">
-      <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-      <h3>Googleクチコミも自然に増える</h3>
-      <p>AIがお客様との会話の最後にGoogleレビューをさりげなくご案内。満足度が高いタイミングで自然に誘導するから、無理なくクチコミが増えていきます。</p>
     </div>
   </div>
 </div>
-</section>
 
-<!-- SCREEN SHOWCASE -->
-<section class="showcase">
-<div class="container text-center">
-  <div class="section-label reveal">App Preview</div>
-  <h2 class="section-title reveal">実際の画面をご覧ください</h2>
-  <p class="section-desc reveal">お客様のスマホにはこのように表示されます。</p>
-  <div class="showcase-grid">
-    <div class="showcase-item reveal">
-      <div class="showcase-phone">
-        <img src="/assets/screen-welcome.png" alt="NGraph ウェルカム画面">
-      </div>
-      <div class="showcase-caption">ウェルカム画面</div>
-      <div class="showcase-sub">QRを読むとこの画面が開きます</div>
+<!-- Bonus: クチコミ -->
+<div class="container" style="margin-top:80px;padding-bottom:20px">
+  <div class="story-step reveal" style="max-width:720px;margin:0 auto;text-align:center;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.03)">
+    <div style="width:56px;height:56px;border-radius:16px;background:rgba(76,175,80,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#43a047" stroke-width="2" style="width:28px;height:28px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     </div>
-    <div class="showcase-item reveal reveal-delay-1">
-      <div class="showcase-phone">
-        <img src="/assets/screen-nfg-card.png" alt="NGraph NFGカード詳細">
-      </div>
-      <div class="showcase-caption">料理の詳細カード</div>
-      <div class="showcase-sub">食材・アレルゲン・カロリーを自動表示</div>
-    </div>
-    <div class="showcase-item reveal reveal-delay-2">
-      <div class="showcase-phone">
-        <img src="/assets/screen-menu-list.png" alt="NGraph メニュー一覧">
-      </div>
-      <div class="showcase-caption">メニュー一覧</div>
-      <div class="showcase-sub">全メニューをカテゴリ別に閲覧</div>
-    </div>
+    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:10px">さらに、Googleクチコミも自然に増える</h3>
+    <p style="font-size:.92rem;color:#666;line-height:2;max-width:540px;margin:0 auto">AIがお客様との会話の最後にGoogleレビューをさりげなくご案内。満足度が高いタイミングで自然に誘導するから、無理なくクチコミが増えていきます。</p>
   </div>
-</div>
-</section>
-
-<!-- COMPARISON -->
-<section class="compare" id="compare">
-<div class="container text-center">
-  <div class="section-label reveal">Before → After</div>
-  <h2 class="section-title reveal">NGraphがあると、こう変わります</h2>
-</div>
-<div class="container">
-<div class="compare-grid reveal">
-  <div class="compare-card compare-before">
-    <div class="compare-label">Before</div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="compare-text">指差しと身振りで対応</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0zM12 9v4m0 4h.01"/></svg></div><div class="compare-text">アレルギーに答えられない</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="compare-text">ピーク時に説明する余裕なし</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="compare-text">口コミで星が伸びない</div></div>
-  </div>
-  <div class="compare-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14m-4-4l4 4-4 4"/></svg></div>
-  <div class="compare-card compare-after">
-    <div class="compare-label">After</div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg></div><div class="compare-text">130ヶ国語で自動メニュー案内</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="compare-text">アレルギー・ハラル自動表示</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><div class="compare-text">QR読み取りで完結、手間ゼロ</div></div>
-    <div class="compare-row"><div class="compare-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/></svg></div><div class="compare-text">外国人の好レビューが増加</div></div>
-  </div>
-</div>
 </div>
 </section>
 
@@ -487,36 +443,6 @@ img{max-width:100%;display:block}
 </div>
 </div>
 
-<!-- FLOW -->
-<section class="flow" id="how">
-<div class="container text-center">
-  <div class="section-label reveal">How it works</div>
-  <h2 class="section-title reveal">導入はびっくりするほど簡単</h2>
-  <p class="section-desc reveal">お店側の作業は「メニュー写真を送る」だけ。あとはすべてお任せ。</p>
-  <div class="flow-timeline reveal">
-    <div class="flow-step">
-      <div class="flow-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
-      <h3>フォームから申込</h3>
-      <p>店舗情報を入力。<br>1分で完了。</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
-      <h3>メニュー写真を送る</h3>
-      <p>紙でも黒板でも<br>何でもOK。</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
-      <h3>NGraphが設定</h3>
-      <p>AIが解析。確認は<br>Yes/Noだけ。</p>
-    </div>
-    <div class="flow-step">
-      <div class="flow-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-      <h3>QRを置いて開始</h3>
-      <p>専用QR送付。<br>その日から使えます。</p>
-    </div>
-  </div>
-</div>
-</section>
 
 <!-- PRICING -->
 <section class="pricing" id="pricing">
