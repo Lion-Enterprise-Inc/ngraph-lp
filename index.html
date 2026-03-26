@@ -241,29 +241,48 @@ img{max-width:100%;display:block}
 .footer-links a:hover{color:#e8642c}
 .footer-copy{text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06)}
 
-/* ===== TIMELINE ===== */
-.timeline{display:flex;align-items:center;justify-content:center;gap:0;max-width:800px;margin:0 auto}
-.tl-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
-.tl-dot{width:14px;height:14px;border-radius:50%;background:#ddd;border:3px solid #fff;box-shadow:0 0 0 2px #ddd;transition:all .3s}
-.tl-dot-active{background:#e8642c;box-shadow:0 0 0 2px #e8642c,0 0 12px rgba(232,100,44,.3)}
-.tl-label{font-size:.68rem;font-weight:600;color:#999;white-space:nowrap}
-.tl-line{flex:1;height:2px;background:linear-gradient(90deg,#ddd,#e8642c20);min-width:20px}
+/* ===== TIMELINE HORIZONTAL ===== */
+.timeline{display:flex;align-items:flex-start;justify-content:center;gap:0;max-width:860px;margin:0 auto;position:relative}
+.tl-step{flex:1;text-align:center;position:relative;padding-top:32px}
+.tl-step::before{content:'';position:absolute;top:10px;left:0;right:0;height:2px;background:#e0e0e0}
+.tl-step:first-child::before{left:50%}
+.tl-step:last-child::before{right:50%}
+.tl-dot{width:22px;height:22px;border-radius:50%;background:#fff;border:2.5px solid #ddd;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2;transition:all .4s}
+.tl-dot-done{border-color:#e8642c;background:#e8642c}
+.tl-dot-done::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.tl-dot-active{border-color:#e8642c;background:#fff;box-shadow:0 0 0 4px rgba(232,100,44,.15),0 0 16px rgba(232,100,44,.1)}
+.tl-step.done::before{background:#e8642c}
+.tl-icon{font-size:1.2rem;margin-bottom:4px}
+.tl-label{font-size:.72rem;font-weight:600;color:#999}
+.tl-step.done .tl-label{color:#e8642c}
+.tl-step.active .tl-label{color:#e8642c;font-weight:700}
 
 /* ===== STORY STEPS ===== */
-.story-step{display:grid;grid-template-columns:1fr 280px;gap:56px;align-items:center}
-.story-step-reverse{grid-template-columns:280px 1fr}
+.story-section{position:relative;padding:48px 0}
+.story-section::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#e8642c20,#e8642c40,#e8642c20);transform:translateX(-50%)}
+.story-step{display:grid;grid-template-columns:1fr 320px;gap:48px;align-items:center;position:relative}
+.story-step-reverse{grid-template-columns:320px 1fr}
 .story-step-reverse .story-img{order:-1}
-.story-num{font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
-.story-text h3{font-size:1.4rem;font-weight:800;margin-bottom:12px;line-height:1.4}
+.story-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#e8642c,#f09060);color:#fff;padding:6px 16px 6px 8px;border-radius:100px;font-size:.72rem;font-weight:700;margin-bottom:16px;box-shadow:0 4px 12px rgba(232,100,44,.2)}
+.story-badge-num{width:24px;height:24px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800}
+.story-text h3{font-size:1.35rem;font-weight:800;margin-bottom:14px;line-height:1.45}
 .story-text p{font-size:.92rem;color:#666;line-height:2}
-.phone-mock{background:#0a0a0a;border-radius:28px;padding:4px;box-shadow:0 24px 64px rgba(0,0,0,.12);display:inline-block}
-.phone-mock img{width:100%;border-radius:24px;display:block;cursor:pointer;transition:transform .2s}
-.phone-mock img:hover{transform:scale(1.02)}
+.story-img{text-align:center}
+.phone-mock{background:#0a0a0a;border-radius:28px;padding:4px;box-shadow:0 24px 64px rgba(0,0,0,.1);display:inline-block;position:relative}
+.phone-mock img{width:100%;border-radius:24px;display:block;cursor:pointer;transition:transform .3s,box-shadow .3s}
+.phone-mock:hover img{transform:scale(1.03)}
+.phone-mock:hover{box-shadow:0 32px 80px rgba(0,0,0,.15)}
+.phone-mock::after{content:'タップで拡大';position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);font-size:.65rem;color:#bbb;opacity:0;transition:opacity .3s;white-space:nowrap}
+.phone-mock:hover::after{opacity:1}
+/* Floating annotation badges */
+.story-float{position:absolute;background:#fff;border-radius:12px;padding:10px 16px;box-shadow:0 6px 24px rgba(0,0,0,.06);font-size:.72rem;font-weight:600;display:flex;align-items:center;gap:8px;border:1px solid rgba(0,0,0,.04);color:#444;z-index:3;white-space:nowrap}
+.story-float svg{width:16px;height:16px;color:#e8642c;flex-shrink:0}
 
 /* ===== LIGHTBOX ===== */
-.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px)}
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(12px);padding:24px}
 .lightbox.active{display:flex}
-.lightbox img{max-width:90vw;max-height:90vh;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.lightbox img{max-width:min(420px,90vw);max-height:90vh;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:lbIn .25s ease}
+@keyframes lbIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
 
 /* ===== SECTION TITLES ===== */
 .section-label{font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.16em;margin-bottom:10px}
@@ -290,12 +309,14 @@ img{max-width:100%;display:block}
   .hero-metrics{flex-direction:column}
   .hero-metric{border-right:none;border-bottom:1px solid rgba(0,0,0,.06)}
   .hero-metric:last-child{border-bottom:none}
-  .story-step,.story-step-reverse{grid-template-columns:1fr!important;text-align:center}
+  .story-step,.story-step-reverse{grid-template-columns:1fr!important;text-align:center;gap:32px}
   .story-step-reverse .story-img{order:0}
+  .story-section::before{display:none}
+  .story-float{display:none}
   .phone-mock{max-width:240px}
-  .timeline{flex-wrap:wrap;gap:4px}
-  .tl-line{min-width:12px}
-  .tl-label{font-size:.6rem}
+  .timeline .tl-icon{font-size:1rem}
+  .tl-label{font-size:.58rem}
+  .tl-step{padding-top:28px}
   .showcase-grid{grid-template-columns:1fr;gap:40px}
   .showcase-phone{width:200px}
   .compare-grid{grid-template-columns:1fr;gap:16px}
@@ -397,55 +418,58 @@ img{max-width:100%;display:block}
 <!-- Timeline -->
 <div class="container" style="margin-top:56px">
   <div class="timeline reveal">
-    <div class="tl-step"><div class="tl-dot"></div><div class="tl-label">申込</div></div>
-    <div class="tl-line"></div>
-    <div class="tl-step"><div class="tl-dot"></div><div class="tl-label">メニュー送付</div></div>
-    <div class="tl-line"></div>
-    <div class="tl-step"><div class="tl-dot tl-dot-active"></div><div class="tl-label">AIがヒアリング</div></div>
-    <div class="tl-line"></div>
-    <div class="tl-step"><div class="tl-dot"></div><div class="tl-label">正解データ完成</div></div>
-    <div class="tl-line"></div>
-    <div class="tl-step"><div class="tl-dot"></div><div class="tl-label">130ヶ国語で案内開始</div></div>
+    <div class="tl-step done"><div class="tl-dot tl-dot-done"></div><div class="tl-icon">📋</div><div class="tl-label">申込</div></div>
+    <div class="tl-step done"><div class="tl-dot tl-dot-done"></div><div class="tl-icon">📸</div><div class="tl-label">メニュー送付</div></div>
+    <div class="tl-step active"><div class="tl-dot tl-dot-active"></div><div class="tl-icon">🤖</div><div class="tl-label">AIがヒアリング</div></div>
+    <div class="tl-step"><div class="tl-dot"></div><div class="tl-icon">✅</div><div class="tl-label">正解データ完成</div></div>
+    <div class="tl-step"><div class="tl-dot"></div><div class="tl-icon">🌏</div><div class="tl-label">多言語で案内開始</div></div>
   </div>
 </div>
 
-<!-- Step 1 -->
-<div class="container" style="margin-top:64px">
-  <div class="story-step reveal">
+<!-- Steps -->
+<div class="container">
+<div class="story-section">
+
+  <!-- Step 1 -->
+  <div class="story-step reveal" style="margin-top:48px">
     <div class="story-text">
-      <div class="story-num">Step 1 — 申込 &amp; メニュー送付</div>
+      <div class="story-badge"><span class="story-badge-num">1</span>申込 &amp; メニュー送付</div>
       <h3>メニュー写真を送るだけ</h3>
-      <p>紙のメニューでも黒板でもOK。写真を送ると、AIが料理名・食材・アレルゲン・調理法をすべて自動で読み取り、構造化します。</p>
+      <p>紙のメニューでも黒板でもOK。写真を送ると、AIが料理名・食材・アレルゲン・調理法をすべて自動で読み取り、構造化します。お店側の作業はここだけ。</p>
     </div>
-    <div class="story-img">
+    <div class="story-img" style="position:relative">
       <div class="phone-mock">
         <img src="/assets/screen-menu-list.png" alt="メニュー一覧" class="zoomable">
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- Step 2 -->
-<div class="container" style="margin-top:80px">
-  <div class="story-step story-step-reverse reveal">
-    <div class="story-text">
-      <div class="story-num">Step 2 — AIが店主にヒアリング</div>
-      <h3>わからない点だけ、AIが聞く</h3>
-      <p>「この料理にバターは使っていますか？」——AIが判断できない点だけを選択式で確認。タップで答えるだけだから、1品あたり数秒で完了。推測で表示することは一切ありません。</p>
-    </div>
-    <div class="story-img">
-      <div class="phone-mock">
-        <img src="/assets/screen-survey.png" alt="ヒアリング画面" class="zoomable">
+      <div class="story-float" style="top:16px;left:-24px;animation:floatA 4s ease-in-out infinite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        写真を送るだけ
       </div>
     </div>
   </div>
-</div>
 
-<!-- Step 3 -->
-<div class="container" style="margin-top:80px">
-  <div class="story-step reveal">
+  <!-- Step 2 -->
+  <div class="story-step story-step-reverse reveal" style="margin-top:80px">
     <div class="story-text">
-      <div class="story-num">Step 3 — 正解データ完成 → 多言語案内</div>
+      <div class="story-badge"><span class="story-badge-num">2</span>AIが店主にヒアリング</div>
+      <h3>わからない点だけ、AIが聞く</h3>
+      <p>「この料理にバターは使っていますか？」——AIが判断できない点だけを選択式で確認。タップで答えるだけだから、1品あたり数秒で完了。<strong style="color:#e8642c">推測で表示することは一切ありません。</strong></p>
+    </div>
+    <div class="story-img" style="position:relative">
+      <div class="phone-mock">
+        <img src="/assets/screen-survey.png" alt="ヒアリング画面" class="zoomable">
+      </div>
+      <div class="story-float" style="bottom:24px;right:-16px;animation:floatA 4s ease-in-out 1s infinite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+        タップで回答完了
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="story-step reveal" style="margin-top:80px">
+    <div class="story-text">
+      <div class="story-badge"><span class="story-badge-num">3</span>正解データ → 多言語案内</div>
       <h3>130ヶ国語でお客様に届く</h3>
       <p>店主が確認した正確なデータを元に、AIがお客様の母国語でメニューをご案内。アレルギー・ハラル・ヴィーガンにも自動対応。QRを置くだけで始まります。</p>
       <div class="mini-demo" style="margin-top:20px">
@@ -455,22 +479,30 @@ img{max-width:100%;display:block}
         <div class="mini-demo-lang"><strong>ไทย</strong>เทมปุระอะโวคาโด</div>
       </div>
     </div>
-    <div class="story-img">
+    <div class="story-img" style="position:relative">
       <div class="phone-mock">
         <img src="/assets/screen-nfg-card.png" alt="NFGカード" class="zoomable">
       </div>
+      <div class="story-float" style="top:24px;left:-20px;animation:floatA 4s ease-in-out 2s infinite">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg>
+        130ヶ国語対応
+      </div>
     </div>
   </div>
+
+</div>
 </div>
 
 <!-- Bonus: クチコミ -->
-<div class="container" style="margin-top:80px;padding-bottom:20px">
-  <div class="reveal" style="max-width:720px;margin:0 auto;text-align:center;background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:20px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,.03)">
-    <div style="width:56px;height:56px;border-radius:16px;background:rgba(76,175,80,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#43a047" stroke-width="2" style="width:28px;height:28px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+<div class="container" style="margin-top:64px;padding-bottom:20px">
+  <div class="reveal" style="max-width:800px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:linear-gradient(135deg,#f0faf0,#fff);border:1px solid rgba(76,175,80,.12);border-radius:20px;padding:36px 40px;box-shadow:0 4px 24px rgba(0,0,0,.03)">
+    <div style="width:64px;height:64px;border-radius:18px;background:rgba(76,175,80,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#43a047" stroke-width="2" style="width:32px;height:32px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
     </div>
-    <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:10px">さらに、Googleクチコミも自然に増える</h3>
-    <p style="font-size:.92rem;color:#666;line-height:2;max-width:540px;margin:0 auto">AIがお客様との会話の最後にGoogleレビューをさりげなくご案内。満足度が高いタイミングで自然に誘導するから、無理なくクチコミが増えていきます。</p>
+    <div>
+      <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:6px">さらに、Googleクチコミも自然に増える</h3>
+      <p style="font-size:.88rem;color:#666;line-height:1.9">AIがお客様との会話の最後にGoogleレビューをさりげなくご案内。満足度が高いタイミングで自然に誘導するから、無理なくクチコミが増えていきます。</p>
+    </div>
   </div>
 </div>
 </section>
