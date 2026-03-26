@@ -266,8 +266,8 @@ img{max-width:100%;display:block}
   .hero-metrics{flex-direction:column}
   .hero-metric{border-right:none;border-bottom:1px solid rgba(0,0,0,.06)}
   .hero-metric:last-child{border-bottom:none}
-  .bento-grid{grid-template-columns:1fr}
-  .bento-card.large{grid-column:span 1}
+  .feature-main .bento-card{grid-template-columns:1fr!important}
+  .feature-row{grid-template-columns:1fr!important}
   .showcase-grid{grid-template-columns:1fr;gap:40px}
   .showcase-phone{width:200px}
   .compare-grid{grid-template-columns:1fr;gap:16px}
@@ -364,42 +364,51 @@ img{max-width:100%;display:block}
   <div class="section-label reveal">Features</div>
   <h2 class="section-title reveal">NGraphが選ばれる理由</h2>
   <p class="section-desc reveal">文字が読めなくても、言葉が通じなくても。<br>お客様のスマホが、あなたの店のベストスタッフになります。</p>
-  <div class="bento-grid">
-    <div class="bento-card large bento-orange reveal">
-      <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-      <h3>「おすすめは？」に、AIが130ヶ国語で答えます</h3>
-      <p>お客様がスマホから質問するだけ。料理の魅力、食材、アレルギー情報をAIが母国語でご案内。スタッフが忙しい時間帯でも、丁寧な接客が自動で実現します。</p>
-      <div class="mini-demo">
+  <!-- Row 1: メインカード full width -->
+  <div class="feature-main reveal" style="margin-top:56px">
+    <div class="bento-card bento-orange" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+      <div>
+        <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3>「おすすめは？」に、AIが130ヶ国語で答えます</h3>
+        <p>お客様がスマホから質問するだけ。料理の魅力、食材、アレルギー情報をAIが母国語でご案内。スタッフが忙しい時間帯でも、丁寧な接客が自動で実現します。</p>
+      </div>
+      <div class="mini-demo" style="flex-direction:column">
         <div class="mini-demo-lang"><strong>English</strong>Crispy avocado tempura</div>
         <div class="mini-demo-lang"><strong>中文</strong>酥脆牛油果天妇罗</div>
         <div class="mini-demo-lang"><strong>한국어</strong>바삭한 아보카도 튀김</div>
         <div class="mini-demo-lang"><strong>ไทย</strong>เทมปุระอะโวคาโด</div>
       </div>
     </div>
-    <div class="bento-card bento-green reveal reveal-delay-1">
+  </div>
+  <!-- Row 2: 3カード均等 -->
+  <div class="feature-row reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px">
+    <div class="bento-card bento-green">
       <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
       <h3>アレルギー・ハラル・ヴィーガン自動表示</h3>
       <p>食事制限のあるお客様にも多言語で正確に表示。「これ食べても大丈夫？」への不安を解消します。</p>
     </div>
-    <div class="bento-card bento-blue reveal reveal-delay-1">
+    <div class="bento-card bento-blue">
       <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
       <h3>QRを置くだけ。機器もアプリも不要</h3>
       <p>導入に必要なのはQRコードだけ。工事も機器購入もアプリも不要。届いたその日から使えます。</p>
     </div>
-    <div class="bento-card bento-purple reveal reveal-delay-2">
+    <div class="bento-card bento-purple">
       <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
       <h3>初期設定はすべてNGraphにお任せ</h3>
       <p>メニュー写真を送るだけ。解析・設定・調整はすべてNGraphが行います。お店の手間はゼロです。</p>
     </div>
-    <div class="bento-card large bento-orange reveal reveal-delay-2" style="display:grid;grid-template-columns:1fr 180px;gap:24px;align-items:center">
+  </div>
+  <!-- Row 3: 2カード均等（画像付き + テキスト） -->
+  <div class="feature-row reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px">
+    <div class="bento-card bento-orange" style="display:grid;grid-template-columns:1fr 150px;gap:20px;align-items:center">
       <div>
         <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
         <h3>店主の確認はタップだけ</h3>
-        <p>AIが迷った点は選択式で確認。タップで答えるだけで、あなたの店だけの正確なAI案内が完成します。推測で表示することは一切ありません。</p>
+        <p>AIが迷った点は選択式で確認。タップで答えるだけで、正確なAI案内が完成します。</p>
       </div>
-      <img src="/assets/screen-survey.png" alt="NGraph ヒアリング画面" style="width:100%;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.08)">
+      <img src="/assets/screen-survey.png" alt="NGraph ヒアリング画面" style="width:100%;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)">
     </div>
-    <div class="bento-card bento-green reveal reveal-delay-2">
+    <div class="bento-card bento-green">
       <div class="bento-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
       <h3>Googleクチコミも自然に増える</h3>
       <p>AIがお客様との会話の最後にGoogleレビューをさりげなくご案内。満足度が高いタイミングで自然に誘導するから、無理なくクチコミが増えていきます。</p>
