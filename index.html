@@ -212,6 +212,23 @@ img{max-width:100%;display:block}
 .testi-role{font-size:.7rem;color:#aaa}
 .testi-note{text-align:center;margin-top:20px;font-size:.75rem;color:#ccc}
 
+/* ===== CUSTOMER EXPERIENCE ===== */
+.exp-flow{display:flex;flex-direction:column;gap:24px;max-width:860px;margin:0 auto}
+.exp-card{display:grid;grid-template-columns:280px 1fr;gap:40px;align-items:center;background:#faf9f7;border-radius:20px;padding:36px 40px;border:1px solid rgba(0,0,0,.04);transition:all .3s}
+.exp-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.04)}
+.exp-card-reverse{grid-template-columns:1fr 280px}
+.exp-card-reverse .exp-img-wrap{order:1}
+.exp-img-wrap{display:flex;justify-content:center}
+.exp-img-wrap .phone-mock{max-width:240px}
+.exp-step-label{font-size:.7rem;font-weight:700;color:#e8642c;text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px}
+.exp-title{font-size:1.25rem;font-weight:800;margin-bottom:10px;line-height:1.4}
+.exp-desc{font-size:.88rem;color:#666;line-height:1.85}
+@media(max-width:768px){
+  .exp-card,.exp-card-reverse{grid-template-columns:1fr!important;text-align:center;padding:28px 20px;gap:24px}
+  .exp-card-reverse .exp-img-wrap{order:0}
+  .exp-img-wrap .phone-mock{max-width:200px}
+}
+
 /* ===== FAQ ===== */
 .faq{padding:100px 0;background:#faf9f7}
 .faq-list{max-width:720px;margin:56px auto 0}
@@ -355,7 +372,7 @@ img{max-width:100%;display:block}
     <a href="#features">仕組み</a>
     <a href="#pricing">料金</a>
     <a href="#faq">FAQ</a>
-    <a href="/entry.html" class="nav-cta">無料で始める</a>
+    <a href="https://app.ngraph.jp/admin/login" class="nav-cta">無料で始める</a>
   </nav>
   <button class="hamburger" onclick="document.getElementById('mn').classList.add('open')"><span></span><span></span><span></span></button>
 </div>
@@ -366,7 +383,7 @@ img{max-width:100%;display:block}
   <a href="#how" onclick="this.parentElement.classList.remove('open')">使い方</a>
   <a href="#pricing" onclick="this.parentElement.classList.remove('open')">料金</a>
   <a href="#faq" onclick="this.parentElement.classList.remove('open')">FAQ</a>
-  <a href="/entry.html" class="cta-btn" onclick="this.parentElement.classList.remove('open')">無料で始める</a>
+  <a href="https://app.ngraph.jp/admin/login" class="cta-btn" onclick="this.parentElement.classList.remove('open')">無料で始める</a>
 </div>
 
 <!-- HERO -->
@@ -378,7 +395,7 @@ img{max-width:100%;display:block}
     <h1>外国人のお客様への説明、まだ<em>スタッフ任せ</em>ですか？</h1>
     <p class="hero-desc">QRを置くだけ。AIが<strong>130ヶ国語</strong>でメニューを案内します。<br>アレルギー・宗教対応も自動。初期費用<strong>0円</strong>、設定もすべてお任せ。</p>
     <div class="hero-ctas">
-      <a href="/entry.html" class="cta-btn">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      <a href="https://app.ngraph.jp/admin/login" class="cta-btn">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       <a href="#features" class="cta-ghost">詳しく見る</a>
     </div>
     <div class="hero-metrics reveal">
@@ -483,6 +500,13 @@ img{max-width:100%;display:block}
       <div class="story-badge"><span class="story-badge-num">3</span>正解データ → 多言語案内</div>
       <h3>130ヶ国語でお客様に届く</h3>
       <p>店主が確認した正確なデータを元に、AIがお客様の母国語でメニューをご案内。アレルギー・ハラル・ヴィーガンにも自動対応。QRを置くだけで始まります。</p>
+      <ul style="margin-top:16px;padding-left:20px;font-size:.88rem;color:#555;line-height:2.2;list-style:none">
+        <li>✓ 料理の背景・ストーリー</li>
+        <li>✓ 材料・調理法・アレルゲン</li>
+        <li>✓ 味の特徴・カロリー</li>
+        <li>✓ 食べ方・ペアリング提案</li>
+        <li>✓ 130ヶ国語の自動翻訳</li>
+      </ul>
       <div class="mini-demo" style="margin-top:20px">
         <div class="mini-demo-lang"><strong>English</strong>Crispy avocado tempura</div>
         <div class="mini-demo-lang"><strong>中文</strong>酥脆牛油果天妇罗</div>
@@ -553,7 +577,7 @@ img{max-width:100%;display:block}
       <div class="price-row"><div class="price-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div><div class="price-row-text">多言語メニューページ作成</div><div class="price-row-val">0円</div></div>
     </div>
     <div class="price-footer">
-      <a href="/entry.html" class="cta-btn">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      <a href="https://app.ngraph.jp/admin/login" class="cta-btn">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       <div class="price-note">※ 先行導入は台数に限りがあります。お早めにどうぞ。</div>
     </div>
   </div>
@@ -585,6 +609,57 @@ img{max-width:100%;display:block}
 </div>
 </section>
 
+<!-- CUSTOMER EXPERIENCE -->
+<section style="padding:100px 0;background:#fff" id="experience">
+<div class="container text-center">
+  <div class="section-label reveal">Experience</div>
+  <h2 class="section-title reveal">お客様の体験</h2>
+  <p class="section-desc reveal">QRをスキャンしたお客様は、こんな体験ができます。</p>
+</div>
+<div class="container" style="margin-top:48px">
+  <div class="exp-flow">
+
+    <!-- Flow 1: QR Landing -->
+    <div class="exp-card reveal">
+      <div class="exp-img-wrap">
+        <div class="phone-mock"><img src="/assets/case-customer-landing.png" alt="QRスキャン後の画面" class="zoomable"></div>
+      </div>
+      <div class="exp-info">
+        <div class="exp-step-label">QRスキャン後</div>
+        <h3 class="exp-title">選べる入り口</h3>
+        <p class="exp-desc">「メニューを見る」で一覧表示。「カメラを開く」で写真から料理を解析。「おすすめは？」でAIに相談。お客様が使いやすい方法を選べます。</p>
+      </div>
+    </div>
+
+    <!-- Flow 2: Menu Detail -->
+    <div class="exp-card exp-card-reverse reveal reveal-delay-1">
+      <div class="exp-img-wrap">
+        <div class="phone-mock"><img src="/assets/case-nfg-card-ja.png" alt="メニュー詳細NFGカード" class="zoomable"></div>
+      </div>
+      <div class="exp-info">
+        <div class="exp-step-label">メニュー詳細</div>
+        <h3 class="exp-title">料理のすべてが伝わる</h3>
+        <p class="exp-desc">料理名・調理法・材料・アレルゲン・味の特徴・カロリーまで。写真付きで多言語に自動翻訳。食事制限がある方も安心して選べます。</p>
+      </div>
+    </div>
+
+    <!-- Flow 3: AI Chat -->
+    <div class="exp-card reveal reveal-delay-2">
+      <div class="exp-img-wrap">
+        <div class="phone-mock"><img src="/assets/case-bonta-chat.png" alt="AIチャット画面" class="zoomable"></div>
+      </div>
+      <div class="exp-info">
+        <div class="exp-step-label">AIチャット</div>
+        <h3 class="exp-title">何でも聞ける</h3>
+        <p class="exp-desc">「ベジタリアン向けは？」「子供が食べられるのは？」AIが130ヶ国語でメニューを案内。まるでスタッフに聞いているかのように。</p>
+      </div>
+    </div>
+
+  </div>
+  <p class="reveal" style="text-align:center;color:#ccc;font-size:.75rem;margin-top:28px">導入店舗: 蟹と海鮮ぼんた（福井県）</p>
+</div>
+</section>
+
 <!-- FAQ -->
 <section class="faq" id="faq">
 <div class="container text-center">
@@ -606,7 +681,7 @@ img{max-width:100%;display:block}
   <div class="section-label" style="color:rgba(255,255,255,.3)">Get Started</div>
   <h2 class="section-title">まずは無料で試してみませんか？</h2>
   <p class="section-desc">QRを置くだけで、メニューが130ヶ国語で届く。<br>設定はすべてNGraphが行います。お店の負担はゼロです。</p>
-  <a href="/entry.html" class="cta-btn" style="margin-top:12px;font-size:1.15rem;padding:18px 48px">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+  <a href="https://app.ngraph.jp/admin/login" class="cta-btn" style="margin-top:12px;font-size:1.15rem;padding:18px 48px">無料で始める <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
   <div class="cta-sub">先行導入枠に限りがあります。お早めにどうぞ。</div>
 </div>
 </section>
@@ -616,7 +691,7 @@ img{max-width:100%;display:block}
 <div class="container">
   <div class="footer-inner">
     <div><div class="footer-brand"><span style="display:flex;align-items:center;gap:8px"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:24px;width:24px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.1rem;font-weight:400;letter-spacing:.06em;color:#fff">NGraph</span></span></div><p>AIで飲食店のメニューを多言語案内する仕組みです。</p></div>
-    <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="/entry.html">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
+    <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="https://app.ngraph.jp/admin/login">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
   </div>
   <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
 </div>
