@@ -2,6 +2,10 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Noto Sans JP','Inter',-apple-system,sans-serif;color:#1a1a1a;background:#faf9f7;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* 日本語の不自然な改行（語尾・助詞だけが次行に孤立する崩れ）を仕組みで防ぐ。
+   text-wrap:pretty = 行末に1語だけ残る孤立を回避 / word-break:auto-phrase = 文節単位で折り返し。
+   どちらも非対応ブラウザでは無視されるだけなので安全。全ページの本文テキストに自動適用。 */
+h1,h2,h3,h4,h5,h6,p,li,td,th,dd,dt,figcaption,blockquote,.biz-lines>div{word-break:auto-phrase;text-wrap:pretty}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 
