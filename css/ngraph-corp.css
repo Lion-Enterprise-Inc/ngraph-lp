@@ -79,17 +79,20 @@ img{max-width:100%;display:block}
 .btn svg{width:16px;height:16px}
 
 /* ── hero visual centerpiece ── */
-.hero-visual{position:absolute;top:50px;right:-8%;width:min(74vw,1080px);margin:0;z-index:0;animation:hv-float 7s ease-in-out infinite}
+/* fixed ambient backdrop: stays put while content scrolls over it */
+.hero-visual{position:fixed;top:64px;right:-8%;width:min(74vw,1080px);margin:0;z-index:-1;opacity:.8;pointer-events:none;animation:hv-float 9s ease-in-out infinite}
 .hero-visual::before{content:"";position:absolute;inset:-8% -4%;background:radial-gradient(closest-side,rgba(251,176,96,.16),transparent 72%);filter:blur(6px);z-index:-1}
 .hero-visual img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 60px rgba(251,176,96,.22))}
-.hero-visual-labels{position:absolute;inset:0;pointer-events:none}
-.hv-node{position:absolute;font-size:.74rem;font-weight:600;letter-spacing:.06em;color:var(--text);padding:5px 13px;border-radius:999px;background:rgba(10,15,28,.72);border:1px solid var(--border-strong);backdrop-filter:blur(6px);white-space:nowrap;box-shadow:0 0 18px rgba(34,211,238,.12)}
-.hv-node::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent-3);box-shadow:0 0 8px var(--accent-3);margin-right:7px;vertical-align:middle}
-.hv-1{top:22%;left:58%}
-.hv-2{top:8%;right:8%}
-.hv-3{bottom:24%;right:18%}
+/* prismatic light sweep running through the network, masked to its shape */
+.hero-visual::after{content:"";position:absolute;inset:0;
+  -webkit-mask:url(/assets/hero-network-amber.png) center/contain no-repeat;
+  mask:url(/assets/hero-network-amber.png) center/contain no-repeat;
+  background:linear-gradient(115deg,transparent 43%,rgba(90,170,255,0) 46%,rgba(160,220,255,.5) 49%,rgba(255,255,255,.92) 50%,rgba(120,255,225,.5) 51%,rgba(90,170,255,0) 54%,transparent 57%);
+  background-size:260% 100%;mix-blend-mode:screen;
+  animation:hv-sweep 6s linear infinite}
 @keyframes hv-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@media (prefers-reduced-motion:reduce){.hero-visual{animation:none}}
+@keyframes hv-sweep{0%{background-position:185% 0}100%{background-position:-85% 0}}
+@media (prefers-reduced-motion:reduce){.hero-visual{animation:none}.hero-visual::after{animation:none;opacity:0}}
 
 /* ── section primitives ── */
 .section{padding:96px 0;position:relative}
