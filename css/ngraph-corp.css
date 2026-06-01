@@ -118,6 +118,7 @@ img{max-width:100%;display:block}
 .mission-card{max-width:860px;margin:0 auto;padding:52px;text-align:center;border-radius:24px}
 .mission-card h2{font-size:clamp(1.3rem,2.8vw,1.7rem);font-weight:800;line-height:1.6;margin-bottom:22px;word-break:keep-all;overflow-wrap:anywhere}
 .mission-card h2 .hl{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.mission-card strong{color:var(--accent-3);font-weight:700}
 .mission-card p{font-size:.92rem;color:var(--text-2);line-height:2.1;margin-bottom:12px}
 
 /* ── products grid ── */
