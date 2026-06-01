@@ -48,6 +48,7 @@
   <div class="glow glow-1"></div>
   <div class="glow glow-2"></div>
   <div class="glow glow-3"></div>
+  <canvas class="binary-field" id="binaryField"></canvas>
 </div>
 
 <header class="header">
@@ -249,6 +250,77 @@
 </footer>
 
 <script>
+  // ── Binary Field: ニコマコス倫理学の目次をUTF-8ビット列化した「01」が漂い、
+  //    マウスに引き寄せられ、近接する粒子はシナプスで結ばれる（NGraph=網の世界観）。
+  //    デコードすると倫理学の目次原文が復元される裏設定。
+  (function(){
+    var canvas=document.getElementById('binaryField');
+    if(!canvas)return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var ctx=canvas.getContext('2d');
+    if(!ctx)return;
+    var BITS='11100111101011001010110011100100101110001000000011100101101101111011101100100000111001011001011010000100111000111000000110101000111001011011100110111000111001111010011010001111001000001110011110101100101011001110010010111010100011001110010110110111101110110010000011100101101111101011001111100011100000011010101111100011100000011010010011100011100000011000010011100011100000011010011000100000111001111010110010101100111001001011100010001001111001011011011110111011001000001110010110001011100001111110011010110000100101111110001110000001101010001110011110101111100000001110010110001000101101100010000011100111101011001010110011100101100110111001101111100101101101111011101100100000111010001010101110111000111001011011111010110011111000111000000110101011111000111000000110100100111000111000000110000100111000111000000110100110001000001110011110101100101011001110010010111010100101001110010110110111101110110010000011100110101011011010001111100111101111101010100100100000111001111010110010101100111001011000010110101101111001011011011110111011001000001110011110011111101001011110011010000000101001111110011110011010100001001110001110000001101010101110010110111110101100110010000011100111101011001010110011100100101110001000001111100101101101111011101100100000111001101000101010010001111001011000100010110110111000111000000110101000111001011011111110101011111001101010010110111101001000001110011110101100101011001110010110000101101010111110010110110111101110110010000011100101100011111000101111100110100001001001101100100000111001111010110010101100111001001011100110011101111001011011011110111011001000001110010110001111100010111110011010000100100110111110001110000001101011101110011110110110100110101110001110000001100011010010000011100111101011001010110011100101100011011000000111100101101101111011101100100000111001011011111110101011111001101010010110111101111000111000000110101000111010001010011010110011111001101000001110110011111001111001101010000100111001111001010010011111111001101011010010111011';
+    var bi=0,particles=[],pointer={x:-9999,y:-9999,active:false},lastGrow=Date.now();
+    var COUNT_MIN=24,COUNT_MAX=150,GROW_INTERVAL=1500,target=COUNT_MIN;
+    function spawn(w,h){
+      var a=Math.random()*Math.PI*2,sp=0.15+Math.random()*0.25,sz=9+Math.floor(Math.random()*3)*2;
+      var cx=w/2,cy=h/2,spread=Math.min(w,h)*0.48;
+      return{x:cx+(Math.random()-0.5)*spread*2,y:cy+(Math.random()-0.5)*spread*2,
+        vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,size:sz,alpha:0.08+Math.random()*0.18,
+        char:BITS[bi++%BITS.length],life:0,maxLife:300+Math.random()*400};
+    }
+    function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+      particles=[];for(var i=0;i<COUNT_MIN;i++){var p=spawn(canvas.width,canvas.height);p.life=Math.random()*p.maxLife;particles.push(p);}target=COUNT_MIN;}
+    function onMove(e){pointer.x=e.clientX;pointer.y=e.clientY;pointer.active=true;}
+    function onTouch(e){var t=e.touches[0];if(t){pointer.x=t.clientX;pointer.y=t.clientY;pointer.active=true;}}
+    document.addEventListener('mousemove',onMove);
+    document.addEventListener('touchmove',onTouch,{passive:true});
+    document.addEventListener('mouseleave',function(){pointer.active=false;});
+    window.addEventListener('resize',resize);
+    resize();
+    var alphas=[];
+    function draw(){
+      var W=canvas.width,H=canvas.height;
+      ctx.clearRect(0,0,W,H);
+      var now=Date.now();
+      if(now-lastGrow>GROW_INTERVAL&&particles.length<COUNT_MAX){lastGrow=now;target=Math.min(target+1,COUNT_MAX);if(particles.length<target)particles.push(spawn(W,H));}
+      for(var i=0;i<particles.length;i++){
+        var p=particles[i];
+        if(pointer.active){var dx=pointer.x-p.x,dy=pointer.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<150&&d>1){var f=0.15*(1-d/150);p.vx+=dx/d*f;p.vy+=dy/d*f;}}
+        p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;p.life++;
+        var lr=p.life/p.maxLife,lf=lr<0.1?lr/0.1:lr>0.85?(1-lr)/0.15:1;
+        var em=60,efx=Math.min(p.x/em,(W-p.x)/em,1),efy=Math.min(p.y/em,(H-p.y)/em,1),ef=Math.max(0,Math.min(efx,efy));
+        alphas[i]=p.alpha*lf*ef;
+        if(p.life>=p.maxLife||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){particles[i]=spawn(W,H);alphas[i]=0;}
+      }
+      // density boost
+      var DD=60;
+      for(var i2=0;i2<particles.length;i2++){if(alphas[i2]<0.005)continue;var nb=0;
+        for(var j=0;j<particles.length;j++){if(i2===j||alphas[j]<0.005)continue;var ax=particles[i2].x-particles[j].x,ay=particles[i2].y-particles[j].y;if(ax*ax+ay*ay<DD*DD)nb++;}
+        if(nb>0)alphas[i2]=Math.min(alphas[i2]*(1+nb*0.3),0.7);}
+      // synapses
+      var SD=90;
+      for(var i3=0;i3<particles.length;i3++){if(alphas[i3]<0.008)continue;
+        for(var j2=i3+1;j2<particles.length;j2++){if(alphas[j2]<0.008)continue;
+          var sx=particles[i3].x-particles[j2].x,sy=particles[i3].y-particles[j2].y,sd=Math.sqrt(sx*sx+sy*sy);
+          if(sd<SD){var la=Math.min(Math.min(alphas[i3],alphas[j2])*(1-sd/SD)*0.7,0.12);
+            ctx.beginPath();ctx.moveTo(particles[i3].x,particles[i3].y-particles[i3].size*0.3);
+            ctx.lineTo(particles[j2].x,particles[j2].y-particles[j2].size*0.3);
+            ctx.strokeStyle='rgba(56,189,248,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}
+      // chars
+      ctx.font="11px 'SF Mono','Fira Code',monospace";
+      for(var i4=0;i4<particles.length;i4++){if(alphas[i4]<0.005)continue;var p4=particles[i4];
+        var ca=Math.min(alphas[i4]*0.6,0.22);
+        ctx.fillStyle='rgba(96,165,250,'+ca+')';
+        if(p4.size!==11)ctx.font=p4.size+"px 'SF Mono','Fira Code',monospace";
+        ctx.fillText(p4.char,p4.x,p4.y);
+        if(p4.size!==11)ctx.font="11px 'SF Mono','Fira Code',monospace";}
+    }
+    var last=0;
+    (function loop(time){requestAnimationFrame(loop);if(time-last<33)return;last=time;draw();})(0);
+  })();
+
   // mobile nav
   var t=document.getElementById('navToggle'),n=document.getElementById('nav');
   t.addEventListener('click',function(){n.classList.toggle('open')});

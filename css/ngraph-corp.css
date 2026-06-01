@@ -47,6 +47,7 @@ img{max-width:100%;display:block}
 .bg-fx .glow-1{top:-160px;left:50%;transform:translateX(-50%);width:680px;height:420px;background:radial-gradient(circle,rgba(59,130,246,.42),transparent 70%)}
 .bg-fx .glow-2{top:780px;left:-160px;width:480px;height:480px;background:radial-gradient(circle,rgba(34,211,238,.18),transparent 70%)}
 .bg-fx .glow-3{top:1700px;right:-180px;width:520px;height:520px;background:radial-gradient(circle,rgba(59,130,246,.16),transparent 70%)}
+.bg-fx .binary-field{position:absolute;inset:0;width:100%;height:100%}
 
 /* ── header ── */
 .header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,11,20,.6);border-bottom:1px solid var(--border)}
