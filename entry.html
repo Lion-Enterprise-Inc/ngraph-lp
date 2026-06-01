@@ -151,7 +151,7 @@ const SPAM=/(bitcoin|btc|crypto|казино|casino|viagra|cialis|loan|порн�
 form.addEventListener('submit',function(e){
   e.preventDefault();
   // layer 1: honeypot
-  if(form.querySelector('[name="_honey"]').value){success.style.display='block';form.style.display='none';return;}
+  if(form.querySelector('[name="_honey"]').value){form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});return;}
   // layer 2: URL / keyword spam heuristic
   const msg=form.querySelector('[name="お問い合わせ内容"]').value;
   const urls=(msg.match(/https?:\/\//gi)||[]).length;
@@ -159,7 +159,7 @@ form.addEventListener('submit',function(e){
   const btn=document.getElementById('submit-btn');
   btn.disabled=true;btn.textContent='送信中...';
   fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block';if(window.gtag)gtag('event','generate_lead');}else{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';}})
+  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});if(window.gtag)gtag('event','generate_lead');}else{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';}})
   .catch(()=>{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';});
 });
 </script>
