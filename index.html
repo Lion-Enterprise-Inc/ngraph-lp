@@ -94,6 +94,7 @@
     </div>
     <div class="trio">
       <div class="card reveal">
+        <div class="t-ic"><svg viewBox="0 0 24 24"><path d="M5 3v8a2 2 0 002 2 2 2 0 002-2V3M7 13v8"/><path d="M16 3c-1.4 0-2.3 1.7-2.3 4.5S14.6 12 16 12m0-9v18"/></svg></div>
         <div class="tag">NFG</div>
         <div class="tag-full">Nicomacos Food Graph</div>
         <h3>食の意味データ</h3>
@@ -101,6 +102,7 @@
         <span class="arrow">飲食領域での実装 →</span>
       </div>
       <div class="card reveal">
+        <div class="t-ic"><svg viewBox="0 0 24 24"><path d="M4 21V4a1 1 0 011-1h8a1 1 0 011 1v17"/><path d="M14 9h5a1 1 0 011 1v11"/><path d="M2 21h20M7.5 7h3M7.5 11h3M7.5 15h3M17 13h0M17 17h0"/></svg></div>
         <div class="tag">NCG</div>
         <div class="tag-full">Nicomacos Company Graph</div>
         <h3>企業の意味データ</h3>
@@ -108,6 +110,7 @@
         <span class="arrow">企業評価での実装 →</span>
       </div>
       <div class="card reveal">
+        <div class="t-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
         <div class="tag">NHG</div>
         <div class="tag-full">Nicomacos Human Graph</div>
         <h3>人物の意味データ</h3>
@@ -129,6 +132,28 @@
       <p>NGraphは、料理・企業・人物——世界で最も複雑で非構造なデータ領域を、AIが正しく扱える形に構造化する技術を開発しています。最初の実証領域である「食」で磨いた手法を、企業評価・人物評価へと広げてきました。</p>
       <p>共通する設計思想は、各領域の現場を知る専門家が一次情報を確認・承認する <strong>Human-in-the-loop（HITL）</strong>。AIの推測ではなく、検証済みの一次データ＝<strong>VAD（Verified Authentic Data）</strong>を生み出す仕組みそのものを実装します。</p>
       <p>AIが進化するほど、「意味を定義する責任」は人間に戻ってきます。AIに何を任せ、何を人間が担うのか——それを設計と実装で answer する会社です。</p>
+    </div>
+
+    <div class="flow-wrap reveal">
+      <div class="flow-cap">How verified data is born</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="1.4"/><circle cx="17.5" cy="5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="5" cy="17.5" r="1.4"/><circle cx="19" cy="16" r="1.4"/><circle cx="13" cy="19.5" r="1.4"/></svg></div>
+          <div class="f-tx"><div class="f-t">非構造な現実</div><div class="f-s">料理・企業・人物。<br>AIが誤解する領域</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><path d="M12 7.2l-5.6 8.6M12 7.2l5.6 8.6M7.2 18h9.6"/></svg></div>
+          <div class="f-tx"><div class="f-t">意味を構造化</div><div class="f-s">意味のパーツに<br>分解してグラフ化</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div>
+          <div class="f-tx"><div class="f-t">専門家が承認<br><span style="font-weight:600;color:var(--accent-3)">HITL</span></div><div class="f-s">現場を知る人が<br>一次情報を確認</div></div>
+        </div>
+        <div class="flow-step">
+          <div class="f-ic"><svg viewBox="0 0 24 24"><ellipse cx="11" cy="5" rx="7" ry="2.6"/><path d="M4 5v8c0 1.4 3.1 2.6 7 2.6"/><path d="M18 5v5"/><path d="M13.5 19l2 2 4.5-4.5"/></svg></div>
+          <div class="f-tx"><div class="f-t">検証済み一次データ<br><span style="font-weight:600;color:var(--accent-3)">VAD</span></div><div class="f-s">AIが推測せず<br>正確に答えられる</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -328,6 +353,10 @@
     (function loop(time){requestAnimationFrame(loop);if(time-last<33)return;last=time;draw();})(0);
   })();
 
+  // header: transparent at top, blurred bg on scroll
+  var hd=document.querySelector('.header');
+  function onScroll(){if(window.scrollY>20)hd.classList.add('scrolled');else hd.classList.remove('scrolled');}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
   // mobile nav
   var t=document.getElementById('navToggle'),n=document.getElementById('nav');
   t.addEventListener('click',function(){n.classList.toggle('open')});

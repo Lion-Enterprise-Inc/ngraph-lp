@@ -53,7 +53,8 @@ img{max-width:100%;display:block}
 .bg-fx .binary-field{position:absolute;inset:0;width:100%;height:100%}
 
 /* ── header ── */
-.header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,11,20,.6);border-bottom:1px solid var(--border)}
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,backdrop-filter .3s}
+.header.scrolled{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,11,20,.6);border-bottom:1px solid var(--border)}
 .header-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px}
 .brand img{height:28px;width:28px;border-radius:50%}
@@ -127,6 +128,21 @@ img{max-width:100%;display:block}
 .mission-card h2 .hl{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .mission-card strong{color:var(--accent-3);font-weight:700}
 .mission-card p{font-size:.92rem;color:var(--text-2);line-height:2.1;margin-bottom:12px}
+
+/* ── process flow (正解データが生まれる仕組み) ── */
+.flow-wrap{max-width:980px;margin:48px auto 0}
+.flow-cap{text-align:center;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:32px}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:start}
+.flow-step{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 10px}
+.flow-step .f-ic{width:74px;height:74px;border-radius:20px;background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(59,130,246,.12));border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.flow-step .f-ic svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.flow-step .f-t{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:6px;line-height:1.5}
+.flow-step .f-s{font-size:.78rem;color:var(--text-2);line-height:1.75}
+.flow-step:not(:last-child)::after{content:"";position:absolute;top:30px;right:-12px;width:24px;height:14px;background:var(--accent);opacity:.55;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath fill='black' d='M0 5h16V0l8 7-8 7V9H0z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath fill='black' d='M0 5h16V0l8 7-8 7V9H0z'/%3E%3C/svg%3E") center/contain no-repeat}
+
+/* ── trio icon ── */
+.trio .t-ic{width:50px;height:50px;border-radius:13px;background:rgba(56,189,248,.1);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.trio .t-ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── products grid ── */
 .products{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -211,6 +227,12 @@ img{max-width:100%;display:block}
   .hero{padding:140px 0 80px}
   .section{padding:72px 0}
   .mission-card,.message-card{padding:36px 24px}
+  .flow{grid-template-columns:1fr;gap:8px;max-width:300px;margin:0 auto}
+  .flow-step{flex-direction:row;text-align:left;gap:16px;padding:0}
+  .flow-step .f-ic{margin-bottom:0;flex-shrink:0;width:60px;height:60px}
+  .flow-step .f-tx{display:flex;flex-direction:column;justify-content:center}
+  .flow-step:not(:last-child){padding-bottom:34px}
+  .flow-step:not(:last-child)::after{top:auto;bottom:8px;right:auto;left:30px;transform:rotate(90deg);width:20px;height:12px}
   .contact{padding:48px 24px}
   .about-table th{display:block;width:100%;padding:18px 22px 0}
   .about-table td{display:block;padding:6px 22px 18px}
