@@ -171,6 +171,29 @@ img{max-width:100%;display:block}
 .solution-card .s-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
 .solution-card .s-tags span{font-size:.72rem;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:4px 11px;background:rgba(255,255,255,.02)}
 
+/* ── schema.org / JSON-LD explainer ── */
+.schema-flow{max-width:1040px;margin:0 auto 32px;padding:40px 36px;border:1px solid var(--border);border-radius:24px;background:rgba(255,255,255,.02)}
+.sf-cap{text-align:center;font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:32px;word-break:auto-phrase}
+.sf-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:0}
+.sf-node{display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 18px;border:1px solid var(--border);border-radius:18px;background:rgba(8,13,24,.5)}
+.sf-node.sf-core{border-color:var(--accent-3);box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 32px rgba(34,211,238,.1)}
+.sf-ic{width:48px;height:48px;border-radius:13px;background:rgba(56,189,248,.1);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sf-ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sf-core .sf-ic{background:rgba(34,211,238,.14)}
+.sf-core .sf-ic svg{stroke:var(--accent-3)}
+.sf-t{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:12px}
+.sf-code{font-family:'SF Mono','Fira Code',ui-monospace,monospace;font-size:.7rem;line-height:1.7;text-align:left;color:var(--text-2);background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:9px;padding:11px 13px;margin:0 0 12px;white-space:pre;overflow-x:auto;width:100%}
+.sf-code .c-mut{color:var(--text-3)}
+.sf-code .c-key{color:var(--accent-3)}
+.sf-code .c-str{color:#86efac}
+.sf-logos{font-size:.78rem;font-weight:600;color:var(--accent);margin-bottom:12px;letter-spacing:.01em}
+.sf-s{font-size:.76rem;color:var(--text-3);line-height:1.7;margin-top:auto}
+.sf-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:0 14px;position:relative}
+.sf-arrow span{font-size:.68rem;color:var(--accent-3);font-weight:600;white-space:nowrap}
+.sf-arrow::after{content:"";width:30px;height:14px;background:var(--accent);opacity:.6;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath fill='black' d='M0 5h16V0l8 7-8 7V9H0z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 14'%3E%3Cpath fill='black' d='M0 5h16V0l8 7-8 7V9H0z'/%3E%3C/svg%3E") center/contain no-repeat}
+.sf-note{font-size:.84rem;color:var(--text-2);line-height:2;margin:28px auto 0;max-width:760px;text-align:center}
+.sf-note strong{color:var(--accent-3);font-weight:700}
+
 /* ── AEO venn diagram ── */
 .venn-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:48px;align-items:center;max-width:980px;margin:0 auto 56px;padding:40px 44px;border:1px solid var(--border);border-radius:24px;background:rgba(255,255,255,.02)}
 .venn-vis{display:flex;justify-content:center}
@@ -243,6 +266,11 @@ img{max-width:100%;display:block}
   .products,.solutions{grid-template-columns:1fr}
   .venn-wrap{grid-template-columns:1fr;gap:28px;padding:32px 24px}
   .venn{max-width:300px}
+  .schema-flow{padding:32px 22px}
+  .sf-row{grid-template-columns:1fr}
+  .sf-arrow{flex-direction:row-reverse;gap:10px;padding:14px 0}
+  .sf-arrow::after{transform:rotate(90deg)}
+  .sf-s{margin-top:10px}
   .proof{grid-template-columns:repeat(2,1fr)}
   .hero-grid{min-height:0;text-align:center}
   .hero-copy{text-align:center;max-width:none;margin:0 auto}
