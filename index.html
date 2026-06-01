@@ -35,13 +35,76 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "株式会社NGraph",
-  "url": "https://ngraph.jp/",
-  "logo": "https://ngraph.jp/assets/ngraph-logo-circle.png",
-  "founder": { "@type": "Person", "name": "髙橋 真吾" },
-  "foundingDate": "2025-12",
-  "description": "料理・企業・人物という非構造なデータ領域を、AIが正しく扱える形に構造化する技術を開発する会社。"
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://ngraph.jp/#organization",
+      "name": "株式会社NGraph",
+      "url": "https://ngraph.jp/",
+      "logo": "https://ngraph.jp/assets/ngraph-logo-circle.png",
+      "founder": { "@type": "Person", "name": "髙橋 真吾" },
+      "foundingDate": "2025-12",
+      "description": "料理・企業・人物という非構造なデータ領域を、AIが正しく扱える形に構造化する技術を開発する会社。",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "JP",
+        "addressRegion": "福井県",
+        "addressLocality": "福井市",
+        "streetAddress": "問屋町1丁目124番地ラフォーレ北野201"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "shingotakahashi@ngraph.jp",
+        "telephone": "+81-90-2831-9668",
+        "availableLanguage": ["ja", "en"]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ngraph.jp/#website",
+      "url": "https://ngraph.jp/",
+      "name": "株式会社NGraph",
+      "inLanguage": "ja",
+      "publisher": { "@id": "https://ngraph.jp/#organization" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "OmiseAI",
+      "url": "https://omiseai.com/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "publisher": { "@id": "https://ngraph.jp/#organization" },
+      "description": "メニュー表を送るだけで、AIがテーブルに常駐。お客様の質問に130ヶ国語で答える飲食店向けAI接客サービス。NFG（食の意味データ）を基盤とする。"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Teles",
+      "url": "https://nicomachos.com/",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "Web",
+      "publisher": { "@id": "https://ngraph.jp/#organization" },
+      "description": "歴史上の偉人の思考を構造化し、悩みに複数の視点で答えるAIアドバイザー。NHG（人物の意味データ）を基盤とする。"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "アルケー",
+      "url": "https://nicomachos.com/cases",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "publisher": { "@id": "https://ngraph.jp/#organization" },
+      "description": "事業を普遍的な評価軸で採点・診断し、企業データとして可視化するサービス。NCG（企業の意味データ）を基盤とする。"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "AutoWrite",
+      "url": "https://autowrite.jp/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "publisher": { "@id": "https://ngraph.jp/#organization" },
+      "description": "補助金計画書をAIが自動生成するSaaS。事業者のプロフィールを構造化し、採択される書類づくりを支援する。"
+    }
+  ]
 }
 </script>
 </head>
@@ -77,6 +140,11 @@
       <h1 class="hero-brand">NGraph <span class="inc">Inc.</span></h1>
       <p class="hero-tagline"><span class="nb">現実世界の<span class="hl">「意味」</span>を、</span><span class="nb">AIが理解できる形に。</span></p>
       <p class="lead">AIが誤解し、推測し、ハルシネーションを起こす領域に対して、「正解データが生まれる仕組み」そのものを実装する。私たちは、非構造な世界をAIが正しく扱える形に構造化する技術の会社です。</p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="num">130<small>ヶ国語</small></span><span class="cap">対応するAI接客</span></div>
+        <div class="hstat"><span class="num">3<small>基盤</small></span><span class="cap">NFG / NCG / NHG</span></div>
+        <div class="hstat"><span class="num">4<small>領域</small></span><span class="cap">展開プロダクト</span></div>
+      </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <img src="/assets/hero-network-amber.png" alt="">
