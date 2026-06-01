@@ -86,15 +86,20 @@ img{max-width:100%;display:block}
 .hero-visual{position:fixed;top:64px;right:-8%;width:min(74vw,1080px);margin:0;z-index:-1;opacity:.8;pointer-events:none;animation:hv-float 9s ease-in-out infinite}
 .hero-visual::before{content:"";position:absolute;inset:-8% -4%;background:radial-gradient(closest-side,rgba(251,176,96,.16),transparent 72%);filter:blur(6px);z-index:-1}
 .hero-visual img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 60px rgba(251,176,96,.22))}
-/* prismatic light sweep running through the network, masked to its shape */
-.hero-visual::after{content:"";position:absolute;inset:0;
-  -webkit-mask:url(/assets/hero-network-amber.png) center/contain no-repeat;
-  mask:url(/assets/hero-network-amber.png) center/contain no-repeat;
-  background:linear-gradient(115deg,transparent 43%,rgba(90,170,255,0) 46%,rgba(160,220,255,.5) 49%,rgba(255,255,255,.92) 50%,rgba(120,255,225,.5) 51%,rgba(90,170,255,0) 54%,transparent 57%);
-  background-size:260% 100%;mix-blend-mode:screen;
-  animation:hv-sweep 6s linear infinite}
+/* a single light pulse running along one network strand */
+.hv-spark{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;mix-blend-mode:screen}
+.hv-trace{fill:none;stroke:#e3f3ff;stroke-width:2.2;stroke-linecap:round;
+  stroke-dasharray:6 100;
+  filter:drop-shadow(0 0 4px rgba(150,220,255,.95)) drop-shadow(0 0 11px rgba(80,170,255,.7));
+  animation:hv-run 8s ease-in-out infinite}
 @keyframes hv-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes hv-sweep{0%{background-position:185% 0}100%{background-position:-85% 0}}
+@keyframes hv-run{
+  0%{stroke-dashoffset:106;opacity:0}
+  6%{opacity:1}
+  48%{stroke-dashoffset:6;opacity:1}
+  54%{opacity:0}
+  100%{stroke-dashoffset:6;opacity:0}}
+@media (prefers-reduced-motion:reduce){.hv-spark{display:none}}
 @media (prefers-reduced-motion:reduce){.hero-visual{animation:none}.hero-visual::after{animation:none;opacity:0}}
 
 /* ── section primitives ── */
