@@ -201,6 +201,8 @@ img{max-width:100%;display:block}
   .nav.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:rgba(7,11,20,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:8px 0}
   .nav.open a{padding:14px 24px;width:100%;border-bottom:1px solid var(--border)}
   .nav.open .nav-cta{margin:12px 24px;text-align:center}
+  .nav.open .lang-switch{justify-content:center;padding:14px 0;border-bottom:1px solid var(--border)}
+  .nav.open .lang-switch a{padding:0;width:auto;border:none}
   .nav-toggle{display:block}
   .hero{padding:140px 0 80px}
   .section{padding:72px 0}
