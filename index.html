@@ -94,25 +94,19 @@
     </div>
     <div class="trio">
       <div class="card reveal">
-        <div class="t-ic"><svg viewBox="0 0 24 24"><path d="M5 3v8a2 2 0 002 2 2 2 0 002-2V3M7 13v8"/><path d="M16 3c-1.4 0-2.3 1.7-2.3 4.5S14.6 12 16 12m0-9v18"/></svg></div>
-        <div class="tag">NFG</div>
-        <div class="tag-full">Nicomacos Food Graph</div>
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><path d="M5 3v8a2 2 0 002 2 2 2 0 002-2V3M7 13v8"/><path d="M16 3c-1.4 0-2.3 1.7-2.3 4.5S14.6 12 16 12m0-9v18"/></svg></div><div class="t-ttl"><div class="tag">NFG</div><div class="tag-full">Nicomacos Food Graph</div></div></div>
         <h3>食の意味データ</h3>
         <p>料理を食材・調理法・アレルゲン・宗教配慮・文化背景という意味のパーツに分解して構造化。店主が確認・承認した一次データ（VAD）として、AIが推測せず正確に答えられる「食の正解データ」をつくります。</p>
         <span class="arrow">飲食領域での実装 →</span>
       </div>
       <div class="card reveal">
-        <div class="t-ic"><svg viewBox="0 0 24 24"><path d="M4 21V4a1 1 0 011-1h8a1 1 0 011 1v17"/><path d="M14 9h5a1 1 0 011 1v11"/><path d="M2 21h20M7.5 7h3M7.5 11h3M7.5 15h3M17 13h0M17 17h0"/></svg></div>
-        <div class="tag">NCG</div>
-        <div class="tag-full">Nicomacos Company Graph</div>
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><path d="M4 21V4a1 1 0 011-1h8a1 1 0 011 1v17"/><path d="M14 9h5a1 1 0 011 1v11"/><path d="M2 21h20M7.5 7h3M7.5 11h3M7.5 15h3M17 13h0M17 17h0"/></svg></div><div class="t-ttl"><div class="tag">NCG</div><div class="tag-full">Nicomacos Company Graph</div></div></div>
         <h3>企業の意味データ</h3>
         <p>事業・価値創造・持続性を普遍的な評価軸で構造化。AI時代に「選ばれる事業」を、定性ではなく定量で捉えるための企業データ基盤です。</p>
         <span class="arrow">企業評価での実装 →</span>
       </div>
       <div class="card reveal">
-        <div class="t-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
-        <div class="tag">NHG</div>
-        <div class="tag-full">Nicomacos Human Graph</div>
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div><div class="t-ttl"><div class="tag">NHG</div><div class="tag-full">Nicomacos Human Graph</div></div></div>
         <h3>人物の意味データ</h3>
         <p>偉人・人物の判断や徳の発達軌跡を複数の軸で構造化。意思決定や自己理解のための「人間の知の地図」をデータとして残します。</p>
         <span class="arrow">人物評価での実装 →</span>
@@ -199,16 +193,36 @@
       <h2 class="section-title">構造化技術を、事業者のWebへ</h2>
       <p class="section-sub">飲食店をはじめとする事業者のWebサイトを、AIに正しく見つけられ・引用される形へ。制作から構造化データの埋め込みまで一貫して支援します。</p>
     </div>
+
+    <div class="venn-wrap reveal">
+      <div class="venn-vis">
+        <svg class="venn" viewBox="0 0 460 340" role="img" aria-label="SEO・GEO・LLMO の中心にある AEO">
+          <circle class="vc vc-seo" cx="170" cy="150" r="112"/>
+          <circle class="vc vc-geo" cx="290" cy="150" r="112"/>
+          <circle class="vc vc-llmo" cx="230" cy="248" r="112"/>
+          <text class="vl vl-seo" x="120" y="105">SEO</text>
+          <text class="vl vl-geo" x="340" y="105">GEO</text>
+          <text class="vl vl-llmo" x="230" y="300">LLMO</text>
+          <text class="vl vl-aeo" x="230" y="168">AEO</text>
+        </svg>
+      </div>
+      <div class="venn-legend">
+        <div class="vleg"><span class="vdot d-seo"></span><b>SEO</b>検索順位を上げる</div>
+        <div class="vleg"><span class="vdot d-geo"></span><b>GEO</b>生成AI全般で認知される</div>
+        <div class="vleg"><span class="vdot d-llmo"></span><b>LLMO</b>LLMの学習に最適化する</div>
+        <div class="vleg vleg-core"><span class="vdot d-aeo"></span><b>AEO</b>AIの回答に引用される（回答エンジン最適化）</div>
+        <p class="venn-note">NGraphは、これらの中心にある <strong>AEO</strong> を、<strong>構造化データ（NFG / Schema.org）</strong>の実装で実現します。AIが推測ではなく、検証済みの一次データから店舗を正しく引用できる状態をつくります。</p>
+      </div>
+    </div>
+
     <div class="solutions">
       <div class="card solution-card reveal">
-        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 5h18M3 12h18M3 19h12" stroke-linecap="round"/><circle cx="19" cy="19" r="2"/></svg></div>
-        <h3>飲食店HPの多言語対応制作</h3>
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 5h18M3 12h18M3 19h12" stroke-linecap="round"/><circle cx="19" cy="19" r="2"/></svg></div><h3>飲食店HPの多言語対応制作</h3></div>
         <p>メニュー・店舗情報を正確に翻訳し、外国人のお客様に伝わる多言語サイトを制作。NFGの食データ辞書を使い、誤訳のない説明を実装します。</p>
         <div class="s-tags"><span>多言語サイト制作</span><span>メニュー翻訳</span><span>NFG辞書連携</span></div>
       </div>
       <div class="card solution-card reveal">
-        <div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke-linejoin="round"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" stroke-linejoin="round"/></svg></div>
-        <h3>既存HPへの構造化データ埋め込み＋AEO対策</h3>
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke-linejoin="round"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" stroke-linejoin="round"/></svg></div><h3>既存HPへの構造化データ埋め込み＋AEO対策</h3></div>
         <p>いま使っているWebサイトに構造化データ（NFG / Schema.org）を埋め込み、ChatGPT・Perplexity・Google が正しく引用できる状態へ。AI時代の検索＝AEO（Answer Engine Optimization）に対応します。</p>
         <div class="s-tags"><span>構造化データ埋め込み</span><span>AEO対策</span><span>JSON-LD</span><span>既存HP対応</span></div>
       </div>
