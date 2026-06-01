@@ -92,11 +92,7 @@
     </div>
 
     <div class="form-card">
-      <form id="contact-form" action="https://formsubmit.co/shingotakahashi@ngraph.jp" method="POST">
-        <input type="hidden" name="_subject" value="NGraph Inquiry (EN)">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_autoresponse" value="Thank you for contacting NGraph Inc. We have received your inquiry and will get back to you within 2-3 business days. Thank you for your patience.">
+      <form id="contact-form" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
         <!-- honeypot -->
         <div class="hp-field" aria-hidden="true"><label>Please leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
 
@@ -158,8 +154,8 @@ form.addEventListener('submit',function(e){
   if(urls>=3||SPAM.test(msg)){alert('Please review your message.');return;}
   const btn=document.getElementById('submit-btn');
   btn.disabled=true;btn.textContent='Sending...';
-  fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});if(window.gtag)gtag('event','generate_lead');}else{alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Send';}})
+  fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
+  .then(()=>{form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});if(window.gtag)gtag('event','generate_lead');})
   .catch(()=>{alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Send';});
 });
 </script>
