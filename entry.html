@@ -3,133 +3,158 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>無料導入のお申込み — NGraph</title>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+
+<title>お問い合わせ — 株式会社NGraph</title>
+<meta name="description" content="株式会社NGraphへのお問い合わせフォーム。飲食店の多言語対応、既存サイトへの構造化データ埋め込み・AEO対策、共同開発・PoCのご相談を承ります。">
+<meta property="og:title" content="お問い合わせ — 株式会社NGraph">
+<meta property="og:description" content="構造化・多言語対応・AEOのご相談はこちらから。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ngraph.jp/entry">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<link rel="canonical" href="https://ngraph.jp/entry">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/common.css">
+<link rel="stylesheet" href="/css/ngraph-corp.css">
 <style>
-.entry-layout{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:start;padding:160px 0 80px}
-.entry-left{padding-top:40px}
-.entry-left .section-label{margin-bottom:16px}
-.entry-left h1{font-size:2rem;font-weight:800;color:var(--text-primary);line-height:1.4;margin-bottom:20px;letter-spacing:-.02em}
-.entry-left p{font-size:.92rem;color:var(--text-secondary);line-height:2;margin-bottom:32px}
-/* Benefits */
-.benefits{display:flex;flex-direction:column;gap:12px}
-.benefit{display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:14px;background:var(--bg-card);border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.02)}
-.benefit-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.benefit-icon svg{width:20px;height:20px;color:var(--accent)}
-.benefit-text{font-size:.85rem;color:var(--text-secondary);font-weight:500}
-.benefit-text strong{color:var(--text-primary);font-weight:700}
-/* Form card */
-.form-card{padding:40px 36px;position:relative}
-.form-card::before{content:'';position:absolute;top:-1px;left:40px;right:40px;height:3px;background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:2px}
-.form-card h2{font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px}
-.form-card .form-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:28px}
-.form-group{margin-bottom:20px}
-.form-label{display:block;font-size:.78rem;font-weight:600;margin-bottom:6px;color:var(--text-secondary)}
-.form-label .req{color:var(--accent);font-size:.7rem;margin-left:4px}
-.form-input,.form-textarea{width:100%;padding:13px 16px;border:1.5px solid var(--border);border-radius:12px;font-size:.88rem;font-family:inherit;background:var(--bg-primary);color:var(--text-primary);transition:all .2s;outline:none}
-.form-input:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(232,100,44,.08)}
-.form-textarea{min-height:100px;resize:vertical}
-.form-input::placeholder,.form-textarea::placeholder{color:#ccc}
-.form-check{display:flex;align-items:center;gap:10px;margin:24px 0}
-.form-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
-.form-check label{font-size:.78rem;color:var(--text-muted);cursor:pointer}
-.form-check a{color:var(--accent);text-decoration:underline}
-.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#fff;padding:15px 40px;border-radius:14px;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(232,100,44,.25)}
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,100,44,.35)}
-.form-submit:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
-.form-note{font-size:.72rem;color:var(--text-muted);text-align:center;margin-top:14px}
-.success-msg{display:none;text-align:center;padding:60px 24px}
-.success-msg h2{font-size:1.3rem;font-weight:800;margin-bottom:12px;color:var(--accent)}
-.success-msg p{font-size:.9rem;color:var(--text-secondary);line-height:1.8}
-.success-msg a{display:inline-block;margin-top:24px;color:var(--accent);font-weight:600}
-@media(max-width:768px){
-  .entry-layout{grid-template-columns:1fr;gap:40px;padding:120px 0 60px}
-  .entry-left{padding-top:0;text-align:center}
-  .entry-left h1{font-size:1.5rem}
-  .form-card{padding:32px 24px}
+.contact-wrap{max-width:640px;margin:0 auto;padding:160px 0 100px}
+.contact-head{text-align:center;margin-bottom:44px}
+.contact-head .section-label{margin-bottom:14px}
+.contact-head h1{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;line-height:1.4;margin-bottom:16px}
+.contact-head p{font-size:.92rem;color:var(--text-2);line-height:1.9}
+.form-card{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:24px;padding:44px 40px}
+.form-group{margin-bottom:22px}
+.form-label{display:block;font-size:.8rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.form-label .req{color:var(--accent-3);font-size:.72rem;margin-left:5px}
+.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:12px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.02);color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.14)}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-3)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239aa7bd' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.form-select option{background:var(--bg-2);color:var(--text)}
+.form-textarea{min-height:120px;resize:vertical}
+.form-check{display:flex;align-items:center;gap:10px;margin:26px 0 20px}
+.form-check input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
+.form-check label{font-size:.82rem;color:var(--text-2);cursor:pointer}
+.form-check a{color:var(--accent-3);text-decoration:underline}
+.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--grad);color:#04121c;padding:15px 32px;border-radius:14px;font-size:1rem;font-weight:800;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 28px rgba(34,211,238,.18)}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(34,211,238,.28)}
+.form-submit:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.form-note{font-size:.74rem;color:var(--text-3);text-align:center;margin-top:14px}
+.success-msg{display:none;text-align:center;padding:50px 16px}
+.success-msg h2{font-size:1.3rem;font-weight:800;margin-bottom:14px;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.success-msg p{font-size:.92rem;color:var(--text-2);line-height:1.9}
+.success-msg a{display:inline-block;margin-top:26px;color:var(--accent-3);font-weight:600}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media(max-width:600px){
+  .contact-wrap{padding:120px 0 70px}
+  .form-card{padding:32px 22px}
 }
 </style>
 </head>
 <body>
 
-<header class="header">
-<div class="header-inner">
-  <a href="/"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:26px;width:26px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.15rem;font-weight:400;letter-spacing:.06em;color:#1a1a1a">NGraph</span></a>
-  <a href="/" class="back-link">← トップに戻る</a>
+<div class="bg-fx" aria-hidden="true">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
 </div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <a href="/" class="nav-cta">← トップに戻る</a>
+  </div>
 </header>
 
 <div class="container">
-<div class="entry-layout">
-  <div class="entry-left">
-    <div class="section-label">Entry</div>
-    <h1>無料導入の<br>お申込み</h1>
-    <p>QRを置くだけで、AIが130ヶ国語でメニューをご案内。<br>先行導入期間中は、すべて無料でご利用いただけます。</p>
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <div class="benefit-text"><strong>初期費用・月額0円</strong> — 完全無料で導入</div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></div>
-        <div class="benefit-text"><strong>設定はすべてお任せ</strong> — メニュー写真を送るだけ</div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z"/><path d="M2 12h4m12 0h4M12 2v4m0 12v4"/></svg></div>
-        <div class="benefit-text"><strong>130ヶ国語対応</strong> — アレルギー・宗教食も自動</div>
-      </div>
+  <div class="contact-wrap">
+    <div class="contact-head">
+      <div class="section-label">Contact</div>
+      <h1><span class="nb">お問い合わせ</span></h1>
+      <p>飲食店の多言語対応、既存サイトへの構造化データ埋め込み・AEO対策、共同開発・PoCまで。<br>下記フォームよりお気軽にご相談ください。</p>
     </div>
-  </div>
 
-  <div class="form-card glass-card">
-    <h2>以下を入力するだけ</h2>
-    <p class="form-sub">1分で完了します</p>
-    <form id="entry-form" action="https://formsubmit.co/shingotakahashi@ngraph.jp" method="POST">
-      <input type="hidden" name="_subject" value="NGraph 新規導入申込み">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="">
-      <input type="text" name="_honey" style="display:none">
-      <div class="form-group"><label class="form-label">ご担当者名<span class="req">*</span></label><input type="text" name="Name" class="form-input" placeholder="田中 太郎" required></div>
-      <div class="form-group"><label class="form-label">メールアドレス<span class="req">*</span></label><input type="email" name="E-mail" class="form-input" placeholder="info@example.com" required></div>
-      <div class="form-group"><label class="form-label">店舗名<span class="req">*</span></label><input type="text" name="Shop Name" class="form-input" placeholder="居酒屋 まるまる" required></div>
-      <div class="form-group"><label class="form-label">店舗住所<span class="req">*</span></label><input type="text" name="Shop Location" class="form-input" placeholder="福井県福井市中央1-1-1" required></div>
-      <div class="form-group"><label class="form-label">店舗URL</label><input type="text" name="Shop URL" class="form-input" placeholder="https://example.com（任意）"></div>
-      <div class="form-group"><label class="form-label">補足・ご質問</label><textarea name="Message" class="form-textarea" placeholder="気になることがあればお気軽にどうぞ（任意）"></textarea></div>
-      <div class="form-check"><input type="checkbox" id="agree" required><label for="agree"><a href="/privacy.html" target="_blank">プライバシーポリシー</a>に同意します</label></div>
-      <button type="submit" class="form-submit" id="submit-btn">送信する</button>
-      <div class="form-note">※ 先行導入枠に限りがあります</div>
-    </form>
-    <div class="success-msg" id="success">
-      <h2>送信完了しました</h2>
-      <p>お申込みありがとうございます。<br>内容を確認の上、メールにてご連絡いたします。</p>
-      <a href="/">← トップページに戻る</a>
+    <div class="form-card">
+      <form id="contact-form" action="https://formsubmit.co/shingotakahashi@ngraph.jp" method="POST">
+        <input type="hidden" name="_subject" value="NGraph お問い合わせ">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="お問い合わせいただきありがとうございます。株式会社NGraphです。内容を確認の上、担当者より2〜3営業日以内にご連絡いたします。今しばらくお待ちください。">
+        <!-- honeypot -->
+        <div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="form-group"><label class="form-label">お名前<span class="req">必須</span></label><input type="text" name="お名前" class="form-input" placeholder="髙橋 真吾" required></div>
+        <div class="form-group"><label class="form-label">会社名・店舗名<span class="req">必須</span></label><input type="text" name="会社名・店舗名" class="form-input" placeholder="株式会社○○ / 居酒屋○○" required></div>
+        <div class="form-group"><label class="form-label">メールアドレス<span class="req">必須</span></label><input type="email" name="メールアドレス" class="form-input" placeholder="info@example.com" required></div>
+        <div class="form-group"><label class="form-label">お問い合わせ種別</label>
+          <select name="お問い合わせ種別" class="form-select">
+            <option value="">選択してください（任意）</option>
+            <option value="飲食店の多言語対応">飲食店の多言語メニュー対応</option>
+            <option value="構造化データ・AEO">サイトへの構造化データ埋め込み・AEO対策</option>
+            <option value="共同開発・PoC">共同開発・PoC</option>
+            <option value="その他">採用・取材・その他</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">お問い合わせ内容<span class="req">必須</span></label><textarea name="お問い合わせ内容" class="form-textarea" placeholder="ご相談内容をご記入ください。" required></textarea></div>
+        <div class="form-check"><input type="checkbox" id="agree" required><label for="agree"><a href="/privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意します</label></div>
+        <button type="submit" class="form-submit" id="submit-btn">送信する</button>
+        <div class="form-note">通常2〜3営業日以内にご返信いたします</div>
+      </form>
+      <div class="success-msg" id="success">
+        <h2>送信完了しました</h2>
+        <p>お問い合わせありがとうございます。<br>内容を確認の上、担当者よりご連絡いたします。</p>
+        <a href="/">← トップページに戻る</a>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 <footer class="footer">
-<div class="footer-inner">
-  <div><div class="footer-brand"><span style="display:flex;align-items:center;gap:8px"><img src="/assets/ngraph-logo-circle.png" alt="" style="height:24px;width:24px;border-radius:50%"><span style="font-family:'Georgia',serif;font-size:1.1rem;font-weight:400;letter-spacing:.06em;color:#fff">NGraph</span></span></div><p>AIで飲食店のメニューを多言語案内する仕組みです。</p></div>
-  <div class="footer-links"><a href="/">ホーム</a><a href="/company.html">会社概要</a><a href="/entry.html">お問合せ</a><a href="/privacy.html">プライバシーポリシー</a><a href="/legal.html">特定商取引法に基づく表記</a></div>
-</div>
-<div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>現実世界の「意味」を、AIが理解できる形に構造化する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/#tech">構造化技術</a>
+      <a href="/#products">プロダクト</a>
+      <a href="/#solutions">ソリューション</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
 </footer>
 
 <script>
-const form=document.getElementById('entry-form');
+const form=document.getElementById('contact-form');
 const success=document.getElementById('success');
+const SPAM=/(bitcoin|btc|crypto|казино|casino|viagra|cialis|loan|порно|seo\s*service|backlink|telegram|whatsapp\s*\+)/i;
 form.addEventListener('submit',function(e){
   e.preventDefault();
+  // layer 1: honeypot
+  if(form.querySelector('[name="_honey"]').value){success.style.display='block';form.style.display='none';return;}
+  // layer 2: URL / keyword spam heuristic
+  const msg=form.querySelector('[name="お問い合わせ内容"]').value;
+  const urls=(msg.match(/https?:\/\//gi)||[]).length;
+  if(urls>=3||SPAM.test(msg)){alert('送信内容を確認してください。');return;}
   const btn=document.getElementById('submit-btn');
   btn.disabled=true;btn.textContent='送信中...';
   fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block'}else{alert('送信に失敗しました。');btn.disabled=false;btn.textContent='送信する'}})
-  .catch(()=>{alert('送信に失敗しました。');btn.disabled=false;btn.textContent='送信する'});
+  .then(r=>{if(r.ok){form.style.display='none';success.style.display='block';if(window.gtag)gtag('event','generate_lead');}else{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';}})
+  .catch(()=>{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';});
 });
 </script>
 </body>
