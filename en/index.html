@@ -203,16 +203,12 @@
           </div>
         </div>
         <div class="am-wires" aria-hidden="true">
-          <svg viewBox="0 0 84 240" preserveAspectRatio="none">
-            <path d="M0 120 C42 120 42 36 84 36"/>
-            <path d="M0 120 C42 120 42 120 84 120"/>
-            <path d="M0 120 C42 120 42 204 84 204"/>
-          </svg>
+          <svg preserveAspectRatio="none"><path class="am-wire-path" d=""/></svg>
         </div>
         <div class="am-spokes">
-          <div class="am-biz"><span class="am-biz-link" aria-hidden="true"></span><div class="am-node am-node-store"><span class="am-biz-tag">Company A</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
-          <div class="am-biz"><span class="am-biz-link" aria-hidden="true"></span><div class="am-node am-node-store"><span class="am-biz-tag">Company B</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
-          <div class="am-biz"><span class="am-biz-link" aria-hidden="true"></span><div class="am-node am-node-store"><span class="am-biz-tag">Company C</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
+          <div class="am-biz"><div class="am-node am-node-store"><span class="am-biz-tag">Company A</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
+          <div class="am-biz"><div class="am-node am-node-store"><span class="am-biz-tag">Company B</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
+          <div class="am-biz"><div class="am-node am-node-store"><span class="am-biz-tag">Company C</span><span class="an-t">AI Agent</span><span class="an-en">Business Agent</span></div></div>
         </div>
       </div>
     </div>
@@ -601,6 +597,28 @@
   // reveal on scroll
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  // ── Agentic map: draw one continuous wire from the personal agent to each business agent ──
+  (function(){
+    var map=document.querySelector('.agentic-map');
+    if(!map)return;
+    var path=map.querySelector('.am-wire-path'),svg=map.querySelector('.am-wires svg');
+    var hub=map.querySelector('.am-node-person'),nodes=map.querySelectorAll('.am-node-store');
+    if(!path||!svg||!hub||!nodes.length)return;
+    function draw(){
+      var mr=map.getBoundingClientRect();if(!mr.width)return;
+      svg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
+      var hr=hub.getBoundingClientRect(),sx=hr.right-mr.left,sy=hr.top-mr.top+hr.height/2,d='';
+      nodes.forEach(function(n){var nr=n.getBoundingClientRect(),ex=nr.left-mr.left,ey=nr.top-mr.top+nr.height/2,mx=sx+(ex-sx)*0.5;
+        d+='M'+sx+' '+sy+' C'+mx+' '+sy+' '+mx+' '+ey+' '+ex+' '+ey+' ';});
+      path.setAttribute('d',d.trim());
+    }
+    draw();
+    if(window.ResizeObserver)new ResizeObserver(draw).observe(map);
+    window.addEventListener('resize',draw);
+    window.addEventListener('load',draw);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+  })();
 </script>
 </body>
 </html>
