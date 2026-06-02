@@ -129,6 +129,8 @@ img{max-width:100%;display:block}
 .trio .arrow{font-size:.78rem;color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:auto;align-self:flex-start}
 .trio .card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);opacity:0;transition:opacity .25s}
 .trio .card:hover::after{opacity:1}
+.trio a.card .arrow{transition:gap .2s}
+.trio a.card:hover .arrow{gap:10px}
 
 /* ── mission ── */
 .mission-card{max-width:860px;margin:0 auto;padding:52px;text-align:center;border-radius:24px}
