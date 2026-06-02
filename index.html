@@ -481,10 +481,10 @@
     var COUNT_MIN=24,COUNT_MAX=220,GROW_INTERVAL=1500,target=COUNT_MIN;
 
     // ── 3D形状ジェネレータ：一定時間アイドルで「01」が回転3D形状に集合する ──
-    function project3D(points,w,h,rotY,rotX,zCam){
+    function project3D(points,w,h,rotY,rotX,zCam,ocx,ocy){
       zCam=zCam||0;
       var cosY=Math.cos(rotY),sinY=Math.sin(rotY),cosX=Math.cos(rotX),sinX=Math.sin(rotX);
-      var fov=2.5,scale=Math.min(w,h)*0.4,cx=w/2,cy=h/2,pts=[],depths=[],scales=[];
+      var fov=2.5,scale=Math.min(w,h)*0.4,cx=(ocx==null?w/2:ocx),cy=(ocy==null?h/2:ocy),pts=[],depths=[],scales=[];
       for(var i=0;i<points.length;i++){
         var x=points[i][0],y=points[i][1],z=points[i][2];
         var x1=x*cosY-z*sinY,z1=x*sinY+z*cosY;
@@ -514,7 +514,7 @@
     function nextPattern(){var g=GENS[gi%GENS.length];gi++;return g();}
 
     // 収束状態
-    var lastInteraction=Date.now(),conv=false,convStr=0,convFormedAt=0,convDone=false,curPattern=null,rotY=0,rotX=0,zDepths=[],convScales=[],psize=[],convZ=0;
+    var lastInteraction=Date.now(),conv=false,convStr=0,convFormedAt=0,convDone=false,curPattern=null,rotY=0,rotX=0,zDepths=[],convScales=[],psize=[],convZ=0,convCX=0,convCY=0;
     function resetIdle(){lastInteraction=Date.now();if(conv){conv=false;curPattern=null;for(var i=0;i<particles.length;i++){particles[i].tx=undefined;particles[i].ty=undefined;}}convDone=false;}
 
     function spawn(w,h){
@@ -543,11 +543,11 @@
 
       // 収束トリガー：5秒アイドル→形成→5秒保持→散開→5秒待機の繰り返し
       var idleMs=now-lastInteraction;
-      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;}
+      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;var spd=Math.min(Math.max(convZ/6,0.12),0.55);convCX=W/2+(Math.random()*2-1)*spd*W*0.5;convCY=H/2+(Math.random()*2-1)*spd*H*0.5;}
       if(conv&&curPattern){
         convStr=Math.min(convStr+0.0035,1);
         rotY+=0.008;rotX+=0.003;
-        var pr=project3D(curPattern,W,H,rotY,rotX,convZ);
+        var pr=project3D(curPattern,W,H,rotY,rotX,convZ,convCX,convCY);
         for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];convScales[c]=pr.scales[ci];}
         if(convStr>=0.95&&convFormedAt===0)convFormedAt=now;
         if(convFormedAt>0&&now-convFormedAt>5000){conv=false;convDone=true;curPattern=null;
