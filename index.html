@@ -186,34 +186,31 @@
     <div class="agentic-grid reveal">
       <div class="agentic-visual">
         <img src="/assets/ai-mind.jpg" alt="AIエージェントのイメージ" loading="lazy">
-        <span class="av-tag">AIエージェントは、構造化データしか読めない</span>
       </div>
-      <div>
-        <div class="agent-pair">
-          <div class="agent-node">
-            <div class="an-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
-            <div>
-              <div class="an-tt"><span class="an-t">個人AI</span><span class="an-en">Personal Agent</span></div>
-              <div class="an-s">「今日の自分に本当に最適な店」を選ぶ、一人ひとりのAI。</div>
-            </div>
-          </div>
-          <div class="agent-link"><span class="al-line"></span>AI同士が直接対話<span class="al-line r"></span></div>
-          <div class="agent-node is-store">
-            <div class="an-ic"><svg viewBox="0 0 24 24"><path d="M4 9l1.5-5h13L20 9M4 9h16M4 9v10a1 1 0 001 1h14a1 1 0 001-1V9M9 20v-6h6v6"/></svg></div>
-            <div>
-              <div class="an-tt"><span class="an-t">店舗AI（OMISEAI）</span><span class="an-en">Business Agent</span></div>
-              <div class="an-s">店の情報を構造化し、AIが読める言語に変換する、お店ごとのAI。</div>
-            </div>
+      <div class="agentic-map">
+        <div class="am-hub">
+          <span class="am-cap">個人</span>
+          <div class="am-node am-node-person">
+            <span class="an-t">AIエージェント</span>
+            <span class="an-en">Personal Agent</span>
           </div>
         </div>
-        <p class="agent-note">個人のAIが、店舗のAIに直接問い合わせて予約や提案を行う——そんな<strong>“エージェント経済”</strong>が始まっています。このとき、構造化データを持たない店は、AIの世界に存在しないのと同じになります。</p>
+        <div class="am-wires" aria-hidden="true">
+          <svg viewBox="0 0 84 240" preserveAspectRatio="none">
+            <path d="M0 120 C42 120 42 36 84 36"/>
+            <path d="M0 120 C42 120 42 120 84 120"/>
+            <path d="M0 120 C42 120 42 204 84 204"/>
+          </svg>
+        </div>
+        <div class="am-spokes">
+          <div class="am-biz"><span class="am-biz-label">企業A</span><div class="am-node am-node-store"><span class="an-t">OMISEAI</span><span class="an-en">AIエージェント</span></div></div>
+          <div class="am-biz"><span class="am-biz-label">企業B</span><div class="am-node am-node-store"><span class="an-t">OMISEAI</span><span class="an-en">AIエージェント</span></div></div>
+          <div class="am-biz"><span class="am-biz-label">企業C</span><div class="am-node am-node-store"><span class="an-t">OMISEAI</span><span class="an-en">AIエージェント</span></div></div>
+        </div>
       </div>
     </div>
 
-    <div class="thesis-card reveal">
-      <div class="th-quote">構造化データを持つ企業が、<br><span class="hl">AIエージェント経済のコア</span>になる。</div>
-      <div class="th-cite">NGraphは、最も非構造化された「食」の領域を構造化し、その中核を担います。<br>参考：Microsoft Research, “The Agentic Economy” (2025)</div>
-    </div>
+    <p class="agent-note reveal">AIエージェントは、<strong>構造化データしか読めません</strong>。個人のAIが、企業のAIエージェントに直接問い合わせて予約や提案を行う——そんな“エージェント経済”が始まっています。このとき、構造化データを持たない企業は、AIの世界に存在しないのと同じになります。</p>
   </div>
 </section>
 
