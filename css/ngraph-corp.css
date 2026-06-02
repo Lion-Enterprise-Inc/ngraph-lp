@@ -325,7 +325,7 @@ img{max-width:100%;display:block}
   .hero-copy{text-align:center;max-width:none;margin:0 auto}
   .hero-stats{justify-content:center}
   .hero p.lead{margin:0 auto;max-width:560px}
-  .hero-visual{position:static;width:100%;max-width:560px;right:auto;top:auto;margin:32px auto 0}
+  .hero-visual{position:static;width:100%;max-width:480px;right:auto;top:auto;margin:18px auto 0}
 }
 @media(max-width:768px){
   .nav{display:none}
@@ -335,7 +335,8 @@ img{max-width:100%;display:block}
   .nav.open .lang-switch{justify-content:center;padding:14px 0;border-bottom:1px solid var(--border)}
   .nav.open .lang-switch a{padding:0;width:auto;border:none}
   .nav-toggle{display:block}
-  .hero{padding:140px 0 80px}
+  .hero{padding:132px 0 12px}
+  #agentic{padding-top:36px}
   .section{padding:72px 0}
   .mission-card,.message-card{padding:36px 24px}
   .flow{grid-template-columns:1fr;gap:8px;max-width:300px;margin:0 auto}
