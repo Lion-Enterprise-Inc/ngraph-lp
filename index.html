@@ -538,7 +538,7 @@
       var now=Date.now();
       if(now-lastGrow>GROW_INTERVAL&&particles.length<COUNT_MAX){lastGrow=now;target=Math.min(target+1,COUNT_MAX);if(particles.length<target)particles.push(spawn(W,H));}
 
-      // 収束トリガー：5秒アイドル→形成→5秒保持→散開→5秒待機の繰り返し
+      // 収束トリガー：5秒アイドル→形成→11秒保持(ゆっくり浮遊)→散開→9秒待機の繰り返し
       var idleMs=now-lastInteraction;
       if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;var spd=Math.min(Math.max(convZ/6,0.12),0.55);convCX=W/2+(Math.random()*2-1)*spd*W*0.5;convCY=H/2+(Math.random()*2-1)*spd*H*0.5;}
       if(conv&&curPattern){
@@ -547,9 +547,9 @@
         var pr=project3D(curPattern,W,H,rotY,rotX,convZ,convCX,convCY);
         for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];convScales[c]=pr.scales[ci];}
         if(convStr>=0.95&&convFormedAt===0)convFormedAt=now;
-        if(convFormedAt>0&&now-convFormedAt>5000){conv=false;convDone=true;curPattern=null;
+        if(convFormedAt>0&&now-convFormedAt>11000){conv=false;convDone=true;curPattern=null;
           for(var sc2=0;sc2<particles.length;sc2++){particles[sc2].tx=undefined;particles[sc2].ty=undefined;var sa=Math.random()*Math.PI*2;particles[sc2].vx+=Math.cos(sa)*1.5;particles[sc2].vy+=Math.sin(sa)*1.5;}
-          setTimeout(function(){convDone=false;lastInteraction=Date.now();},5000);}
+          setTimeout(function(){convDone=false;lastInteraction=Date.now();},9000);}
       }else{convStr=Math.max(convStr-0.02,0);}
       var refScale=2.5/(2.5+convZ),farDim=Math.max(1/(1+convZ*0.3),0.45),convK=convStr>1?1:convStr;
 
