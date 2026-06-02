@@ -477,17 +477,18 @@
     var COUNT_MIN=24,COUNT_MAX=220,GROW_INTERVAL=1500,target=COUNT_MIN;
 
     // ── 3D形状ジェネレータ：一定時間アイドルで「01」が回転3D形状に集合する ──
-    function project3D(points,w,h,rotY,rotX){
+    function project3D(points,w,h,rotY,rotX,zCam){
+      zCam=zCam||0;
       var cosY=Math.cos(rotY),sinY=Math.sin(rotY),cosX=Math.cos(rotX),sinX=Math.sin(rotX);
-      var fov=2.5,scale=Math.min(w,h)*0.4,cx=w/2,cy=h/2,pts=[],depths=[];
+      var fov=2.5,scale=Math.min(w,h)*0.4,cx=w/2,cy=h/2,pts=[],depths=[],scales=[];
       for(var i=0;i<points.length;i++){
         var x=points[i][0],y=points[i][1],z=points[i][2];
         var x1=x*cosY-z*sinY,z1=x*sinY+z*cosY;
         var y1=y*cosX-z1*sinX,z2=y*sinX+z1*cosX;
-        var d=fov/(fov+z2);
-        pts.push([cx+x1*d*scale,cy+y1*d*scale]);depths.push(z2);
+        var d=fov/(fov+z2+zCam);
+        pts.push([cx+x1*d*scale,cy+y1*d*scale]);depths.push(z2);scales.push(d);
       }
-      return{pts:pts,depths:depths};
+      return{pts:pts,depths:depths,scales:scales};
     }
     function genTorus3D(){var pts=[],n=250,R=0.5+Math.random()*0.4,r=0.15+Math.random()*0.25,sc=5+Math.random()*5;
       for(var i=0;i<n;i++){var u=i/n*Math.PI*2,v=(i*sc)%(Math.PI*2);pts.push([(R+r*Math.cos(v))*Math.cos(u),(R+r*Math.cos(v))*Math.sin(u),r*Math.sin(v)]);}return pts;}
@@ -509,7 +510,7 @@
     function nextPattern(){var g=GENS[gi%GENS.length];gi++;return g();}
 
     // 収束状態
-    var lastInteraction=Date.now(),conv=false,convStr=0,convFormedAt=0,convDone=false,curPattern=null,rotY=0,rotX=0,zDepths=[];
+    var lastInteraction=Date.now(),conv=false,convStr=0,convFormedAt=0,convDone=false,curPattern=null,rotY=0,rotX=0,zDepths=[],convScales=[],psize=[],convZ=0;
     function resetIdle(){lastInteraction=Date.now();if(conv){conv=false;curPattern=null;for(var i=0;i<particles.length;i++){particles[i].tx=undefined;particles[i].ty=undefined;}}convDone=false;}
 
     function spawn(w,h){
@@ -517,7 +518,7 @@
       var cx=w/2,cy=h/2,spread=Math.min(w,h)*0.48;
       return{x:cx+(Math.random()-0.5)*spread*2,y:cy+(Math.random()-0.5)*spread*2,
         vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,size:sz,alpha:0.08+Math.random()*0.18,
-        char:BITS[bi++%BITS.length],life:0,maxLife:300+Math.random()*400};
+        char:BITS[bi++%BITS.length],life:0,maxLife:300+Math.random()*400,z:Math.random()};
     }
     function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
       particles=[];for(var i=0;i<COUNT_MIN;i++){var p=spawn(canvas.width,canvas.height);p.life=Math.random()*p.maxLife;particles.push(p);}target=COUNT_MIN;}
@@ -538,17 +539,18 @@
 
       // 収束トリガー：5秒アイドル→形成→5秒保持→散開→5秒待機の繰り返し
       var idleMs=now-lastInteraction;
-      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;}
+      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;}
       if(conv&&curPattern){
         convStr=Math.min(convStr+0.0035,1);
         rotY+=0.008;rotX+=0.003;
-        var pr=project3D(curPattern,W,H,rotY,rotX);
-        for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];}
+        var pr=project3D(curPattern,W,H,rotY,rotX,convZ);
+        for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];convScales[c]=pr.scales[ci];}
         if(convStr>=0.95&&convFormedAt===0)convFormedAt=now;
         if(convFormedAt>0&&now-convFormedAt>5000){conv=false;convDone=true;curPattern=null;
           for(var sc2=0;sc2<particles.length;sc2++){particles[sc2].tx=undefined;particles[sc2].ty=undefined;var sa=Math.random()*Math.PI*2;particles[sc2].vx+=Math.cos(sa)*1.5;particles[sc2].vy+=Math.sin(sa)*1.5;}
           setTimeout(function(){convDone=false;lastInteraction=Date.now();},5000);}
       }else{convStr=Math.max(convStr-0.02,0);}
+      var refScale=2.5/(2.5+convZ),farDim=Math.max(1/(1+convZ*0.3),0.45),convK=convStr>1?1:convStr;
 
       for(var i=0;i<particles.length;i++){
         var p=particles[i];
@@ -562,8 +564,11 @@
         p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;p.life++;
         var lr=p.life/p.maxLife,lf=lr<0.1?lr/0.1:lr>0.85?(1-lr)/0.15:1;
         var em=60,efx=Math.min(p.x/em,(W-p.x)/em,1),efy=Math.min(p.y/em,(H-p.y)/em,1),ef=Math.max(0,Math.min(efx,efy));
-        var zb=1;if(convStr>0.1){var zn=(zDepths[i]+1.5)/3;zb=0.4+0.6*(1-Math.min(Math.max(zn,0),1));}
-        alphas[i]=p.alpha*lf*ef*zb;
+        // 奥行き：環境ドリフトは粒子固有のz、収束時は3D形状のz深度でブレンド
+        var depA=0.55+0.45*(1-p.z),dsz=0.7+0.6*(1-p.z),shZ=depA,shS=1;
+        if(convStr>0.05){var zn=(zDepths[i]+1.5)/3;if(zn<0)zn=0;if(zn>1)zn=1;shZ=(0.35+0.65*(1-zn))*farDim;var sf=convScales[i]?convScales[i]/refScale:1;if(sf<0.5)sf=0.5;if(sf>1.7)sf=1.7;shS=sf;}
+        var depthAlpha=depA+(shZ-depA)*convK;psize[i]=dsz+(shS-dsz)*convK;
+        alphas[i]=p.alpha*lf*ef*depthAlpha;
         if(p.life>=p.maxLife||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){particles[i]=spawn(W,H);alphas[i]=0;}
       }
       var DD=60;
@@ -578,14 +583,14 @@
             ctx.beginPath();ctx.moveTo(particles[i3].x,particles[i3].y-particles[i3].size*0.3);
             ctx.lineTo(particles[j2].x,particles[j2].y-particles[j2].size*0.3);
             ctx.strokeStyle='rgba(56,189,248,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}
-      ctx.font="11px 'SF Mono','Fira Code',monospace";
       var aMax=convStr>0.3?0.4:0.22,mult=convStr>0.3?0.8:0.6;
       for(var i4=0;i4<particles.length;i4++){if(alphas[i4]<0.005)continue;var p4=particles[i4];
         var ca=Math.min(alphas[i4]*mult,aMax);
         ctx.fillStyle=convStr>0.3?'rgba(103,232,249,'+ca+')':'rgba(96,165,250,'+ca+')';
-        if(p4.size!==11)ctx.font=p4.size+"px 'SF Mono','Fira Code',monospace";
-        ctx.fillText(p4.char,p4.x,p4.y);
-        if(p4.size!==11)ctx.font="11px 'SF Mono','Fira Code',monospace";}
+        var fs=Math.max(6,Math.round(p4.size*(psize[i4]||1)));
+        ctx.font=fs+"px 'SF Mono','Fira Code',monospace";
+        ctx.fillText(p4.char,p4.x,p4.y);}
+      ctx.font="11px 'SF Mono','Fira Code',monospace";
     }
     var last=0;
     (function loop(time){requestAnimationFrame(loop);if(time-last<33)return;last=time;draw();})(0);
