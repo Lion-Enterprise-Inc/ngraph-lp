@@ -245,7 +245,7 @@ img{max-width:100%;display:block}
 .am-node .an-t{font-size:1.04rem;font-weight:700;color:var(--text);line-height:1.3}
 .am-node .an-en{font-size:.7rem;color:var(--text-3);font-family:'Inter',sans-serif;letter-spacing:.02em}
 .am-node-person{border-color:var(--border-strong)}
-.am-node-store{border-color:var(--accent-3);background:rgba(34,211,238,.06);box-shadow:0 0 0 1px rgba(34,211,238,.18)}
+.am-node-store{position:relative;border-color:var(--accent-3);background:rgba(34,211,238,.06);box-shadow:0 0 0 1px rgba(34,211,238,.18)}
 .am-node-store .an-t{background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .am-node-store .an-en{color:var(--accent-3)}
 .am-wires{align-self:stretch}
@@ -253,8 +253,8 @@ img{max-width:100%;display:block}
 .am-wires svg path{fill:none;stroke:var(--accent-3);stroke-width:1.4;opacity:.5}
 .am-spokes{display:flex;flex-direction:column;gap:22px}
 .am-biz{display:flex;align-items:center}
-.am-biz-label{flex:0 0 auto;font-size:.84rem;font-weight:700;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:8px 17px;background:rgba(255,255,255,.02);white-space:nowrap}
 .am-biz-link{flex:1 1 auto;height:2px;background:var(--accent-3);opacity:.5}
+.am-biz-tag{position:absolute;top:0;left:16px;transform:translateY(-50%);font-size:.72rem;font-weight:700;color:var(--text-2);background:var(--bg);border:1px solid var(--border-strong);border-radius:999px;padding:3px 13px;white-space:nowrap;letter-spacing:.02em}
 .agent-note{font-size:.84rem;color:var(--text-2);line-height:1.9;max-width:760px;margin:0 auto;text-align:center}
 .agent-note strong{color:var(--accent-3);font-weight:700}
 
@@ -351,8 +351,8 @@ img{max-width:100%;display:block}
   .am-node .an-en{font-size:.54rem}
   .am-hub{gap:6px}
   .am-cap{font-size:.66rem}
-  .am-spokes{gap:9px}
-  .am-biz-label{font-size:.62rem;padding:4px 7px}
+  .am-spokes{gap:16px}
+  .am-biz-tag{font-size:.56rem;padding:2px 8px;left:8px}
   .sf-head{gap:10px}
   .sf-ic{width:38px;height:38px}
   .sf-ic svg{width:21px;height:21px}
