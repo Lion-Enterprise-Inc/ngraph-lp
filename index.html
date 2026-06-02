@@ -167,25 +167,25 @@
         <div class="sf-node">
           <div class="sf-ic"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z"/><path d="M3 9h18"/><circle cx="6" cy="7" r=".6" fill="currentColor" stroke="none"/><circle cx="8" cy="7" r=".6" fill="currentColor" stroke="none"/><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 12l-2 6"/></svg></div>
           <div class="sf-t">HTML（Webページ）</div>
-          <pre class="sf-code"><span class="c-mut">&lt;h2&gt;</span>海鮮丼<span class="c-mut">&lt;/h2&gt;</span>
-<span class="c-mut">&lt;p&gt;</span>1,800円（税込）<span class="c-mut">&lt;/p&gt;</span></pre>
-          <div class="sf-s">人間には読める「見た目」。<br>機械には料理名も価格も伝わらない</div>
+          <pre class="sf-code"><span class="c-mut">&lt;h2&gt;</span>海老天そば<span class="c-mut">&lt;/h2&gt;</span>
+<span class="c-mut">&lt;p&gt;</span>980円<span class="c-mut">&lt;/p&gt;</span></pre>
+          <div class="sf-s">人間には読める「見た目」。<br>機械はアレルゲンを推測するしかない</div>
         </div>
         <div class="sf-arrow"><span>意味をタグ付け</span></div>
         <div class="sf-node sf-core">
           <div class="sf-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></div>
           <div class="sf-t">schema.org / JSON-LD</div>
-          <pre class="sf-code"><span class="c-key">"@type"</span>:<span class="c-str">"MenuItem"</span>,
-<span class="c-key">"name"</span>:<span class="c-str">"海鮮丼"</span>,
-<span class="c-key">"price"</span>:<span class="c-str">"1800円"</span></pre>
-          <div class="sf-s">機械が理解できる「翻訳ラベル」。<br>「料理名＝海鮮丼／価格＝1,800円」と明示</div>
+          <pre class="sf-code"><span class="c-key">"name"</span>:<span class="c-str">"海老天そば"</span>,
+<span class="c-key">"allergens"</span>:
+  [<span class="c-str">"えび"</span>,<span class="c-str">"小麦"</span>,<span class="c-str">"そば"</span>]</pre>
+          <div class="sf-s">アレルゲンを明示的にラベル付け。<br>機械が推測せず確実に判定できる</div>
         </div>
         <div class="sf-arrow"><span>正確に把握</span></div>
         <div class="sf-node">
           <div class="sf-ic"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M12 7V4M9 4h6"/><circle cx="9.5" cy="12" r="1.1"/><circle cx="14.5" cy="12" r="1.1"/><path d="M9 18v2M15 18v2"/></svg></div>
           <div class="sf-t">AI・検索エンジン</div>
           <div class="sf-logos">ChatGPT・Claude・Perplexity・Google</div>
-          <div class="sf-s">推測せず、信頼できる<br>情報源として引用する</div>
+          <div class="sf-s">「えび・小麦・そばを含みます」と<br>推測せず正確に回答できる</div>
         </div>
       </div>
       <p class="sf-note">NGraphのSolutionsは、この真ん中の<strong>「翻訳ラベル」</strong>を、事業者それぞれのサイトに実装する仕事です。店主が確認した一次データ（VAD）を schema.org の語彙で構造化し、AIが誤解しない状態をつくります。</p>
