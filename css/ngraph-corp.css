@@ -226,7 +226,8 @@ img{max-width:100%;display:block}
 .era-card.is-now{border-color:var(--accent-3);box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 34px rgba(34,211,238,.1)}
 .era-card .era-yr{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.1em;color:var(--text-3)}
 .era-card.is-now .era-yr{color:var(--accent-3)}
-.era-card .era-ic{width:46px;height:46px;border-radius:12px;background:rgba(56,189,248,.1);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center}
+.era-card .era-head{display:flex;align-items:center;gap:12px}
+.era-card .era-ic{width:46px;height:46px;border-radius:12px;background:rgba(56,189,248,.1);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .era-card.is-now .era-ic{background:rgba(34,211,238,.14)}
 .era-card .era-ic svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .era-card.is-now .era-ic svg{stroke:var(--accent-3)}
