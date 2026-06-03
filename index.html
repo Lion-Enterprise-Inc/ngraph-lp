@@ -500,7 +500,34 @@
       for(var q=0;q<raw.length;q++){pts.push([((raw[q][0]-mnX)/rX-0.5)*sl,((raw[q][1]-mnY)/rY-0.5)*sl,((raw[q][2]-mnZ)/rZ-0.5)*sl]);}return pts;}
     function genTrefoil3D(){var pts=[],n=250,p=1+Math.floor(Math.random()*3),q=p+1+Math.floor(Math.random()*2),zA=0.3+Math.random()*0.5;
       for(var i=0;i<n;i++){var t=i/n*Math.PI*2,r=Math.cos(q*t/2)+2;pts.push([r*Math.cos(p*t/2)/3.5,r*Math.sin(p*t/2)/3.5,Math.sin(q*t/2)*zA]);}return pts;}
-    var GENS=[genTorus3D,genFibSphere3D,genHelix3D,genLorenz3D,genTrefoil3D],gi=0;
+    // ── AIの横顔：額→鼻→唇→顎→後頭部の輪郭を01で描き、内部を点群で充填 ──
+    function genFace3D(){
+      var prof=[[0.05,0.92],[-0.22,0.84],[-0.38,0.66],[-0.45,0.46],[-0.40,0.36],[-0.48,0.26],[-0.63,0.08],[-0.49,0.02],[-0.46,-0.04],[-0.55,-0.10],[-0.50,-0.16],[-0.55,-0.22],[-0.47,-0.30],[-0.54,-0.42],[-0.42,-0.52],[-0.28,-0.64],[-0.18,-0.74],[0.18,-0.74],[0.40,-0.50],[0.52,-0.18],[0.56,0.18],[0.46,0.56],[0.28,0.82]];
+      var pts=[],i,j;
+      for(i=0;i<prof.length;i++){var a=prof[i],b=prof[(i+1)%prof.length];for(j=0;j<6;j++){var t=j/6;pts.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,0]);}}
+      function inside(x,y){var c=false,k,m;for(k=0,m=prof.length-1;k<prof.length;m=k++){var xi=prof[k][0],yi=prof[k][1],xj=prof[m][0],yj=prof[m][1];if(((yi>y)!=(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))c=!c;}return c;}
+      var tr=0;while(pts.length<232&&tr<6000){tr++;var rx=-0.7+Math.random()*1.3,ry=-0.78+Math.random()*1.72;if(inside(rx,ry))pts.push([rx,ry,(Math.random()-0.5)*0.16]);}
+      return pts;}
+    // ── エッフェル塔：4本脚(下で広がり上へテーパー)＋3段プラットフォーム＋尖塔 ──
+    function genEiffel3D(){var pts=[],i,c,t,y,w,a;function hw(t){return 0.46*Math.pow(1-t,1.8)+0.022;}
+      var corners=[[1,1],[1,-1],[-1,1],[-1,-1]];
+      for(c=0;c<4;c++){for(i=0;i<42;i++){t=i/41;w=hw(t);pts.push([corners[c][0]*w,t*2-1,corners[c][1]*w]);}}
+      var plat=[0.0,0.30,0.62];
+      for(var p=0;p<plat.length;p++){t=plat[p];w=hw(t);y=t*2-1;for(i=0;i<16;i++){var u=i/16*4,e=Math.floor(u),f=u-e,xx,zz;
+        if(e===0){xx=w;zz=-w+2*w*f;}else if(e===1){xx=w-2*w*f;zz=w;}else if(e===2){xx=-w;zz=w-2*w*f;}else{xx=-w+2*w*f;zz=-w;}pts.push([xx,y,zz]);}}
+      for(i=0;i<18;i++){t=0.86+i/17*0.14;pts.push([0,t*2-1,0]);}
+      return pts;}
+    // ── 吊り橋：桁(2本レール)＋主塔2本＋主ケーブル(両側z)＋吊りケーブル ──
+    function genBridge3D(){var pts=[],i,zz,s,k;var deckY=-0.30,topY=0.46,zW=0.13;
+      function cableY(x){var ax=Math.abs(x);if(ax<=0.46){return topY-(topY-(deckY+0.10))*(1-(ax/0.46)*(ax/0.46));}return topY-(topY-(deckY+0.04))*((ax-0.46)/(0.96-0.46));}
+      for(s=0;s<2;s++){zz=s?zW:-zW;for(i=0;i<32;i++){pts.push([-0.96+i/31*1.92,deckY,zz]);}}
+      var tx=[-0.46,0.46];
+      for(var tt=0;tt<2;tt++){for(s=0;s<2;s++){zz=s?zW:-zW;for(i=0;i<14;i++){pts.push([tx[tt],deckY+(topY-deckY)*i/13,zz]);}}
+        for(i=0;i<5;i++){pts.push([tx[tt],topY,-zW+2*zW*i/4]);}}
+      for(s=0;s<2;s++){zz=s?zW:-zW;for(i=0;i<34;i++){var x=-0.96+i/33*1.92;pts.push([x,cableY(x),zz]);}}
+      for(i=0;i<14;i++){var x2=-0.42+i/13*0.84,cy=cableY(x2);for(k=0;k<=2;k++){pts.push([x2,deckY+(cy-deckY)*k/2,0]);}}
+      return pts;}
+    var GENS=[genTorus3D,genFibSphere3D,genHelix3D,genLorenz3D,genTrefoil3D,genFace3D,genEiffel3D,genBridge3D],gi=0;
     function nextPattern(){var g=GENS[gi%GENS.length];gi++;return g();}
 
     // 収束状態
