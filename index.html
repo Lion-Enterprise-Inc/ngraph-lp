@@ -527,7 +527,34 @@
       for(s=0;s<2;s++){zz=s?zW:-zW;for(i=0;i<34;i++){var x=-0.96+i/33*1.92;pts.push([x,cableY(x),zz]);}}
       for(i=0;i<14;i++){var x2=-0.42+i/13*0.84,cy=cableY(x2);for(k=0;k<=2;k++){pts.push([x2,deckY+(cy-deckY)*k/2,0]);}}
       return pts;}
-    var GENS=[genTorus3D,genFibSphere3D,genHelix3D,genLorenz3D,genTrefoil3D,genFace3D,genEiffel3D,genBridge3D],gi=0;
+    // ── Aizawaアトラクタ：滑らかに流れる軌道（Lorenz同様に正規化） ──
+    function genAizawa3D(){var pts=[],n=250,x=0.1,y=0,z=0,dt=0.01,a=0.95,b=0.7,c=0.6,d=3.5,e=0.25,f=0.1,i,k;
+      function step(){var dx=(z-b)*x-d*y,dy=d*x+(z-b)*y,dz=c+a*z-z*z*z/3-(x*x+y*y)*(1+e*z)+f*z*x*x*x;x+=dx*dt;y+=dy*dt;z+=dz*dt;}
+      for(i=0;i<900;i++)step();var raw=[];for(i=0;i<n;i++){step();raw.push([x,y,z]);}
+      var mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];for(i=0;i<raw.length;i++)for(k=0;k<3;k++){if(raw[i][k]<mn[k])mn[k]=raw[i][k];if(raw[i][k]>mx[k])mx[k]=raw[i][k];}
+      for(i=0;i<raw.length;i++)pts.push([((raw[i][0]-mn[0])/((mx[0]-mn[0])||1)-0.5)*1.7,((raw[i][1]-mn[1])/((mx[1]-mn[1])||1)-0.5)*1.7,((raw[i][2]-mn[2])/((mx[2]-mn[2])||1)-0.5)*1.7]);
+      return pts;}
+    // ── スーパーシェイプ(Gielis)：花・星・有機形のサーフェス ──
+    function genSupershape3D(){var pts=[],m=3+Math.floor(Math.random()*6),n1=0.4+Math.random()*0.8,n2=0.3+Math.random()*1.5,n3=0.3+Math.random()*1.5,a,b,i;
+      function sf(ang){var t=m*ang/4,v=Math.pow(Math.abs(Math.cos(t)),n2)+Math.pow(Math.abs(Math.sin(t)),n3),r=Math.pow(v,-1/n1);if(!isFinite(r))r=0;if(r>3)r=3;return r;}
+      var rows=16,cols=16;
+      for(a=0;a<rows;a++){var th=-Math.PI/2+a/(rows-1)*Math.PI,r2=sf(th);
+        for(b=0;b<cols;b++){var ph=-Math.PI+b/cols*2*Math.PI,r1=sf(ph);
+          pts.push([r1*Math.cos(ph)*r2*Math.cos(th),r2*Math.sin(th),r1*Math.sin(ph)*r2*Math.cos(th)]);}}
+      var dmx=0;for(i=0;i<pts.length;i++){var dd=Math.sqrt(pts[i][0]*pts[i][0]+pts[i][1]*pts[i][1]+pts[i][2]*pts[i][2]);if(dd>dmx)dmx=dd;}dmx=dmx||1;
+      for(i=0;i<pts.length;i++){pts[i][0]=pts[i][0]/dmx*0.95;pts[i][1]=pts[i][1]/dmx*0.95;pts[i][2]=pts[i][2]/dmx*0.95;}
+      return pts;}
+    // ── メビウスの輪：ねじれた帯 ──
+    function genMobius3D(){var pts=[],us=62,ws=4,i,k;
+      for(i=0;i<us;i++){var u=i/us*2*Math.PI;for(k=0;k<ws;k++){var w=(k/(ws-1)-0.5)*0.5;
+        pts.push([(0.72+w*Math.cos(u/2))*Math.cos(u),(0.72+w*Math.cos(u/2))*Math.sin(u)*0.9,w*Math.sin(u/2)]);}}
+      return pts;}
+    // ── 経緯線グローブ：緯度リングで構成した地球儀（NGraph=網の世界観） ──
+    function genGlobe3D(){var pts=[],lat=8,rad=0.92,total=250,placed=0,i,j;
+      for(i=0;i<=lat;i++){var th=i/lat*Math.PI,ringR=Math.sin(th),y=Math.cos(th),cnt=Math.max(4,Math.round(ringR*(total/lat)));
+        for(j=0;j<cnt&&placed<total;j++){var ph=j/cnt*2*Math.PI+(i%2)*0.3;pts.push([rad*ringR*Math.cos(ph),rad*y,rad*ringR*Math.sin(ph)]);placed++;}}
+      return pts;}
+    var GENS=[genTorus3D,genFibSphere3D,genHelix3D,genLorenz3D,genTrefoil3D,genFace3D,genEiffel3D,genBridge3D,genAizawa3D,genSupershape3D,genMobius3D,genGlobe3D],gi=0;
     function nextPattern(){var g=GENS[gi%GENS.length];gi++;return g();}
 
     // 収束状態
@@ -551,7 +578,7 @@
     document.addEventListener('keydown',resetIdle);
     window.addEventListener('resize',resize);
     resize();
-    var alphas=[];
+    var alphas=[],dn=[],order=[];
     function draw(){
       var W=canvas.width,H=canvas.height;
       ctx.clearRect(0,0,W,H);
@@ -586,8 +613,8 @@
         var lr=p.life/p.maxLife,lf=lr<0.1?lr/0.1:lr>0.85?(1-lr)/0.15:1;
         var em=60,efx=Math.min(p.x/em,(W-p.x)/em,1),efy=Math.min(p.y/em,(H-p.y)/em,1),ef=Math.max(0,Math.min(efx,efy));
         // 奥行き：環境ドリフトは粒子固有のz、収束時は3D形状のz深度でブレンド
-        var depA=0.55+0.45*(1-p.z),dsz=0.7+0.6*(1-p.z),shZ=depA,shS=1;
-        if(convStr>0.05){var zn=(zDepths[i]+1.5)/3;if(zn<0)zn=0;if(zn>1)zn=1;shZ=(0.35+0.65*(1-zn))*farDim;var sf=convScales[i]?convScales[i]/refScale:1;if(sf<0.5)sf=0.5;if(sf>1.7)sf=1.7;shS=sf;}
+        var depA=0.55+0.45*(1-p.z),dsz=0.7+0.6*(1-p.z),shZ=depA,shS=1;dn[i]=p.z;
+        if(convStr>0.05){var zn=(zDepths[i]+1.5)/3;if(zn<0)zn=0;if(zn>1)zn=1;dn[i]=zn;shZ=(0.35+0.65*(1-zn))*farDim;var sf=convScales[i]?convScales[i]/refScale:1;if(sf<0.5)sf=0.5;if(sf>1.7)sf=1.7;shS=sf;}
         var depthAlpha=depA+(shZ-depA)*convK;psize[i]=dsz+(shS-dsz)*convK;
         alphas[i]=p.alpha*lf*ef*depthAlpha;
         if(p.life>=p.maxLife||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){particles[i]=spawn(W,H);alphas[i]=0;}
@@ -606,14 +633,21 @@
             ctx.beginPath();ctx.moveTo(particles[i3].x,particles[i3].y-particles[i3].size*0.3);
             ctx.lineTo(particles[j2].x,particles[j2].y-particles[j2].size*0.3);
             ctx.strokeStyle='rgba(56,189,248,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}
-      // chars（収束時はブランドcyanで明るく）
-      var aMax=convStr>0.3?0.4:0.22,mult=convStr>0.3?0.8:0.6;
-      for(var i4=0;i4<particles.length;i4++){if(alphas[i4]<0.005)continue;var p4=particles[i4];
+      // chars（収束時：奥行きで色と明るさを変え、手前ほど白cyanで発光。遠→近で描画して立体感）
+      var conY=convStr>0.3;
+      order.length=0;for(var o=0;o<particles.length;o++)order.push(o);
+      if(conY)order.sort(function(a,b){return zDepths[b]-zDepths[a];});
+      var aMax=conY?0.6:0.22,mult=conY?1.0:0.6;
+      if(conY){ctx.shadowColor='rgba(125,233,255,'+(0.8*convK)+')';ctx.shadowBlur=7*convK;}
+      for(var oi=0;oi<order.length;oi++){var i4=order[oi];if(alphas[i4]<0.005)continue;var p4=particles[i4];
         var ca=Math.min(alphas[i4]*mult,aMax);
-        ctx.fillStyle=convStr>0.3?'rgba(103,232,249,'+ca+')':'rgba(96,165,250,'+ca+')';
+        if(conY){var t4=dn[i4];if(t4<0)t4=0;if(t4>1)t4=1;var nf=1-t4;
+          ctx.fillStyle='rgba('+Math.round(60+150*nf)+','+Math.round(150+105*nf)+','+Math.round(235+20*nf)+','+ca+')';}
+        else ctx.fillStyle='rgba(96,165,250,'+ca+')';
         var fs=Math.max(6,Math.round(p4.size*(psize[i4]||1)));
         ctx.font=fs+"px 'SF Mono','Fira Code',monospace";
         ctx.fillText(p4.char,p4.x,p4.y);}
+      ctx.shadowBlur=0;
       ctx.font="11px 'SF Mono','Fira Code',monospace";
     }
     var last=0;
