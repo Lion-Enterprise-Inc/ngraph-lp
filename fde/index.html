@@ -86,7 +86,7 @@
 .mid-cta{text-align:center;margin-top:52px}
 .mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
 /* Before/After */
-.ba-chart{width:100%;height:90px;margin:14px 0 4px}
+.ba-chart{width:100%;height:150px;margin:16px 0 6px}
 .ba-cap{font-size:.78rem;color:var(--text-3);text-align:center}
 .vs-col .ba-face{font-family:var(--serif);font-size:.9rem;text-align:center;color:var(--text-2);margin-bottom:4px}
 /* 安心セクション */
@@ -218,19 +218,53 @@
       <div class="vs-col">
         <div class="vs-title">契約しただけ</div>
         <p class="ba-face">使う人が増えない</p>
-        <svg class="ba-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="10" y1="78" x2="290" y2="78" stroke="rgba(60,52,42,.25)" stroke-width="1"/>
-          <polyline points="10,70 80,69 150,71 220,70 290,70" fill="none" stroke="rgba(60,52,42,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        <svg class="ba-chart" viewBox="0 0 320 150" aria-hidden="true">
+          <line x1="20" y1="30" x2="300" y2="30" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="60" x2="300" y2="60" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="120" x2="300" y2="120" stroke="rgba(60,52,42,.22)"/>
+          <path d="M20,112 C60,111 90,113 113,112 C160,111 240,113 300,112 L300,120 L20,120 Z" fill="rgba(60,52,42,.06)"/>
+          <path d="M20,112 C60,111 90,113 113,112 C160,111 240,113 300,112" fill="none" stroke="rgba(60,52,42,.45)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
+          <circle cx="113" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
+          <circle cx="207" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
+          <circle cx="300" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
+          <rect x="226" y="88" rx="9" width="66" height="19" fill="rgba(60,52,42,.5)"/>
+          <text x="259" y="101" text-anchor="middle" font-size="10" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">変化なし</text>
+          <text x="20" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
+          <text x="113" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
+          <text x="207" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
+          <text x="300" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
         </svg>
         <p class="ba-cap">AIを使う業務の数（イメージ）</p>
       </div>
       <div class="vs-col vs-fde">
         <div class="vs-title">エンジニアが現場に入ると</div>
         <p class="ba-face">使われる業務が増えていく</p>
-        <svg class="ba-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
-          <line x1="10" y1="78" x2="290" y2="78" stroke="rgba(60,52,42,.25)" stroke-width="1"/>
-          <polyline points="10,70 80,60 150,44 220,26 290,12" fill="none" stroke="#a63a24" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="80" cy="60" r="3.5" fill="#a63a24"/><circle cx="150" cy="44" r="3.5" fill="#a63a24"/><circle cx="220" cy="26" r="3.5" fill="#a63a24"/><circle cx="290" cy="12" r="4.5" fill="#a63a24"/>
+        <svg class="ba-chart" viewBox="0 0 320 150" aria-hidden="true">
+          <defs>
+            <linearGradient id="baGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(166,58,36,.28)"/>
+              <stop offset="100%" stop-color="rgba(166,58,36,.02)"/>
+            </linearGradient>
+          </defs>
+          <line x1="20" y1="30" x2="300" y2="30" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="60" x2="300" y2="60" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(60,52,42,.07)"/>
+          <line x1="20" y1="120" x2="300" y2="120" stroke="rgba(60,52,42,.22)"/>
+          <path d="M20,112 C55,110 85,102 113,90 C145,76 175,64 207,48 C240,32 270,26 300,20 L300,120 L20,120 Z" fill="url(#baGrad)"/>
+          <path d="M20,112 C55,110 85,102 113,90 C145,76 175,64 207,48 C240,32 270,26 300,20" fill="none" stroke="#a63a24" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="112" r="3.5" fill="#a63a24"/>
+          <circle cx="113" cy="90" r="3.5" fill="#a63a24"/>
+          <circle cx="207" cy="48" r="3.5" fill="#a63a24"/>
+          <circle cx="300" cy="20" r="5" fill="#a63a24"/>
+          <circle cx="300" cy="20" r="9" fill="none" stroke="rgba(166,58,36,.35)" stroke-width="2"/>
+          <rect x="216" y="2" rx="9" width="66" height="19" fill="#a63a24"/>
+          <text x="249" y="15" text-anchor="middle" font-size="10" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">定着</text>
+          <text x="20" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
+          <text x="113" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
+          <text x="207" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
+          <text x="300" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
         </svg>
         <p class="ba-cap">現場で1つずつ組み込み、定着させる</p>
       </div>
@@ -814,6 +848,10 @@ t.addEventListener('click',function(){n.classList.toggle('open')});
 n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open')});
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+(function(){var hv=document.querySelector('.hero-visual');
+if(hv){var fade=function(){var o=1-Math.min(Math.max((window.scrollY-250)/450,0),1);hv.style.opacity=(o*0.95).toFixed(2);};
+window.addEventListener('scroll',fade,{passive:true});fade();}
+})();
 (function(){var f=document.getElementById('floatCta');
 function tg(){if(window.scrollY>560)f.classList.add('show');else f.classList.remove('show');}
 window.addEventListener('scroll',tg,{passive:true});tg();})();
