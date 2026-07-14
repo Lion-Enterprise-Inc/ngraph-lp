@@ -105,24 +105,7 @@
 <style>
 /* ── FDE page local styles（禅テーマの補完） ── */
 .hero-cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-.problem-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.problem-card h3{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.6;margin-bottom:12px}
-.problem-card p{font-size:.86rem;color:var(--text-2);line-height:2}
-.problem-card .pc-num{font-family:var(--serif);font-size:.74rem;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:14px}
-.fde-def{max-width:860px;margin:0 auto 48px;padding:40px 44px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-card);text-align:center}
-.fde-def .fd-term{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.55rem);font-weight:700;letter-spacing:.03em;color:var(--accent);margin-bottom:6px}
-.fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
-.fde-def p{font-size:.9rem;color:var(--text-2);line-height:2.1}
-.fde-def p strong{color:var(--text);font-weight:700}
-.engage{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px;margin:0 auto}
-.engage .card h3{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px;line-height:1.6}
-.engage .card p{font-size:.85rem;color:var(--text-2);line-height:2}
-.engage .e-ic{width:44px;height:44px;border-radius:3px;background:rgba(166,58,36,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.engage .e-ic svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:900px){
-  .problem-cards{grid-template-columns:1fr}
-  .engage{grid-template-columns:1fr;max-width:520px}
-  .fde-def{padding:30px 22px}
   .hero-cta{justify-content:center}
 }
 </style>
@@ -141,9 +124,8 @@
     <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
     <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
     <nav class="nav" id="nav">
-      <a href="#fde">FDEとは</a>
-      <a href="#service">伴走支援</a>
       <a href="#cases">プロダクト</a>
+      <a href="/fde/">AI導入支援</a>
       <a href="/recruit.html" target="_blank" rel="noopener">採用</a>
       <a href="/company.html#team" target="_blank" rel="noopener">チーム</a>
       <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
@@ -163,7 +145,7 @@
       <p class="lead">料理・企業・人物——AIが誤解する領域を、AIが読める形にする技術の会社です。自社プロダクトをつくり、エンジニアが御社の現場にも入ります。</p>
       <div class="hero-cta">
         <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-        <a href="#service" class="btn btn-ghost">AI導入伴走支援（FDE）</a>
+        <a href="/fde/" class="btn btn-ghost">AI導入伴走支援（FDE）</a>
       </div>
       <p class="cta-micro">相談無料 ／ オンライン対応・全国から相談可 ／ 現状整理だけでも歓迎</p>
       <div class="hero-stats">
@@ -225,211 +207,6 @@
   </div>
 </section>
 
-<!-- ── よくある課題 ── -->
-<section class="section section-alt" id="problem">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">The Problem</div>
-      <h2 class="section-title"><span class="nb">AIは契約した。</span><span class="nb">でも、現場が変わらない。</span></h2>
-      <p class="section-sub">原因はツールではなく、ツールと現場のあいだにあります。</p>
-    </div>
-    <div class="problem-cards">
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 01</div>
-        <h3>ツールはある。使い方が分からない</h3>
-        <p>契約はしたが、現場は以前のやり方のまま。使い道は部署ごとに違います。</p>
-      </div>
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 02</div>
-        <h3>研修は受けた。業務に落ちない</h3>
-        <p>一般論の研修では「自社の業務にどう当てはめるか」が埋まりません。</p>
-      </div>
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 03</div>
-        <h3>任せられる人が社内にいない</h3>
-        <p>部署ごとに違う業務を、情シスや兼任担当だけでは回せません。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FDEとは ── -->
-<section class="section" id="fde">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Global Trend</div>
-      <h2 class="section-title"><span class="nb">世界のAI導入は、</span><span class="nb">「現場常駐」へ。</span></h2>
-      <p class="section-sub">いま米国のテック大手がこぞって強化しているのが、エンジニアを顧客企業に常駐させる支援モデルです。</p>
-    </div>
-
-    <div class="fde-def reveal">
-      <div class="fd-term">Forward Deployed Engineer（FDE）</div>
-      <div class="fd-read">フォワード・デプロイド・エンジニア＝最前線配置技術者</div>
-      <p>エンジニアが顧客企業に入り込み、<strong>各現場の業務に合わせてその場でAIを組み込む</strong>支援モデルです。</p>
-    </div>
-
-    <div class="era-flow reveal">
-      <div class="era-card">
-        <div class="era-yr">OpenAI</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M12 7V4M9 4h6"/><circle cx="9.5" cy="12" r="1.1"/><circle cx="14.5" cy="12" r="1.1"/><path d="M9 18v2M15 18v2"/></svg></div>
-          <h3>「Frontier」</h3>
-        </div>
-        <p>エンジニアを顧客企業に常駐させ、自律型エージェント「AI同僚」を直接組み込む支援を展開。</p>
-      </div>
-      <div class="era-card">
-        <div class="era-yr">Microsoft / AWS</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><path d="M17.5 18a4.5 4.5 0 000-9 6 6 0 00-11.5 1.7A4 4 0 006.5 18z"/></svg></div>
-          <h3>数千人規模のFDE部門</h3>
-        </div>
-        <p>数千人規模のFDE新部門を設立したと報じられています。</p>
-      </div>
-      <div class="era-card is-now">
-        <div class="era-yr">NGraph</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
-          <h3>同じ支援を、御社に <span class="now-badge">提供中</span></h3>
-        </div>
-        <p>同じ型の支援を、日本の中堅・中小企業の規模と予算で。</p>
-      </div>
-    </div>
-
-    <div class="vs-wrap reveal">
-      <div class="vs-col">
-        <div class="vs-title">従来の導入支援（研修・コンサル）</div>
-        <div class="vs-step">ツールを契約する</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">研修・資料を受け取る</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">「あとは現場で」と任される</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step vs-bad">自社業務への当てはめ方が分からず、止まる</div>
-      </div>
-      <div class="vs-col vs-fde">
-        <div class="vs-title">FDE型（NGraph）</div>
-        <div class="vs-step">エンジニアが現場に入る</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">実際の業務データで、目の前で組み込む</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">既存システムと連携し、業務フローに載せる</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step vs-good">現場が自分で回せる状態で定着</div>
-      </div>
-    </div>
-    <p class="vs-note reveal">違いは最後の一段。<strong>「使い方を教える」のではなく「使われる状態を現場でつくる」</strong>のがFDE型です。</p>
-  </div>
-</section>
-
-<!-- ── サービス内容 ── -->
-<section class="section section-alt" id="service">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">FDE Division</div>
-      <h2 class="section-title"><span class="nb">FDE型</span> <span class="nb">AI導入伴走支援</span></h2>
-      <p class="section-sub">現在ご依頼を受け付けている支援部門です。全国・オンラインのみでも対応可能。現場が自分で回せるようになるまで伴走します。</p>
-    </div>
-
-    <div class="fde-map-wrap reveal">
-      <div class="agentic-map">
-        <div class="am-hub">
-          <span class="am-cap">NGraph</span>
-          <div class="am-node am-node-person">
-            <span class="an-t">エンジニア</span>
-            <span class="an-en">Forward Deployed Engineer</span>
-          </div>
-        </div>
-        <div class="am-wires" aria-hidden="true">
-          <svg preserveAspectRatio="none"><path class="am-wire-path" d=""/></svg>
-        </div>
-        <div class="am-spokes">
-          <div class="am-biz"><div class="am-store"><span class="am-cap">経理</span><div class="am-node am-node-store"><span class="an-t">経理の現場</span><span class="an-en">請求・仕訳・月次</span></div></div></div>
-          <div class="am-biz"><div class="am-store"><span class="am-cap">営業</span><div class="am-node am-node-store"><span class="an-t">営業の現場</span><span class="an-en">提案書・見積・顧客対応</span></div></div></div>
-          <div class="am-biz"><div class="am-store"><span class="am-cap">製造・店舗</span><div class="am-node am-node-store"><span class="an-t">製造・店舗の現場</span><span class="an-en">手順書・報告・接客</span></div></div></div>
-        </div>
-      </div>
-      <p class="agent-note" style="margin-top:32px">全社一律の号令ではなく、<strong>現場ごとに入って個別に組み込みます</strong>。</p>
-    </div>
-
-    <div class="solutions" style="margin-bottom:48px">
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>現場ヒアリング・業務の分解</h3></div>
-        <p>業務を分解し、AIに任せる箇所と人が担う箇所を切り分けます。</p>
-        <div class="s-tags"><span>業務分解</span><span>現場ヒアリング</span><span>AI適用診断</span></div>
-      </div>
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/><path d="M3 5h18v14H3z"/></svg></div><h3>その場でプロンプト設計・AI構築</h3></div>
-        <p>実際の業務データで、目の前で構築・調整。持ち帰りません。</p>
-        <div class="s-tags"><span>プロンプト設計</span><span>AIエージェント構築</span><span>目の前で実装</span></div>
-      </div>
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div><h3>既存システムとの連携</h3></div>
-        <p>いまの業務システム・Excel・チャットツールにAIを接続します。</p>
-        <div class="s-tags"><span>システム連携</span><span>業務フロー組み込み</span><span>既存ツール活用</span></div>
-      </div>
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div><h3>社内定着・引き継ぎまで伴走</h3></div>
-        <p>現場が自分で直せる状態までつくり、引き継いで完了します。</p>
-        <div class="s-tags"><span>社内展開</span><span>運用定着</span><span>引き継ぎ整備</span></div>
-      </div>
-    </div>
-
-    <div class="flow-wrap reveal">
-      <div class="flow-cap">How it works</div>
-      <div class="flow">
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.6 8.6 0 01-3.7-.8L3 20l1-4.9a8.4 8.4 0 015-12.3 8.4 8.4 0 0112 8.7z"/></svg></div>
-          <div class="f-tx"><div class="f-t">無料相談</div><div class="f-s">現状とお困りごとを<br>ヒアリング</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-          <div class="f-tx"><div class="f-t">現場診断</div><div class="f-s">業務を分解し<br>AI適用箇所を特定</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/></svg></div>
-          <div class="f-tx"><div class="f-t">現場で実装</div><div class="f-s">オンライン・訪問で<br>その場で構築</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div>
-          <div class="f-tx"><div class="f-t">定着・引き継ぎ</div><div class="f-s">現場が自走できる<br>状態で完了</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 提供形態・料金 ── -->
-<section class="section" id="engage">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Engagement</div>
-      <h2 class="section-title">提供形態・料金</h2>
-      <p class="section-sub">課題の規模とご予算に合わせて、無理のない形を一緒に設計します。</p>
-    </div>
-    <div class="engage">
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/></svg></div>
-        <h3>オンライン伴走 × 訪問併用</h3>
-        <p>オンラインだけでも完結します。画面共有で実データを見ながらその場で構築。訪問・常駐も可能です。</p>
-      </div>
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
-        <h3>期間・頻度は課題に合わせて</h3>
-        <p>数週間のスポットから数ヶ月の常駐まで、課題に合わせて設計。</p>
-      </div>
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.6 8.6 0 01-3.7-.8L3 20l1-4.9a8.4 8.4 0 015-12.3 8.4 8.4 0 0112 8.7z"/></svg></div>
-        <h3>料金は要相談</h3>
-        <p>ヒアリングと現場診断のうえでお見積り。相談は無料です。</p>
-      </div>
-    </div>
-    <div class="mid-cta reveal">
-      <p>「料金の目安だけ知りたい」——それだけでも大丈夫です。</p>
-      <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-    </div>
-  </div>
-</section>
-
 <!-- ── Products ── -->
 <section class="section section-alt" id="cases">
   <div class="container">
@@ -474,8 +251,23 @@
 
 
 
+<!-- ── FDE Division ── -->
+<section class="section" id="fde-division">
+  <div class="container">
+    <div class="section-head reveal" style="margin-bottom:36px">
+      <div class="section-label">FDE Division</div>
+      <h2 class="section-title">AI導入伴走支援</h2>
+      <p class="section-sub">エンジニアが現場に入り、AIが業務で使われるまで伴走する支援部門です。全国・オンライン対応、現在ご依頼を受け付けています。</p>
+    </div>
+    <div class="mid-cta reveal" style="margin-top:0">
+      <a href="/fde/" class="btn btn-primary">サービス詳細・無料AI導入診断 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      <p class="cta-micro">相談無料 ／ 1分の無料AI導入診断で現在地がわかります</p>
+    </div>
+  </div>
+</section>
+
 <!-- ── Message ── -->
-<section class="section" id="message">
+<section class="section section-alt" id="message">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Message</div>
@@ -510,9 +302,8 @@
       <p>現実世界の意味を、AIが読める形に構造化する会社です。自社AIプロダクトの開発・運用と、FDE型のAI導入伴走支援を行っています。</p>
     </div>
     <div class="footer-links">
-      <a href="/#fde">FDEとは</a>
-      <a href="/#service">伴走支援</a>
       <a href="/#cases">プロダクト</a>
+      <a href="/fde/">AI導入支援</a>
       <a href="/recruit.html" target="_blank" rel="noopener">採用</a>
       <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
       <a href="/blog/">ブログ</a>

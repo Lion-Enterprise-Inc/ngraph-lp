@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+
+<title>FDE型AI導入支援（フォワード・デプロイド・エンジニア）— エンジニアが現場に入り、AIが使われるまで伴走 | 株式会社NGraph</title>
+<meta name="description" content="AIを契約したのに現場で使われていない——FDE（フォワード・デプロイド・エンジニア）型のAI導入支援なら、エンジニアが経理・営業・製造の現場に入り、プロンプト設計からシステム連携・定着まで伴走します。全国オンライン対応。まずは1分の無料AI導入診断で現在地がわかります。">
+<meta property="og:title" content="FDE型AI導入支援 — エンジニアが現場に入り、AIが使われるまで伴走 | NGraph">
+<meta property="og:description" content="研修でもコンサルでもない、現場常駐型のAI導入支援。全国オンライン対応。まずは1分の無料AI導入診断から。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ngraph.jp/fde/">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg?v=2">
+<link rel="canonical" href="https://ngraph.jp/fde/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://ngraph.jp/fde/#service",
+      "name": "FDE型AI導入伴走支援",
+      "alternateName": ["フォワード・デプロイド・エンジニア型AI導入支援", "Forward Deployed Engineering", "AI導入伴走支援"],
+      "serviceType": "AI導入支援・現場伴走型エンジニアリング",
+      "provider": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
+      "areaServed": "JP",
+      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/entry.html", "availableLanguage": ["ja"] },
+      "description": "エンジニアが経理・営業・製造などの現場に入り、プロンプト設計・AIエージェント構築・システム連携・社内定着までを伴走するAI導入支援。全国オンライン対応。"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "株式会社NGraph", "item": "https://ngraph.jp/" },
+        { "@type": "ListItem", "position": 2, "name": "FDE型AI導入支援", "item": "https://ngraph.jp/fde/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "FDE（フォワード・デプロイド・エンジニア）とは何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "エンジニアが顧客企業の中に入り込み、各現場の業務に合わせてその場でAIを組み込んでいく支援モデルです。OpenAIやMicrosoft、AWSなど米テック大手が相次いで投資している支援形態と報じられています。" } },
+        { "@type": "Question", "name": "料金はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "対象範囲・期間・システム連携の複雑さによって変わるため、無料相談と現場診断のうえでお見積りします。範囲を絞った数週間のスポット支援から数ヶ月の伴走まで、ご予算に合わせて設計します。" } },
+        { "@type": "Question", "name": "オンラインだけでも依頼できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。画面共有で実際の業務データを見ながらその場で構築するオンライン伴走が基本形で、全国から依頼できます。ご希望に応じて訪問・常駐も可能です。" } },
+        { "@type": "Question", "name": "どんな規模・業種の会社が対象ですか？", "acceptedAnswer": { "@type": "Answer", "text": "中堅・中小企業が中心です。業種は問いません。経理・営業・製造・店舗など、部署単位の業務からAIの組み込みを始められます。" } },
+        { "@type": "Question", "name": "特定のAIツールを契約する必要はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。すでにお使いのChatGPT・Claude・Copilot等があればそれを活かします。未契約の場合は、業務内容に合わせて最適なツールの選定からお手伝いします。" } },
+        { "@type": "Question", "name": "既存の業務システムを入れ替える必要はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "ありません。いまお使いの業務システム・Excel・チャットツールを前提に、そのあいだにAIを組み込む設計を基本としています。" } },
+        { "@type": "Question", "name": "秘密保持はどうなりますか？", "acceptedAnswer": { "@type": "Answer", "text": "ご希望に応じて着手前にNDA（秘密保持契約）を締結します。業務データの取り扱い範囲も現場診断の段階で合意のうえ進めます。" } }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+/* ── /fde/ 専用スタイル（zen補完） ── */
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.72rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.hero-trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
+.hero-trust span{font-size:.78rem;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
+.hero-trust svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.problem-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.problem-card h3{font-family:var(--serif);font-size:1.02rem;font-weight:700;line-height:1.6;margin-bottom:10px}
+.problem-card p{font-size:.85rem;color:var(--text-2);line-height:2}
+.pc-num{font-family:var(--serif);font-size:.72rem;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:12px}
+.fde-def{max-width:860px;margin:0 auto 48px;padding:40px 44px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-card);text-align:center}
+.fde-def .fd-term{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.55rem);font-weight:700;letter-spacing:.03em;color:var(--accent);margin-bottom:6px}
+.fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
+.fde-def p{font-size:.9rem;color:var(--text-2);line-height:2.1}
+.fde-def p strong{color:var(--text);font-weight:700}
+.cta-micro{font-size:.74rem;color:var(--text-3);margin-top:14px;letter-spacing:.04em}
+.mid-cta{text-align:center;margin-top:52px}
+.mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
+/* 診断 */
+.quiz-wrap{max-width:720px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px 36px;position:relative;overflow:hidden}
+.quiz-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
+.q-progress{font-family:var(--serif);font-size:.76rem;letter-spacing:.14em;color:var(--accent);margin-bottom:14px}
+.q-text{font-family:var(--serif);font-size:1.08rem;font-weight:700;line-height:1.8;margin-bottom:22px}
+.q-opts{display:flex;flex-direction:column;gap:10px}
+.q-opts button{text-align:left;padding:14px 18px;border:1px solid var(--border-strong);border-radius:3px;background:rgba(255,255,255,.6);font-size:.9rem;color:var(--text);cursor:pointer;font-family:inherit;transition:border-color .15s,background .15s}
+.q-opts button:hover{border-color:var(--accent);background:rgba(166,58,36,.05)}
+.q-back{margin-top:18px;background:none;border:none;font-size:.78rem;color:var(--text-3);cursor:pointer;font-family:inherit}
+.q-back:hover{color:var(--accent)}
+.result-head{text-align:center;margin-bottom:8px}
+.result-type{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--accent);margin-bottom:6px}
+.result-score{font-size:.82rem;color:var(--text-3);margin-bottom:14px}
+#radar{display:block;margin:0 auto;max-width:100%}
+.result-notes{margin:18px 0 6px}
+.result-notes li{font-size:.85rem;color:var(--text-2);line-height:1.95;margin-bottom:4px;list-style:none;padding-left:16px;position:relative}
+.result-notes li::before{content:"・";color:var(--accent);position:absolute;left:0}
+.lead-gate{margin-top:26px;border-top:1px solid var(--border);padding-top:26px}
+.lead-gate h4{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:6px}
+.lead-gate p{font-size:.82rem;color:var(--text-2);line-height:1.9;margin-bottom:16px}
+.lead-gate input{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:10px;outline:none}
+.lead-gate input:focus{border-color:var(--accent)}
+.lead-gate .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
+.lead-note{font-size:.72rem;color:var(--text-3);text-align:center;margin-top:10px}
+.lead-done{text-align:center;padding:18px 0 6px}
+.lead-done h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.lead-done p{font-size:.85rem;color:var(--text-2);line-height:1.9}
+/* 事例・記事 */
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.article-links{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:900px;margin:36px auto 0}
+.article-links a{display:block;padding:14px 18px;border:1px solid var(--border);border-radius:3px;background:var(--bg-card);font-size:.84rem;color:var(--text-2);line-height:1.7}
+.article-links a:hover{border-color:var(--accent);color:var(--text)}
+/* FAQ */
+.faq-list{max-width:820px;margin:0 auto}
+.faq-list details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 20px}
+.faq-list summary{font-family:var(--serif);font-size:.95rem;font-weight:700;line-height:1.7;padding:16px 0;cursor:pointer;list-style:none;position:relative;padding-right:28px}
+.faq-list summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:400}
+.faq-list details[open] summary::after{content:"−"}
+.faq-list details p{font-size:.87rem;color:var(--text-2);line-height:2;padding:0 0 18px}
+/* フォーム */
+.lp-form{max-width:640px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px 36px}
+.lp-form label{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+.lp-form label .req{color:var(--accent);font-size:.7rem;margin-left:5px}
+.lp-form input,.lp-form textarea{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:16px;outline:none}
+.lp-form input:focus,.lp-form textarea:focus{border-color:var(--accent)}
+.lp-form textarea{min-height:100px;resize:vertical}
+.lp-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
+.float-cta.show{opacity:1;pointer-events:auto;transform:none}
+.float-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fdfaf4;padding:14px 26px;border-radius:3px;font-weight:700;font-size:.9rem;letter-spacing:.04em;box-shadow:0 10px 28px rgba(166,58,36,.35)}
+@media(max-width:900px){
+  .problem-cards,.case-grid,.article-links{grid-template-columns:1fr}
+  .quiz-wrap,.lp-form{padding:28px 20px}
+  .hero-trust{justify-content:center}
+}
+@media(max-width:768px){
+  .float-cta{right:0;left:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(246,242,233,.94);backdrop-filter:blur(10px);border-top:1px solid var(--border);transform:translateY(100%)}
+  .float-cta.show{transform:none}
+  .float-cta a{width:100%;justify-content:center;padding:15px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#fde">FDEとは</a>
+      <a href="#service">サービス</a>
+      <a href="#cases">事例・実装</a>
+      <a href="#shindan">無料診断</a>
+      <a href="#price">料金</a>
+      <a href="#faq">FAQ</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/entry.html" class="nav-cta">無料相談</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero" style="padding-bottom:90px">
+  <div class="container hero-grid">
+    <div class="hero-copy" style="max-width:680px">
+      <span class="lp-badge"><span class="dot"></span>FDE — FORWARD DEPLOYED ENGINEERING</span>
+      <p class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">エンジニアが現場に入り、</span><span class="nb">AI導入を<span class="hl">完走</span>させる。</span></p>
+      <p class="lead">「AIは契約した。でも現場が使いこなせていない」——研修でもコンサルでもなく、エンジニアが経理・営業・製造の現場に入り、プロンプト設計・システム連携・定着までその場で組み込む<strong>FDE型AI導入支援</strong>です。まずは<strong>無料のAI導入診断（8問・1分）</strong>で、貴社の現在地と打ち手がわかります。</p>
+      <div class="hero-cta">
+        <a href="/entry.html" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+        <a href="#shindan" class="btn btn-ghost">1分で無料AI診断を試す</a>
+      </div>
+      <div class="hero-trust">
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>全国オンライン対応</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>自社AIプロダクトを4領域で開発・運用</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>130ヶ国語対応のAI接客を自社開発</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 課題 ── -->
+<section class="section section-alt" id="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title"><span class="nb">AI導入が止まる理由は、</span><span class="nb">ツールではない。</span></h2>
+      <p class="section-sub">原因はツールと現場のあいだ——「自社の業務にどう当てはめるか」の最後の一段です。</p>
+    </div>
+    <div class="problem-cards">
+      <div class="card problem-card reveal"><div class="pc-num">CASE 01</div><h3>ツールはある。使い方が分からない</h3><p>契約はしたが、現場は以前のやり方のまま。使い道は部署ごとに違います。</p></div>
+      <div class="card problem-card reveal"><div class="pc-num">CASE 02</div><h3>研修は受けた。業務に落ちない</h3><p>一般論の研修では「自社の業務にどう当てはめるか」が埋まりません。</p></div>
+      <div class="card problem-card reveal"><div class="pc-num">CASE 03</div><h3>任せられる人が社内にいない</h3><p>部署ごとに違う業務を、情シスや兼任担当だけでは回せません。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FDEとは ── -->
+<section class="section" id="fde">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Global Trend</div>
+      <h2 class="section-title"><span class="nb">世界のAI導入は、</span><span class="nb">「現場常駐」へ。</span></h2>
+      <p class="section-sub">いま米国のテック大手がこぞって強化しているのが、エンジニアを顧客企業に常駐させる支援モデルです。</p>
+    </div>
+
+    <div class="fde-def reveal">
+      <div class="fd-term">Forward Deployed Engineer（FDE）</div>
+      <div class="fd-read">フォワード・デプロイド・エンジニア＝最前線配置技術者</div>
+      <p>エンジニアが顧客企業に入り込み、<strong>各現場の業務に合わせてその場でAIを組み込む</strong>支援モデルです。</p>
+    </div>
+
+    <div class="era-flow reveal">
+      <div class="era-card">
+        <div class="era-yr">OpenAI</div>
+        <div class="era-head">
+          <div class="era-ic"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M12 7V4M9 4h6"/><circle cx="9.5" cy="12" r="1.1"/><circle cx="14.5" cy="12" r="1.1"/><path d="M9 18v2M15 18v2"/></svg></div>
+          <h3>「Frontier」</h3>
+        </div>
+        <p>エンジニアを顧客企業に常駐させ、自律型エージェント「AI同僚」を直接組み込む支援を展開。</p>
+      </div>
+      <div class="era-card">
+        <div class="era-yr">Microsoft / AWS</div>
+        <div class="era-head">
+          <div class="era-ic"><svg viewBox="0 0 24 24"><path d="M17.5 18a4.5 4.5 0 000-9 6 6 0 00-11.5 1.7A4 4 0 006.5 18z"/></svg></div>
+          <h3>数千人規模のFDE部門</h3>
+        </div>
+        <p>数千人規模のFDE新部門を設立したと報じられています。</p>
+      </div>
+      <div class="era-card is-now">
+        <div class="era-yr">NGraph</div>
+        <div class="era-head">
+          <div class="era-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
+          <h3>同じ支援を、御社に <span class="now-badge">提供中</span></h3>
+        </div>
+        <p>同じ型の支援を、日本の中堅・中小企業の規模と予算で。</p>
+      </div>
+    </div>
+
+    <div class="vs-wrap reveal">
+      <div class="vs-col">
+        <div class="vs-title">従来の導入支援（研修・コンサル）</div>
+        <div class="vs-step">ツールを契約する</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step">研修・資料を受け取る</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step">「あとは現場で」と任される</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step vs-bad">自社業務への当てはめ方が分からず、止まる</div>
+      </div>
+      <div class="vs-col vs-fde">
+        <div class="vs-title">FDE型（NGraph）</div>
+        <div class="vs-step">エンジニアが現場に入る</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step">実際の業務データで、目の前で組み込む</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step">既存システムと連携し、業務フローに載せる</div>
+        <div class="vs-arrow">▼</div>
+        <div class="vs-step vs-good">現場が自分で回せる状態で定着</div>
+      </div>
+    </div>
+    <p class="vs-note reveal">違いは最後の一段。<strong>「使い方を教える」のではなく「使われる状態を現場でつくる」</strong>のがFDE型です。</p>
+  </div>
+</section>
+
+
+<!-- ── サービス ── -->
+<section class="section section-alt" id="service">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Service</div>
+      <h2 class="section-title"><span class="nb">FDE型</span> <span class="nb">AI導入伴走支援</span></h2>
+      <p class="section-sub">エンジニアが各現場に入り、その場で業務にAIを組み込みます。全国・オンラインのみでも対応可能。現場が自分で回せるようになるまでが支援範囲です。</p>
+    </div>
+<div class="fde-map-wrap reveal">
+      <div class="agentic-map">
+        <div class="am-hub">
+          <span class="am-cap">NGraph</span>
+          <div class="am-node am-node-person">
+            <span class="an-t">エンジニア</span>
+            <span class="an-en">Forward Deployed Engineer</span>
+          </div>
+        </div>
+        <div class="am-wires" aria-hidden="true">
+          <svg preserveAspectRatio="none"><path class="am-wire-path" d=""/></svg>
+        </div>
+        <div class="am-spokes">
+          <div class="am-biz"><div class="am-store"><span class="am-cap">経理</span><div class="am-node am-node-store"><span class="an-t">経理の現場</span><span class="an-en">請求・仕訳・月次</span></div></div></div>
+          <div class="am-biz"><div class="am-store"><span class="am-cap">営業</span><div class="am-node am-node-store"><span class="an-t">営業の現場</span><span class="an-en">提案書・見積・顧客対応</span></div></div></div>
+          <div class="am-biz"><div class="am-store"><span class="am-cap">製造・店舗</span><div class="am-node am-node-store"><span class="an-t">製造・店舗の現場</span><span class="an-en">手順書・報告・接客</span></div></div></div>
+        </div>
+      </div>
+      <p class="agent-note" style="margin-top:32px">全社一律の号令ではなく、<strong>現場ごとに入って個別に組み込みます</strong>。</p>
+    </div>
+
+        <div class="solutions" style="margin-bottom:48px">
+      <div class="card solution-card reveal">
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>現場ヒアリング・業務の分解</h3></div>
+        <p>業務を分解し、AIに任せる箇所と人が担う箇所を切り分けます。</p>
+        <div class="s-tags"><span>業務分解</span><span>現場ヒアリング</span><span>AI適用診断</span></div>
+      </div>
+      <div class="card solution-card reveal">
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/><path d="M3 5h18v14H3z"/></svg></div><h3>その場でプロンプト設計・AI構築</h3></div>
+        <p>実際の業務データで、目の前で構築・調整。持ち帰りません。</p>
+        <div class="s-tags"><span>プロンプト設計</span><span>AIエージェント構築</span><span>目の前で実装</span></div>
+      </div>
+      <div class="card solution-card reveal">
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div><h3>既存システムとの連携</h3></div>
+        <p>いまの業務システム・Excel・チャットツールにAIを接続します。</p>
+        <div class="s-tags"><span>システム連携</span><span>業務フロー組み込み</span><span>既存ツール活用</span></div>
+      </div>
+      <div class="card solution-card reveal">
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div><h3>社内定着・引き継ぎまで伴走</h3></div>
+        <p>現場が自分で直せる状態までつくり、引き継いで完了します。</p>
+        <div class="s-tags"><span>社内展開</span><span>運用定着</span><span>引き継ぎ整備</span></div>
+      </div>
+    </div>
+    <div class="flow-wrap reveal">
+      <div class="flow-cap">How it works</div>
+      <div class="flow">
+        <div class="flow-step"><div class="f-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.6 8.6 0 01-3.7-.8L3 20l1-4.9a8.4 8.4 0 015-12.3 8.4 8.4 0 0112 8.7z"/></svg></div><div class="f-tx"><div class="f-t">無料相談</div><div class="f-s">現状とお困りごとを<br>ヒアリング</div></div></div>
+        <div class="flow-step"><div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><div class="f-tx"><div class="f-t">現場診断</div><div class="f-s">業務を分解し<br>AI適用箇所を特定</div></div></div>
+        <div class="flow-step"><div class="f-ic"><svg viewBox="0 0 24 24"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/></svg></div><div class="f-tx"><div class="f-t">現場で実装</div><div class="f-s">オンライン・訪問で<br>その場で構築</div></div></div>
+        <div class="flow-step"><div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div><div class="f-tx"><div class="f-t">定着・引き継ぎ</div><div class="f-s">現場が自走できる<br>状態で完了</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 無料AI診断 ── -->
+<section class="section" id="shindan">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Free Check</div>
+      <h2 class="section-title"><span class="nb">無料AI導入診断</span><span class="nb">（8問・約1分）</span></h2>
+      <p class="section-sub">5つの軸で貴社のAI活用の現在地を診断します。結果はその場で表示、登録不要で試せます。</p>
+    </div>
+    <div class="quiz-wrap reveal" id="quizBox">
+      <!-- JSが描画 -->
+    </div>
+  </div>
+</section>
+
+<!-- ── 事例・実装 ── -->
+<section class="section section-alt" id="cases">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title"><span class="nb">自社でAIを作り、</span><span class="nb">運用している会社が伴走します。</span></h2>
+      <p class="section-sub">私たちは「AIを語る」会社ではなく、「作って本番で動かしている」会社です。</p>
+    </div>
+    <div class="case-grid">
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">飲食店向けAI接客・自社開発</span></div>
+        <p class="p-desc">AIがテーブルに常駐し、130ヶ国語で質問に答えるAI接客。<strong>福井・金沢の実店舗で稼働中</strong>。店主が確認した情報だけを答える設計まで含めて自社で実装。</p>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">補助金書類の自動生成SaaS・自社開発</span></div>
+        <p class="p-desc">補助金計画書をAIが自動生成するSaaS。プロンプト設計から本番運用まで自社で構築。</p>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">業務AI構築</span><span class="p-label">受託・伴走</span></div>
+        <p class="p-desc">飲食店の多言語サイト制作・構造化データ整備など、実業務へのAI組み込みを受託。制作から公開・運用まで一貫対応。</p>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">ナレッジ発信</span><span class="p-label">ブログ</span></div>
+        <p class="p-desc">経理・営業・飲食など部門別のAI活用、プロンプト設計、費用の考え方——現場でつくってきた経験を記事で公開しています。</p>
+      </div>
+    </div>
+    <div class="article-links reveal">
+      <a href="/blog/what-is-fde.html">FDE（フォワード・デプロイド・エンジニア）とは？ →</a>
+      <a href="/blog/why-ai-stalls.html">AIを導入したのに現場で使われない3つの理由 →</a>
+      <a href="/blog/keiri-ai.html">経理業務でAIに任せられること・任せられないこと →</a>
+      <a href="/blog/ai-cost.html">AI導入支援の費用はどう考えればいいか →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 料金 ── -->
+<section class="section" id="price">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">料金の考え方</h2>
+      <p class="section-sub">対象範囲・期間・連携の複雑さで変わるため、無料相談と現場診断のうえでお見積りします。</p>
+    </div>
+    <div class="engage">
+      <div class="card reveal"><h3 style="font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px">スポット支援</h3><p style="font-size:.85rem;color:var(--text-2);line-height:2">一部門・一業務に絞った数週間の集中支援。効果の見える最小の一点から始めます。</p></div>
+      <div class="card reveal"><h3 style="font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px">伴走支援</h3><p style="font-size:.85rem;color:var(--text-2);line-height:2">数ヶ月の継続伴走。複数部署への展開と、社内で自走できる体制づくりまで。</p></div>
+      <div class="card reveal"><h3 style="font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px">まず無料相談</h3><p style="font-size:.85rem;color:var(--text-2);line-height:2">「料金の目安だけ知りたい」でも大丈夫です。現状を伺って概算をお答えします。</p></div>
+    </div>
+    <div class="mid-cta reveal">
+      <p>効果は「削減される作業時間 × 人件費」で概算できます。対象業務の選び方から一緒に考えます。</p>
+      <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details><summary>FDE（フォワード・デプロイド・エンジニア）とは何ですか？</summary><p>エンジニアが顧客企業の中に入り込み、各現場の業務に合わせてその場でAIを組み込んでいく支援モデルです。OpenAIやMicrosoft、AWSなど米テック大手が相次いで投資している支援形態と報じられています。</p></details>
+      <details><summary>料金はいくらですか？</summary><p>対象範囲・期間・システム連携の複雑さによって変わるため、無料相談と現場診断のうえでお見積りします。範囲を絞った数週間のスポット支援から数ヶ月の伴走まで、ご予算に合わせて設計します。</p></details>
+      <details><summary>オンラインだけでも依頼できますか？</summary><p>はい。画面共有で実際の業務データを見ながらその場で構築するオンライン伴走が基本形で、全国から依頼できます。ご希望に応じて訪問・常駐も可能です。</p></details>
+      <details><summary>どんな規模・業種の会社が対象ですか？</summary><p>中堅・中小企業が中心です。業種は問いません。経理・営業・製造・店舗など、部署単位の業務からAIの組み込みを始められます。</p></details>
+      <details><summary>特定のAIツールを契約する必要はありますか？</summary><p>いいえ。すでにお使いのChatGPT・Claude・Copilot等があればそれを活かします。未契約の場合は、業務内容に合わせて最適なツールの選定からお手伝いします。</p></details>
+      <details><summary>既存の業務システムを入れ替える必要はありますか？</summary><p>ありません。いまお使いの業務システム・Excel・チャットツールを前提に、そのあいだにAIを組み込む設計を基本としています。</p></details>
+      <details><summary>秘密保持はどうなりますか？</summary><p>ご希望に応じて着手前にNDA（秘密保持契約）を締結します。業務データの取り扱い範囲も現場診断の段階で合意のうえ進めます。</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ── フォーム ── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Contact</div>
+      <h2 class="section-title">無料相談</h2>
+      <p class="section-sub">現状の整理だけでも歓迎です。通常2〜3営業日以内にご返信します。</p>
+    </div>
+    <div class="lp-form reveal">
+      <form id="lpForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
+        <div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="お問い合わせ種別" value="FDE型AI導入支援（/fde/ LP）">
+        <label>お名前<span class="req">必須</span></label>
+        <input type="text" name="お名前" required>
+        <label>会社名<span class="req">必須</span></label>
+        <input type="text" name="会社名・店舗名" required>
+        <label>メールアドレス<span class="req">必須</span></label>
+        <input type="email" name="メールアドレス" required>
+        <label>お困りごと・相談したいこと<span class="req">必須</span></label>
+        <textarea name="お問い合わせ内容" placeholder="例：ChatGPTを全社契約したが現場で使われていない。経理から始めたい。" required></textarea>
+        <button type="submit" class="btn btn-primary" id="lpSubmit">無料相談を送信する</button>
+        <p class="lead-note" style="margin-top:12px"><a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください</p>
+      </form>
+      <div class="lead-done" id="lpDone" style="display:none">
+        <h4>送信完了しました</h4>
+        <p>お問い合わせありがとうございます。<br>内容を確認のうえ、担当者よりご連絡いたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="float-cta" id="floatCta"><a href="#contact">無料相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>現実世界の意味を、AIが読める形に構造化する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/">コーポレートサイト</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/recruit.html" target="_blank" rel="noopener">採用</a>
+      <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+
+<script>
+// ── ナビ・追従CTA・reveal ──
+var hd=document.querySelector('.header');
+function onScroll(){if(window.scrollY>20)hd.classList.add('scrolled');else hd.classList.remove('scrolled');}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var t=document.getElementById('navToggle'),n=document.getElementById('nav');
+t.addEventListener('click',function(){n.classList.toggle('open')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open')});
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+(function(){var f=document.getElementById('floatCta');
+function tg(){if(window.scrollY>560)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',tg,{passive:true});tg();})();
+
+// ── フォーム(GAS) ──
+(function(){
+var form=document.getElementById('lpForm'),done=document.getElementById('lpDone');
+var SPAM=/(bitcoin|btc|crypto|казино|casino|viagra|cialis|loan|порно|seo\s*service|backlink|telegram|whatsapp\s*\+)/i;
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(form.querySelector('[name="_honey"]').value){form.style.display='none';done.style.display='block';return;}
+  var msg=form.querySelector('[name="お問い合わせ内容"]').value;
+  if((msg.match(/https?:\/\//gi)||[]).length>=3||SPAM.test(msg)){alert('送信内容を確認してください。');return;}
+  var btn=document.getElementById('lpSubmit');btn.disabled=true;btn.textContent='送信中...';
+  fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
+  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'fde_lp'});})
+  .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='無料相談を送信する';});
+});
+})();
+
+  // ── FDE体制図: エンジニア→各現場を実測座標で1本ずつ直結 ──
+  (function(){
+    var map=document.querySelector('.agentic-map');
+    if(!map)return;
+    var path=map.querySelector('.am-wire-path'),svg=map.querySelector('.am-wires svg');
+    var hub=map.querySelector('.am-node-person'),nodes=map.querySelectorAll('.am-node-store');
+    if(!path||!svg||!hub||!nodes.length)return;
+    function draw(){
+      var mr=map.getBoundingClientRect();if(!mr.width)return;
+      svg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
+      var hr=hub.getBoundingClientRect(),sx=hr.right-mr.left,sy=hr.top-mr.top+hr.height/2,d='';
+      nodes.forEach(function(n){var nr=n.getBoundingClientRect(),ex=nr.left-mr.left,ey=nr.top-mr.top+nr.height/2,mx=sx+(ex-sx)*0.5;
+        d+='M'+sx+' '+sy+' C'+mx+' '+sy+' '+mx+' '+ey+' '+ex+' '+ey+' ';});
+      path.setAttribute('d',d.trim());
+    }
+    draw();
+    if(window.ResizeObserver)new ResizeObserver(draw).observe(map);
+    window.addEventListener('resize',draw);
+    window.addEventListener('load',draw);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
+  })();
+
+// ── AI導入診断（8問→5軸レーダー→リードゲート） ──
+(function(){
+var AXES=['ツール導入','現場活用','システム連携','推進体制','経営コミット'];
+var QS=[
+ {ax:0,q:'生成AI（ChatGPT・Claude等）を、会社として契約していますか？',o:['全社で契約している','一部の部署・個人だけ','契約していない']},
+ {ax:1,q:'現場の社員は、週1回以上AIを業務で使っていますか？',o:['ほとんどの部署で使っている','一部の人だけ使っている','ほぼ使われていない']},
+ {ax:1,q:'AIの出力を、そのまま業務書類に使える「型」がありますか？',o:['部署ごとに型がある','個人任せ','型はない']},
+ {ax:2,q:'AIと既存の道具（Excel・チャット・業務システム）はつながっていますか？',o:['業務フローに組み込まれている','コピペで橋渡ししている','つながっていない']},
+ {ax:2,q:'システム間の手作業の橋渡し（転記・整形）は残っていますか？',o:['ほぼ自動化済み','一部残っている','手作業が中心']},
+ {ax:3,q:'部署ごとにAIの使い方を設計した人はいますか？',o:['各部署にいる','全社で1人だけ','いない']},
+ {ax:3,q:'プロンプトを業務に合わせて直せる人が社内にいますか？',o:['複数いる','1人いる','いない']},
+ {ax:4,q:'経営層は、AI活用の目標（削減時間・対象業務など）を数字で持っていますか？',o:['数字の目標がある','方針はあるが数字はない','特にない']}
+];
+var TYPES=[
+ {min:13,name:'自走期',note:'土台は整っています。次は効果の大きい業務への横展開と、定着の仕組み化が論点です。'},
+ {min:9,name:'部分活用期',note:'一部では使えています。部署ごとの「型」づくりとシステム連携が次の一段です。'},
+ {min:5,name:'ツール先行期',note:'契約が先行し、現場への落とし込みが追いついていない状態です。FDE型支援の効果が最も出やすい段階です。'},
+ {min:0,name:'着手前',note:'これから始める段階です。効果の見える最小の一点から着手するのが定石です。'}
+];
+var box=document.getElementById('quizBox'),answers=[],step=0;
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function renderQ(){
+  var q=QS[step];
+  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+' — '+AXES[q.ax]+'</div>'
+    +'<div class="q-text">'+esc(q.q)+'</div>'
+    +'<div class="q-opts">'+q.o.map(function(o,i){return '<button data-v="'+(2-i)+'">'+esc(o)+'</button>';}).join('')+'</div>'
+    +(step>0?'<button class="q-back" id="qBack">← ひとつ戻る</button>':'');
+  box.querySelectorAll('.q-opts button').forEach(function(b){
+    b.addEventListener('click',function(){answers[step]=+b.getAttribute('data-v');step++;
+      if(step<QS.length)renderQ();else renderResult();});
+  });
+  var bk=document.getElementById('qBack');
+  if(bk)bk.addEventListener('click',function(){step--;renderQ();});
+}
+function axisScores(){
+  var s=[0,0,0,0,0],m=[0,0,0,0,0];
+  QS.forEach(function(q,i){s[q.ax]+=answers[i]||0;m[q.ax]+=2;});
+  return s.map(function(v,i){return v/m[i];});
+}
+function drawRadar(scores){
+  var c=document.getElementById('radar');if(!c)return;
+  var ctx=c.getContext('2d'),W=c.width,H=c.height,cx=W/2,cy=H/2+8,R=Math.min(W,H)/2-52;
+  function pt(i,r){var a=-Math.PI/2+i/5*Math.PI*2;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];}
+  ctx.clearRect(0,0,W,H);
+  for(var g=1;g<=4;g++){ctx.beginPath();for(var i=0;i<=5;i++){var p=pt(i%5,R*g/4);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}
+    ctx.strokeStyle='rgba(60,52,42,.15)';ctx.stroke();}
+  for(var i2=0;i2<5;i2++){var p2=pt(i2,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p2[0],p2[1]);ctx.strokeStyle='rgba(60,52,42,.15)';ctx.stroke();}
+  ctx.beginPath();
+  for(var i3=0;i3<=5;i3++){var p3=pt(i3%5,R*Math.max(scores[i3%5],0.06));i3?ctx.lineTo(p3[0],p3[1]):ctx.moveTo(p3[0],p3[1]);}
+  ctx.closePath();ctx.fillStyle='rgba(166,58,36,.18)';ctx.fill();ctx.strokeStyle='rgba(166,58,36,.85)';ctx.lineWidth=2;ctx.stroke();
+  ctx.font='11px "Zen Kaku Gothic New",sans-serif';ctx.fillStyle='rgba(60,52,42,.85)';ctx.textAlign='center';
+  for(var i4=0;i4<5;i4++){var p4=pt(i4,R+26);ctx.fillText(AXES[i4],p4[0],p4[1]+4);}
+}
+function renderResult(){
+  var total=answers.reduce(function(a,b){return a+b;},0);
+  var type=TYPES.find(function(t){return total>=t.min;});
+  var sc=axisScores();
+  var weak=AXES.map(function(a,i){return [a,sc[i]];}).sort(function(a,b){return a[1]-b[1];}).slice(0,2);
+  box.innerHTML='<div class="result-head">'
+    +'<div class="q-progress">診断結果</div>'
+    +'<div class="result-type">'+type.name+'</div>'
+    +'<div class="result-score">総合スコア '+total+' / 16</div>'
+    +'</div>'
+    +'<canvas id="radar" width="420" height="330"></canvas>'
+    +'<ul class="result-notes">'
+    +'<li>'+esc(type.note)+'</li>'
+    +'<li>特に伸びしろが大きい軸：<strong>'+esc(weak[0][0])+'</strong>・<strong>'+esc(weak[1][0])+'</strong></li>'
+    +'</ul>'
+    +'<div class="lead-gate" id="leadGate">'
+    +'<h4>軸ごとの詳細レポート＋改善の打ち手（無料）</h4>'
+    +'<p>回答内容をもとに、貴社向けの詳細レポートと「最初に着手すべき業務」の提案をメールでお送りします（2〜3営業日以内）。</p>'
+    +'<input type="text" id="lgName" placeholder="お名前（必須）">'
+    +'<input type="text" id="lgCompany" placeholder="会社名（必須）">'
+    +'<input type="email" id="lgEmail" placeholder="メールアドレス（必須）">'
+    +'<button class="btn btn-primary" id="lgSend">詳細レポートを受け取る</button>'
+    +'<p class="lead-note">営業目的の連続送信は行いません。<a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a></p>'
+    +'</div>'
+    +'<button class="q-back" id="qRetry">← もう一度診断する</button>';
+  drawRadar(sc);
+  document.getElementById('qRetry').addEventListener('click',function(){answers=[];step=0;renderQ();});
+  document.getElementById('lgSend').addEventListener('click',function(){
+    var nm=document.getElementById('lgName').value.trim(),
+        co=document.getElementById('lgCompany').value.trim(),
+        em=document.getElementById('lgEmail').value.trim();
+    if(!nm||!co||!em||em.indexOf('@')<0){alert('お名前・会社名・メールアドレスを入力してください。');return;}
+    var detail='【AI導入診断 詳細レポート希望】\n総合:'+total+'/16 タイプ:'+type.name
+      +'\n軸別:'+AXES.map(function(a,i){return a+'='+Math.round(sc[i]*100)+'%';}).join(' / ')
+      +'\n回答:'+answers.join(',');
+    var fd=new URLSearchParams();
+    fd.append('お名前',nm);fd.append('会社名・店舗名',co);fd.append('メールアドレス',em);
+    fd.append('お問い合わせ種別','AI導入診断（/fde/ LP）');fd.append('お問い合わせ内容',detail);
+    var btn=document.getElementById('lgSend');btn.disabled=true;btn.textContent='送信中...';
+    fetch('https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec',{method:'POST',mode:'no-cors',body:fd})
+    .then(function(){document.getElementById('leadGate').innerHTML='<div class="lead-done"><h4>受け付けました</h4><p>詳細レポートを2〜3営業日以内にメールでお送りします。</p></div>';if(window.gtag)gtag('event','generate_lead',{form:'fde_shindan'});})
+    .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='詳細レポートを受け取る';});
+  });
+}
+renderQ();
+})();
+</script>
+</body>
+</html>
