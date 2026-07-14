@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>現場で本当に使えるプロンプトの作り方——一般論で終わらせない5つの原則 | NGraphブログ</title>
+<meta name="description" content="プロンプト研修を受けても業務は変わらない。現場の実データで動くプロンプトを設計するための実践原則を5つに絞って解説します。">
+<meta property="og:title" content="現場で本当に使えるプロンプトの作り方——一般論で終わらせない5つの原則 | NGraphブログ">
+<meta property="og:description" content="プロンプト研修を受けても業務は変わらない。現場の実データで動くプロンプトを設計するための実践原則を5つに絞って解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/prompt-design.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg?v=2">
+<link rel="canonical" href="https://ngraph.jp/blog/prompt-design.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "現場で本当に使えるプロンプトの作り方——一般論で終わらせない5つの原則",
+  "description": "プロンプト研修を受けても業務は変わらない。現場の実データで動くプロンプトを設計するための実践原則を5つに絞って解説します。",
+  "datePublished": "2026-07-14",
+  "dateModified": "2026-07-14",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/prompt-design.html",
+  "author": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Blog</div>
+  <h1>現場で本当に使えるプロンプトの作り方——一般論で終わらせない5つの原則</h1>
+  <span class="a-date">2026.07.14 ｜ 株式会社NGraph</span>
+
+<p>プロンプトの書き方講座は世の中にあふれていますが、受講しても業務が変わらないという声をよく聞きます。理由はシンプルで、講座の例題と自社の実務が違うからです。現場で本当に使えるプロンプトには、共通する設計原則があります。</p>
+<h2>原則1：実データでつくり、実データで試す</h2>
+<p>サンプル文ではなく、実際の請求書・議事録・顧客メールを使って設計します。実データには例外・略語・社内ルールが含まれており、それを吸収できないプロンプトは現場で使われません。</p>
+<h2>原則2：出力の「型」を固定する</h2>
+<p>「いい感じにまとめて」ではなく、出力フォーマットを固定します。表の列、見出しの構成、文字数、敬語のトーン。型が固定されていれば、出力をそのまま業務書類に貼れるようになり、使う側の手間が消えます。</p>
+<h2>原則3：判断基準を書き込む</h2>
+<p>現場のベテランが頭の中で使っている判断基準——「この取引先はこう扱う」「この表現は使わない」——を聞き出してプロンプトに書き込みます。これをやるかどうかが、汎用ツールと業務ツールの分かれ目です。</p>
+<h2>原則4：担当者が自分で直せる形にする</h2>
+<p>プロンプトは業務の変化に合わせて修正が必要になります。専門家しか触れない複雑な構造にせず、<strong>どこを直せば挙動が変わるかが現場の人に分かる</strong>構造にしておくことが、定着の条件です。</p>
+<h2>原則5：確認プロセスとセットで設計する</h2>
+<p>AIの出力には誤りがまざり得ます。だから「AIが下書き→人が確認→確定」という業務フローまで含めて設計します。プロンプト単体ではなく、フローの一部としてつくるのが実務のプロンプト設計です。</p>
+<h2>つくる場所は会議室ではなく現場</h2>
+<p>この5原則を満たすプロンプトは、現場の机の横でしかつくれません。NGraphのFDE型支援では、エンジニアが現場に入り、担当者の目の前で実データを使ってプロンプトを組み、その場で直します。</p>
+
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。相談は無料です。</p>
+  <a href="/entry.html" class="btn btn-primary">無料で相談する</a>
+</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/#fde">FDEとは</a>
+      <a href="/#service">サービス内容</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+</body>
+</html>

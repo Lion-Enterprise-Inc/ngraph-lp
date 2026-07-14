@@ -14,9 +14,9 @@
 </script>
 
 <title>お問い合わせ — 株式会社NGraph</title>
-<meta name="description" content="株式会社NGraphへのお問い合わせフォーム。飲食店の多言語対応、既存サイトへの構造化データ埋め込み・AEO対策、共同開発・PoCのご相談を承ります。">
+<meta name="description" content="株式会社NGraphへのお問い合わせフォーム。エンジニアが現場に入るFDE型AI導入伴走支援、飲食店の多言語対応、AEO対策、共同開発・PoCのご相談を承ります。">
 <meta property="og:title" content="お問い合わせ — 株式会社NGraph">
-<meta property="og:description" content="構造化・多言語対応・AEOのご相談はこちらから。">
+<meta property="og:description" content="AI導入の伴走支援・多言語対応・AEOのご相談はこちらから。相談は無料です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ngraph.jp/entry">
 <meta property="og:site_name" content="株式会社NGraph">
@@ -28,34 +28,34 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-corp.css">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css">
 <style>
 .contact-wrap{max-width:640px;margin:0 auto;padding:160px 0 100px}
 .contact-head{text-align:center;margin-bottom:44px}
 .contact-head .section-label{margin-bottom:14px}
-.contact-head h1{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;line-height:1.4;margin-bottom:16px}
+.contact-head h1{font-family:var(--serif);font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:700;line-height:1.4;margin-bottom:16px}
 .contact-head p{font-size:.92rem;color:var(--text-2);line-height:1.9}
-.form-card{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:24px;padding:44px 40px}
+.form-card{background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:44px 40px}
 .form-group{margin-bottom:22px}
 .form-label{display:block;font-size:.8rem;font-weight:600;margin-bottom:8px;color:var(--text)}
 .form-label .req{color:var(--accent-3);font-size:.72rem;margin-left:5px}
-.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:12px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.02);color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none}
-.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(56,189,248,.14)}
+.form-input,.form-select,.form-textarea{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.65);color:var(--text);transition:border-color .2s,box-shadow .2s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(166,58,36,.12)}
 .form-input::placeholder,.form-textarea::placeholder{color:var(--text-3)}
-.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%239aa7bd' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a8172' d='M6 8 0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer}
 .form-select option{background:var(--bg-2);color:var(--text)}
 .form-textarea{min-height:120px;resize:vertical}
 .form-check{display:flex;align-items:center;gap:10px;margin:26px 0 20px}
 .form-check input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;flex-shrink:0}
 .form-check label{font-size:.82rem;color:var(--text-2);cursor:pointer}
 .form-check a{color:var(--accent-3);text-decoration:underline}
-.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--grad);color:#04121c;padding:15px 32px;border-radius:14px;font-size:1rem;font-weight:800;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 8px 28px rgba(34,211,238,.18)}
-.form-submit:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(34,211,238,.28)}
+.form-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;background:var(--accent);color:#fdfaf4;padding:15px 32px;border-radius:3px;font-size:1rem;font-weight:700;letter-spacing:.06em;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;box-shadow:0 6px 20px rgba(166,58,36,.16)}
+.form-submit:hover{transform:translateY(-2px);background:var(--accent-2);box-shadow:0 10px 28px rgba(166,58,36,.24)}
 .form-submit:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 .form-note{font-size:.74rem;color:var(--text-3);text-align:center;margin-top:14px}
 .success-msg{display:none;text-align:center;padding:50px 16px}
-.success-msg h2{font-size:1.3rem;font-weight:800;margin-bottom:14px;background:var(--grad-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.success-msg h2{font-family:var(--serif);font-size:1.3rem;font-weight:700;margin-bottom:14px;color:var(--accent)}
 .success-msg p{font-size:.92rem;color:var(--text-2);line-height:1.9}
 .success-msg a{display:inline-block;margin-top:26px;color:var(--accent-3);font-weight:600}
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
@@ -88,7 +88,7 @@
     <div class="contact-head">
       <div class="section-label">Contact</div>
       <h1><span class="nb">お問い合わせ</span></h1>
-      <p>飲食店の多言語対応、既存サイトへの構造化データ埋め込み・AEO対策、共同開発・PoCまで。<br>下記フォームよりお気軽にご相談ください。</p>
+      <p>AI導入の伴走支援（現場常駐・FDE型）から、飲食店の多言語対応・AEO対策、共同開発・PoCまで。<br>下記フォームよりお気軽にご相談ください。相談は無料です。</p>
     </div>
 
     <div class="form-card">
@@ -102,6 +102,7 @@
         <div class="form-group"><label class="form-label">お問い合わせ種別</label>
           <select name="お問い合わせ種別" class="form-select">
             <option value="">選択してください（任意）</option>
+            <option value="AI導入伴走支援（FDE型）">AI導入の伴走支援（現場常駐・FDE型）</option>
             <option value="飲食店の多言語対応">飲食店の多言語メニュー対応</option>
             <option value="構造化データ・AEO">サイトへの構造化データ埋め込み・AEO対策</option>
             <option value="共同開発・PoC">共同開発・PoC</option>
@@ -126,12 +127,12 @@
   <div class="footer-inner">
     <div class="footer-col">
       <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
-      <p>現実世界の「意味」を、AIが理解できる形に構造化する会社です。</p>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
     </div>
     <div class="footer-links">
-      <a href="/#tech">構造化技術</a>
-      <a href="/#products">プロダクト</a>
-      <a href="/#solutions">ソリューション</a>
+      <a href="/#fde">FDEとは</a>
+      <a href="/#service">サービス内容</a>
+      <a href="/#cases">実装力</a>
       <a href="/company.html">会社概要</a>
       <a href="/entry">お問い合わせ</a>
       <a href="/privacy.html">プライバシーポリシー</a>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>飲食店のAI活用——接客・メニュー・多言語対応の実例 | NGraphブログ</title>
+<meta name="description" content="飲食店でのAI活用を、自社サービスOMISEAIの実店舗運用（くずし割烹ぼんた金沢駅前店・蟹と海鮮ぼんた）の経験から解説します。">
+<meta property="og:title" content="飲食店のAI活用——接客・メニュー・多言語対応の実例 | NGraphブログ">
+<meta property="og:description" content="飲食店でのAI活用を、自社サービスOMISEAIの実店舗運用（くずし割烹ぼんた金沢駅前店・蟹と海鮮ぼんた）の経験から解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/inshoku-ai.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg?v=2">
+<link rel="canonical" href="https://ngraph.jp/blog/inshoku-ai.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "飲食店のAI活用——接客・メニュー・多言語対応の実例",
+  "description": "飲食店でのAI活用を、自社サービスOMISEAIの実店舗運用（くずし割烹ぼんた金沢駅前店・蟹と海鮮ぼんた）の経験から解説します。",
+  "datePublished": "2026-07-14",
+  "dateModified": "2026-07-14",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/inshoku-ai.html",
+  "author": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Blog</div>
+  <h1>飲食店のAI活用——接客・メニュー・多言語対応の実例</h1>
+  <span class="a-date">2026.07.14 ｜ 株式会社NGraph</span>
+
+<p>NGraphは飲食店向けAI接客サービス「OMISEAI」を自社開発し、くずし割烹ぼんた金沢駅前店・蟹と海鮮ぼんた（福井）などの実店舗で運用しています。この記事は、その実運用から見えた「飲食×AIの現実的な効き所」の話です。</p>
+<h2>一番効くのは「答える仕事」の肩代わり</h2>
+<p>飲食の現場で意外なほど時間を取られているのが、お客様の質問への回答です。「これは何の魚？」「アレルギーがあるけど食べられる？」「英語のメニューはある？」——ピーク帯のホールでは、この対応が回転と満足度の両方を圧迫します。</p>
+<p>OMISEAIでは、メニュー表を送るだけでAIがテーブルに常駐し、料理の説明・アレルゲン・文化的な背景まで130ヶ国語で答えます。ポイントは<strong>店主が確認した情報だけを答える</strong>設計にしたこと。アレルゲンのような間違えられない情報は、AIの推測に任せず、店の確認を通した一次データで答えます。</p>
+<h2>多言語対応は「翻訳」では足りない</h2>
+<p>インバウンド対応でメニューを機械翻訳すると、料理名が直訳されて意味が通じない、アレルゲンや宗教配慮の情報が抜ける、といった問題が起きます。実際の多言語対応では、料理の背景説明・食材の正確な訳語・宗教/アレルギー情報の明示まで含めて初めて「伝わる」状態になります。私たちはぼんたグループの多言語サイト制作でもこの設計を実装してきました。</p>
+<h2>バックヤードにも効く</h2>
+<p>接客以外にも、仕込みの手順書づくり、シフトや発注の下書き、新人教育用の資料整備など、店の「書きもの仕事」はAIの得意分野です。店長が深夜にやっていた事務作業を減らすことは、そのまま現場の持続性に直結します。</p>
+<h2>飲食こそ「現場に入る」支援が要る</h2>
+<p>飲食店にはIT担当がいないことがほとんどです。だからこそ、ツールを渡して終わりの導入は動きません。私たちは自分たちで店に入り、メニューと現場のオペレーションに合わせて仕組みをつくってきました。この経験ごと、御社の現場に持ち込みます。</p>
+
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。相談は無料です。</p>
+  <a href="/entry.html" class="btn btn-primary">無料で相談する</a>
+</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/#fde">FDEとは</a>
+      <a href="/#service">サービス内容</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+</body>
+</html>
