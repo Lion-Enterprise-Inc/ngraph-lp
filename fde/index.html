@@ -53,6 +53,7 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
+        { "@type": "Question", "name": "パソコンやAIに詳しくなくても依頼できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。そのための伴走支援です。専門用語を使わずに説明し、資料の準備も不要です。現場のみなさんと一緒に、実際の業務を見ながら進めます。" } },
         { "@type": "Question", "name": "FDE（フォワード・デプロイド・エンジニア）とは何ですか？", "acceptedAnswer": { "@type": "Answer", "text": "エンジニアが顧客企業の中に入り込み、各現場の業務に合わせてその場でAIを組み込んでいく支援モデルです。OpenAIやMicrosoft、AWSなど米テック大手が相次いで投資している支援形態と報じられています。" } },
         { "@type": "Question", "name": "料金はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "対象範囲・期間・システム連携の複雑さによって変わるため、無料相談と現場診断のうえでお見積りします。範囲を絞った数週間のスポット支援から数ヶ月の伴走まで、ご予算に合わせて設計します。" } },
         { "@type": "Question", "name": "オンラインだけでも依頼できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。画面共有で実際の業務データを見ながらその場で構築するオンライン伴走が基本形で、全国から依頼できます。ご希望に応じて訪問・常駐も可能です。" } },
@@ -84,6 +85,20 @@
 .cta-micro{font-size:.74rem;color:var(--text-3);margin-top:14px;letter-spacing:.04em}
 .mid-cta{text-align:center;margin-top:52px}
 .mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
+/* Before/After */
+.ba-chart{width:100%;height:90px;margin:14px 0 4px}
+.ba-cap{font-size:.78rem;color:var(--text-3);text-align:center}
+.vs-col .ba-face{font-family:var(--serif);font-size:.9rem;text-align:center;color:var(--text-2);margin-bottom:4px}
+/* 安心セクション */
+.trust-grid{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;max-width:840px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px}
+.trust-grid img{width:100%;border-radius:4px;border:1px solid var(--border)}
+.trust-cap{font-size:.74rem;color:var(--text-3);text-align:center;margin-top:10px}
+.trust-body h3{font-family:var(--serif);font-size:1.2rem;font-weight:700;line-height:1.7;margin-bottom:14px}
+.trust-body p{font-size:.88rem;color:var(--text-2);line-height:2;margin-bottom:16px}
+.trust-list{list-style:none}
+.trust-list li{font-size:.88rem;color:var(--text-2);line-height:2;padding-left:24px;position:relative;margin-bottom:6px}
+.trust-list li::before{content:"";position:absolute;left:0;top:9px;width:14px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+@media(max-width:768px){.trust-grid{grid-template-columns:1fr;padding:28px 22px}.trust-grid .trust-photo{width:160px;margin:0 auto}}
 /* 診断 */
 .quiz-wrap{max-width:720px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px 36px;position:relative;overflow:hidden}
 .quiz-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
@@ -174,7 +189,7 @@
     <div class="hero-copy" style="max-width:680px">
       <span class="lp-badge"><span class="dot"></span>FDE — FORWARD DEPLOYED ENGINEERING</span>
       <p class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">エンジニアが現場に入り、</span><span class="nb">AI導入を<span class="hl">完走</span>させる。</span></p>
-      <p class="lead">「AIは契約した。でも現場が使いこなせていない」——研修でもコンサルでもなく、エンジニアが経理・営業・製造の現場に入り、プロンプト設計・システム連携・定着までその場で組み込む<strong>FDE型AI導入支援</strong>です。まずは<strong>無料のAI導入診断（8問・1分）</strong>で、貴社の現在地と打ち手がわかります。</p>
+      <p class="lead">「AIは契約した。でも、現場で使われていない」。そんな会社のために、エンジニアが御社の業務に入り、AIを「使われる形」にして残します。難しい準備も、専門知識もいりません。まずは<strong>無料のAI導入診断（8問・1分）</strong>で、御社の現在地がわかります。</p>
       <div class="hero-cta">
         <a href="/entry.html" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#shindan" class="btn btn-ghost">1分で無料AI診断を試す</a>
@@ -182,7 +197,7 @@
       <div class="hero-trust">
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>全国オンライン対応</span>
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>自社AIプロダクトを4領域で開発・運用</span>
-        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>130ヶ国語対応のAI接客を自社開発</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>AIが苦手な方こそ歓迎・専門用語なしで説明</span>
       </div>
     </div>
   </div>
@@ -194,7 +209,28 @@
     <div class="section-head reveal">
       <div class="section-label">The Problem</div>
       <h2 class="section-title"><span class="nb">AI導入が止まる理由は、</span><span class="nb">ツールではない。</span></h2>
-      <p class="section-sub">原因はツールと現場のあいだ——「自社の業務にどう当てはめるか」の最後の一段です。</p>
+      <p class="section-sub">原因はツールではなく、「自社の業務にどう当てはめるか」が埋まっていないことです。</p>
+    </div>
+    <div class="vs-wrap reveal" style="margin:0 auto 48px">
+      <div class="vs-col">
+        <div class="vs-title">契約しただけ</div>
+        <p class="ba-face">使う人が増えない</p>
+        <svg class="ba-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="10" y1="78" x2="290" y2="78" stroke="rgba(60,52,42,.25)" stroke-width="1"/>
+          <polyline points="10,70 80,69 150,71 220,70 290,70" fill="none" stroke="rgba(60,52,42,.5)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <p class="ba-cap">AIを使う業務の数（イメージ）</p>
+      </div>
+      <div class="vs-col vs-fde">
+        <div class="vs-title">エンジニアが現場に入ると</div>
+        <p class="ba-face">使われる業務が増えていく</p>
+        <svg class="ba-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
+          <line x1="10" y1="78" x2="290" y2="78" stroke="rgba(60,52,42,.25)" stroke-width="1"/>
+          <polyline points="10,70 80,60 150,44 220,26 290,12" fill="none" stroke="#a63a24" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="80" cy="60" r="3.5" fill="#a63a24"/><circle cx="150" cy="44" r="3.5" fill="#a63a24"/><circle cx="220" cy="26" r="3.5" fill="#a63a24"/><circle cx="290" cy="12" r="4.5" fill="#a63a24"/>
+        </svg>
+        <p class="ba-cap">現場で1つずつ組み込み、定着させる</p>
+      </div>
     </div>
     <div class="problem-cards">
       <div class="card problem-card reveal"><div class="pc-num">CASE 01</div><h3>ツールはある。使い方が分からない</h3><p>契約はしたが、現場は以前のやり方のまま。使い道は部署ごとに違います。</p></div>
@@ -216,7 +252,7 @@
     <div class="fde-def reveal">
       <div class="fd-term">Forward Deployed Engineer（FDE）</div>
       <div class="fd-read">フォワード・デプロイド・エンジニア＝最前線配置技術者</div>
-      <p>エンジニアが顧客企業に入り込み、<strong>各現場の業務に合わせてその場でAIを組み込む</strong>支援モデルです。</p>
+      <p>エンジニアがお客様の会社に入り、<strong>業務に合わせてAIを組み込んでいく</strong>支援の形です。ツールを渡して終わりにせず、現場で動くまで一緒につくります。</p>
     </div>
 
     <div class="era-flow reveal">
@@ -226,7 +262,7 @@
           <div class="era-ic"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M12 7V4M9 4h6"/><circle cx="9.5" cy="12" r="1.1"/><circle cx="14.5" cy="12" r="1.1"/><path d="M9 18v2M15 18v2"/></svg></div>
           <h3>「Frontier」</h3>
         </div>
-        <p>エンジニアを顧客企業に常駐させ、自律型エージェント「AI同僚」を直接組み込む支援を展開。</p>
+        <p>エンジニアを企業に常駐させる支援「Frontier」を展開しています。</p>
       </div>
       <div class="era-card">
         <div class="era-yr">Microsoft / AWS</div>
@@ -234,7 +270,7 @@
           <div class="era-ic"><svg viewBox="0 0 24 24"><path d="M17.5 18a4.5 4.5 0 000-9 6 6 0 00-11.5 1.7A4 4 0 006.5 18z"/></svg></div>
           <h3>数千人規模のFDE部門</h3>
         </div>
-        <p>数千人規模のFDE新部門を設立したと報じられています。</p>
+        <p>数千人規模のFDE部門を新設したと報じられています。</p>
       </div>
       <div class="era-card is-now">
         <div class="era-yr">NGraph</div>
@@ -242,7 +278,7 @@
           <div class="era-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
           <h3>同じ支援を、御社に <span class="now-badge">提供中</span></h3>
         </div>
-        <p>同じ型の支援を、日本の中堅・中小企業の規模と予算で。</p>
+        <p>同じ形の支援を、中小企業の規模と予算で提供します。</p>
       </div>
     </div>
 
@@ -268,7 +304,7 @@
         <div class="vs-step vs-good">現場が自分で回せる状態で定着</div>
       </div>
     </div>
-    <p class="vs-note reveal">違いは最後の一段。<strong>「使い方を教える」のではなく「使われる状態を現場でつくる」</strong>のがFDE型です。</p>
+    <p class="vs-note reveal"><strong>「使い方を教える」のではなく、「使われる状態をつくって残す」</strong>のがFDE型です。</p>
   </div>
 </section>
 
@@ -279,7 +315,7 @@
     <div class="section-head reveal">
       <div class="section-label">Service</div>
       <h2 class="section-title"><span class="nb">FDE型</span> <span class="nb">AI導入伴走支援</span></h2>
-      <p class="section-sub">エンジニアが各現場に入り、その場で業務にAIを組み込みます。全国・オンラインのみでも対応可能。現場が自分で回せるようになるまでが支援範囲です。</p>
+      <p class="section-sub">全国どこからでも、オンラインだけで完結できます。現場のみなさんが自分で使いこなせるようになるまでが支援範囲です。</p>
     </div>
 <div class="fde-map-wrap reveal">
       <div class="agentic-map">
@@ -351,7 +387,7 @@
 </section>
 
 <!-- ── 事例・実装 ── -->
-<section class="section section-alt" id="cases">
+<section class="section" id="cases">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Our Work</div>
@@ -361,19 +397,19 @@
     <div class="case-grid">
       <div class="card product-card reveal">
         <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">飲食店向けAI接客・自社開発</span></div>
-        <p class="p-desc">AIがテーブルに常駐し、130ヶ国語で質問に答えるAI接客。<strong>福井・金沢の実店舗で稼働中</strong>。店主が確認した情報だけを答える設計まで含めて自社で実装。</p>
+        <p class="p-desc">130ヶ国語で接客するAI。<strong>福井・金沢の実店舗で稼働中</strong>です。</p>
       </div>
       <div class="card product-card reveal">
         <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">補助金書類の自動生成SaaS・自社開発</span></div>
-        <p class="p-desc">補助金計画書をAIが自動生成するSaaS。プロンプト設計から本番運用まで自社で構築。</p>
+        <p class="p-desc">補助金の計画書をAIが自動でつくるサービス。本番運用中です。</p>
       </div>
       <div class="card product-card reveal">
         <div class="p-head"><span class="p-name">業務AI構築</span><span class="p-label">受託・伴走</span></div>
-        <p class="p-desc">飲食店の多言語サイト制作・構造化データ整備など、実業務へのAI組み込みを受託。制作から公開・運用まで一貫対応。</p>
+        <p class="p-desc">飲食店の多言語サイト制作など、実業務へのAI組み込みを受託しています。</p>
       </div>
       <div class="card product-card reveal">
         <div class="p-head"><span class="p-name">ナレッジ発信</span><span class="p-label">ブログ</span></div>
-        <p class="p-desc">経理・営業・飲食など部門別のAI活用、プロンプト設計、費用の考え方——現場でつくってきた経験を記事で公開しています。</p>
+        <p class="p-desc">部門別のAI活用や費用の考え方を、記事で公開しています。</p>
       </div>
     </div>
     <div class="article-links reveal">
@@ -381,6 +417,32 @@
       <a href="/blog/why-ai-stalls.html">AIを導入したのに現場で使われない3つの理由 →</a>
       <a href="/blog/keiri-ai.html">経理業務でAIに任せられること・任せられないこと →</a>
       <a href="/blog/ai-cost.html">AI導入支援の費用はどう考えればいいか →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── 安心 ── -->
+<section class="section section-alt" id="trust">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Promise</div>
+      <h2 class="section-title"><span class="nb">AIが苦手な方こそ、</span><span class="nb">歓迎です。</span></h2>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-photo">
+        <img src="/assets/ceo-portrait.png" alt="代表取締役 髙橋 真吾">
+        <p class="trust-cap">代表取締役　髙橋 真吾</p>
+      </div>
+      <div class="trust-body">
+        <h3>「詳しくないから頼む」で、いいんです。</h3>
+        <p>ご依頼いただく多くの方は、AIの専門家ではありません。だからこそ、私たちは3つの約束をしています。</p>
+        <ul class="trust-list">
+          <li><strong>専門用語を使わずに説明します。</strong>カタカナ語が出たら、その場で聞いてください</li>
+          <li><strong>ヒアリングは雑談からで大丈夫。</strong>資料の準備はいりません</li>
+          <li><strong>作って、動かして、見てから判断いただきます。</strong>口頭の提案だけで契約を迫りません</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -413,6 +475,7 @@
       <h2 class="section-title">よくある質問</h2>
     </div>
     <div class="faq-list reveal">
+      <details><summary>パソコンやAIに詳しくなくても依頼できますか？</summary><p>はい。そのための伴走支援です。専門用語を使わずに説明し、資料の準備も不要です。現場のみなさんと一緒に、実際の業務を見ながら進めます。</p></details>
       <details><summary>FDE（フォワード・デプロイド・エンジニア）とは何ですか？</summary><p>エンジニアが顧客企業の中に入り込み、各現場の業務に合わせてその場でAIを組み込んでいく支援モデルです。OpenAIやMicrosoft、AWSなど米テック大手が相次いで投資している支援形態と報じられています。</p></details>
       <details><summary>料金はいくらですか？</summary><p>対象範囲・期間・システム連携の複雑さによって変わるため、無料相談と現場診断のうえでお見積りします。範囲を絞った数週間のスポット支援から数ヶ月の伴走まで、ご予算に合わせて設計します。</p></details>
       <details><summary>オンラインだけでも依頼できますか？</summary><p>はい。画面共有で実際の業務データを見ながらその場で構築するオンライン伴走が基本形で、全国から依頼できます。ご希望に応じて訪問・常駐も可能です。</p></details>
@@ -430,7 +493,7 @@
     <div class="section-head reveal">
       <div class="section-label">Contact</div>
       <h2 class="section-title">無料相談</h2>
-      <p class="section-sub">現状の整理だけでも歓迎です。通常2〜3営業日以内にご返信します。</p>
+      <p class="section-sub">「何から聞けばいいか分からない」状態で大丈夫です。通常2〜3営業日以内にご返信します。</p>
     </div>
     <div class="lp-form reveal">
       <form id="lpForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
