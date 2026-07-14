@@ -141,11 +141,12 @@
     <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
     <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
     <nav class="nav" id="nav">
-      <a href="#cases">プロダクト</a>
       <a href="#fde">FDEとは</a>
       <a href="#service">伴走支援</a>
-      <a href="#team">チーム</a>
-      <a href="#company">会社概要</a>
+      <a href="#cases">プロダクト</a>
+      <a href="#recruit">採用</a>
+      <a href="/company.html#team" target="_blank" rel="noopener">チーム</a>
+      <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
       <a href="/blog/">ブログ</a>
       <a href="/entry.html" class="nav-cta">無料相談</a>
       <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/">EN</a></span>
@@ -161,13 +162,16 @@
       <p class="hero-tagline" style="font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.5"><span class="nb">現実世界の意味を、</span><span class="nb">AIが読める形に</span><span class="nb"><span class="hl">構造化</span>する。</span></p>
       <p class="lead">料理・企業・人物——AIが誤解する領域を、AIが読める形にする技術の会社です。自社プロダクトをつくり、エンジニアが御社の現場にも入ります。</p>
       <div class="hero-cta">
-        <a href="#cases" class="btn btn-primary">つくっているもの <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+        <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#service" class="btn btn-ghost">AI導入伴走支援（FDE）</a>
       </div>
       <div class="hero-stats">
         <div class="hstat"><span class="num">4<small>領域</small></span><span class="cap">自社AIプロダクトを開発・運用</span></div>
         <div class="hstat"><span class="num">130<small>ヶ国語</small></span><span class="cap">対応のAI接客を自社開発</span></div>
       </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <canvas id="heroCv"></canvas>
     </div>
   </div>
 </section>
@@ -219,48 +223,6 @@
     </div>
   </div>
 </section>
-
-<!-- ── Products ── -->
-<section class="section" id="cases">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Products</div>
-      <h2 class="section-title">つくっているもの</h2>
-      <p class="section-sub">構造化技術から生まれ、実店舗・実業務で稼働している自社プロダクトです。</p>
-    </div>
-    <div class="products">
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">飲食店向けAI接客・自社開発</span></div>
-        <p class="p-desc">AIがテーブルに常駐し、130ヶ国語で質問に答えるAI接客。<strong>くずし割烹ぼんた金沢駅前店・蟹と海鮮ぼんた（福井）</strong>で稼働中。</p>
-        <a href="https://omiseai.com/" class="p-link" target="_blank" rel="noopener">omiseai.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">補助金書類の自動生成SaaS・自社開発</span></div>
-        <p class="p-desc">補助金計画書をAIが自動生成するSaaS。</p>
-        <a href="https://autowrite.jp/" class="p-link" target="_blank" rel="noopener">autowrite.jp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Teles</span><span class="p-label">偉人AIアドバイザー・自社開発</span></div>
-        <p class="p-desc">偉人の思考を構造化したAIアドバイザー。複数の偉人を融合する「Fusion」搭載。</p>
-        <a href="https://nicomachos.com/" class="p-link" target="_blank" rel="noopener">nicomachos.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">アルケー</span><span class="p-label">事業診断AI・自社開発</span></div>
-        <p class="p-desc">事業を普遍的な評価軸で採点・診断するAI。</p>
-        <a href="https://nicomachos.com/cases" class="p-link" target="_blank" rel="noopener">nicomachos.com/cases <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Food Graph Japan</span><span class="p-label">食文化ナレッジグラフ・自社開発（公開準備中）</span></div>
-        <p class="p-desc">AIが参照できる日本の食の知識グラフ。福井の郷土料理から構築中。</p>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">受託制作</span><span class="p-label">多言語サイト制作・AEO対策</span></div>
-        <p class="p-desc">飲食店の多言語サイト制作、構造化データ埋め込み・AEO対策。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ── よくある課題 ── -->
 <section class="section section-alt" id="problem">
@@ -364,7 +326,7 @@
     <div class="section-head reveal">
       <div class="section-label">FDE Division</div>
       <h2 class="section-title"><span class="nb">FDE型</span> <span class="nb">AI導入伴走支援</span></h2>
-      <p class="section-sub">現在ご依頼を受け付けている支援部門です。現場が自分で回せるようになるまで伴走します。</p>
+      <p class="section-sub">現在ご依頼を受け付けている支援部門です。全国・オンラインのみでも対応可能。現場が自分で回せるようになるまで伴走します。</p>
     </div>
 
     <div class="fde-map-wrap reveal">
@@ -424,7 +386,7 @@
         </div>
         <div class="flow-step">
           <div class="f-ic"><svg viewBox="0 0 24 24"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/></svg></div>
-          <div class="f-tx"><div class="f-t">現場で実装</div><div class="f-s">常駐・訪問で<br>その場で構築</div></div>
+          <div class="f-tx"><div class="f-t">現場で実装</div><div class="f-s">オンライン・訪問で<br>その場で構築</div></div>
         </div>
         <div class="flow-step">
           <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div>
@@ -446,8 +408,8 @@
     <div class="engage">
       <div class="card reveal">
         <div class="e-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/></svg></div>
-        <h3>訪問常駐 × オンライン併用</h3>
-        <p>週次の訪問・常駐とオンラインを組み合わせます。</p>
+        <h3>オンライン伴走 × 訪問併用</h3>
+        <p>オンラインだけでも完結します。画面共有で実データを見ながらその場で構築。訪問・常駐も可能です。</p>
       </div>
       <div class="card reveal">
         <div class="e-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
@@ -463,27 +425,68 @@
   </div>
 </section>
 
-<!-- ── Team ── -->
-<section class="section section-alt" id="team">
+<!-- ── Products ── -->
+<section class="section section-alt" id="cases">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">Team</div>
-      <h2 class="section-title">チーム</h2>
-      <p class="section-sub">代表とCTOが直接、御社の現場に向き合います。</p>
+      <div class="section-label">Products</div>
+      <h2 class="section-title">つくっているもの</h2>
+      <p class="section-sub">構造化技術から生まれ、実店舗・実業務で稼働している自社プロダクトです。</p>
     </div>
-    <div class="team">
-      <div class="card reveal">
-        <span class="m-role">代表取締役</span>
-        <span class="m-name">髙橋 真吾</span>
-        <span class="m-en">Shingo Takahashi</span>
-        <p class="m-bio">元Webプランナー。AIとの共同開発で自社プロダクト群を構築・運用。現場伴走を担当。</p>
+    <div class="products">
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">飲食店向けAI接客・自社開発</span></div>
+        <p class="p-desc">AIがテーブルに常駐し、130ヶ国語で質問に答えるAI接客。<strong>福井・金沢の実店舗で稼働中</strong>。</p>
+        <a href="https://omiseai.com/" class="p-link" target="_blank" rel="noopener">omiseai.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
-      <div class="card reveal">
-        <span class="m-role">CTO</span>
-        <span class="m-name">マット・チャナ</span>
-        <span class="m-en">Matthew Chana</span>
-        <p class="m-bio">シリコンバレー経験のエンジニア。福井在住・日本語堪能。データ基盤と連携開発を担当。</p>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">補助金書類の自動生成SaaS・自社開発</span></div>
+        <p class="p-desc">補助金計画書をAIが自動生成するSaaS。</p>
+        <a href="https://autowrite.jp/" class="p-link" target="_blank" rel="noopener">autowrite.jp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Teles</span><span class="p-label">偉人AIアドバイザー・自社開発</span></div>
+        <p class="p-desc">偉人の思考を構造化したAIアドバイザー。複数の偉人を融合する「Fusion」搭載。</p>
+        <a href="https://nicomachos.com/" class="p-link" target="_blank" rel="noopener">nicomachos.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">アルケー</span><span class="p-label">事業診断AI・自社開発</span></div>
+        <p class="p-desc">事業を普遍的な評価軸で採点・診断するAI。</p>
+        <a href="https://nicomachos.com/cases" class="p-link" target="_blank" rel="noopener">nicomachos.com/cases <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Food Graph Japan</span><span class="p-label">食文化ナレッジグラフ・自社開発（公開準備中）</span></div>
+        <p class="p-desc">AIが参照できる日本の食の知識グラフ。福井の郷土料理から構築中。</p>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">受託制作</span><span class="p-label">多言語サイト制作・AEO対策</span></div>
+        <p class="p-desc">飲食店の多言語サイト制作、構造化データ埋め込み・AEO対策。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ── Careers ── -->
+<section class="section" id="recruit">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Careers</div>
+      <h2 class="section-title">採用</h2>
+      <p class="section-sub">AIで現場を変える仲間を募集しています。</p>
+    </div>
+    <div class="card recruit-card reveal">
+      <h3>AI活用エンジニア / FDEメンバー</h3>
+      <p class="r-sub">業務委託・副業からOK／リモート併用（拠点：福井）</p>
+      <ul>
+        <li>ClaudeやChatGPTなどのAIツールを、日常的に使い倒している方</li>
+        <li>個人でプロダクトやツールを作って公開した経験がある方、歓迎</li>
+        <li>肩書・経歴より「作れること」を重視します</li>
+      </ul>
+      <p class="r-note">仕事内容：FDE型伴走支援の現場実装（プロンプト設計・システム連携）、自社プロダクトの開発。</p>
+      <a href="/entry.html" class="btn btn-ghost">フォームから「採用」を選んで連絡する</a>
     </div>
   </div>
 </section>
@@ -500,25 +503,6 @@
       <p>成果が出ないのは、「自社の業務にどう当てはめるか」という最後の一段が埋まっていないから。その一段は資料では埋まりません。現場に入り、実データで動かし、目の前で直す。</p>
       <p>自社プロダクトをそうやって作ってきたやり方で、御社の現場にも入ります。</p>
       <div class="sign">代表取締役 <strong>髙橋 真吾</strong> <span class="hanko">髙</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Company ── -->
-<section class="section section-alt" id="company">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Company</div>
-      <h2 class="section-title">会社概要</h2>
-    </div>
-    <div class="about-table reveal">
-      <table>
-        <tr><th>会社名</th><td>株式会社NGraph</td></tr>
-        <tr><th>代表者</th><td>代表取締役 髙橋 真吾</td></tr>
-        <tr><th>設立</th><td>2025年12月</td></tr>
-        <tr><th>資本金</th><td>300万円</td></tr>
-        <tr><th>事業内容</th><td>AIプロダクトの企画・開発・運営（OMISEAI / AutoWrite ほか）<br>FDE型AI導入伴走支援（現場常駐・プロンプト設計・システム連携・社内定着）<br>飲食店の多言語対応・既存HPの構造化データ埋め込み／AEO対策<br>企業・行政向けPoCおよび共同開発</td></tr>
-      </table>
     </div>
   </div>
 </section>
@@ -541,10 +525,11 @@
       <p>現実世界の意味を、AIが読める形に構造化する会社です。自社AIプロダクトの開発・運用と、FDE型のAI導入伴走支援を行っています。</p>
     </div>
     <div class="footer-links">
-      <a href="/#cases">プロダクト</a>
       <a href="/#fde">FDEとは</a>
       <a href="/#service">伴走支援</a>
-      <a href="/company.html">会社概要</a>
+      <a href="/#cases">プロダクト</a>
+      <a href="/#recruit">採用</a>
+      <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
       <a href="/blog/">ブログ</a>
       <a href="/entry.html">お問い合わせ</a>
       <a href="/privacy.html">プライバシーポリシー</a>
@@ -720,6 +705,93 @@
     }
     var last=0;
     (function loop(time){requestAnimationFrame(loop);if(time-last<33)return;last=time;draw();})(0);
+  })();
+
+
+  // ── Hero CV: 伽藍(五重塔)の3D点群を朱のスキャンラインが解析する演出 ──
+  (function(){
+    var c=document.getElementById('heroCv');
+    if(!c)return;
+    var ctx=c.getContext('2d');
+    if(!ctx)return;
+    var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var V=[],E=[];
+    function vtx(x,y,z){V.push([x,y,z]);return V.length-1;}
+    function eg(a,b){E.push([a,b]);}
+    // 五重塔: 各層=柱4本+桁+反りのある軒+隅木、頂部=相輪
+    var SQ=[[-1,-1],[1,-1],[1,1],[-1,1]];
+    for(var i=0;i<5;i++){
+      var w=0.60-0.088*i, y0=-0.80+0.30*i, y1=y0+0.15, cw=w*0.6;
+      var cid=[],tid=[];
+      SQ.forEach(function(s){cid.push(vtx(s[0]*cw,y0,s[1]*cw));});
+      SQ.forEach(function(s){tid.push(vtx(s[0]*cw,y1,s[1]*cw));});
+      for(var k=0;k<4;k++){eg(cid[k],tid[k]);eg(cid[k],cid[(k+1)%4]);eg(tid[k],tid[(k+1)%4]);}
+      var ey=y1+0.015,lift=0.055,apex=vtx(0,y1+0.16,0),eid=[];
+      SQ.forEach(function(s){eid.push(vtx(s[0]*w,ey+lift,s[1]*w));});
+      for(var k2=0;k2<4;k2++){
+        var a=eid[k2],b=eid[(k2+1)%4];
+        var m=vtx((V[a][0]+V[b][0])/2,ey,(V[a][2]+V[b][2])/2);
+        eg(a,m);eg(m,b);eg(apex,eid[k2]);
+      }
+    }
+    var sb=vtx(0,0.71,0),st=vtx(0,0.99,0);eg(sb,st);
+    for(var r=0;r<4;r++){var ry=0.75+r*0.055,rr=0.055-0.009*r,prev=-1,first=-1;
+      for(var q=0;q<6;q++){var a2=q/6*Math.PI*2,id=vtx(Math.cos(a2)*rr,ry,Math.sin(a2)*rr);
+        if(prev>=0)eg(prev,id);else first=id;prev=id;}
+      eg(prev,first);}
+    // 点群: 辺に沿ってサンプル
+    var P=[];
+    E.forEach(function(e){var a=V[e[0]],b=V[e[1]];
+      var L=Math.sqrt(Math.pow(b[0]-a[0],2)+Math.pow(b[1]-a[1],2)+Math.pow(b[2]-a[2],2));
+      var n=2+Math.round(L*11);
+      for(var i2=0;i2<=n;i2++){var t=i2/n;P.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]);}});
+    var rot=0.5,scan=-1.1;
+    var LABELS=[{y:0.80,jp:'相輪',en:'finial'},{y:0.12,jp:'軒',en:'eaves'},{y:-0.62,jp:'柱',en:'pillar'}];
+    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
+    window.addEventListener('resize',resize);resize();
+    function proj(p,W,H){var cs=Math.cos(rot),sn=Math.sin(rot);
+      var x=p[0]*cs-p[2]*sn,z=p[0]*sn+p[2]*cs,d=2.6/(2.6+z),s=Math.min(W,H)*0.4;
+      return [W/2+x*d*s,H*0.52-p[1]*d*s,d];}
+    function draw(){
+      var W=c.width,H=c.height;if(!W||!H)return;
+      ctx.clearRect(0,0,W,H);
+      // 辺
+      ctx.lineWidth=1.2;
+      for(var e2=0;e2<E.length;e2++){
+        var a3=proj(V[E[e2][0]],W,H),b3=proj(V[E[e2][1]],W,H);
+        ctx.strokeStyle='rgba(70,60,48,'+(0.24+0.28*Math.min(a3[2],b3[2]))+')';
+        ctx.beginPath();ctx.moveTo(a3[0],a3[1]);ctx.lineTo(b3[0],b3[1]);ctx.stroke();}
+      // 点群（スキャン近傍は朱で発火）
+      for(var p2=0;p2<P.length;p2++){
+        var pt=P[p2],q2=proj(pt,W,H),near=Math.abs(pt[1]-scan)<0.05;
+        if(near){ctx.fillStyle='rgba(166,58,36,.9)';ctx.fillRect(q2[0]-1.4,q2[1]-1.4,2.8,2.8);}
+        else{ctx.fillStyle='rgba(70,60,48,'+(0.3+0.42*q2[2])+')';var r2=2.1*q2[2];ctx.fillRect(q2[0]-r2/2,q2[1]-r2/2,r2,r2);}}
+      // スキャンライン
+      if(scan>-1&&scan<1){
+        var sq2=proj([0,scan,0],W,H);
+        ctx.strokeStyle='rgba(166,58,36,.30)';ctx.setLineDash([5,4]);
+        ctx.beginPath();ctx.moveTo(W*0.06,sq2[1]);ctx.lineTo(W*0.94,sq2[1]);ctx.stroke();ctx.setLineDash([]);
+        ctx.fillStyle='rgba(166,58,36,.7)';ctx.font='10px ui-monospace,monospace';
+        ctx.fillText('y='+scan.toFixed(2),W*0.06,sq2[1]-5);}
+      // 検出ラベル（スキャン通過後に表示）
+      ctx.font='10px ui-monospace,monospace';
+      for(var l2=0;l2<LABELS.length;l2++){
+        var L2=LABELS[l2];
+        if(scan>L2.y){
+          var an=proj([0.5,L2.y,0.5],W,H);
+          ctx.strokeStyle='rgba(166,58,36,.55)';
+          ctx.strokeRect(an[0]-4,an[1]-4,8,8);
+          ctx.beginPath();ctx.moveTo(an[0]+4,an[1]);ctx.lineTo(an[0]+26,an[1]);ctx.stroke();
+          ctx.fillStyle='rgba(92,80,66,.9)';
+          ctx.fillText(L2.jp+' / '+L2.en,an[0]+30,an[1]+3);}}
+      // HUD
+      ctx.fillStyle='rgba(70,60,48,.65)';ctx.font='10px ui-monospace,monospace';
+      ctx.fillText('STRUCTURE SCAN — points: '+P.length,W*0.06,16);
+    }
+    if(reduced){rot=0.5;scan=0.4;draw();return;}
+    draw();
+    setInterval(function(){if(c.width!==c.offsetWidth||c.height!==c.offsetHeight)resize();rot+=0.0035;scan+=0.006;if(scan>1.35)scan=-1.35;draw();},40);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){resize();draw();});
   })();
 
   // header: transparent at top, blurred bg on scroll
