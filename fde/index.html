@@ -164,7 +164,7 @@
 </head>
 <body>
 
-<div class="bg-fx" aria-hidden="true"></div>
+<div class="bg-fx" aria-hidden="true"><canvas class="binary-field" id="binaryField"></canvas></div>
 
 <header class="header">
   <div class="header-inner">
@@ -199,6 +199,9 @@
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>自社AIプロダクトを4領域で開発・運用</span>
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>AIが苦手な方こそ歓迎・専門用語なしで説明</span>
       </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <canvas id="heroCv"></canvas>
     </div>
   </div>
 </section>
@@ -539,6 +542,269 @@
 </footer>
 
 <script>
+// ── Binary Field: ニコマコス倫理学の目次をUTF-8ビット列化した「01」が漂い、
+  //    マウスに引き寄せられ、近接する粒子はシナプスで結ばれる（NGraph=網の世界観）。
+  //    デコードすると倫理学の目次原文が復元される裏設定。
+  (function(){
+    var canvas=document.getElementById('binaryField');
+    if(!canvas)return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    var ctx=canvas.getContext('2d');
+    if(!ctx)return;
+    var BITS='11100111101011001010110011100100101110001000000011100101101101111011101100100000111001011001011010000100111000111000000110101000111001011011100110111000111001111010011010001111001000001110011110101100101011001110010010111010100011001110010110110111101110110010000011100101101111101011001111100011100000011010101111100011100000011010010011100011100000011000010011100011100000011010011000100000111001111010110010101100111001001011100010001001111001011011011110111011001000001110010110001011100001111110011010110000100101111110001110000001101010001110011110101111100000001110010110001000101101100010000011100111101011001010110011100101100110111001101111100101101101111011101100100000111010001010101110111000111001011011111010110011111000111000000110101011111000111000000110100100111000111000000110000100111000111000000110100110001000001110011110101100101011001110010010111010100101001110010110110111101110110010000011100110101011011010001111100111101111101010100100100000111001111010110010101100111001011000010110101101111001011011011110111011001000001110011110011111101001011110011010000000101001111110011110011010100001001110001110000001101010101110010110111110101100110010000011100111101011001010110011100100101110001000001111100101101101111011101100100000111001101000101010010001111001011000100010110110111000111000000110101000111001011011111110101011111001101010010110111101001000001110011110101100101011001110010110000101101010111110010110110111101110110010000011100101100011111000101111100110100001001001101100100000111001111010110010101100111001001011100110011101111001011011011110111011001000001110010110001111100010111110011010000100100110111110001110000001101011101110011110110110100110101110001110000001100011010010000011100111101011001010110011100101100011011000000111100101101101111011101100100000111001011011111110101011111001101010010110111101111000111000000110101000111010001010011010110011111001101000001110110011111001111001101010000100111001111001010010011111111001101011010010111011';
+    var bi=0,particles=[],pointer={x:-9999,y:-9999,active:false},lastGrow=Date.now();
+    var COUNT_MIN=24,COUNT_MAX=220,GROW_INTERVAL=1500,target=COUNT_MIN;
+
+    // ── 3D形状ジェネレータ：一定時間アイドルで「01」が回転3D形状に集合する ──
+    function project3D(points,w,h,rotY,rotX,zCam,ocx,ocy){
+      zCam=zCam||0;
+      var cosY=Math.cos(rotY),sinY=Math.sin(rotY),cosX=Math.cos(rotX),sinX=Math.sin(rotX);
+      var fov=2.5,scale=Math.min(w,h)*0.4,cx=(ocx==null?w/2:ocx),cy=(ocy==null?h/2:ocy),pts=[],depths=[],scales=[];
+      for(var i=0;i<points.length;i++){
+        var x=points[i][0],y=points[i][1],z=points[i][2];
+        var x1=x*cosY-z*sinY,z1=x*sinY+z*cosY;
+        var y1=y*cosX-z1*sinX,z2=y*sinX+z1*cosX;
+        var d=fov/(fov+z2+zCam);
+        pts.push([cx+x1*d*scale,cy+y1*d*scale]);depths.push(z2);scales.push(d);
+      }
+      return{pts:pts,depths:depths,scales:scales};
+    }
+    // ── 構造化パターン点群：ツリー/放射/順序/階層/集合/円環/循環/ネットワーク ──
+    function _nd(pts,cx,cy,r,n){for(var i=0;i<n;i++){var a=Math.random()*Math.PI*2,d=Math.sqrt(Math.random())*r;pts.push([cx+Math.cos(a)*d,cy+Math.sin(a)*d,(Math.random()-0.5)*0.12]);}}
+    function _eg(pts,x1,y1,x2,y2,n){for(var i=0;i<=n;i++){var t=i/n;pts.push([x1+(x2-x1)*t,y1+(y2-y1)*t,(Math.random()-0.5)*0.08]);}}
+    function genTreeDown(){var pts=[],L2=[[-0.5,0.1],[0.5,0.1]],L3=[[-0.8,-0.65],[-0.27,-0.65],[0.27,-0.65],[0.8,-0.65]];
+      _nd(pts,0,0.8,0.11,28);
+      L2.forEach(function(p){_nd(pts,p[0],p[1],0.09,20);_eg(pts,0,0.8,p[0],p[1],11);});
+      L3.forEach(function(p,i){var par=L2[i<2?0:1];_nd(pts,p[0],p[1],0.08,15);_eg(pts,par[0],par[1],p[0],p[1],10);});
+      return pts;}
+    function genTreeUp(){return genTreeDown().map(function(p){return [p[0],-p[1],p[2]];});}
+    function genRadial(){var pts=[];_nd(pts,0,0,0.13,32);
+      for(var i=0;i<6;i++){var a=i/6*Math.PI*2+0.3,x=Math.cos(a)*0.78,y=Math.sin(a)*0.78;_nd(pts,x,y,0.1,22);_eg(pts,0,0,x,y,13);}
+      return pts;}
+    function genSequence(){var pts=[],xs=[-0.85,-0.28,0.28,0.85];
+      xs.forEach(function(x){_nd(pts,x,0,0.11,30);});
+      for(var i=0;i<3;i++){_eg(pts,xs[i]+0.14,0,xs[i+1]-0.16,0,9);
+        _eg(pts,xs[i+1]-0.16,0,xs[i+1]-0.26,0.08,3);_eg(pts,xs[i+1]-0.16,0,xs[i+1]-0.26,-0.08,3);}
+      return pts;}
+    function genPyramid(){var pts=[],rows=[[0.72,0.34],[0.28,0.72],[-0.18,1.1],[-0.64,1.5]];
+      rows.forEach(function(r){var y=r[0],hw=r[1]/2,cnt=Math.round(hw*84)+10;
+        for(var i=0;i<cnt;i++){pts.push([-hw+Math.random()*hw*2,y+(Math.random()-0.5)*0.15,(Math.random()-0.5)*0.1]);}});
+      return pts;}
+    function genVenn(){var pts=[],cs=[[-0.33,0.27],[0.33,0.27],[0,-0.4]];
+      cs.forEach(function(c){for(var i=0;i<82;i++){var a=i/82*Math.PI*2;pts.push([c[0]+Math.cos(a)*0.52,c[1]+Math.sin(a)*0.52,(Math.random()-0.5)*0.1]);}});
+      return pts;}
+    function genRing(){var pts=[];
+      for(var i=0;i<6;i++){var a=i/6*Math.PI*2;_nd(pts,Math.cos(a)*0.78,Math.sin(a)*0.78,0.1,26);}
+      for(var j=0;j<84;j++){var b=j/84*Math.PI*2;pts.push([Math.cos(b)*0.78,Math.sin(b)*0.78,(Math.random()-0.5)*0.08]);}
+      return pts;}
+    function genCycle(){var pts=[];
+      for(var s=0;s<3;s++){var st=s/3*Math.PI*2+0.28,en=st+Math.PI*2/3-0.52;
+        for(var i=0;i<=44;i++){var a=st+(en-st)*i/44;pts.push([Math.cos(a)*0.78,Math.sin(a)*0.78,(Math.random()-0.5)*0.08]);}
+        var hx=Math.cos(en)*0.78,hy=Math.sin(en)*0.78,ta=en+Math.PI/2;
+        _eg(pts,hx,hy,hx+Math.cos(ta-2.6)*0.16,hy+Math.sin(ta-2.6)*0.16,4);
+        _eg(pts,hx,hy,hx+Math.cos(ta+2.6)*0.16,hy+Math.sin(ta+2.6)*0.16,4);}
+      return pts;}
+    function genNetwork(){var pts=[],N=[];
+      for(var i=0;i<9;i++){var a=i/9*Math.PI*2,r=0.45+Math.random()*0.4;N.push([Math.cos(a)*r,Math.sin(a)*r]);}
+      N.forEach(function(p){_nd(pts,p[0],p[1],0.08,15);});
+      for(var k=0;k<N.length;k++){var m=(k+1)%N.length;_eg(pts,N[k][0],N[k][1],N[m][0],N[m][1],8);
+        if(k%2===0){var q=(k+3)%N.length;_eg(pts,N[k][0],N[k][1],N[q][0],N[q][1],8);}}
+      return pts;}
+    var GENS=[genTreeDown,genRadial,genPyramid,genVenn,genTreeUp,genRing,genSequence,genCycle,genNetwork],gi=0;
+    function nextPattern(){var g=GENS[gi%GENS.length];gi++;return g();}
+
+    // 収束状態
+    var lastInteraction=Date.now(),conv=false,convStr=0,convFormedAt=0,convDone=false,curPattern=null,rotY=0,rotX=0,zDepths=[],convScales=[],psize=[],convZ=0,convCX=0,convCY=0;
+    function resetIdle(){lastInteraction=Date.now();if(conv){conv=false;curPattern=null;for(var i=0;i<particles.length;i++){particles[i].tx=undefined;particles[i].ty=undefined;}}convDone=false;}
+
+    function spawn(w,h){
+      var a=Math.random()*Math.PI*2,sp=0.15+Math.random()*0.25,sz=9+Math.floor(Math.random()*3)*2;
+      var cx=w/2,cy=h/2,spread=Math.min(w,h)*0.48;
+      return{x:cx+(Math.random()-0.5)*spread*2,y:cy+(Math.random()-0.5)*spread*2,
+        vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,size:sz,alpha:0.08+Math.random()*0.18,
+        char:BITS[bi++%BITS.length],life:0,maxLife:300+Math.random()*400,z:Math.random()};
+    }
+    function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;
+      particles=[];for(var i=0;i<COUNT_MIN;i++){var p=spawn(canvas.width,canvas.height);p.life=Math.random()*p.maxLife;particles.push(p);}target=COUNT_MIN;}
+    function onMove(e){pointer.x=e.clientX;pointer.y=e.clientY;pointer.active=true;resetIdle();}
+    function onTouch(e){var t=e.touches[0];if(t){pointer.x=t.clientX;pointer.y=t.clientY;pointer.active=true;}resetIdle();}
+    document.addEventListener('mousemove',onMove);
+    document.addEventListener('touchmove',onTouch,{passive:true});
+    document.addEventListener('mouseleave',function(){pointer.active=false;});
+    document.addEventListener('keydown',resetIdle);
+    window.addEventListener('resize',resize);
+    resize();
+    var alphas=[],dn=[],order=[];
+    function draw(){
+      var W=canvas.width,H=canvas.height;
+      ctx.clearRect(0,0,W,H);
+      var now=Date.now();
+      if(now-lastGrow>GROW_INTERVAL&&particles.length<COUNT_MAX){lastGrow=now;target=Math.min(target+1,COUNT_MAX);if(particles.length<target)particles.push(spawn(W,H));}
+
+      // 収束トリガー：5秒アイドル→形成→11秒保持(ゆっくり浮遊)→散開→9秒待機の繰り返し
+      var idleMs=now-lastInteraction;
+      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;var spd=Math.min(Math.max(convZ/6,0.12),0.55);convCX=W/2+(Math.random()*2-1)*spd*W*0.5;convCY=H/2+(Math.random()*2-1)*spd*H*0.5;}
+      if(conv&&curPattern){
+        convStr=Math.min(convStr+0.0035,1);
+        rotY+=0.008;rotX+=0.003;
+        var pr=project3D(curPattern,W,H,rotY,rotX,convZ,convCX,convCY);
+        for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];convScales[c]=pr.scales[ci];}
+        if(convStr>=0.95&&convFormedAt===0)convFormedAt=now;
+        if(convFormedAt>0&&now-convFormedAt>11000){conv=false;convDone=true;curPattern=null;
+          for(var sc2=0;sc2<particles.length;sc2++){particles[sc2].tx=undefined;particles[sc2].ty=undefined;var sa=Math.random()*Math.PI*2;particles[sc2].vx+=Math.cos(sa)*1.5;particles[sc2].vy+=Math.sin(sa)*1.5;}
+          setTimeout(function(){convDone=false;lastInteraction=Date.now();},9000);}
+      }else{convStr=Math.max(convStr-0.02,0);}
+      var refScale=2.5/(2.5+convZ),farDim=Math.max(1/(1+convZ*0.3),0.45),convK=convStr>1?1:convStr;
+
+      for(var i=0;i<particles.length;i++){
+        var p=particles[i];
+        // 収束ターゲットへの引力
+        if(p.tx!==undefined&&convStr>0){var tdx=p.tx-p.x,tdy=p.ty-p.y,td=Math.sqrt(tdx*tdx+tdy*tdy);
+          if(td>1){var tf=convStr*0.02;p.vx+=tdx/td*tf*Math.min(td,50);p.vy+=tdy/td*tf*Math.min(td,50);}
+          if(td<15){p.vx*=0.92;p.vy*=0.92;}
+          if(p.life>p.maxLife*0.7)p.life=p.maxLife*0.7;}
+        if(pointer.active){var dx=pointer.x-p.x,dy=pointer.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+          if(d<150&&d>1){var f=0.15*(1-d/150);p.vx+=dx/d*f;p.vy+=dy/d*f;}}
+        p.vx*=0.98;p.vy*=0.98;p.x+=p.vx;p.y+=p.vy;p.life++;
+        var lr=p.life/p.maxLife,lf=lr<0.1?lr/0.1:lr>0.85?(1-lr)/0.15:1;
+        var em=60,efx=Math.min(p.x/em,(W-p.x)/em,1),efy=Math.min(p.y/em,(H-p.y)/em,1),ef=Math.max(0,Math.min(efx,efy));
+        // 奥行き：環境ドリフトは粒子固有のz、収束時は3D形状のz深度でブレンド
+        var depA=0.55+0.45*(1-p.z),dsz=0.7+0.6*(1-p.z),shZ=depA,shS=1;dn[i]=p.z;
+        if(convStr>0.05){var zn=(zDepths[i]+1.5)/3;if(zn<0)zn=0;if(zn>1)zn=1;dn[i]=zn;shZ=(0.35+0.65*(1-zn))*farDim;var sf=convScales[i]?convScales[i]/refScale:1;if(sf<0.5)sf=0.5;if(sf>1.7)sf=1.7;shS=sf;}
+        var depthAlpha=depA+(shZ-depA)*convK;psize[i]=dsz+(shS-dsz)*convK;
+        alphas[i]=p.alpha*lf*ef*depthAlpha;
+        if(p.life>=p.maxLife||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){particles[i]=spawn(W,H);alphas[i]=0;}
+      }
+      // density boost
+      var DD=60;
+      for(var i2=0;i2<particles.length;i2++){if(alphas[i2]<0.005)continue;var nb=0;
+        for(var j=0;j<particles.length;j++){if(i2===j||alphas[j]<0.005)continue;var ax=particles[i2].x-particles[j].x,ay=particles[i2].y-particles[j].y;if(ax*ax+ay*ay<DD*DD)nb++;}
+        if(nb>0)alphas[i2]=Math.min(alphas[i2]*(1+nb*0.3),0.7);}
+      // synapses（収束時は接続距離を広げて形を強調）
+      var SD=convStr>0.3?130:90;
+      for(var i3=0;i3<particles.length;i3++){if(alphas[i3]<0.008)continue;
+        for(var j2=i3+1;j2<particles.length;j2++){if(alphas[j2]<0.008)continue;
+          var sx=particles[i3].x-particles[j2].x,sy=particles[i3].y-particles[j2].y,sd=Math.sqrt(sx*sx+sy*sy);
+          if(sd<SD){var la=Math.min(Math.min(alphas[i3],alphas[j2])*(1-sd/SD)*0.7,convStr>0.3?0.18:0.12);
+            ctx.beginPath();ctx.moveTo(particles[i3].x,particles[i3].y-particles[i3].size*0.3);
+            ctx.lineTo(particles[j2].x,particles[j2].y-particles[j2].size*0.3);
+            ctx.strokeStyle='rgba(90,78,64,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}
+      // chars（収束時：奥行きで色と明るさを変え、手前ほど白cyanで発光。遠→近で描画して立体感）
+      var conY=convStr>0.3;
+      order.length=0;for(var o=0;o<particles.length;o++)order.push(o);
+      if(conY)order.sort(function(a,b){return zDepths[b]-zDepths[a];});
+      var aMax=conY?0.6:0.22,mult=conY?1.0:0.6;
+      if(conY){ctx.shadowColor='rgba(166,58,36,'+(0.55*convK)+')';ctx.shadowBlur=6*convK;}
+      for(var oi=0;oi<order.length;oi++){var i4=order[oi];if(alphas[i4]<0.005)continue;var p4=particles[i4];
+        var ca=Math.min(alphas[i4]*mult,aMax);
+        if(conY){var t4=dn[i4];if(t4<0)t4=0;if(t4>1)t4=1;var nf=1-t4;
+          ctx.fillStyle='rgba('+Math.round(150+16*nf)+','+Math.round(140-82*nf)+','+Math.round(124-88*nf)+','+ca+')';}
+        else ctx.fillStyle='rgba(80,70,58,'+ca+')';
+        var fs=Math.max(6,Math.round(p4.size*(psize[i4]||1)));
+        ctx.font=fs+"px 'SF Mono','Fira Code',monospace";
+        ctx.fillText(p4.char,p4.x,p4.y);}
+      ctx.shadowBlur=0;
+      ctx.font="11px 'SF Mono','Fira Code',monospace";
+    }
+    draw();
+    setInterval(draw,40);
+  })();
+
+// ── Hero CV: 伽藍(五重塔)の3D点群を朱のスキャンラインが解析する演出 ──
+  (function(){
+    var c=document.getElementById('heroCv');
+    if(!c)return;
+    var ctx=c.getContext('2d');
+    if(!ctx)return;
+    var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var V=[],E=[];
+    function vtx(x,y,z){V.push([x,y,z]);return V.length-1;}
+    function eg(a,b){E.push([a,b]);}
+    // 五重塔: 各層=柱4本+桁+反りのある軒+隅木、頂部=相輪
+    var SQ=[[-1,-1],[1,-1],[1,1],[-1,1]];
+    for(var i=0;i<5;i++){
+      var w=0.60-0.088*i, y0=-0.80+0.30*i, y1=y0+0.15, cw=w*0.6;
+      var cid=[],tid=[];
+      SQ.forEach(function(s){cid.push(vtx(s[0]*cw,y0,s[1]*cw));});
+      SQ.forEach(function(s){tid.push(vtx(s[0]*cw,y1,s[1]*cw));});
+      for(var k=0;k<4;k++){eg(cid[k],tid[k]);eg(cid[k],cid[(k+1)%4]);eg(tid[k],tid[(k+1)%4]);}
+      var ey=y1+0.015,lift=0.055,apex=vtx(0,y1+0.16,0),eid=[];
+      SQ.forEach(function(s){eid.push(vtx(s[0]*w,ey+lift,s[1]*w));});
+      for(var k2=0;k2<4;k2++){
+        var a=eid[k2],b=eid[(k2+1)%4];
+        var m=vtx((V[a][0]+V[b][0])/2,ey,(V[a][2]+V[b][2])/2);
+        eg(a,m);eg(m,b);eg(apex,eid[k2]);
+      }
+    }
+    var sb=vtx(0,0.71,0),st=vtx(0,0.99,0);eg(sb,st);
+    for(var r=0;r<4;r++){var ry=0.75+r*0.055,rr=0.055-0.009*r,prev=-1,first=-1;
+      for(var q=0;q<6;q++){var a2=q/6*Math.PI*2,id=vtx(Math.cos(a2)*rr,ry,Math.sin(a2)*rr);
+        if(prev>=0)eg(prev,id);else first=id;prev=id;}
+      eg(prev,first);}
+    // 点群: 辺に沿ってサンプル
+    var P=[];
+    E.forEach(function(e){var a=V[e[0]],b=V[e[1]];
+      var L=Math.sqrt(Math.pow(b[0]-a[0],2)+Math.pow(b[1]-a[1],2)+Math.pow(b[2]-a[2],2));
+      var n=2+Math.round(L*11);
+      for(var i2=0;i2<=n;i2++){var t=i2/n;P.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]);}});
+    var rot=0.5,scan=-1.1;
+    var LABELS=[{y:0.80,jp:'相輪',en:'finial'},{y:0.12,jp:'軒',en:'eaves'},{y:-0.62,jp:'柱',en:'pillar'}];
+    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
+    window.addEventListener('resize',resize);resize();
+    function proj(p,W,H){var cs=Math.cos(rot),sn=Math.sin(rot);
+      var x=p[0]*cs-p[2]*sn,z=p[0]*sn+p[2]*cs,d=2.6/(2.6+z),s=Math.min(W,H)*0.4;
+      return [W/2+x*d*s,H*0.52-p[1]*d*s,d];}
+    function draw(){
+      var W=c.width,H=c.height;if(!W||!H)return;
+      ctx.clearRect(0,0,W,H);
+      // 辺
+      ctx.lineWidth=1.2;
+      for(var e2=0;e2<E.length;e2++){
+        var a3=proj(V[E[e2][0]],W,H),b3=proj(V[E[e2][1]],W,H);
+        ctx.strokeStyle='rgba(70,60,48,'+(0.24+0.28*Math.min(a3[2],b3[2]))+')';
+        ctx.beginPath();ctx.moveTo(a3[0],a3[1]);ctx.lineTo(b3[0],b3[1]);ctx.stroke();}
+      // 点群（スキャン近傍は朱で発火）
+      for(var p2=0;p2<P.length;p2++){
+        var pt=P[p2],q2=proj(pt,W,H),near=Math.abs(pt[1]-scan)<0.05;
+        if(near){ctx.fillStyle='rgba(166,58,36,.9)';ctx.fillRect(q2[0]-1.4,q2[1]-1.4,2.8,2.8);}
+        else{ctx.fillStyle='rgba(70,60,48,'+(0.3+0.42*q2[2])+')';var r2=2.1*q2[2];ctx.fillRect(q2[0]-r2/2,q2[1]-r2/2,r2,r2);}}
+      // スキャンライン
+      if(scan>-1&&scan<1){
+        var sq2=proj([0,scan,0],W,H);
+        ctx.strokeStyle='rgba(166,58,36,.30)';ctx.setLineDash([5,4]);
+        ctx.beginPath();ctx.moveTo(W*0.06,sq2[1]);ctx.lineTo(W*0.94,sq2[1]);ctx.stroke();ctx.setLineDash([]);
+        ctx.fillStyle='rgba(166,58,36,.7)';ctx.font='10px ui-monospace,monospace';
+        ctx.fillText('y='+scan.toFixed(2),W*0.06,sq2[1]-5);}
+      // 検出ラベル（スキャン通過後に表示）
+      ctx.font='10px ui-monospace,monospace';
+      for(var l2=0;l2<LABELS.length;l2++){
+        var L2=LABELS[l2];
+        if(scan>L2.y){
+          var an=proj([0.5,L2.y,0.5],W,H);
+          ctx.strokeStyle='rgba(166,58,36,.55)';
+          ctx.strokeRect(an[0]-4,an[1]-4,8,8);
+          ctx.beginPath();ctx.moveTo(an[0]+4,an[1]);ctx.lineTo(an[0]+26,an[1]);ctx.stroke();
+          ctx.fillStyle='rgba(92,80,66,.9)';
+          ctx.fillText(L2.jp+' / '+L2.en,an[0]+30,an[1]+3);}}
+      // HUD
+      ctx.fillStyle='rgba(70,60,48,.65)';ctx.font='10px ui-monospace,monospace';
+      ctx.fillText('STRUCTURE SCAN — points: '+P.length,W*0.06,16);
+    }
+    if(reduced){rot=0.5;scan=0.4;draw();return;}
+    draw();
+    setInterval(function(){if(c.width!==c.offsetWidth||c.height!==c.offsetHeight)resize();rot+=0.0035;scan+=0.006;if(scan>1.35)scan=-1.35;draw();},40);
+    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){resize();draw();});
+  })();
+
+
+  // 追従CTA: ヒーローを過ぎたら表示
+  (function(){
+    var f=document.getElementById('floatCta');
+    if(!f)return;
+    function t(){if(window.scrollY>560)f.classList.add('show');else f.classList.remove('show');}
+    window.addEventListener('scroll',t,{passive:true});t();
+  })();
+
 // ── ナビ・追従CTA・reveal ──
 var hd=document.querySelector('.header');
 function onScroll(){if(window.scrollY>20)hd.classList.add('scrolled');else hd.classList.remove('scrolled');}
