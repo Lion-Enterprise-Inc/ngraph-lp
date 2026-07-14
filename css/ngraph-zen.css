@@ -90,8 +90,9 @@ img{max-width:100%;display:block}
 .btn svg{width:16px;height:16px}
 
 /* ── hero visual: 伽藍3Dスキャン（固定・右側の常駐ビジュアル） ── */
-.hero-visual{position:fixed;top:64px;right:-2%;width:min(44vw,680px);height:min(80vh,720px);z-index:-1;pointer-events:none;opacity:.95}
+.hero-visual{position:absolute;top:30px;right:-2%;width:min(44vw,680px);height:min(80vh,720px);z-index:-1;pointer-events:none;opacity:.95;transition:opacity .25s linear}
 .hero-visual canvas{width:100%;height:100%;display:block}
+.hero-visual img{width:100%;height:auto;display:block;filter:sepia(.12) saturate(.9)}
 @media(max-width:900px){
   .hero-visual{position:static;width:100%;max-width:400px;height:320px;margin:6px auto 0;opacity:1}
 }
@@ -158,6 +159,43 @@ img{max-width:100%;display:block}
 .era-card h3 .now-badge{font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;font-size:.64rem;font-weight:700;color:#fdfaf4;background:var(--accent);border-radius:2px;padding:3px 10px;letter-spacing:.06em}
 .era-card p{font-size:.82rem;color:var(--text-2);line-height:1.9}
 .era-card:not(:last-child)::after{content:"";position:absolute;top:50%;right:-14px;z-index:2;width:12px;height:1px;transform:translateY(-50%);background:var(--border-strong)}
+
+/* ── 構造化技術 trio (NFG/NCG/NHG) ── */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.trio .card{padding:36px 30px;display:flex;flex-direction:column}
+.trio .t-head{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.trio .t-ic{width:50px;height:50px;border-radius:3px;background:rgba(166,58,36,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.trio .t-ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.trio .t-ttl{display:flex;flex-direction:column;gap:2px}
+.trio .tag{font-family:var(--serif);font-size:1.35rem;font-weight:700;letter-spacing:.04em;line-height:1;color:var(--accent)}
+.trio .tag-full{font-size:.72rem;color:var(--text-3);letter-spacing:.04em}
+.trio h3{font-family:var(--serif);font-size:1.05rem;font-weight:700;margin-bottom:12px;line-height:1.6}
+.trio p{font-size:.86rem;color:var(--text-2);line-height:1.95;margin-bottom:18px}
+.trio .arrow{font-size:.78rem;color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:6px;margin-top:auto;align-self:flex-start}
+.trio a.card:hover .arrow{gap:10px}
+
+/* ── AEO venn ── */
+.venn-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:48px;align-items:center;max-width:980px;margin:0 auto 56px;padding:40px 44px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card)}
+.venn-vis{display:flex;justify-content:center}
+.venn{width:100%;max-width:380px;height:auto;overflow:visible}
+.venn .vc{mix-blend-mode:multiply;fill-opacity:.14;stroke-width:1.5}
+.venn .vc-seo{fill:#5d564b;stroke:#5d564b}
+.venn .vc-geo{fill:#8a6d3b;stroke:#8a6d3b}
+.venn .vc-llmo{fill:#3c6e47;stroke:#3c6e47}
+.venn .vl{font-family:var(--serif);font-weight:700;text-anchor:middle;fill:var(--text)}
+.venn .vl-seo,.venn .vl-geo,.venn .vl-llmo{font-size:18px;fill:var(--text-2)}
+.venn .vl-aeo{font-size:30px;fill:var(--accent);letter-spacing:.02em}
+.venn-legend{display:flex;flex-direction:column;gap:12px}
+.vleg{font-size:.86rem;color:var(--text-2);display:flex;align-items:center;gap:10px;line-height:1.5}
+.vleg b{color:var(--text);font-weight:700;font-family:var(--serif);min-width:54px}
+.vleg .vdot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.vleg .d-seo{background:#5d564b}
+.vleg .d-geo{background:#8a6d3b}
+.vleg .d-llmo{background:#3c6e47}
+.vleg .d-aeo{background:var(--accent);width:13px;height:13px}
+.vleg-core{font-size:.92rem;color:var(--text);font-weight:600;margin-top:4px;padding-top:14px;border-top:1px solid var(--border)}
+.venn-note{font-size:.82rem;color:var(--text-2);line-height:1.95;margin-top:8px}
+.venn-note strong{color:var(--accent);font-weight:700}
 
 /* ── products / 実績 ── */
 .products{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -329,7 +367,9 @@ img{max-width:100%;display:block}
 
 /* ── responsive ── */
 @media(max-width:900px){
-  .products,.solutions,.team,.blog-list{grid-template-columns:1fr}
+  .products,.solutions,.team,.blog-list,.trio{grid-template-columns:1fr}
+  .venn-wrap{grid-template-columns:1fr;gap:28px;padding:32px 24px}
+  .venn{max-width:300px}
   .vs-wrap{grid-template-columns:1fr;max-width:480px}
   .agentic-map{gap:14px}
   .am-spokes{gap:14px}
