@@ -144,6 +144,7 @@
         <a href="/en/entry.html" class="btn btn-primary">Talk to us — it's free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#service" class="btn btn-ghost">FDE support division</a>
       </div>
+      <p class="cta-micro">Free consultation / online, anywhere in Japan / "just mapping things out" is welcome</p>
       <div class="hero-stats">
         <div class="hstat"><span class="num">4<small>domains</small></span><span class="cap">Own AI products built &amp; operated</span></div>
         <div class="hstat"><span class="num">130<small>languages</small></span><span class="cap">AI customer service we built</span></div>
@@ -401,6 +402,10 @@
         <p>We quote after an initial consultation and on-site assessment — the consultation is free.</p>
       </div>
     </div>
+    <div class="mid-cta reveal">
+      <p>"Just want a ballpark figure?" — that alone is a fine reason to reach out.</p>
+      <a href="/en/entry.html" class="btn btn-primary">Talk to us — it's free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
   </div>
 </section>
 
@@ -515,6 +520,8 @@
     </div>
   </div>
 </section>
+
+<div class="float-cta" id="floatCta"><a href="/en/entry.html">Talk to us — free →</a></div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -780,6 +787,15 @@
     draw();
     setInterval(function(){if(c.width!==c.offsetWidth||c.height!==c.offsetHeight)resize();rot+=0.0035;scan+=0.006;if(scan>1.35)scan=-1.35;draw();},40);
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){resize();draw();});
+  })();
+
+
+  // 追従CTA: ヒーローを過ぎたら表示
+  (function(){
+    var f=document.getElementById('floatCta');
+    if(!f)return;
+    function t(){if(window.scrollY>560)f.classList.add('show');else f.classList.remove('show');}
+    window.addEventListener('scroll',t,{passive:true});t();
   })();
 
   // header: transparent at top, blurred bg on scroll

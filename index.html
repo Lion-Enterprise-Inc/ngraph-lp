@@ -165,6 +165,7 @@
         <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#service" class="btn btn-ghost">AI導入伴走支援（FDE）</a>
       </div>
+      <p class="cta-micro">相談無料 ／ オンライン対応・全国から相談可 ／ 現状整理だけでも歓迎</p>
       <div class="hero-stats">
         <div class="hstat"><span class="num">4<small>領域</small></span><span class="cap">自社AIプロダクトを開発・運用</span></div>
         <div class="hstat"><span class="num">130<small>ヶ国語</small></span><span class="cap">対応のAI接客を自社開発</span></div>
@@ -422,6 +423,10 @@
         <p>ヒアリングと現場診断のうえでお見積り。相談は無料です。</p>
       </div>
     </div>
+    <div class="mid-cta reveal">
+      <p>「料金の目安だけ知りたい」——それだけでも大丈夫です。</p>
+      <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
   </div>
 </section>
 
@@ -517,6 +522,8 @@
     </div>
   </div>
 </section>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -792,6 +799,15 @@
     draw();
     setInterval(function(){if(c.width!==c.offsetWidth||c.height!==c.offsetHeight)resize();rot+=0.0035;scan+=0.006;if(scan>1.35)scan=-1.35;draw();},40);
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){resize();draw();});
+  })();
+
+
+  // 追従CTA: ヒーローを過ぎたら表示
+  (function(){
+    var f=document.getElementById('floatCta');
+    if(!f)return;
+    function t(){if(window.scrollY>560)f.classList.add('show');else f.classList.remove('show');}
+    window.addEventListener('scroll',t,{passive:true});t();
   })();
 
   // header: transparent at top, blurred bg on scroll
