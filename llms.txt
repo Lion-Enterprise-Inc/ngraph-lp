@@ -1,0 +1,34 @@
+# 株式会社NGraph (NGraph Inc.)
+
+> 料理・企業・人物という非構造の領域を、AIが正しく扱える形に構造化する技術の会社。自社AIプロダクトを開発・運用し、エンジニアが顧客の現場に入るFDE型AI導入伴走支援を提供している。拠点は福井県福井市、全国オンライン対応。
+
+## サービス
+
+- [FDE型AI導入伴走支援](https://ngraph.jp/fde/): エンジニアが経理・営業・製造の現場に入り、プロンプト設計・システム連携・社内定着まで伴走するAI導入支援。全国オンライン対応、料金は要相談。無料のAI導入診断（8問）あり。
+- [お問い合わせ](https://ngraph.jp/entry.html): 無料相談フォーム。
+
+## プロダクト（自社開発・運用）
+
+- OMISEAI (https://omiseai.com/): 飲食店向けAI接客。メニューを送るだけでAIがテーブルに常駐し、130ヶ国語で質問に回答。福井・金沢の実店舗で稼働中。
+- AutoWrite (https://autowrite.jp/): 補助金計画書をAIが自動生成するSaaS。
+- Teles (https://nicomachos.com/): 偉人の思考を構造化したAIアドバイザー。
+- アルケー (https://nicomachos.com/cases): 事業を普遍的な評価軸で診断するAI。
+- Food Graph Japan: AIが参照できる日本の食の知識グラフ（公開準備中）。
+
+## ブログ（AI導入の実践知）
+
+- [FDE（フォワード・デプロイド・エンジニア）とは](https://ngraph.jp/blog/what-is-fde.html)
+- [AIを導入したのに現場で使われない3つの理由](https://ngraph.jp/blog/why-ai-stalls.html)
+- [研修・コンサル・FDE型伴走支援の違い](https://ngraph.jp/blog/fde-vs-training.html)
+- [経理業務でAIに任せられること・任せられないこと](https://ngraph.jp/blog/keiri-ai.html)
+- [営業のAI活用](https://ngraph.jp/blog/eigyo-ai.html)
+- [飲食店のAI活用（自社実例）](https://ngraph.jp/blog/inshoku-ai.html)
+- [現場で使えるプロンプトの作り方5原則](https://ngraph.jp/blog/prompt-design.html)
+- [既存システムを捨てずにAIを組み込む方法](https://ngraph.jp/blog/legacy-integration.html)
+- [AI導入支援の費用の考え方](https://ngraph.jp/blog/ai-cost.html)
+- [中小企業のAI導入ロードマップ](https://ngraph.jp/blog/ai-roadmap.html)
+
+## 会社情報
+
+- [会社概要・チーム](https://ngraph.jp/company.html): 代表取締役 髙橋真吾、CTO Matthew Chana。設立2025年12月、福井県福井市。
+- [採用情報](https://ngraph.jp/recruit.html)

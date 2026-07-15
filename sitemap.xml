@@ -3,42 +3,46 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ngraph.jp/</loc>
+    <lastmod>2026-07-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/</loc>
+    <lastmod>2026-07-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/entry</loc>
+    <lastmod>2026-07-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/entry</loc>
+    <lastmod>2026-07-14</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
-  <url><loc>https://ngraph.jp/company.html</loc></url>
-  <url><loc>https://ngraph.jp/recruit.html</loc></url>
-  <url><loc>https://ngraph.jp/privacy.html</loc></url>
-  <url><loc>https://ngraph.jp/legal.html</loc></url>
-  <url><loc>https://ngraph.jp/fde/</loc></url>
-  <url><loc>https://ngraph.jp/blog/</loc></url>
-  <url><loc>https://ngraph.jp/blog/what-is-fde.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/why-ai-stalls.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/fde-vs-training.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/keiri-ai.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/eigyo-ai.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/inshoku-ai.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/prompt-design.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/legacy-integration.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/ai-cost.html</loc></url>
-  <url><loc>https://ngraph.jp/blog/ai-roadmap.html</loc></url>
+  <url><loc>https://ngraph.jp/company.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/recruit.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/privacy.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/legal.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/fde/</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/what-is-fde.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/why-ai-stalls.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/fde-vs-training.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/keiri-ai.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/eigyo-ai.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/inshoku-ai.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/prompt-design.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/legacy-integration.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-cost.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-roadmap.html</loc><lastmod>2026-07-14</lastmod></url>
 </urlset>
