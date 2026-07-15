@@ -92,7 +92,9 @@ img{max-width:100%;display:block}
 /* ── hero visual: 伽藍3Dスキャン（固定・右側の常駐ビジュアル） ── */
 .hero-visual{position:absolute;top:30px;right:-2%;width:min(44vw,680px);height:min(80vh,720px);z-index:-1;pointer-events:none;opacity:.95;transition:opacity .25s linear}
 .hero-visual canvas{width:100%;height:100%;display:block}
-.hero-visual img{width:100%;height:auto;display:block;filter:sepia(.12) saturate(.9)}
+.hero-visual img{width:100%;height:auto;display:block;filter:sepia(.12) saturate(.9);
+  -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 46%,#000 50%,transparent 75%);
+  mask-image:radial-gradient(ellipse 60% 60% at 50% 46%,#000 50%,transparent 75%)}
 @media(max-width:900px){
   .hero-visual{position:static;width:100%;max-width:400px;height:320px;margin:6px auto 0;opacity:1}
 }
