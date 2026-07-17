@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,11 +33,43 @@
   "headline": "AIを導入したのに現場で使われない——よくある3つの理由と処方箋",
   "description": "ChatGPTや業務AIを契約したのに業務が変わらない。多くの企業で起きている「AI導入の停滞」の典型パターン3つと、それぞれの解決アプローチを解説します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-14",
+  "dateModified": "2026-07-17",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/why-ai-stalls.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "研修をやったのにAIが定着しないのはなぜですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "研修は「知る」には有効ですが、一般論で終わると「自社の業務にどう当てはめるか」が埋まりません。定着には、実際の業務データを使って現場に組み込む工程が必要です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "AI定着の最初の一歩は何ですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "毎日・毎週発生する業務を1つだけ選び、実データで小さく試すことです。全社一斉の号令はほぼ失敗します。効果を時間で測ってから広げます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "社内にIT人材がいなくても定着させられますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "できます。条件は、使う本人が直せる形（プロンプトの共有メモ・手順書）で残すこと。当社の支援は、その状態をつくって引き継ぐところまでを範囲にしています。"
+   }
+  }
+ ]
 }
 </script>
 </head>
@@ -72,6 +105,10 @@
 <h2>共通するのは「現場との距離」</h2>
 <p>3つの理由に共通するのは、ツールと現場の距離が埋まっていないことです。米国でFDE（現場常駐エンジニア）型の支援が急拡大しているのも同じ理由からです。NGraphはこのFDE型支援を日本の中堅・中小企業向けに提供しています。現状の整理からで構いません、お気軽にご相談ください。</p>
 
+
+
+<div class="a-note"><strong>現場で見た実例：</strong>ある飲食グループの本部では、経営会議でAIの話題は出るものの、現場は売上速報を人力で集計し、レジとキャッシュレスの突合を手作業で行っていました。止まっていた原因はツールへの不満ではなく、「どの業務から手を付けるか」を決める人の不在。業務を棚卸しした結果、最優先は意外にも新人ガイダンス（年間約100人×1時間）でした。この優先順位は、外から業務を見なければ出てきません。</div>
+<h2>よくある質問</h2><div class="a-faq"><details><summary>研修をやったのにAIが定着しないのはなぜですか？</summary><p>研修は「知る」には有効ですが、一般論で終わると「自社の業務にどう当てはめるか」が埋まりません。定着には、実際の業務データを使って現場に組み込む工程が必要です。</p></details><details><summary>AI定着の最初の一歩は何ですか？</summary><p>毎日・毎週発生する業務を1つだけ選び、実データで小さく試すことです。全社一斉の号令はほぼ失敗します。効果を時間で測ってから広げます。</p></details><details><summary>社内にIT人材がいなくても定着させられますか？</summary><p>できます。条件は、使う本人が直せる形（プロンプトの共有メモ・手順書）で残すこと。当社の支援は、その状態をつくって引き継ぐところまでを範囲にしています。</p></details></div>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>

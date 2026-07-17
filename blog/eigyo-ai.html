@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,11 +33,43 @@
   "headline": "営業のAI活用——提案書・見積・顧客対応はどこまで任せられるか",
   "description": "営業部門でのAI活用の現実的な適用範囲を解説。提案書のたたき台、商談メモの整理、見積の下書きなど、今日から効く使い所を紹介します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-14",
+  "dateModified": "2026-07-17",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/eigyo-ai.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "営業メールをAIに書かせても大丈夫ですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "下書きまでは有効です。ただし宛先ごとの一文（相手の事業を見た証拠になる部分）は人が書くべきです。テンプレートの気配は、それだけで返信率を下げます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "商談の録音から議事録を作れますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "作れます。文字起こしから要点・宿題・次アクションを整理するのはAIの得意分野です。顧客名や機密情報の扱いルールだけ先に決めておきます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "SFAやCRMを入れていなくても始められますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "始められます。いまお使いのスプレッドシートとチャットツールにAIを組み込む形で、十分に効果が出ます。新しいツールを増やさないことが定着の近道です。"
+   }
+  }
+ ]
 }
 </script>
 </head>
@@ -73,6 +106,10 @@
 <p>営業部門へのAI導入が失敗する典型は、新しいツールを増やして「これを使ってください」と言うパターンです。営業担当は移動が多く、覚えるツールが増えるだけで使わなくなります。</p>
 <p>うまくいくのは逆で、<strong>いま使っているチャットツールやスプレッドシートの中にAIを組み込む</strong>方法です。使い慣れた道具の延長にあれば、現場は自然に使い始めます。NGraphのFDE型支援では、営業の現場に入り、実際の商談資料・顧客リスト・日々の道具に合わせてAIを組み込みます。</p>
 
+
+
+<div class="a-note"><strong>私たち自身の運用：</strong>NGraphでは、見積書・請求書・提案資料の作成をAIのワークフローにして日常的に回しています。定型部分はAIが数分で下書きし、人は金額と約束ごとだけを確認する分担です。この記事の「効果が出やすい適用先」は、その実運用から選んでいます。</div>
+<h2>よくある質問</h2><div class="a-faq"><details><summary>営業メールをAIに書かせても大丈夫ですか？</summary><p>下書きまでは有効です。ただし宛先ごとの一文（相手の事業を見た証拠になる部分）は人が書くべきです。テンプレートの気配は、それだけで返信率を下げます。</p></details><details><summary>商談の録音から議事録を作れますか？</summary><p>作れます。文字起こしから要点・宿題・次アクションを整理するのはAIの得意分野です。顧客名や機密情報の扱いルールだけ先に決めておきます。</p></details><details><summary>SFAやCRMを入れていなくても始められますか？</summary><p>始められます。いまお使いのスプレッドシートとチャットツールにAIを組み込む形で、十分に効果が出ます。新しいツールを増やさないことが定着の近道です。</p></details></div>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>

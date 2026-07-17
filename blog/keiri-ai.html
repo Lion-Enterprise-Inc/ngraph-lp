@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,11 +33,43 @@
   "headline": "経理業務でAIに任せられること・任せられないこと",
   "description": "請求書処理、仕訳、月次資料——経理業務のどこがAIに向き、どこは人が担うべきか。線引きの考え方を実務目線で解説します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-14",
+  "dateModified": "2026-07-17",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/keiri-ai.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "経理でAIに任せても安全な作業はどれですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "下書き系です。仕訳候補の作成、請求書からの転記の下書き、月次資料の草案など。承認と最終確認は必ず人が行う分担にします。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "会計ソフトを乗り換える必要はありますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "基本的にありません。いまお使いのソフトはそのままに、その周辺で発生している転記・突合・下書き作業にAIを挟むのが定石です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "数字の間違いが怖いのですが大丈夫ですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "「AIは下書き係・人は確認係」の分担を崩さない設計にすれば、手作業より速く、確認の抜け漏れはむしろ減らせます。AIの出力をそのまま使わないことが大前提です。"
+   }
+  }
+ ]
 }
 </script>
 </head>
@@ -78,6 +111,10 @@
 <h2>現場に入って初めて分かること</h2>
 <p>実際に経理の現場に入ると、教科書には載っていない「その会社固有の運用」が必ず見つかります。独自のExcelフォーマット、担当者の頭の中にしかない判断基準、システム間の手作業の橋渡し——AI組み込みの成否は、この固有部分をどれだけ丁寧に拾えるかで決まります。NGraphのFDE型支援では、エンジニアが経理の現場に入り、実際の書類とフローに合わせて仕組みをつくります。</p>
 
+
+
+<div class="a-note"><strong>現場で見た実例：</strong>ある飲食グループの本部では、受発注システムと会計ソフトがどちらも導入済みなのに連動しておらず、原価管理のExcelは約2年更新が止まっていました。「ツールが古い」のではなく「ツール同士が繋がっていない」——経理のAI化で最初に直すべきはここで、AIに仕訳を書かせることではありません。</div>
+<h2>よくある質問</h2><div class="a-faq"><details><summary>経理でAIに任せても安全な作業はどれですか？</summary><p>下書き系です。仕訳候補の作成、請求書からの転記の下書き、月次資料の草案など。承認と最終確認は必ず人が行う分担にします。</p></details><details><summary>会計ソフトを乗り換える必要はありますか？</summary><p>基本的にありません。いまお使いのソフトはそのままに、その周辺で発生している転記・突合・下書き作業にAIを挟むのが定石です。</p></details><details><summary>数字の間違いが怖いのですが大丈夫ですか？</summary><p>「AIは下書き係・人は確認係」の分担を崩さない設計にすれば、手作業より速く、確認の抜け漏れはむしろ減らせます。AIの出力をそのまま使わないことが大前提です。</p></details></div>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>

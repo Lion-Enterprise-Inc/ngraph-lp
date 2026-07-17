@@ -618,10 +618,10 @@
       if(now-lastGrow>GROW_INTERVAL&&particles.length<COUNT_MAX){lastGrow=now;target=Math.min(target+1,COUNT_MAX);if(particles.length<target)particles.push(spawn(W,H));}
 
       var idleMs=now-lastInteraction;
-      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()<0.4?1.5+Math.random()*3.5:Math.random()*0.6;var spd=Math.min(Math.max(convZ/6,0.12),0.55);convCX=W/2+(Math.random()*2-1)*spd*W*0.5;convCY=H/2+(Math.random()*2-1)*spd*H*0.5;}
+      if(idleMs>5000&&!conv&&!convDone){conv=true;convStr=0;convFormedAt=0;curPattern=nextPattern();rotY=0;rotX=0;convZ=Math.random()*0.5;convCX=W/2+(Math.random()*2-1)*W*0.06;convCY=H/2+(Math.random()*2-1)*H*0.06;}
       if(conv&&curPattern){
         convStr=Math.min(convStr+0.0035,1);
-        rotY+=0.008;rotX+=0.003;
+        var _tt=Date.now()/1000;rotY=Math.sin(_tt*0.42)*0.36;rotX=Math.sin(_tt*0.31)*0.2;
         var pr=project3D(curPattern,W,H,rotY,rotX,convZ,convCX,convCY);
         for(var c=0;c<particles.length;c++){var ci=c%pr.pts.length;particles[c].tx=pr.pts[ci][0]+(Math.random()-0.5)*2;particles[c].ty=pr.pts[ci][1]+(Math.random()-0.5)*2;zDepths[c]=pr.depths[ci];convScales[c]=pr.scales[ci];}
         if(convStr>=0.95&&convFormedAt===0)convFormedAt=now;
@@ -649,17 +649,18 @@
         if(p.life>=p.maxLife||p.x<-20||p.x>W+20||p.y<-20||p.y>H+20){particles[i]=spawn(W,H);alphas[i]=0;}
       }
       var DD=60;
-      for(var i2=0;i2<particles.length;i2++){if(alphas[i2]<0.005)continue;var nb=0;
+      if(convStr<0.3)for(var i2=0;i2<particles.length;i2++){if(alphas[i2]<0.005)continue;var nb=0;
         for(var j=0;j<particles.length;j++){if(i2===j||alphas[j]<0.005)continue;var ax=particles[i2].x-particles[j].x,ay=particles[i2].y-particles[j].y;if(ax*ax+ay*ay<DD*DD)nb++;}
         if(nb>0)alphas[i2]=Math.min(alphas[i2]*(1+nb*0.3),0.7);}
-      var SD=convStr>0.3?130:90;
+      if(convStr>=0.3)for(var i2b=0;i2b<particles.length;i2b++)alphas[i2b]=Math.min(alphas[i2b]*(1+convK*1.6),0.55);
+      var SD=90;
       for(var i3=0;i3<particles.length;i3++){if(alphas[i3]<0.008)continue;
         for(var j2=i3+1;j2<particles.length;j2++){if(alphas[j2]<0.008)continue;
           var sx=particles[i3].x-particles[j2].x,sy=particles[i3].y-particles[j2].y,sd=Math.sqrt(sx*sx+sy*sy);
-          if(sd<SD){var la=Math.min(Math.min(alphas[i3],alphas[j2])*(1-sd/SD)*0.7,convStr>0.3?0.18:0.12);
+          if(sd<SD){var la=Math.min(Math.min(alphas[i3],alphas[j2])*(1-sd/SD)*0.7,0.12)*(1-convK);if(la>0.004){
             ctx.beginPath();ctx.moveTo(particles[i3].x,particles[i3].y-particles[i3].size*0.3);
             ctx.lineTo(particles[j2].x,particles[j2].y-particles[j2].size*0.3);
-            ctx.strokeStyle='rgba(90,78,64,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}
+            ctx.strokeStyle='rgba(90,78,64,'+la+')';ctx.lineWidth=0.5;ctx.stroke();}}}}
       var conY=convStr>0.3;
       order.length=0;for(var o=0;o<particles.length;o++)order.push(o);
       if(conY)order.sort(function(a,b){return zDepths[b]-zDepths[a];});
@@ -676,8 +677,8 @@
       ctx.shadowBlur=0;
       ctx.font="11px 'SF Mono','Fira Code',monospace";
     }
-    var last=0;
-    (function loop(time){requestAnimationFrame(loop);if(time-last<33)return;last=time;draw();})(0);
+    draw();
+    setInterval(draw,33);
   })();
 
 

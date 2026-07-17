@@ -25,6 +25,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -32,11 +33,43 @@
   "headline": "AI導入支援の費用はどう考えればいいか——「要相談」の中身を正直に書く",
   "description": "AI導入支援の料金が「要相談」になりがちな理由と、見積の内訳を決める変数、費用対効果の考え方を正直に解説します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-14",
+  "dateModified": "2026-07-17",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/ai-cost.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "最低いくらから頼めますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "範囲を絞った数週間のスポット支援から受けています。金額は対象業務の範囲と連携の複雑さで変わるため、無料相談で前提を伺ったうえで概算をお答えしています。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "補助金は使えますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "使える場合が多いです（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "導入後の月額費用はどれくらいかかりますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "AIの利用料（APIやツールの課金）は使用量に応じて変わります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。"
+   }
+  }
+ ]
 }
 </script>
 </head>
@@ -77,6 +110,11 @@
 <h2>まずは無料相談で「見積の前提」を揃える</h2>
 <p>正確な見積には、現状の業務と困りごとのヒアリングが必要です。NGraphでは無料相談と現場診断を経てからお見積りします。「まだ何を頼むか決まっていない」段階のご相談も歓迎です。現状整理だけでも持ち帰る価値があるはずです。</p>
 
+
+
+<div class="a-note"><strong>当社の考え方：</strong>効果は「削減される作業時間 × 人件費」で概算します。たとえば毎週3時間の転記作業がなくなれば年間150時間強。時給2,000円換算で約30万円/年の効果です。投資額がその何倍にあたるかで判断すれば、AI導入は「気合」ではなく算数になります。</div>
+<h2>補助金という選択肢（2026年7月時点の概要）</h2><p>中小企業のAI導入には、国の補助制度を使える場合があります。代表的な3つを挙げます。</p><div class="a-table-wrap"><table class="a-table"><tr><th>制度</th><th>補助率</th><th>上限額の目安</th><th>特徴</th></tr><tr><td>デジタル化・AI導入補助金（旧IT導入補助金）</td><td>1/2（条件により2/3）</td><td>150万円未満（1プロセス）</td><td>通年で複数締切。登録済みツール・登録支援事業者を通す方式</td></tr><tr><td>中小企業省力化投資補助金（一般型）</td><td>1/2（賃上げ特例で2/3）</td><td>従業員数により750万円〜</td><td>業務に合わせて専用開発するシステムが対象。賃上げ等の要件あり</td></tr><tr><td>業務改善助成金</td><td>3/4〜4/5</td><td>最大600万円</td><td>事業場内最低賃金の引き上げが条件。予算枯渇が早い傾向</td></tr></table></div><p style="font-size:.8rem;color:var(--text-3)">※公募時期・要件は年度で変わります。最新の公式情報の確認が前提です。また、交付決定前に発注したものは対象外になるのが原則のため、着手の順序から設計する必要があります。</p>
+<h2>よくある質問</h2><div class="a-faq"><details><summary>最低いくらから頼めますか？</summary><p>範囲を絞った数週間のスポット支援から受けています。金額は対象業務の範囲と連携の複雑さで変わるため、無料相談で前提を伺ったうえで概算をお答えしています。</p></details><details><summary>補助金は使えますか？</summary><p>使える場合が多いです（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。</p></details><details><summary>導入後の月額費用はどれくらいかかりますか？</summary><p>AIの利用料（APIやツールの課金）は使用量に応じて変わります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。</p></details></div>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>
