@@ -63,6 +63,7 @@
         { "@type": "Question", "name": "What size and type of company is this for?", "acceptedAnswer": { "@type": "Answer", "text": "Mainly small and mid-sized companies, in any industry. You can start from a single department — accounting, sales, production, or stores." } },
         { "@type": "Question", "name": "Do we need to buy a specific AI tool?", "acceptedAnswer": { "@type": "Answer", "text": "No. We use what you already have (ChatGPT, Claude, Copilot, etc.). If you have nothing yet, we help select the right tool for your work." } },
         { "@type": "Question", "name": "Do we need to replace our existing systems?", "acceptedAnswer": { "@type": "Answer", "text": "No. We design around the systems, Excel files, and chat tools you already use, and weave AI between them." } },
+        { "@type": "Question", "name": "Can we switch to a different AI later (e.g. ChatGPT to Claude)?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We organize your business data, workflows, and prompts in a form that does not depend on any specific tool, so when a better AI appears you can swap it in. Not being locked into a single AI vendor is a core design principle for us." } },
         { "@type": "Question", "name": "What about confidentiality?", "acceptedAnswer": { "@type": "Answer", "text": "We can sign an NDA before starting. The scope of data handling is agreed during the assessment stage." } }
       ]
     }
@@ -153,6 +154,39 @@
 .lp-form textarea{min-height:100px;resize:vertical}
 .lp-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* Asset architecture (#asset) */
+.asset-fig{max-width:760px;margin:0 auto 36px;text-align:center}
+.as-layer{border:1px dashed var(--border-strong);border-radius:4px;padding:24px;background:rgba(255,255,255,.45)}
+.as-cap{font-family:var(--serif);font-size:.76rem;letter-spacing:.16em;color:var(--text-3);margin-bottom:14px}
+.as-chip-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+.as-chip{border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;font-size:.85rem;background:var(--bg-card);color:var(--text-2);white-space:nowrap}
+.as-swap{color:var(--accent);font-size:1.05rem}
+.as-connector{padding:12px 0;color:var(--text-3);font-size:.72rem;letter-spacing:.12em;line-height:1.7}
+.as-connector .ar{color:var(--accent);display:block;font-size:1.05rem;line-height:1.4}
+.as-base{border:1.5px solid var(--accent);border-radius:4px;padding:26px 24px;background:var(--bg-card);box-shadow:0 14px 34px rgba(166,58,36,.08)}
+.as-base .as-cap{color:var(--accent)}
+.as-base-items{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.as-base-items span{font-family:var(--serif);font-weight:700;font-size:.9rem;padding:10px 18px;border:1px solid var(--border);border-radius:3px;background:rgba(166,58,36,.04)}
+.asset-notes{list-style:none;max-width:640px;margin:0 auto}
+.asset-notes li{font-size:.88rem;color:var(--text-2);line-height:2;padding-left:24px;position:relative;margin-bottom:8px}
+.asset-notes li::before{content:"";position:absolute;left:0;top:10px;width:14px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.asset-notes li strong{color:var(--text)}
+.asset-mei{font-family:var(--serif);text-align:center;font-size:.85rem;color:var(--text-2);margin-top:36px;line-height:2.1}
+.asset-mei .mei-mark{color:var(--accent);font-weight:700}
+/* Checklist download (#download) */
+.dl-wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;max-width:880px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px;align-items:center}
+.dl-thumb{position:relative}
+.dl-thumb img{width:100%;border:1px solid var(--border-strong);border-radius:2px;box-shadow:6px 10px 26px rgba(43,38,32,.14);display:block}
+.dl-thumb .dl-tag{position:absolute;top:-12px;left:-10px;background:var(--accent);color:#fdfaf4;font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(166,58,36,.3)}
+.dl-body h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;line-height:1.8;margin-bottom:10px}
+.dl-body>p{font-size:.86rem;color:var(--text-2);line-height:2;margin-bottom:18px}
+.dl-points{list-style:none;margin-bottom:22px}
+.dl-points li{font-size:.84rem;color:var(--text-2);line-height:1.9;padding-left:22px;position:relative;margin-bottom:4px}
+.dl-points li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.dl-form input{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:10px;outline:none}
+.dl-form input:focus{border-color:var(--accent)}
+.dl-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
+@media(max-width:900px){.dl-wrap{grid-template-columns:1fr;padding:28px 22px}.dl-thumb{width:200px;margin:0 auto}}
 .float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
 .float-cta.show{opacity:1;pointer-events:auto;transform:none}
 .float-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fdfaf4;padding:14px 26px;border-radius:3px;font-weight:700;font-size:.9rem;letter-spacing:.04em;box-shadow:0 10px 28px rgba(166,58,36,.35)}
@@ -181,6 +215,7 @@
       <a href="#service">Service</a>
       <a href="#cases">Our Work</a>
       <a href="#shindan">Free Check</a>
+      <a href="#download">Checklist</a>
       <a href="#price">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="/en/entry.html" class="nav-cta">Contact</a>
@@ -200,6 +235,7 @@
         <a href="/en/entry.html" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#shindan" class="btn btn-ghost">Try the 1-minute AI check</a>
       </div>
+      <p class="cta-micro">Just want the material? — <a href="#download" style="text-decoration:underline">AI Readiness Checklist (free PDF)</a></p>
       <div class="hero-trust">
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>Fully online, anywhere in Japan</span>
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>We build and run our own AI products</span>
@@ -459,8 +495,45 @@
 </section>
 
 
+<!-- ── 資産アーキテクチャ ── -->
+<section class="section section-alt" id="asset">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title"><span class="nb">AI is the engine.</span> <span class="nb">The asset stays with you.</span></h2>
+      <p class="section-sub">We build without locking you into any single AI vendor. The engine can be swapped later.</p>
+    </div>
+    <div class="asset-fig reveal" aria-hidden="false">
+      <div class="as-layer">
+        <div class="as-cap">AI ENGINES — SWAPPABLE</div>
+        <div class="as-chip-row">
+          <span class="as-chip">ChatGPT</span><span class="as-swap">⇄</span>
+          <span class="as-chip">Claude</span><span class="as-swap">⇄</span>
+          <span class="as-chip">Gemini</span><span class="as-swap">⇄</span>
+          <span class="as-chip">Open-source AI</span>
+        </div>
+      </div>
+      <div class="as-connector"><span class="ar">▲▼</span>Built in a form that works with any engine</div>
+      <div class="as-base">
+        <div class="as-cap">YOUR ASSET — IT STAYS</div>
+        <div class="as-base-items">
+          <span>Structured business data</span>
+          <span>Workflows &amp; prompts</span>
+          <span>Know-how AI can read</span>
+        </div>
+      </div>
+    </div>
+    <ul class="asset-notes reveal">
+      <li><strong>When a better AI appears, we swap it in.</strong> No dependence on a single vendor</li>
+      <li><strong>Price or policy changes won't stop your business.</strong> Because the asset lives on your side</li>
+      <li><strong>It remains after our support ends.</strong> What we deliver is not tool training — it is this asset</li>
+    </ul>
+    <p class="asset-mei reveal">The N in our name comes from Aristotle's <em>Nicomachean Ethics</em>.<br>Never leaning too far toward any one side — <span class="mei-mark">the golden mean</span> is our design philosophy.</p>
+  </div>
+</section>
+
 <!-- ── 安心 ── -->
-<section class="section section-alt" id="trust">
+<section class="section" id="trust">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Promise</div>
@@ -485,7 +558,7 @@
 </section>
 
 <!-- ── 料金 ── -->
-<section class="section" id="price">
+<section class="section section-alt" id="price">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Pricing</div>
@@ -500,6 +573,46 @@
     <div class="mid-cta reveal">
       <p>ROI ≈ hours saved × labor cost. We'll help you choose which task to start with.</p>
       <a href="/en/entry.html" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 資料DL ── -->
+<section class="section" id="download">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Free Download</div>
+      <h2 class="section-title"><span class="nb">A checklist you can use</span> <span class="nb">in your next meeting.</span></h2>
+      <p class="section-sub">20 checkboxes that show where your company stands and what to do next. Free to download.</p>
+    </div>
+    <div class="dl-wrap reveal">
+      <div class="dl-thumb">
+        <span class="dl-tag">FREE PDF</span>
+        <img src="/assets/checklist-thumb-en.png" alt="First page of the AI Readiness Checklist PDF" loading="lazy">
+      </div>
+      <div class="dl-body">
+        <h3>AI Readiness Checklist — 20 things to confirm before you adopt AI</h3>
+        <p>Answer "Is our company ready for AI?" with no technical knowledge required. Print it as-is and use it as the starting point for your internal discussion.</p>
+        <ul class="dl-points">
+          <li>5 axes — tools, daily use, workflows, champions, leadership — × 4 items each</li>
+          <li>Includes "how to read your score" based on your ✓ count</li>
+          <li>Includes a 3-step "next move" you can start tomorrow (A4, 2 pages)</li>
+        </ul>
+        <form class="dl-form" id="dlForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
+          <div class="hp-field" aria-hidden="true"><label>Leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+          <input type="hidden" name="Type of inquiry" value="Checklist download (/en/fde/)">
+          <input type="text" name="Name" placeholder="Name (required)" required>
+          <input type="text" name="Company / Store" placeholder="Company (required)" required>
+          <input type="email" name="Email" placeholder="Email (required)" required>
+          <button type="submit" class="btn btn-primary" id="dlSubmit">Download free PDF</button>
+          <p class="lead-note">By submitting, you agree to our <a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">privacy policy</a>. No sales calls.</p>
+        </form>
+        <div class="lead-done" id="dlDone" style="display:none">
+          <h4>Your download is ready</h4>
+          <p style="margin-bottom:16px">Open the PDF from the button below.</p>
+          <a href="/assets/ngraph-ai-checklist-en.pdf" target="_blank" rel="noopener" class="btn btn-primary" id="dlOpen">Open the checklist PDF</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -519,6 +632,7 @@
       <details><summary>What size and type of company is this for?</summary><p>Mainly small and mid-sized companies, in any industry. You can start from a single department.</p></details>
       <details><summary>Do we need to buy a specific AI tool?</summary><p>No. We use what you already have (ChatGPT, Claude, Copilot, etc.), or help you select the right one.</p></details>
       <details><summary>Do we need to replace our existing systems?</summary><p>No. We design around the systems, Excel files, and chat tools you already use.</p></details>
+      <details><summary>Can we switch to a different AI later (e.g. ChatGPT → Claude)?</summary><p>Yes. We organize your business data, workflows, and prompts in a form that does not depend on any specific tool, so when a better AI appears you can swap it in. Not being locked into a single AI vendor is a core design principle for us.</p></details>
       <details><summary>What about confidentiality?</summary><p>We can sign an NDA before starting. Data-handling scope is agreed during the assessment stage.</p></details>
     </div>
   </div>
@@ -882,6 +996,20 @@ form.addEventListener('submit',function(e){
   fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
   .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'fde_lp'});})
   .catch(function(){alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Send — it\'s free';});
+});
+})();
+
+// ── Checklist download form (GAS) ──
+(function(){
+var form=document.getElementById('dlForm'),done=document.getElementById('dlDone');
+if(!form)return;
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(form.querySelector('[name="_honey"]').value){form.style.display='none';done.style.display='block';return;}
+  var btn=document.getElementById('dlSubmit');btn.disabled=true;btn.textContent='Sending...';
+  fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
+  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'fde_checklist_dl_en'});})
+  .catch(function(){alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Download free PDF';});
 });
 })();
 

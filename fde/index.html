@@ -63,6 +63,7 @@
         { "@type": "Question", "name": "どんな規模・業種の会社が対象ですか？", "acceptedAnswer": { "@type": "Answer", "text": "中堅・中小企業が中心です。業種は問いません。経理・営業・製造・店舗など、部署単位の業務からAIの組み込みを始められます。" } },
         { "@type": "Question", "name": "特定のAIツールを契約する必要はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。すでにお使いのChatGPT・Claude・Copilot等があればそれを活かします。未契約の場合は、業務内容に合わせて最適なツールの選定からお手伝いします。" } },
         { "@type": "Question", "name": "既存の業務システムを入れ替える必要はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "ありません。いまお使いの業務システム・Excel・チャットツールを前提に、そのあいだにAIを組み込む設計を基本としています。" } },
+        { "@type": "Question", "name": "導入後に、別のAI（ChatGPT→Claudeなど）へ乗り換えられますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。業務データ・手順・AIへの指示文を特定のツールに依存しない形で整理して納品するため、より良いAIが登場したら載せ替えられます。1社のAIサービスに縛られない設計を基本としています。" } },
         { "@type": "Question", "name": "秘密保持はどうなりますか？", "acceptedAnswer": { "@type": "Answer", "text": "ご希望に応じて着手前にNDA（秘密保持契約）を締結します。業務データの取り扱い範囲も現場診断の段階で合意のうえ進めます。" } }
       ]
     }
@@ -153,6 +154,39 @@
 .lp-form textarea{min-height:100px;resize:vertical}
 .lp-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* 資産アーキテクチャ図（#asset） */
+.asset-fig{max-width:760px;margin:0 auto 36px;text-align:center}
+.as-layer{border:1px dashed var(--border-strong);border-radius:4px;padding:24px;background:rgba(255,255,255,.45)}
+.as-cap{font-family:var(--serif);font-size:.76rem;letter-spacing:.16em;color:var(--text-3);margin-bottom:14px}
+.as-chip-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
+.as-chip{border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;font-size:.85rem;background:var(--bg-card);color:var(--text-2);white-space:nowrap}
+.as-swap{color:var(--accent);font-size:1.05rem}
+.as-connector{padding:12px 0;color:var(--text-3);font-size:.72rem;letter-spacing:.12em;line-height:1.7}
+.as-connector .ar{color:var(--accent);display:block;font-size:1.05rem;line-height:1.4}
+.as-base{border:1.5px solid var(--accent);border-radius:4px;padding:26px 24px;background:var(--bg-card);box-shadow:0 14px 34px rgba(166,58,36,.08)}
+.as-base .as-cap{color:var(--accent)}
+.as-base-items{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.as-base-items span{font-family:var(--serif);font-weight:700;font-size:.9rem;padding:10px 18px;border:1px solid var(--border);border-radius:3px;background:rgba(166,58,36,.04)}
+.asset-notes{list-style:none;max-width:640px;margin:0 auto}
+.asset-notes li{font-size:.88rem;color:var(--text-2);line-height:2;padding-left:24px;position:relative;margin-bottom:8px}
+.asset-notes li::before{content:"";position:absolute;left:0;top:10px;width:14px;height:8px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.asset-notes li strong{color:var(--text)}
+.asset-mei{font-family:var(--serif);text-align:center;font-size:.85rem;color:var(--text-2);margin-top:36px;line-height:2.1}
+.asset-mei .mei-mark{color:var(--accent);font-weight:700}
+/* 資料DL（#download） */
+.dl-wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;max-width:880px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px;align-items:center}
+.dl-thumb{position:relative}
+.dl-thumb img{width:100%;border:1px solid var(--border-strong);border-radius:2px;box-shadow:6px 10px 26px rgba(43,38,32,.14);display:block}
+.dl-thumb .dl-tag{position:absolute;top:-12px;left:-10px;background:var(--accent);color:#fdfaf4;font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(166,58,36,.3)}
+.dl-body h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;line-height:1.8;margin-bottom:10px}
+.dl-body>p{font-size:.86rem;color:var(--text-2);line-height:2;margin-bottom:18px}
+.dl-points{list-style:none;margin-bottom:22px}
+.dl-points li{font-size:.84rem;color:var(--text-2);line-height:1.9;padding-left:22px;position:relative;margin-bottom:4px}
+.dl-points li::before{content:"";position:absolute;left:0;top:8px;width:13px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.dl-form input{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:10px;outline:none}
+.dl-form input:focus{border-color:var(--accent)}
+.dl-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
+@media(max-width:900px){.dl-wrap{grid-template-columns:1fr;padding:28px 22px}.dl-thumb{width:200px;margin:0 auto}}
 .float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
 .float-cta.show{opacity:1;pointer-events:auto;transform:none}
 .float-cta a{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fdfaf4;padding:14px 26px;border-radius:3px;font-weight:700;font-size:.9rem;letter-spacing:.04em;box-shadow:0 10px 28px rgba(166,58,36,.35)}
@@ -181,6 +215,7 @@
       <a href="#service">サービス</a>
       <a href="#cases">事例・実装</a>
       <a href="#shindan">無料診断</a>
+      <a href="#download">資料DL</a>
       <a href="#price">料金</a>
       <a href="#faq">FAQ</a>
       <a href="/blog/">ブログ</a>
@@ -201,6 +236,7 @@
         <a href="/entry.html" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#shindan" class="btn btn-ghost">1分で無料AI診断を試す</a>
       </div>
+      <p class="cta-micro">まずは資料だけ見たい方へ — <a href="#download" style="text-decoration:underline">AI導入チェックリスト（無料PDF）</a></p>
       <div class="hero-trust">
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>全国オンライン対応</span>
         <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>自社AIプロダクトを4領域で開発・運用</span>
@@ -466,8 +502,45 @@
 </section>
 
 
+<!-- ── 資産アーキテクチャ ── -->
+<section class="section section-alt" id="asset">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Architecture</div>
+      <h2 class="section-title"><span class="nb">AIはエンジン。</span><span class="nb">資産は、御社に残る。</span></h2>
+      <p class="section-sub">特定のAI会社のツールに縛られない設計で組みます。AIは、あとから載せ替えられます。</p>
+    </div>
+    <div class="asset-fig reveal" aria-hidden="false">
+      <div class="as-layer">
+        <div class="as-cap">AIエンジン — 交換できる</div>
+        <div class="as-chip-row">
+          <span class="as-chip">ChatGPT</span><span class="as-swap">⇄</span>
+          <span class="as-chip">Claude</span><span class="as-swap">⇄</span>
+          <span class="as-chip">Gemini</span><span class="as-swap">⇄</span>
+          <span class="as-chip">オープンソースAI</span>
+        </div>
+      </div>
+      <div class="as-connector"><span class="ar">▲▼</span>どのエンジンでも動く形でつくる</div>
+      <div class="as-base">
+        <div class="as-cap">御社に残る資産 — 消えない</div>
+        <div class="as-base-items">
+          <span>整理された業務データ</span>
+          <span>業務の手順・AIへの指示文</span>
+          <span>AIが読める形のノウハウ</span>
+        </div>
+      </div>
+    </div>
+    <ul class="asset-notes reveal">
+      <li><strong>より良いAIが出たら、載せ替えるだけ。</strong>1社のAIに依存しない設計です</li>
+      <li><strong>料金や規約が変わっても、業務は止まりません。</strong>資産が御社側にあるからです</li>
+      <li><strong>支援が終わっても、残ります。</strong>私たちが納品するのはツールの使い方ではなく、この資産です</li>
+    </ul>
+    <p class="asset-mei reveal">社名のNは、アリストテレス『ニコマコス倫理学』から。<br>何事も一方に寄りかかりすぎない——<span class="mei-mark">「中庸」</span>が、私たちの設計思想です。</p>
+  </div>
+</section>
+
 <!-- ── 安心 ── -->
-<section class="section section-alt" id="trust">
+<section class="section" id="trust">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Promise</div>
@@ -492,7 +565,7 @@
 </section>
 
 <!-- ── 料金 ── -->
-<section class="section" id="price">
+<section class="section section-alt" id="price">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Pricing</div>
@@ -507,6 +580,46 @@
     <div class="mid-cta reveal">
       <p>効果は「削減される作業時間 × 人件費」で概算できます。対象業務の選び方から一緒に考えます。</p>
       <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 資料DL ── -->
+<section class="section" id="download">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Free Download</div>
+      <h2 class="section-title"><span class="nb">会議でそのまま使える、</span><span class="nb">AI導入チェックリスト。</span></h2>
+      <p class="section-sub">✓を付けるだけで、御社の現在地と「次の一手」がわかる20項目。無料でダウンロードできます。</p>
+    </div>
+    <div class="dl-wrap reveal">
+      <div class="dl-thumb">
+        <span class="dl-tag">無料PDF</span>
+        <img src="/assets/checklist-thumb-ja.png" alt="AI導入チェックリスト（PDF）の1ページ目" loading="lazy">
+      </div>
+      <div class="dl-body">
+        <h3>AI導入チェックリスト — 導入前に確認する20項目</h3>
+        <p>「うちはAIを入れられる状態なのか？」を、専門知識なしで確認できる1枚です。そのまま印刷して、社内会議の叩き台にお使いください。</p>
+        <ul class="dl-points">
+          <li>ツール・現場・業務・人・経営の5つの軸 × 各4項目</li>
+          <li>✓の数で現在地がわかる「結果の見方」つき</li>
+          <li>明日からできる「次の一手・3ステップ」つき（A4・2枚）</li>
+        </ul>
+        <form class="dl-form" id="dlForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
+          <div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+          <input type="hidden" name="お問い合わせ種別" value="資料DL：AI導入チェックリスト（/fde/）">
+          <input type="text" name="お名前" placeholder="お名前（必須）" required>
+          <input type="text" name="会社名・店舗名" placeholder="会社名（必須）" required>
+          <input type="email" name="メールアドレス" placeholder="メールアドレス（必須）" required>
+          <button type="submit" class="btn btn-primary" id="dlSubmit">無料でダウンロードする</button>
+          <p class="lead-note"><a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください。営業のお電話はいたしません</p>
+        </form>
+        <div class="lead-done" id="dlDone" style="display:none">
+          <h4>ダウンロードの準備ができました</h4>
+          <p style="margin-bottom:16px">下のボタンからPDFを開けます。ご活用ください。</p>
+          <a href="/assets/ngraph-ai-checklist.pdf" target="_blank" rel="noopener" class="btn btn-primary" id="dlOpen">チェックリストPDFを開く</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -526,6 +639,7 @@
       <details><summary>どんな規模・業種の会社が対象ですか？</summary><p>中堅・中小企業が中心です。業種は問いません。経理・営業・製造・店舗など、部署単位の業務からAIの組み込みを始められます。</p></details>
       <details><summary>特定のAIツールを契約する必要はありますか？</summary><p>いいえ。すでにお使いのChatGPT・Claude・Copilot等があればそれを活かします。未契約の場合は、業務内容に合わせて最適なツールの選定からお手伝いします。</p></details>
       <details><summary>既存の業務システムを入れ替える必要はありますか？</summary><p>ありません。いまお使いの業務システム・Excel・チャットツールを前提に、そのあいだにAIを組み込む設計を基本としています。</p></details>
+      <details><summary>導入後に、別のAI（ChatGPT→Claudeなど）へ乗り換えられますか？</summary><p>はい。業務データ・手順・AIへの指示文を特定のツールに依存しない形で整理して納品するため、より良いAIが登場したら載せ替えられます。1社のAIサービスに縛られない設計を基本としています。</p></details>
       <details><summary>秘密保持はどうなりますか？</summary><p>ご希望に応じて着手前にNDA（秘密保持契約）を締結します。業務データの取り扱い範囲も現場診断の段階で合意のうえ進めます。</p></details>
     </div>
   </div>
@@ -890,6 +1004,20 @@ form.addEventListener('submit',function(e){
   fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
   .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'fde_lp'});})
   .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='無料相談を送信する';});
+});
+})();
+
+// ── 資料DLフォーム(GAS) ──
+(function(){
+var form=document.getElementById('dlForm'),done=document.getElementById('dlDone');
+if(!form)return;
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(form.querySelector('[name="_honey"]').value){form.style.display='none';done.style.display='block';return;}
+  var btn=document.getElementById('dlSubmit');btn.disabled=true;btn.textContent='送信中...';
+  fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
+  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'fde_checklist_dl'});})
+  .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='無料でダウンロードする';});
 });
 })();
 
