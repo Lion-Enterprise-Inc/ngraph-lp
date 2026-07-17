@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
-<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}</style>
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -83,10 +83,57 @@
 <h2>現場で決めた「人が握る一線」</h2>
 <p>私たちが開発・運用している飲食店向けのAI接客では、料理の説明や文化的な背景はAIが130ヶ国語で答えます。しかしアレルギーのような<strong>間違えたら人の健康に関わる情報は、AIの推測に任せない</strong>と決めました。店が確認した一次データだけを答える設計です。</p>
 <p>これは技術の限界の話ではありません。ChatGPTでもClaudeでも、AIは確率で言葉を選ぶ以上、間違いをゼロにはできません。だから<strong>「間違えたときに謝る相手がいる仕事」は人が握る</strong>。この一線を最初に引いてから、残りを思い切ってAIに任せる。順序はこれが正解でした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">迷ったときの一線</p>
+<svg viewBox="0 0 760 268" width="100%" role="img" aria-label="間違えたとき謝る相手がいるなら人が握る、いないならAIに任せる、という判断の図">
+  <rect x="220" y="18" width="320" height="58" rx="29" fill="rgba(166,58,36,.05)" stroke="#a63a24" stroke-width="2"/>
+  <text x="380" y="43" text-anchor="middle" font-size="15" font-weight="800" fill="#2b2620">間違えたとき、</text>
+  <text x="380" y="63" text-anchor="middle" font-size="15" font-weight="800" fill="#2b2620">謝る相手がいる仕事？</text>
+  <path d="M300 80L190 128" fill="none" stroke="#cfc7b2" stroke-width="2"/>
+  <path d="M460 80l110 48" fill="none" stroke="#cfc7b2" stroke-width="2"/>
+  <text x="220" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#a63a24">はい</text>
+  <text x="540" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#8a8172">いいえ</text>
+  <rect x="60" y="132" width="260" height="106" rx="10" fill="rgba(166,58,36,.05)" stroke="#a63a24" stroke-width="2"/>
+  <text x="190" y="166" text-anchor="middle" font-size="17" font-weight="800" fill="#a63a24">人が握る</text>
+  <text x="190" y="194" text-anchor="middle" font-size="12" fill="#5c544a">承認・お客様への約束</text>
+  <text x="190" y="216" text-anchor="middle" font-size="12" fill="#5c544a">お金の判断・安全に関わる情報</text>
+  <rect x="440" y="132" width="260" height="106" rx="10" fill="#fdfaf4" stroke="#cfc7b2" stroke-width="2"/>
+  <text x="570" y="166" text-anchor="middle" font-size="17" font-weight="800" fill="#5c544a">AIに任せる</text>
+  <text x="570" y="194" text-anchor="middle" font-size="12" fill="#5c544a">下書き・要約・変換</text>
+  <text x="570" y="216" text-anchor="middle" font-size="12" fill="#5c544a">検索・集計・整理の中間工程</text>
+</svg>
+</div>
+
 
 <h2>AIより先に、人にしか決められないこと</h2>
 <p>ある飲食グループの本部に入ったとき、印象的だったことがあります。ツールは揃っていて、AIの話題も経営会議に出ている。それでも止まっていた理由は、「どの業務から手を付けるか」を決める人がいなかったことでした。</p>
 <p>業務を一緒に棚卸しすると、優先すべきは派手なAI活用ではなく、毎年たくさんの新人に同じ説明を繰り返している教育業務でした。<strong>何をAIに任せるかを決めるのは、AIではなく人です。</strong>ここを飛ばして道具から入ると、どんなに良いAIでも現場に落ちません。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">順番の図——先に決めるのは、人。</p>
+<svg viewBox="0 0 800 216" width="100%" role="img" aria-label="人が決める、AIが下書きする、人が確認して届ける、という順番の図">
+  <!-- ① 人: 決める -->
+  <circle cx="120" cy="60" r="17" fill="none" stroke="#a63a24" stroke-width="2"/>
+  <path d="M90 112c0-17 13-30 30-30s30 13 30 30" fill="none" stroke="#a63a24" stroke-width="2" stroke-linecap="round"/>
+  <text x="120" y="146" text-anchor="middle" font-size="16" font-weight="800" fill="#a63a24">人が決める</text>
+  <text x="120" y="170" text-anchor="middle" font-size="11" fill="#8a8172">どの業務を・どこまで任せるか</text>
+  <path d="M208 84h96m-10-7l10 7-10 7" fill="none" stroke="#cfc7b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- ② AI: 下書き -->
+  <rect x="368" y="52" width="64" height="48" rx="9" fill="none" stroke="#5c544a" stroke-width="2"/>
+  <path d="M400 52v-12M391 40h18" fill="none" stroke="#5c544a" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="388" cy="74" r="3" fill="#5c544a"/><circle cx="412" cy="74" r="3" fill="#5c544a"/>
+  <text x="400" y="146" text-anchor="middle" font-size="16" font-weight="800" fill="#5c544a">AIが下書きする</text>
+  <text x="400" y="170" text-anchor="middle" font-size="11" fill="#8a8172">たたき台・変換・整理はAIの領分</text>
+  <path d="M488 84h96m-10-7l10 7-10 7" fill="none" stroke="#cfc7b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- ③ 人: 確認して届ける -->
+  <circle cx="672" cy="60" r="17" fill="none" stroke="#a63a24" stroke-width="2"/>
+  <path d="M642 112c0-17 13-30 30-30s30 13 30 30" fill="none" stroke="#a63a24" stroke-width="2" stroke-linecap="round"/>
+  <path d="M700 52l7 8 14-16" fill="none" stroke="#a63a24" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="672" y="146" text-anchor="middle" font-size="16" font-weight="800" fill="#a63a24">人が確認して届ける</text>
+  <text x="672" y="170" text-anchor="middle" font-size="11" fill="#8a8172">責任は最後まで人が持つ</text>
+  <text x="400" y="204" text-anchor="middle" font-size="11.5" fill="#8a8172">最初と最後は人。あいだの作業をAIに任せる——順番はいつもこの形です</text>
+</svg>
+</div>
+
 
 <h2>分担の早見表</h2>
 <p>現場で使っている線引きを、そのまま表にします。</p>

@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
-<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}</style>
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:14px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:12px}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -113,6 +113,82 @@
 
 
 <div class="a-note"><strong>現場で見た実例：</strong>飲食店の現場では、予約台帳・POS・LINE・Excelがそれぞれ別々に動いているのが普通です。私たちはそれらを「入れ替える」のではなく、あいだにAIを挟む形で繋いできました。システムの刷新を待たずに、明日の業務を軽くする——それが現実的な順序です。</div>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">「会社の脳」の全体像（概念図）</p>
+<div style="overflow-x:auto">
+<svg viewBox="0 0 900 720" width="100%" style="min-width:640px" role="img" aria-label="会社のAIを頂点に、本部と各店舗の既存システム・各チャネルがつながる概念図">
+  <rect x="278" y="14" width="344" height="120" rx="10" fill="rgba(166,58,36,.05)" stroke="#a63a24" stroke-width="2"/>
+  <text x="450" y="40" text-anchor="middle" font-size="20" font-weight="800" fill="#a63a24">会社のAI <tspan font-size="12" font-weight="400" fill="#8a8172">· エージェント</tspan></text>
+  <text x="450" y="59" text-anchor="middle" font-size="10.5" fill="#8a8172">会社の情報を A / B / C の3層で整理</text>
+  <rect x="294" y="72" width="96" height="48" rx="6" fill="rgba(138,122,80,.08)" stroke="#e2dccb"/>
+  <text x="342" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#8a7a50">A 静的·台帳</text>
+  <text x="342" y="107" text-anchor="middle" font-size="8" fill="#8a8172">Static · Ledger</text>
+  <rect x="402" y="72" width="96" height="48" rx="6" fill="rgba(166,58,36,.07)" stroke="#e2dccb"/>
+  <text x="450" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#a63a24">B 動的·フロー</text>
+  <text x="450" y="107" text-anchor="middle" font-size="8" fill="#8a8172">Dynamic · Flow</text>
+  <rect x="510" y="72" width="96" height="48" rx="6" fill="rgba(90,35,45,.07)" stroke="#e2dccb"/>
+  <text x="558" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#6e2a34">C 機微</text>
+  <text x="558" y="107" text-anchor="middle" font-size="8" fill="#8a8172">Sensitive</text>
+  <line x1="622" y1="74" x2="648" y2="74" stroke="#a63a24" stroke-width="1.5"/>
+  <rect x="648" y="40" width="212" height="70" rx="8" fill="#fdfaf4" stroke="#a63a24" stroke-dasharray="5 3"/>
+  <text x="754" y="66" text-anchor="middle" font-size="16" font-weight="800" fill="#a63a24">OMISEAI</text>
+  <text x="754" y="84" text-anchor="middle" font-size="9.5" fill="#8a8172">お客様向けの接客AI</text>
+  <text x="754" y="99" text-anchor="middle" font-size="9.5" fill="#8a8172">メニュー情報を共有</text>
+  <line x1="450" y1="134" x2="450" y2="146" stroke="#cfc7b2" stroke-width="2"/>
+  <line x1="122" y1="146" x2="800" y2="146" stroke="#cfc7b2" stroke-width="2"/>
+  <line x1="122" y1="146" x2="122" y2="205" stroke="#cfc7b2" stroke-width="2"/>
+  <rect x="45" y="205" width="155" height="112" rx="8" fill="#fdfaf4" stroke="#e2dccb"/>
+  <text x="122" y="238" text-anchor="middle" font-size="17" font-weight="800" fill="#2b2620">会計ソフト</text>
+  <text x="122" y="258" text-anchor="middle" font-size="11" fill="#8a8172">経理・決算</text>
+  <rect x="58" y="272" width="128" height="34" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="122" y="293" text-anchor="middle" font-size="11.5" fill="#2b2620">売上・原価・利益</text>
+  <line x1="450" y1="146" x2="450" y2="170" stroke="#cfc7b2" stroke-width="2"/>
+  <rect x="392" y="170" width="116" height="30" rx="6" fill="#fdfaf4" stroke="#cfc7b2"/>
+  <text x="450" y="190" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2b2620">本部</text>
+  <rect x="250" y="200" width="400" height="150" rx="8" fill="#fdfaf4" stroke="#e2dccb"/>
+  <text x="450" y="234" text-anchor="middle" font-size="17" font-weight="800" fill="#2b2620">受発注システム</text>
+  <rect x="267" y="262" width="84" height="64" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="309" y="298" text-anchor="middle" font-size="13" fill="#2b2620">発注書</text>
+  <rect x="361" y="262" width="84" height="64" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="403" y="298" text-anchor="middle" font-size="13" fill="#2b2620">納品書</text>
+  <rect x="455" y="262" width="84" height="64" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="497" y="298" text-anchor="middle" font-size="13" fill="#2b2620">請求書</text>
+  <rect x="549" y="262" width="84" height="64" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="591" y="298" text-anchor="middle" font-size="13" fill="#2b2620">棚卸</text>
+  <line x1="800" y1="146" x2="800" y2="208" stroke="#cfc7b2" stroke-width="2"/>
+  <text x="800" y="198" text-anchor="middle" font-size="11" fill="#8a8172">その他チャネル</text>
+  <rect x="735" y="208" width="130" height="40" rx="6" fill="#fdfaf4" stroke="#e2dccb"/><text x="800" y="232" text-anchor="middle" font-size="13" fill="#2b2620">Webサイト</text>
+  <line x1="800" y1="248" x2="800" y2="258" stroke="#e2dccb" stroke-width="1.5"/>
+  <rect x="735" y="258" width="130" height="40" rx="6" fill="#fdfaf4" stroke="#e2dccb"/><text x="800" y="282" text-anchor="middle" font-size="13" fill="#2b2620">SNS</text>
+  <line x1="350" y1="350" x2="280" y2="426" stroke="#cfc7b2" stroke-width="2" stroke-dasharray="2 6"/>
+  <line x1="550" y1="350" x2="620" y2="426" stroke="#cfc7b2" stroke-width="2" stroke-dasharray="2 6"/>
+  <rect x="212" y="428" width="116" height="28" rx="6" fill="#fdfaf4" stroke="#cfc7b2"/>
+  <text x="270" y="447" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2b2620">店舗A</text>
+  <rect x="130" y="456" width="280" height="132" rx="8" fill="#fdfaf4" stroke="#e2dccb"/>
+  <text x="270" y="490" text-anchor="middle" font-size="15" font-weight="800" fill="#2b2620">受発注システム</text>
+  <rect x="138" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="178" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">発注書</text>
+  <rect x="230" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="270" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">納品書</text>
+  <rect x="322" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="362" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">棚卸</text>
+  <rect x="572" y="428" width="116" height="28" rx="6" fill="#fdfaf4" stroke="#cfc7b2"/>
+  <text x="630" y="447" text-anchor="middle" font-size="12.5" font-weight="700" fill="#2b2620">店舗B</text>
+  <rect x="490" y="456" width="280" height="132" rx="8" fill="#fdfaf4" stroke="#e2dccb"/>
+  <text x="630" y="490" text-anchor="middle" font-size="15" font-weight="800" fill="#2b2620">受発注システム</text>
+  <rect x="498" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="538" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">発注書</text>
+  <rect x="590" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="630" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">納品書</text>
+  <rect x="682" y="516" width="80" height="52" rx="6" fill="rgba(255,255,255,.7)" stroke="#e2dccb"/><text x="722" y="547" text-anchor="middle" font-size="12.5" fill="#2b2620">棚卸</text>
+  <line x1="270" y1="588" x2="270" y2="602" stroke="#cfc7b2" stroke-width="2"/>
+  <rect x="165" y="602" width="210" height="52" rx="8" fill="#fdfaf4" stroke="#a63a24"/>
+  <text x="270" y="627" text-anchor="middle" font-size="14" font-weight="700" fill="#a63a24">POS</text>
+  <text x="270" y="645" text-anchor="middle" font-size="10.5" fill="#8a8172">売上</text>
+  <line x1="630" y1="588" x2="630" y2="602" stroke="#cfc7b2" stroke-width="2"/>
+  <rect x="525" y="602" width="210" height="52" rx="8" fill="#fdfaf4" stroke="#a63a24"/>
+  <text x="630" y="627" text-anchor="middle" font-size="14" font-weight="700" fill="#a63a24">POS</text>
+  <text x="630" y="645" text-anchor="middle" font-size="10.5" fill="#8a8172">売上</text>
+  <line x1="630" y1="654" x2="630" y2="666" stroke="#cfc7b2" stroke-width="2"/>
+  <rect x="500" y="666" width="260" height="46" rx="8" fill="#fdfaf4" stroke="#a63a24" stroke-dasharray="5 3"/>
+  <text x="630" y="686" text-anchor="middle" font-size="12.5" font-weight="700" fill="#a63a24">モバイルオーダー</text>
+  <text x="630" y="702" text-anchor="middle" font-size="9" fill="#8a8172">一部店舗（注文・売上）</text>
+</svg>
+</div>
+<p class="a-fig-cap">実際の支援で使っている構成の概念図。頂点の「会社のAI」が、本部の会計・受発注、各店舗の仕入・売上、WebやSNSまでを横断して読む。A（台帳のように動かない情報）・B（日々流れる情報）・C（機微情報＝人事・個人情報など、扱いを分ける層）の3層に整理するのが設計の芯。既存システムはひとつも入れ替えていない。</p>
+</div>
+
 <h2>よくある質問</h2><div class="a-faq"><details><summary>古いシステムでもAIと繋げられますか？</summary><p>多くの場合可能です。CSVが出せる・画面が見られる・メールが送れる——このどれかができれば、接続の設計は立てられます。</p></details><details><summary>システム刷新とAI導入はどちらを先にすべきですか？</summary><p>AIが先で構いません。いまの業務の負担を軽くしながら、刷新が本当に必要かどうかを実データで判断できるようになります。</p></details><details><summary>情シス担当がいなくても大丈夫ですか？</summary><p>大丈夫です。接続の設計と構築はこちらで行い、日々の運用は現場のみなさんが回せる形に整えて引き継ぎます。</p></details></div>
 
 <div class="a-cta">

@@ -722,7 +722,7 @@
         var al=0.5+on*0.4;
         var s=S/48;
         ctx.save();
-        ctx.translate(x-S/2,y-S/2);ctx.scale(s,s);
+        ctx.translate(x,y);if(on>0.05)ctx.rotate(Math.sin(hp*Math.PI*3)*0.09*on);ctx.translate(-S/2,-S/2);ctx.scale(s,s);
         ctx.strokeStyle='rgba('+cr+','+cg+','+cb+','+al+')';
         ctx.lineWidth=1.6/s;ctx.lineCap='round';ctx.lineJoin='round';
         if(P2D[i])ctx.stroke(P2D[i]);

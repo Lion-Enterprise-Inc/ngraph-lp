@@ -37,6 +37,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=3">
+<style>
+/* 構造化パターンのこだま演出: 時々1つが首をかしげ、朱に灯る */
+.pat{transition:transform .35s ease}
+.pat svg{transition:stroke .5s}
+.pat.kodama svg{stroke:var(--accent);animation:kodamaTilt 1.7s ease-in-out}
+.pat.kodama .p-label{color:var(--accent);transition:color .5s}
+@keyframes kodamaTilt{0%,74%,100%{transform:rotate(0)}14%{transform:rotate(-8deg)}34%{transform:rotate(6deg)}52%{transform:rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.pat.kodama svg{animation:none}}
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -687,6 +696,21 @@
     window.addEventListener('load',draw);
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
   })();
+</script>
+<script>
+// こだま: 構造化パターンが時々こちらに気づく
+(function(){
+if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+var pats=Array.prototype.slice.call(document.querySelectorAll('.pat'));
+pats=pats.filter(function(p){return !p.className.match(/pat-etc/)});
+if(!pats.length)return;
+var last=-1;
+setInterval(function(){
+  var i;do{i=Math.floor(Math.random()*pats.length)}while(i===last&&pats.length>1);last=i;
+  var el=pats[i];el.classList.add('kodama');
+  setTimeout(function(){el.classList.remove('kodama')},1750);
+},4200);
+})();
 </script>
 </body>
 </html>
