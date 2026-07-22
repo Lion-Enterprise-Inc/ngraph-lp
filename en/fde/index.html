@@ -61,6 +61,7 @@
         { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on scope, duration, and integration complexity, so we quote after a free consultation and an on-site assessment — from a few-week sprint to months of embedded support, designed to your budget." } },
         { "@type": "Question", "name": "Can everything be done online?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Online-first is our default: we build live over screen share with your real data, from anywhere in Japan. On-site visits are also available." } },
         { "@type": "Question", "name": "What size and type of company is this for?", "acceptedAnswer": { "@type": "Answer", "text": "Mainly small and mid-sized companies, in any industry. You can start from a single department — accounting, sales, production, or stores." } },
+        { "@type": "Question", "name": "Do you have track record?", "acceptedAnswer": { "@type": "Answer", "text": "Our own AI products (including AI customer service for restaurants) run live in real restaurants in Fukui and Kanazawa, and we are currently embedded in the HQ of a 12-location restaurant group in Fukui, wiring AI between their existing ordering and accounting systems. We only publish outcome figures we have actually measured." } },
         { "@type": "Question", "name": "Do we need to buy a specific AI tool?", "acceptedAnswer": { "@type": "Answer", "text": "No. We use what you already have (ChatGPT, Claude, Copilot, etc.). If you have nothing yet, we help select the right tool for your work." } },
         { "@type": "Question", "name": "Do we need to replace our existing systems?", "acceptedAnswer": { "@type": "Answer", "text": "No. We design around the systems, Excel files, and chat tools you already use, and weave AI between them." } },
         { "@type": "Question", "name": "Can we switch to a different AI later (e.g. ChatGPT to Claude)?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We organize your business data, workflows, and prompts in a form that does not depend on any specific tool, so when a better AI appears you can swap it in. Not being locked into a single AI vendor is a core design principle for us." } },
@@ -134,6 +135,16 @@
 .lead-done h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:8px}
 .lead-done p{font-size:.85rem;color:var(--text-2);line-height:1.9}
 /* 事例・記事 */
+.case-feature{max-width:860px;margin:0 auto 26px;background:var(--bg-card);border:1.5px solid var(--accent);border-radius:4px;padding:32px 36px;box-shadow:0 14px 34px rgba(166,58,36,.07)}
+.case-feature .cf-tag{display:inline-block;background:var(--accent);color:#fdfaf4;font-size:.68rem;font-weight:700;letter-spacing:.14em;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.case-feature h3{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.8;margin-bottom:14px}
+.cf-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.cf-fact{border:1px solid var(--border);border-radius:3px;padding:14px 16px;background:rgba(255,255,255,.5)}
+.cf-fact .n{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);line-height:1.5}
+.cf-fact .d{font-size:.76rem;color:var(--text-3);line-height:1.8;margin-top:4px}
+.case-feature>p{font-size:.87rem;color:var(--text-2);line-height:2}
+.cf-note{font-size:.74rem;color:var(--text-3);margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+@media(max-width:768px){.case-feature{padding:24px 20px}.cf-facts{grid-template-columns:1fr}}
 .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .article-links{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:900px;margin:36px auto 0}
 .article-links a{display:block;padding:14px 18px;border:1px solid var(--border);border-radius:3px;background:var(--bg-card);font-size:.84rem;color:var(--text-2);line-height:1.7}
@@ -466,6 +477,17 @@
       <h2 class="section-title"><span class="nb">A company that builds and runs</span> <span class="nb">its own AI walks with you.</span></h2>
       <p class="section-sub">We don't just talk about AI — we build it and run it in production.</p>
     </div>
+    <div class="case-feature reveal">
+      <span class="cf-tag">Ongoing engagement</span>
+      <h3>Restaurant group HQ (Fukui, 12 locations) — embedded in back-office AI adoption</h3>
+      <p>Our first on-site review surfaced numbers that had stopped moving and work still running on manual effort. We are now wiring AI between their existing ordering, accounting and chat systems — without replacing any of them.</p>
+      <div class="cf-facts">
+        <div class="cf-fact"><div class="n">~2 years stalled</div><div class="d">Cost-calculation spreadsheets had stopped being updated (at time of review)</div></div>
+        <div class="cf-fact"><div class="n">~100 hires/year</div><div class="d">New-staff orientation delivered manually, hours per person</div></div>
+        <div class="cf-fact"><div class="n">12 locations</div><div class="d">HQ operations across all stores; existing systems stay in place</div></div>
+      </div>
+      <p class="cf-note">* We only publish outcome figures we have actually measured (measurement in progress). No inflated "X% saved" claims.</p>
+    </div>
     <div class="case-grid">
       <div class="card product-card reveal">
         <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">AI customer service for restaurants · in-house</span></div>
@@ -623,6 +645,7 @@
       <details><summary>How much does it cost?</summary><p>It depends on scope, duration, and integration complexity, so we quote after a free consultation and assessment — from a few-week sprint to months of embedded support.</p></details>
       <details><summary>Can everything be done online?</summary><p>Yes. Online-first is our default: we build live over screen share with your real data, from anywhere in Japan. On-site visits are also available.</p></details>
       <details><summary>What size and type of company is this for?</summary><p>Mainly small and mid-sized companies, in any industry. You can start from a single department.</p></details>
+      <details><summary>Do you have track record?</summary><p>Our own AI products (including AI customer service for restaurants) run live in real restaurants in Fukui and Kanazawa, and we are currently embedded in the HQ of a 12-location restaurant group in Fukui, wiring AI between their existing ordering and accounting systems. We only publish outcome figures we have actually measured — no inflated percentages.</p></details>
       <details><summary>Do we need to buy a specific AI tool?</summary><p>No. We use what you already have (ChatGPT, Claude, Copilot, etc.), or help you select the right one.</p></details>
       <details><summary>Do we need to replace our existing systems?</summary><p>No. We design around the systems, Excel files, and chat tools you already use.</p></details>
       <details><summary>Can we switch to a different AI later (e.g. ChatGPT → Claude)?</summary><p>Yes. We organize your business data, workflows, and prompts in a form that does not depend on any specific tool, so when a better AI appears you can swap it in. Not being locked into a single AI vendor is a core design principle for us.</p></details>
