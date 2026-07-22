@@ -415,3 +415,17 @@ img{max-width:100%;display:block}
   .reveal{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
 }
+
+/* ── 記事可読性強化 2026-07-22（本文濃色化・表の禁則/最小幅・セル内改行対策） ── */
+.article-wrap p,.article-wrap li{color:var(--text);font-size:.95rem}
+.article-wrap .a-toc{color:var(--text)}
+.article-wrap .a-note{color:var(--text)}
+.article-wrap .a-faq details p{color:var(--text)}
+.article-wrap .a-table{min-width:540px;font-size:.88rem}
+.article-wrap .a-table th,.article-wrap .a-table td{color:var(--text);line-height:1.9;padding:11px 14px}
+.article-wrap .a-table td:first-child{white-space:nowrap}
+.article-wrap .a-fig-cap,.article-wrap .a-src,.article-wrap .a-date{color:var(--text-3)}
+@media(max-width:768px){
+  .article-wrap p,.article-wrap li{font-size:.97rem;line-height:2.1}
+  .article-wrap .a-table{font-size:.9rem}
+}
