@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [Gemini 3.6 Flashが出力価格を引き下げ——AIの壁は「価格」から「使い方」の伴走へ](https://ngraph.jp/blog/20260723-openai-small-business.html)
 - [中小企業のAI導入率は20.4%——足りないのは費用より「事例と選び方」（中小機構調査の読み解き）](https://ngraph.jp/blog/20260722-sme-ai-adoption.html)
 - [OpenAIが中小企業向けプログラムを発表——AI最大手が「研修と伴走」に踏み込んだ](https://ngraph.jp/blog/20260722-openai-smb.html)
 - [FDE（フォワード・デプロイド・エンジニア）とは](https://ngraph.jp/blog/what-is-fde.html)
