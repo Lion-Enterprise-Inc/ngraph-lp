@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [省力化投資補助金 第7回が7月31日締切——中小企業の人手不足投資に最大1億円](https://ngraph.jp/blog/20260725-shoryokuka-subsidy.html)
 - [デジタル化・AI導入補助金2026とは？旧IT導入補助金でAIツールが補助対象に——上限450万円の使い方](https://ngraph.jp/blog/20260724-ai-subsidy-2026.html)
 - [OpenAIが「Presence」を発表——AIエージェント導入を担うのは"人（FDE）"だった](https://ngraph.jp/blog/20260724-openai-presence-fde.html)
 - [Gemini 3.6 Flashが出力価格を引き下げ——AIの壁は「価格」から「使い方」の伴走へ](https://ngraph.jp/blog/20260723-openai-small-business.html)
