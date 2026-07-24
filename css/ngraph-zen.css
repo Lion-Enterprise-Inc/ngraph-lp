@@ -421,11 +421,15 @@ img{max-width:100%;display:block}
 .article-wrap .a-toc{color:var(--text)}
 .article-wrap .a-note{color:var(--text)}
 .article-wrap .a-faq details p{color:var(--text)}
-.article-wrap .a-table{min-width:540px;font-size:.88rem}
-.article-wrap .a-table th,.article-wrap .a-table td{color:var(--text);line-height:1.9;padding:11px 14px}
-.article-wrap .a-table td:first-child{white-space:nowrap}
+.article-wrap .a-table{min-width:600px;font-size:.88rem}
+.article-wrap .a-table th,.article-wrap .a-table td{color:var(--text);line-height:1.9;padding:11px 14px;min-width:6.4em;vertical-align:top;word-break:normal;overflow-wrap:anywhere}
+/* 1列目は折返し許可（長い見出しで列が横に伸び他列が潰れるのを防ぐ）。短い語は最小幅で整う */
+.article-wrap .a-table td:first-child{white-space:normal;min-width:8em;font-weight:500}
+/* 数字だけのセルが「20.4／%」のように途中改行しないよう保護 */
+.article-wrap .a-table .a-num{white-space:nowrap}
 .article-wrap .a-fig-cap,.article-wrap .a-src,.article-wrap .a-date{color:var(--text-3)}
 @media(max-width:768px){
   .article-wrap p,.article-wrap li{font-size:.97rem;line-height:2.1}
   .article-wrap .a-table{font-size:.9rem}
+  .article-wrap .a-table th,.article-wrap .a-table td{min-width:6em;padding:10px 12px}
 }
