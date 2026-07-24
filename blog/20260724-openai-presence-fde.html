@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>OpenAIが企業向けAIエージェント「Presence」発表——導入を担うのは&quot;人（FDE）&quot;だった | NGraphブログ</title>
+<meta name="description" content="OpenAIが2026年7月22日に発表したエンタープライズ向けAIエージェント基盤「Presence」。導入を担うのは同社のForward Deployed Engineer。AIの壁はモデル性能ではなく現場実装だという話を、中小企業の視点で解説します。">
+<meta property="og:title" content="OpenAIが企業向けAIエージェント「Presence」発表——導入を担うのは&quot;人（FDE）&quot;だった | NGraphブログ">
+<meta property="og:description" content="OpenAIの新基盤「Presence」の導入を担うのは同社のFDE。AIの壁はモデル性能ではなく現場実装という話を中小企業目線で解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260724-openai-presence-fde.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260724-openai-presence-fde.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260724-openai-presence-fde.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=4">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAIが「Presence」を発表——AIエージェント導入を担うのは\"人（FDE）\"だった",
+  "image": "https://ngraph.jp/assets/blog/20260724-openai-presence-fde.jpg",
+  "description": "OpenAIが2026年7月22日に発表したエンタープライズ向けAIエージェント基盤「Presence」。導入を担うのは同社のForward Deployed Engineer。AIの壁はモデル性能ではなく現場実装だという話を、中小企業の視点で解説します。",
+  "datePublished": "2026-07-24T07:00:00+09:00",
+  "dateModified": "2026-07-24T07:00:00+09:00",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260724-openai-presence-fde.html",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>OpenAIが「Presence」を発表——AIエージェント導入を担うのは"人（FDE）"だった</h1>
+  <span class="a-date">2026.07.24 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260724-openai-presence-fde.jpg" alt="">
+
+<p>2026年7月22日、OpenAIが企業向けAIエージェント基盤「<a href="https://openai.com/index/introducing-openai-presence/" target="_blank" rel="noopener">OpenAI Presence</a>」を発表しました。音声・チャットのAIエージェントを、企業が自社の業務で実際に使える形にするためのマネージド基盤です。結論: これは中小企業にとって、AI導入の壁はモデルの賢さではなく"現場で使える状態にする人と実装"にある、という話です。</p>
+
+<h2>何が起きたか</h2>
+<p>OpenAIは2026年7月22日、企業向けの音声・チャットAIエージェントを構築・展開・運用・継続改善するためのマネージド基盤「OpenAI Presence」を発表しました。対象は顧客対応や社内業務など、量が多く難易度も高い業務です。基盤の構成要素として、ポリシー・標準手順（業務ごとの判断基準）、ガードレール（AIにやらせて良い/悪いを事前に決める安全柵）、承認済みアクション（実行してよい操作の一覧）、シミュレーション、評価（eval、性能を測るテスト）、Codexによる継続改善、human-in-the-loop（重要な判断は人が確認する仕組み）、企業システムとの接続が挙げられています。ここで見逃せないのが、導入を担うのがOpenAI自身のForward Deployed Engineer（FDE＝顧客の現場に常駐して実装するエンジニア）と一部のシステムインテグレーターだという点です。2026年7月時点で、これは自分で契約してすぐ使えるセルフサーブの製品ではありません。</p>
+
+<h2>なぜ重要か</h2>
+<p>注目すべきは、この選択をしたのが世界最強クラスのAIモデルを持つOpenAI自身だという点です。もし「高性能なモデルさえ渡せば、あとは企業が自分で動かせる」のであれば、OpenAIはPresenceをセルフサーブのAPIとして公開すれば済んだはずです。しかし実際に選んだのは、FDEが顧客の現場に入り、システムとの接続・ガードレールの設計・評価基準づくり・継続的な改善までを担う方式でした。</p>
+<p>これは、AI導入の律速（ボトルネックになっている工程）が、モデルの賢さではなく現場実装——接続・運用・ガバナンス——に移っていることを示しています。モデルの性能はもう十分に高い水準に達しています。足りていないのは、それを自社の業務に接続し、安全に使える状態に組み上げ、使われ続けるように改善し続ける「人」です。</p>
+<p>私たちNGraphは、エンジニアが顧客の現場に入って業務のAI化に伴走するFDE型の支援を独自に続けてきましたが、この構造は特別なものではなく、業界そのものが同じ結論に向かって収斂しつつあると捉えるのが正確です。世界最大手が「モデルを配るだけでは足りない」と判断したことは、中小企業が自社のAI導入で直面している壁が、決して特殊な事情ではないことの裏づけと言えます。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>「どのAIを買うか」より先に、「誰が現場に入って接続・運用・評価するか」を決める。</strong>OpenAIほどの会社ですら、モデル単体では導入は完了しないと判断しました。ツール選定を急ぐ前に、社内の推進役か外部の伴走者を先に決めるほうが遠回りになりません。</li>
+<li><strong>小さく1業務で始め、ガードレール・承認フロー・評価基準を"先に"用意してから広げる。</strong>例えば、よくある問い合わせ対応や定型書類の作成のような、範囲が区切られた業務から着手し、AIにやらせて良いこと・悪いことの線引きと出来栄えを測る基準を最初に決めてから、対象業務を広げていくのが安全です。</li>
+<li><strong>導入費は補助金で圧縮できる。</strong>下記の短信①で触れる「デジタル化・AI導入補助金2026」を使えば、ソフトウェア購入費やクラウド利用料の一部を補助でまかなえます。</li>
+</ul>
+
+<h2>その他の注目ニュース（7月24日 朝時点）</h2>
+<ul>
+<li><strong>「デジタル化・AI導入補助金2026」第4次締切は8月25日</strong> — 令和8年度の同補助金は、旧「IT導入補助金」から改称され、制度名に初めて「AI」が入りました。第4次締切は2026年8月25日(火)17:00、交付決定予定は10月7日(水)です。通常枠は補助上限450万円以下（4プロセス以上）〜150万円未満（1プロセス以上）、補助率1/2〜2/3以内。対象経費はソフトウェア購入費・クラウド利用料（最大2年分）が必須で、導入コンサルや研修・保守サポートはオプションで組めます（<a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/" target="_blank" rel="noopener">参考</a>）。AIツール導入費の半分〜2/3が戻る計算になり、名称に「AI」が入った初年度で生成AIの業務導入が主眼に据えられています。今から準備すれば第4次に間に合います。</li>
+<li><strong>DeepSeekの旧APIモデルが7月25日未明に完全退役</strong> — DeepSeekの旧モデル「deepseek-chat」「deepseek-reasoner」が、2026年7月24日15:59(UTC)＝日本時間7月25日0:59で完全退役し、以後はアクセスするとエラーになります。移行先はV4系（deepseek-v4-pro / deepseek-v4-flash）で、base_urlはそのまま、モデル名の変更だけで移行できます（<a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener">参考</a>）。APIの型番は予告して消えるものです。特定のモデル名に業務を直結させると移行コストが発生するため、ツールは「乗り換えやすさ」も含めて選ぶべきです。</li>
+<li><strong>Moonshot AI、2.8兆パラメータの「Kimi K3」を7月27日公開予定</strong> — Moonshot AIが、2.8兆パラメータの大型オープンウェイトモデル「Kimi K3」の重みを2026年7月27日にModified MITライセンスで一般公開すると告知しました（現時点は公開予定の告知段階です）。公開されれば最大級のオープンモデルの一つになります（<a href="https://huggingface.co/moonshotai" target="_blank" rel="noopener">参考</a>）。世界最大級のオープンモデルが無料で使えるとしても、中小企業が自前でサーバーを用意して動かす必要はありません。価値は「使いこなし」と「自社データへの接続」に移っています。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>OpenAIほどの企業が「モデルを配るだけでは足りない」と判断したことは、業界全体が現場実装の重要性という同じ結論に向かっていることの表れだと私たちは見ています。<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">AI導入の現場実装に伴走する→ NGraphのFDE支援</a></div>
+
+<div class="a-src">参考（一次情報）：<br>
+・OpenAI「<a href="https://openai.com/index/introducing-openai-presence/" target="_blank" rel="noopener">Introducing OpenAI Presence</a>」（2026年7月22日）<br>
+・OpenAI「<a href="https://openai.com/business/openai-presence/" target="_blank" rel="noopener">OpenAI Presence</a>」事業ページ<br>
+・中小機構「<a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/" target="_blank" rel="noopener">デジタル化・AI導入補助金2026</a>」通常枠（第4次締切2026年8月25日）<br>
+・DeepSeek「<a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener">API Docs</a>」（旧モデル退役アナウンス）<br>
+・Moonshot AI「<a href="https://huggingface.co/moonshotai" target="_blank" rel="noopener">moonshotai</a>」（Hugging Face）<br>
+・あわせて読む：<a href="/blog/20260722-sme-ai-adoption.html">中小企業のAI導入率は20.4%——足りないのは費用より「事例と選び方」だった</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
