@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [飲食店の人手不足はなぜ解消しないのか——数字で見る「採用で埋める」の限界と省力化の現在地](https://ngraph.jp/blog/20260726-inshoku-jinbusoku.html)
 - [Claude Opus 5登場、AIエージェントは"高性能・低コスト"へ——中小企業は最上位を追わなくていい](https://ngraph.jp/blog/20260726-claude-opus5-smb.html)
 - [GビズIDとは？補助金申請の最初の壁を「3アカウント・発行日数・2026年新設の有効期限」で解説](https://ngraph.jp/blog/20260725-gbizid.html)
 - [省力化投資補助金 第7回が7月31日締切——中小企業の人手不足投資に最大1億円](https://ngraph.jp/blog/20260725-shoryokuka-subsidy.html)
