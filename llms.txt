@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [訪日客の飲食費は年2兆円規模——中小飲食店の多言語対応を、AIで"省力化"する現実解](https://ngraph.jp/blog/20260727-inbound-multilingual.html)
 - [デジタル化・AI導入補助金、四次締切は8月25日——中小企業のAI導入を国が後押し](https://ngraph.jp/blog/20260727-ai-subsidy-deadline.html)
 - [飲食店の人手不足はなぜ解消しないのか——数字で見る「採用で埋める」の限界と省力化の現在地](https://ngraph.jp/blog/20260726-inshoku-jinbusoku.html)
 - [Claude Opus 5登場、AIエージェントは"高性能・低コスト"へ——中小企業は最上位を追わなくていい](https://ngraph.jp/blog/20260726-claude-opus5-smb.html)
