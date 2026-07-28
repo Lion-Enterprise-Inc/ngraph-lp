@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [AIに社内の道具を使わせる共通規格「MCP」が新版に(7/28)——中小企業のツール選びが変わる](https://ngraph.jp/blog/20260729-mcp-standard-smb.html)
 - [新事業進出・ものづくり補助金、第1回公募が8月31日スタート——設備投資・新事業を最大数千万円で後押し](https://ngraph.jp/blog/20260728-shinjigyo-monodukuri-subsidy.html)
 - [訪日客の飲食費は年2兆円規模——中小飲食店の多言語対応を、AIで"省力化"する現実解](https://ngraph.jp/blog/20260727-inbound-multilingual.html)
 - [デジタル化・AI導入補助金、四次締切は8月25日——中小企業のAI導入を国が後押し](https://ngraph.jp/blog/20260727-ai-subsidy-deadline.html)
