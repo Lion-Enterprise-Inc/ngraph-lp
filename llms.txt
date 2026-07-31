@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」](https://ngraph.jp/blog/20260801-ai-agent-permission.html)
 - [生成AI利用率86.4%と34.5%はどちらも本当——数字のズレと「組織的な取組なし27%」の壁](https://ngraph.jp/blog/20260731-seisei-ai-riyoritsu.html)
 - [OpenAIがGPT-5.6の一部を最大80%値下げ（7/30）——中小企業のAI費用は「乗り換え前提」で組む](https://ngraph.jp/blog/20260731-openai-price-cut.html)
 - [EUのAI透明性ルールが8月2日始動——中小企業も「これはAIです」を今から](https://ngraph.jp/blog/20260730-eu-ai-act-transparency.html)

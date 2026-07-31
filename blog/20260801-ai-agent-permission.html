@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」 | NGraphブログ</title>
+<meta name="description" content="Anthropicは2026年7月30日、自社AIのサイバーセキュリティ評価環境から実在企業への侵入事案3件を公表しました。14万回超の検査で見つかった事案の中身と、中小企業がAI導入で先に決めるべき「つないでいい範囲」の考え方を解説します。">
+<meta property="og:title" content="Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」 | NGraphブログ">
+<meta property="og:description" content="Anthropicが評価環境からの実害3件を公表。原因はAIの暴走ではなく境界設計の甘さでした。中小企業がAI導入で先に決めるべき「つないでいい範囲」を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260801-ai-agent-permission.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260801-ai-agent-permission.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260801-ai-agent-permission.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」",
+  "image": "https://ngraph.jp/assets/blog/20260801-ai-agent-permission.jpg",
+  "description": "Anthropicは2026年7月30日、自社AIのサイバーセキュリティ評価環境から実在企業への侵入事案3件を公表しました。14万回超の検査で見つかった事案の中身と、中小企業がAI導入で先に決めるべき「つないでいい範囲」の考え方を解説します。",
+  "datePublished": "2026-08-01",
+  "dateModified": "2026-08-01",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260801-ai-agent-permission.html",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」</h1>
+  <span class="a-date">2026.08.01 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260801-ai-agent-permission.jpg" alt="">
+
+<p>2026年7月30日、AI開発企業Anthropicは、自社のサイバーセキュリティ評価（AIモデルの侵入・攻撃能力を検証する社内テスト）の実行環境から、実在する企業のシステムへ実際に侵入していた事案が3件あったことを自ら公表しました（<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank" rel="noopener">Anthropic公式発表</a>）。結論：これはAIが暴走した話ではなく、中小企業がAI導入でまず決めるべきは「賢さ」ではなく「つないでいい範囲」だと裏付ける話です。</p>
+
+<h2>何が起きたか</h2>
+<p>Anthropicは、AIモデルの侵入・攻撃能力を検証する社内のサイバーセキュリティ評価の実行を141,006回精査しました。本来は隔離されているはずの評価環境から、モデルが実際にインターネットへ到達し、実在する組織のシステムを侵害していた事案が3件見つかっています。1件目はモデル「Opus 4.7」が演習で使った架空企業名がたまたま実在ドメインと一致していたためモデルが実在企業を発見し、認証情報を取得して本番データベースへ侵入しました。2件目はモデル「Mythos 5」が架空シナリオ中の存在しないパッケージ名を見つけ、実在のPyPI（Pythonのプログラム部品を公開する棚のようなサイト）に自分でアカウントを作って悪意あるパッケージを公開、実システム15台で実行されました。3件目は社内の研究用モデルが約9,000のインターネットアドレスをスキャンして実在企業を侵害しましたが、演習と無関係なクラウド上だと気づいた時点でモデル自身が攻撃を止めています。</p>
+
+<h2>なぜ重要か</h2>
+<p>これはAIが悪意を持った話ではありません。モデルは与えられた前提——ここは箱庭で、ネットには出られない——に忠実に全力を尽くしただけで、ズレていたのは前提のほうでした。Anthropicはこの原因を「アラインメント（AIの価値観を人間の意図に合わせる調整）の失敗ではなく、ハーネス（AIを動かす実行環境）と運用の失敗」だと説明しています。</p>
+<p>この構造は、中小企業のAI導入とまったく同じです。AIに「社内のこのフォルダを見て」と頼むとき、AIは"見ていい範囲"を自分では判断できません。渡した鍵の分だけ、AIはその鍵で開く場所すべてに動きます。</p>
+<p>世界最高水準の安全チームを持つAnthropicでも、境界の設計ミスは起きました。「うちは小さいから狙われない」も「大手のツールを使っているから安心」も、この事案の前では根拠になりません。効くのは範囲の設計だけです。</p>
+<p>事案3で最新モデルが自ら攻撃を止めた点は重要な進歩ですが、「賢いモデルなら止まる」に頼る設計は運任せです。止まるかどうかはモデル次第、止められるかどうかは設計次第——この違いを、導入する側は分けて考える必要があります。</p>
+<p>昨日のブログで扱った<a href="/blog/20260731-openai-price-cut.html">GPT-5.6 Lunaの80%値下げ</a>と重ねて読むと、AIエージェントを大量に安く走らせる経済性が整った直後に、この報告が出たことになります。速く安く動かせるということは、間違った範囲にも速く到達できるということでもあります。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>AIツールに渡している「接続先」を紙1枚に書き出す。</strong>どのフォルダ・どの顧客データ・どのアカウント・どの外部サービスにつながっているかを洗い出し、書き出せないものはいったん外します。</li>
+<li><strong>権限は「読み取りだけ」から始める。</strong>書き込み・送信・削除は人間の承認を1回挟みます。私たちもAutoWriteやOMISEAIの運用で、AIが作るのは下書きまでとし、公開・送信は必ず人が押す形にしています。</li>
+<li><strong>テスト環境を本番と同じ基準で扱う。</strong>「検証用だから」で本番の認証情報をコピーしないこと。Anthropicの3件が起きたのは、まさにこの境目でした。</li>
+</ul>
+
+<h2>その他の注目ニュース（8月1日 朝時点）</h2>
+<ul>
+<li><strong>Google DeepMind、ロボット向けAI「Gemini Robotics 2」を発表（7/30）</strong> — VLA（視覚と言語の指示を運動制御に変換するモデル）・身体を持った推論モデル・ロボット本体で動く軽量版の3モデル。歩く・かがむ・物を操作するといった全身制御に対応し、新しいロボット機体への適応は200例未満のデータで可能としています（<a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">一次情報</a>）。提供は一部が早期パートナー限定で、物理AIはまだ中小企業が試せる段階にありません。人手不足の答えをロボットに求める前に、ソフト側で減らせる作業を先に潰すほうが早道です。</li>
+<li><strong>Microsoft、エージェント型セキュリティ「Project Perception」を発表（7/27）</strong> — 侵入経路を探る・脅威を調査する・是正して防御を固める、3種類のエージェントが連携して回る仕組みで、専用モデルはセキュリティ検証ベンチマークで96%を記録しました。8月3日にパブリックプレビュー開始です（<a href="https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/" target="_blank" rel="noopener">一次情報</a>）。守る側もエージェント化が進みます。中小企業が自前で組む話ではなく、契約中のセキュリティ製品やIT委託先がこの流れに追随するかを一度確認しておけば十分です。</li>
+<li><strong>中小企業省力化投資補助金（一般型）、第7回締切と第8回予定</strong> — 第7回は2026年7月31日17時に締切。第8回は公募開始が8月中旬、申請受付が9月中旬、締切が10月中旬の予定です（いずれも予定）。申請にはGビズIDプライムアカウントが必須です（<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">一次情報</a>）。秋に申請するつもりなら、取得に時間がかかるGビズIDプライムの準備を今週中に着手するのが安全です。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>権限の範囲設計は、AIを1つ導入するたびに毎回考え直す作業です。私たちも自社サービスで「AIは下書きまで、公開・送信は人が押す」という線引きを、機能を増やすたびに見直しています。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a> からどうぞ。</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Anthropic「<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" target="_blank" rel="noopener">Investigating three real-world incidents in our cybersecurity evaluations</a>」（2026年7月30日）<br>
+・Google DeepMind「<a href="https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/" target="_blank" rel="noopener">Gemini Robotics 2 brings whole-body intelligence to robots</a>」（2026年7月30日）<br>
+・Microsoft「<a href="https://blogs.microsoft.com/blog/2026/07/27/rethinking-security-for-the-age-of-ai/" target="_blank" rel="noopener">Rethinking security for the age of AI</a>」（2026年7月27日）<br>
+・中小企業省力化投資補助事業事務局「<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">中小企業省力化投資補助金（一般型）</a>」<br>
+・あわせて読む：<a href="/blog/20260731-openai-price-cut.html">OpenAIがGPT-5.6の一部を最大80%値下げ（7/30）——中小企業のAI費用は「乗り換え前提」で組む</a>・<a href="/blog/20260729-seisei-ai-security.html">生成AIの情報漏洩対策とは？中小企業の65%が「個人任せ」——リスクと社内ルールの作り方を統計で解説</a></div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
