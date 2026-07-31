@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [生成AI利用率86.4%と34.5%はどちらも本当——数字のズレと「組織的な取組なし27%」の壁](https://ngraph.jp/blog/20260731-seisei-ai-riyoritsu.html)
 - [OpenAIがGPT-5.6の一部を最大80%値下げ（7/30）——中小企業のAI費用は「乗り換え前提」で組む](https://ngraph.jp/blog/20260731-openai-price-cut.html)
 - [EUのAI透明性ルールが8月2日始動——中小企業も「これはAIです」を今から](https://ngraph.jp/blog/20260730-eu-ai-act-transparency.html)
 - [生成AIの情報漏洩対策とは？中小企業の65%が「個人任せ」——リスクと社内ルールの作り方を統計で解説](https://ngraph.jp/blog/20260729-seisei-ai-security.html)
