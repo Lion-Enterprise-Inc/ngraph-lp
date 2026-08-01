@@ -10,10 +10,10 @@
   gtag('js', new Date());
   gtag('config', 'G-L96HMXRK1D');
 </script>
-<title>AI導入支援の費用はどう考えればいいか——「要相談」の中身を正直に書く | NGraphブログ</title>
-<meta name="description" content="AI導入支援の料金が「要相談」になりがちな理由と、見積の内訳を決める変数、費用対効果の考え方を正直に解説します。">
-<meta property="og:title" content="AI導入支援の費用はどう考えればいいか——「要相談」の中身を正直に書く | NGraphブログ">
-<meta property="og:description" content="AI導入支援の料金が「要相談」になりがちな理由と、見積の内訳を決める変数、費用対効果の考え方を正直に解説します。">
+<title>AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳 | NGraphブログ</title>
+<meta name="description" content="AI導入の費用は何にいくらかかるのか。補助金の採択5万件の交付額分布、3制度の補助率・上限、費用でつまずくNGパターンを一次情報で解説します。">
+<meta property="og:title" content="AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳 | NGraphブログ">
+<meta property="og:description" content="AI導入の費用は何にいくらかかるのか。補助金の採択5万件の交付額分布、3制度の補助率・上限、費用でつまずくNGパターンを一次情報で解説します。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ngraph.jp/blog/ai-cost.html">
 <meta property="og:site_name" content="株式会社NGraph">
@@ -21,22 +21,23 @@
 <meta property="og:image" content="https://ngraph.jp/assets/blog/ai-cost.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ngraph.jp/blog/ai-cost.html">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
-<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}</style>
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "AI導入支援の費用はどう考えればいいか——「要相談」の中身を正直に書く",
+  "headline": "AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳",
   "image": "https://ngraph.jp/assets/blog/ai-cost.jpg",
-  "description": "AI導入支援の料金が「要相談」になりがちな理由と、見積の内訳を決める変数、費用対効果の考え方を正直に解説します。",
+  "description": "AI導入の費用は何にいくらかかるのか。補助金の採択5万件の交付額分布、3制度の補助率・上限、費用でつまずくNGパターンを一次情報で解説します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-17",
+  "dateModified": "2026-08-01",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/ai-cost.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
@@ -53,7 +54,7 @@
    "name": "最低いくらから頼めますか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "範囲を絞った数週間のスポット支援から受けています。金額は対象業務の範囲と連携の複雑さで変わるため、無料相談で前提を伺ったうえで概算をお答えしています。"
+    "text": "範囲を絞った数週間のスポット支援から受けています。金額は対象範囲・訪問頻度と期間・連携の複雑さという3つの変数で変わるため、無料相談で前提を伺ったうえで概算をお答えしています。"
    }
   },
   {
@@ -61,7 +62,7 @@
    "name": "補助金は使えますか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "使える場合が多いです（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。"
+    "text": "使える場合が多いです。デジタル化・AI導入補助金2026、中小企業省力化投資補助金（一般型）、業務改善助成金など、AI導入に使える制度は複数あります（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。"
    }
   },
   {
@@ -69,7 +70,39 @@
    "name": "導入後の月額費用はどれくらいかかりますか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "AIの利用料（APIやツールの課金）は使用量に応じて変わります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。"
+    "text": "AIの利用料（APIやツールの課金）は使用量に応じて変わります。デジタル化・AI導入補助金2026ではクラウド利用料も補助対象ですが最大2年分までなので、3年目以降は自己負担になる前提で予算を組む必要があります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "補助金の上限額まで使ったほうが得ですか",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "そうとは限りません。IT導入補助金2024の採択実績では、交付額100万円未満の採択が18,417件（36.7%）で最多だった一方、上限450万円に達した採択は105件（0.2%）にとどまりました。上限は天井であって相場ではなく、自社の課題に必要な範囲で設計するのが基本です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "補助金が不採択だったらどうなりますか",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "IT導入補助金の採択率は2024年の69.9%から2025年は43.8%まで下がっています。不採択でも実施できるよう、補助金が採択された前提で資金繰りを組まないことが重要です。交付決定前に発注・契約すると対象外になる原則もあるため、申請から着手までの順序を最初に設計しておく必要があります。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "AI導入の費用は経費と資産のどちらですか",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "案件によって扱いが異なるため、断定はできません。会計処理・税務上の扱いは顧問税理士にご確認いただくことをおすすめします。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "まず何から見積もればいいですか",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "対象範囲（どの業務か）・訪問頻度と期間・既存システムとの連携の複雑さ、という3つの変数を整理することから始めます。当社では無料相談と現場診断を経てから見積もりを出しています。「まだ何を頼むか決まっていない」段階のご相談も歓迎です。"
    }
   }
  ]
@@ -91,41 +124,159 @@
 </header>
 
 <article class="article-wrap">
-  <div class="a-label">Blog</div>
-  <h1>AI導入支援の費用はどう考えればいいか——「要相談」の中身を正直に書く</h1>
-  <span class="a-date">2026.07.14 ｜ 株式会社NGraph</span>
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳</h1>
+  <span class="a-date">2026.07.14（2026.08.01 全面改稿） ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/ai-cost.jpg" alt="">
 
-<p>NGraphのFDE型伴走支援の料金は「要相談」です。ぼかしたいからではなく、<strong>課題の規模によって適正な支援の形が大きく変わる</strong>ためです。この記事では、見積が何で決まるのかを正直に書きます。</p>
-<h2>見積を決める3つの変数</h2>
+<p>AI導入の費用は「ツールの利用料」だけでは決まりません。設計や定着にかかる手間まで含めて考える必要があり、実際に中小企業がいくら動かしているかは、補助金の交付実績から推定できます。中小企業庁「デジタル化・AI導入補助金2026の概要」（令和8年4月）によれば、IT導入補助金2024の採択50,171件のうち、交付額100万円未満が18,417件（36.7%）で最多でした。この記事では、この採択データを軸に、費用の内訳と見積の考え方を一次情報で整理します。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・採択5万件が示す交付額の分布と、そこから見える実額のレンジ<br>
+・「上限450万円」と「交付額100万円未満が最多」がズレる3つの理由<br>
+・使える制度3つの実額と、費用でつまずく6つのNGパターン</div>
+
+<h2>AI導入の費用は「何に」かかるのか——3つの費目</h2>
+<p>AI導入の費用を考えるとき、まず整理すべきは「何にいくらかかるか」という費目です。大きく分けると3つに整理できます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>費目</th><th>補助対象になるか</th><th>発生タイミング</th></tr>
+<tr><td>ツール利用料</td><td>クラウド利用料として対象（最大2年分）</td><td>契約後、毎月継続</td></tr>
+<tr><td>設計・構築</td><td>ソフトウェア購入費・導入関連費（オプション）として対象</td><td>導入時に一括</td></tr>
+<tr><td>定着支援</td><td>導入関連費（役務）として対象</td><td>導入時〜運用開始後</td></tr>
+</table></div>
+<p>中小企業庁「デジタル化・AI導入補助金2026の概要」（令和8年4月）によれば、通常枠の補助対象経費には、ソフトウェア購入費、クラウド利用料（最大2年分）、導入関連費（オプション＝機能拡張やデータ連携ツールの導入・セキュリティ対策、役務＝導入・活用コンサルティング、導入設定・マニュアル作成・導入研修、保守サポート）が含まれます。つまり3つの費目はいずれも同じ補助金の対象になり得るということです。ここを知らずに「ツール代だけ」を見積もると、対象経費を使い切れず損をする設計になりがちです（後述のNGパターン④）。</p>
+
+<h2>実際にいくら出ているのか——採択5万件の交付額分布</h2>
+<p>では実際に、中小企業はいくら動かしているのでしょうか。中小企業庁の資料が示す、IT導入補助金2024の交付額規模別の採択件数（複数社連携枠を除く総計50,171件）を見ると、実額のレンジが見えてきます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>交付額規模</th><th>採択件数</th><th>構成比</th></tr>
+<tr><td>100万円未満</td><td>18,417件</td><td>36.7%</td></tr>
+<tr><td>100〜150万円未満</td><td>10,979件</td><td>21.9%</td></tr>
+<tr><td>150〜300万円未満</td><td>7,959件</td><td>15.9%</td></tr>
+<tr><td>300〜450万円未満</td><td>12,711件</td><td>25.3%</td></tr>
+<tr><td>450万円</td><td>105件</td><td>0.2%</td></tr>
+</table></div>
+<div class="a-fig-wrap">
+<p class="a-fig-title">交付額規模別の採択件数構成比（IT導入補助金2024・50,171件）</p>
+<svg viewBox="0 0 380 400" width="100%" role="img" aria-label="交付額100万円未満36.7%、100万円以上150万円未満21.9%、150万円以上300万円未満15.9%、300万円以上450万円未満25.3%、450万円0.2%、を示す横棒グラフ">
+<text x="16" y="24" font-size="15" fill="var(--text)" font-weight="700">100万円未満</text>
+<rect x="16" y="32" width="280" height="26" rx="3" fill="rgba(166,58,36,.85)"/>
+<text x="286" y="50" font-size="14" font-weight="800" fill="#fdfaf4" text-anchor="end">36.7%</text>
+<text x="16" y="98" font-size="15" fill="var(--text)" font-weight="700">100〜150万円未満</text>
+<rect x="16" y="106" width="167" height="26" rx="3" fill="rgba(92,84,74,.6)"/>
+<text x="173" y="124" font-size="14" font-weight="800" fill="#fdfaf4" text-anchor="end">21.9%</text>
+<text x="16" y="172" font-size="15" fill="var(--text)" font-weight="700">150〜300万円未満</text>
+<rect x="16" y="180" width="121" height="26" rx="3" fill="rgba(92,84,74,.45)"/>
+<text x="127" y="198" font-size="14" font-weight="800" fill="#fdfaf4" text-anchor="end">15.9%</text>
+<text x="16" y="246" font-size="15" fill="var(--text)" font-weight="700">300〜450万円未満</text>
+<rect x="16" y="254" width="193" height="26" rx="3" fill="rgba(92,84,74,.6)"/>
+<text x="183" y="272" font-size="14" font-weight="800" fill="#fdfaf4" text-anchor="end">25.3%</text>
+<text x="16" y="320" font-size="15" fill="var(--text)" font-weight="700">450万円（上限到達）</text>
+<rect x="16" y="328" width="8" height="26" rx="2" fill="rgba(92,84,74,.5)"/>
+<text x="32" y="346" font-size="14" font-weight="800" fill="var(--text-2)">0.2%</text>
+<text x="16" y="378" font-size="12.5" fill="var(--text-3)">出所：中小企業庁「デジタル化・AI導入補助金2026の概要」（令和8年4月）掲載のIT導入補助金2024実績より作成</text>
+</svg>
+<p class="a-fig-cap">件数は表の通り、100万円未満18,417件・100〜150万円未満10,979件・150〜300万円未満7,959件・300〜450万円未満12,711件・450万円105件（総計50,171件）です。</p>
+</div>
+<p>100万円未満と100〜150万円未満を合わせた「150万円未満」の採択は29,396件で、全体の58.6%を占めます。つまり、実際に交付されている金額の過半数は150万円に届いていません。上限の450万円ちょうどまで交付されたのは105件（0.2%）のみで、「上限いっぱい」はむしろ例外です。</p>
+<p>従業員規模別に見ても、採択の中心は小規模な事業者です。同資料の従業員数別採択件数では、5名未満が20,432件（構成比40.7%）、5〜50名未満が24,520件（48.9%）で、合わせて50名未満が89.6%を占めます。50〜100名未満は5.9%、100名以上は4.5%にとどまります。業種別では、建設業10,613件（21.2%）、卸売業,小売業8,873件（17.7%）、宿泊業,飲食サービス業4,986件（9.9%）が上位3業種でした。</p>
+<p style="font-size:.85rem;color:var(--text-3)">自社の場合はどのレンジになりそうか気になる方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料のAI診断</a>で現在地を確認できます。</p>
+
+<h2>「上限450万円」と「交付額100万円未満が最多」がズレる3つの理由</h2>
+<p>「補助上限は450万円」と聞くと、それが相場だと思ってしまいがちですが、実際の採択データは100万円未満が最多です。このズレには3つの理由があります。</p>
+<p><strong>① 上限は天井であって相場ではない。</strong>上限額は「これ以上は出ない」という天井の金額であり、平均的にいくら出るかを示す数字ではありません。前述の通り、実際の採択の58.6%は150万円未満に収まっています。</p>
+<p><strong>② 補助額と投資総額は別物。</strong>補助金として交付される金額と、実際に投じる投資総額は別の数字です。デジタル化・AI導入補助金2026の通常枠は補助率1/2以内のため、計算上は投資総額のおよそ2倍を自己資金・自己負担で用意する前提になります。例えば、投資総額600万円のプロジェクトに補助率1/2をかけると、計算上の補助額は300万円です。プロセス数4つ以上の枠の上限450万円以下に収まるため、そのまま300万円が交付されます。一方、投資総額1,000万円なら計算上の補助額は500万円ですが、上限450万円で頭打ちになり、差額の50万円は自己負担が増えることになります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">補助額はどう決まるか——投資総額から交付額までの流れ</p>
+<svg viewBox="0 0 400 474" width="100%" role="img" aria-label="投資総額に補助率をかけて計算上の補助額を求め、上限額と比較して低い方が実際の交付額になる流れを示す図">
+<rect x="40" y="10" width="320" height="64" rx="6" fill="rgba(166,58,36,.08)" stroke="var(--border)"/>
+<text x="200" y="49" font-size="18" font-weight="700" fill="var(--text)" text-anchor="middle">投資総額</text>
+<text x="200" y="102" font-size="20" fill="var(--text-2)" text-anchor="middle">↓</text>
+<text x="200" y="122" font-size="13" fill="var(--text-2)" text-anchor="middle">× 補助率（1/2など）</text>
+<rect x="40" y="140" width="320" height="64" rx="6" fill="var(--bg-card)" stroke="var(--border)"/>
+<text x="200" y="179" font-size="18" font-weight="700" fill="var(--text)" text-anchor="middle">補助額（計算上）</text>
+<text x="200" y="232" font-size="20" fill="var(--text-2)" text-anchor="middle">↓</text>
+<text x="200" y="252" font-size="13" fill="var(--text-2)" text-anchor="middle">上限額と比較する</text>
+<rect x="40" y="270" width="320" height="64" rx="6" fill="var(--bg-card)" stroke="var(--border)"/>
+<text x="200" y="309" font-size="18" font-weight="700" fill="var(--text)" text-anchor="middle">上限額（枠ごとに設定）</text>
+<text x="200" y="362" font-size="20" fill="var(--text-2)" text-anchor="middle">↓</text>
+<text x="200" y="382" font-size="13" fill="var(--text-2)" text-anchor="middle">低い方が採用される</text>
+<rect x="40" y="400" width="320" height="64" rx="6" fill="rgba(166,58,36,.14)" stroke="var(--accent)"/>
+<text x="200" y="439" font-size="18" font-weight="800" fill="var(--accent)" text-anchor="middle">実際の交付額</text>
+</svg>
+<p class="a-fig-cap">例えば、投資総額600万円に補助率1/2をかけると計算上の補助額は300万円で、上限450万円以下に収まるためそのまま300万円が交付されます。投資総額1,000万円なら計算上は500万円ですが、上限450万円と比べて低い方の450万円が交付額になります。</p>
+</div>
+<p><strong>③ 枠ごとに上限の決まり方が違う。</strong>デジタル化・AI導入補助金2026の通常枠では、ITツールのプロセス数が1〜3つまでなら補助額5万円〜150万円未満（補助率1/2以内）、4つ以上なら150万円〜450万円以下（補助率1/2以内）と、プロセス数によって上限が切り替わります。さらに、令和6年10月から令和7年9月の間、地域別最低賃金以上・改定後最低賃金未満の水準で雇用する従業員が全従業員の30%以上の月が3か月以上あった事業者は補助率が2/3に上がり、プロセス4つ以上の枠では賃金引上げ計画の策定・表明が追加で必要になります。インボイス枠（インボイス対応類型）はさらに仕組みが異なり、「会計」「受発注」「決済」のうち2機能以上を満たせば350万円以下まで申請できますが、1機能なら50万円以下が上限です。同じ「補助金」でも上限の決まり方が枠ごとにまったく違うため、「上限450万円」という数字だけで自社の相場を判断することはできません。</p>
+
+<h2>使える制度3つの実額（2026年8月時点）</h2>
+<p>実際にAI導入で使える公的制度を3つ、2026年8月時点の内容で整理します。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>制度</th><th>補助率・助成率</th><th>上限額</th><th>条件</th><th>着手タイミング</th></tr>
+<tr><td>AI導入補助金2026<br>（通常枠）</td><td>1/2以内<br>（要件により2/3）</td><td>450万円以下<br>※プロセス4つ以上</td><td>IT導入支援事業者経由で申請</td><td>交付決定を経てから契約・購入</td></tr>
+<tr><td>省力化投資補助金<br>（一般型）</td><td>1/2<br>（小規模2/3・賃上げ特例2/3〜）</td><td>750万円〜8,000万円<br>（賃上げ特例1,000万円〜1億円）</td><td>GビズIDプライムアカウント必須</td><td>交付決定後<br>（第8回は8月中旬公募・9月中旬受付・10月中旬締切予定）</td></tr>
+<tr><td>業務改善助成金</td><td>3/4〜4/5</td><td>最大600万円</td><td>事業場内最低賃金を50円以上引上げ</td><td>交付決定前の設備導入は対象外</td></tr>
+</table></div>
+<p style="font-size:.8rem;color:var(--text-3)">※公募時期・要件は年度で変わるため、最新の公式情報の確認が前提です。</p>
+<p>業務改善助成金には厚生労働省が示す公式の計算例があります。事業場内最低賃金1,040円（助成率4/5）の事業者が8人の労働者を1,130円まで引き上げる場合（90円コース・助成上限450万円）、設備投資600万円を行うと、600万円×4/5＝480万円と上限450万円を比べ、低い方の450万円が支給されます。上限は「使い切れる金額」ではなく、投資額と助成率の計算結果を上限額と比較して決まる仕組みだとわかります。</p>
+
+<h2>採択率は下がっている——2024年69.9%から2025年43.8%へ</h2>
+<p>使える制度があっても、申請すれば必ず通るわけではありません。IT導入補助金の採択率は年々下がっています。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>年度</th><th>申請件数</th><th>採択件数</th><th>採択率</th><th>通常枠採択率</th><th>インボイス対応類型採択率</th></tr>
+<tr><td>2024年度</td><td>71,767件</td><td>50,175件</td><td>69.9%</td><td>65.8%<br>（25,140件→16,540件）</td><td>72.1%<br>（46,394件→33,438件）</td></tr>
+<tr><td>2025年度</td><td>80,439件</td><td>35,202件</td><td>43.8%</td><td>37.7%<br>（23,672件→8,936件）</td><td>46.2%<br>（56,029件→25,900件）</td></tr>
+</table></div>
+<p>全体の採択率は2024年の69.9%から2025年は43.8%まで下がりました。特に通常枠は65.8%から37.7%へと大きく低下しています。つまり、<strong>補助金が採択された前提で資金繰りを組むのは危険</strong>だということです。申請すれば通る、という前提でツールの契約や人員計画を先に進めてしまうと、不採択だった場合に資金繰りが崩れます。</p>
+<p style="font-size:.85rem;color:var(--text-3)">申請手続きの詳細は、当ブログの関連記事もあわせてご覧ください：<a href="/blog/20260724-ai-subsidy-2026.html">デジタル化・AI導入補助金2026とは？</a>／<a href="/blog/20260725-shoryokuka-subsidy.html">省力化投資補助金 第7回の申請スケジュール</a>／<a href="/blog/20260725-gbizid.html">GビズIDとは？申請の最初の壁</a></p>
+
+<h2>費用はどこに消えるか——現場で見てきた内訳</h2>
+<p>ここまでは公的統計の話でした。ここからは、私たちが実際の現場で見てきた費用の内訳の話です。</p>
+<div class="a-note"><strong>現場の話：</strong>福井の飲食グループ本部（12店舗）の多言語メニュー整備に取り組んだ際、費用の重心は「AIツールの利用料」ではなく「元データを整える手間」の方に大きく寄っていました。メニュー名・食材・アレルゲン情報が店舗ごとに表記が揺れていたり、そもそもデータ化されていなかったりする状態から、AIに読み込ませられる形に整えるまでの作業が、体感としては全体の作業量の大半を占めました。AIそのものの利用料は、この「元データを整える手間」に比べればごく一部です。</div>
+<p>見積を決める変数として整理すると、次の3つになります。</p>
 <ol>
 <li><strong>対象範囲</strong>：一部署の特定業務か、複数部署への展開か。対象業務の数がそのまま設計・構築の工数になります</li>
 <li><strong>訪問頻度と期間</strong>：週何日現場に入るか、何ヶ月伴走するか。スポットの集中支援と、数ヶ月の常駐型では体制が変わります</li>
 <li><strong>連携の複雑さ</strong>：既存システムとの接続が多いほど、設計・テストの工数が増えます</li>
 </ol>
-<h2>費用対効果の見方</h2>
-<p>AI導入の効果は「削減される作業時間×その業務の人件費」で概算できます。たとえば毎月10時間かかっている定型作業が2時間になれば、月8時間分の人件費が浮き続けます。仕組みは一度つくれば動き続けるので、<strong>効果は継続、費用は立ち上げ期に集中</strong>という構造です。だからこそ、対象業務の選び方（時間を食っている定型業務から着手する）が費用対効果を左右します。</p>
-<h2>安く始めるための現実的な工夫</h2>
+<p>この3つのうち、費用に最も効くのは「対象範囲」の広さと、対象データがどれだけ整っているかです。ツールの月額料金は数千円〜数万円のレンジで大きくは動きませんが、対象範囲とデータの整備状況は、工数を数倍単位で動かします。</p>
+
+<h2>費用でつまずくNGパターン6つ</h2>
+<p>現場と補助金データの両方から見えてきた、費用面でつまずきやすい6つのパターンを挙げます。</p>
 <ul>
-<li><strong>範囲を絞って始める</strong>：全社一斉ではなく、効果が見えやすい一点から。成果を確認してから広げる方が総額も安全です</li>
-<li><strong>既存ツールを活かす</strong>：システム刷新を伴わない組み込みなら、初期費用は大きく抑えられます</li>
-<li><strong>自走をゴールにする</strong>：ずっと外部に頼る前提ではなく、現場が自分で回せる状態を最初からゴールに置くと、支援期間を区切れます</li>
+<li><strong>① 交付決定前に発注してしまう。</strong>業務改善助成金では「交付決定前に助成対象設備の導入を行った場合は助成の対象とならない」と明記されています。同様の原則は他の補助金・助成金でも広く採用されており、「良いツールを見つけたのですぐ契約したい」という気持ちが、補助金を使えなくする一番の落とし穴です。</li>
+<li><strong>② クラウド利用料の補助は最大2年分——3年目以降の予算を見ていない。</strong>デジタル化・AI導入補助金2026の通常枠では、クラウド利用料が補助対象になりますが、最大2年分までです。3年目以降のクラウド利用料は全額自己負担になります。導入時の見積もりだけで判断し、3年目以降の運用予算を見込んでいないと、補助期間が終わった瞬間に予算が足りなくなります。</li>
+<li><strong>③ 上限額から逆算して「使い切る」設計にする。</strong>上限450万円に合わせて、必要以上にプロセス数を増やしたり機能を積み増したりする設計は本末転倒です。実際の採択の58.6%は150万円未満に収まっており、「上限まで使う」ことは平均的な姿ではありません。自社の課題解決に必要な範囲で設計し、結果として補助額が決まる、という順序が正しい考え方です。</li>
+<li><strong>④ ツール代だけ見て定着コストを計上しない。</strong>通常枠の補助対象経費には、導入設定・マニュアル作成・導入研修、保守サポートといった「役務」も含まれます。ツールのライセンス費用だけを見積もりに入れ、定着支援（研修・マニュアル）を計上しないのは、対象経費なのに使わない機会損失です。</li>
+<li><strong>⑤ 採択前提で資金繰りを組む。</strong>前述の通り、IT導入補助金の採択率は2025年で43.8%まで下がっています。申請すれば通る前提で先に発注・契約を進めるのは、①の交付決定前発注の問題と合わせて二重にリスクがあります。</li>
+<li><strong>⑥ ベンダー選定の判断材料がないまま相見積もりを取る。</strong>中小企業基盤整備機構（中小機構）の調査では、79.8%の企業が「適切なベンダーや製品を選定する情報が十分にある」に当てはまらないと回答しています。判断材料がないまま相見積もりだけを取っても、金額の妥当性を判断できません。自社の業務のどこに、何を、どう当てはめるかを先に整理してから、ベンダーに相談するのが順序です。</li>
 </ul>
-<h2>まずは無料相談で「見積の前提」を揃える</h2>
-<p>正確な見積には、現状の業務と困りごとのヒアリングが必要です。NGraphでは無料相談と現場診断を経てからお見積りします。「まだ何を頼むか決まっていない」段階のご相談も歓迎です。現状整理だけでも持ち帰る価値があるはずです。</p>
+<p style="font-size:.85rem;color:var(--text-3)">自社に必要な範囲や制度の使い方に迷ったら、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
 
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>最低いくらから頼めますか？</summary><p>範囲を絞った数週間のスポット支援から受けています。金額は対象範囲・訪問頻度と期間・連携の複雑さという3つの変数で変わるため、無料相談で前提を伺ったうえで概算をお答えしています。</p></details>
+<details><summary>補助金は使えますか？</summary><p>使える場合が多いです。デジタル化・AI導入補助金2026、中小企業省力化投資補助金（一般型）、業務改善助成金など、AI導入に使える制度は複数あります（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。</p></details>
+<details><summary>導入後の月額費用はどれくらいかかりますか？</summary><p>AIの利用料（APIやツールの課金）は使用量に応じて変わります。デジタル化・AI導入補助金2026ではクラウド利用料も補助対象ですが最大2年分までなので、3年目以降は自己負担になる前提で予算を組む必要があります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。</p></details>
+<details><summary>補助金の上限額まで使ったほうが得ですか</summary><p>そうとは限りません。IT導入補助金2024の採択実績では、交付額100万円未満の採択が18,417件（36.7%）で最多だった一方、上限450万円に達した採択は105件（0.2%）にとどまりました。上限は天井であって相場ではなく、自社の課題に必要な範囲で設計するのが基本です。</p></details>
+<details><summary>補助金が不採択だったらどうなりますか</summary><p>IT導入補助金の採択率は2024年の69.9%から2025年は43.8%まで下がっています。不採択でも実施できるよう、補助金が採択された前提で資金繰りを組まないことが重要です。交付決定前に発注・契約すると対象外になる原則もあるため、申請から着手までの順序を最初に設計しておく必要があります。</p></details>
+<details><summary>AI導入の費用は経費と資産のどちらですか</summary><p>案件によって扱いが異なるため、断定はできません。会計処理・税務上の扱いは顧問税理士にご確認いただくことをおすすめします。</p></details>
+<details><summary>まず何から見積もればいいですか</summary><p>対象範囲（どの業務か）・訪問頻度と期間・既存システムとの連携の複雑さ、という3つの変数を整理することから始めます。当社では無料相談と現場診断を経てから見積もりを出しています。「まだ何を頼むか決まっていない」段階のご相談も歓迎です。</p></details>
+</div>
 
-
-<div class="a-note"><strong>当社の考え方：</strong>効果は「削減される作業時間 × 人件費」で概算します。たとえば毎週3時間の転記作業がなくなれば年間150時間強。人件費は額面の時給ではなく、社会保険料など会社負担まで含めた実質単価（正社員なら目安1,500〜2,000円/時）で見るのが正確で、換算すると年間約23〜30万円の効果です。投資額がその何倍にあたるかで判断すれば、AI導入は「気合」ではなく算数になります。</div>
-<h2>補助金という選択肢（2026年7月時点の概要）</h2><p>中小企業のAI導入には、国の補助制度を使える場合があります。代表的な3つを挙げます。</p><div class="a-table-wrap"><table class="a-table"><tr><th>制度</th><th>補助率</th><th>上限額の目安</th><th>特徴</th></tr><tr><td>デジタル化・AI導入補助金（旧IT導入補助金）</td><td>1/2（条件により2/3）</td><td>150万円未満（1プロセス）</td><td>通年で複数締切。登録済みツール・登録支援事業者を通す方式</td></tr><tr><td>中小企業省力化投資補助金（一般型）</td><td>1/2（賃上げ特例で2/3）</td><td>従業員数により750万円〜</td><td>業務に合わせて専用開発するシステムが対象。賃上げ等の要件あり</td></tr><tr><td>業務改善助成金</td><td>3/4〜4/5</td><td>最大600万円</td><td>事業場内最低賃金の引き上げが条件。予算枯渇が早い傾向</td></tr></table></div><p style="font-size:.8rem;color:var(--text-3)">※公募時期・要件は年度で変わります。最新の公式情報の確認が前提です。また、交付決定前に発注したものは対象外になるのが原則のため、着手の順序から設計する必要があります。</p>
-<h2>よくある質問</h2><div class="a-faq"><details><summary>最低いくらから頼めますか？</summary><p>範囲を絞った数週間のスポット支援から受けています。金額は対象業務の範囲と連携の複雑さで変わるため、無料相談で前提を伺ったうえで概算をお答えしています。</p></details><details><summary>補助金は使えますか？</summary><p>使える場合が多いです（本文の表を参照）。ただし交付決定前の着手は対象外になるのが原則なので、申請と着手の順序から一緒に設計することをおすすめします。</p></details><details><summary>導入後の月額費用はどれくらいかかりますか？</summary><p>AIの利用料（APIやツールの課金）は使用量に応じて変わります。当社では設計の段階で「月いくらまで」の上限を決めてから組むのを標準にしています。</p></details></div>
+<h2>まとめ——費用は「額」ではなく「順序」で決まる</h2>
+<p>ここまで見てきた通り、AI導入の費用は「いくらか」という額そのものより、「どの順序で動くか」の方が重要です。申請してから交付決定を待ち、交付決定を受けてから契約・着手する——この順序を守るだけで、①交付決定前発注と⑤採択前提の資金繰りという、最も痛手の大きい2つのNGパターンを避けられます。実額のレンジで言えば、採択の58.6%は150万円未満に収まっており、上限450万円は例外的な天井です。まずは自社の対象業務を1つに絞り、見積を決める3つの変数（対象範囲・訪問頻度と期間・連携の複雑さ）を整理するところから始めてください。</p>
 
 <div class="a-cta">
-  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>
-  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。相談は無料です。</p>
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちの場合はいくらかかるか」から、一緒に見積もります。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
   <a href="/entry.html" class="btn btn-primary">無料で相談する</a>
   <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
 </div>
+
+<div class="a-src">参考（一次情報）：<br>
+・独立行政法人 中小企業基盤整備機構「<a href="https://www.smrj.go.jp/research_case/questionnaire/fbrion0000002pjw-att/202603_AI_point.pdf" target="_blank" rel="noopener">中小企業のAI等の利活用に係る実態調査</a>」（2026年3月公表）<br>
+・中小企業庁「<a href="https://www.chusho.meti.go.jp/koukai/yosan/r8/digital_ai_summary.pdf" target="_blank" rel="noopener">「デジタル化・AI導入補助金2026」の概要</a>」（令和8年4月）<br>
+・<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">中小企業省力化投資補助金（一般型）</a><br>
+・厚生労働省「<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/zigyonushi/shienjigyou/03.html" target="_blank" rel="noopener">業務改善助成金</a>」（令和8年度）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
 </article>

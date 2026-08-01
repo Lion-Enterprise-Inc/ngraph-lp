@@ -43,7 +43,7 @@
 - [飲食店のAI活用（自社実例）](https://ngraph.jp/blog/inshoku-ai.html)
 - [現場で使えるプロンプトの作り方5原則](https://ngraph.jp/blog/prompt-design.html)
 - [既存システムを捨てずにAIを組み込む方法](https://ngraph.jp/blog/legacy-integration.html)
-- [AI導入支援の費用の考え方](https://ngraph.jp/blog/ai-cost.html)
+- [AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳](https://ngraph.jp/blog/ai-cost.html)
 - [中小企業のAI導入ロードマップ](https://ngraph.jp/blog/ai-roadmap.html)
 
 ## 会社情報
