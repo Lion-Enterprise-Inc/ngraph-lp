@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [省力化投資補助金 第8回は8月中旬公募開始——GビズIDの不具合で「申請の入口」が一部止まっている](https://ngraph.jp/blog/20260804-shoryokuka-8th-gbizid.html)
 - [最低賃金2026年度は55円引き上げ・全国加重平均1,176円へ——賃上げ率3.38%の小規模企業がギャップをどう埋めるか](https://ngraph.jp/blog/20260803-saitei-chingin-2026.html)
 - [生成AIが「議事録止まり」になる理由——効果実感72.3%の一極集中と、社内データ接続24.5%の壁](https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari.html)
 - [OpenAIのブラウザAtlasが8月9日に停止——AIツールは「終売」前提で選ぶ](https://ngraph.jp/blog/20260802-openai-atlas-eol.html)
