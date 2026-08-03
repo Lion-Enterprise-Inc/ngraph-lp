@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [最低賃金2026年度は55円引き上げ・全国加重平均1,176円へ——賃上げ率3.38%の小規模企業がギャップをどう埋めるか](https://ngraph.jp/blog/20260803-saitei-chingin-2026.html)
 - [生成AIが「議事録止まり」になる理由——効果実感72.3%の一極集中と、社内データ接続24.5%の壁](https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari.html)
 - [OpenAIのブラウザAtlasが8月9日に停止——AIツールは「終売」前提で選ぶ](https://ngraph.jp/blog/20260802-openai-atlas-eol.html)
 - [Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」](https://ngraph.jp/blog/20260801-ai-agent-permission.html)
