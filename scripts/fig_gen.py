@@ -103,16 +103,19 @@ def fig_bar(d, o):
     step = min(52, int((o["body_bottom"] - y) / max(len(rows), 1)))
     bh = min(34, step - 12)
     parts = []
+    # 墨で落とす行・注を付ける行は 1始まりの行番号で指定する（既定は最終行）
+    ink_i = (o["ink_row"] - 1) if o["ink_row"] else (len(rows) - 1 if o["ink_last"] else -1)
+    tag_i = (o["tag_row"] - 1) if o["tag_row"] else len(rows) - 1
     for i, (label, v, raw) in enumerate(rows):
         w = max(6, int(barw * v / top))
         color = ACCENT if i < o["hot"] else DIM
-        if o["ink_last"] and i == len(rows) - 1:
+        if i == ink_i:
             color = INK
         parts.append(text(x0 - 18, y + bh - 9, label, 21, INK, 700, "end"))
         parts.append(f'<rect x="{x0}" y="{y}" width="{w}" height="{bh}" rx="2" fill="{color}"/>')
-        vc = ACCENT if i < o["hot"] else (INK if (o["ink_last"] and i == len(rows) - 1) else FAINT)
+        vc = ACCENT if i < o["hot"] else (INK if i == ink_i else FAINT)
         parts.append(text(x0 + w + 12, y + bh - 8, fmt(raw, o["unit"]), 24, vc, 900))
-        if o["tag"] and i == len(rows) - 1:
+        if o["tag"] and i == tag_i:
             tw = x0 + w + 12 + len(fmt(raw, o["unit"])) * 15
             parts.append(text(tw + 14, y + bh - 9, o["tag"], 16, ACCENT, 700))
         y += step
@@ -260,21 +263,40 @@ TYPES = {"bar": fig_bar, "gap": fig_gap, "line": fig_line,
 # ---------------------------------------------------------------- 組み立て
 
 def build_svg(kind, d, o):
+    """bare=True は記事本文用。地色・枠・NGraph署名・見出しを出さない。
+
+    本文では見出しを <p class="a-fig-title"> が持ち、地色は .a-fig-wrap が持つので、
+    SVG側に重ねると二重になる。表紙・X添付用（bare=False）は1枚で完結させる。
+    """
     w, h = o["w"], o["h"]
+    bare = o["bare"]
     head = []
-    y = 92
-    head.append(text(w / 2, y, o["title"], 46, INK, 900, "middle", SERIF))
-    if o["sub"]:
-        y += 40
-        head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
-    o["body_top"] = y + 34
-    o["body_bottom"] = h - (150 if o["concl"] else 110)
+    if bare:
+        y = 18
+        if o["sub"]:
+            y += 26
+            head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
+        o["body_top"] = y + 26
+        o["body_bottom"] = h - (96 if o["concl"] else 54)
+    else:
+        y = 92
+        head.append(text(w / 2, y, o["title"], 46, INK, 900, "middle", SERIF))
+        if o["sub"]:
+            y += 40
+            head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
+        o["body_top"] = y + 34
+        o["body_bottom"] = h - (150 if o["concl"] else 110)
     body = TYPES[kind](d, o)
     foot = []
     if o["concl"]:
-        foot.append(text(w / 2, h - 104, o["concl"], 24, INK, 900, "middle", SERIF))
+        foot.append(text(w / 2, h - (58 if bare else 104), o["concl"], 24, INK, 900, "middle", SERIF))
     if o["src"]:
-        foot.append(text(56, h - 44, "出所：" + o["src"], 13, FAINT, 400))
+        foot.append(text(56 if not bare else 8, h - (16 if bare else 44),
+                         "出所：" + o["src"], 13, FAINT, 400))
+    if bare:
+        return (f'<svg viewBox="0 0 {w} {h}" width="100%" style="min-width:640px" '
+                f'role="img" aria-label="{esc(o["title"])}">'
+                + "".join(head) + body + "".join(foot) + "</svg>")
     foot.append(text(w - 56, h - 42, "NGraph. ngraph.jp", 18, FAINT, 700, "end", SERIF))
     return (f'<svg viewBox="0 0 {w} {h}" width="100%" role="img" aria-label="{esc(o["title"])}">'
             f'<rect width="{w}" height="{h}" fill="{BG}"/>'
@@ -323,6 +345,8 @@ def main():
     ap.add_argument("--mark", action="append", default=[], help='line用 "点の番号:文言"（0始まり）')
     ap.add_argument("--hot", type=int, default=1, help="朱で強調する本数（既定1）")
     ap.add_argument("--ink-last", action="store_true", help="最終行を墨で塗る（barの落とし）")
+    ap.add_argument("--ink-row", type=int, default=0, help="墨で塗る行（1始まり・barのみ）")
+    ap.add_argument("--tag-row", type=int, default=0, help="--tag を付ける行（1始まり・既定は最終行）")
     ap.add_argument("--diff", action="store_true",
                     help="gapで2値の差を出す。母集団・設問が同じときだけ付ける")
     ap.add_argument("--unit", default="%")
@@ -330,6 +354,8 @@ def main():
     ap.add_argument("--h", type=int, default=630)
     ap.add_argument("--out", default="")
     ap.add_argument("--svg", action="store_true", help="記事に貼るブロックを標準出力へ")
+    ap.add_argument("--bare", action="store_true",
+                    help="本文用。地色・枠・署名・見出しを出さない（--svg と併用）")
     a = ap.parse_args()
 
     marks = []
@@ -341,7 +367,8 @@ def main():
 
     o = {"title": a.title, "sub": a.sub, "concl": a.concl, "src": a.src, "tag": a.tag,
          "axis": a.axis, "marks": marks, "hot": a.hot, "ink_last": a.ink_last,
-         "unit": a.unit, "w": a.w, "h": a.h, "diff": a.diff}
+         "unit": a.unit, "w": a.w, "h": a.h, "diff": a.diff, "bare": a.bare,
+         "ink_row": a.ink_row, "tag_row": a.tag_row}
     svg = build_svg(a.type, parse_data(a.data), o)
 
     if a.svg or (a.out and a.out.lower().endswith(".svg")):
