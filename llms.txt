@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [AI研修が定着しない理由——「時間がない45.5%」と、助成金が「実務の中の練習」を対象外にする構造](https://ngraph.jp/blog/20260804-ai-kenshu-teichaku.html)
 - [省力化投資補助金 第8回は8月中旬公募開始——GビズIDの不具合で「申請の入口」が一部止まっている](https://ngraph.jp/blog/20260804-shoryokuka-8th-gbizid.html)
 - [最低賃金2026年度は55円引き上げ・全国加重平均1,176円へ——賃上げ率3.38%の小規模企業がギャップをどう埋めるか](https://ngraph.jp/blog/20260803-saitei-chingin-2026.html)
 - [生成AIが「議事録止まり」になる理由——効果実感72.3%の一極集中と、社内データ接続24.5%の壁](https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari.html)
