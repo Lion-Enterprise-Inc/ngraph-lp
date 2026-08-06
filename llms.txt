@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」](https://ngraph.jp/blog/20260807-ai-approval-fatigue.html)
 - [正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった](https://ngraph.jp/blog/20260806-seihon-yomarenai.html)
 - [MetaがコーディングAI「Muse Code」を投入——中小企業には「安さの対価は自社データ」という話](https://ngraph.jp/blog/20260806-meta-muse-code.html)
 - [業務改善助成金 令和8年度とは？9月1日受付開始——「最大600万円」の実額と、AIツールが対象になる線引き](https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin.html)

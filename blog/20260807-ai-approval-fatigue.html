@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」 | NGraphブログ</title>
+<meta name="description" content="AIエージェントの操作を人が承認する実験ゲームの集計（40,000プレイ・409,000判断）で、危険な命令の3回に1回が承認された。中小企業がAIに持たせるべきは承認ボタンではなく「できない設定」である理由を、一次情報から解説する。">
+<meta property="og:title" content="危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」 | NGraphブログ">
+<meta property="og:description" content="AIエージェントの操作を人が承認する実験ゲームの集計（40,000プレイ・409,000判断）で、危険な命令の3回に1回が承認された。中小企業がAIに持たせるべきは承認ボタンではなく「できない設定」である理由を、一次情報から解説する。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260807-ai-approval-fatigue.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260807-ai-approval-fatigue.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260807-ai-approval-fatigue.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」",
+  "image": "https://ngraph.jp/assets/blog/20260807-ai-approval-fatigue.jpg",
+  "description": "AIエージェントの操作を人が承認する実験ゲームの集計（40,000プレイ・409,000判断）で、危険な命令の3回に1回が承認された。中小企業がAIに持たせるべきは承認ボタンではなく「できない設定」である理由を、一次情報から解説する。",
+  "datePublished": "2026-08-07T07:00:00+09:00",
+  "dateModified": "2026-08-07T07:00:00+09:00",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260807-ai-approval-fatigue.html",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」</h1>
+  <span class="a-date">2026.08.07 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260807-ai-approval-fatigue.jpg" alt="">
+
+<p>2026年8月5日、開発者向けブログ「Scale X」が、AIコーディングエージェントの操作を人が承認するブラウザゲームの集計結果を<a href="https://scalex.dev/blog/ai-agent-permissions-stats/" target="_blank" rel="noopener">公開した</a>。40,000回を超えるプレイ・409,000件の承認/拒否判断を集計したところ、危険な命令の3回に1回が承認されていた。結論：これは中小企業にとって「承認ボタンを安全装置として数えるな」という話です。</p>
+
+<h2>何が起きたか</h2>
+<p>2026年8月5日、開発者向けブログ Scale X（筆者 Alex Wauters・元Uber Staff Engineer）が、自作のブラウザゲームの集計結果を公開した。ゲームの設計はこうだ。プレイヤーがAIコーディングエージェント（コードを書いて実行するAI）の「人間の承認者」役になり、時間制限のもとで次々に出てくるコマンドを承認・拒否する。無害なもの（<code>git status</code>）と、認証情報を外部に送るような危険なもの（<code>cat ~/.aws/credentials</code>）が混ざって出てくる。</p>
+<p>集計対象は40,000回を超えるプレイ、409,000件の承認・拒否判断。平均正答率は66.3%——裏を返せば、危険な命令の3回に1回を承認していたことになる。セッションの32.9%はマイナススコアで終了した（危険を通した罰点と、安全なコマンドを止めた損失が、正解を上回った）。脅威を全部捕まえたプレイヤーは35.2%いたが、そのうち「安全なコマンドのブロックを5本に1本以内に抑えつつ」達成できたのは20.8%にとどまる。7%は出てきたものを全部承認していた。</p>
+<p>ここで前提を一つ置く。これはゲームであり、出てくるコマンドの約34%が脅威だった。実務でここまでの頻度で危険な命令が出ることはなく、プレイヤーも自分が試されていると分かった上でプレイし、時間制限もあった。だからこの数字を実務の事故率としてそのまま使うことはできない。読むべきは率の絶対値ではなく、どの種類の命令が見逃されやすいかという差だ。</p>
+
+<h2>なぜ重要か</h2>
+<p>見逃されていたのは、派手な破壊ではなく、認証情報に触る命令だった。カテゴリ別の見逃し率は、明らかな破壊コマンドが11.7%であるのに対し、設定の書き換え・居座りが23.8%、情報の持ち出し・コード実行が33.4%、権限の範囲外の読み取りが35.0%。<code>rm -rf</code>のようなわかりやすい操作は止められるが、認証情報を外部に送り出す命令は3倍見逃されている。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">見逃されたのは、派手な破壊ではなく認証情報を触る命令</p>
+<svg viewBox="0 0 1200 560" width="100%" style="min-width:640px" role="img" aria-label="見逃されたのは、派手な破壊ではなく認証情報を触る命令"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">AIエージェントの承認判断・脅威カテゴリ別の見逃し率（%）</text><text x="295" y="101" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">権限の範囲外の読み取り</text><rect x="313" y="76" width="687" height="34" rx="2" fill="#a63a24"/><text x="1012" y="102" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">35.0%</text><text x="295" y="153" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">情報の持ち出し・コード実行</text><rect x="313" y="128" width="655" height="34" rx="2" fill="#a63a24"/><text x="980" y="154" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">33.4%</text><text x="295" y="205" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">設定の書き換え・居座り</text><rect x="313" y="180" width="467" height="34" rx="2" fill="#cfc5b4"/><text x="792" y="206" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">23.8%</text><text x="295" y="257" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">明らかな破壊コマンド</text><rect x="313" y="232" width="229" height="34" rx="2" fill="#cfc5b4"/><text x="554" y="258" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">11.7%</text><text x="600.0" y="502" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">rm -rf は止められる。認証情報を送り出す命令は3回に1回通る</text><text x="8" y="544" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Scale X「Humans missed 1 in 3 threats approving AI agent commands across 40,000 plays」（2026年8月5日）</text></svg>
+</div>
+
+<p>最も見逃されたのは<code>npm run analyze</code>で、64.7%が承認されていた。<code>npm run</code>は「設定ファイルに書かれた任意のコマンドを実行する」という意味しか持たず、中身は書き換えられる。見慣れた名前のコマンド3本の合計見逃し率は52.5%（n=9,482）で、他の持ち出し系コマンドの28.4%のおよそ2倍だった。承認しているのはコマンド名であって、中身ではない。</p>
+<p>止めすぎのコストも同時に出ている。安全な操作も高い率でブロックされた（社内ミラーの設定59%、ビルド成果物の削除45%、使用中ポートの解放43%）。止めすぎると現場が面倒がり、やがて全部押すようになる。Anthropicも、承認の数が増えるほど1件あたりの注意が落ちる（permission fatigue／承認疲れ）と指摘している。</p>
+<p>この結果を「人間が不注意だった」と読むと間違える。海外の開発者からは、コマンドを1件ずつ承認させるモデル自体に無理があるという指摘も出ている。そしてここにズレがある——このゲームをプレイしたのはコマンドラインを毎日読む開発者で、その人たちですら3回に1回だった。日本の中小企業で承認ボタンを押すのは、社長や総務担当が、別の仕事の合間に押す。しかも中小企業で今増えているのはコーディングエージェントではなく、メールの下書きを送る・受発注を入力する・請求書を発行するといった型だ。画面は違っても構造は同じで、見慣れた操作名が並び、押す人は中身を見ない。</p>
+<p>押しても押さなくてもコストがかかる、というのがこの構造の本質だ。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>承認画面があることを「安全対策」として数えない。</strong>導入時のチェックリストにある「人が確認します」を対策欄から外す。それは対策ではなく、対策を先送りにした状態だ。</li>
+<li><strong>危険な操作は承認ではなく「できない設定」で止める。</strong>読み取り専用のアカウントで動かす、送信は下書きまでにして送信ボタンだけ人が押す、金額や件数のしきい値を超えたら自動で止める。承認の数を減らすほど、残った承認は本当に読まれる。</li>
+<li><strong>押す人と押す場面を決める。</strong>誰が・何を見て・いつ判断するかを1行で決める。「気づいたら押していた」という状態を作らない。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>自社の見積・請求のAIワークフローは、AIが作るのは下書きまでで、送信は人が押す形にしている。理由は精度への不安ではなく、押す場面を1日に数回まで減らすためだ。判断が並ぶほど、1件あたりの判断は雑になる。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a> からどうぞ。</div>
+
+<h2>その他の注目ニュース（8月7日 朝時点）</h2>
+<ul>
+<li><strong>OpenAI、無料ユーザーの既定モデルをGPT-5.6 Lunaに（8月6日発表）</strong> — 無料・Goユーザーは今週から既定がLunaになり、来週からテキストチャット無制限化、難問向け「Think」ボタンも使えるようになる（ファイルアップロード・画像等は引き続き制限あり）。Plus/Proは同日から更新版のSolと、思考量を選ぶスライダーを利用可能。OpenAIの社内評価では、金融・医療・法律の事実を要する質問での事実誤り含有率が、GPT-5.5 Instant比でLuna約62%減・Sol約68%減という（社内評価である点に留意。<a href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/" target="_blank" rel="noopener">一次情報</a>）。so what：無料で試せる範囲が広がった。契約前に自社の実務プロンプトを無料枠で試す価値が上がっている。</li>
+<li><strong>中小企業省力化投資補助金（一般型）第8回公募のスケジュールが公表</strong> — 公式サイトによれば、公募開始8月中旬・申請受付開始9月中旬・申請締切10月中旬の予定（確定日は後日告知、<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">一次情報</a>）。人手不足の中小企業がIoT・ロボット等の省力化設備導入費用を補助する制度で最大1億円。so what：公募開始後では間に合わない。設備・体制の検討は公募開始前に始めておきたい。</li>
+<li><strong>AMDがAI推論チップのTaalasを買収すると発表（8月6日）</strong> — Taalasは2023年設立・カナダのトロント拠点で、推論処理のデータフローを最適化し、汎用チップの計算・メモリのボトルネックを減らす技術を持つ。買収額は非開示、通例の完了条件と規制当局の承認が前提（<a href="https://ir.amd.com/news-events/press-releases/detail/1296/amd-acquires-taalas-to-advance-compute-solutions-for-rapidly-growing-ai-inference-market" target="_blank" rel="noopener">一次情報</a>）。so what：「AIを動かす側」のコスト低下は、中期的に中小企業のAI利用料への下げ圧力になる。</li>
+</ul>
+
+<div class="a-src">参考（一次情報）：<br>
+・Scale X「<a href="https://scalex.dev/blog/ai-agent-permissions-stats/" target="_blank" rel="noopener">Humans missed 1 in 3 threats approving AI agent commands across 40,000 plays</a>」（2026年8月5日）<br>
+・OpenAI「<a href="https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/" target="_blank" rel="noopener">Improving GPT-5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users</a>」（2026年8月6日）<br>
+・中小企業省力化投資補助金（一般型）<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">公式サイト</a><br>
+・AMD「<a href="https://ir.amd.com/news-events/press-releases/detail/1296/amd-acquires-taalas-to-advance-compute-solutions-for-rapidly-growing-ai-inference-market" target="_blank" rel="noopener">AMD Acquires Taalas to Advance Compute Solutions for Rapidly Growing AI Inference Market</a>」（2026年8月6日）<br>
+・あわせて読む：<a href="/blog/20260806-ai-cross-review.html">AIを2体並べても、同じ間違いをします——検算には順番がある</a>／<a href="/blog/what-is-fde.html">FDEとは？</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
