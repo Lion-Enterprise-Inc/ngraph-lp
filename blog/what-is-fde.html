@@ -10,10 +10,10 @@
   gtag('js', new Date());
   gtag('config', 'G-L96HMXRK1D');
 </script>
-<title>FDE（フォワード・デプロイド・エンジニア）とは？ 米テック大手が「常駐エンジニア」に投資する理由 | NGraphブログ</title>
-<meta name="description" content="OpenAIのFrontier、Microsoft・AWSのFDE部門新設——AI導入支援の主流が「現場常駐型」に移りつつある背景と、FDEの仕事内容をわかりやすく解説します。">
-<meta property="og:title" content="FDE（フォワード・デプロイド・エンジニア）とは？ 米テック大手が「常駐エンジニア」に投資する理由 | NGraphブログ">
-<meta property="og:description" content="OpenAIのFrontier、Microsoft・AWSのFDE部門新設——AI導入支援の主流が「現場常駐型」に移りつつある背景と、FDEの仕事内容をわかりやすく解説します。">
+<title>FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6% | NGraphブログ</title>
+<meta name="description" content="FDE＝エンジニアが顧客企業の現場に入ってAIを業務に組み込む支援モデル。IPA「DX動向2026」では「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」が不足69.6%、一方でAI研究者は56.7%が「自社には必要ない」。足りない人材の正体と、中小企業がFDE型支援を使う手順を解説します。">
+<meta property="og:title" content="FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6% | NGraphブログ">
+<meta property="og:description" content="FDE＝エンジニアが顧客企業の現場に入ってAIを業務に組み込む支援モデル。IPA「DX動向2026」では「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」が不足69.6%、一方でAI研究者は56.7%が「自社には必要ない」。足りない人材の正体と、中小企業がFDE型支援を使う手順を解説します。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ngraph.jp/blog/what-is-fde.html">
 <meta property="og:site_name" content="株式会社NGraph">
@@ -21,22 +21,23 @@
 <meta property="og:image" content="https://ngraph.jp/assets/blog/what-is-fde.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://ngraph.jp/blog/what-is-fde.html">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
-<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"\uFF0B";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"\u2212"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}</style>
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "FDE（フォワード・デプロイド・エンジニア）とは？ 米テック大手が「常駐エンジニア」に投資する理由",
+  "headline": "FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6%",
   "image": "https://ngraph.jp/assets/blog/what-is-fde.jpg",
-  "description": "OpenAIのFrontier、Microsoft・AWSのFDE部門新設——AI導入支援の主流が「現場常駐型」に移りつつある背景と、FDEの仕事内容をわかりやすく解説します。",
+  "description": "FDE＝エンジニアが顧客企業の現場に入ってAIを業務に組み込む支援モデル。IPA「DX動向2026」では「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」が不足69.6%、一方でAI研究者は56.7%が「自社には必要ない」。足りない人材の正体と、中小企業がFDE型支援を使う手順を解説します。",
   "datePublished": "2026-07-14",
-  "dateModified": "2026-07-17",
+  "dateModified": "2026-08-06",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/what-is-fde.html",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
@@ -50,10 +51,10 @@
  "mainEntity": [
   {
    "@type": "Question",
-   "name": "FDEと、ふつうのシステム開発会社は何が違いますか？",
+   "name": "FDE（フォワード・デプロイド・エンジニア）とは何ですか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "要件定義書を受け取って作るのではなく、エンジニアが現場に入って業務ごと設計する点です。ゴールも「完成品の納品」ではなく「現場が自分で使いこなせる状態」に置きます。"
+    "text": "エンジニアが顧客企業の現場に入り込み、その場で業務にAIを組み込んでいく支援モデルです。要件定義書を受け取って完成品を納品するのではなく、現場が自分で使いこなせる状態になるまでを範囲とします。"
    }
   },
   {
@@ -61,7 +62,23 @@
    "name": "FDEという言葉はどこから来たのですか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "米Palantir社が広めた職種名で、Forward Deployed Engineer（前線配置エンジニア）の略です。顧客企業の中に入って働くエンジニアを指し、現在はOpenAIなど米テック各社が同型の支援を強化しています。"
+    "text": "米Palantir社が広めた職種名です。OpenAIも2026年7月に発表した企業向けAIエージェント基盤「OpenAI Presence」の導入を担う役割としてFDEを位置づけており、大手にも広がっています。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "企業が本当に足りていないのはどんな人材ですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "IPA「DX動向2026」（2025年度調査）では、「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」の不足が69.6%、「データマネジメントの知見があり社内で企画・推進できる人材」の不足が71.9%と高い一方、AI研究者の不足は39.1%にとどまります。研究者は「自社には必要ない」が56.7%と高いためで、中小企業に必要なのは論文を書ける人ではなく現場に入れる人だと分かります。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "中小企業のAI導入率はどれくらいですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "IPAの調査では従業員100人以下の企業の「導入している」は16.6%、1,001人以上の企業は78.3%です。一方、帝国データバンクの調査では中小企業の「活用している」は32.4%と報告されています。母集団・設問・調査時期が異なるため、この2つの数字を引き算して比較することはできません。"
    }
   },
   {
@@ -69,7 +86,15 @@
    "name": "中小企業でもFDE型の支援を頼めますか？",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "はい。むしろIT担当がいない中小企業にこそ効果が大きい形です。当社は中小企業の規模と予算に合わせて、オンライン中心・範囲を絞った形から提供しています。"
+    "text": "はい。むしろIT担当がいない中小企業にこそ効果が大きい形です。当社は福井の飲食グループ本部（12店舗）など、中小企業の規模と予算に合わせてFDE型の支援を提供しています。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "FDE型と研修型・コンサル型・受託開発型は何が違いますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "研修型は知識を広げること、コンサル型は方針を決めること、受託開発型は要件通りのシステムを完成させることがゴールです。FDE型だけが、エンジニアが現場に入って一緒に手を動かし、「現場が自分で使いこなせる状態」まで責任範囲に含めます。"
    }
   }
  ]
@@ -91,43 +116,124 @@
 </header>
 
 <article class="article-wrap">
-  <div class="a-label">Blog</div>
-  <h1>FDE（フォワード・デプロイド・エンジニア）とは？ 米テック大手が「常駐エンジニア」に投資する理由</h1>
-  <span class="a-date">2026.07.14 ｜ 株式会社NGraph</span>
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6%</h1>
+  <span class="a-date">2026.07.14 公開（2026.08.06 更新）｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/what-is-fde.jpg" alt="">
 
-<p>FDE（Forward Deployed Engineer＝フォワード・デプロイド・エンジニア）は、直訳すると「最前線に配置された技術者」。<strong>エンジニアが顧客企業の中に数ヶ月単位で入り込み、各現場の業務に合わせてその場でAIを組み込んでいく</strong>支援モデルです。</p>
-<h2>なぜ今、FDEなのか</h2>
-<p>AIツールの性能はすでに十分高くなりました。ところが多くの企業では「契約したのに現場が使いこなせない」という停滞が起きています。原因はツールではなく、ツールと現場のあいだ——「自社のこの業務にどう当てはめるか」という最後の一段が埋まっていないことにあります。</p>
-<p>この一段は、マニュアルや研修では埋まりません。現場ごとに業務が違い、必要なプロンプトもシステム連携も違うからです。埋められるのは、現場に入って手を動かす人だけ。それがFDEという職種が生まれた理由です。</p>
-<h2>米テック大手の動き</h2>
-<ul>
-<li><strong>OpenAI「Frontier」</strong>：自社エンジニアを顧客企業に常駐させ、「AI同僚（AI coworkers）」と呼ばれる自律型エージェントを企業システムへ直接組み込む支援を展開しています。</li>
-<li><strong>Microsoft / AWS</strong>：両社とも巨額の投資を行い、数千人規模のFDE新部門を設立して顧客企業への常駐支援を開始したと報じられています。</li>
-</ul>
-<p>「ツールを渡して終わり」から「現場で動くまでつくる」へ。世界のAI導入支援は、確実に現場常駐型へ移っています。</p>
-<h2>FDEは何をするのか</h2>
-<p>FDEの仕事は大きく4つです。</p>
+<p>FDE（Forward Deployed Engineer＝フォワード・デプロイド・エンジニア）は、直訳すると「前線配置エンジニア」。<strong>エンジニアが顧客企業の現場に入り込み、その場でAIを業務に組み込んでいく</strong>支援モデルです。IPA（情報処理推進機構）「DX動向2026」データ集（2026年7月公表・2025年度調査・有効回答1,799社）によると、企業に本当に足りていないのは「AIに詳しい研究者」ではなく、<strong>「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」——不足69.6%</strong>でした。この記事ではFDEの定義と、IPA・帝国データバンクの調査データから見える「足りない人材」の正体、中小企業がFDE型支援を使う際の考え方を解説します。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・FDEとは何か。Palantir発の職種名がOpenAIの新サービスにも広がっている背景<br>
+・IPAの人材充足調査で「不足している」が最も高いのは、AI研究者ではなく現場推進人材・データマネジメント人材だという事実<br>
+・同じ「中小企業のAI導入率」でも、IPA（16.6%）と帝国データバンク（32.4%）で数字が倍近く違う理由</div>
+
+<h2>FDE（フォワード・デプロイド・エンジニア）とは何か</h2>
+<p>FDE（Forward Deployed Engineer）という職種名は、米Palantir社が広めたものです（公式の一次情報が確認できないため、創業年や人数などの詳細はここでは扱いません）。要件定義書を受け取って完成品を納品するのではなく、<strong>エンジニアが顧客企業の中に入り込み、現場の業務ごとにAIの使い方をその場で設計していく</strong>のが特徴です。</p>
+<p>この型はAIの提供側にも広がっています。OpenAIは2026年7月22日、企業向けの音声・チャットAIエージェントを構築・展開・運用・継続改善するためのマネージド基盤「OpenAI Presence」を発表しました。同社によると、<strong>その導入を担うのがForward Deployed Engineer（FDE）</strong>です。「AIツールを配って終わり」ではなく「現場で動くところまで一緒に作る」役割に、AIを作る側自身が名前をつけ始めているということです。</p>
+<p>FDE型は唯一の支援方法ではありません。よく比較される4つの型の違いを表1に整理しました。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>型</th><th>誰が手を動かすか</th><th>成果物</th><th>終わり方</th><th>向く場面</th></tr>
+<tr><td>FDE型</td><td>エンジニアが現場で担当者と一緒に</td><td>現場で動くAIの仕組み・運用手順</td><td>現場が自分で回せる状態になったら完了</td><td>業務ごとにやり方が違う・変化が多い現場</td></tr>
+<tr><td>研修型</td><td>社員が講義・演習で学ぶ</td><td>知識・スキル</td><td>研修の実施で一区切り（現場適用は各自）</td><td>全社員に共通の基礎知識を広げたい場面</td></tr>
+<tr><td>コンサル型</td><td>コンサルタントが分析・提言</td><td>戦略・提案書</td><td>提言書の納品で完了</td><td>方針や体制そのものを決めたい場面</td></tr>
+<tr><td>受託開発型</td><td>開発会社がシステムを構築</td><td>完成したシステム・ソフトウェア</td><td>検収・納品で完了</td><td>要件が最初から明確に固まっている場面</td></tr>
+</table></div>
+<p>4つの型は排他的ではなく、組み合わせて使われることも多くあります。ただしFDE型だけが持つ特徴は、<strong>「現場で使われる状態」まで責任範囲に含める</strong>点です。研修型・コンサル型・受託開発型との違いをさらに詳しく整理した記事は<a href="/blog/fde-vs-training.html">こちら</a>にあります。次の章では、なぜこの型が必要とされているのか、IPAの調査データから見ていきます。</p>
+
+<h2>足りないのはAI研究者ではなかった</h2>
+<p>IPA「DX動向2026」データ集のp.93「AI関連人材の充足状況」（2025年度調査）は、企業に8種類のAI関連人材について「十分にいる／まあまあいる／不足している／自社には必要ない」を尋ねています。「不足している」の回答率が最も高かったのは、意外にも研究職ではありませんでした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">足りないのはAI研究者ではなく「現場でAIを入れられる人」</p>
+<svg viewBox="0 0 1200 510" width="100%" style="min-width:640px" role="img" aria-label="足りないのはAI研究者ではなく「現場でAIを入れられる人」"><text x="421" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">データマネジメント人材</text><rect x="439" y="50" width="561" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">71.9%</text><text x="421" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">現場でAI導入を推進できる従業員</text><rect x="439" y="102" width="543" height="34" rx="2" fill="#a63a24"/><text x="994" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">69.6%</text><text x="421" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">AIツールで分析し事業に活かせる従業員</text><rect x="439" y="154" width="518" height="34" rx="2" fill="#cfc5b4"/><text x="969" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">66.5%</text><text x="421" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">AI事業企画</text><rect x="439" y="206" width="453" height="34" rx="2" fill="#cfc5b4"/><text x="904" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">58.1%</text><text x="421" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">AI開発者</text><rect x="439" y="258" width="389" height="34" rx="2" fill="#cfc5b4"/><text x="840" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">49.9%</text><text x="421" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">AI研究者</text><rect x="439" y="310" width="305" height="34" rx="2" fill="#cfc5b4"/><text x="756" y="336" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">39.1%</text><text x="421" y="387" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">AIに理解がある経営層</text><rect x="439" y="362" width="304" height="34" rx="2" fill="#cfc5b4"/><text x="755" y="388" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">39.0%</text><text x="600.0" y="452" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">「不足している」の回答率。AI研究者だけ低いのは、56.7%が「自社には必要ない」と答えているため</text><text x="8" y="494" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：IPA「DX動向2026」データ集（2026年7月・2025年度調査 n=1,781〜1,783）</text></svg>
+</div>
+<p>図の通り、最も不足感が強いのは<strong>データマネジメントの知見があり、社内で企画・推進できる人材（71.9%・n=1,782）</strong>、次いで<strong>現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員（69.6%・n=1,782）</strong>です。一方、<strong>先端的なAIアルゴリズムを開発したり学術論文を書いたりするAI研究者</strong>の「不足している」は39.1%（n=1,782）にとどまり、8種類中もっとも低い水準でした。</p>
+<p>数字だけを見ると「AI研究者は足りている」と早合点しそうになりますが、そうではありません。AI研究者について<strong>「自社には必要ない」と答えた企業は56.7%</strong>と、8種類の中で突出して高い数字です。不足していないのではなく、そもそも要らないと考えられている——だから「不足している」の回答率が下がっているのです。</p>
+<p>私たちが強調したいのはここです。中小企業がAI活用でつまずくのは、論文を書ける研究者がいないからではありません。<strong>自社の現場の業務を知った上で、基礎的なAI知識を持ち、実際に導入を推進できる人</strong>がいないから、そしてそういう人材を社内で育てる・採用する・外部から連れてくる方法が定まっていないからです。FDEという職種は、この「現場推進人材」を外部から連れてくる方法の一つだと整理できます。</p>
+<p style="font-size:.85rem;color:var(--text-3)">自社にこの人材がどれだけいるか気になる方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料のAI診断</a>で現在地を確認できます。</p>
+
+<h2>3年でどう動いたか</h2>
+<p>「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」の不足感は、この3年でどう変化したのでしょうか。IPAの同じ設問の経年変化を追うと、<strong>2023年度84.4%（n=863）→2024年度71.6%（n=1,515）→2025年度69.6%（n=1,782）</strong>と下がってきています。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">「現場でAI導入を推進できる従業員が不足」は3年で84.4→69.6</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="「現場でAI導入を推進できる従業員が不足」は3年で84.4→69.6"><line x1="186" y1="456" x2="1034" y2="456" stroke="#2b2620" stroke-width="1.6"/><line x1="186" y1="50" x2="186" y2="456" stroke="#2b2620" stroke-width="1.6"/><polyline points="220.0,120.3 610.0,171.3 1000.0,179.2" fill="none" stroke="#a63a24" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="220.0" cy="120.3" r="8" fill="#a63a24"/><text x="220.0" y="488" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">2023年度</text><circle cx="610.0" cy="171.3" r="8" fill="#a63a24"/><text x="610.0" y="488" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">2024年度</text><circle cx="1000.0" cy="179.2" r="8" fill="#a63a24"/><text x="1000.0" y="488" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">2025年度</text><text x="600.0" y="572" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">改善はしているが、いまも約7割の企業が不足と答えている</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：IPA「DX動向2026」データ集（2026年7月）</text></svg>
+</div>
+<p>2023年度から2024年度にかけて大きく下がった後、2024年度から2025年度にかけての下がり方は緩やかになっています。研修サービスやAI人材採用の広がりが背景にあると考えられます（研修そのものが抱える定着の課題は<a href="/blog/20260804-ai-kenshu-teichaku.html">別記事「AI研修が定着しない理由」</a>で解説しました）。ただし、改善のペースそのものは鈍ってきています。</p>
+<p>この職種の不足が動きにくい理由を、私たちはこう見ています。座学の研修は「AIの知識」を広げられますが、それだけでは「自社の業務にどう当てはめるか」までは埋まりません。IPAが問うているのは知識の有無ではなく<strong>「自社へのAI導入を推進できる」</strong>かどうかという、実践力を含んだ充足度です。知識を広げる打ち手（研修・採用広告）は増えても、実践の壁を埋める打ち手は増えにくい——だから改善のペースが鈍る、というのが私たちの見立てです。正本を作っても現場で読まれなければ同じことが起きる、という構造は<a href="/blog/20260806-seihon-yomarenai.html">別記事</a>でも書きました。</p>
+
+<h2>AIが入っていないのはどの規模か</h2>
+<p>人材の話から、企業規模別の導入状況に目を移します。IPA「DX動向2026」データ集のp.35「AIの導入状況（従業員規模別）」（2025年度調査）では、「導入している」と答えた企業の割合が、規模によって大きく異なります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">AIが入っていないのは、100人以下の会社</p>
+<svg viewBox="0 0 1200 354" width="100%" style="min-width:640px" role="img" aria-label="AIが入っていないのは、100人以下の会社"><text x="274" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">1001人以上</text><rect x="292" y="50" width="708" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">78.3%</text><text x="274" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">301〜1000人以下</text><rect x="292" y="102" width="475" height="34" rx="2" fill="#cfc5b4"/><text x="779" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">52.6%</text><text x="274" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">101〜300人以下</text><rect x="292" y="154" width="329" height="34" rx="2" fill="#cfc5b4"/><text x="633" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">36.4%</text><text x="274" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">100人以下</text><rect x="292" y="206" width="150" height="34" rx="2" fill="#2b2620"/><text x="454" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="start">16.6%</text><text x="600.0" y="296" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">「導入している」の回答率。100人以下では「今後も取組む予定はない」も28.5%（1,001人以上は0.5%）</text><text x="8" y="338" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：IPA「DX動向2026」データ集（2026年7月・2025年度調査）</text></svg>
+</div>
+<p><strong>従業員1,001人以上の企業は78.3%（n=378）</strong>が「導入している」と回答した一方、<strong>100人以下の企業では16.6%（n=583）</strong>にとどまります。101〜300人以下は36.4%（n=448）、301〜1,000人以下は52.6%（n=384）と、規模が上がるにつれて段階的に上がっていく構図です。IPA自身も「企業規模が大きくなるほど導入が進んでいる」と記述しています。</p>
+<p>さらに見ておきたいのが、最も後ろ向きな選択肢「今後も取組む予定はない」の割合です。100人以下の企業では<strong>28.5%</strong>がこれを選んでいるのに対し、1,001人以上の企業では<strong>0.5%</strong>だけです。約3割の小規模企業が「検討すらしない」と答えている一方、大企業ではその選択肢はほぼ存在しません。導入率の差だけでなく、検討の入り口にすら立っていない企業の割合にも大きな差があるということです。</p>
+
+<h2>同じ「中小企業のAI」でも、調査によって倍近く違う理由</h2>
+<p>ここまでIPAの数字（100人以下16.6%）を見てきましたが、同じ2026年に公表された帝国データバンク「生成AIに関する企業の動向調査」（2026年3月17〜31日実施・有効回答1万312社・回答率44.2%）では、<strong>中小企業の「活用している」は32.4%</strong>と報告されています。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">同じ「中小企業のAI」でも、調査によって倍近く違う</p>
+<svg viewBox="0 0 1200 460" width="100%" style="min-width:640px" role="img" aria-label="同じ「中小企業のAI」でも、調査によって倍近く違う"><rect x="220" y="99" width="220" height="210" rx="3" fill="#a63a24"/><text x="330" y="81" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#a63a24" font-weight="900" text-anchor="middle">32.4%</text><text x="330" y="343" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">帝国データバンク「中小企業」</text><rect x="700" y="202" width="220" height="107" rx="3" fill="#cfc5b4"/><text x="810" y="184" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#5c544a" font-weight="900" text-anchor="middle">16.6%</text><text x="810" y="343" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">IPA「100人以下」</text><line x1="570" y1="50" x2="570" y2="358" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="600.0" y="402" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">母集団も設問も違うため、この2つを引き算してはいけない</text><text x="8" y="444" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：帝国データバンク（2026年3月・1万312社）／IPA「DX動向2026」（2026年4〜6月・1,799社）</text></svg>
+</div>
+<p>どちらも「中小企業のAI」を調べた調査なのに、数字はほぼ倍です。<strong>この2つを「約16ポイントの差」のように引き算して読んではいけません。</strong>母集団も設問も違うからです。私たちが整理した違いは次の5点です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>比較軸</th><th>IPA「DX動向2026」</th><th>帝国データバンク</th></tr>
+<tr><td>問いの立て方</td><td>「AIを導入していますか」（AI全般・6段階の選択肢）</td><td>「生成AIを活用していますか」（生成AIに限定・5段階）</td></tr>
+<tr><td>企業規模の区分</td><td>100人以下／101〜300人以下／301〜1,000人以下／1,001人以上</td><td>大企業／中小企業／小規模企業（同社独自の定義）</td></tr>
+<tr><td>回答者</td><td>経営層・情報システム部門・DX推進部門等</td><td>企業単位での回答</td></tr>
+<tr><td>母集団・有効回答数</td><td>有効回答1,799社</td><td>有効回答1万312社（回答率44.2%）</td></tr>
+<tr><td>調査時期</td><td>2026年4月17日〜6月12日</td><td>2026年3月17〜31日</td></tr>
+</table></div>
+<p>5つの違いのうち、数字の大きさに最も効いていると考えられるのは問いの立て方と企業規模の区分です。IPAの設問は「AI全般」を「導入している」かを尋ねる、比較的狭い基準です。帝国データバンクは対象を生成AIに絞る一方、「活用」という言葉は「導入」より緩い行為も含みやすくなります。企業規模の区分も、IPAの「100人以下」と帝国データバンクの「中小企業」（同社の定義）は一致しません。</p>
+<p>実務上の結論はシンプルです。<strong>「自社が平均のどこにいるか」を測るときは、どちらの数字と比べているかを先に確認してください。</strong>100人以下の会社がIPAの16.6%とだけ比べれば「自社は遅れていない」と感じるかもしれませんが、帝国データバンクの32.4%と比べれば逆の感想になります。どちらも正しい数字であり、比べる相手を選ぶ作業が先に要ります。</p>
+
+<h2>FDEは現場で何をするのか</h2>
+<p>FDEの仕事は、大きく4つに分解できます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>工程</th><th>やること</th></tr>
+<tr><td>1. 業務の分解</td><td>現場の仕事を実際に見て、AIに任せられる箇所と人が担うべき箇所を切り分ける。マニュアルの手順ではなく、実際にその場で起きている作業を観察するところから始める</td></tr>
+<tr><td>2. その場での構築</td><td>現場の実データを使い、プロンプトやAIエージェントをその場で組んで動かし、うまくいかない部分をその場で直す</td></tr>
+<tr><td>3. システム連携</td><td>既存の受発注システムや会計ソフト、チャットツールなどとAIを接続する。中小企業の現場は道具がバラバラなことが多く、この接続作業自体に時間がかかる</td></tr>
+<tr><td>4. 定着</td><td>現場のメンバーが自分で回せる状態まで伴走し、手順とAIへの指示文を残して引き継ぐ</td></tr>
+</table></div>
+<div class="a-note"><strong>私たち自身のFDE：</strong>私たちはいま、福井の飲食グループ本部（12店舗）に入り、この4つを実践しています。入って最初のヒアリングで見つかったのは、原価計算のExcelが約2年止まっていたこと、新人向けのガイダンスに年間約100人がかかっていたことでした。どちらも会議室で作った提案書には出てこない、現場に入って初めて見える課題です。会議室の提案書ではなく、担当者の隣で実データを見ながら進める——それがFDE型と呼ばれる支援の実際の姿だと、私たちは考えています。</div>
+
+<h2>よくある失敗・NGパターン</h2>
+<p>帝国データバンクの調査では、生成AI活用が進まない理由として、情報の正確性（50.4%）、専門人材・ノウハウ不足（41.3%）、活用すべき業務範囲が分からない（40.0%）、情報漏洩のリスク（33.5%）、トラブル時の責任ルール整備（25.5%）が挙がっています。これらの課題は、現場でよく見る失敗パターンと重なります。</p>
 <ol>
-<li><strong>業務の分解</strong>：現場の仕事を実際に見て、AIに任せられる箇所と人が担うべき箇所を切り分ける</li>
-<li><strong>その場での構築</strong>：現場の実データでプロンプトやAIエージェントを組み、目の前で動かして直す</li>
-<li><strong>システム連携</strong>：既存の業務システムやExcel、チャットツールとAIを接続する</li>
-<li><strong>定着</strong>：現場メンバーが自分で回せる状態まで伴走し、引き継いで完了する</li>
+<li><strong>全社一斉に入れて誰も使わない</strong>——専門人材・ノウハウ不足（41.3%）が象徴する通り、使い方を教える人がいないまま全社に配布すると、一部の人しか触らずに終わります。1部署・1業務から始め、使える形を作ってから広げる方が定着します。</li>
+<li><strong>ツールの選定から始める</strong>——「どの業務に、どこまで使うか」（40.0%が課題視）を決める前にツールを比較し始めると、比較自体が目的化します。業務を先に決め、ツールは後から選ぶ順番が逆転しないようにします。</li>
+<li><strong>担当者に兼務で丸投げする</strong>——専門人材・ノウハウ不足はツールの問題ではなく人の問題です。既存業務と兼務のまま「AI担当」を任命しても、時間が確保できず動きません。</li>
+<li><strong>PoC（試験導入）で終わって現場に残らない</strong>——試しに使ってみるところまでは進んでも、情報の正確性への不安（50.4%）やトラブル時の責任ルール整備の遅れ（25.5%）を理由に、本番運用への切り替えが止まることがあります。「誰が最終確認するか」「間違えたときの対応」を先に決めておくと、この段階で止まりにくくなります。</li>
+<li><strong>情報漏洩対策を後回しにする</strong>——情報漏洩のリスク（33.5%）は、使い始めてから対策すると手戻りが大きくなります。何を入力してよいか・してはいけないかのルールは、使い始める前に決めておく必要があります。</li>
 </ol>
-<h2>日本の中小企業にこそ必要な理由</h2>
-<p>大企業には情報システム部門がありますが、それでも全部署への展開は難航しています。まして専任のIT担当がいない中小企業では、「現場に入って一緒につくる人」がいなければAI活用は号令だけで終わりがちです。NGraphは、このFDE型の支援を中堅・中小企業の規模と予算に合わせて提供しています。</p>
+<p style="font-size:.85rem;color:var(--text-3)">こうしたNGパターンを避けたい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。導入にかかる費用の実額は<a href="/blog/ai-cost.html">別記事</a>でも解説しています。</p>
 
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>FDE（フォワード・デプロイド・エンジニア）とは何ですか？</summary><p>エンジニアが顧客企業の現場に入り込み、その場で業務にAIを組み込んでいく支援モデルです。要件定義書を受け取って完成品を納品するのではなく、現場が自分で使いこなせる状態になるまでを範囲とします。</p></details>
+<details><summary>FDEという言葉はどこから来たのですか？</summary><p>米Palantir社が広めた職種名です。OpenAIも2026年7月に発表した企業向けAIエージェント基盤「OpenAI Presence」の導入を担う役割としてFDEを位置づけており、大手にも広がっています。</p></details>
+<details><summary>企業が本当に足りていないのはどんな人材ですか？</summary><p>IPA「DX動向2026」（2025年度調査）では、「現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員」の不足が69.6%、「データマネジメントの知見があり社内で企画・推進できる人材」の不足が71.9%と高い一方、AI研究者の不足は39.1%にとどまります。研究者は「自社には必要ない」が56.7%と高いためで、中小企業に必要なのは論文を書ける人ではなく現場に入れる人だと分かります。</p></details>
+<details><summary>中小企業のAI導入率はどれくらいですか？</summary><p>IPAの調査では従業員100人以下の企業の「導入している」は16.6%、1,001人以上の企業は78.3%です。一方、帝国データバンクの調査では中小企業の「活用している」は32.4%と報告されています。母集団・設問・調査時期が異なるため、この2つの数字を引き算して比較することはできません。</p></details>
+<details><summary>中小企業でもFDE型の支援を頼めますか？</summary><p>はい。むしろIT担当がいない中小企業にこそ効果が大きい形です。当社は福井の飲食グループ本部（12店舗）など、中小企業の規模と予算に合わせてFDE型の支援を提供しています。</p></details>
+<details><summary>FDE型と研修型・コンサル型・受託開発型は何が違いますか？</summary><p>研修型は知識を広げること、コンサル型は方針を決めること、受託開発型は要件通りのシステムを完成させることがゴールです。FDE型だけが、エンジニアが現場に入って一緒に手を動かし、「現場が自分で使いこなせる状態」まで責任範囲に含めます。</p></details>
+</div>
 
-
-<div class="a-note"><strong>私たち自身のFDE：</strong>いま福井の飲食グループ本部（12店舗）に入り、受発注・会計・LINEといった既存の道具を繋ぐAI化に取り組んでいます。会議室の提案書ではなく、担当者の隣で実データを見ながら進める——この記事のFDEは、その実践から書いています。</div>
-<h2>よくある質問</h2><div class="a-faq"><details><summary>FDEと、ふつうのシステム開発会社は何が違いますか？</summary><p>要件定義書を受け取って作るのではなく、エンジニアが現場に入って業務ごと設計する点です。ゴールも「完成品の納品」ではなく「現場が自分で使いこなせる状態」に置きます。</p></details><details><summary>FDEという言葉はどこから来たのですか？</summary><p>米Palantir社が広めた職種名で、Forward Deployed Engineer（前線配置エンジニア）の略です。顧客企業の中に入って働くエンジニアを指し、現在はOpenAIなど米テック各社が同型の支援を強化しています。</p></details><details><summary>中小企業でもFDE型の支援を頼めますか？</summary><p>はい。むしろIT担当がいない中小企業にこそ効果が大きい形です。当社は中小企業の規模と予算に合わせて、オンライン中心・範囲を絞った形から提供しています。</p></details></div>
+<h2>まとめ</h2>
+<p>FDEとは、エンジニアが顧客企業の現場に入り込み、その場で業務にAIを組み込んでいく支援モデルです。Palantir発の職種名がOpenAIの新サービスにも広がっているのは、AIツールを配るだけでは現場に定着しないという共通認識があるからだと考えられます。IPAのデータが示すのは、企業に本当に足りないのは論文を書けるAI研究者（不足39.1%）ではなく、<strong>現場の知見と基礎的AI知識を持ち、自社へのAI導入を推進できる従業員（不足69.6%）</strong>だという事実です。この3年で不足感は84.4%から69.6%まで下がってきましたが、改善のペースは鈍っており、いまも7割近くの企業が不足を感じています。そして「中小企業のAI導入」という同じテーマでも、IPA（100人以下16.6%）と帝国データバンク（中小企業32.4%）では数字が倍近く違います——母集団も設問も違う以上、この2つは引き算するのではなく、自社がどちらの前提に近いかを確認した上で読む必要があります。足りないのは高性能なAIそのものではなく、それを自社の現場に当てはめる人です。</p>
 
 <div class="a-cta">
-  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">AI導入の現在地の整理から、現場での実装・定着まで。</p>
-  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。相談は無料です。</p>
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「現場でAIを入れられる人」を、外から連れてくるという選択肢。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
   <a href="/entry.html" class="btn btn-primary">無料で相談する</a>
   <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
 </div>
+
+<div class="a-src">参考（一次情報）：<br>
+・情報処理推進機構（IPA）「<a href="https://www.ipa.go.jp/digital/chousa/dx-trend/dx-trend-2026.html" target="_blank" rel="noopener">DX動向2026</a>」データ集（2026年7月公表・調査期間2026年4月17日〜6月12日・有効回答1,799社）<br>
+・情報処理推進機構（IPA）「<a href="https://www.ipa.go.jp/pressrelease/2026/press20260716.html" target="_blank" rel="noopener">国内企業のDX動向・AI活用動向のポイントを公表</a>」（2026年7月16日）<br>
+・帝国データバンク「<a href="https://www.tdb.co.jp/report/economic/20260514-genai/" target="_blank" rel="noopener">生成AIに関する企業の動向調査</a>」（2026年3月17〜31日実施・有効回答1万312社・回答率44.2%）<br>
+・OpenAI「<a href="https://openai.com/index/introducing-openai-presence/" target="_blank" rel="noopener">Introducing OpenAI Presence</a>」（2026年7月22日）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
 </article>
@@ -141,8 +247,7 @@
       <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
     </div>
     <div class="footer-links">
-      <a href="/#fde">FDEとは</a>
-      <a href="/#service">サービス内容</a>
+      <a href="/fde/">FDE型AI導入支援</a>
       <a href="/blog/">ブログ</a>
       <a href="/company.html">会社概要</a>
       <a href="/entry.html">お問い合わせ</a>
