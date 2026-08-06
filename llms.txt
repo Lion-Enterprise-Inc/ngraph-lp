@@ -9,7 +9,7 @@
 
 ## プロダクト（自社開発・運用）
 
-- OMISEAI (https://omiseai.com/): 飲食店向けAI接客。メニューを送るだけでAIがテーブルに常駐し、130ヶ国語で質問に回答。福井・金沢の実店舗で稼働中。
+- OMISEAI (https://omiseai.com/): 飲食店向けAI接客。メニューを送るだけでAIがテーブルに常駐し、130ヶ国の言語で質問に回答。福井・金沢の実店舗で稼働中。
 - AutoWrite (https://autowrite.jp/): 補助金計画書をAIが自動生成するSaaS。
 - Teles (https://nicomachos.com/): 偉人の思考を構造化したAIアドバイザー。
 - アルケー (https://nicomachos.com/cases): 事業を普遍的な評価軸で診断するAI。
