@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった | NGraphブログ</title>
+<meta name="description" content="社内の情報をAIが読める形に整えても、AIがそれを読むとは限りません。帝国データバンク調査（2026年3月・1万312社）で活用企業の86.7%が効果を認める一方、活用は34.5%どまり。自社で起きた「正本があるのにAIが読まなかった」事故と、読み出し側に検問を置いて塞いだ方法を解説します。">
+<meta property="og:title" content="正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった | NGraphブログ">
+<meta property="og:description" content="整えるところまでが準備で、読ませるところまでが仕組み。自社で起きた「正本があるのにAIが読まなかった」事故と、その塞ぎ方。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260806-seihon-yomarenai.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260806-seihon-yomarenai.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260806-seihon-yomarenai.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった",
+  "image": "https://ngraph.jp/assets/blog/20260806-seihon-yomarenai.jpg",
+  "description": "社内の情報をAIが読める形に整えても、AIがそれを読むとは限りません。帝国データバンク調査（2026年3月・1万312社）で活用企業の86.7%が効果を認める一方、活用は34.5%どまり。自社で起きた「正本があるのにAIが読まなかった」事故と、読み出し側に検問を置いて塞いだ方法を解説します。",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260806-seihon-yomarenai.html",
+  "author": {
+    "@type": "Person",
+    "name": "髙橋 真吾",
+    "jobTitle": "代表取締役",
+    "url": "https://ngraph.jp/company#team",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "株式会社NGraph",
+      "url": "https://ngraph.jp/"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "株式会社NGraph",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ngraph.jp/assets/ngraph-logo-circle.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "正本というのは、要するに社内wikiや共有フォルダのことですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "置き場所としては近いですが、正本は「書き方のルール」と「検査」がある点が違います。1件ごとに日付・確度（確定か要確認か）・出典を持たせ、それが付いていない情報は保存の時点で弾きます。整理された情報が並んでいるだけでは、AIは古い情報と確定した事実を区別できません。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ツールを入れれば解決しますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "解決しません。本記事で挙げた事故も、ツールが十分に揃った状態で起きています。決めるべきは「何を正本に入れるか」「矛盾したらどれが勝つか」「AIに見せない情報はどれか」という運用のルールで、これはツールが決めてくれません。逆にルールが決まっていれば、道具は普通のテキストファイルとGitで足ります。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "全社で一気にやる必要がありますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "おすすめしません。繰り返し発生していて時間を食っている業務を1つ選び、その業務についてだけ「どの情報源に頼っているか」「矛盾したらどれが勝つか」「毎回必要になる前提は何か」に答えられる状態を作るところから始めるのが現実的です。1業務で型ができれば、2つ目以降は同じ手順で進められます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "機密情報をAIに読ませることになりませんか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "正本は自社の管理下に置き、AIは読み口を通してのみ触る形にします。どの範囲を見せるかは自社で決められます。自社運用では非公開に分類したファイルは読み口の段階で自動的に遮断され、実際に遮断されることをテストで確認したうえで使っています。個人情報などは正本に本文を置かず、保管場所への参照だけを持たせます。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "特定のAIメーカーに縛られませんか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "縛られない形にできます。正本を特定のAIサービスの中ではなく普通のテキストファイルとして持てば、どのメーカーのAIでも読めます。複数の経路のAIから同じ正本を参照できることを自社で確認しています。AIを乗り換えても、情報と運用ルールは自社に残ります。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "「読んだかどうか」は具体的にどう確認するのですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "AIの回答文ではなく、作業の記録（どのファイルを実際に開いたかのログ）を機械的に走査して判定します。回答文に「参照しました」と書いてあっても根拠になりません。読んでいなくても書けてしまうためです。判定に人やAIの申告を介在させないことが要点です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "整えたあと、情報の更新は誰がやるのですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "分類や統合の作業は担当者ではなく仕組み側に寄せるのが現実的です。決まった時刻に走る整理の処理が、受付フォルダに入ったものと会話から出た提案を定義どおりに統合します。人がやるのは「放り込む」「承認する」「迷ったものに答える」の3つだけです。この3つまで自動化すると誤りが自動で増幅されるため、あえて人を残しています。"
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった</h1>
+  <span class="a-date">2026.08.06 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260806-seihon-yomarenai.jpg" alt="">
+
+<p>業務のAI化で最初にやることは、社内に散らばった情報を「AIが読める形」に集めることです。ところが、集めただけでは足りません。<strong>AIがそれを読むとは限らない</strong>からです。帝国データバンクの調査（2026年3月17〜31日実施・有効回答1万312社）によれば、生成AIを「活用している」企業は<strong>34.5%</strong>。一方、活用している企業のうち<strong>86.7%</strong>が「効果がある」と答えています。使えば効果は出ている。使われていないだけです。そして私たち自身、社内の正本（会社の情報の原本）を整えた直後に「正本があるのにAIが読まなかった」という事故を起こしました。この記事は、その事故と塞ぎ方の記録です。</p>
+
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・「導入率」と「効果実感」の数字がなぜ食い違って見えるのか（母集団と設問の違い）<br>
+・情報を整えてもAIが読まない、という構造欠陥がなぜ起きるのか<br>
+・入口の検問だけでは足りない理由と、出口に検問を置く具体的なやり方</div>
+
+<h2>数字が言っていること——使えば効果は出る。使われていないだけ</h2>
+
+<p>まず全体像を、一次調査の数字で押さえます。帝国データバンクが全国2万3,349社に調査を送り、1万312社（回答率44.2%）から回答を得た「生成AIに関する企業の動向調査」（2026年3月）の結果です。</p>
+
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>回答区分</th><th>割合</th></tr>
+<tr><td>非常に活用している</td><td>4.4%</td></tr>
+<tr><td>やや活用している</td><td>30.2%</td></tr>
+<tr><td><strong>（活用している 計）</strong></td><td><strong>34.5%</strong></td></tr>
+<tr><td>あまり活用していない</td><td>13.6%</td></tr>
+<tr><td>ほとんど活用していない</td><td>23.3%</td></tr>
+<tr><td>今後活用を検討</td><td>14.2%</td></tr>
+<tr><td>活用を禁止している</td><td>0.4%</td></tr>
+</table></div>
+<p class="a-fig-cap">表1：生成AIの活用状況（帝国データバンク・2026年3月・有効回答1万312社）</p>
+
+<p>目を引くのは「あまり活用していない」13.6%と「ほとんど活用していない」23.3%を足した<strong>36.9%</strong>です。この層は「知らない」でも「禁止している」でもありません。<strong>手元にはあるが、動いていない</strong>という状態です。禁止はわずか0.4%ですから、止めているのは方針ではないということになります。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">使っている会社は3社に1社。規模が小さいほど下がる</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="使っている会社は3社に1社。規模が小さいほど下がる"><text x="412" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">大企業</text><rect x="430" y="50" width="560" height="34" rx="2" fill="#a63a24"/><text x="1002" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">46.5%</text><text x="412" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">中小企業</text><rect x="430" y="102" width="390" height="34" rx="2" fill="#cfc5b4"/><text x="832" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">32.4%</text><text x="412" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">小規模企業</text><rect x="430" y="154" width="337" height="34" rx="2" fill="#cfc5b4"/><text x="779" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">28.0%</text><text x="600.0" y="572" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">全体では34.5%。差が開くのはAIの性能ではなく、渡せる情報が整っているかどうか</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：帝国データバンク「生成AIに関する企業の動向調査」2026年3月・有効回答1万312社</text></svg>
+</div>
+
+<p>規模別に見ると、大企業46.5%、中小企業32.4%、小規模企業28.0%。差は開いていますが、大企業でも半分に届いていません。ここで「規模が小さいと使えない」と読むのは早いと思います。同じ生成AIを、同じ料金で、同じ画面から使えるのに差が出ているからです。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">使えば効果は出ている。使われていないだけ</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="使えば効果は出ている。使われていないだけ"><rect x="220" y="311" width="220" height="83" rx="3" fill="#a63a24"/><text x="330" y="293" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#a63a24" font-weight="900" text-anchor="middle">34.5%</text><text x="330" y="428" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">生成AIを活用している</text><rect x="700" y="184" width="220" height="210" rx="3" fill="#cfc5b4"/><text x="810" y="166" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#5c544a" font-weight="900" text-anchor="middle">86.7%</text><text x="810" y="428" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">効果があると答えた</text><line x1="570" y1="50" x2="570" y2="528" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="600.0" y="572" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">左は全回答1万312社に対する割合、右は活用中の企業の中での割合。母集団が違うので引き算はできない</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：帝国データバンク「生成AIに関する企業の動向調査」2026年3月</text></svg>
+</div>
+
+<p>そして効果です。活用している企業のうち「大いに効果がある」25.2%、「やや効果がある」61.5%で、合わせて<strong>86.7%</strong>が効果を認めています。悪影響やトラブルが「ない」と答えた企業も67.7%。<strong>使い始めた会社のほとんどで効果は出ている</strong>のに、使い始めた会社が3社に1社しかない、という構図です。</p>
+
+<p>なお図2の左右は<strong>母集団が違います</strong>。34.5%は全回答1万312社に対する割合、86.7%は活用中の企業の中での割合です。引き算はできません。この記事で言いたいのは差の大きさではなく、「効果が出ないから広がらない」という説明が数字と合わない、ということです。</p>
+
+<h2>IPAの調査と食い違って見えるのは、設問が違うから</h2>
+
+<p>ここで注意が要ります。同じ時期の別の調査を見ると、印象が反対に見えるからです。</p>
+
+<p>情報処理推進機構（IPA）の「DX動向2026調査」（2026年4月17日〜6月12日実施・回答1,799社）は、プレスリリースでこう述べています。AI導入は大企業を中心に広がり多くの企業で効果が実感されている一方、<strong>「期待どおりや期待以上の効果の割合は限定的」</strong>であり、用途や効果の内容は業務効率化・迅速化が中心で、企業価値創出への展開は限定的である、と。</p>
+
+<p>片方は「86.7%が効果あり」、もう片方は「期待どおりの割合は限定的」。矛盾しているように見えますが、<strong>設計が違うだけ</strong>です。</p>
+
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>帝国データバンク</th><th>IPA</th></tr>
+<tr><td>調査時期</td><td>2026年3月17〜31日</td><td>2026年4月17日〜6月12日</td></tr>
+<tr><td>回答数</td><td>1万312社（回答率44.2%）</td><td>1,799社</td></tr>
+<tr><td>回答者</td><td>企業（全国2万3,349社へ送付）</td><td>経営層・情報システム部門・DX推進部門等</td></tr>
+<tr><td>問いの立て方</td><td>効果が「ある」か</td><td>効果が「期待どおり」か</td></tr>
+<tr><td>結果</td><td>86.7%が効果あり</td><td>期待どおり／期待以上は限定的</td></tr>
+</table></div>
+<p class="a-fig-cap">表2：2つの調査の設計比較（各発表資料より作成）</p>
+
+<p>「効果が出ているか」と「期待に届いたか」は別の問いです。文章の要約が速くなれば効果は<em>あります</em>。しかし経営が期待していたのが「新しい価値が生まれること」だったなら、同じ結果が「期待には届いていない」になります。<strong>数字がズレているのではなく、二つの調査は違うことを聞いています。</strong></p>
+
+<p>この読み分けは実務でも効きます。社内で「AIを入れたが効果が出ない」という話が出たとき、効果が本当にゼロなのか、それとも期待の置き場所が違うのかで、打つ手がまったく変わるからです。（関連：<a href="/blog/why-ai-stalls.html">AIを導入したのに現場で使われない3つの理由</a>）</p>
+
+<h2>課題の2位と3位は、同じことを言っている</h2>
+
+<p>次に、同じ帝国データバンク調査の「懸念・課題」を見ます（複数回答）。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">課題の2位と3位は、同じことを言っている</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="課題の2位と3位は、同じことを言っている"><text x="412" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">情報の正確性</text><rect x="430" y="50" width="560" height="34" rx="2" fill="#a63a24"/><text x="1002" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">50.4%</text><text x="412" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">専門人材・ノウハウ不足</text><rect x="430" y="102" width="458" height="34" rx="2" fill="#a63a24"/><text x="900" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">41.3%</text><text x="412" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">活用範囲の不明確さ</text><rect x="430" y="154" width="444" height="34" rx="2" fill="#a63a24"/><text x="886" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">40.0%</text><text x="412" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">情報漏洩リスク</text><rect x="430" y="206" width="372" height="34" rx="2" fill="#cfc5b4"/><text x="814" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">33.5%</text><text x="412" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">ルール整備不足</text><rect x="430" y="258" width="283" height="34" rx="2" fill="#cfc5b4"/><text x="725" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">25.5%</text><text x="600.0" y="572" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">「誰がやるか」と「どこまで任せるか」——どちらも、AIに渡す材料が決まっていないという一つの問題</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：帝国データバンク「生成AIに関する企業の動向調査」2026年3月・複数回答</text></svg>
+</div>
+
+<p>1位は「情報の正確性」50.4%。2位が「専門人材・ノウハウ不足」41.3%、3位が「活用範囲の不明確さ」40.0%です。</p>
+
+<p>2位と3位は、別々の課題として並んでいますが、現場で聞くと同じ一つの問題の裏表であることが多いと感じています。<strong>「誰がやるか」と「どこまで任せるか」は、どちらも“AIに何を渡せばいいかが決まっていない”という状態から生まれます。</strong>渡す材料が決まっていれば、担当は決めやすい。任せる範囲も決めやすい。決まっていないから、詳しい人を探すことになり、範囲も曖昧なままになります。</p>
+
+<p>1位の「情報の正確性」も、実は同じ根に繋がります。AIが間違えるのは、多くの場合、正しい情報を渡していないからです。社内の最新の数字がどこにあるか決まっていなければ、AIは自分の学習内容か、たまたま渡された古い資料で答えるしかありません。</p>
+
+<p>だから最初にやるべきは、ツール選定でも研修でもなく、<strong>「何を渡すか」を決めて一か所に置くこと</strong>だと考えています。これを私たちは「会社の脳」と呼んでいます（詳しくは<a href="/blog/20260804-company-brain.html">会社の脳はもうある、散らばっているだけ</a>）。</p>
+
+<h2>ところが、置いただけでは読まれない</h2>
+
+<p>ここからが本題です。私たちは自社で、この「一か所に置く」を先にやりました。会社の判断ルール、案件の現在地、決定と教訓、担当の分担表を、日付と根拠のついたテキストの正本にまとめ、PCのAIからもスマホのAIからも同じ場所を読めるようにしました。書き込む側には検問も作りました。確度のタグが付いていない金額や期間は、保存の時点でブロックされる仕組みです。</p>
+
+<p>それでも、事故は起きました。</p>
+
+<div class="a-note"><strong>2026年8月5日・自社で起きたこと：</strong>対外向けのプロフィール文を作らせたところ、AIは<strong>会社の正本を一度も読まずに</strong>会社紹介を書き上げました。結果、いま最も力を入れている支援の形も、開発中の主力プロダクトも、文章から丸ごと抜け落ちました。もっともらしい、しかし現在地の入っていない紹介文です。<br><br>やっかいなのは、<strong>読む順番は設定ファイルにもAIのメモリにも書いてあった</strong>ことです。「開始時にこれを読む」と、複数の場所に明記した状態で、読まれませんでした。指示が足りなかったのではありません。指示は足りていて、それでも読まれなかった。</div>
+
+<p>この事故には、もう一つ前段があります。その数日前、AIが推測で置いた契約条件の数字が正本に入り込み、それを別のAIが「正本が優先」というルールに従って読み、自分の正しい記憶のほうを誤って訂正するということが起きていました。こちらは書き込み側の事故で、確度タグの検問を作って塞いだところでした。</p>
+
+<p><strong>書き込む側には検問を作ったのに、読み出す側には作っていなかった。</strong>この非対称が、8月5日の事故の正体です。</p>
+
+<h2>なぜ読まれないのか——判断がAIの裁量に残っていた</h2>
+
+<p>原因を突き詰めると、構造の問題に行き当たりました。</p>
+
+<p>「正本を読む必要があるか」を判断するには、<strong>正本に何が書いてあるかを、ある程度すでに知っている必要があります</strong>。会社の現在地が変わったことを知らないAIは、「これは自分の知識で書ける」と判断します。知らないから読まない。読まないから知らない。ここに循環があります。</p>
+
+<p>だから「必要なら読んでください」という指示は、原理的に効きません。必要かどうかの判断そのものが、読まないと下せないからです。</p>
+
+<p>この点について、別のAIに第三者としてレビューさせたところ、こういう指摘が返ってきました。<strong>「正本は、正しい答えが存在することは保証するが、使われることは保証しない」。</strong>知識の層は強くても、それを使わせる制御の層が弱い、という整理です。手厳しいですが、その通りだと思いました。整えた情報が参照されるかどうかが確率に委ねられているなら、顧客は信頼性を買ったつもりで、実際には「たぶん参照される仕組み」を買うことになります。</p>
+
+<p>これは、私たちが日ごろ中小企業のAI導入について言っていることと、まったく同じ構図です。ツールは契約されている。使い方も配ってある。それでも現場で使われない。<strong>「置いてあるのに使われない」は、AI導入だけの話ではありませんでした。</strong>自分たちの正本にも、同じことが起きていたわけです。</p>
+
+<div style="text-align:center;margin:30px 0"><a href="/fde/" style="font-size:.92rem;border-bottom:1px solid var(--accent);color:var(--accent)">社内の情報を「AIが読める形」にする支援について →</a></div>
+
+<h2>塞ぎ方——検問を、出口にも置く</h2>
+
+<p>直し方は、指示を強めることではありませんでした。<strong>読むかどうかの判断を、AIの裁量から取り上げること</strong>です。3つの装置を入れました。</p>
+
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>装置</th><th>やること</th><th>なぜ必要か</th></tr>
+<tr><td>供給</td><td>作業の開始時に、正本の中身を自動で渡す</td><td>「読みに行くべきか」の判断を待たない。最初から手元にある状態にする</td></tr>
+<tr><td>分類</td><td>依頼の文面を機械的に分類し、必須の正本を確定する</td><td>どれを読むべきかをAIに考えさせない。決めるのはルールで、AIではない</td></tr>
+<tr><td>遮断</td><td>答えを出し終える前に、読んだ痕跡を機械で走査する。無ければ終了させない</td><td>読まずに書き上げても、その回答は世に出ない</td></tr>
+</table></div>
+<p class="a-fig-cap">表3：読み出し側に置いた3つの装置</p>
+
+<p>ポイントは3つ目です。<strong>「読みましたか」とAIに聞いてはいけません。</strong>読んでいなくても「読みました」と答えられるからです。判定は自己申告ではなく、実際の作業ログを機械が走査して行います。書き込み側で「確度タグが無ければコミットできない」としたのと、考え方は同じです。人やAIの善意ではなく、通らなければ先に進めない関所にする。</p>
+
+<p>この記事を書いている時点で、この仕組みは実際のセッションで発火することを確認済みです。会社について書く依頼を出すと、正本を読むまで応答を終えられなくなります。窮屈ですが、8月5日のような抜け落ちは、これで構造的に起きなくなりました。</p>
+
+<h2>よくある失敗——私たちが実際にやったものを含めて</h2>
+
+<p>ここまでの過程で踏んだ失敗を、一般化して4つ挙げます。</p>
+
+<p><strong>失敗1：ルールを文書に書いて、それで守られると思う。</strong>私たちは読む順番を3か所に書いていました。3か所に書いても読まれませんでした。文書は「守る意思がある相手」にしか効きません。AIは意思ではなく確率で動きます。</p>
+
+<p><strong>失敗2：指示文を強くして解決しようとする。</strong>「必ず読むこと」「絶対に確認すること」と語気を強めても、判断がAI側にある構造は変わりません。強調は、確率をいくらか上げるだけです。</p>
+
+<p><strong>失敗3：入口だけ厳しくする。</strong>情報の整理と保存のルールを作り込む一方で、出す側は無防備、という形は起きやすいと思います。整理は目に見える作業で、参照は目に見えないからです。<strong>入れる前と、答える前。検問は2か所要ります。</strong></p>
+
+<p><strong>失敗4：確認をAIの自己申告に任せる。</strong>「根拠を示してください」と頼めば、それらしい根拠は返ってきます。読んでいなくても返ってきます。確認は、必ず作業の記録側で取ってください。</p>
+
+<p>もう一つ、失敗というより順番の話があります。<strong>整理する前にAIを導入すると、散らかったまま速くなるだけです。</strong>先ほどの調査で課題の2位・3位が「人材不足」と「範囲の不明確さ」だったのは、この順番が逆になっている会社が多いことの表れではないかと考えています。</p>
+
+<div style="text-align:center;margin:30px 0"><a href="/fde/#shindan" style="font-size:.92rem;border-bottom:1px solid var(--accent);color:var(--accent)">1分の無料AI導入診断で、自社の状態を確認する →</a></div>
+
+<h2>よくある質問</h2>
+
+<div class="a-faq">
+<details><summary>正本というのは、要するに社内wikiや共有フォルダのことですか？</summary><p>置き場所としては近いですが、正本は「書き方のルール」と「検査」がある点が違います。1件ごとに日付・確度（確定か要確認か）・出典を持たせ、それが付いていない情報は保存の時点で弾く。整理された情報が並んでいるだけでは、AIは古い情報と確定した事実を区別できません。フォルダに入れるところまでが準備で、そこから先が正本づくりです。</p></details>
+<details><summary>ツールを入れれば解決しますか？</summary><p>ツールだけでは解決しません。今回の記事の事故も、ツールは十分に揃った状態で起きています。決めるべきは「何を正本に入れるか」「矛盾したらどれが勝つか」「AIに見せない情報はどれか」といった運用のルールで、これはツールが決めてくれません。逆に、ルールが決まっていれば、道具は普通のテキストファイルとGitで足ります。</p></details>
+<details><summary>全社で一気にやる必要がありますか？</summary><p>おすすめしません。繰り返し発生していて時間を食っている業務を1つ選び、その業務についてだけ「どの情報源に頼っているか」「矛盾したらどれが勝つか」「毎回必要になる前提は何か」に答えられる状態を作るところから始めるのが現実的です。1業務で型ができれば、2つ目以降は同じ手順で進められます。</p></details>
+<details><summary>機密情報をAIに読ませることになりませんか？</summary><p>正本は自社の管理下に置き、AIは読み口を通してのみ触る形にします。どの範囲を見せるかは自社で決められます。私たちの自社運用では、非公開に分類したファイルは読み口の段階で自動的に遮断され、実際に遮断されることをテストで確認したうえで使っています。個人情報や機微な情報は、そもそも正本に本文を置かず、保管場所への参照だけを持たせる方針にしています。</p></details>
+<details><summary>特定のAIメーカーに縛られませんか？</summary><p>縛られない形にできます。正本を特定のAIサービスの中ではなく普通のテキストファイルとして持てば、どのメーカーのAIでも読めます。私たちは同じ正本を複数の経路のAIから参照できることを確認しています。AIを乗り換えても、情報と運用ルールは自社に残ります。</p></details>
+<details><summary>「読んだかどうか」は具体的にどう確認するのですか？</summary><p>AIの回答文ではなく、作業の記録（どのファイルを実際に開いたかのログ）を機械的に走査して判定します。回答文に「◯◯を参照しました」と書いてあっても、それは根拠になりません。読んでいなくても書けてしまうからです。判定に人やAIの申告を介在させないことが、この仕組みの要点です。</p></details>
+<details><summary>整えたあと、情報の更新は誰がやるのですか？</summary><p>分類や統合の作業は、担当者ではなく仕組み側に寄せるのが現実的です。私たちの場合は、決まった時刻に走る整理の処理が、受付フォルダに放り込まれたものと会話から出た提案を、決められた定義どおりに統合します。人がやるのは「放り込む」「承認する」「迷ったものに答える」の3つだけです。この3つまで自動化すると、今度は誤りが自動で増幅されるので、あえて人を残しています。</p></details>
+</div>
+
+<h2>まとめ</h2>
+
+<p>調査の数字は、生成AIを使い始めた会社のほとんどで効果が出ていることを示しています（帝国データバンク・活用企業の86.7%）。それでも使っている会社は3社に1社です。止めているのは方針ではなく、AIに渡す材料が決まっていないことでした。</p>
+
+<p>そして材料を決めて一か所に置いても、それだけでは足りません。読まれるとは限らないからです。私たちは自社でその事故を起こし、読み出し側にも検問を置くことで塞ぎました。<strong>整えるところまでが準備で、読ませるところまでが仕組みです。</strong></p>
+
+<p>「AIは契約した。でも、現場で使われていない」という状態と、「正本はある。でも、AIが読んでいない」という状態は、同じ形をしています。どちらも、置いた人の熱意ではなく、通らなければ先に進めない関所があるかどうかで決まります。</p>
+
+<div class="a-cta">
+<p>社内の情報を「AIが読める形」に整理し、実際に使われる状態まで持っていく支援をしています。まずは現状の切り分けから、無料でご相談ください。</p>
+<a href="/fde/" class="btn btn-primary">FDE型AI導入支援を見る</a>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・帝国データバンク「<a href="https://www.tdb.co.jp/report/economic/20260514-genai/" target="_blank" rel="noopener">生成AIに関する企業の動向調査</a>」（2026年3月17〜31日実施・有効回答1万312社）<br>
+・情報処理推進機構（IPA）「<a href="https://www.ipa.go.jp/pressrelease/2026/press20260716.html" target="_blank" rel="noopener">国内企業のDX動向・AI活用動向のポイントを公表</a>」（2026年7月16日・DX動向2026調査・回答1,799社）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
