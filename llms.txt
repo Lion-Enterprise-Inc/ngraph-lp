@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [MetaがコーディングAI「Muse Code」を投入——中小企業には「安さの対価は自社データ」という話](https://ngraph.jp/blog/20260806-meta-muse-code.html)
 - [業務改善助成金 令和8年度とは？9月1日受付開始——「最大600万円」の実額と、AIツールが対象になる線引き](https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin.html)
 - [Sakana AIが日本語特化LLM APIを提供開始——101人以下の企業のAI導入は16.6%、壁は日本語ではない](https://ngraph.jp/blog/20260805-sakana-namazu.html)
 - [AI研修が定着しない理由——「時間がない45.5%」と、助成金が「実務の中の練習」を対象外にする構造](https://ngraph.jp/blog/20260804-ai-kenshu-teichaku.html)
