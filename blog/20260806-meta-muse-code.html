@@ -72,7 +72,7 @@
 <p>同時発表のMuse Spark 1.2は、Muse Codeと共同で学習（co-trained）されたモデルで、当日からMuse CodeとMeta Model API（Metaのモデルを外部から呼び出す窓口）の両方で使えます。発表者はMetaのChief AI Officer、Alexandr Wang氏。発表ページでは、NVIDIA Hopper系GPU向けのカーネル最適化（計算処理を高速化するプログラムの調整）の検証で、1,000回を超えるツール呼び出しを重ねながら最長24時間に及ぶ実行を行い、与えられたベースライン実装を大きく上回ったと紹介されています。</p>
 
 <h2>なぜ重要か</h2>
-<p>今回の発表で本当に新しいのは、「価格が下がった」ことではありません。Metaの発表ページ本体には価格の記載がなく、以下は海外の報道が伝えている数字です。Engadgetの報道（<a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" target="_blank" rel="noopener">一次情報</a>）によると、Meta Model APIの標準（従量課金）は入力1.25ドル・出力4.25ドル（トークン＝AIが文章を処理する際の単位あたり100万トークン）。これに対し「コントリビューター」という枠が新設され、入力0.10ドル・出力0.20ドルまで下がります。条件は、入力したプロンプトをMetaのモデル改善（学習）に使わせることに同意することです。</p>
+<p>今回の発表で本当に新しいのは、「価格が下がった」ことではありません。Metaの発表ページ本体には価格の記載がなく、以下は海外の報道が伝えている数字です。Engadgetの報道（<a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" target="_blank" rel="noopener">報道</a>）によると、Meta Model APIの標準（従量課金）は100万トークンあたり入力1.25ドル・出力4.25ドル（トークン＝AIが文章を処理するときの単位）。これに対し「コントリビューター」という枠が新設され、同じ100万トークンあたりで入力0.10ドル・出力0.20ドルまで下がります。条件は、入力したプロンプトをMetaのモデル改善（学習）に使わせることに同意することです。</p>
 
 <div class="a-fig-wrap">
 <p class="a-fig-title">同じモデルでも、出力の値段は約21分の1になる</p>
@@ -80,7 +80,7 @@
 </div>
 
 <p>絶対額はどちらも小さく、驚くような金額ではありません。論点は差額の大きさではなく、<strong>差額の払い方</strong>です。これまでAIの費用は「いくら払うか」だけで決まっていました。今後は「何を渡すか」も費用を決める変数になります。そして中小企業の現場では、この同意は本来は経営判断のはずなのに、実際にはツールを導入する現場の担当者がセットアップ画面でボタンを押すことで決まります。誰も「決めた」という意識のないまま、既成事実になっていくのがこの手の同意の怖さです。</p>
-<p>そもそも、値下げそのものは導入のボトルネックではありません。私たちが現場で見ているのは「AIは契約した。でも、現場で使われていない」という状態です。単価が20分の1になっても、使われなければ効果はゼロのままです。安くなったことは、導入を決める理由にはなりません。</p>
+<p>そもそも、値下げそのものは導入のボトルネックではありません。私たちが現場で見ているのは「AIは契約した。でも、現場で使われていない」という状態です。単価が約21分の1になっても、使われなければ効果はゼロのままです。安くなったことは、導入を決める理由にはなりません。</p>
 
 <h2>中小企業は何をすべきか</h2>
 <ul>
@@ -91,7 +91,7 @@
 
 <h2>その他の注目ニュース（8月6日 朝時点）</h2>
 <ul>
-<li><strong>Google DeepMind、経営体制を刷新（8月5日）</strong> — Sundar Pichai氏のメモによると、Demis Hassabis氏はGoogle DeepMind CEOから会長（Chair）兼Alphabetのチーフサイエンティストへ、Koray Kavukcuoglu氏はCTOから上級副社長（SVP）へ移り日常運営を担います。Jeff Dean氏は27年の在籍を経て退社し、独立した公益法人形態の新会社を設立するとしています（<a href="https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/" target="_blank" rel="noopener">一次情報</a>）。モデルを作る側の顔ぶれが変わっても、中小企業側の課題（契約したAIが現場で使われない）は変わりません。</li>
+<li><strong>Google DeepMind、経営体制を刷新（8月5日）</strong> — Sundar Pichai氏のメモによると、Demis Hassabis氏はGoogle DeepMind CEOから会長（Chair）兼Alphabetのチーフサイエンティストへ、Koray Kavukcuoglu氏はCTOから上級副社長（SVP）へ移り日常運営を担います。Jeff Dean氏は27年の在籍を経て退社し、公益を定款に掲げる形態の新会社（public benefit corporation）を設立するとしています（<a href="https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/" target="_blank" rel="noopener">一次情報</a>）。モデルを作る側の顔ぶれが変わっても、中小企業側の課題（契約したAIが現場で使われない）は変わりません。</li>
 <li><strong>Atlassian Rovoから情報流出の可能性、セキュリティ企業が報告（8月5日公開）</strong> — PromptArmor社は、利用者が何もクリックしなくても、隠し指示を仕込んだファイルをアップロードするだけでRovoがJira・Confluenceのデータを外部URLへ送信し得ると報告しています。「ウェブ検索」機能を無効にしていても成立するとのことです。同社は5月23日にAtlassianへ開示しましたが、報告時点で未修正としています（Atlassian側の見解は確認できていません・<a href="https://www.promptarmor.com/resources/atlassian-rovo-exfiltrates-data" target="_blank" rel="noopener">一次情報</a>）。「AIに社内のどの情報へアクセスさせているか」を把握しているかが問われる話で、権限設計の問題は設定を1つ切れば防げるものではありません。</li>
 <li><strong>デジタル化・AI導入補助金2026、申請締切は8月25日17:00</strong> — 交付決定日は10月7日予定、事業実施期間は2027年3月31日までです（<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">一次情報</a>）。締切まで日数は多くありません。今から間に合わせるより、次の締切に向けて「何に使うか」を先に決めておく方が現実的です。</li>
 </ul>
@@ -102,7 +102,7 @@
 
 <div class="a-src">参考（一次情報）：<br>
 ・Meta「<a href="https://research.meta.ai/blog/introducing-muse-code-and-muse-spark-1-2" target="_blank" rel="noopener">Introducing Muse Code and Muse Spark 1.2</a>」（2026年8月5日）<br>
-・Engadget「<a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" target="_blank" rel="noopener">Meta introduces Muse Code, its take on a coding agent</a>」（2026年8月5日）<br>
+・Engadget「<a href="https://www.engadget.com/2231285/meta-introduces-muse-code-its-take-on-a-coding-agent/" target="_blank" rel="noopener">Meta introduces Muse Code, its take on a coding agent</a>」（2026年8月5日・報道）<br>
 ・Google「<a href="https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/" target="_blank" rel="noopener">The next chapter of our AI momentum</a>」（Sundar Pichai・2026年8月5日）<br>
 ・PromptArmor「<a href="https://www.promptarmor.com/resources/atlassian-rovo-exfiltrates-data" target="_blank" rel="noopener">Atlassian Rovo Exfiltrates Data</a>」（2026年8月5日公開）<br>
 ・デジタル化・AI導入補助金2026 事務局「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール</a>」</div>
