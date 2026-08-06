@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIを2体並べても、同じ間違いをします——検算には順番がある | NGraphブログ</title>
+<meta name="description" content="AIの出力を別のAIに検算させれば安心、とはいきません。1つの設計書を別のAIに3回レビューさせたら、直すたびに新しい間違いが入りました。機械→AI→人という順番と、置き場を3つに分けた理由を実例で解説します。">
+<meta property="og:title" content="AIを2体並べても、同じ間違いをします——検算には順番がある | NGraphブログ">
+<meta property="og:description" content="1つの設計書を別のAIに3回レビューさせた記録。機械→AI→人間という順番と、置き場を3つに分けた理由。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260806-ai-cross-review.html">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260806-ai-cross-review.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260806-ai-cross-review.html">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIを2体並べても、同じ間違いをします——検算には順番がある",
+  "image": "https://ngraph.jp/assets/blog/20260806-ai-cross-review.jpg",
+  "description": "AIの出力を別のAIに検算させれば安心、とはいきません。1つの設計書を別のAIに3回レビューさせたら、直すたびに新しい間違いが入りました。機械→AI→人という順番と、置き場を3つに分けた理由を実例で解説します。",
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-06",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260806-ai-cross-review.html",
+  "author": {
+    "@type": "Person",
+    "name": "髙橋 真吾",
+    "jobTitle": "代表取締役",
+    "url": "https://ngraph.jp/company#team",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "株式会社NGraph",
+      "url": "https://ngraph.jp/"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "株式会社NGraph",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ngraph.jp/assets/ngraph-logo-circle.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "AIを2つ使えば、間違いは減りますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "減りますが、思ったほどではありません。私たちが1日に起こした失敗6件を分類したところ、4件は機械で検証すれば防げたもので、AIを何体並べても防げませんでした。実行して結果を見なければ分からない種類の誤りだからです。さらに1件は、2つのAIが両方とも見落とし、人間が指摘して初めて分かりました。順番としては、機械で検証できるものを先に機械で検証し、そのあとでAIに見せるのが有効です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "同じ正本を読ませるのに、置き場を分ける必要はありますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "承認済みの事実と、レビュー途中の下書きは分けたほうが安全です。私たちは一度、まだ社内レビュー中の営業資料を、社内AIが読む知識の置き場に入れてしまい、翌朝撤去しました。そこに置くと、AIが未確定の内容を会社の見解として答えてしまう可能性があります。承認されたものだけを読ませる場所と、作業中のものを置く場所を分けるのが基本です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "小さい会社でも、この体制は作れますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "作れます。必要なのは人員ではなく順番です。第一に、テストの実行やファイルの実測など、機械で確かめられることは必ず機械で確かめる。第二に、設計の考え方など機械で測れない部分だけをAIに見せる。第三に、正本の置き場や権限、対外的な送信に関わる判断だけを人が最終確認する。承認する人は1人で足ります。全部を人が読む運用にすると続かないので、人が見る範囲を狭くするのが要点です。"
+   }
+  }
+ ]
+}
+</script>
+</head>
+
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Deep Dive</div>
+  <h1>AIを2体並べても、同じ間違いをします——検算には順番がある</h1>
+  <span class="a-date">2026.08.06 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260806-ai-cross-review.jpg" alt="">
+
+<p>私たちは自社の業務を、複数のAIで回しています。設計や実装を進めるAIと、それを別の立場から検算するAIを分け、両方に<strong>同じ社内の正本（会社として確定した情報）を読ませる</strong>構成です。「AIの出力を、別のAIにチェックさせればいい」——そう考える方は多いと思います。私たちもそう考えて始めました。</p>
+
+<p>結論から言うと、<strong>それだけでは足りませんでした。</strong>直近1日で、1つの設計書を別のAIに3回レビューさせた記録が残っています。3回とも指摘は正しく、3回とも、書いた側は自分の間違いに気づいていませんでした。</p>
+
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・AIを2体にしても防げない誤りが、実際には多いこと<br>
+・検算の順番——機械で確かめる → AIに見せる → 人が決める<br>
+・置き場を3つに分ける理由（承認済み／作業中／個人）</div>
+
+<h2>1体で使うと、書いた本人は気づかない</h2>
+
+<p>まず起きたのは、シンプルな話です。社内の正本に書いてある一文を、AIが読んだうえで<strong>意味を取り違え</strong>、原文に書いていない制約を作って設計書に書き込みました。「これは禁止すべきだ」と、それらしい根拠まで添えて。</p>
+
+<p>厄介なのは、<strong>読んでいなかったわけではない</strong>ことです。正本は確かに読んでいる。読んだうえで、文の一部だけを切り出し、主語を落として解釈していました。「参照した記録がある」ことと「正しく読んだ」ことは別物だ、という当たり前のことが、実際に事故として出てきた形です。</p>
+
+<p>もし社内の誰も気づかなければ、その制約は設計書に残ったまま、外部の実装者へ渡っていました。本来やってよいことが「やってはいけないこと」として伝わる——これは、後から発見するのがとても難しい種類の失敗です。<strong>やらなかった仕事は、苦情になりません。</strong></p>
+
+<h2>では2体にすれば解決するのか——しません</h2>
+
+<p>そこで別のAIにレビューさせました。結果は3周かかりました。</p>
+
+<div class="a-table-wrap">
+<table class="a-table">
+<tr><th>周</th><th>レビュー側の判定</th><th>何を指摘されたか</th></tr>
+<tr><td>1周目</td><td>このままは渡すべきでない</td><td>原文に根拠のない制約が11か所。他の案件のルールを持ち込んでいる</td></tr>
+<tr><td>2周目</td><td>まだ駄目</td><td>直した結果、<strong>新しい制約を増やしていた</strong>。実装のやり方まで縛っていた</td></tr>
+<tr><td>3周目</td><td>条件付きで可</td><td>新しい増設は止まった。残るのは検収条件の詰めだけ</td></tr>
+</table>
+</div>
+
+<p>注目してほしいのは2周目です。<strong>指摘を受けて直したのに、直したところに新しい問題を作っていました。</strong>しかも本人（AI）は、また気づいていません。1周目と同じ構造の誤りを、違う場所で繰り返しています。</p>
+
+<p>この経験の前に、私たちは別の日に起きた失敗6件を分類したことがあります。そのときの内訳が、順番を考えるうえで一番効きました。</p>
+
+<div class="a-table-wrap">
+<table class="a-table">
+<tr><th>何で防げたか</th><th>件数</th><th>例</th></tr>
+<tr><td><strong>機械で検証すれば防げた</strong></td><td>4件</td><td>出力先が実際には切り替わっていなかった／設定ファイルの書き方が原因で除外が効いていなかった</td></tr>
+<tr><td>AIのレビューで防げた</td><td>1件</td><td>特定のツールに依存した作りにしていて、別のAIが使えなくなっていた</td></tr>
+<tr><td><strong>人間の指摘でしか防げなかった</strong></td><td>1件</td><td>用途に依存した名前を付けており、将来必ず破綻する（2つのAIが両方とも見落とした）</td></tr>
+</table>
+</div>
+
+<p><strong>6件のうち4件は、AIを何体並べても防げませんでした。</strong>実行して、出力を見て、実測しなければ分からない種類だからです。そして最後の1件は、AIが2つとも見落として人間が見つけました。</p>
+
+<div class="a-note">
+<strong>私たちが実際にやっていること：</strong>設計や実装を変えたら、まず機械で確かめます。テストを走らせて出力を読む、生成したファイルが本当にそこにあるか実測する、意図しない条件で動いていないか試す。ここまでやってから、機械では測れない「設計の考え方」だけをもう1つのAIに見せます。人が最終確認するのは、正本の置き場・権限・対外的な送信に関わる変更だけです。<strong>全部を人が読む運用にすると、続きません。</strong>
+</div>
+
+<h2>検算には順番がある</h2>
+
+<div class="a-fig-wrap">
+<div class="a-fig-title">検算の順番——上から順に、通ったものだけ次へ</div>
+<svg viewBox="0 0 680 240" role="img" aria-label="機械で検証、AIがレビュー、人が決める、の3段階" style="width:100%;height:auto;min-width:520px;display:block">
+  <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9" fill="none" stroke="#b3a996" stroke-width="1.6"/></marker></defs>
+  <rect x="8" y="12" width="204" height="66" rx="3" fill="#fdfaf4" stroke="#a63a24" stroke-width="1.8"/>
+  <text x="24" y="36" font-family="'Zen Old Mincho',serif" font-size="15" font-weight="700" fill="#a63a24">壱．機械で確かめる</text>
+  <text x="24" y="57" font-family="'Zen Kaku Gothic New',sans-serif" font-size="11.5" fill="#5c544a">動かす・実測する・わざと壊す</text>
+  <text x="24" y="72" font-family="'Zen Kaku Gothic New',sans-serif" font-size="11.5" fill="#5c544a">6件中4件はここで止まった</text>
+  <path d="M110 78 v 24" stroke="#b3a996" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <rect x="8" y="106" width="204" height="60" rx="3" fill="#fdfaf4" stroke="#d9d0c0" stroke-width="1.4"/>
+  <text x="24" y="130" font-family="'Zen Old Mincho',serif" font-size="15" font-weight="700" fill="#2b2620">弐．AIが見る</text>
+  <text x="24" y="151" font-family="'Zen Kaku Gothic New',sans-serif" font-size="11.5" fill="#5c544a">機械で測れない設計の考え方だけ</text>
+  <path d="M110 166 v 24" stroke="#b3a996" stroke-width="1.8" fill="none" marker-end="url(#ar)"/>
+  <rect x="8" y="194" width="204" height="38" rx="3" fill="#fdfaf4" stroke="#d9d0c0" stroke-width="1.4"/>
+  <text x="24" y="218" font-family="'Zen Old Mincho',serif" font-size="15" font-weight="700" fill="#2b2620">参．人が決める</text>
+  <line x1="248" y1="20" x2="248" y2="228" stroke="#e8e4df" stroke-width="1"/>
+  <text x="272" y="38" font-family="'Zen Old Mincho',serif" font-size="14" font-weight="700" fill="#2b2620">よくある順番（うまくいかない）</text>
+  <text x="272" y="64" font-family="'Zen Kaku Gothic New',sans-serif" font-size="12" fill="#5c544a">AIに書かせる → 別のAIに見せる → 人が全部読む</text>
+  <text x="272" y="96" font-family="'Zen Old Mincho',serif" font-size="14" font-weight="700" fill="#a63a24">なぜ回らないか</text>
+  <text x="272" y="122" font-family="'Zen Kaku Gothic New',sans-serif" font-size="12" fill="#5c544a">・機械で分かる誤りをAIに探させている</text>
+  <text x="272" y="142" font-family="'Zen Kaku Gothic New',sans-serif" font-size="12" fill="#5c544a">・AIは実行しないので、同じ見落としをする</text>
+  <text x="272" y="162" font-family="'Zen Kaku Gothic New',sans-serif" font-size="12" fill="#5c544a">・人の確認範囲が広すぎて、いずれ形だけになる</text>
+  <text x="272" y="196" font-family="'Zen Old Mincho',serif" font-size="14" font-weight="700" fill="#2b2620">要点</text>
+  <text x="272" y="220" font-family="'Zen Kaku Gothic New',sans-serif" font-size="12" fill="#5c544a">人が読む範囲を狭くするために、前の2段がある</text>
+</svg>
+<div class="a-fig-cap">「AIを2体にする」は3段のうち2段目だけの話。1段目を飛ばすと、AIは実行しないので同じ見落としを繰り返す。</div>
+</div>
+
+<h2>置き場を3つに分けた理由</h2>
+
+<p>もう1つ、実際にやってみて分かったことがあります。<strong>同じ正本を読ませるなら、置き場は1つでいいわけではない</strong>ということです。私たちは3つに分けています。</p>
+
+<div class="a-table-wrap">
+<table class="a-table">
+<tr><th>置き場</th><th>入るもの</th><th>誰が読むか</th></tr>
+<tr><td><strong>会社の正本</strong></td><td>承認済みの事実。決定・数値・手順</td><td>全AI＋社内向けの応答AI</td></tr>
+<tr><td><strong>個人の正本</strong></td><td>案件の現在地、どのAIが何を担当しているか</td><td>作業する各AI（社外へは出さない）</td></tr>
+<tr><td><strong>作業場</strong></td><td>下書き、レビュー中のもの、検討の記録</td><td>AI同士がここで往復する</td></tr>
+</table>
+</div>
+
+<p>分けた理由は、失敗したからです。ある日、まだ社内レビュー中だった営業資料を、<strong>社内AIが読む知識の置き場に入れてしまいました。</strong>翌朝、撤去しています。そこに置くということは、AIが未確定の内容を「会社の見解」として答えうる状態にするということでした。</p>
+
+<p>判断の基準は1つに絞れます。<strong>「これをAIが、会社の知識として喋ってよいか？」</strong>——NOなら作業場へ。この一言で、迷う場面がほとんどなくなりました。</p>
+
+<p>そして作業場を分けたことで、副次的な効果がありました。<strong>AI同士が、人を介さずに往復できるようになった</strong>ことです。それまでは「片方の回答をコピーして、もう片方に貼る」という作業を人がやっていました。同じファイルを両方が読み書きできれば、人がやるのは最後に通すか通さないかの判断だけになります。</p>
+
+<h2>まとめ——順番と、範囲</h2>
+
+<p>AIの出力を検算する体制は、「もう1体増やす」では作れませんでした。実際に効いたのは順番です。<strong>機械で確かめられることは必ず機械で確かめ、機械で測れないものだけAIに見せ、人が決めるのは最後の判断だけにする。</strong></p>
+
+<p>そして置き場を分けること。承認されたものと、作業中のものが同じ場所にあると、AIは区別できません。区別できない状態で読ませれば、未確定の話が確定した事実として出てきます。</p>
+
+<p>私たちがこれを自社でやっているのは、売る前に自分たちで使うためです。今回の3周のレビューも、実際に外部へ渡す直前で止まりました。<strong>止まったこと自体が、この仕組みが動いている証拠です。</strong></p>
+
+<h2>よくある質問</h2>
+
+<div class="a-faq">
+<details><summary>AIを2つ使えば、間違いは減りますか？</summary>
+<p>減りますが、思ったほどではありません。私たちが1日に起こした失敗6件を分類したところ、4件は機械で検証すれば防げたもので、AIを何体並べても防げませんでした。実行して結果を見なければ分からない種類の誤りだからです。さらに1件は、2つのAIが両方とも見落とし、人間が指摘して初めて分かりました。順番としては、機械で検証できるものを先に機械で検証し、そのあとでAIに見せるのが有効です。</p></details>
+
+<details><summary>同じ正本を読ませるのに、置き場を分ける必要はありますか？</summary>
+<p>承認済みの事実と、レビュー途中の下書きは分けたほうが安全です。私たちは一度、まだ社内レビュー中の営業資料を、社内AIが読む知識の置き場に入れてしまい、翌朝撤去しました。そこに置くと、AIが未確定の内容を会社の見解として答えてしまう可能性があります。承認されたものだけを読ませる場所と、作業中のものを置く場所を分けるのが基本です。</p></details>
+
+<details><summary>小さい会社でも、この体制は作れますか？</summary>
+<p>作れます。必要なのは人員ではなく順番です。第一に、テストの実行やファイルの実測など、機械で確かめられることは必ず機械で確かめる。第二に、設計の考え方など機械で測れない部分だけをAIに見せる。第三に、正本の置き場や権限、対外的な送信に関わる判断だけを人が最終確認する。承認する人は1人で足ります。全部を人が読む運用にすると続かないので、人が見る範囲を狭くするのが要点です。</p></details>
+</div>
+
+<div class="a-cta">
+<p>社内の情報を「AIが読める形」に整理し、複数のAIが同じ情報で動く状態まで持っていく支援をしています。まずは現状の切り分けから、無料でご相談ください。</p>
+<a href="/fde/" class="btn btn-primary">FDE型AI導入支援を見る</a>
+</div>
+
+<div class="a-src">関連記事：<br>
+・<a href="/blog/20260804-company-brain.html">会社の脳はもうある、散らばっているだけ——AIに会社を覚えさせる仕組みと「導入前チェック6問」</a><br>
+・<a href="/blog/20260806-seihon-yomarenai.html">正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった</a><br>
+<br>本記事の数値は、すべて自社の運用記録から実測したものです。</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company.html">会社概要</a>
+      <a href="/entry.html">お問い合わせ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
