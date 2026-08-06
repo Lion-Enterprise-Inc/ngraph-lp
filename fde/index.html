@@ -179,7 +179,8 @@
 .lp-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
 .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 /* 資産アーキテクチャ図（#asset） */
-.asset-fig{max-width:760px;margin:0 auto 36px;text-align:center}
+.asset-fig{max-width:1040px;margin:0 auto 36px;text-align:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.asset-fig img{width:100%;min-width:860px;height:auto;display:block;border:1px solid var(--border);border-radius:4px}
 .as-layer{border:1px dashed var(--border-strong);border-radius:4px;padding:24px;background:rgba(255,255,255,.45)}
 .as-cap{font-family:var(--serif);font-size:.76rem;letter-spacing:.16em;color:var(--text-3);margin-bottom:14px}
 .as-chip-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
@@ -348,27 +349,10 @@
     <div class="section-head reveal">
       <div class="section-label">Architecture</div>
       <h2 class="section-title"><span class="nb">AIはエンジン。</span><span class="nb">資産は、御社に残る。</span></h2>
-      <p class="section-sub">モデルは、お金で買えます。データ基盤は買えません——組織ごとに固有で、他社から移植できないからです。だから資産は御社側に置きます。</p>
+      <p class="section-sub">AIは入れ替わります。会社の判断の積み重ねは入れ替えられません。だから知識を御社側に置き、AIには読みに来させます。</p>
     </div>
-    <div class="asset-fig reveal" aria-hidden="false">
-      <div class="as-layer">
-        <div class="as-cap">AIエンジン — 交換できる</div>
-        <div class="as-chip-row">
-          <span class="as-chip">ChatGPT</span><span class="as-swap">⇄</span>
-          <span class="as-chip">Claude</span><span class="as-swap">⇄</span>
-          <span class="as-chip">Gemini</span><span class="as-swap">⇄</span>
-          <span class="as-chip">オープンソースAI</span>
-        </div>
-      </div>
-      <div class="as-connector"><span class="ar">▲▼</span>どのエンジンでも動く形でつくる</div>
-      <div class="as-base">
-        <div class="as-cap">御社に残る資産 — 消えない</div>
-        <div class="as-base-items">
-          <span>正本 — 日付と根拠のついた会社の事実</span>
-          <span>検問 — 入れる前と、答える前の2か所</span>
-          <span>読み口 — どのAIも同じ根拠から始める</span>
-        </div>
-      </div>
+    <div class="asset-fig reveal">
+      <img src="/assets/fde-architecture.jpg" alt="AIの中に覚えさせると、Claude Code・Codex・ChatGPT・Gemini・Kimiのそれぞれで記憶がその都度リセットされ、情報が分散して属人化・ブラックボックス化する。会社の正本を一つだけ置き、決定事項・案件の現在地・業務マニュアル・失敗から得た教訓をテキストで整理しておくと、どのAIも同じ場所を読みに来るため、AIを変えても答えは変わらない。モデルは資金があれば買えるが、知識基盤はどこにも売っていない。その会社だけの歴史・判断・失敗は他社から移植できず、積み重ねた知識が会社の競争力になる。">
     </div>
     <ul class="asset-notes reveal">
       <li><strong>より良いAIが出たら、載せ替えるだけ</strong></li>
