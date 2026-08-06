@@ -94,13 +94,24 @@ def text(x, y, s, size=20, fill=INK, weight=400, anchor="start", family=SANS):
 
 # ---------------------------------------------------------------- 型
 
+BAR_STEP = 52          # 1行の高さ。barの自動高さ計算と描画で共有する
+
+
+def label_col(rows, w):
+    """barのラベル欄の右端x。最長ラベルに合わせ、全体の4割は超えない"""
+    longest = max((len(str(lb)) for lb, _v, _r in rows), default=4)
+    return int(min(w * 0.40, max(180, longest * 21 + 40)))
+
+
 def fig_bar(d, o):
     """横棒ランキング。上位 --hot 本を朱、残りをグレー、最終行を墨で落とす"""
     rows = d
     top = max(v for _, v, _r in rows)
-    x0, barw = 430, 560
+    # ラベル欄は最長ラベルから決める（固定幅だと短いラベルのとき左が大きく空く）
+    x0 = label_col(rows, o["w"])
+    barw = o["w"] - x0 - 200            # 右は値テキスト＋注の余白
     y = o["body_top"] + 6
-    step = min(52, int((o["body_bottom"] - y) / max(len(rows), 1)))
+    step = min(BAR_STEP, int((o["body_bottom"] - y) / max(len(rows), 1)))
     bh = min(34, step - 12)
     parts = []
     # 墨で落とす行・注を付ける行は 1始まりの行番号で指定する（既定は最終行）
@@ -268,7 +279,7 @@ def build_svg(kind, d, o):
     本文では見出しを <p class="a-fig-title"> が持ち、地色は .a-fig-wrap が持つので、
     SVG側に重ねると二重になる。表紙・X添付用（bare=False）は1枚で完結させる。
     """
-    w, h = o["w"], o["h"]
+    w = o["w"]
     bare = o["bare"]
     head = []
     if bare:
@@ -277,7 +288,7 @@ def build_svg(kind, d, o):
             y += 26
             head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
         o["body_top"] = y + 26
-        o["body_bottom"] = h - (96 if o["concl"] else 54)
+        foot_space = 96 if o["concl"] else 54
     else:
         y = 92
         head.append(text(w / 2, y, o["title"], 46, INK, 900, "middle", SERIF))
@@ -285,7 +296,21 @@ def build_svg(kind, d, o):
             y += 40
             head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
         o["body_top"] = y + 34
-        o["body_bottom"] = h - (150 if o["concl"] else 110)
+        foot_space = 150 if o["concl"] else 110
+    # --h 未指定（0）なら中身から高さを決める。barは行数に追従させる
+    # （固定630だと3本のとき下半分が丸ごと空く）
+    h = o["h"]
+    if not h:
+        if kind == "bar":
+            h = o["body_top"] + 6 + len(d) * BAR_STEP + foot_space
+            h = max(h, 300)
+        elif kind == "gap":
+            # 棒の最大高210＋上の数値と下のラベル分。630だと棒の下が大きく空く
+            h = o["body_top"] + 320 + foot_space
+        else:
+            h = 630
+    o["h"] = h
+    o["body_bottom"] = h - foot_space
     body = TYPES[kind](d, o)
     foot = []
     if o["concl"]:
@@ -351,7 +376,8 @@ def main():
                     help="gapで2値の差を出す。母集団・設問が同じときだけ付ける")
     ap.add_argument("--unit", default="%")
     ap.add_argument("--w", type=int, default=1200)
-    ap.add_argument("--h", type=int, default=630)
+    ap.add_argument("--h", type=int, default=0,
+                    help="キャンバス高さ。既定0=中身から自動（barは行数に追従）")
     ap.add_argument("--out", default="")
     ap.add_argument("--svg", action="store_true", help="記事に貼るブロックを標準出力へ")
     ap.add_argument("--bare", action="store_true",
@@ -383,7 +409,7 @@ def main():
             return
 
     out = a.out or os.path.join(ROOT, "assets", "blog", "fig", "fig-%s.png" % a.type)
-    render_png(svg, out, a.w, a.h)
+    render_png(svg, out, a.w, o["h"])   # 自動高さのとき a.h は 0 なので確定値を使う
     print("OK:", out, os.path.getsize(out), "bytes")
     print("※ 必ず目視すること（単語中改行・見切れ・棒のはみ出し）")
 
