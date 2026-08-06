@@ -272,7 +272,8 @@ def build(slug, teaser, heads=None):
 
     # 短信予告 ＋ 本家記事へのリンク
     blocks.append(text_block(teaser, entities=entities))
-    article_url = f"{SITE}/blog/{slug}.html"
+    # URLは拡張子なし（Cloudflare Pagesが /blog/x.html を /blog/x へ307する）。BLOG-OPS §8
+    article_url = f"{SITE}/blog/{slug}"
     blocks.append(text_block(article_url, link=article_url, entities=entities))
 
     return title, {"blocks": blocks, "entities": entities}

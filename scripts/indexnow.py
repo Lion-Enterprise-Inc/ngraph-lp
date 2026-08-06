@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """IndexNow ping: sitemap.xmlの全URLをBing系検索エンジンに即時通知する。
 使い方: デプロイ(git push→CF Pages反映確認)の後に `python scripts/indexnow.py` を実行。
-特定URLだけ通知: `python scripts/indexnow.py https://ngraph.jp/blog/xxx.html ...`
+特定URLだけ通知: `python scripts/indexnow.py https://ngraph.jp/blog/xxx ...`（拡張子なし・BLOG-OPS §8）
 """
 import sys, json, re, urllib.request
 

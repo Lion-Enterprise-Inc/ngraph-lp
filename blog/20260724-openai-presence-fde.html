@@ -15,14 +15,14 @@
 <meta property="og:title" content="OpenAIが企業向けAIエージェント「Presence」発表——導入を担うのは&quot;人（FDE）&quot;だった | NGraphブログ">
 <meta property="og:description" content="OpenAIの新基盤「Presence」の導入を担うのは同社のFDE。AIの壁はモデル性能ではなく現場実装という話を中小企業目線で解説します。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ngraph.jp/blog/20260724-openai-presence-fde.html">
+<meta property="og:url" content="https://ngraph.jp/blog/20260724-openai-presence-fde">
 <meta property="og:site_name" content="株式会社NGraph">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://ngraph.jp/assets/blog/20260724-openai-presence-fde.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://ngraph.jp/blog/20260724-openai-presence-fde.html">
+<link rel="canonical" href="https://ngraph.jp/blog/20260724-openai-presence-fde">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
   "datePublished": "2026-07-24T07:00:00+09:00",
   "dateModified": "2026-07-24T17:00:00+09:00",
   "inLanguage": "ja",
-  "mainEntityOfPage": "https://ngraph.jp/blog/20260724-openai-presence-fde.html",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260724-openai-presence-fde",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
 }
@@ -54,7 +54,7 @@
     <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
     <div style="display:flex;align-items:center;gap:18px">
       <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
-      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
     </div>
   </div>
 </header>
@@ -84,7 +84,7 @@
 
 <h2>その他の注目ニュース（7月24日 朝時点）</h2>
 <ul>
-<li><strong>「デジタル化・AI導入補助金2026」第4次締切は8月25日</strong> — 令和8年度の同補助金は、旧「IT導入補助金」から改称され、制度名に初めて「AI」が入りました。第4次締切は2026年8月25日(火)17:00、交付決定予定は10月7日(水)です。通常枠は補助上限450万円以下（4プロセス以上）〜150万円未満（1プロセス以上）、補助率1/2〜2/3以内。対象経費はソフトウェア購入費・クラウド利用料（最大2年分）が必須で、導入コンサルや研修・保守サポートはオプションで組めます（<a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/" target="_blank" rel="noopener">参考</a>）。AIツール導入費の半分〜2/3が戻る計算になり、名称に「AI」が入った初年度で生成AIの業務導入が主眼に据えられています。今から準備すれば第4次に間に合います。5つの申請枠の全体像と、上限1億円まで届く「省力化投資補助金」との使い分けは、<a href="/blog/20260724-ai-subsidy-2026.html">本日夕方の深掘り記事</a>で詳しく解説しています。</li>
+<li><strong>「デジタル化・AI導入補助金2026」第4次締切は8月25日</strong> — 令和8年度の同補助金は、旧「IT導入補助金」から改称され、制度名に初めて「AI」が入りました。第4次締切は2026年8月25日(火)17:00、交付決定予定は10月7日(水)です。通常枠は補助上限450万円以下（4プロセス以上）〜150万円未満（1プロセス以上）、補助率1/2〜2/3以内。対象経費はソフトウェア購入費・クラウド利用料（最大2年分）が必須で、導入コンサルや研修・保守サポートはオプションで組めます（<a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/" target="_blank" rel="noopener">参考</a>）。AIツール導入費の半分〜2/3が戻る計算になり、名称に「AI」が入った初年度で生成AIの業務導入が主眼に据えられています。今から準備すれば第4次に間に合います。5つの申請枠の全体像と、上限1億円まで届く「省力化投資補助金」との使い分けは、<a href="/blog/20260724-ai-subsidy-2026">本日夕方の深掘り記事</a>で詳しく解説しています。</li>
 <li><strong>DeepSeekの旧APIモデルが7月25日未明に完全退役</strong> — DeepSeekの旧モデル「deepseek-chat」「deepseek-reasoner」が、2026年7月24日15:59(UTC)＝日本時間7月25日0:59で完全退役し、以後はアクセスするとエラーになります。移行先はV4系（deepseek-v4-pro / deepseek-v4-flash）で、base_urlはそのまま、モデル名の変更だけで移行できます（<a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener">参考</a>）。APIの型番は予告して消えるものです。特定のモデル名に業務を直結させると移行コストが発生するため、ツールは「乗り換えやすさ」も含めて選ぶべきです。</li>
 <li><strong>Moonshot AI、2.8兆パラメータの「Kimi K3」を7月27日公開予定</strong> — Moonshot AIが、2.8兆パラメータの大型オープンウェイトモデル「Kimi K3」の重みを2026年7月27日にModified MITライセンスで一般公開すると告知しました（現時点は公開予定の告知段階です）。公開されれば最大級のオープンモデルの一つになります（<a href="https://huggingface.co/moonshotai" target="_blank" rel="noopener">参考</a>）。世界最大級のオープンモデルが無料で使えるとしても、中小企業が自前でサーバーを用意して動かす必要はありません。価値は「使いこなし」と「自社データへの接続」に移っています。</li>
 </ul>
@@ -97,12 +97,12 @@
 ・中小機構「<a href="https://it-shien.smrj.go.jp/applicant/subsidy/normal/" target="_blank" rel="noopener">デジタル化・AI導入補助金2026</a>」通常枠（第4次締切2026年8月25日）<br>
 ・DeepSeek「<a href="https://api-docs.deepseek.com/" target="_blank" rel="noopener">API Docs</a>」（旧モデル退役アナウンス）<br>
 ・Moonshot AI「<a href="https://huggingface.co/moonshotai" target="_blank" rel="noopener">moonshotai</a>」（Hugging Face）<br>
-・あわせて読む：<a href="/blog/20260724-ai-subsidy-2026.html">デジタル化・AI導入補助金2026とは？旧IT導入補助金でAIツールが補助対象に</a>／<a href="/blog/20260722-sme-ai-adoption.html">中小企業のAI導入率は20.4%——足りないのは費用より「事例と選び方」だった</a>（当ブログ）</div>
+・あわせて読む：<a href="/blog/20260724-ai-subsidy-2026">デジタル化・AI導入補助金2026とは？旧IT導入補助金でAIツールが補助対象に</a>／<a href="/blog/20260722-sme-ai-adoption">中小企業のAI導入率は20.4%——足りないのは費用より「事例と選び方」だった</a>（当ブログ）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
 </article>
 
-<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -113,9 +113,9 @@
     <div class="footer-links">
       <a href="/fde/">FDE型AI導入支援</a>
       <a href="/blog/">ブログ</a>
-      <a href="/company.html">会社概要</a>
-      <a href="/entry.html">お問い合わせ</a>
-      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
     </div>
   </div>
   <div class="footer-copy">&copy; 2025 NGraph Inc.</div>

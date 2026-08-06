@@ -29,10 +29,10 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
-  <url><loc>https://ngraph.jp/company.html</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/recruit.html</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/privacy.html</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/legal.html</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/company</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/recruit</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/privacy</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/legal</loc><lastmod>2026-07-14</lastmod></url>
   <url>
     <loc>https://ngraph.jp/fde/</loc>
     <lastmod>2026-08-06</lastmod>
@@ -48,47 +48,47 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
   <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-03</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260803-saitei-chingin-2026.html</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari.html</loc><lastmod>2026-08-02</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260802-openai-atlas-eol.html</loc><lastmod>2026-08-02</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260801-ai-shared-brain.html</loc><lastmod>2026-08-01</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260801-ai-agent-permission.html</loc><lastmod>2026-08-01</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260731-seisei-ai-riyoritsu.html</loc><lastmod>2026-07-31</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260731-openai-price-cut.html</loc><lastmod>2026-07-31</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260730-eu-ai-act-transparency.html</loc><lastmod>2026-07-30</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260729-seisei-ai-security.html</loc><lastmod>2026-07-29</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260729-mcp-standard-smb.html</loc><lastmod>2026-07-29</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260728-shinjigyo-monodukuri-subsidy.html</loc><lastmod>2026-07-28</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260727-inbound-multilingual.html</loc><lastmod>2026-07-27</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260727-ai-subsidy-deadline.html</loc><lastmod>2026-07-27</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260726-inshoku-jinbusoku.html</loc><lastmod>2026-07-26</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260804-shoryokuka-8th-gbizid.html</loc><lastmod>2026-08-04</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260804-ai-kenshu-teichaku.html</loc><lastmod>2026-08-04</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260804-company-brain.html</loc><lastmod>2026-08-04</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260805-sakana-namazu.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin.html</loc><lastmod>2026-08-05</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260806-meta-muse-code.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260806-ai-cross-review.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260806-seihon-yomarenai.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260806-deepseek-v4-price.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260807-ai-approval-fatigue.html</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260726-claude-opus5-smb.html</loc><lastmod>2026-07-26</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260725-gbizid.html</loc><lastmod>2026-07-25</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260725-shoryokuka-subsidy.html</loc><lastmod>2026-07-25</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260724-ai-subsidy-2026.html</loc><lastmod>2026-07-24</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260724-openai-presence-fde.html</loc><lastmod>2026-07-24</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260723-openai-small-business.html</loc><lastmod>2026-07-23</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260722-sme-ai-adoption.html</loc><lastmod>2026-07-22</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260722-openai-smb.html</loc><lastmod>2026-07-22</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/ai-and-humans.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/what-is-fde.html</loc><lastmod>2026-08-06</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/why-ai-stalls.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/fde-vs-training.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/keiri-ai.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/eigyo-ai.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/inshoku-ai.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/prompt-design.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/legacy-integration.html</loc><lastmod>2026-07-17</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/ai-cost.html</loc><lastmod>2026-08-01</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/ai-roadmap.html</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260803-saitei-chingin-2026</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260802-openai-atlas-eol</loc><lastmod>2026-08-02</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260801-ai-shared-brain</loc><lastmod>2026-08-01</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260801-ai-agent-permission</loc><lastmod>2026-08-01</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260731-seisei-ai-riyoritsu</loc><lastmod>2026-07-31</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260731-openai-price-cut</loc><lastmod>2026-07-31</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260730-eu-ai-act-transparency</loc><lastmod>2026-07-30</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260729-seisei-ai-security</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260729-mcp-standard-smb</loc><lastmod>2026-07-29</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260728-shinjigyo-monodukuri-subsidy</loc><lastmod>2026-07-28</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260727-inbound-multilingual</loc><lastmod>2026-07-27</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260727-ai-subsidy-deadline</loc><lastmod>2026-07-27</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260726-inshoku-jinbusoku</loc><lastmod>2026-07-26</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260804-shoryokuka-8th-gbizid</loc><lastmod>2026-08-04</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260804-ai-kenshu-teichaku</loc><lastmod>2026-08-04</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260804-company-brain</loc><lastmod>2026-08-04</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260805-sakana-namazu</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin</loc><lastmod>2026-08-05</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260806-meta-muse-code</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260806-ai-cross-review</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260806-seihon-yomarenai</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260806-deepseek-v4-price</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260807-ai-approval-fatigue</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260726-claude-opus5-smb</loc><lastmod>2026-07-26</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260725-gbizid</loc><lastmod>2026-07-25</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260725-shoryokuka-subsidy</loc><lastmod>2026-07-25</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260724-ai-subsidy-2026</loc><lastmod>2026-07-24</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260724-openai-presence-fde</loc><lastmod>2026-07-24</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260723-openai-small-business</loc><lastmod>2026-07-23</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260722-sme-ai-adoption</loc><lastmod>2026-07-22</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260722-openai-smb</loc><lastmod>2026-07-22</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-and-humans</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/what-is-fde</loc><lastmod>2026-08-06</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/why-ai-stalls</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/fde-vs-training</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/keiri-ai</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/eigyo-ai</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/inshoku-ai</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/prompt-design</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/legacy-integration</loc><lastmod>2026-07-17</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-cost</loc><lastmod>2026-08-01</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-roadmap</loc><lastmod>2026-07-17</lastmod></url>
 </urlset>

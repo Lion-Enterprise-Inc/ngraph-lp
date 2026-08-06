@@ -15,14 +15,14 @@
 <meta property="og:title" content="ClaudeCodeとCodexの「記憶バラバラ問題」を、GitとMarkdownだけで解決した話 | NGraphブログ">
 <meta property="og:description" content="ClaudeCodeとCodexを併用すると記憶が分断される。GitリポジトリのMarkdownを正本にする自前ブレインの構築手順を、コピペで再現できる形で公開します。">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://ngraph.jp/blog/20260801-ai-shared-brain.html">
+<meta property="og:url" content="https://ngraph.jp/blog/20260801-ai-shared-brain">
 <meta property="og:site_name" content="株式会社NGraph">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://ngraph.jp/assets/blog/20260801-ai-shared-brain.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://ngraph.jp/blog/20260801-ai-shared-brain.html">
+<link rel="canonical" href="https://ngraph.jp/blog/20260801-ai-shared-brain">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
   "datePublished": "2026-08-01",
   "dateModified": "2026-08-01",
   "inLanguage": "ja",
-  "mainEntityOfPage": "https://ngraph.jp/blog/20260801-ai-shared-brain.html",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260801-ai-shared-brain",
   "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
   "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
 }
@@ -67,7 +67,7 @@
     <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
     <div style="display:flex;align-items:center;gap:18px">
       <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
-      <a href="/entry.html" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
     </div>
   </div>
 </header>
@@ -226,12 +226,12 @@ inbox/README.md の手順で未整理ファイルを今すぐ処理する。
 
 <h2>まとめ</h2>
 <p>複数のAIツールを併用すると、記憶はツールの数だけ分断される。この記事で解説したのは、預かり型のメモリSaaSに頼らず、GitリポジトリのMarkdownという最小構成で記憶を1か所に集める方法だ。正本はAIの外に置く、全AIに開始時に読み・終了時に書き戻すことを義務付ける、未整理の情報はinboxを経由させる——この3つのルールと、毎朝の自動整理ジョブ、そして<code>/brain</code>という手動コマンドの二重運用があれば、AIを何台併用しても同じ事実から仕事を始められる。コピペブロックはそのまま貼れる形で公開したので、まずは<code>ai-work/LEDGER.md</code>に今の分担を書くところから試してほしい。</p>
-<p style="font-size:.85rem;color:var(--text-3)">関連記事：<a href="/blog/20260729-mcp-standard-smb.html">AIに社内の道具を使わせる共通規格「MCP」が新版に(7/28)</a> ／ <a href="/blog/20260729-seisei-ai-security.html">生成AIの情報漏洩対策とは？中小企業の65%が「個人任せ」</a></p>
+<p style="font-size:.85rem;color:var(--text-3)">関連記事：<a href="/blog/20260729-mcp-standard-smb">AIに社内の道具を使わせる共通規格「MCP」が新版に(7/28)</a> ／ <a href="/blog/20260729-seisei-ai-security">生成AIの情報漏洩対策とは？中小企業の65%が「個人任せ」</a></p>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「会社の脳」を、AIが読み書きできる正本として一緒に作ります。</p>
   <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
-  <a href="/entry.html" class="btn btn-primary">無料で相談する</a>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
   <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
 </div>
 
@@ -241,7 +241,7 @@ inbox/README.md の手順で未整理ファイルを今すぐ処理する。
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
 </article>
 
-<div class="float-cta" id="floatCta"><a href="/entry.html">無料で相談する →</a></div>
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
 
 <footer class="footer">
   <div class="footer-inner">
@@ -252,9 +252,9 @@ inbox/README.md の手順で未整理ファイルを今すぐ処理する。
     <div class="footer-links">
       <a href="/fde/">FDE型AI導入支援</a>
       <a href="/blog/">ブログ</a>
-      <a href="/company.html">会社概要</a>
-      <a href="/entry.html">お問い合わせ</a>
-      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
     </div>
   </div>
   <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
