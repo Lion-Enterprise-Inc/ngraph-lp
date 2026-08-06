@@ -88,7 +88,9 @@ def main():
     hp = os.path.join(tmp, slug + ".html")
     open(hp, "w", encoding="utf-8").write(html)
     png = os.path.join(tmp, slug + ".png")
-    subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--window-size=1200,630",
+    udd = tempfile.mkdtemp(prefix="eyecatch_udd_")
+    subprocess.run([EDGE, "--headless=new", "--no-sandbox", "--disable-gpu", "--window-size=1200,630",
+                    "--user-data-dir=" + udd,
                     "--hide-scrollbars", "--virtual-time-budget=8000",
                     "--screenshot=" + png, "file:///" + hp.replace("\\", "/")],
                    capture_output=True)

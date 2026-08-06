@@ -341,10 +341,20 @@ def render_png(svg, out, w, h):
     src = os.path.join(tmpdir, "ngfig_%d.html" % int(time.time() * 1000))
     png = os.path.join(tmpdir, "ngfig_%d.png" % int(time.time() * 1000))
     open(src, "w", encoding="utf-8").write(HTML % {"w": w, "h": h, "svg": svg})
-    subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--hide-scrollbars",
-                    "--window-size=%d,%d" % (w, h), "--virtual-time-budget=7000",
-                    "--screenshot=" + png, "file:///" + src.replace("\\", "/")],
-                   check=False, capture_output=True)
+    for attempt in range(3):
+        udd = tempfile.mkdtemp(prefix="ngfig_udd_")
+        subprocess.run([EDGE, "--headless=new", "--no-sandbox", "--disable-gpu",
+                        "--disable-dev-shm-usage", "--hide-scrollbars",
+                        "--user-data-dir=" + udd,
+                        "--window-size=%d,%d" % (w, h), "--virtual-time-budget=10000",
+                        "--screenshot=" + png, "file:///" + src.replace("\\", "/")],
+                       check=False, capture_output=True)
+        for _ in range(6):
+            if os.path.exists(png) and os.path.getsize(png) > 5000:
+                break
+            time.sleep(1)
+        if os.path.exists(png) and os.path.getsize(png) > 5000:
+            break
     if not os.path.exists(png):
         sys.exit("生成に失敗した（Edgeのパスを確認）")
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
