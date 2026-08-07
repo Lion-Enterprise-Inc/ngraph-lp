@@ -1,16 +1,31 @@
 # -*- coding: utf-8 -*-
 """記事の図解をグラフの型から作る（和禅テンプレ・1200x630）
 
+データの形 → 型:
+  順位・多項目の比較（1時点）      = bar
+  2つの数字の対比                  = gap
+  2時点の変化（複数項目）          = slope
+  3時点以上の推移                  = line
+  内訳（合計100%）                 = stack
+  割合を1つだけ主役に              = ratio
+  2軸の分類                        = matrix
+  増減の内訳（始点→終点）          = waterfall
+  多数の値＋基準線                 = dot
+
 使い方:
   python scripts/fig_gen.py <type> --title "見出し" --data "ラベル=値,ラベル=値" [options]
 
 型（--type）:
-  bar     横棒ランキング。上位を朱で強調（--hot 3 で上位3本）
-  gap     2値の対比。差がいくつかを真ん中に出す
-  line    折れ線。--mark "2:20万件で-13.6pt" で点に吹き出し
-  stack   100%積み上げ1本。内訳の比率
-  ratio   割合を1つだけ大きく。ドーナツ＋巨大数字
-  matrix  2軸4象限。--axis "横軸ラベル|縦軸ラベル"
+  bar        横棒ランキング。上位を朱で強調（--hot 3 で上位3本）
+  gap        2値の対比。差がいくつかを真ん中に出す
+  slope      2時点の変化。--data "項目=前値>後値" ／ --cols "前|後" ／ 前値なしは —
+  line       折れ線。--mark "2:20万件で-13.6pt" で点に吹き出し
+  stack      100%積み上げ1本。内訳の比率
+  ratio      割合を1つだけ大きく。ドーナツ＋巨大数字
+  matrix     2軸4象限。--axis "横軸ラベル|縦軸ラベル"
+  waterfall  増減の内訳。--data "始点=100,増減=-58,増減=+12,終点=54"（途中は+/-必須）
+             縦軸は0起点のまま。増減が始点に比べて小さいと帯が細くなる＝そういうデータ
+  dot        多数の値を横軸1本に並べる。--ref "1176:全国平均" で朱の基準線
 
 共通オプション:
   --title  見出し（結論を書く。「◯◯の割合」ではなく「◯◯は9つのうち6番目だけ」）
@@ -38,6 +53,7 @@ import tempfile
 import time
 
 sys.stdout.reconfigure(encoding="utf-8")
+sys.stderr.reconfigure(encoding="utf-8")   # 書式エラーの日本語がcp932で化けるため
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
@@ -83,8 +99,69 @@ def parse_data(s):
     return out
 
 
+def parse_slope(s):
+    """"項目=前値>後値,項目=—>後値" を [(項目, 前値, 前表記, 後値, 後表記)] にする。
+
+    前値なし（—）は None。値の表記は parse_data と同じく書いたまま出す。
+    """
+    dash = ("—", "―", "ー", "-", "–", "")
+    out = []
+    for part in (s or "").split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "=" not in part:
+            sys.exit(f"slope の --data の書式が違う（項目=前値>後値）: {part}")
+        k, v = part.rsplit("=", 1)
+        if ">" not in v:
+            sys.exit(f"slope の --data は 項目=前値>後値 で書く: {part}")
+        a, b = v.split(">", 1)
+        a, b = a.strip(), b.strip()
+        if b in dash:
+            sys.exit(f"slope の後値は省略できない: {part}")
+        try:
+            va = None if a in dash else float(a)
+            vb = float(b)
+        except ValueError:
+            sys.exit(f"値が数値でない: {part}")
+        out.append((k.strip(), va, a, vb, b))
+    if not out:
+        sys.exit("--data が空")
+    return out
+
+
 def fmt(raw, unit):
     return str(raw) + unit
+
+
+def tw(s, size):
+    """テキストの概算幅。全角は size、半角は size*0.56 で見る（重なり回避の判定用）"""
+    return sum(size if ord(c) > 0x2E7F else size * 0.56 for c in str(s))
+
+
+def spread(ys, gap, lo, hi):
+    """近すぎる y を最小 gap まで押し広げる（並び順は保つ）。はみ出したら全体を戻す"""
+    if not ys:
+        return []
+    order = sorted(range(len(ys)), key=lambda i: ys[i])
+    out = list(ys)
+    for k in range(1, len(order)):
+        a, b = order[k - 1], order[k]
+        if out[b] - out[a] < gap:
+            out[b] = out[a] + gap
+    over = out[order[-1]] - hi
+    if over > 0:
+        for i in order:
+            out[i] -= over
+        for k in range(len(order) - 2, -1, -1):
+            a, b = order[k], order[k + 1]
+            if out[b] - out[a] < gap:
+                out[a] = out[b] - gap
+    under = lo - out[order[0]]
+    if under > 0:
+        for i in order:
+            out[i] += under
+    return out
 
 
 def text(x, y, s, size=20, fill=INK, weight=400, anchor="start", family=SANS):
@@ -157,6 +234,89 @@ def fig_gap(d, o):
         d2 = round(abs(va - vb), 10)
         d2 = int(d2) if d2 % 1 == 0 else d2
         parts.append(text(mx, cy - 88, f"差 {fmt(d2, o['unit'])}", 24, ACCENT, 900, "middle", SERIF))
+    return "".join(parts)
+
+
+def fig_slope(d, o):
+    """2時点の変化。左右の基準線を線で結ぶ。--hot n は変化量の大きい上位n本を朱
+
+    上昇・下落は色で区別しない（色に意味を持たせると凡例が要る）。
+    """
+    # 左右の基準線は「項目ラベル＋値＋引出し線の余白」が収まる位置まで内側に寄せる
+    # （固定位置だと長い項目名が左端からはみ出す）
+    gut = 46
+    lw = max(tw(lb, 21) for lb, _va, _ra, _vb, _rb in d)
+    vw = max([tw(fmt(ra, o["unit"]), 20) for _lb, va, ra, _vb, _rb in d if va is not None]
+             + [tw("—", 20)])
+    vwr = max(tw(fmt(rb, o["unit"]), 20) for _lb, _va, _ra, _vb, rb in d)
+    # 左右30は表紙モードの飾り枠（x=22）を避ける分
+    x0 = int(max(430, 30 + lw + 16 + vw + gut + 8))
+    x1 = int(min(o["w"] - 30 - vwr - gut - 8, x0 + 460))
+    x1 = max(x1, x0 + 200)
+    ytop = o["body_top"] + 46          # 上に列見出しを置く分
+    ybot = o["body_bottom"] - 18
+    vals = []
+    for _lb, va, _ra, vb, _rb in d:
+        vals.append(vb)
+        if va is not None:
+            vals.append(va)
+    lo, hi = min(vals), max(vals)
+    pad = (hi - lo) * 0.18 or 1
+    lo, hi = lo - pad, hi + pad
+
+    def py(v):
+        return ybot - (ybot - ytop) * (v - lo) / (hi - lo)
+
+    # 変化量の大きい順に --hot 本だけ朱。前値なしは変化量が出ないので対象外
+    chg = [(abs(vb - va) if va is not None else -1.0) for _lb, va, _ra, vb, _rb in d]
+    rank = sorted(range(len(d)), key=lambda i: -chg[i])
+    hot = {i for i in rank[:max(o["hot"], 0)] if chg[i] >= 0}
+
+    parts = []
+    for x in (x0, x1):
+        parts.append(f'<line x1="{x}" y1="{ytop - 26}" x2="{x}" y2="{ybot + 20}" '
+                     f'stroke="{FAINT}" stroke-width="1.2"/>')
+    if o["cols"]:
+        ca, cb = (o["cols"] + "|").split("|")[:2]
+        parts.append(text(x0, ytop - 40, ca, 20, SUB, 700, "middle"))
+        if cb:
+            parts.append(text(x1, ytop - 40, cb, 20, SUB, 700, "middle"))
+    # 線と点は先に全部描いてからラベルを重ねる（線がラベルの上に乗らないように）
+    for i, (_lb, va, _ra, vb, _rb) in enumerate(d):
+        col = ACCENT if i in hot else DIM
+        yb = py(vb)
+        if va is not None:
+            ya = py(va)
+            parts.append(f'<line x1="{x0}" y1="{ya:.1f}" x2="{x1}" y2="{yb:.1f}" '
+                         f'stroke="{col}" stroke-width="{3.6 if i in hot else 2.6}" stroke-linecap="round"/>')
+            parts.append(f'<circle cx="{x0}" cy="{ya:.1f}" r="7" fill="{col}"/>')
+        parts.append(f'<circle cx="{x1}" cy="{yb:.1f}" r="7" fill="{col}"/>')
+    # ラベルは点の高さに置き、重なるときだけ上下にずらす。
+    # ずらすと点との対応が切れるので、両脇に取った余白（gut）に引出し線を通す
+    lvx, rvx = x0 - gut - 8, x1 + gut + 8
+    lbx = lvx - vw - 16
+    dy = [py(vb if va is None else va) for _lb, va, _ra, vb, _rb in d]
+    ry0 = [py(vb) for _lb, _va, _ra, vb, _rb in d]
+    ly = spread([y + 7 for y in dy], 32, o["body_top"] + 24, o["body_bottom"] - 4)
+    ry = spread([y + 7 for y in ry0], 32, o["body_top"] + 24, o["body_bottom"] - 4)
+
+    def lead(x_from, x_turn, x_to, ytxt, ypt):
+        if abs(ytxt - ypt) < 3:
+            return ""
+        return (f'<polyline points="{x_from:.1f},{ytxt:.1f} {x_turn:.1f},{ytxt:.1f} '
+                f'{x_to:.1f},{ypt:.1f}" fill="none" stroke="{DIM}" stroke-width="1"/>')
+
+    for i, (lb, va, ra, vb, rb) in enumerate(d):
+        col = ACCENT if i in hot else SUB
+        parts.append(text(lbx, ly[i], lb, 21, INK if i in hot else SUB,
+                          700 if i in hot else 500, "end"))
+        if va is None:
+            parts.append(text(lvx, ly[i], "—", 20, DIM, 700, "end"))
+        else:
+            parts.append(text(lvx, ly[i], fmt(ra, o["unit"]), 20, col, 900, "end"))
+            parts.append(lead(lvx + 8, x0 - 22, x0 - 9, ly[i] - 6, dy[i]))
+        parts.append(text(rvx, ry[i], fmt(rb, o["unit"]), 20, col, 900))
+        parts.append(lead(rvx - 8, x1 + 22, x1 + 9, ry[i] - 6, ry0[i]))
     return "".join(parts)
 
 
@@ -267,8 +427,197 @@ def fig_matrix(d, o):
     return "".join(parts)
 
 
-TYPES = {"bar": fig_bar, "gap": fig_gap, "line": fig_line,
-         "stack": fig_stack, "ratio": fig_ratio, "matrix": fig_matrix}
+def fig_waterfall(d, o):
+    """増減の内訳。最初＝始点・途中＝+/-の増減・最後＝終点
+
+    増減は色に意味を持たせない（減=赤にしない）。--hot k で k番目の増減だけ朱。
+    """
+    n = len(d)
+    if n < 3:
+        sys.exit("waterfall は --data を3件以上にする（始点,増減…,終点）")
+    for lb, _v, raw in d[1:-1]:
+        if not raw.startswith(("+", "-")):
+            sys.exit(f"waterfall の途中は増減なので +/- を付ける: {lb}={raw}")
+    # 各バーの下端・上端を値で持つ（始点と終点は0から立てる柱）
+    bars, cum = [], d[0][1]
+    bars.append((0.0, d[0][1], INK))
+    for i, (_lb, v, _raw) in enumerate(d[1:-1], start=1):
+        bars.append((cum, cum + v, ACCENT if i == o["hot"] else DIM))
+        cum += v
+    bars.append((0.0, d[-1][1], INK))
+    levels = [0.0] + [x for a, b, _c in bars for x in (a, b)]
+    lo, hi = min(levels), max(levels)
+    span = (hi - lo) * 1.02 or 1
+
+    x0 = 110
+    slot = (o["w"] - x0 * 2) / n
+    barw = min(126, slot * 0.58)
+    cx = [x0 + slot * (i + 0.5) for i in range(n)]
+    # ラベルが隣とぶつかるときだけ2段にする
+    stag = any(tw(lb, 20) > slot - 10 for lb, _v, _r in d)
+    ybot = o["body_bottom"] - (78 if stag else 44)
+    ytop = o["body_top"] + 44
+
+    def py(v):
+        return ybot - (ybot - ytop) * (v - lo) / span
+
+    base = py(0)
+    parts = [f'<line x1="{x0 - 30}" y1="{base:.1f}" x2="{o["w"] - x0 + 30}" y2="{base:.1f}" '
+             f'stroke="{INK}" stroke-width="1.6"/>']
+    for i, (a, b, col) in enumerate(bars):
+        ya, yb = py(a), py(b)
+        top, h = min(ya, yb), max(abs(ya - yb), 4)
+        parts.append(f'<rect x="{cx[i] - barw / 2:.1f}" y="{top:.1f}" width="{barw:.1f}" '
+                     f'height="{h:.1f}" rx="2" fill="{col}"/>')
+        # 到達点から次のバーの立ち上がりへ細い破線をつなぐ（高さは到達点で水平）
+        if i < n - 1:
+            parts.append(f'<line x1="{cx[i] + barw / 2:.1f}" y1="{yb:.1f}" '
+                         f'x2="{cx[i + 1] - barw / 2:.1f}" y2="{yb:.1f}" '
+                         f'stroke="{FAINT}" stroke-width="1" stroke-dasharray="4 4"/>')
+        lb, _v, raw = d[i]
+        vc = INK if col == INK else (ACCENT if col == ACCENT else SUB)
+        parts.append(text(cx[i], top - 14, fmt(raw, o["unit"]), 24, vc, 900, "middle"))
+        # ラベルは0線ではなく描画域の下端に置く（マイナスに沈むとバーが0線より下に出る）
+        ly = ybot + 34 + (i % 2) * 32 * (1 if stag else 0)
+        parts.append(text(cx[i], ly, lb, 20, SUB if col == DIM else INK,
+                          500 if col == DIM else 700, "middle"))
+        if stag and i % 2:
+            parts.append(f'<line x1="{cx[i]:.1f}" y1="{ybot + 8:.1f}" x2="{cx[i]:.1f}" '
+                         f'y2="{ly - 18:.1f}" stroke="{FAINT}" stroke-width="1"/>')
+    return "".join(parts)
+
+
+DOT_DENSE = 12         # これを超え、かつ文字が3段以上に積むなら間引く
+DOT_ROWS = 2           # 全部に文字を付けたまま許す段数
+
+
+def dot_place(d, o):
+    """dotの x座標と行を先に決める（高さ計算と描画で同じ結果を使う）
+
+    行は軸からの段数。y = 軸 + 行 * pitch なので、負が上・正が下。
+    文字が2段までに収まるなら全部に付けて下へ積む。それ以上に積むなら
+    文字は --hot・最小・最大だけにして、点は軸を中心に上下交互へ散らす
+    （47都道府県で下に伸ばすと1000px超の柱になり、右半分が空洞になる）。
+    件数だけで切り替えると、13件が等間隔に並ぶだけでも間引かれてしまう。
+    """
+    n = len(d)
+    lab = 20 if n <= DOT_DENSE else (17 if n <= 24 else 15)
+    val = lab - 1
+    vals = [v for _lb, v, _r in d]
+    if o["ref"]:
+        vals.append(o["ref"][0])
+    lo, hi = min(vals), max(vals)
+    pad = (hi - lo) * 0.06 or 1
+    lo, hi = lo - pad, hi + pad
+    x0, x1 = 96, o["w"] - 96
+    xs = [x0 + (x1 - x0) * (v - lo) / (hi - lo) for _lb, v, _r in d]
+
+    def stack_down(half):
+        """左から順に、空いている一番上の段へ置く（下向きに積む）"""
+        rows, right = [0] * n, []
+        for i in sorted(range(n), key=lambda i: xs[i]):
+            t = 0
+            while t < len(right) and xs[i] - half[i] < right[t]:
+                t += 1
+            if t == len(right):
+                right.append(0.0)
+            right[t] = xs[i] + half[i]
+            rows[i] = t
+        return rows, len(right)
+
+    full = [max(9.0, tw(lb, lab) / 2, tw(fmt(raw, o["unit"]), val) / 2) + 7
+            for (lb, _v, raw) in d]
+    rows, nrow = stack_down(full)
+    dense = n > DOT_DENSE and nrow > DOT_ROWS
+
+    # 文字を出す点。密なときは --hot 該当・最小・最大だけ（点は全部出す）
+    if dense:
+        keep = set(range(min(max(o["hot"], 0), n)))
+        keep.add(min(range(n), key=lambda i: d[i][1]))
+        keep.add(max(range(n), key=lambda i: d[i][1]))
+        half = [full[i] if i in keep else 9.0 for i in range(n)]
+    else:
+        keep, half = set(range(n)), full
+
+    if dense:
+        pitch = 19
+        up = -(-(lab + 18) // pitch)      # 文字が要る点が上下に食う行数
+        dn = -(-(val + 20) // pitch)
+        pref = [0] + [k for j in range(1, 10) for k in (j, -j)]
+        rows, occ = [0] * n, {}
+
+        def block(i, k):
+            return range(k - up, k + dn + 1) if i in keep else range(k, k + 1)
+
+        def fits(i, k):
+            for r in block(i, k):
+                for a, b in occ.get(r, ()):
+                    if xs[i] - half[i] < b and a < xs[i] + half[i]:
+                        return False
+            return True
+
+        # 文字を出す点を先に置く（軸上の0行を取らせる）
+        for i in sorted(range(n), key=lambda i: (i not in keep, xs[i])):
+            k = next((k for k in pref if fits(i, k)), pref[-1])
+            for r in block(i, k):
+                occ.setdefault(r, []).append((xs[i] - half[i], xs[i] + half[i]))
+            rows[i] = k
+    else:
+        # 段の間隔は、上の段の値と下の段のラベルがくっつかない分を残す
+        pitch = lab + val + (36 if nrow <= 6 else 34)
+
+    # 中身の上下の張り出しから軸の位置と下端を決める
+    ups = [rows[i] * pitch - 7 - (lab + 8 if i in keep else 0) for i in range(n)]
+    dns = [rows[i] * pitch + 7 + (val + 8 if i in keep else 0) for i in range(n)]
+    axis = o["body_top"] - min(ups) + (31 if o["ref"] else 1)
+    return {"x": xs, "row": rows, "keep": keep, "lab": lab, "val": val, "dense": dense,
+            "pitch": pitch, "axis": axis, "bottom": axis + max(dns),
+            "drop": (not dense) and max(rows) <= 3,
+            "x0": x0, "x1": x1, "lo": lo, "hi": hi, "half": half}
+
+
+def fig_dot(d, o):
+    """多数の値を横軸1本に並べる。--ref で朱の基準線。近い点は段をずらす"""
+    p = o.get("dotp") or dot_place(d, o)
+    xs, ax, keep = p["x"], p["axis"], p["keep"]
+    parts = [f'<line x1="{p["x0"] - 34}" y1="{ax}" x2="{p["x1"] + 34}" y2="{ax}" '
+             f'stroke="{INK}" stroke-width="1.6"/>']
+    if o["ref"]:
+        rv, rlab, rraw = o["ref"]
+        rx = p["x0"] + (p["x1"] - p["x0"]) * (rv - p["lo"]) / (p["hi"] - p["lo"])
+        parts.append(f'<line x1="{rx:.1f}" y1="{o["body_top"] + 22:.1f}" x2="{rx:.1f}" '
+                     f'y2="{p["bottom"] + 10:.1f}" stroke="{ACCENT}" stroke-width="1.6" '
+                     f'stroke-dasharray="7 5"/>')
+        lt = f"{rlab} {fmt(rraw, o['unit'])}"
+        lw = tw(lt, 19)
+        parts.append(text(min(max(rx, lw / 2 + 10), o["w"] - lw / 2 - 10),
+                          o["body_top"] + 12, lt, 19, ACCENT, 700, "middle"))
+    for i, (lb, _v, raw) in enumerate(d):
+        cy = ax + p["row"][i] * p["pitch"]
+        if p["row"][i] and p["drop"]:
+            # ラベルの手前で止める（点まで引くと自分のラベルを串刺しにする）
+            parts.append(f'<line x1="{xs[i]:.1f}" y1="{ax + 4}" x2="{xs[i]:.1f}" '
+                         f'y2="{cy - 19 - p["lab"]:.1f}" stroke="{DIM}" stroke-width="1"/>')
+        hot = i < o["hot"]
+        if hot:
+            parts.append(f'<circle cx="{xs[i]:.1f}" cy="{cy:.1f}" r="7" fill="{ACCENT}"/>')
+        else:
+            parts.append(f'<circle cx="{xs[i]:.1f}" cy="{cy:.1f}" r="7" fill="{BG}" '
+                         f'stroke="{INK}" stroke-width="1.6"/>')
+        if i not in keep:
+            continue
+        # ラベルは点の上・値は点の下。端では画面外に出ないよう寄せる
+        tx = min(max(xs[i], p["half"][i] + 4), o["w"] - p["half"][i] - 4)
+        parts.append(text(tx, cy - 15, lb, p["lab"], ACCENT if hot else INK,
+                          900 if hot else 700, "middle"))
+        parts.append(text(tx, cy + 13 + p["val"], fmt(raw, o["unit"]), p["val"],
+                          ACCENT if hot else SUB, 900 if hot else 500, "middle"))
+    return "".join(parts)
+
+
+TYPES = {"bar": fig_bar, "gap": fig_gap, "slope": fig_slope, "line": fig_line,
+         "stack": fig_stack, "ratio": fig_ratio, "matrix": fig_matrix,
+         "waterfall": fig_waterfall, "dot": fig_dot}
 
 
 # ---------------------------------------------------------------- 組み立て
@@ -307,6 +656,12 @@ def build_svg(kind, d, o):
         elif kind == "gap":
             # 棒の最大高210＋上の数値と下のラベル分。630だと棒の下が大きく空く
             h = o["body_top"] + 320 + foot_space
+        elif kind == "dot":
+            # 段の数は中身で決まる（点が近いほど増える）ので高さも追従させる
+            p = dot_place(d, o)
+            o["dotp"] = p
+            h = int(p["bottom"] + 15 + foot_space)
+            h = max(h, 300)
         else:
             h = 630
     o["h"] = h
@@ -368,7 +723,10 @@ def render_png(svg, out, w, h):
 
 
 def main():
-    ap = argparse.ArgumentParser()
+    # docstring 冒頭（データの形→型の対応表と型一覧）を --help にそのまま出す
+    ap = argparse.ArgumentParser(
+        description=__doc__.split("共通オプション:")[0].rstrip(),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("type", choices=sorted(TYPES))
     ap.add_argument("--title", required=True, help="見出し（結論を書く）")
     ap.add_argument("--data", required=True, help="ラベル=値,ラベル=値")
@@ -377,6 +735,8 @@ def main():
     ap.add_argument("--src", default="", help="出所")
     ap.add_argument("--tag", default="", help="最終行に付ける注（barのみ）")
     ap.add_argument("--axis", default="", help="横軸|縦軸（line/matrix）")
+    ap.add_argument("--cols", default="", help='slope用 2時点の見出し "2023年度|2025年度"')
+    ap.add_argument("--ref", default="", help='dot用 基準線 "1176:全国平均"')
     ap.add_argument("--mark", action="append", default=[], help='line用 "点の番号:文言"（0始まり）')
     ap.add_argument("--hot", type=int, default=1, help="朱で強調する本数（既定1）")
     ap.add_argument("--ink-last", action="store_true", help="最終行を墨で塗る（barの落とし）")
@@ -401,11 +761,22 @@ def main():
         i, body = m.split(":", 1)
         marks.append((int(i), body))
 
+    ref = None
+    if a.ref:
+        if ":" not in a.ref:
+            sys.exit('--ref は "値:ラベル"')
+        rv, rlab = a.ref.split(":", 1)
+        try:
+            ref = (float(rv), rlab.strip(), rv.strip())
+        except ValueError:
+            sys.exit(f"--ref の値が数値でない: {a.ref}")
+
     o = {"title": a.title, "sub": a.sub, "concl": a.concl, "src": a.src, "tag": a.tag,
          "axis": a.axis, "marks": marks, "hot": a.hot, "ink_last": a.ink_last,
          "unit": a.unit, "w": a.w, "h": a.h, "diff": a.diff, "bare": a.bare,
-         "ink_row": a.ink_row, "tag_row": a.tag_row}
-    svg = build_svg(a.type, parse_data(a.data), o)
+         "ink_row": a.ink_row, "tag_row": a.tag_row, "cols": a.cols, "ref": ref}
+    d = parse_slope(a.data) if a.type == "slope" else parse_data(a.data)
+    svg = build_svg(a.type, d, o)
 
     if a.svg or (a.out and a.out.lower().endswith(".svg")):
         block = ('<div class="a-fig-wrap">\n'

@@ -433,3 +433,30 @@ img{max-width:100%;display:block}
   .article-wrap .a-table{font-size:.9rem}
   .article-wrap .a-table th,.article-wrap .a-table td{min-width:6em;padding:10px 12px}
 }
+
+/* ── 記事デザイン刷新 2026-08-07（本文16px化・H2/H3階層・ブロック寸法） ── */
+.article-wrap{--text-3:#6b6253}
+.article-wrap p{font-size:1rem;line-height:1.9;margin-bottom:28px}
+.article-wrap li{font-size:1rem;line-height:1.9;margin-bottom:8px}
+.article-wrap h2{font-size:1.375rem;margin:64px 0 20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.article-wrap h3{font-size:1.125rem;margin:40px 0 14px}
+.article-wrap .a-note{font-size:.95rem;line-height:1.95;padding:18px 22px;margin:32px 0}
+.article-wrap .a-table{font-size:.9rem}
+.article-wrap .a-table-wrap{overflow-x:auto;margin:18px 0} /* 記事側の定義漏れ対策: 3記事で欠落しSP幅で溢れていた(2026-08-07) */
+.article-wrap .a-fig-wrap{margin:34px 0}
+.article-wrap .a-fig-title{font-size:1rem}
+.article-wrap .a-fig-cap{font-size:.85rem}
+.article-wrap .a-eyecatch{margin:24px 0 36px}
+.article-wrap .a-toc{font-size:.9rem}
+.article-wrap .a-toc li{font-size:.9rem} /* liはp/li直指定1remに勝てないため明示(ChatGPTレビュー2026-08-07) */
+.article-wrap .a-note p{font-size:.95rem;line-height:1.95;margin-bottom:14px} /* 同上: a-note内にpを書いた将来記事への防御 */
+.article-wrap .a-faq summary{font-size:.95rem}
+.article-wrap .a-faq details p{font-size:.92rem;line-height:1.95}
+.article-wrap .a-cta{margin-top:60px}
+.article-wrap .a-src{font-size:.8rem}
+@media(max-width:768px){
+  .article-wrap p,.article-wrap li{font-size:1rem;line-height:1.9}
+  .article-wrap p{margin-bottom:24px}
+  .article-wrap h2{font-size:1.25rem;margin:52px 0 16px}
+  .article-wrap h3{font-size:1.1rem;margin:34px 0 12px}
+}

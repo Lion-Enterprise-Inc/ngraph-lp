@@ -2,7 +2,7 @@
 """ブログ記事アイキャッチ生成（和禅テンプレ・1200x630）
 使い方:
   python scripts/eyecatch_gen.py <slug> <title> <sub> <pattern> [--label=NGRAPH BLOG] [--out=絶対パス.jpg]
-  pattern: tree_down/tree_up/radial/seq/pyramid/venn/ring/cycle
+  pattern: tree_down/tree_up/radial/seq/pyramid/venn/ring/cycle/balance/shield/layers/steps/fork/gauge
   title内で改行禁止にしたい語は {nb}...{/nb} で囲む（例: "AIが現場で止まる、{nb}3つの理由{/nb}"）
 出力: 既定 assets/blog/<slug>.jpg（--outで任意パスに変更可）
 生成後は必ず画像を目視確認すること（単語中改行・見切れ）。
@@ -24,6 +24,12 @@ PATS = {
  "venn": '<circle cx="18" cy="19" r="10.5"/><circle cx="30" cy="19" r="10.5"/><circle cx="24" cy="29.5" r="10.5"/>',
  "ring": '<circle cx="24" cy="8" r="3.6"/><circle cx="37.9" cy="16" r="3.6"/><circle cx="37.9" cy="32" r="3.6"/><circle cx="24" cy="40" r="3.6"/><circle cx="10.1" cy="32" r="3.6"/><circle cx="10.1" cy="16" r="3.6"/>',
  "cycle": '<path d="M37.5 18a15 15 0 00-25-4.5M12.5 13.5V7M12.5 13.5H19M10.5 30a15 15 0 0025 4.5M35.5 34.5V41M35.5 34.5H29"/>',
+ "balance": '<path d="M24 8v30M10 14h28M10 14l-4 8M10 14l4 8M38 14l-4 8M38 14l4 8M6 22a4 4 0 008 0M34 22a4 4 0 008 0M14 38h20"/>',
+ "shield": '<path d="M24 6l14 5v12c0 10-6 16-14 19-8-3-14-9-14-19V11z"/><path d="M24 13v25"/>',
+ "layers": '<path d="M24 26l14 7-14 7-14-7zM24 17l14 7-14 7-14-7zM24 8l14 7-14 7-14-7z"/>',
+ "steps": '<path d="M6 38h10v-8h10v-8h10v-8h6"/><circle cx="42" cy="10" r="2.5"/>',
+ "fork": '<path d="M4 24h12M24 21l12-8M24 27l12 8"/><circle cx="20" cy="24" r="4.5"/><circle cx="36" cy="13" r="3.2"/><circle cx="36" cy="35" r="3.2" stroke-dasharray="1.1 1.3"/>',
+ "gauge": '<path d="M8 34a16 16 0 0 1 32 0M11 27l-3 2M24 18v-4M37 27l3 2M24 34L34 24"/><circle cx="24" cy="34" r="2.5"/>',
 }
 
 TPL = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
