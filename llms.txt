@@ -19,7 +19,7 @@
 
 - [人手不足倒産は227件か237件か——2つの集計がズレる理由と、「採れない」から「払えない」への転換](https://ngraph.jp/blog/20260807-jinbusoku-tosan.html)
 - [危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」](https://ngraph.jp/blog/20260807-ai-approval-fatigue.html)
-- [正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった](https://ngraph.jp/blog/20260806-seihon-yomarenai.html)
+- [AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法](https://ngraph.jp/blog/20260806-seihon-yomarenai.html)
 - [MetaがコーディングAI「Muse Code」を投入——中小企業には「安さの対価は自社データ」という話](https://ngraph.jp/blog/20260806-meta-muse-code.html)
 - [業務改善助成金 令和8年度とは？9月1日受付開始——「最大600万円」の実額と、AIツールが対象になる線引き](https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin.html)
 - [Sakana AIが日本語特化LLM APIを提供開始——100人以下の企業のAI導入は16.6%、壁は日本語ではない](https://ngraph.jp/blog/20260805-sakana-namazu.html)

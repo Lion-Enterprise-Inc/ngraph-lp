@@ -10,9 +10,9 @@
   gtag('js', new Date());
   gtag('config', 'G-L96HMXRK1D');
 </script>
-<title>正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった | NGraphブログ</title>
+<title>AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法 | NGraphブログ</title>
 <meta name="description" content="社内の情報をAIが読める形に整えても、AIがそれを読むとは限りません。帝国データバンク調査（2026年3月・1万312社）で活用企業の86.7%が効果を認める一方、活用は34.5%どまり。自社で起きた「正本があるのにAIが読まなかった」事故と、読み出し側に検問を置いて塞いだ方法を解説します。">
-<meta property="og:title" content="正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった | NGraphブログ">
+<meta property="og:title" content="AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法 | NGraphブログ">
 <meta property="og:description" content="整えるところまでが準備で、読ませるところまでが仕組み。自社で起きた「正本があるのにAIが読まなかった」事故と、その塞ぎ方。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ngraph.jp/blog/20260806-seihon-yomarenai">
@@ -27,17 +27,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=5">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=6">
 <style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった",
+  "headline": "AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法",
   "image": "https://ngraph.jp/assets/blog/20260806-seihon-yomarenai.jpg",
   "description": "社内の情報をAIが読める形に整えても、AIがそれを読むとは限りません。帝国データバンク調査（2026年3月・1万312社）で活用企業の86.7%が効果を認める一方、活用は34.5%どまり。自社で起きた「正本があるのにAIが読まなかった」事故と、読み出し側に検問を置いて塞いだ方法を解説します。",
   "datePublished": "2026-08-06",
-  "dateModified": "2026-08-06",
+  "dateModified": "2026-08-08",
   "inLanguage": "ja",
   "mainEntityOfPage": "https://ngraph.jp/blog/20260806-seihon-yomarenai",
   "author": {
@@ -142,7 +142,7 @@
 
 <article class="article-wrap">
   <div class="a-label">Evening Deep Dive</div>
-  <h1>正本をつくったのに、AIが読まなかった——「置いてあるのに使われない」は、AI導入だけの話ではなかった</h1>
+  <h1>AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法</h1>
   <span class="a-date">2026.08.06 夕 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20260806-seihon-yomarenai.jpg" alt="">
 
