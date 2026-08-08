@@ -62,8 +62,8 @@
 - [既存システムを捨てずにAIを組み込む方法](https://ngraph.jp/blog/legacy-integration)
 - [AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳](https://ngraph.jp/blog/ai-cost)
 - [中小企業のAI導入ロードマップ](https://ngraph.jp/blog/ai-roadmap)
-
 - [AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き](https://ngraph.jp/blog/ai-and-humans)
+
 ## 会社情報
 
 - [会社概要・チーム](https://ngraph.jp/company): 代表取締役 髙橋真吾、CTO Matthew Chana。設立2025年12月、福井県福井市。

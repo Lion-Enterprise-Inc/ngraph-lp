@@ -200,6 +200,10 @@ def fix_llms_missing():
     end = next(
         (i for i in range(start, len(lines)) if lines[i].startswith("## ")), len(lines)
     )
+    # 節末の空行は次の見出しとの区切り。ここへ挿し込むと見出しに行がくっついて
+    # 節の境界が壊れるので、空行の手前を「節の終わり」とする
+    while end > start and not lines[end - 1].strip():
+        end -= 1
 
     def slug_of(line):
         m = re.search(r"%s/blog/([A-Za-z0-9._-]+)\)" % re.escape(SITE), line)
@@ -215,15 +219,23 @@ def fix_llms_missing():
         title = h1_of(slug) or slug
         line = "- [%s](%s/blog/%s)" % (title, SITE, slug)
         date = slug_date(slug)
-        pos = end  # 恒久記事は節の末尾へ
+        pos = end  # 恒久記事（日付なしslug）は節の末尾へ
         if date:
-            # 日付付きは新しい順。自分より古い最初の記事の直前に入れる
+            # 日付付きは新しい順に並べる。自分より古い最初の記事の直前へ。
+            # 見つからない＝既存のどれより古い場合は、恒久記事の後ろに落ちないよう
+            # 「最後の日付付き記事の直後」に入れる（日付ブロックと恒久ブロックを混ぜない）
+            last_dated = None
+            pos = None
             for i in range(start, end):
                 s = slug_of(lines[i])
                 d = slug_date(s) if s else None
-                if d and d < date:
+                if not d:
+                    continue
+                last_dated = i
+                if d < date and pos is None:
                     pos = i
-                    break
+            if pos is None:
+                pos = last_dated + 1 if last_dated is not None else end
         lines.insert(pos, line)
         end += 1
         added.append(slug)
