@@ -339,7 +339,7 @@ def ref_block(nodes, entities):
     return b
 
 
-def build(slug, teaser, heads=None):
+def build(slug, teaser, heads=None, mark_figs=False):
     path = os.path.join(REPO, "blog", f"{slug}.html")
     if not os.path.exists(path):
         sys.exit(f"記事が見つかりません: {path}")
@@ -353,7 +353,12 @@ def build(slug, teaser, heads=None):
     blocks, entities, figs = [], [], []
 
     def take_fig(wrap):
-        """本文の図を1点拾う。Xは貼り付けで画像が入らないので、本文には位置の目印だけ置く。"""
+        """本文の図を1点拾う。
+
+        既定（mark_figs=False）は図を載せず、本家記事に残す〔髙橋さん 2026-08-08「一旦図は無しで行くか」〕。
+        Xは貼り付けで画像が入らず、1点ごとに挿入操作が要るため手間に見合わないという判断。
+        --figs を付けたときだけ、本文に位置の目印［図N］を置いてPNGを書き出す。
+        """
         svg = wrap.find("svg")
         if svg is None:
             return
@@ -363,8 +368,9 @@ def build(slug, teaser, heads=None):
             "title": cap.get_text(strip=True) if cap else f"図{len(figs) + 1}",
             "svg": str(svg),
         })
-        blocks.append(text_block(f"［図{figs[-1]['n']}］{figs[-1]['title']}",
-                                 bold_prefix=f"［図{figs[-1]['n']}］", entities=entities))
+        if mark_figs:
+            blocks.append(text_block(f"［図{figs[-1]['n']}］{figs[-1]['title']}",
+                                     bold_prefix=f"［図{figs[-1]['n']}］", entities=entities))
 
     # リード（h1直後の最初の<p>）
     lead = art.find("p")
@@ -631,14 +637,15 @@ def main():
     a = ap.parse_args()
 
     heads = [h.strip() for h in a.heads.split(",") if h.strip()] if a.heads else None
-    title, content_state, figs = build(a.slug, a.teaser, heads)
+    title, content_state, figs = build(a.slug, a.teaser, heads, mark_figs=a.figs is not None)
     n = len(content_state["blocks"])
     chars = sum(len(b["text"]) for b in content_state["blocks"])
     print(f"title: {title}")
     print(f"blocks: {n} / entities: {len(content_state['entities'])} / 本文 約{chars}字")
 
+    # 黙って消えるのが一番まずいので、載せなかった図は必ず1行で報告する
     if figs and a.figs is None:
-        print(f"⚠ 載せるH2の中に図が{len(figs)}点あります。--figs を付けるとPNGで書き出します")
+        print(f"図{len(figs)}点は載せず本家記事に残した（Xにも載せるなら --figs）")
     if a.figs is not None:
         figdir = a.figs or os.path.join(os.environ.get("TEMP", "."), f"x_figs_{a.slug}")
         if os.path.isdir(figdir):
