@@ -44,6 +44,11 @@
 .pat.kodama .p-label{color:var(--accent);transition:color .5s}
 @keyframes kodamaTilt{0%,74%,100%{transform:rotate(0)}14%{transform:rotate(-8deg)}34%{transform:rotate(6deg)}52%{transform:rotate(-3deg)}}
 @media(prefers-reduced-motion:reduce){.pat.kodama svg{animation:none}}
+.hero-trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
+/* >span 限定（子孫spanにすると改行制御まで inline-flex 化して字間が壊れる） */
+.hero-trust>span{font-size:.78rem;color:var(--text-2);display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.hero-trust svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+@media(max-width:768px){.hero-trust{justify-content:center;gap:10px 18px}}
 </style>
 <script type="application/ld+json">
 {
@@ -93,25 +98,7 @@
 }
 </script>
 <style>
-/* ── FDE page local styles（禅テーマの補完） ── */
-.problem-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.problem-card h3{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.6;margin-bottom:12px}
-.problem-card p{font-size:.86rem;color:var(--text-2);line-height:2}
-.problem-card .pc-num{font-family:var(--serif);font-size:.77rem;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:14px}
-.fde-def{max-width:860px;margin:0 auto 48px;padding:40px 44px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-card);text-align:center}
-.fde-def .fd-term{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.55rem);font-weight:700;letter-spacing:.03em;color:var(--accent);margin-bottom:6px}
-.fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
-.fde-def p{font-size:.9rem;color:var(--text-2);line-height:2.1}
-.fde-def p strong{color:var(--text);font-weight:700}
-.engage{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:980px;margin:0 auto}
-.engage .card h3{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px;line-height:1.6}
-.engage .card p{font-size:.85rem;color:var(--text-2);line-height:2}
-.engage .e-ic{width:44px;height:44px;border-radius:3px;background:rgba(166,58,36,.07);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.engage .e-ic svg{width:22px;height:22px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 @media(max-width:900px){
-  .problem-cards{grid-template-columns:1fr}
-  .engage{grid-template-columns:1fr;max-width:520px}
-  .fde-def{padding:30px 22px}
   .hero-cta{justify-content:center}
 }
 </style>
@@ -130,12 +117,11 @@
     <a href="/en/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
     <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
     <nav class="nav" id="nav">
-      <a href="#fde">What is FDE</a>
-      <a href="#service">FDE Support</a>
-      <a href="#cases">Products</a>
-      <a href="/recruit" target="_blank" rel="noopener">Careers</a>
-      <a href="#company">Company</a>
-      <a href="/en/entry" class="nav-cta">Contact</a>
+      <a href="/en/fde/">AI Adoption Support</a>
+      <a href="#products">Products</a>
+      <a href="/blog/">Blog</a>
+      <a href="/company" target="_blank" rel="noopener">Company</a>
+      <a href="/en/entry" class="nav-cta">Free Consultation</a>
       <span class="lang-switch"><a href="/">JA</a><span class="sep">/</span><span class="on">EN</span></span>
     </nav>
   </div>
@@ -152,9 +138,10 @@
         <a href="/en/fde/#shindan" class="btn btn-primary">Try the 1-minute AI check <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
       <p class="cta-micro">Free consultation / online, anywhere in Japan / "just mapping things out" is welcome</p>
-      <div class="hero-stats">
-        <div class="hstat"><span class="num">4<small>domains</small></span><span class="cap">Own AI products built &amp; operated</span></div>
-        <div class="hstat"><span class="num">130<small>languages</small></span><span class="cap">AI customer service we built</span></div>
+      <div class="hero-trust">
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>We use everything we sell, every day</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>Embedded with a Fukui restaurant group</span>
+        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>Online nationwide</span>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -164,12 +151,106 @@
 </section>
 
 
-<!-- ── Structuring (diagram) ── -->
-<section class="section" id="structuring" style="padding-top:0">
+<!-- ── The Problem ── -->
+<section class="section section-alt" id="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">The Problem</div>
+      <h2 class="section-title">You signed up for AI. But nobody uses it.</h2>
+      <p class="section-sub">It's not a capability problem. Your company's knowledge isn't in one place, in a form AI can read.</p>
+    </div>
+    <div class="trio">
+      <div class="card reveal">
+        <h3 style="font-family:var(--serif);font-size:1.02rem;font-weight:700;line-height:1.7;margin-bottom:10px">Signing up doesn't create users</h3>
+        <p style="font-size:.88rem;color:var(--text-2);line-height:2">Handing out tools changes nothing until someone translates them into daily work.</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="font-family:var(--serif);font-size:1.02rem;font-weight:700;line-height:1.7;margin-bottom:10px">The answers live in veterans' heads</h3>
+        <p style="font-size:.88rem;color:var(--text-2);line-height:2">AI gives generic answers because it can't read your company's knowledge.</p>
+      </div>
+      <div class="card reveal">
+        <h3 style="font-family:var(--serif);font-size:1.02rem;font-weight:700;line-height:1.7;margin-bottom:10px">When people leave, AI resets to zero</h3>
+        <p style="font-size:.88rem;color:var(--text-2);line-height:2">If memory lives inside personal AI accounts, nothing accumulates for the company.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Solution = NGraph Brain (FDE) ── -->
+<section class="section" id="fde">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">NGraph Brain — FDE</div>
+      <h2 class="section-title">We build your company's brain.</h2>
+      <p class="section-sub">We turn your knowledge into a source of truth AI can read — so any AI starts from the same facts. Our engineers work inside your operations until AI is actually used.</p>
+    </div>
+    <div class="trio">
+      <div class="card reveal">
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5z"/><path d="M16 4v3h3M8.5 11h7M8.5 15h7"/></svg></div><div class="t-ttl"><div class="tag">Source</div><div class="tag-full">Source of Truth</div></div></div>
+        <p>We gather your company's knowledge and judgment into one AI-readable source of truth — not locked inside any single AI.</p>
+      </div>
+      <div class="card reveal">
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-4.5"/></svg></div><div class="t-ttl"><div class="tag">Gate</div><div class="tag-full">Checked In &amp; Out</div></div></div>
+        <p>A double check — before anything enters the source of truth, and before AI answers from it — protects its quality.</p>
+      </div>
+      <div class="card reveal">
+        <div class="t-head"><div class="t-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M6.6 6.6L5.2 5.2M18.8 18.8l-1.4-1.4M6.6 17.4l-1.4 1.4M18.8 5.2l-1.4 1.4"/></svg></div><div class="t-ttl"><div class="tag">Access</div><div class="tag-full">Read By Any AI</div></div></div>
+        <p>ChatGPT, Claude — any AI reads the same source of truth. When a better AI comes along, you just swap it in.</p>
+      </div>
+    </div>
+    <div class="mid-cta reveal">
+      <a href="/en/fde/" class="btn btn-primary">See FDE support <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Products ── -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Products</div>
+      <h2 class="section-title">We use everything we sell, every day.</h2>
+      <p class="section-sub">Products born from our structuring technology — run in production by the same team that will embed with you.</p>
+    </div>
+    <div class="products">
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">AI customer service for restaurants · in-house</span></div>
+        <p class="p-desc">An AI at every table, answering in 130 languages. <strong>Live in real restaurants in Fukui and Kanazawa</strong>.</p>
+        <a href="https://omiseai.com/" class="p-link" target="_blank" rel="noopener">omiseai.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">AI grant-application SaaS · in-house</span></div>
+        <p class="p-desc">A SaaS that auto-generates Japanese subsidy applications with AI.</p>
+        <a href="https://autowrite.jp/" class="p-link" target="_blank" rel="noopener">autowrite.jp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Teles</span><span class="p-label">AI advisor of historical sages · in-house</span></div>
+        <p class="p-desc">An AI advisor built on the structured thinking of history's great minds, with a "Fusion" mode.</p>
+        <a href="https://nicomachos.com/" class="p-link" target="_blank" rel="noopener">nicomachos.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Arche</span><span class="p-label">AI business assessment · in-house</span></div>
+        <p class="p-desc">Scores and diagnoses a business against universal evaluation axes.</p>
+        <a href="https://nicomachos.com/cases" class="p-link" target="_blank" rel="noopener">nicomachos.com/cases <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Food Graph Japan</span><span class="p-label">Food-culture knowledge graph · in-house (coming soon)</span></div>
+        <p class="p-desc">A knowledge graph of Japanese food that AI can reference. Building from Fukui's regional cuisine.</p>
+      </div>
+      <div class="card product-card reveal">
+        <div class="p-head"><span class="p-name">Client work</span><span class="p-label">Multilingual sites · AEO</span></div>
+        <p class="p-desc">Multilingual restaurant websites, structured-data embedding, and AEO.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Core Technology ── -->
+<section class="section" id="tech">
   <div class="container">
     <div class="section-head reveal" style="margin-bottom:44px">
-      <div class="section-label">What is Structuring</div>
-      <h2 class="section-title">Structuring</h2>
+      <div class="section-label">Core Technology</div>
+      <h2 class="section-title">What is structuring — giving meaning a machine-readable shape</h2>
       <p class="section-sub">Organizing the connections of meaning into a form machines can read. The world's information can be written in universal structural patterns.</p>
     </div>
     <div class="pat-grid reveal">
@@ -211,247 +292,24 @@
   </div>
 </section>
 
-<!-- ── The Problem ── -->
-<section class="section section-alt" id="problem">
+<!-- ── Solutions ── -->
+<section class="section section-alt" id="solutions">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">The Problem</div>
-      <h2 class="section-title"><span class="nb">You signed up for AI.</span> <span class="nb">Nothing changed on the ground.</span></h2>
-      <p class="section-sub">The gap is not the tool — it's between the tool and the workplace.</p>
+      <div class="section-label">Solutions</div>
+      <h2 class="section-title">Web &amp; data services</h2>
+      <p class="section-sub">Making business websites something AI can find — and use — correctly.</p>
     </div>
-    <div class="problem-cards">
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 01</div>
-        <h3>The tools are there. Nobody knows how to use them</h3>
-        <p>Signed up, but every team still works the old way. Use cases differ by team.</p>
-      </div>
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 02</div>
-        <h3>Training happened. It never reached the actual work</h3>
-        <p>Generic training never closes the gap: "how does this apply to <em>our</em> work?"</p>
-      </div>
-      <div class="card problem-card reveal">
-        <div class="pc-num">CASE 03</div>
-        <h3>No one inside can own it</h3>
-        <p>Every department is different; IT alone can't cover every floor.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── What is FDE ── -->
-<section class="section" id="fde">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Global Trend</div>
-      <h2 class="section-title"><span class="nb">AI adoption worldwide</span> <span class="nb">is going "on-site".</span></h2>
-      <p class="section-sub">The model US tech giants are now investing in: engineers stationed inside client companies.</p>
-    </div>
-
-    <div class="fde-def reveal">
-      <div class="fd-term">Forward Deployed Engineer (FDE)</div>
-      <div class="fd-read">An engineer deployed to the front line — inside the client's own workplace</div>
-      <p>Engineers embed within a client company, <strong>building AI into each team's actual work, on the spot</strong>.</p>
-    </div>
-
-    <div class="era-flow reveal">
-      <div class="era-card">
-        <div class="era-yr">OpenAI</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><rect x="5" y="7" width="14" height="11" rx="2"/><path d="M12 7V4M9 4h6"/><circle cx="9.5" cy="12" r="1.1"/><circle cx="14.5" cy="12" r="1.1"/><path d="M9 18v2M15 18v2"/></svg></div>
-          <h3>"Frontier"</h3>
-        </div>
-        <p>Embeds engineers in client companies to integrate autonomous "AI coworkers".</p>
-      </div>
-      <div class="era-card">
-        <div class="era-yr">Microsoft / AWS</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><path d="M17.5 18a4.5 4.5 0 000-9 6 6 0 00-11.5 1.7A4 4 0 006.5 18z"/></svg></div>
-          <h3>FDE divisions, thousands strong</h3>
-        </div>
-        <p>Reported to have stood up FDE divisions of thousands of engineers.</p>
-      </div>
-      <div class="era-card is-now">
-        <div class="era-yr">NGraph</div>
-        <div class="era-head">
-          <div class="era-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-6.4 7-6.4s7 2.8 7 6.4"/></svg></div>
-          <h3>The same model, for you <span class="now-badge">Available</span></h3>
-        </div>
-        <p>Embedded, on-site AI adoption for SMEs in Japan — scaled to your size and budget.</p>
-      </div>
-    </div>
-
-    <div class="vs-wrap reveal">
-      <div class="vs-col">
-        <div class="vs-title">Conventional support (training / consulting)</div>
-        <div class="vs-step">Sign up for the tools</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">Receive training and documents</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">"The rest is up to your team"</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step vs-bad">Nobody knows how to apply it — everything stalls</div>
-      </div>
-      <div class="vs-col vs-fde">
-        <div class="vs-title">FDE-style (NGraph)</div>
-        <div class="vs-step">An engineer enters your workplace</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">Builds with your real data, in front of you</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step">Integrates with your existing systems and flow</div>
-        <div class="vs-arrow">▼</div>
-        <div class="vs-step vs-good">Sticks — your team runs it on their own</div>
-      </div>
-    </div>
-    <p class="vs-note reveal">The difference is the last step: <strong>not "teaching how to use it", but building the state where it is used — on site</strong>.</p>
-  </div>
-</section>
-
-<!-- ── Service ── -->
-<section class="section section-alt" id="service">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">FDE Division</div>
-      <h2 class="section-title"><span class="nb">FDE-style</span> <span class="nb">embedded AI adoption</span></h2>
-      <p class="section-sub">Currently accepting engagements — fully online across Japan, or on site. We stay until your team can run it themselves.</p>
-    </div>
-
-    <div class="fde-map-wrap reveal">
-      <div class="agentic-map">
-        <div class="am-hub">
-          <span class="am-cap">NGraph</span>
-          <div class="am-node am-node-person">
-            <span class="an-t">Engineer</span>
-            <span class="an-en">Forward Deployed Engineer</span>
-          </div>
-        </div>
-        <div class="am-wires" aria-hidden="true">
-          <svg preserveAspectRatio="none"><path class="am-wire-path" d=""/></svg>
-        </div>
-        <div class="am-spokes">
-          <div class="am-biz"><div class="am-store"><span class="am-cap">Accounting</span><div class="am-node am-node-store"><span class="an-t">Accounting team</span><span class="an-en">Invoices · closing</span></div></div></div>
-          <div class="am-biz"><div class="am-store"><span class="am-cap">Sales</span><div class="am-node am-node-store"><span class="an-t">Sales team</span><span class="an-en">Proposals · quotes</span></div></div></div>
-          <div class="am-biz"><div class="am-store"><span class="am-cap">Production</span><div class="am-node am-node-store"><span class="an-t">Production floor</span><span class="an-en">Manuals · reports</span></div></div></div>
-        </div>
-      </div>
-      <p class="agent-note" style="margin-top:32px">Not a company-wide memo: <strong>we enter each team and build for its specific work</strong>.</p>
-    </div>
-
-    <div class="solutions" style="margin-bottom:48px">
+    <div class="solutions">
       <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>On-site discovery &amp; task breakdown</h3></div>
-        <p>We break down each team's work and split it: what AI takes over, what people keep.</p>
-        <div class="s-tags"><span>Task breakdown</span><span>On-site interviews</span><span>AI fit assessment</span></div>
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 5h18M3 12h18M3 19h12" stroke-linecap="round"/><circle cx="19" cy="19" r="2"/></svg></div><h3>Multilingual restaurant websites</h3></div>
+        <p>Built on our NFG food-data dictionary, so nothing gets lost in translation.</p>
+        <div class="s-tags"><span>Multilingual sites</span><span>Menu translation</span><span>NFG dictionary</span></div>
       </div>
       <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/><path d="M3 5h18v14H3z"/></svg></div><h3>Prompts &amp; AI built in front of you</h3></div>
-        <p>Built and tuned with your real data, right at the desk. Nothing taken away for later.</p>
-        <div class="s-tags"><span>Prompt design</span><span>AI agent building</span><span>Live, on-site</span></div>
-      </div>
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg></div><h3>Integration with your existing systems</h3></div>
-        <p>We connect AI to the systems, Excel files, and chat tools you already use.</p>
-        <div class="s-tags"><span>System integration</span><span>Workflow embedding</span><span>Keep your tools</span></div>
-      </div>
-      <div class="card solution-card reveal">
-        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div><h3>We stay until it sticks</h3></div>
-        <p>We build until your team can fix and run it themselves, then hand it over.</p>
-        <div class="s-tags"><span>Internal rollout</span><span>Adoption</span><span>Handover</span></div>
-      </div>
-    </div>
-
-    <div class="flow-wrap reveal">
-      <div class="flow-cap">How it works</div>
-      <div class="flow">
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.6 8.6 0 01-3.7-.8L3 20l1-4.9a8.4 8.4 0 015-12.3 8.4 8.4 0 0112 8.7z"/></svg></div>
-          <div class="f-tx"><div class="f-t">Free consultation</div><div class="f-s">Tell us where<br>you are stuck</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-          <div class="f-tx"><div class="f-t">On-site assessment</div><div class="f-s">Break down tasks,<br>find where AI fits</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><path d="M8 13l-2 2 2 2M16 13l2 2-2 2M13 10l-2 8"/></svg></div>
-          <div class="f-tx"><div class="f-t">Build together</div><div class="f-s">Online or on site,<br>built in front of you</div></div>
-        </div>
-        <div class="flow-step">
-          <div class="f-ic"><svg viewBox="0 0 24 24"><circle cx="9.5" cy="7" r="3.2"/><path d="M3.5 20c0-3.3 2.7-6 6-6 .9 0 1.8.2 2.6.6"/><path d="M14 18l2 2 4.5-4.5"/></svg></div>
-          <div class="f-tx"><div class="f-t">Adoption &amp; handover</div><div class="f-s">Done when your team<br>runs it on their own</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── Engagement ── -->
-<section class="section" id="engage">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Engagement</div>
-      <h2 class="section-title">Engagement &amp; pricing</h2>
-      <p class="section-sub">We design an engagement that fits the size of the problem and your budget.</p>
-    </div>
-    <div class="engage">
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 21v-5h6v5"/></svg></div>
-        <h3>Online-first × on-site</h3>
-        <p>Fully online works: we build live over screen share with your real data. On-site visits also available.</p>
-      </div>
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
-        <h3>Duration scaled to the problem</h3>
-        <p>From a few-week sprint to months of embedded support.</p>
-      </div>
-      <div class="card reveal">
-        <div class="e-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 01-9 8.4 8.6 8.6 0 01-3.7-.8L3 20l1-4.9a8.4 8.4 0 015-12.3 8.4 8.4 0 0112 8.7z"/></svg></div>
-        <h3>Pricing on request</h3>
-        <p>We quote after an initial consultation and on-site assessment — the consultation is free.</p>
-      </div>
-    </div>
-    <div class="mid-cta reveal">
-      <p>"Just want a ballpark figure?" — that alone is a fine reason to reach out.</p>
-      <a href="/en/entry" class="btn btn-primary">Talk to us — it's free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- ── Products ── -->
-<section class="section section-alt" id="cases">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Products</div>
-      <h2 class="section-title">What we build</h2>
-      <p class="section-sub">Products born from our structuring technology, running in real restaurants and real workflows.</p>
-    </div>
-    <div class="products">
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">OMISEAI</span><span class="p-label">AI customer service for restaurants · in-house</span></div>
-        <p class="p-desc">An AI at every table, answering in 130 languages. <strong>Live in real restaurants in Fukui and Kanazawa</strong>.</p>
-        <a href="https://omiseai.com/" class="p-link" target="_blank" rel="noopener">omiseai.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">AutoWrite</span><span class="p-label">AI grant-application SaaS · in-house</span></div>
-        <p class="p-desc">A SaaS that auto-generates Japanese subsidy applications with AI.</p>
-        <a href="https://autowrite.jp/" class="p-link" target="_blank" rel="noopener">autowrite.jp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Teles</span><span class="p-label">AI advisor of historical sages · in-house</span></div>
-        <p class="p-desc">An AI advisor built on the structured thinking of history's great minds, with a "Fusion" mode.</p>
-        <a href="https://nicomachos.com/" class="p-link" target="_blank" rel="noopener">nicomachos.com <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Arche</span><span class="p-label">AI business assessment · in-house</span></div>
-        <p class="p-desc">Scores and diagnoses a business against universal evaluation axes.</p>
-        <a href="https://nicomachos.com/cases" class="p-link" target="_blank" rel="noopener">nicomachos.com/cases <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Food Graph Japan</span><span class="p-label">Food-culture knowledge graph · in-house (coming soon)</span></div>
-        <p class="p-desc">A knowledge graph of Japanese food that AI can reference. Building from Fukui's regional cuisine.</p>
-      </div>
-      <div class="card product-card reveal">
-        <div class="p-head"><span class="p-name">Client work</span><span class="p-label">Multilingual sites · AEO</span></div>
-        <p class="p-desc">Multilingual restaurant websites, structured-data embedding, and AEO.</p>
+        <div class="s-head"><div class="s-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke-linejoin="round"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5" stroke-linejoin="round"/></svg></div><h3>Structured data + AEO for your existing site</h3></div>
+        <p>We embed structured data into your current site so AI can find and cite it correctly.</p>
+        <div class="s-tags"><span>Structured data</span><span>AEO</span><span>JSON-LD</span></div>
       </div>
     </div>
   </div>
@@ -476,25 +334,6 @@
   </div>
 </section>
 
-<!-- ── Company ── -->
-<section class="section section-alt" id="company">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">Company</div>
-      <h2 class="section-title">Company</h2>
-    </div>
-    <div class="about-table reveal">
-      <table>
-        <tr><th>Name</th><td>NGraph Inc. (株式会社NGraph)</td></tr>
-        <tr><th>CEO</th><td>Shingo Takahashi</td></tr>
-        <tr><th>Founded</th><td>December 2025</td></tr>
-        <tr><th>Capital</th><td>JPY 3,000,000</td></tr>
-        <tr><th>Business</th><td>Planning, development, and operation of AI products (OMISEAI / AutoWrite and others)<br>FDE-style embedded AI adoption support (on-site engineering, prompt design, system integration, adoption)<br>Multilingual websites and structured data / AEO for restaurants<br>PoC and joint development with companies and government</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
 <!-- ── Contact CTA ── -->
 <section class="section">
   <div class="container">
@@ -515,11 +354,13 @@
       <p>We structure the meaning of the real world into a form AI can read — building our own AI products and embedding engineers in client workplaces through our FDE division.</p>
     </div>
     <div class="footer-links">
-      <a href="/en/#fde">What is FDE</a>
-      <a href="/en/#service">FDE Support</a>
-      <a href="/en/#cases">Products</a>
+      <a href="/en/#tech">Technology</a>
+      <a href="/en/#products">Products</a>
+      <a href="/en/#solutions">Solutions</a>
+      <a href="/en/fde/">AI Adoption Support</a>
       <a href="/recruit" target="_blank" rel="noopener">Careers</a>
-      <a href="/en/#company">Company</a>
+      <a href="/company" target="_blank" rel="noopener">Company</a>
+      <a href="/blog/">Blog</a>
       <a href="/en/entry">Contact</a>
       <a href="/privacy">Privacy Policy</a>
     </div>
@@ -797,28 +638,6 @@
   // reveal on scroll
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-
-  // ── FDE map: engineer → each team, measured curves ──
-  (function(){
-    var map=document.querySelector('.agentic-map');
-    if(!map)return;
-    var path=map.querySelector('.am-wire-path'),svg=map.querySelector('.am-wires svg');
-    var hub=map.querySelector('.am-node-person'),nodes=map.querySelectorAll('.am-node-store');
-    if(!path||!svg||!hub||!nodes.length)return;
-    function draw(){
-      var mr=map.getBoundingClientRect();if(!mr.width)return;
-      svg.setAttribute('viewBox','0 0 '+mr.width+' '+mr.height);
-      var hr=hub.getBoundingClientRect(),sx=hr.right-mr.left,sy=hr.top-mr.top+hr.height/2,d='';
-      nodes.forEach(function(n){var nr=n.getBoundingClientRect(),ex=nr.left-mr.left,ey=nr.top-mr.top+nr.height/2,mx=sx+(ex-sx)*0.5;
-        d+='M'+sx+' '+sy+' C'+mx+' '+sy+' '+mx+' '+ey+' '+ex+' '+ey+' ';});
-      path.setAttribute('d',d.trim());
-    }
-    draw();
-    if(window.ResizeObserver)new ResizeObserver(draw).observe(map);
-    window.addEventListener('resize',draw);
-    window.addEventListener('load',draw);
-    if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
-  })();
 </script>
 <script>
 // こだま: 構造化パターンが時々こちらに気づく

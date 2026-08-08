@@ -780,11 +780,12 @@
       var t=Date.now()/1000;
       var hi=Math.floor(t/4.2)%GL.length,hp=(t%4.2)/4.2;
       var act=Math.max(0,Math.min(1,Math.sin(Math.PI*hp)*1.5));
-      // 2列×4行の整列グリッド
-      var COLS=2,ROWS=4,S=Math.min(W*0.20,H*0.13,64);
+      // 3列×3行の整列グリッド（8個なので最終行は2個・中央寄せ）
+      var COLS=3,ROWS=3,S=Math.min(W*0.15,H*0.16,56);
       for(var i=0;i<GL.length;i++){
-        var col=i%COLS,row=Math.floor(i/COLS);
-        var x=W*(0.5+(col-0.5)*0.46);
+        var row=Math.floor(i/COLS),idx=i-row*COLS,col=idx;
+        if(row===ROWS-1&&GL.length-row*COLS<COLS){col=idx===0?0:2;}
+        var x=W*(0.5+(col-1)*0.23);
         var y=H*(0.09+row*0.76/(ROWS-1))+H*0.02;
         var on=(i===hi)?(RM?0:act):0;
         var cr=Math.round(60+on*(166-60)),cg=Math.round(52+on*(58-52)),cb=Math.round(42+on*(36-42));
