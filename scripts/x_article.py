@@ -126,6 +126,72 @@ def block(el, block_type, entities):
     }
 
 
+# Xの記事は1段落が長いと読まれない（2026-08-08 髙橋さん「本文が続きまくって読みにくい」）。
+# 句点で区切って、目安この文字数を超えたら段落を割る。
+SPLIT_TARGET = 120
+
+
+def split_long(b, target=SPLIT_TARGET):
+    """長い段落を句点の直後で複数ブロックに割る。太字・リンクのオフセットは割った位置ぶん詰め直す。"""
+    if b["type"] != "unstyled":
+        return [b]
+    text = b["text"]
+    if len(text) <= target * 1.5:
+        return [b]
+    ranges = b["inline_style_ranges"] + b["entity_ranges"]
+    # 太字・リンクの途中では割らない（DraftJSのオフセットが壊れるため）
+    cuts = [m.end() for m in re.finditer("。", text)]
+    cuts = [c for c in cuts if c < len(text)
+            and all(not (r["offset"] < c < r["offset"] + r["length"]) for r in ranges)]
+    if not cuts:
+        return [b]
+
+    bounds, start = [], 0
+    for c in cuts:
+        if c - start >= target:
+            bounds.append((start, c))
+            start = c
+    if start < len(text):
+        if bounds and len(text) - start < 20:
+            bounds[-1] = (bounds[-1][0], len(text))   # 数文字の尻尾だけ前の段落へ吸収
+        else:
+            bounds.append((start, len(text)))
+
+    # 一文が長すぎて句点で割れなかった段落は、読点で真ん中あたりを割る
+    hard = target * 1.5
+    commas = [m.end() for m in re.finditer("、", text)
+              if all(not (r["offset"] < m.end() < r["offset"] + r["length"]) for r in ranges)]
+    grown = []
+    for s, e in bounds:
+        while e - s > hard:
+            mid = (s + e) // 2
+            c = min((x for x in commas if s + 40 < x < e - 40),
+                    key=lambda x: abs(x - mid), default=None)
+            if c is None:
+                break
+            grown.append((s, c))
+            s = c
+        grown.append((s, e))
+    bounds = grown
+    if len(bounds) < 2:
+        return [b]
+
+    out = []
+    for i, (s, e) in enumerate(bounds):
+        seg = text[s:e]
+        shift = lambda rs: [dict(r, offset=r["offset"] - s) for r in rs
+                            if s <= r["offset"] < e]
+        out.append({
+            "key": f"b{abs(hash(seg)) % 10**8:08d}{i}",
+            "type": "unstyled",
+            "text": seg,
+            "inline_style_ranges": shift(b["inline_style_ranges"]),
+            "entity_ranges": shift(b["entity_ranges"]),
+            "data": {},
+        })
+    return out
+
+
 def text_block(body, block_type="unstyled", bold_prefix=None, link=None, entities=None):
     """プレーンな文字列から1ブロック作る（先頭太字・全体リンクだけ対応）。"""
     styles, ranges = [], []
@@ -224,7 +290,7 @@ def build(slug, teaser, heads=None):
     lead = art.find("p")
     if lead is None:
         sys.exit("リード段落が見つかりません")
-    blocks.append(block(lead, "unstyled", entities))
+    blocks.extend(split_long(block(lead, "unstyled", entities)))
 
     # H2×3 とその中身
     kept = 0
@@ -238,7 +304,7 @@ def build(slug, teaser, heads=None):
             if sib.name == "h2":
                 break
             if sib.name == "p":
-                blocks.append(block(sib, "unstyled", entities))
+                blocks.extend(split_long(block(sib, "unstyled", entities)))
             elif sib.name == "ul":
                 for li in sib.find_all("li", recursive=False):
                     blocks.append(block(li, "unordered-list-item", entities))
@@ -261,7 +327,7 @@ def build(slug, teaser, heads=None):
         body = re.sub(r"：\s+", "：", body)
         if not body.startswith(label):
             body = label + body
-        blocks.append(text_block(body, bold_prefix=label, entities=entities))
+        blocks.extend(split_long(text_block(body, bold_prefix=label, entities=entities)))
 
     # 参考（一次情報）— メインの1本だけ。「発表元「タイトル」（公開日）」の行ごと載せる
     ref = first_reference(art)
