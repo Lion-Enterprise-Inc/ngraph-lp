@@ -3,6 +3,15 @@
 使い方:
   python scripts/eyecatch_gen.py <slug> <title> <sub> <pattern> [--label=NGRAPH BLOG] [--out=絶対パス.jpg]
   pattern: tree_down/tree_up/radial/seq/pyramid/venn/ring/cycle/balance/shield/layers/steps/fork/gauge
+           /split/deadline/blocked
+  型の選び方（BLOG-OPS §10 が正本）:
+    分解・要因=tree_down / 集約=tree_up / ハブ・接続=radial / 手順・フロー=seq
+    階層・優先順位=pyramid / 重なり・共通点=venn / 構成要素の一覧=ring / 循環=cycle
+    対比・vs・乗り換え判断=balance / セキュリティ・権限・リスク=shield
+    データ基盤・記憶・蓄積=layers / 補助金申請・段階導入=steps
+    対象/対象外の線引き=fork / 価格・単価・倍率・実測検証=gauge
+    集計がズレる・数字が2つに割れる=split / 締切・公募・期限=deadline
+    止まる・使われない・定着しない=blocked
   title内で改行禁止にしたい語は {nb}...{/nb} で囲む（例: "AIが現場で止まる、{nb}3つの理由{/nb}"）
 出力: 既定 assets/blog/<slug>.jpg（--outで任意パスに変更可）
 生成後は必ず画像を目視確認すること（単語中改行・見切れ）。
@@ -30,6 +39,12 @@ PATS = {
  "steps": '<path d="M6 38h10v-8h10v-8h10v-8h6"/><circle cx="42" cy="10" r="2.5"/>',
  "fork": '<path d="M4 24h12M24 21l12-8M24 27l12 8"/><circle cx="20" cy="24" r="4.5"/><circle cx="36" cy="13" r="3.2"/><circle cx="36" cy="35" r="3.2" stroke-dasharray="1.1 1.3"/>',
  "gauge": '<path d="M8 34a16 16 0 0 1 32 0M11 27l-3 2M24 18v-4M37 27l3 2M24 34L34 24"/><circle cx="24" cy="34" r="2.5"/>',
+ # 同じ対象なのに数字が2つ出る（集計のズレ）。fork（対象/対象外の線引き）と違い、両方とも実在する
+ "split": '<path d="M9 9v30M9 19h29M9 31h17"/><circle cx="38" cy="19" r="3.4"/><circle cx="26" cy="31" r="3.4"/>',
+ # 締切・公募・期限。丸を付けた1日が主役
+ "deadline": '<path d="M8 12h32v28H8zM8 20h32M16 7v8M32 7v8"/><circle cx="31" cy="30" r="5"/>',
+ # 流れが途中で止まる（使われない・定着しない・詰まる）。破線＝起きるはずだったのに起きていない側
+ "blocked": '<path d="M5 24h13M14.5 20.5l3.5 3.5-3.5 3.5M24 10v28"/><path d="M30 24h12M38.5 20.5l3.5 3.5-3.5 3.5" stroke-dasharray="1.1 1.3"/>',
 }
 
 TPL = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
