@@ -57,10 +57,10 @@ body{width:1200px;height:630px;overflow:hidden;position:relative;
  font-family:'Zen Kaku Gothic New',sans-serif;color:#2b2620}
 .frame{position:absolute;inset:26px;border:1px solid rgba(166,58,36,.28)}
 .frame::after{content:"";position:absolute;inset:6px;border:1px solid rgba(60,52,42,.10)}
-.txt{position:absolute;left:112px;top:50%%;transform:translateY(-56%%);width:730px;border-left:5px solid #a63a24;padding-left:30px}
+.txt{position:absolute;left:112px;top:50%%;transform:translateY(-56%%);width:566px;border-left:5px solid #a63a24;padding-left:30px}
 .label{font-size:19px;letter-spacing:.42em;color:#a63a24;font-weight:700;margin-bottom:24px}
-.title{font-family:'Zen Old Mincho',serif;font-weight:900;font-size:68px;line-height:1.34;letter-spacing:.02em;color:#2b2620;margin-bottom:26px}
-.sub{width:640px;font-size:24px;line-height:1.75;color:#5c544a}
+.title{font-family:'Zen Old Mincho',serif;font-weight:900;font-size:%(fs)dpx;line-height:1.34;letter-spacing:.02em;color:#2b2620;margin-bottom:26px}
+.sub{width:566px;font-size:24px;line-height:1.75;color:#5c544a}
 .title .nb{white-space:nowrap}
 .brand{position:absolute;left:112px;bottom:78px;display:flex;align-items:baseline;gap:18px}
 .brand .n{font-family:'Zen Old Mincho',serif;font-size:30px;font-weight:700;letter-spacing:.12em}
@@ -88,6 +88,54 @@ def esc(s):
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
+# テキスト枠は右端708px、図案は左端736px。枠が重ならないよう幅を566pxに絞ったので、
+# 長いタイトルは級数を落とさないと行数が増えて縦にはみ出す。文字数から級数を決める。
+# （2026-08-08: 旧設定は枠が136px重なっており、47枚中12枚で本文が図案を突き抜けていた）
+# .txt は width:566px だが box-sizing:border-box なので、
+# 実際に文字が流れる幅は 566 − padding-left 30 − border-left 5 = 531px。
+# ここを566のまま計算していて、1文字あふれて3行になる回が出た（2026-08-08）。
+BOX_W = 531
+FS_MAX, FS_MIN = 68, 40
+
+
+MAX_LINES = 2
+# 行頭に置けない文字（禁則）。ここに当たると1文字前の行へ送られるので、
+# 掛け算で級数を決めると必ず読み違える。実際に折り返しを回して数える。
+KINSOKU_HEAD = "」）】』〉》、。，．・？！ゃゅょっァィゥェォッャュョーぁぃぅぇぉ%％"
+KINSOKU_TAIL = "「（【『〈《"
+
+
+def _advance(ch, fs):
+    return fs * 0.57 if ord(ch) < 0x2E80 else fs * 1.04  # 1.02em + letter-spacing .02em
+
+
+def _count_lines(body, fs):
+    """禁則を考慮した貪欲な折り返しで行数を数える。"""
+    lines, cur = 1, 0.0
+    for i, ch in enumerate(body):
+        w = _advance(ch, fs)
+        if cur + w > BOX_W:
+            # 次の文字が行頭禁則、または今の文字が行末禁則なら1文字ぶん余計に送る
+            lines += 1
+            cur = w
+            if ch in KINSOKU_HEAD or (i and body[i - 1] in KINSOKU_TAIL):
+                cur += _advance(ch, fs)
+        else:
+            cur += w
+    return lines
+
+
+def fit_font_size(title):
+    """MAX_LINES 行に収まる最大の級数を返す（1文字だけ残る行を作らない）。"""
+    body = title.replace("{nb}", "").replace("{/nb}", "")
+    if not body:
+        return FS_MAX
+    for fs in range(FS_MAX, FS_MIN - 1, -1):
+        if _count_lines(body, fs) <= MAX_LINES:
+            return fs
+    return FS_MIN
+
+
 def main():
     if len(sys.argv) < 5:
         print(__doc__)
@@ -103,7 +151,7 @@ def main():
         print("unknown pattern:", pat, "->", "/".join(PATS))
         sys.exit(1)
     title_html = esc(title).replace("{nb}", '<span class="nb">').replace("{/nb}", "</span>")
-    html = TPL % {"title": title_html, "sub": esc(sub), "pat": PATS[pat]}
+    html = TPL % {"title": title_html, "sub": esc(sub), "pat": PATS[pat], "fs": fit_font_size(title)}
     html = html.replace(">NGRAPH BLOG<", ">" + esc(label) + "<")
     tmp = tempfile.mkdtemp(prefix="eyecatch_")
     hp = os.path.join(tmp, slug + ".html")

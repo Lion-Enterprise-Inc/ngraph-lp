@@ -29,6 +29,7 @@ CHECKS = [
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
+    ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
 ]
 
 
