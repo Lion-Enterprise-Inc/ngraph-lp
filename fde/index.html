@@ -767,10 +767,10 @@
     ];
     var P2D=GL.map(function(g){return g.p?new Path2D(g.p):null;});
     var DPR=Math.min(window.devicePixelRatio||1,3); // 高DPI対応。無いとiPhoneでぼやける
-    function resize(){c.width=c.offsetWidth*DPR;c.height=c.offsetHeight*DPR;}
+    function resize(){c.width=Math.round(c.offsetWidth*DPR);c.height=Math.round(c.offsetHeight*DPR);}
     window.addEventListener('resize',resize);resize();
     function draw(){
-      if(c.width!==c.offsetWidth*DPR||c.height!==c.offsetHeight*DPR)resize();
+      if(c.width!==Math.round(c.offsetWidth*DPR)||c.height!==Math.round(c.offsetHeight*DPR))resize();
       var W=c.offsetWidth,H=c.offsetHeight;
       if(!W||!H)return;
       ctx.setTransform(DPR,0,0,DPR,0,0);
