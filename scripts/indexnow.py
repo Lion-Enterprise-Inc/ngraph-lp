@@ -39,17 +39,21 @@ def _get(url, timeout=20):
 
 
 def check_key():
-    """keyファイルが本番で配信され、中身がKEYと一致するかを送信前に確かめる。
+    """keyファイルの状態を送信前に見る。戻り値は (中止すべきか, メッセージ)。
 
-    ここが崩れると全送信が403で落ちる。落ちてから気付くのではなく、送る前に止める。
+    **「取得できない」と「中身が違う」を区別する**:
+      - 中身が違う → 403が確定するので中止する（送るだけ無駄で、失敗の原因も紛れる）
+      - 取得できない → こちら側の一時的な不調でも起きる。キー自体はBingが直接取りに行く
+        ので、送信は続行して警告だけ出す（ここで止めると、ngraph.jpの瞬断で
+        公開フローが止まる。それは検査として過剰）
     """
     try:
         body = _get(KEY_URL).read().decode("utf-8", "replace").strip()
     except Exception as e:
-        return "keyファイルを取得できません（%s）: %s" % (KEY_URL, e)
+        return False, "警告: keyファイルを確認できませんでした（%s）: %s — 送信は続行する" % (KEY_URL, e)
     if body != KEY:
-        return "keyファイルの中身が一致しません: 期待=%s 実際=%r" % (KEY, body)
-    return None
+        return True, "keyファイルの中身が一致しません: 期待=%s 実際=%r" % (KEY, body)
+    return False, None
 
 
 def sitemap_urls():
@@ -121,10 +125,11 @@ def ping(urls):
 
 
 def main():
-    err = check_key()
-    if err:
-        print("IndexNow: 送信中止 —", err)
-        log("ABORT %s" % err)
+    abort, msg = check_key()
+    if msg:
+        print("IndexNow:", ("送信中止 — " if abort else "") + msg)
+        log(("ABORT " if abort else "WARN ") + msg)
+    if abort:
         return 1
 
     urls = sys.argv[1:] or sitemap_urls()
