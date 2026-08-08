@@ -27,7 +27,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 TOKENS = {
     "12店舗": r"12\s*店舗",
     "原価Excel": r"原価[^。]{0,12}(Excel|エクセル)",
-    "年100人": r"(年間)?約?100人",
+    # 「51〜100人は5,000万円」のような補助金の従業員規模区分を誤検知していたので、
+    # 「年間」か「約」が直前に付く形だけを見る（2026-08-08）
+    "年100人": r"(年間\s*約?|約)\s*100\s*人",
 }
 RECENT_DAYS = 7
 
@@ -41,6 +43,14 @@ def main():
     if len(sys.argv) < 2:
         sys.exit("usage: python scripts/anecdote_lint.py blog/<article>.html")
     target = sys.argv[1]
+
+    # what-is-fde は伴走現場そのものを説明する正典ページなので、3点セットの
+    # 「使い回し」ではなく「初出」にあたる。ここだけは全部書いてよい（2026-08-08）。
+    # 他の記事はこのページへ内部リンクを張って、事例の反復は1つまでにする。
+    if os.path.basename(target) == "what-is-fde.html":
+        print("OK: 正典ページ（what-is-fde）は事例の初出として対象外")
+        return
+
     mine = hits(target)
     ok = True
 
