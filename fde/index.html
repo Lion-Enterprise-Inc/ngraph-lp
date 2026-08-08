@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=7">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=8">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -89,7 +89,7 @@
 @media(min-width:901px){
   .hero-visual{position:fixed;top:64px} /* 五重塔=その場に常駐。スクロール量でフェード(可逆) */
 }
-.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.72rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.75rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .hero-trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
 .hero-trust span{font-size:.78rem;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
@@ -97,7 +97,7 @@
 .problem-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .problem-card h3{font-family:var(--serif);font-size:1.02rem;font-weight:700;line-height:1.6;margin-bottom:10px}
 .problem-card p{font-size:.85rem;color:var(--text-2);line-height:2}
-.pc-num{font-family:var(--serif);font-size:.72rem;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:12px}
+.pc-num{font-family:var(--serif);font-size:.75rem;font-weight:700;letter-spacing:.22em;color:var(--accent);margin-bottom:12px}
 .fde-def{max-width:860px;margin:0 auto 48px;padding:40px 44px;border:1px solid var(--border-strong);border-radius:4px;background:var(--bg-card);text-align:center}
 .fde-def .fd-term{font-family:var(--serif);font-size:clamp(1.15rem,2.6vw,1.55rem);font-weight:700;letter-spacing:.03em;color:var(--accent);margin-bottom:6px}
 .fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
@@ -113,7 +113,7 @@
 /* 安心セクション */
 .trust-grid{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;max-width:840px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px}
 .trust-grid img{width:100%;border-radius:4px;border:1px solid var(--border)}
-.trust-cap{font-size:.74rem;color:var(--text-3);text-align:center;margin-top:10px}
+.trust-cap{font-size:.77rem;color:var(--text-3);text-align:center;margin-top:10px}
 .trust-body h3{font-family:var(--serif);font-size:1.2rem;font-weight:700;line-height:1.7;margin-bottom:14px}
 .trust-body p{font-size:.88rem;color:var(--text-2);line-height:2;margin-bottom:16px}
 .trust-list{list-style:none}
@@ -143,7 +143,7 @@
 .result-head{text-align:center;margin-bottom:8px}
 .result-type{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--accent);margin-bottom:6px}
 .result-score{font-size:.82rem;color:var(--text-3);margin-bottom:14px}
-#radar{display:block;margin:0 auto;max-width:100%}
+#radar{display:block;margin:0 auto;width:420px;max-width:100%;height:auto}
 .result-notes{margin:18px 0 6px}
 .result-notes li{font-size:.85rem;color:var(--text-2);line-height:1.95;margin-bottom:4px;list-style:none;padding-left:16px;position:relative}
 .result-notes li::before{content:"・";color:var(--accent);position:absolute;left:0}
@@ -153,20 +153,20 @@
 .lead-gate input{width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:10px;outline:none}
 .lead-gate input:focus{border-color:var(--accent)}
 .lead-gate .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
-.lead-note{font-size:.72rem;color:var(--text-3);text-align:center;margin-top:10px}
+.lead-note{font-size:.75rem;color:var(--text-3);text-align:center;margin-top:10px}
 .lead-done{text-align:center;padding:18px 0 6px}
 .lead-done h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:8px}
 .lead-done p{font-size:.85rem;color:var(--text-2);line-height:1.9}
 /* 事例・記事 */
 .case-feature{max-width:860px;margin:0 auto 26px;background:var(--bg-card);border:1.5px solid var(--accent);border-radius:4px;padding:32px 36px;box-shadow:0 14px 34px rgba(166,58,36,.07)}
-.case-feature .cf-tag{display:inline-block;background:var(--accent);color:#fdfaf4;font-size:.68rem;font-weight:700;letter-spacing:.14em;padding:5px 14px;border-radius:999px;margin-bottom:14px}
+.case-feature .cf-tag{display:inline-block;background:var(--accent);color:#fdfaf4;font-size:.75rem;font-weight:700;letter-spacing:.14em;padding:5px 14px;border-radius:999px;margin-bottom:14px}
 .case-feature h3{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.8;margin-bottom:14px}
 .cf-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
 .cf-fact{border:1px solid var(--border);border-radius:3px;padding:14px 16px;background:rgba(255,255,255,.5)}
 .cf-fact .n{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);line-height:1.5}
 .cf-fact .d{font-size:.76rem;color:var(--text-3);line-height:1.8;margin-top:4px}
 .case-feature>p{font-size:.87rem;color:var(--text-2);line-height:2}
-.cf-note{font-size:.74rem;color:var(--text-3);margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.cf-note{font-size:.77rem;color:var(--text-3);margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
 @media(max-width:768px){.case-feature{padding:24px 20px}.cf-facts{grid-template-columns:1fr}}
 .case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .article-links{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:900px;margin:36px auto 0}
@@ -182,7 +182,7 @@
 /* フォーム */
 .lp-form{max-width:640px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px 36px}
 .lp-form label{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px;color:var(--text)}
-.lp-form label .req{color:var(--accent);font-size:.7rem;margin-left:5px}
+.lp-form label .req{color:var(--accent);font-size:.75rem;margin-left:5px}
 .lp-form input,.lp-form textarea{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:16px;outline:none}
 .lp-form input:focus,.lp-form textarea:focus{border-color:var(--accent)}
 .lp-form textarea{min-height:100px;resize:vertical}
@@ -196,7 +196,7 @@
 .as-chip-row{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap}
 .as-chip{border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;font-size:.85rem;background:var(--bg-card);color:var(--text-2);white-space:nowrap}
 .as-swap{color:var(--accent);font-size:1.05rem}
-.as-connector{padding:12px 0;color:var(--text-3);font-size:.72rem;letter-spacing:.12em;line-height:1.7}
+.as-connector{padding:12px 0;color:var(--text-3);font-size:.75rem;letter-spacing:.12em;line-height:1.7}
 .as-connector .ar{color:var(--accent);display:block;font-size:1.05rem;line-height:1.4}
 .as-base{border:1.5px solid var(--accent);border-radius:4px;padding:26px 24px;background:var(--bg-card);box-shadow:0 14px 34px rgba(166,58,36,.08)}
 .as-base .as-cap{color:var(--accent)}
@@ -212,7 +212,7 @@
 .dl-wrap{display:grid;grid-template-columns:280px 1fr;gap:40px;max-width:880px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px;align-items:center}
 .dl-thumb{position:relative}
 .dl-thumb img{width:100%;border:1px solid var(--border-strong);border-radius:2px;box-shadow:6px 10px 26px rgba(43,38,32,.14);display:block}
-.dl-thumb .dl-tag{position:absolute;top:-12px;left:-10px;background:var(--accent);color:#fdfaf4;font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(166,58,36,.3)}
+.dl-thumb .dl-tag{position:absolute;top:-12px;left:-10px;background:var(--accent);color:#fdfaf4;font-size:.75rem;font-weight:700;letter-spacing:.1em;padding:6px 14px;border-radius:999px;box-shadow:0 6px 16px rgba(166,58,36,.3)}
 .dl-body h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;line-height:1.8;margin-bottom:10px}
 .dl-body>p{font-size:.86rem;color:var(--text-2);line-height:2;margin-bottom:18px}
 .dl-points{list-style:none;margin-bottom:22px}
@@ -264,10 +264,9 @@
     <div class="hero-copy" style="max-width:680px">
       <span class="lp-badge"><span class="dot"></span>NGRAPH BRAIN — 会社の脳をつくる</span>
       <p class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">記憶を、</span><span class="nb">AIの<span class="hl">中</span>に置かない。</span></p>
-      <p class="lead">賢いAIが毎朝ゼロから始まるのは、能力の問題ではありません。<strong>記憶をAIの中に置いている</strong>からです。私たちは会社の知識を「AIが読める正本」にして、どのAIからも同じ根拠で仕事を始められる状態——<strong>会社の脳</strong>をつくります。</p>
+      <p class="lead">賢いAIが毎朝ゼロから始まるのは、<strong>記憶をAIの中に置いている</strong>からです。会社の知識を「AIが読める正本」にする——<strong>会社の脳</strong>をつくります。</p>
       <div class="hero-cta">
-        <a href="/entry" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
-        <a href="#shindan" class="btn btn-ghost">1分で無料AI診断を試す</a>
+        <a href="#shindan" class="btn btn-primary">1分で無料AI診断を試す <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
       <p class="cta-micro">まずは資料だけ見たい方へ — <a href="#download" style="text-decoration:underline">AI導入チェックリスト（無料PDF）</a></p>
       <div class="hero-trust">
@@ -287,7 +286,8 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">The Problem</div>
-      <h2 class="section-title"><span class="nb">AIが毎朝ゼロから始まるのは、</span><span class="nb">能力の問題ではない。</span></h2>
+      <!-- nbは1個が長すぎると内部で折れて「、」が行頭に落ちる（SP実機で発生）。8文字以下に割る -->
+      <h2 class="section-title"><span class="nb">AIが毎朝</span><span class="nb">ゼロから</span><span class="nb">始まるのは、</span><span class="nb">能力の問題ではない。</span></h2>
       <p class="section-sub">会社の知識はすでにあります。ただし、AIが読める形で一か所にそろっていません。</p>
     </div>
     <div class="vs-wrap reveal" style="margin:0 auto 48px">
@@ -300,17 +300,17 @@
           <line x1="20" y1="90" x2="300" y2="90" stroke="rgba(60,52,42,.07)"/>
           <line x1="20" y1="120" x2="300" y2="120" stroke="rgba(60,52,42,.22)"/>
           <path d="M20,112 C60,111 90,113 113,112 C160,111 240,113 300,112 L300,120 L20,120 Z" fill="rgba(60,52,42,.06)"/>
-          <path d="M20,112 C60,111 90,113 113,112 C160,111 240,113 300,112" fill="none" stroke="rgba(60,52,42,.45)" stroke-width="2.5" stroke-linecap="round"/>
-          <circle cx="20" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
-          <circle cx="113" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
-          <circle cx="207" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
-          <circle cx="300" cy="112" r="3.5" fill="rgba(60,52,42,.45)"/>
-          <rect x="226" y="88" rx="9" width="66" height="19" fill="rgba(60,52,42,.5)"/>
-          <text x="259" y="101" text-anchor="middle" font-size="10" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">変化なし</text>
-          <text x="20" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
-          <text x="113" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
-          <text x="207" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
-          <text x="300" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
+          <path d="M20,112 C60,111 90,113 113,112 C160,111 240,113 300,112" fill="none" stroke="rgba(60,52,42,.62)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="112" r="3.5" fill="rgba(60,52,42,.62)"/>
+          <circle cx="113" cy="112" r="3.5" fill="rgba(60,52,42,.62)"/>
+          <circle cx="207" cy="112" r="3.5" fill="rgba(60,52,42,.62)"/>
+          <circle cx="300" cy="112" r="3.5" fill="rgba(60,52,42,.62)"/>
+          <rect x="226" y="88" rx="9" width="66" height="19" fill="rgba(60,52,42,.62)"/>
+          <text x="259" y="101" text-anchor="middle" font-size="12" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">変化なし</text>
+          <text x="20" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
+          <text x="113" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
+          <text x="207" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
+          <text x="300" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
         </svg>
         <p class="ba-cap">AIを使う業務の数（イメージ）</p>
       </div>
@@ -336,11 +336,11 @@
           <circle cx="300" cy="20" r="5" fill="#a63a24"/>
           <circle cx="300" cy="20" r="9" fill="none" stroke="rgba(166,58,36,.35)" stroke-width="2"/>
           <rect x="216" y="2" rx="9" width="66" height="19" fill="#a63a24"/>
-          <text x="249" y="15" text-anchor="middle" font-size="10" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">定着</text>
-          <text x="20" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
-          <text x="113" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
-          <text x="207" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
-          <text x="300" y="140" text-anchor="middle" font-size="10" fill="#8a8172" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
+          <text x="249" y="15" text-anchor="middle" font-size="12" fill="#fdfaf4" font-family="'Zen Kaku Gothic New',sans-serif">定着</text>
+          <text x="20" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">1ヶ月</text>
+          <text x="113" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">2ヶ月</text>
+          <text x="207" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">3ヶ月</text>
+          <text x="300" y="140" text-anchor="middle" font-size="12" fill="#5d564b" font-family="'Zen Kaku Gothic New',sans-serif">4ヶ月</text>
         </svg>
         <p class="ba-cap">現場で1つずつ組み込み、定着させる</p>
       </div>
@@ -521,7 +521,7 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Dogfooding</div>
-      <h2 class="section-title"><span class="nb">売る前に、</span><span class="nb">自分たちで毎日使っています。</span></h2>
+      <h2 class="section-title"><span class="nb">売る前に、</span><span class="nb">自分たちで</span><span class="nb">毎日使っています。</span></h2>
       <p class="section-sub">私たちは自社の知識も、個人の判断記録も、同じ仕組みで運用しています。以下は自社環境での実測値です。</p>
     </div>
     <div class="case-feature reveal">
@@ -638,7 +638,7 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Free Download</div>
-      <h2 class="section-title"><span class="nb">会議でそのまま使える、</span><span class="nb">AI導入チェックリスト。</span></h2>
+      <h2 class="section-title"><span class="nb">会議でそのまま使える、</span><span class="nb">AI導入</span><span class="nb">チェックリスト。</span></h2>
       <p class="section-sub">✓を付けるだけで、御社の現在地と「次の一手」がわかる20項目。無料でダウンロードできます。</p>
     </div>
     <div class="dl-wrap reveal">
@@ -766,12 +766,14 @@
       {l:'循環',p:'M37.5 18a15 15 0 00-25-4.5M12.5 13.5V7M12.5 13.5H19M10.5 30a15 15 0 0025 4.5M35.5 34.5V41M35.5 34.5H29',c:[]}
     ];
     var P2D=GL.map(function(g){return g.p?new Path2D(g.p):null;});
-    function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight;}
+    var DPR=Math.min(window.devicePixelRatio||1,3); // 高DPI対応。無いとiPhoneでぼやける
+    function resize(){c.width=c.offsetWidth*DPR;c.height=c.offsetHeight*DPR;}
     window.addEventListener('resize',resize);resize();
     function draw(){
-      if(c.width!==c.offsetWidth||c.height!==c.offsetHeight)resize();
-      var W=c.width,H=c.height;
+      if(c.width!==c.offsetWidth*DPR||c.height!==c.offsetHeight*DPR)resize();
+      var W=c.offsetWidth,H=c.offsetHeight;
       if(!W||!H)return;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
       ctx.clearRect(0,0,W,H);
       var t=Date.now()/1000;
       var hi=Math.floor(t/4.2)%GL.length,hp=(t%4.2)/4.2;
@@ -784,18 +786,18 @@
         var y=H*(0.09+row*0.76/(ROWS-1))+H*0.02;
         var on=(i===hi)?(RM?0:act):0;
         var cr=Math.round(60+on*(166-60)),cg=Math.round(52+on*(58-52)),cb=Math.round(42+on*(36-42));
-        var al=0.5+on*0.4;
+        var al=0.85+on*0.15;
         var s=S/48;
         ctx.save();
         ctx.translate(x,y);if(on>0.05)ctx.rotate(Math.sin(hp*Math.PI*3)*0.09*on);ctx.translate(-S/2,-S/2);ctx.scale(s,s);
         ctx.strokeStyle='rgba('+cr+','+cg+','+cb+','+al+')';
-        ctx.lineWidth=1.6/s;ctx.lineCap='round';ctx.lineJoin='round';
+        ctx.lineWidth=2/s;ctx.lineCap='round';ctx.lineJoin='round';
         if(P2D[i])ctx.stroke(P2D[i]);
         GL[i].c.forEach(function(o){ctx.beginPath();ctx.arc(o[0],o[1],o[2],0,Math.PI*2);ctx.stroke();});
         ctx.restore();
-        ctx.font="600 10.5px 'Zen Old Mincho',serif";
+        ctx.font="600 12px 'Zen Old Mincho',serif";
         ctx.textAlign='center';
-        ctx.fillStyle=on>0.25?'rgba(166,58,36,'+(0.4+on*0.5)+')':'rgba(138,129,114,.7)';
+        ctx.fillStyle=on>0.25?'rgba(166,58,36,'+(0.5+on*0.5)+')':'#5d564b';
         ctx.fillText(GL[i].l,x,y+S/2+16);
       }
     }
@@ -1004,7 +1006,7 @@ function renderQ(){
 }
 function drawRadar(scores){
   var c=document.getElementById('radar');if(!c)return;
-  var ctx=c.getContext('2d'),W=c.width,H=c.height,cx=W/2,cy=H/2+8,R=Math.min(W,H)/2-52;
+  var ctx=c.getContext('2d'),W=420,H=330,cx=W/2,cy=H/2+8,R=Math.min(W,H)/2-52;ctx.setTransform(2,0,0,2,0,0); // 2x解像度・描画座標は従来のまま
   function pt(i,r){var a=-Math.PI/2+i/5*Math.PI*2;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];}
   ctx.clearRect(0,0,W,H);
   for(var g=1;g<=4;g++){ctx.beginPath();for(var i=0;i<=5;i++){var p=pt(i%5,R*g/4);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}
@@ -1039,7 +1041,7 @@ function renderResult(){
     +'<div class="result-type">'+esc(type.name)+'</div>'
     +'<div class="result-score">総合スコア '+total+' / 14</div>'
     +'</div>'
-    +'<canvas id="radar" width="420" height="330"></canvas>'
+    +'<canvas id="radar" width="840" height="660"></canvas>'
     +'<ul class="result-notes"><li>'+esc(type.note)+'</li></ul>'
     +'<p class="result-mirror">'+esc(mirror)+'</p>'
     +'<div class="result-tips">'
