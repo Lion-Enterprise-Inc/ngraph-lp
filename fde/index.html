@@ -130,6 +130,13 @@
 .q-opts button:hover{border-color:var(--accent);background:rgba(166,58,36,.05)}
 .q-back{margin-top:18px;background:none;border:none;font-size:.78rem;color:var(--text-3);cursor:pointer;font-family:inherit}
 .q-back:hover{color:var(--accent)}
+.q-inds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.q-inds button{text-align:left;padding:13px 14px;border:1px solid var(--border-strong);border-radius:3px;background:rgba(255,255,255,.6);font-size:.86rem;line-height:1.55;color:var(--text);cursor:pointer;font-family:inherit;overflow-wrap:anywhere;transition:border-color .15s,background .15s}
+.q-inds button:hover{border-color:var(--accent);background:rgba(166,58,36,.05)}
+.result-mirror{font-size:.86rem;color:var(--text-2);line-height:1.95;margin-top:18px;padding:14px 16px;background:rgba(166,58,36,.05);border-left:2px solid var(--accent);border-radius:0 3px 3px 0}
+.result-tips{margin-top:22px}
+.result-tips h4{font-family:var(--serif);font-size:.98rem;font-weight:700;margin-bottom:8px}
+.result-start{font-size:.85rem;color:var(--text-2);line-height:1.95;margin-top:18px}
 .result-head{text-align:center;margin-bottom:8px}
 .result-type{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--accent);margin-bottom:6px}
 .result-score{font-size:.82rem;color:var(--text-3);margin-bottom:14px}
@@ -498,7 +505,7 @@
     <div class="section-head reveal">
       <div class="section-label">Free Check</div>
       <h2 class="section-title"><span class="nb">無料AI導入診断</span><span class="nb">（8問・約1分）</span></h2>
-      <p class="section-sub">8問答えるだけ。現在地を5軸でその場に表示します（登録不要）。</p>
+      <p class="section-sub">業種を選んで8問。現在地を5軸でその場に表示します（登録不要）。</p>
     </div>
     <div class="quiz-wrap reveal" id="quizBox">
       <!-- JSが描画 -->
@@ -873,44 +880,124 @@ form.addEventListener('submit',function(e){
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
   })();
 
-// ── AI導入診断（8問→5軸レーダー→リードゲート） ──
+// ── AI導入診断 v2（業種選択→8問→5軸レーダー→相談導線） ──
 (function(){
-var AXES=['ツール','現場の利用','業務の仕組み','推進する人','経営の関与'];
-var QS=[
- {ax:0,q:'ChatGPTなどのAIを、仕事で使える状態にしていますか？',o:['会社として契約している','個人で使っている人はいる','まだ使っていない']},
- {ax:1,q:'この1週間で、AIを仕事に使った人は社内にどれくらいいますか？',o:['半分以上いる','数人はいる','ほとんどいない']},
- {ax:1,q:'メール・報告書・見積書など「同じような文章を書く仕事」は、いまも手作業ですか？',o:['ほぼAIや仕組みに任せている','一部は楽になった','ほぼ手作業']},
- {ax:2,q:'システムからExcelへの「転記・コピペ作業」は、どれくらいありますか？',o:['ほとんどない','週に数時間ある','毎日ある']},
- {ax:2,q:'お客様や社内からの「よくある質問」には、誰が答えていますか？',o:['仕組みやAIでほぼ自動','決まった担当者が手で対応','みんながその都度対応']},
- {ax:3,q:'「AIのことはこの人に聞けばいい」という人が社内にいますか？',o:['各部署にいる','1人だけいる','いない']},
- {ax:4,q:'AI活用について、経営側で話し合ったことはありますか？',o:['目標や予算まで決めている','話題には出るが決まっていない','まだ話していない']},
- {ax:4,q:'もしAIで毎月10時間浮いたら、その時間を何に使うか思い浮かびますか？',o:['やりたい業務がすぐ浮かぶ','なんとなくある','思い浮かばない']}
+var QUIZ_LOG_URL='';
+var INDS=[
+ ['transport','運送・物流'],['care','介護・障害福祉'],
+ ['security_bm','警備・ビルメンテナンス'],['cleaning','清掃・ハウスクリーニング'],
+ ['construction','建設・設備工事'],['manufacturing','製造'],
+ ['funeral','葬儀・葬祭'],['staffing','人材派遣・請負'],
+ ['auto','自動車整備・販売'],['waste','産業廃棄物・リサイクル'],
+ ['hotel','旅館・ホテル'],['childcare','保育・こども園'],
+ ['clinic','医療・歯科・調剤'],['realestate','不動産管理'],
+ ['agri','農業法人'],['printing','印刷'],
+ ['retail_chain','小売チェーン'],['school','学習塾・スクール'],
+ ['other','その他']
 ];
+var TIPS={
+ transport:["「この荷主のルール、どうだった？」への即答係","日報・事故報告・荷主への定型連絡の下書き","新しいドライバーへの「同じ説明」の自動化"],
+ care:["「この加算、要件これで合ってる？」への即答係","記録・報告書の「毎回同じ形式の文章」の下書き","入職のたびにくり返す「同じ説明」の自動化"],
+ security_bm:["「この現場の手順、どうだった？」への即答係","警備報告書・点検報告書の「毎回同じ形式の文章」の下書き","新任配置のたびにくり返す「同じ説明」の自動化"],
+ cleaning:["「この現場の仕様、どうだった？」への即答係","作業報告書・見積の「毎回同じ形式の文章」の下書き","新人への「同じ説明」の自動化"],
+ construction:["「あの物件、どう納めた？」への即答係","安全書類・日報・見積の定型部分の下書き","新人・協力会社への「同じ説明」の自動化"],
+ manufacturing:["「この加工、前はどうやった？」への即答係","日報・検査記録・見積回答の下書き","新人オペレーターへの「同じ説明」の自動化"],
+ funeral:["宗派・地域ごとの作法や段取りへの即答係","打ち合わせ記録・見積・手配連絡の下書き","新人への「同じ説明」の自動化"],
+ staffing:["派遣先ごとのルール・手続きへの即答係","スタッフへの定型案内・契約書類の下書き","登録スタッフからの「同じ質問」への一次応答"],
+ auto:["車種ごとの整備の注意点への即答係","見積・整備記録・車検案内の下書き","お客様への「同じ説明」の自動化"],
+ waste:["「この品目、うちで受けられる？」への即答係","マニフェスト関連・報告書まわりの下書き","新人への「同じ説明」の自動化"],
+ hotel:["館内ルール・過去の団体対応への即答係","予約・問い合わせ返信の下書き","新人スタッフへの「同じ説明」の自動化"],
+ childcare:["園のルール・書式への即答係","おたより・連絡帳・計画書類の下書き","新任の先生への「同じ説明」の自動化"],
+ clinic:["算定・院内ルールへの即答係","案内文・定型文書の下書き","新人スタッフへの「同じ説明」の自動化"],
+ realestate:["物件ごとの取り決め・修繕経緯への即答係","入居者対応の定型文・オーナー報告の下書き","新人への「同じ説明」の自動化"],
+ agri:["栽培・出荷の手順への即答係","出荷書類・記録の下書き","季節スタッフへの「同じ説明」の自動化"],
+ printing:["「この会社の前回の仕様は？」への即答係","見積・校正やりとりの定型文の下書き","新人への「同じ説明」の自動化"],
+ retail_chain:["店ごとの売場ルール・発注判断への即答係","本部への報告・店舗への通達の下書き","新店スタッフへの「同じ説明」の自動化"],
+ school:["教室ごとの進め方・生徒対応の経緯への即答係","保護者へのお知らせ・面談報告の下書き","新講師への「同じ説明」の自動化"],
+ other:["くり返し質問への即答係","決まった形式の書類の下書き","新しい人への同じ説明の自動化"]
+};
+var AXES=['知識の置き場','属人化リスク','繰り返し負荷','情報の鮮度','AI活用度'];
+// ax: 0=知識の置き場 1=属人化リスク 2=繰り返し負荷 3=情報の鮮度 4=AI活用度 / ax:-1 はスコア外
+var QS=[
+ {id:'q1',ax:4,q:'あなたのスマホに、AIアプリはいくつ入っていますか？（ChatGPT・Gemini・Claudeなど）',
+  o:[['0〜1個',0],['2〜3個',1],['4〜6個',2],['7個以上',2]]},
+ {id:'q2',ax:0,q:'「この仕事の正しいやり方」の答えは、主にどこにありますか？',
+  o:[['ベテランや社長の頭の中',0],['紙のファイルやExcel',1],['チャットやメールの履歴',1],['決まった置き場が1つある',2]]},
+ {id:'q3',ax:1,q:'一番詳しい人が1週間休んだら、止まってしまう業務がありますか？',
+  o:[['ある。複数ある',0],['1つか2つある',1],['ほぼない',2]]},
+ {id:'q4',ax:2,q:'同じ質問に、月に何度も答えていませんか？（新人・店舗・取引先などから）',
+  o:[['しょっちゅうある',0],['たまにある',1],['ほとんどない',2]]},
+ {id:'q5',ax:3,q:'マニュアルやルールの「最新版がどれか」で迷うことはありますか？',
+  o:[['よくある／そもそも無い',0],['たまにある',1],['迷わない仕組みがある',2]]},
+ {id:'q6',ax:4,q:'仕事でAI（ChatGPTなど）を使っていますか？',
+  o:[['使っていない',0],['個人でときどき',1],['ほぼ毎日',2],['複数人で日常的に',2]]},
+ null, // Q7はQ6の回答で分岐
+ {id:'q8',ax:-1,q:'一番時間を食っている「繰り返しの仕事」はどれですか？',
+  o:[['転記・入力',null],['集計・レポート',null],['同じ説明（新人・お客様）',null],['問い合わせ対応',null],['書類づくり',null]]}
+];
+var Q7_USE={id:'q7',ax:0,q:'AIに仕事を頼むとき、会社の事情（商品・ルール・お客様のこと）を毎回説明し直していますか？',
+  o:[['毎回説明している',0],['ある程度は覚えさせている',1],['会社の情報を参照する仕組みがある',2]]};
+var Q7_NOUSE={id:'q7',ax:0,q:'新しく入った人への説明は、毎回誰かが口頭でやっていますか？',
+  o:[['毎回誰かがやっている',0],['資料はあるが結局口頭',1],['仕組みで回っている',2]]};
+// TYPESのminは満点14に合わせた比例値（旧16点満点の13/9/5を換算）
 var TYPES=[
- {min:13,name:'自走期',note:'土台は整っています。次は効果の大きい業務への横展開と、定着の仕組み化が論点です。'},
- {min:9,name:'部分活用期',note:'一部では使えています。部署ごとの使い方づくりと、転記・コピペ作業の自動化が次の一段です。'},
- {min:5,name:'ツール先行期',note:'契約が先行し、現場への落とし込みが追いついていない状態です。FDE型支援の効果が最も出やすい段階です。'},
+ {min:11,name:'自走期',note:'土台は整っています。次は効果の大きい業務への横展開と、定着の仕組み化が論点です。'},
+ {min:8,name:'部分活用期',note:'一部では使えています。部署ごとの使い方づくりと、転記・コピペ作業の自動化が次の一段です。'},
+ {min:4,name:'ツール先行期',note:'契約が先行し、現場への落とし込みが追いついていない状態です。FDE型支援の効果が最も出やすい段階です。'},
  {min:0,name:'着手前',note:'これから始める段階です。効果の見える最小の一点から着手するのが定石です。'}
 ];
-var box=document.getElementById('quizBox'),answers=[],step=0;
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;');}
-function renderQ(){
-  var q=QS[step];
-  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+' — '+AXES[q.ax]+'</div>'
-    +'<div class="q-text">'+esc(q.q)+'</div>'
-    +'<div class="q-opts">'+q.o.map(function(o,i){return '<button data-v="'+(2-i)+'">'+esc(o)+'</button>';}).join('')+'</div>'
-    +(step>0?'<button class="q-back" id="qBack">← ひとつ戻る</button>':'');
-  box.querySelectorAll('.q-opts button').forEach(function(b){
-    b.addEventListener('click',function(){answers[step]=+b.getAttribute('data-v');step++;
-      if(step<QS.length)renderQ();else renderResult();});
-  });
-  var bk=document.getElementById('qBack');
-  if(bk)bk.addEventListener('click',function(){step--;renderQ();});
+// Q2の回答indexごとの「鏡の一文」
+var MIRRORS=[
+ '御社の「会社の脳」は、いま主にベテランの頭の中にあります。人が休む・辞めると、答えも一緒に消える状態です。',
+ '御社の「会社の脳」は、いま紙とExcelに散らばっています。探す時間と「どれが最新か」問題が起きやすい状態です。',
+ '御社の「会社の脳」は、いまチャットの履歴に流れています。あるはずなのに見つからない、が起きやすい状態です。',
+ '御社にはすでに知識の置き場があります。次の一歩は、それを最新に保ち、AIに読ませられる形にすることです。'
+];
+var box=document.getElementById('quizBox'),answers=[],step=-1,ind=null;
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function ev(n,p){if(typeof gtag==='function')gtag('event',n,p);}
+function indLabel(){for(var i=0;i<INDS.length;i++)if(INDS[i][0]===ind)return INDS[i][1];return '';}
+function getQ(i){
+  if(i!==6)return QS[i];
+  return (answers[5]&&answers[5].i===0)?Q7_NOUSE:Q7_USE;
 }
+function scoreOf(){var t=0;for(var i=0;i<7;i++)t+=(answers[i]&&answers[i].v)||0;return t;}
 function axisScores(){
   var s=[0,0,0,0,0],m=[0,0,0,0,0];
-  QS.forEach(function(q,i){s[q.ax]+=answers[i]||0;m[q.ax]+=2;});
-  return s.map(function(v,i){return v/m[i];});
+  for(var i=0;i<7;i++){var q=getQ(i);s[q.ax]+=(answers[i]&&answers[i].v)||0;m[q.ax]+=2;}
+  return s.map(function(v,i){return m[i]?v/m[i]:0;});
+}
+function renderInd(){
+  box.innerHTML='<div class="q-progress">はじめに</div>'
+    +'<div class="q-text">業種を選んでください</div>'
+    +'<div class="q-inds">'+INDS.map(function(x,i){return '<button data-i="'+i+'">'+esc(x[1])+'</button>';}).join('')+'</div>';
+  box.querySelectorAll('.q-inds button').forEach(function(b){
+    b.addEventListener('click',function(){
+      ind=INDS[+b.getAttribute('data-i')][0];
+      ev('quiz_start',{quiz_name:'ai_shindan_v2',industry:ind});
+      answers=[];step=0;renderQ();
+    });
+  });
+}
+function renderQ(){
+  var q=getQ(step);
+  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+(q.ax>=0?(' — '+AXES[q.ax]):'')+'</div>'
+    +'<div class="q-text">'+esc(q.q)+'</div>'
+    +'<div class="q-opts">'+q.o.map(function(o,i){return '<button data-i="'+i+'">'+esc(o[0])+'</button>';}).join('')+'</div>'
+    +'<button class="q-back" id="qBack">← ひとつ戻る</button>';
+  box.querySelectorAll('.q-opts button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=+b.getAttribute('data-i');
+      answers[step]={i:i,v:q.o[i][1],t:q.o[i][0]};
+      ev('quiz_answer',{quiz_name:'ai_shindan_v2',question_id:q.id,answer_index:i,answer_label:q.o[i][0]});
+      step++;
+      if(step<QS.length)renderQ();else renderResult();
+    });
+  });
+  document.getElementById('qBack').addEventListener('click',function(){
+    step--;
+    if(step<0){ind=null;renderInd();}else renderQ();
+  });
 }
 function drawRadar(scores){
   var c=document.getElementById('radar');if(!c)return;
@@ -927,51 +1014,51 @@ function drawRadar(scores){
   for(var i4=0;i4<5;i4++){var p4=pt(i4,R+26);ctx.fillText(AXES[i4],p4[0],p4[1]+4);}
 }
 function renderResult(){
-  var total=answers.reduce(function(a,b){return a+b;},0);
+  var total=scoreOf();
   var type=TYPES.find(function(t){return total>=t.min;});
-  if(typeof gtag==='function'){gtag('event','quiz_complete',{quiz_name:'ai_shindan8',result_type:type.name,score:total});}
   var sc=axisScores();
-  var weak=AXES.map(function(a,i){return [a,sc[i]];}).sort(function(a,b){return a[1]-b[1];}).slice(0,2);
+  var label=indLabel();
+  var mirror=MIRRORS[(answers[1]&&answers[1].i)||0];
+  var tips=TIPS[ind]||TIPS.other;
+  var start=(answers[7]&&answers[7].t)||'';
+  ev('quiz_complete',{quiz_name:'ai_shindan_v2',score:total,result_type:type.name,industry:ind,start_point:start});
+  if(QUIZ_LOG_URL){
+    try{
+      fetch(QUIZ_LOG_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({
+        ts:new Date().toISOString(),industry:ind,
+        answers:answers.map(function(a,i){return {id:getQ(i).id,index:a?a.i:null,label:a?a.t:null};}),
+        score:total,result:type.name,start_point:start
+      })}).catch(function(){});
+    }catch(e){}
+  }
   box.innerHTML='<div class="result-head">'
     +'<div class="q-progress">診断結果</div>'
-    +'<div class="result-type">'+type.name+'</div>'
-    +'<div class="result-score">総合スコア '+total+' / 16</div>'
+    +'<div class="result-type">'+esc(type.name)+'</div>'
+    +'<div class="result-score">総合スコア '+total+' / 14</div>'
     +'</div>'
     +'<canvas id="radar" width="420" height="330"></canvas>'
-    +'<ul class="result-notes">'
-    +'<li>'+esc(type.note)+'</li>'
-    +'<li>特に伸びしろが大きい軸：<strong>'+esc(weak[0][0])+'</strong>・<strong>'+esc(weak[1][0])+'</strong></li>'
-    +'</ul>'
-    +'<div class="lead-gate" id="leadGate">'
-    +'<h4>軸ごとの詳細レポート＋改善の打ち手（無料）</h4>'
-    +'<p>回答内容をもとに、貴社向けの詳細レポートと「最初に着手すべき業務」の提案をメールでお送りします（2〜3営業日以内）。</p>'
-    +'<input type="text" id="lgName" placeholder="お名前（必須）">'
-    +'<input type="text" id="lgCompany" placeholder="会社名（必須）">'
-    +'<input type="email" id="lgEmail" placeholder="メールアドレス（必須）">'
-    +'<button class="btn btn-primary" id="lgSend">詳細レポートを受け取る</button>'
-    +'<p class="lead-note">営業目的の連続送信は行いません。<a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a></p>'
+    +'<ul class="result-notes"><li>'+esc(type.note)+'</li></ul>'
+    +'<p class="result-mirror">'+esc(mirror)+'</p>'
+    +'<div class="result-tips">'
+    +'<h4>'+esc(label)+'で、まずAIに任せられる仕事</h4>'
+    +'<ul class="result-notes">'+tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>'
+    +'</div>'
+    +(start?'<p class="result-start">一番のご負担は「'+esc(start)+'」——ここから始めるのが定石です。</p>':'')
+    +'<div class="lead-gate">'
+    +'<button class="btn btn-primary" id="qConsult">この結果をもとに相談する（無料・30分）</button>'
     +'</div>'
     +'<button class="q-back" id="qRetry">← もう一度診断する</button>';
   drawRadar(sc);
-  document.getElementById('qRetry').addEventListener('click',function(){answers=[];step=0;renderQ();});
-  document.getElementById('lgSend').addEventListener('click',function(){
-    var nm=document.getElementById('lgName').value.trim(),
-        co=document.getElementById('lgCompany').value.trim(),
-        em=document.getElementById('lgEmail').value.trim();
-    if(!nm||!co||!em||em.indexOf('@')<0){alert('お名前・会社名・メールアドレスを入力してください。');return;}
-    var detail='【AI導入診断 詳細レポート希望】\n総合:'+total+'/16 タイプ:'+type.name
-      +'\n軸別:'+AXES.map(function(a,i){return a+'='+Math.round(sc[i]*100)+'%';}).join(' / ')
-      +'\n回答:'+answers.join(',');
-    var fd=new URLSearchParams();
-    fd.append('お名前',nm);fd.append('会社名・店舗名',co);fd.append('メールアドレス',em);
-    fd.append('お問い合わせ種別','AI導入診断（/fde/ LP）');fd.append('お問い合わせ内容',detail);
-    var btn=document.getElementById('lgSend');btn.disabled=true;btn.textContent='送信中...';
-    fetch('https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec',{method:'POST',mode:'no-cors',body:fd})
-    .then(function(){document.getElementById('leadGate').innerHTML='<div class="lead-done"><h4>受け付けました</h4><p>詳細レポートを2〜3営業日以内にメールでお送りします。</p></div>';if(window.gtag)gtag('event','generate_lead',{form:'fde_shindan'});})
-    .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='詳細レポートを受け取る';});
+  document.getElementById('qRetry').addEventListener('click',function(){answers=[];step=-1;ind=null;renderInd();});
+  document.getElementById('qConsult').addEventListener('click',function(){
+    ev('quiz_consult_click',{quiz_name:'ai_shindan_v2'});
+    var ta=document.querySelector('#lpForm [name="お問い合わせ内容"]');
+    if(ta)ta.value='【無料診断の結果】業種:'+label+'／段階:'+type.name+'／スコア'+total+'/14／気になる繰り返し業務:'+start;
+    var tgt=document.getElementById('contact');
+    if(tgt)tgt.scrollIntoView({behavior:'smooth',block:'start'});
   });
 }
-renderQ();
+renderInd();
 })();
 </script>
 </body>

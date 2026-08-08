@@ -21,3 +21,4 @@ AdobeStock_*.jpeg
 # 図のPNG書き出し(X添付・note再掲用。本文はinline SVGなので配信不要)
 assets/blog/fig/
 assets/blog/*-fig.png
+fde/gas-quiz-logger.gs
