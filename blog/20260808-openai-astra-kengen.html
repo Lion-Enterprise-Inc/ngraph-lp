@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計 | NGraphブログ</title>
+<meta name="description" content="OpenAIが開発中の新モデルAstraについて、Critical(重大)サイバー能力を否定できないと公表。実際に取った対応は「隔離・権限制限・監視」の3つでした。中小企業のAI導入にそのまま効く設計を解説します。">
+<meta property="og:title" content="OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計 | NGraphブログ">
+<meta property="og:description" content="世界最高水準のAIを持つ会社が、自分のAIに最初にやったのは権限を絞ることでした。OpenAIのAstra対応から、中小企業が今日から真似できる設計を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260808-openai-astra-kengen">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260808-openai-astra-kengen.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260808-openai-astra-kengen">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=6">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計",
+  "image": "https://ngraph.jp/assets/blog/20260808-openai-astra-kengen.jpg",
+  "description": "OpenAIが開発中の新モデルAstraについて、Critical(重大)サイバー能力を否定できないと公表。実際に取った対応は「隔離・権限制限・監視」の3つでした。中小企業のAI導入にそのまま効く設計を解説します。",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260808-openai-astra-kengen",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計</h1>
+  <span class="a-date">2026.08.08 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260808-openai-astra-kengen.jpg" alt="">
+
+<p>2026年8月7日、OpenAIは開発中の新モデル「Astra」について、直近の社内評価でエージェント的コーディング(AIが人の代わりに複数の作業を自律的に進めること)とサイバーセキュリティの能力が大きく伸びた結果、自社の安全基準「Preparedness Framework」が定める「Critical(重大)」レベルのサイバー能力を否定できないと公表しました（<a href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/" target="_blank" rel="noopener">一次情報</a>）。結論から言うと、これは中小企業にとって、AIに渡す権限をどう絞るかという話です。</p>
+
+<h2>何が起きたか</h2>
+<p>Astraは、OpenAIが開発中でまだ公開していないモデルです。OpenAIは2023年12月に「Preparedness Framework」という、自社モデルの危険な能力を段階評価する社内基準を公表しており、その中に「Critical(重大)」というサイバー能力の区分があります。定義は、人間の介在なしに堅牢化された重要システムに対して実用的なゼロデイ攻撃コード(ゼロデイ=まだ修正パッチが存在しない脆弱性を突く攻撃)を発見・開発できること、または高レベルの目標を与えるだけで新規の攻撃戦略を端から端まで立案・実行できることです。従来モデル(GPT-5.6-Solを含む)はいずれも一段階下の「High」評価にとどまっており、Criticalの可能性に触れたのは今回が初めてです。ただし現時点は評価継続中の予備段階で、「Critical と確定した」のではなく「否定できない」という段階です。なお、Astraは話題になったHugging Faceの侵害には関与していないと明記されています。</p>
+
+<h2>なぜ重要か</h2>
+<p>ここで見るべきは、Criticalの可能性が出たこと自体ではなく、OpenAIが実際に何をしたかです。発表を読むと、やっているのは「モデルを賢くして安全にした」ではありません。実行環境を隔離し、ネットワークとツールのアクセスを絞り、何をしたか見て危なければ止める——挙げられている対応は、この3つに集約されます。具体的には、隔離されたテスト環境やモデルの重みの暗号化保護を含む高能力モデル向けのセキュリティ統制を強化し、その要件をまだ満たしていないAstra関連の社内活動を停止したこと、そして訓練・評価を含むAstraのあらゆるエージェント的な利用に全面的な監視を導入し、監視側がAIの思考の連鎖(Chain of Thought=AIが答えに至るまでの途中の思考過程)を評価してリスクの高い挙動を検知したらセキュリティ対応を発動して中断する仕組みを入れたことです。世界で最も能力の高いAIを持つ会社が、自分のAIに対して最初にやったのが「権限を絞る」だったという事実は象徴的です。能力の問題を、能力ではなく権限と可視性の設計で受け止めています。技術者の関心は、Astraが実際どれだけ強いのかという能力の数字に向きやすい傾向があります。しかし中小企業が読むべきなのは能力の数字ではなく、対応の設計の方です。能力の数字は自社では検証できませんが、権限の絞り方は今日から真似できます。ここで確認しておきたいのは、AIが強くなったから危ないという話ではないということです。攻撃能力が上がったときに効くのは高度な防御ではなく、渡している権限の狭さです。権限設計の甘さが、そのまま被害の大きさになります。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>AIに渡すアカウントを業務単位で分ける。</strong>管理者権限のアカウントをそのままAIに使わせない。</li>
+<li><strong>AIが読める範囲と使えるツールを、その業務に必要な分だけにする。</strong>全社の共有フォルダを丸ごと読ませない。</li>
+<li><strong>AIが何をしたかの記録を残し、止められる人を決めておく。</strong>見ていない自動化は、止められない自動化になる。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>私たち自身も、自社サービスの管理画面で同じことをやり直しました。管理者アカウントの弱いパスワードを入れ替え、運用スクリプトに直接書き込んでいた認証情報を環境変数へ移し、把握できていなかった管理者アカウントと動作確認用に作った残骸アカウントを無効化しました。難しい対策は1つもありません。難しいのは、渡しっぱなしになっている権限を全部数え上げる作業のほうでした。</div>
+
+<h2>その他の注目ニュース（8月8日 朝時点）</h2>
+<ul>
+<li><strong>Databricks、AIコーディング費用の管理手法を公開（8月7日）</strong> — Databricksが8月7日、AIコーディングツールの費用管理に関する記事を公開しました。ハーネスとキャッシュ設定を見直しただけで生成トークン数と費用が約50%減り、品質の劣化は見られなかったと報告しています（<a href="https://www.databricks.com/blog/managing-ai-coding-costs-scale" target="_blank" rel="noopener">一次情報</a>）。従量課金のAIは使われ始めてから請求が跳ねます。上限で一律にアクセスを止めるとAIごと使われなくなるため、警告→承認ゲート→安いモデルへの引き下げのように段階的に絞る設計が有効です。</li>
+<li><strong>AMD、AI推論特化シリコンのTaalasを買収（8月6日）</strong> — AMDが8月6日、AI推論に特化したシリコンを開発するTaalas(トロント拠点)の買収で最終契約に至ったと発表しました。買収金額は非開示です（<a href="https://newsroom.amd.com/news/amd-acquires-taalas-ai-inference/" target="_blank" rel="noopener">一次情報</a>）。AIを動かす側の単価を下げる投資が続いており、今の従量単価を前提に長期の契約を縛らない方がよいでしょう。</li>
+<li><strong>デジタル化・AI導入補助金2026、1次締切は8月25日</strong> — 中小企業基盤整備機構によれば、通常枠・インボイス枠・セキュリティ対策推進枠など全枠で1次締切が2026年8月25日17時、交付決定は10月7日の予定です（<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">一次情報</a>）。2次以降の締切は未定のため、次の回でいいという判断は今は立てられません。締切まで残り17日。セキュリティ対策推進枠は今回の話とも接続します。</li>
+</ul>
+
+<div class="a-src">参考（一次情報）：<br>
+・OpenAI「<a href="https://openai.com/index/responding-next-frontier-critical-cyber-capabilities/" target="_blank" rel="noopener">Responding to the next frontier of critical cyber capabilities</a>」（2026年8月7日）<br>
+・Databricks公式ブログ「<a href="https://www.databricks.com/blog/managing-ai-coding-costs-scale" target="_blank" rel="noopener">Managing AI Coding Costs at Scale</a>」（2026年8月7日）<br>
+・AMD公式ニュースルーム「<a href="https://newsroom.amd.com/news/amd-acquires-taalas-ai-inference/" target="_blank" rel="noopener">Taalas買収に関する発表</a>」（2026年8月6日）<br>
+・中小企業基盤整備機構「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">デジタル化・AI導入補助金2026 事業スケジュール</a>」（2026年8月8日確認）<br>
+・あわせて読む：<a href="/blog/20260801-ai-agent-permission">Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」</a>／<a href="/blog/20260807-ai-approval-fatigue">危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」</a>（当ブログ）</div>
+
+<p style="margin-top:20px"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIに渡す権限の設計から相談したい方はこちら（FDE型AI導入支援・無料相談）</a></p>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
