@@ -3,3 +3,10 @@
 /Entry-form   /entry   301
 /Company      /company 301
 /Legal        /legal   301
+
+# コールドメール用の短縮URL（2026-08-08）
+# 長いUTM付きURLはメール本文で「怪しい見た目」になるため、本文には短い形だけを載せ、
+# 計測パラメータはここで裏側から付ける。/a /b は件名A/Bテストの識別（業種はクイズ側で取得）。
+/shindan/a    /fde/?utm_source=coldmail&utm_medium=email&utm_campaign=fde2026&utm_term=sa#shindan   302
+/shindan/b    /fde/?utm_source=coldmail&utm_medium=email&utm_campaign=fde2026&utm_term=sb#shindan   302
+/shindan      /fde/#shindan   302
