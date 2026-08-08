@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [MCPとは、AIに社内の道具を使わせる共通規格——非エンジニアの会社が自作サーバーを3つのAIにつないだ手順と、2026年7月の仕様変更](https://ngraph.jp/blog/20260808-mcp-toha)
 - [OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計](https://ngraph.jp/blog/20260808-openai-astra-kengen)
 - [AI導入に使える補助金はどれか——「AI」と書いてある制度は1つもない。8制度の対象経費を読み解く実務判定表](https://ngraph.jp/blog/ai-hojokin)
 - [人手不足倒産は227件か237件か——2つの集計がズレる理由と、「採れない」から「払えない」への転換](https://ngraph.jp/blog/20260807-jinbusoku-tosan)
