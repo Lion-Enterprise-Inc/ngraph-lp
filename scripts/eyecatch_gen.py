@@ -133,6 +133,11 @@ def fit_font_size(title):
     for fs in range(FS_MAX, FS_MIN - 1, -1):
         if _count_lines(body, fs) <= MAX_LINES:
             return fs
+    n = _count_lines(body, FS_MIN)
+    if n > MAX_LINES:
+        print("ERROR: タイトルが長すぎて%d行に収まりません（最小級数%dptでも%d行）。"
+              "タイトルを短くしてください。" % (MAX_LINES, FS_MIN, n))
+        sys.exit(3)
     return FS_MIN
 
 

@@ -9,8 +9,13 @@ left:112 + padding30 + width730 = 右端872px、図案は right:64 + 400px = 左
 （what-is-fde・20260802-seisei-ai-gijiroku-domari など）。
 
 検査の理屈: 図案の線は opacity .5 で地色と混ざり RGB ≒ 153 になる。
-タイトルの墨は #2b2620（≒ 43）。**図案域に「最大値100未満の画素」があれば本文が入り込んでいる**。
-朱 #a63a24 は R=166 なので拾わない。目視でなく画素で判定できる。
+タイトルの墨は #2b2620（≒ 43）。**図案域に「最大値80未満の画素」があれば本文が入り込んでいる**。
+サブテキストのグレー #5c544a（≒92）は拾わない。朱 #a63a24 は R=166 なので拾わない。
+目視でなく画素で判定できる。
+
+締め直し（2026-08-09・クロスレビューで発覚）: 旧設定（x742起点・1画素飛ばし・閾値400）は
+走査が粗く、実際に本文が重なっていた `20260806-seihon-yomarenai.jpg`（重なり376px）を
+閾値400未満として見逃していた。図案の左端x736から全画素を走査し、閾値を50に締める。
 
 使い方:
     python scripts/eyecatch_check.py                 # assets/blog/*.jpg を全数検査
@@ -26,10 +31,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CANVAS = (1200, 630)
 # 図案の占有域（テキストが入ってきてはいけない範囲）
-X0, X1 = 742, 1140
+X0, X1 = 736, 1140
 Y0, Y1 = 90, 520
-INK_MAX = 100      # これ未満を「墨のテキスト」とみなす
-LIMIT = 400        # この画素数を超えたら重なりとする（アンチエイリアスの数十画素は許容）
+INK_MAX = 80       # これ未満を「墨のテキスト」とみなす
+LIMIT = 50         # この画素数を超えたら重なりとする（JPEGノイズの数画素は許容）
 
 
 def scan(path):
@@ -39,12 +44,12 @@ def scan(path):
         return None, "サイズが %s（想定 %s）" % (im.size, CANVAS)
     px = im.load()
     n = 0
-    for y in range(Y0, Y1, 2):
-        for x in range(X0, X1, 2):
+    for y in range(Y0, Y1):
+        for x in range(X0, X1):
             r, g, b = px[x, y]
             if max(r, g, b) < INK_MAX:
                 n += 1
-    return n * 4, None
+    return n, None
 
 
 def main():
