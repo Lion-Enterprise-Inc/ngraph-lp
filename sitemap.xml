@@ -47,7 +47,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260803-saitei-chingin-2026</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari</loc><lastmod>2026-08-02</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260802-openai-atlas-eol</loc><lastmod>2026-08-02</lastmod></url>
@@ -74,6 +74,7 @@
   <url><loc>https://ngraph.jp/blog/20260807-ai-approval-fatigue</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260807-jinbusoku-tosan</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260808-openai-astra-kengen</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260809-webmcp-toha</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260808-mcp-toha</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/ai-hojokin</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260726-claude-opus5-smb</loc><lastmod>2026-07-26</lastmod></url>

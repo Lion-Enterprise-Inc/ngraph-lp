@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き | NGraphブログ</title>
+<meta name="description" content="WebMCPは自社サイトの機能をAIエージェントに「ツール」として開放する仕組みです。2026年7月28日付W3Cドラフトの一次情報から、readOnlyHint・untrustedContentHint・exposedToという3つの「させない」設定と、ドラフト自身が挙げるリスク、公開前に決めるべき線引きを解説します。">
+<meta property="og:title" content="WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き | NGraphブログ">
+<meta property="og:description" content="WebMCPは自社サイトの機能をAIエージェントに「ツール」として開放する仕組みです。W3Cドラフトの一次情報から、3つの「させない」設定と公開前に決めるべき線引きを解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260809-webmcp-toha">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260809-webmcp-toha.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260809-webmcp-toha">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き",
+  "image": "https://ngraph.jp/assets/blog/20260809-webmcp-toha.jpg",
+  "description": "WebMCPは自社サイトの機能をAIエージェントに「ツール」として開放する仕組みです。2026年7月28日付W3Cドラフトの一次情報から、readOnlyHint・untrustedContentHint・exposedToという3つの「させない」設定と、ドラフト自身が挙げるリスク、公開前に決めるべき線引きを解説します。",
+  "datePublished": "2026-08-09",
+  "dateModified": "2026-08-09",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260809-webmcp-toha",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "WebMCPは今から対応すべきですか？", "acceptedAnswer": {"@type": "Answer", "text": "まだ早い段階です。ドラフト文書自体に「W3Cの標準ではなく標準化トラックにも乗っていない」と明記されており、Chrome 149でのオリジントライアル（期間限定の試験提供プログラム）段階です。今の時点でやるべきなのは実装ではなく、自社サイトでAIエージェントに何をさせるか・させないかを決めておくことです。"}},
+  {"@type": "Question", "name": "MCPとWebMCPは両方導入する必要がありますか？", "acceptedAnswer": {"@type": "Answer", "text": "役割が異なります。MCPは自社の社内システムをAIにつなぐための規格、WebMCPは自社サイトの機能をサイト訪問者のAIエージェントに開放するための規格です。同じ会社が両方を将来的に使う場面は考えられますが、現時点でどちらも実装している中小企業はほぼありません。まずどちらが自社の課題に近いかを整理することが先です。"}},
+  {"@type": "Question", "name": "既存のサイトを作り直す必要がありますか？", "acceptedAnswer": {"@type": "Answer", "text": "ドラフト段階で実装するとしても、既存サイトの作り直しは前提になっていません。WebMCPはJavaScriptでツールを追加登録する形の仕組みなので、位置づけとしては既存サイトへの機能追加です。ただし現段階でその追加実装に工数を割く判断自体が時期尚早です。"}},
+  {"@type": "Question", "name": "アクセシビリティとどう関係しますか？", "acceptedAnswer": {"@type": "Answer", "text": "ドラフトの定義には、ツールを呼び出す主体としてAIエージェントだけでなく「支援技術（スクリーンリーダーなど、障害のある利用者を補助するソフトウェア）」が明記されています。WebMCPで宣言したツールは、AIエージェント経由だけでなく支援技術からも呼び出される可能性がある設計です。"}},
+  {"@type": "Question", "name": "Declarative（宣言的）な書き方はできますか？", "acceptedAnswer": {"@type": "Answer", "text": "現行ドラフトではまだ定義されていません。HTMLに注釈を書くだけでツールを登録できるDeclarative方式は構想されていますが、ドラフト本文のその節は「entirely a TODO（まるごと未着手）」とだけ書かれています。今使えるのはJavaScriptでツールを1つずつ登録するImperative方式のみです。"}},
+  {"@type": "Question", "name": "導入したものをやめたくなったらどうすればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "登録したツールを取り下げれば済みます。まだドラフト段階で本番導入している中小企業はほぼ無いはずなので、現時点では「試したものをやめる」判断より「試す前に何を開放するかを決める」判断のほうが先に来ます。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き</h1>
+  <span class="a-date">2026.08.09 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260809-webmcp-toha.jpg" alt="WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き">
+
+<p><strong>WebMCP</strong>とは、自社のWebサイトに置いたJavaScript（Webページを動かすためのプログラミング言語）で、AIエージェントに実行させてよい機能を「ツール」として宣言できるようにする仕組みです。W3C（Webの技術標準を策定する国際組織）傘下のWeb Machine Learning Community Groupが、<strong>2026年7月28日付</strong>でドラフト（草案）文書として公開しました。まだ標準ではなく、標準化の道筋にすら乗っていない段階です。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・WebMCPが何を宣言する仕組みなのか、MCPとどう違うのか<br>
+・ドラフトが用意した「AIにさせない」ための3つの設定<br>
+・公開を検討する前に自社で決めておくべき線引き</div>
+
+<h2>WebMCPとは何か——「AIに優しいサイト」ではなく「AIに使わせる道具を宣言する」仕組み</h2>
+<p>WebMCPは、ぼんやりと「AIが読みやすいサイト」を作るための工夫ではありません。ドラフトの定義を訳すと、「Webサイトの機能を、自然言語（人間が普段使う言葉）による説明と構造化されたスキーマ（データの型や形式を決めた設計図）を持つJavaScriptの関数として、エージェント・ブラウザのエージェント・支援技術から呼び出せる形で公開する新しいインターフェース」です。何を公開するかをサイト側が1つずつ手で宣言する仕組みだ、という点がまず押さえるべき前提になります。</p>
+<p>この定義でもう1つ見落とされがちなのが、<strong>支援技術（スクリーンリーダーなど、視覚や操作に障害のある利用者を補助するソフトウェア）</strong>が呼び出し主体として名指しされていることです。WebMCPはAIエージェント専用の仕組みとして語られがちですが、ドラフト本文はAIエージェントと支援技術を並べて書いています。ツールをどう宣言するかは、AIへの窓口だけでなく、アクセシビリティの窓口も同時に設計することになります。</p>
+<p>ドラフトはツールを呼ぶ側を3つに分けて定義しています。<strong>agent</strong>は利用者の目標を理解し代わりに行動する自律的なアシスタント、<strong>browser's agent</strong>はブラウザ自身が提供するエージェント、そして<strong>AI platform</strong>の例としてOpenAIのChatGPT・AnthropicのClaude・GoogleのGeminiが名指しされています。「AI」とひとくくりにせず、誰がツールを呼ぶ可能性があるかを分けて考える必要がある、というのがドラフトの立て付けです。</p>
+
+<h2>AnthropicのMCPとは何が違うのか——動く場所が「サーバー」から「ブラウザ」へ</h2>
+<p>WebMCPという名前から連想するのは、Anthropicが2024年11月に公開したMCP（Model Context Protocol）です。両者の関係について、ドラフト本文は次のように明記しています。「Web pages that use WebMCP can be thought of as Model Context Protocol [MCP] servers that implement tools in client-side script instead of on the backend」（WebMCPを使うWebページは、バックエンドではなくクライアント側スクリプト——訪問者のブラウザ内で動くプログラム——でツールを実装したMCPサーバーだと考えられる）。これは筆者の推測ではなく、仕様本文が言っていることです。</p>
+<p>つまりMCPは「AIと社内の道具」を、サーバー側でつなぐ規格でした。WebMCPは同じ発想を、サイト訪問者のブラウザ側に持ち込んだものだと整理できます。誰が窓口を出すか、どこで動くかを比較すると次のようになります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>MCP</th><th>WebMCP</th></tr>
+<tr><td>誰が窓口を出すか</td><td>会社（社内システム側）</td><td>自社のWebサイト</td></tr>
+<tr><td>どこで動くか</td><td>サーバー（社内・クラウド）</td><td>訪問者のブラウザ内（クライアント側スクリプト）</td></tr>
+<tr><td>今の段階</td><td>公開済みの規格（2024年11月〜）</td><td>W3C標準でも標準化トラックでもない。2026年7月28日付ドラフト</td></tr>
+<tr><td>中小企業がやること</td><td>自社の道具をAIにつなぐか検討</td><td>AIに何をさせたい／させたくないかを言語化しておく</td></tr>
+</table></div>
+<p>MCPそのものの仕組みや、2026年7月28日版で何が変わったかは前回の記事「<a href="/blog/20260808-mcp-toha">MCPとは、AIに社内の道具を使わせる共通規格</a>」で扱っています。この記事ではWebMCPに絞って、「サイト側が何を開放し、何を開放しないか」を掘り下げます。</p>
+<p style="font-size:.85rem;color:var(--text-3)">自社サイトでAIに何をさせるかの整理から相談したい方は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">こちら（FDE型AI導入支援・無料相談）</a></p>
+
+<h2>今どの段階か——「W3C標準ではない」と文書自身が書いている</h2>
+<p>ドラフト文書は冒頭近くで、自らの立場をはっきり書いています。「It is not a W3C Standard nor is it on the W3C Standards Track」（W3Cの標準ではなく、標準化トラックにも乗っていない）。発行元はWeb Machine Learning Community Groupという1つの検討グループで、種別は「Draft Community Group Report（草案段階のコミュニティグループ報告書）」です。標準に向けた審査を経た文書ではありません。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">まだ標準ではない——この2年で起きたこと</p>
+<svg viewBox="0 0 1200 380" width="100%" style="min-width:640px" role="img" aria-label="まだ標準ではない——この2年で起きたこと"><line x1="110" y1="164" x2="1090" y2="164" stroke="#8a8172" stroke-width="1.5"/><line x1="150.0" y1="164" x2="150.0" y2="142" stroke="#a63a24" stroke-width="1.5"/><circle cx="150.0" cy="164" r="9" fill="#a63a24"/><text x="150.0" y="116" font-family="'Zen Old Mincho',serif" font-size="26" fill="#a63a24" font-weight="900" text-anchor="middle">11/25</text><text x="150.0" y="86" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#2b2620" font-weight="700" text-anchor="middle">AnthropicがMCPを公開</text><line x1="977.7049180327868" y1="164" x2="977.7049180327868" y2="186" stroke="#cfc5b4" stroke-width="1.5"/><circle cx="977.7049180327868" cy="164" r="7" fill="#cfc5b4"/><text x="977.7049180327868" y="212" font-family="'Zen Old Mincho',serif" font-size="26" fill="#5c544a" font-weight="900" text-anchor="middle">6/9</text><text x="977.7049180327868" y="242" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">Chrome 149でオリジントライアル開始を告知</text><line x1="1050.0" y1="164" x2="1050.0" y2="142" stroke="#cfc5b4" stroke-width="1.5"/><circle cx="1050.0" cy="164" r="7" fill="#cfc5b4"/><text x="1050.0" y="116" font-family="'Zen Old Mincho',serif" font-size="26" fill="#5c544a" font-weight="900" text-anchor="middle">7/28</text><text x="1050.0" y="86" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">W3C CGドラフト公開</text><text x="110" y="242" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#8a8172" font-weight="400" text-anchor="middle">2024年</text><text x="600.0" y="322" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">W3C標準でも標準化トラックでもない</text><text x="8" y="364" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Anthropic公式発表／Chrome for Developers／W3C Web Machine Learning Community Group</text></svg>
+</div>
+<p>実装面では、Chrome for Developersのブログ（2026年6月9日公開）が「Chrome 149からWebMCPのオリジントライアルに参加できる」と告知しています。<strong>オリジントライアル</strong>とは、正式リリース前の機能を限定したサイトで試せる期間限定のプログラムのことです。ブラウザベンダー1社が期間限定で試験提供している段階で、このブログ記事自体に具体的なAPIの呼び出しコード例は載っていません。</p>
+<p>仕様の中身も全部が決まっているわけではありません。HTMLに注釈を書くだけでツールを登録できる<strong>Declarative（宣言的）</strong>方式が構想されていますが、ドラフト本文はこの方式の実行手順について「登録されたツールについては、まだ定義されていない一連の『内部』ステップになる」と書き、Declarativeの節自体も「This section is entirely a TODO（この節はまるごと未着手）」とだけ記されています。今すぐ動くのは、標準的なJavaScriptでツールを1つずつ登録する<strong>Imperative（命令的）</strong>方式だけです。</p>
+<p>まとめると、標準化の手続き上も、ブラウザでの実装上も、仕様の中身自体も、いずれも「まだ実装する段階ではない」という同じ結論を指しています。ここで急ぐ理由はありません。</p>
+
+<h2>ドラフトが用意した3つの「させない」設定</h2>
+<p>ここが本題です。WebMCPのドラフトは、ツールを登録するときに付けられる目印（annotations）を用意しています。中心になるのは次の3つです。</p>
+<h3>readOnlyHintとuntrustedContentHint——2つとも初期値はfalse</h3>
+<p><strong>readOnlyHint</strong>（読み取り専用の目印）は、そのツールが読み取りだけで済むものか、状態を変更する可能性があるものかをAI側に伝える設定です。<strong>untrustedContentHint</strong>（信頼できない内容の目印）は、そのツールが返す内容を、無条件に信頼できる情報として扱ってはいけないという目印です。ドラフトを確認すると、この2つの初期値はどちらも<strong>false</strong>です。つまり何も指定しなければ、「読み取り専用ではない」「返す内容は信頼できるものとして扱われうる」という、より強い権限を持つ側の扱いになります。安全な側に倒すには、サイト側が明示的にtrueを指定する必要があります。</p>
+<h3>exposedTo——見せる相手のオリジンを絞る設定</h3>
+<p><strong>exposedTo</strong>は、登録したツールを誰に見せるかを、オリジン（URLのうちプロトコル・ドメイン・ポートの組み合わせで決まる「発行元」の単位）で指定できる設定です。既定では空のリストになっており、この場合は同一オリジンからであればツールが見えます。exposedToで特定のオリジンを指定する場合、そのオリジンが「potentially trustworthy（セキュアだと判断できる状態）」でなければSecurityErrorになります。WebMCP自体の利用にもSecureContext（HTTPS等のセキュアな通信環境）が必須で、見せる相手を絞る仕組みが複数の層で用意されていることになります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>設定名</th><th>何を宣言するか</th><th>効くリスク</th></tr>
+<tr><td>readOnlyHint</td><td>そのツールが読み取り専用かどうか（既定false）</td><td>意図しない状態変更</td></tr>
+<tr><td>untrustedContentHint</td><td>返す内容を信頼できる文脈として扱ってよいか（既定false）</td><td>プロンプトインジェクション</td></tr>
+<tr><td>exposedTo</td><td>どのオリジンにツールを見せるか（既定は空＝同一オリジンのみ）</td><td>意図しない相手への公開</td></tr>
+</table></div>
+<p>ここから見えてくるWebMCPの性格は、「AIに何でもさせるための規格」ではなく、「サイト側が何をさせるかを1つずつ宣言し、宣言していないことはさせない規格」だということです。2つの目印の初期値がどちらもfalse、見せる相手の初期値も空リストという設計は、機能を足すたびにサイト側が意識して選択することを前提にしています。</p>
+
+<h2>ドラフト自身が挙げているリスク4つ</h2>
+<p>ドラフトにはセキュリティ・プライバシー節があり、対処すべきリスクを自ら列挙しています。夢のような機能として書かれているわけではない、という点が重要です。</p>
+<h3>プロンプトインジェクションと意図の偽装</h3>
+<p><strong>プロンプトインジェクション</strong>（AIへの指示に見せかけた不正な入力を紛れ込ませる攻撃）について、ドラフトは「Tool descriptions and return values could be treated as trusted context（ツールの説明文や返り値が、信頼できる文脈としてそのまま扱われる可能性がある）」と指摘しています。ツールの説明や実行結果に含まれる文字列を、AIが指示だと誤認する余地があるということです。もう1つの<strong>Misrepresentation of Intent（意図の偽装）</strong>では、「no guarantee that a WebMCP tool's declared intent matches its actual behavior（WebMCPツールが宣言した意図と、実際の動作が一致する保証はない)」と明記されています。ツールの説明文に「これは読み取り専用です」と書いても、そのとおりに実装されているかは規格の外側、実装者の責任です。</p>
+<h3>プライバシー漏えい——サイト側が加害者になり得る指摘</h3>
+<p>3つ目の<strong>Privacy Leakage（プライバシー漏えい）</strong>は、他の3つと性格が違います。「Sites can design highly parameterized WebMCP tools to extract sensitive user data（サイトは、高度にパラメータ化されたWebMCPツールを設計することで、利用者の機微な情報を抜き出すことができる）」——これはAIや外部の攻撃者ではなく、<strong>サイトを作る側が意図的・非意図的に加害者側になり得る</strong>という指摘です。検索条件を細かく絞り込めるツールや、会員情報を条件検索できるツールを何気なく設計すると、悪意がなくても個人情報を引き出しやすい形になってしまう可能性があります。ここは自社がツールを設計するときに、自分たちの手元で気をつけるべき論点です。</p>
+<p>4つ目の<strong>Private Browsing（プライベートブラウジング）</strong>については、「may inadvertently leak information across this boundary（この境界を越えて意図せず情報が漏れる可能性がある）」とだけ記載されています。シークレットモードのような通常とは切り離された閲覧状態と、通常の閲覧状態の間で情報が混ざる懸念があると読めますが、具体的な対策はまだ書き込まれていません。</p>
+
+<h2>自社サイトで先に決めておく線引き</h2>
+<p>ここまでの内容を、実装の話ではなく「決めること」の話として並べ直すと、次の4つになります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">実装より先に決める4つ</p>
+<svg viewBox="0 0 1200 546" width="100%" style="min-width:640px" role="img" aria-label="実装より先に決める4つ"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#a63a24" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#a63a24" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">AIに何をさせるかを1つ選ぶ</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">それは読み取りだけで済むか決める</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">誰に見せるか（相手のオリジン）を決める</text><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">人が最後に確認する箇所を決める</text></svg>
+</div>
+<p>1つ目と2つ目はreadOnlyHintに、3つ目はexposedToに対応します。4つ目は規格には書かれていない、自社の運用として決めておくべき項目です。ツールの実行結果を誰も確認しないまま次の行動に使わせるのか、どこかで人の目を挟むのかは、WebMCPが決めることではなく自社が決めることです。</p>
+<div class="a-note"><strong>私たちの一次体験：</strong>私たちは自社ブログで<code>llms.txt</code>（AIに読ませてよい情報の一覧を書いたテキストファイル）を運用している。記事を出すたびに一覧の先頭に追加していて、AIに読ませたい入口を自分の手で管理している。やってみて分かったのは、面倒なのはファイルを置くことではなく、「何を載せて何を載せないか」を毎回決めることのほうだった。WebMCPで問われるのは、これと同じ種類の判断が、読ませるだけでなく「操作させる」側にも来るということだ。</div>
+
+<h2>よくある失敗・NGパターン</h2>
+<p>ドラフトの記述から導ける範囲で、検討段階の会社が陥りやすいパターンを挙げます。</p>
+<ol>
+<li><strong>①まだ標準でないものに実装工数を割く。</strong>Chrome 149限定のオリジントライアルであり、他のブラウザでの対応は本記事の一次情報からは確認できていません。今の段階でエンジニアの工数を確保するのは時期尚早です。</li>
+<li><strong>②readOnlyHintを付けずに登録する。</strong>初期値はfalseなので、意識して指定しない限り「読み取り専用ではない」扱いのままツールが公開されてしまいます。</li>
+<li><strong>③exposedToを検討せずに公開する。</strong>既定は同一オリジンのみですが、将来的に外部と連携するときにオリジンの精査を怠ると、意図しない相手にツールが見える設計になり得ます。</li>
+<li><strong>④ツールの説明文をAIが必ず信じると仮定する。</strong>Misrepresentation of Intentとして明記されている通り、説明文と実際の動作が一致する保証は規格上ありません。説明を書いて終わりにせず、実装が説明どおりかを自分たちで確認する前提に立つ必要があります。</li>
+</ol>
+<p style="font-size:.85rem;color:var(--text-3)">自社サイトで何を開放し何を開放しないかの設計から相談したい方は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">こちら（FDE型AI導入支援・無料相談）</a></p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>WebMCPは今から対応すべきですか？</summary><p>まだ早い段階です。ドラフト文書自体に「W3Cの標準ではなく標準化トラックにも乗っていない」と明記されており、Chrome 149でのオリジントライアル（期間限定の試験提供プログラム）段階です。今の時点でやるべきなのは実装ではなく、自社サイトでAIエージェントに何をさせるか・させないかを決めておくことです。</p></details>
+<details><summary>MCPとWebMCPは両方導入する必要がありますか？</summary><p>役割が異なります。MCPは自社の社内システムをAIにつなぐための規格、WebMCPは自社サイトの機能をサイト訪問者のAIエージェントに開放するための規格です。同じ会社が両方を将来的に使う場面は考えられますが、現時点でどちらも実装している中小企業はほぼありません。まずどちらが自社の課題に近いかを整理することが先です。</p></details>
+<details><summary>既存のサイトを作り直す必要がありますか？</summary><p>ドラフト段階で実装するとしても、既存サイトの作り直しは前提になっていません。WebMCPはJavaScriptでツールを追加登録する形の仕組みなので、位置づけとしては既存サイトへの機能追加です。ただし現段階でその追加実装に工数を割く判断自体が時期尚早です。</p></details>
+<details><summary>アクセシビリティとどう関係しますか？</summary><p>ドラフトの定義には、ツールを呼び出す主体としてAIエージェントだけでなく「支援技術（スクリーンリーダーなど、障害のある利用者を補助するソフトウェア）」が明記されています。WebMCPで宣言したツールは、AIエージェント経由だけでなく支援技術からも呼び出される可能性がある設計です。</p></details>
+<details><summary>Declarative（宣言的）な書き方はできますか？</summary><p>現行ドラフトではまだ定義されていません。HTMLに注釈を書くだけでツールを登録できるDeclarative方式は構想されていますが、ドラフト本文のその節は「entirely a TODO（まるごと未着手）」とだけ書かれています。今使えるのはJavaScriptでツールを1つずつ登録するImperative方式のみです。</p></details>
+<details><summary>導入したものをやめたくなったらどうすればいいですか？</summary><p>登録したツールを取り下げれば済みます。まだドラフト段階で本番導入している中小企業はほぼ無いはずなので、現時点では「試したものをやめる」判断より「試す前に何を開放するかを決める」判断のほうが先に来ます。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>WebMCPは、自社サイトの機能をAIエージェント（と支援技術）に「ツール」として宣言する仕組みです。仕様本文が自ら「バックエンドではなくクライアント側でツールを実装したMCPサーバー」と説明しているとおり、MCPと同じ発想をブラウザ側に持ち込んだものだと整理できます。用意されている3つの設定——readOnlyHint・untrustedContentHint・exposedTo——はいずれも初期値が制限的な側にあり、規格そのものが「宣言していないことはさせない」方向に設計されています。ドラフトはプロンプトインジェクション・意図の偽装・プライバシー漏えい・プライベートブラウジングという4つのリスクも自ら列挙しており、特にプライバシー漏えいはサイトを作る側が加害者になり得るという指摘です。</p>
+<p>そして何より、文書自身が「W3Cの標準ではなく標準化トラックにも乗っていない」と書いています。今の段階で中小企業がやるべきなのは実装ではなく、自社サイトでAIに何をさせたいか、何をさせたくないかを言語化しておくことです。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのサイトでAIに何をさせるか」から、一緒に整理します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・W3C Web Machine Learning Community Group「<a href="https://webmachinelearning.github.io/webmcp/" target="_blank" rel="noopener">WebMCP</a>」ドラフト（2026年7月28日）<br>
+・Chrome for Developers「<a href="https://developer.chrome.com/blog/ai-webmcp-origin-trial" target="_blank" rel="noopener">Join the WebMCP origin trial</a>」（2026年6月9日）<br>
+・Anthropic「<a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">Introducing the Model Context Protocol</a>」（2024年11月25日）／Model Context Protocol 公式ドキュメント：<a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">https://modelcontextprotocol.io/</a><br>
+・関連記事：<a href="/blog/20260808-mcp-toha">MCPとは、AIに社内の道具を使わせる共通規格</a>（当ブログ）／<a href="/blog/what-is-fde">FDEとは何か</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
