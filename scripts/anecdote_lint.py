@@ -19,6 +19,11 @@ import os
 import re
 import sys
 
+# NGを出す行に「—」が入っており、Windowsの既定(cp932)だと
+# 違反を見つけた瞬間にUnicodeEncodeErrorで落ちていた（2026-08-08）。
+# 検査が「見つけると落ちる」のは検査になっていないので、出力をUTF-8に固定する。
+sys.stdout.reconfigure(encoding="utf-8")
+
 TOKENS = {
     "12店舗": r"12\s*店舗",
     "原価Excel": r"原価[^。]{0,12}(Excel|エクセル)",
