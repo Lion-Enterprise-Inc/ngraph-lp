@@ -44,7 +44,7 @@
       "serviceType": "AI adoption support / embedded engineering",
       "provider": { "@type": "Organization", "name": "NGraph Inc.", "url": "https://ngraph.jp/" },
       "areaServed": "JP",
-      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/en/entry.html", "availableLanguage": ["en","ja"] },
+      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/en/entry", "availableLanguage": ["en","ja"] },
       "description": "Engineers embed in accounting, sales, and production teams — prompt design, AI agents, system integration, and adoption. Fully online across Japan."
     },
     {
@@ -91,7 +91,7 @@
 .fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
 .fde-def p{font-size:.9rem;color:var(--text-2);line-height:2.1}
 .fde-def p strong{color:var(--text);font-weight:700}
-.cta-micro{font-size:.74rem;color:var(--text-3);margin-top:14px;letter-spacing:.04em}
+/* .cta-micro は css/ngraph-zen.css が持つ（ここに重複定義があり、共有CSSの修正が効かなかった） */
 .mid-cta{text-align:center;margin-top:52px}
 .mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
 /* Before/After */
@@ -228,7 +228,7 @@
       <a href="#download">Checklist</a>
       <a href="#price">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="/en/entry.html" class="nav-cta">Contact</a>
+      <a href="/en/entry" class="nav-cta">Contact</a>
       <span class="lang-switch"><a href="/fde/">JA</a><span class="sep">/</span><span class="on">EN</span></span>
     </nav>
   </div>
@@ -242,7 +242,7 @@
       <p class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">Engineers in your workplace,</span> <span class="nb">until AI <span class="hl">actually works</span>.</span></p>
       <p class="lead">"We signed up for AI, but nobody uses it." Our engineers enter your daily work and leave AI in a form that <strong>actually gets used</strong>.</p>
       <div class="hero-cta">
-        <a href="/en/entry.html" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+        <a href="/en/entry" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#shindan" class="btn btn-ghost">Try the 1-minute AI check</a>
       </div>
       <p class="cta-micro">Just want the material? — <a href="#download" style="text-decoration:underline">AI Readiness Checklist (free PDF)</a></p>
@@ -588,7 +588,7 @@
     </div>
     <div class="mid-cta reveal">
       <p>ROI ≈ hours saved × labor cost.</p>
-      <a href="/en/entry.html" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      <a href="/en/entry" class="btn btn-primary">Talk to us — free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
     </div>
   </div>
 </section>
@@ -621,7 +621,7 @@
           <input type="text" name="Company / Store" placeholder="Company (required)" required>
           <input type="email" name="Email" placeholder="Email (required)" required>
           <button type="submit" class="btn btn-primary" id="dlSubmit">Download free PDF</button>
-          <p class="lead-note">By submitting, you agree to our <a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">privacy policy</a>. No sales calls.</p>
+          <p class="lead-note">By submitting, you agree to our <a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">privacy policy</a>. No sales calls.</p>
         </form>
         <div class="lead-done" id="dlDone" style="display:none">
           <h4>Your download is ready</h4>
@@ -676,7 +676,7 @@
         <label>What are you struggling with?<span class="req">required</span></label>
         <textarea name="Message" placeholder="e.g. We rolled out ChatGPT company-wide but nobody uses it. We want to start with accounting." required></textarea>
         <button type="submit" class="btn btn-primary" id="lpSubmit">Send — it's free</button>
-        <p class="lead-note" style="margin-top:12px">By sending, you agree to our <a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</p>
+        <p class="lead-note" style="margin-top:12px">By sending, you agree to our <a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</p>
       </form>
       <div class="lead-done" id="lpDone" style="display:none">
         <h4>Message sent</h4>
@@ -697,9 +697,9 @@
     <div class="footer-links">
       <a href="/en/">Corporate site</a>
       <a href="/fde/">日本語版 (JA)</a>
-      <a href="/recruit.html" target="_blank" rel="noopener">Careers</a>
-      <a href="/en/entry.html">Contact</a>
-      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/recruit" target="_blank" rel="noopener">Careers</a>
+      <a href="/en/entry">Contact</a>
+      <a href="/privacy">Privacy Policy</a>
     </div>
   </div>
   <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
@@ -917,7 +917,7 @@ function renderResult(){
     +'<input type="text" id="lgCompany" placeholder="Company (required)">'
     +'<input type="email" id="lgEmail" placeholder="Email (required)">'
     +'<button class="btn btn-primary" id="lgSend">Get the detailed report</button>'
-    +'<p class="lead-note">No spam, ever. <a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a></p>'
+    +'<p class="lead-note">No spam, ever. <a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a></p>'
     +'</div>'
     +'<button class="q-back" id="qRetry">← Take it again</button>';
   drawRadar(sc);

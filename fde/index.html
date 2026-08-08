@@ -47,7 +47,7 @@
       "provider": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
       "areaServed": "JP",
       "audience": { "@type": "BusinessAudience", "name": "中小企業・中堅企業" },
-      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/entry.html", "availableLanguage": ["ja"] },
+      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/entry", "availableLanguage": ["ja"] },
       "description": "社内に散らばった知識を、日付と根拠のついた「AIが読める正本」に整理し、入れる前と答える前の2か所に検問を設け、どのAIからも同じ根拠で参照できる読み口をつくる中小企業向けAI導入支援。特定のAIに依存しない設計で、資産は顧客企業側に残る。全国オンライン対応。"
     },
     {
@@ -56,7 +56,7 @@
       "name": "髙橋 真吾",
       "jobTitle": "代表取締役",
       "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
-      "url": "https://ngraph.jp/company.html",
+      "url": "https://ngraph.jp/company",
       "knowsAbout": ["AI導入支援", "Forward Deployed Engineering", "業務プロセスのAI化", "社内ナレッジの構造化", "AIが参照する正本の設計", "飲食業のAI活用"]
     },
     {
@@ -103,7 +103,7 @@
 .fde-def .fd-read{font-size:.78rem;color:var(--text-3);margin-bottom:16px}
 .fde-def p{font-size:.9rem;color:var(--text-2);line-height:2.1}
 .fde-def p strong{color:var(--text);font-weight:700}
-.cta-micro{font-size:.74rem;color:var(--text-3);margin-top:14px;letter-spacing:.04em}
+/* .cta-micro は css/ngraph-zen.css が持つ（ここに重複定義があり、共有CSSの修正が効かなかった） */
 .mid-cta{text-align:center;margin-top:52px}
 .mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
 /* Before/After */
@@ -131,7 +131,10 @@
 .q-back{margin-top:18px;background:none;border:none;font-size:.78rem;color:var(--text-3);cursor:pointer;font-family:inherit}
 .q-back:hover{color:var(--accent)}
 .q-inds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.q-inds button{text-align:left;padding:13px 14px;border:1px solid var(--border-strong);border-radius:3px;background:rgba(255,255,255,.6);font-size:.86rem;line-height:1.55;color:var(--text);cursor:pointer;font-family:inherit;overflow-wrap:anywhere;transition:border-color .15s,background .15s}
+.q-inds button{text-align:left;padding:13px 14px;border:1px solid var(--border-strong);border-radius:3px;background:rgba(255,255,255,.6);font-size:.86rem;line-height:1.55;color:var(--text);cursor:pointer;font-family:inherit;word-break:keep-all;overflow-wrap:normal;transition:border-color .15s,background .15s}
+/* 2列グリッドで幅が足りず「ビルメンテ／ナンス」「ハウスクリー／ニング」が割れていた（320〜375px）。
+   語の内側では折らず、「・」で折らせる。狭い実機では1列に落として語を保つ */
+@media(max-width:380px){.q-inds{grid-template-columns:1fr}}
 .q-inds button:hover{border-color:var(--accent);background:rgba(166,58,36,.05)}
 .result-mirror{font-size:.86rem;color:var(--text-2);line-height:1.95;margin-top:18px;padding:14px 16px;background:rgba(166,58,36,.05);border-left:2px solid var(--accent);border-radius:0 3px 3px 0}
 .result-tips{margin-top:22px}
@@ -249,7 +252,7 @@
       <a href="#price">料金</a>
       <a href="#faq">FAQ</a>
       <a href="/blog/">ブログ</a>
-      <a href="/entry.html" class="nav-cta">無料相談</a>
+      <a href="/entry" class="nav-cta">無料相談</a>
       <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/fde/">EN</a></span>
     </nav>
   </div>
@@ -263,7 +266,7 @@
       <p class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">記憶を、</span><span class="nb">AIの<span class="hl">中</span>に置かない。</span></p>
       <p class="lead">賢いAIが毎朝ゼロから始まるのは、能力の問題ではありません。<strong>記憶をAIの中に置いている</strong>からです。私たちは会社の知識を「AIが読める正本」にして、どのAIからも同じ根拠で仕事を始められる状態——<strong>会社の脳</strong>をつくります。</p>
       <div class="hero-cta">
-        <a href="/entry.html" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+        <a href="/entry" class="btn btn-primary">無料相談はこちら <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="#shindan" class="btn btn-ghost">1分で無料AI診断を試す</a>
       </div>
       <p class="cta-micro">まずは資料だけ見たい方へ — <a href="#download" style="text-decoration:underline">AI導入チェックリスト（無料PDF）</a></p>
@@ -573,12 +576,12 @@
       </div>
     </div>
     <div class="article-links reveal">
-      <a href="/blog/what-is-fde.html">FDE（フォワード・デプロイド・エンジニア）とは？ →</a>
-      <a href="/blog/why-ai-stalls.html">AIを導入したのに現場で使われない3つの理由 →</a>
-      <a href="/blog/20260722-sme-ai-adoption.html">中小企業のAI導入率は20.4%——調査の読み解き →</a>
-      <a href="/blog/ai-cost.html">AI導入支援の費用はどう考えればいいか →</a>
-      <a href="/blog/keiri-ai.html">経理業務でAIに任せられること・任せられないこと →</a>
-      <a href="/blog/ai-and-humans.html">AIと人間の本当の分担——現場で決めた線引き →</a>
+      <a href="/blog/what-is-fde">FDE（フォワード・デプロイド・エンジニア）とは？ →</a>
+      <a href="/blog/why-ai-stalls">AIを導入したのに現場で使われない3つの理由 →</a>
+      <a href="/blog/20260722-sme-ai-adoption">中小企業のAI導入率は20.4%——調査の読み解き →</a>
+      <a href="/blog/ai-cost">AI導入支援の費用はどう考えればいいか →</a>
+      <a href="/blog/keiri-ai">経理業務でAIに任せられること・任せられないこと →</a>
+      <a href="/blog/ai-and-humans">AIと人間の本当の分担——現場で決めた線引き →</a>
     </div>
   </div>
 </section>
@@ -623,8 +626,8 @@
       <div class="card reveal"><h3 style="font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:10px">まず無料相談</h3><p style="font-size:.85rem;color:var(--text-2);line-height:2">「目安だけ知りたい」でも大丈夫です。</p></div>
     </div>
     <div class="mid-cta reveal">
-      <p>効果は「削減される作業時間 × 人件費」で概算できます。<br>例えば「毎日30分の転記作業」なら年間約120時間——時給2,000円換算で<strong>年間約24万円分</strong>の作業です。<br><span style="font-size:.8rem;color:var(--text-3)">費用の考え方と使える補助金は <a href="/blog/ai-cost.html" style="text-decoration:underline">解説記事</a> にまとめています。</span></p>
-      <a href="/entry.html" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      <p>効果は「削減される作業時間 × 人件費」で概算できます。<br>例えば「毎日30分の転記作業」なら年間約120時間——時給2,000円換算で<strong>年間約24万円分</strong>の作業です。<br><span style="font-size:.8rem;color:var(--text-3)">費用の考え方と使える補助金は <a href="/blog/ai-cost" style="text-decoration:underline">解説記事</a> にまとめています。</span></p>
+      <a href="/entry" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       <p class="cta-micro">オンライン30分から。画面共有で、実際に動くものをお見せできます</p>
     </div>
   </div>
@@ -658,7 +661,7 @@
           <input type="text" name="会社名・店舗名" placeholder="会社名（必須）" required>
           <input type="email" name="メールアドレス" placeholder="メールアドレス（必須）" required>
           <button type="submit" class="btn btn-primary" id="dlSubmit">無料でダウンロードする</button>
-          <p class="lead-note"><a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください。営業のお電話はいたしません</p>
+          <p class="lead-note"><a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください。営業のお電話はいたしません</p>
         </form>
         <div class="lead-done" id="dlDone" style="display:none">
           <h4>ダウンロードの準備ができました</h4>
@@ -713,7 +716,7 @@
         <label>お困りごと・相談したいこと<span class="req">必須</span></label>
         <textarea name="お問い合わせ内容" placeholder="例：ChatGPTを全社契約したが現場で使われていない。経理から始めたい。" required></textarea>
         <button type="submit" class="btn btn-primary" id="lpSubmit">無料相談を送信する</button>
-        <p class="lead-note" style="margin-top:12px"><a href="/privacy.html" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください</p>
+        <p class="lead-note" style="margin-top:12px"><a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください</p>
       </form>
       <div class="lead-done" id="lpDone" style="display:none">
         <h4>送信完了しました</h4>
@@ -734,10 +737,10 @@
     <div class="footer-links">
       <a href="/">コーポレートサイト</a>
       <a href="/blog/">ブログ</a>
-      <a href="/recruit.html" target="_blank" rel="noopener">採用</a>
-      <a href="/company.html" target="_blank" rel="noopener">会社概要</a>
-      <a href="/entry.html">お問い合わせ</a>
-      <a href="/privacy.html">プライバシーポリシー</a>
+      <a href="/recruit" target="_blank" rel="noopener">採用</a>
+      <a href="/company" target="_blank" rel="noopener">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
     </div>
   </div>
   <div class="footer-copy">&copy; 2025 NGraph Inc.</div>

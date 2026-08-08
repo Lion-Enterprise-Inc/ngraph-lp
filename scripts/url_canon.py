@@ -30,8 +30,14 @@ SKIP_NAMES = {"index-old.html", "ngraph-lp-v3.html"}
 
 
 def targets():
-    files = [p for p in ROOT.glob("*.html") if p.name not in SKIP_NAMES]
-    files += sorted(ROOT.glob("blog/*.html"))
+    # 配信される .html を全部見る。以前は「ルート直下 + blog/」だけを列挙していたため、
+    # fde/ と en/ が対象外で、/entry.html 等の307経由リンクが残っていた（2026-08-08発見）。
+    # 列挙ではなく rglob にしてあるので、新しいディレクトリを足しても自動で対象になる。
+    files = [
+        p
+        for p in sorted(ROOT.rglob("*.html"))
+        if p.name not in SKIP_NAMES and "__pycache__" not in p.parts
+    ]
     # llms.txt はAI検索クローラ向けの正本。2026-08-08まで対象外で、44URL全部が
     # .html 付き＝307経由のURLを名乗っていた（検査の穴だった）。
     for extra in ("sitemap.xml", "_redirects", "llms.txt"):

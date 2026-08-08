@@ -350,7 +350,16 @@ img{max-width:100%;display:block}
 .article-wrap .a-back:hover{color:var(--accent)}
 
 /* ── conversion: 追従CTA・マイクロコピー・中間CTA ── */
-.cta-micro{font-size:.74rem;color:var(--text-3);margin-top:14px;letter-spacing:.04em}
+/* .hero-cta は旧 css/style.css にしか定義が無く、現行の ngraph-zen.css では未定義だった
+   （2026-08-08発見）。display:block のまま inline-flex のボタンが2つ並ぶので、
+   SPでは上下が完全密着（間隔0px）、PCでは横4px（HTMLの改行由来の空白だけ）になり、
+   リード文との間も0pxだった。トップ・fde・en・en/fde の4ページが同じ状態。 */
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero-cta .btn{flex:0 0 auto}
+.cta-micro{font-size:.8rem;color:var(--text-3);margin-top:16px;letter-spacing:.04em;word-break:keep-all}
+/* マイクロコピーは幅が狭く、body の overflow-wrap:anywhere でカタカナ語が割れる
+   （「AI導入チェック／リスト」）。語の内側で折らせない */
+.cta-micro a{overflow-wrap:normal}
 .mid-cta{text-align:center;margin-top:52px}
 .mid-cta p{font-family:var(--serif);font-size:.98rem;color:var(--text-2);margin-bottom:20px;line-height:1.9}
 .float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
