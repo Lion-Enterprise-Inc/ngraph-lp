@@ -615,9 +615,88 @@ def fig_dot(d, o):
     return "".join(parts)
 
 
+def parse_timeline(s):
+    """timeline用 "2026-08-25=デジタル化・AI導入補助金 1次締切,..." を (日付, ラベル) に。"""
+    import datetime
+    rows = []
+    for part in s.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "=" not in part:
+            sys.exit('timeline の --data は "YYYY-MM-DD=出来事" の形にする: ' + part)
+        raw, label = part.split("=", 1)
+        try:
+            dt = datetime.date.fromisoformat(raw.strip())
+        except ValueError:
+            sys.exit(f"日付が YYYY-MM-DD になっていない: {raw}")
+        rows.append((dt, label.strip(), raw.strip()))
+    if len(rows) < 2:
+        sys.exit("timeline は --data を2件以上にする")
+    return sorted(rows, key=lambda r: r[0])
+
+
+def fig_timeline(d, o):
+    """日付の軸に出来事を置く。締切・公募・発効日など「いつ何が起きるか」用。
+
+    ラベルは軸の上下へ交互に出す（横に密集しても重ならない）。
+    """
+    lo, hi = d[0][0], d[-1][0]
+    span = max(1, (hi - lo).days)
+    x0, x1 = 150, o["w"] - 150
+    cy = (o["body_top"] + o["body_bottom"]) // 2
+    parts = [f'<line x1="{x0 - 40}" y1="{cy}" x2="{x1 + 40}" y2="{cy}" '
+             f'stroke="{FAINT}" stroke-width="1.5"/>']
+    for i, (dt, label, _raw) in enumerate(d):
+        x = x0 + (x1 - x0) * (dt - lo).days / span
+        hot = i < o["hot"]
+        col = ACCENT if hot else DIM
+        up = i % 2 == 0                      # 上下交互
+        ytxt = cy - 34 if up else cy + 34
+        parts.append(f'<line x1="{x}" y1="{cy}" x2="{x}" y2="{ytxt + (12 if up else -12)}" '
+                     f'stroke="{col}" stroke-width="1.5"/>')
+        parts.append(f'<circle cx="{x}" cy="{cy}" r="{9 if hot else 7}" fill="{col}"/>')
+        parts.append(text(x, ytxt - (14 if up else -14), f"{dt.month}/{dt.day}",
+                          26, col if hot else SUB, 900, "middle", SERIF))
+        # 端の点はラベルが画面外に出るので、寄せ方を切り替える（左端で見切れた 2026-08-08）
+        half = tw(label, 19) / 2
+        lx, anchor = x, "middle"
+        if x - half < 24:
+            lx, anchor = 24, "start"
+        elif x + half > o["w"] - 24:
+            lx, anchor = o["w"] - 24, "end"
+        parts.append(text(lx, ytxt + (-44 if up else 44), label, 19,
+                          INK if hot else SUB, 700 if hot else 500, anchor))
+    parts.append(text(x0 - 40, cy + 78, f"{lo.year}年", 17, FAINT, 400, "middle"))
+    return "".join(parts)
+
+
+def fig_flow(d, o):
+    """番号のついた手順。縦に積む（横組みだと長いラベルが入らずSP幅で潰れる）。
+
+    --data "業務を選ぶ=1,現状を測る=2,..." の値は表示順のためだけに使う。
+    """
+    cx = 190
+    step = min(112, max(76, (o["body_bottom"] - o["body_top"]) // max(1, len(d))))
+    top = o["body_top"] + step // 2
+    parts = []
+    for i, (label, _v, _raw) in enumerate(d):
+        cy = top + i * step
+        hot = i < o["hot"]
+        col = ACCENT if hot else DIM
+        if i < len(d) - 1:
+            parts.append(f'<line x1="{cx}" y1="{cy + 30}" x2="{cx}" y2="{cy + step - 30}" '
+                         f'stroke="{FAINT}" stroke-width="1.5"/>')
+        parts.append(f'<circle cx="{cx}" cy="{cy}" r="27" fill="none" stroke="{col}" stroke-width="2.5"/>')
+        parts.append(text(cx, cy + 12, str(i + 1), 30, col, 900, "middle", SERIF))
+        parts.append(text(cx + 56, cy + 11, label, 27, INK, 700))
+    return "".join(parts)
+
+
 TYPES = {"bar": fig_bar, "gap": fig_gap, "slope": fig_slope, "line": fig_line,
          "stack": fig_stack, "ratio": fig_ratio, "matrix": fig_matrix,
-         "waterfall": fig_waterfall, "dot": fig_dot}
+         "waterfall": fig_waterfall, "dot": fig_dot,
+         "timeline": fig_timeline, "flow": fig_flow}
 
 
 # ---------------------------------------------------------------- 組み立て
@@ -656,6 +735,11 @@ def build_svg(kind, d, o):
         elif kind == "gap":
             # 棒の最大高210＋上の数値と下のラベル分。630だと棒の下が大きく空く
             h = o["body_top"] + 320 + foot_space
+        elif kind == "flow":
+            h = o["body_top"] + len(d) * 112 + foot_space
+            h = max(h, 300)
+        elif kind == "timeline":
+            h = o["body_top"] + 240 + foot_space
         elif kind == "dot":
             # 段の数は中身で決まる（点が近いほど増える）ので高さも追従させる
             p = dot_place(d, o)
@@ -775,7 +859,12 @@ def main():
          "axis": a.axis, "marks": marks, "hot": a.hot, "ink_last": a.ink_last,
          "unit": a.unit, "w": a.w, "h": a.h, "diff": a.diff, "bare": a.bare,
          "ink_row": a.ink_row, "tag_row": a.tag_row, "cols": a.cols, "ref": ref}
-    d = parse_slope(a.data) if a.type == "slope" else parse_data(a.data)
+    if a.type == "slope":
+        d = parse_slope(a.data)
+    elif a.type == "timeline":
+        d = parse_timeline(a.data)
+    else:
+        d = parse_data(a.data)
     svg = build_svg(a.type, d, o)
 
     if a.svg or (a.out and a.out.lower().endswith(".svg")):
