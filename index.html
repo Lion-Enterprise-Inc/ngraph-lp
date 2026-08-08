@@ -47,7 +47,9 @@
 @media(prefers-reduced-motion:reduce){.pat.kodama svg{animation:none}}
 /* トップ専用: 炎のヒーロービジュアルを大きく（2026-08-08 髙橋さん指示「どんと」）。
    .hero-visual は共有CSSで fde の五重塔canvasと共用のため、ここで上書きする */
-.hero-visual{width:min(62vw,960px);height:min(100vh,900px);top:-70px;right:-9%;opacity:1}
+/* right はコンテナ(最大1120px)基準の%だと広い画面で相対的に左へ寄るので、
+   ビューポート基準の式にして炎(PNG内53%,56%)がどの幅でも右側おおよそ73%に来るようにする */
+.hero-visual{width:min(62vw,960px);height:min(100vh,900px);top:0;right:calc(500px - 50vw);opacity:1}
 .hero-visual img{
   -webkit-mask-image:radial-gradient(ellipse 64% 64% at 50% 46%,#000 56%,transparent 80%);
   mask-image:radial-gradient(ellipse 64% 64% at 50% 46%,#000 56%,transparent 80%)}

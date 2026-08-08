@@ -75,7 +75,9 @@
 <style>
 /* ── /fde/ 専用スタイル（zen補完） ── */
 @media(min-width:901px){
-  .hero-visual{position:fixed;top:64px} /* 五重塔=その場に常駐。スクロール量でフェード(可逆) */
+  /* fixedはビューポート基準のため、広い画面では right:-2% が右端に張り付き
+     本文との間に空白ができる。本文右端〜画面右端の中間へ寄せる（狭幅は従来位置をmaxで維持） */
+  .hero-visual{position:fixed;top:64px;right:max(calc(25vw - 412px), -2%)}
 }
 .lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.75rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
