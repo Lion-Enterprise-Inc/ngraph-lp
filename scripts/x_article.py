@@ -22,7 +22,11 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
+import tempfile
+import time
 
 from bs4 import BeautifulSoup, NavigableString
 
@@ -34,6 +38,68 @@ SITE = "https://ngraph.jp"
 MEDIA_URL = "https://api.x.com/2/media/upload"
 DRAFT_URL = "https://api.x.com/2/articles/draft"
 PUBLISH_URL = "https://api.x.com/2/articles/{article_id}/publish"
+
+EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
+
+# 記事本文の図（.a-fig-wrap 内のインラインSVG）をX添付用のPNGにするときの台紙。
+# 本文のSVGは --bare（地色・枠・見出し・署名なし）なので、ここで単体1枚に仕立て直す。
+FIG_CARD = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#f6f2e9}
+body{width:%(w)dpx;height:%(h)dpx;overflow:hidden;font-family:'Zen Kaku Gothic New',sans-serif}
+.card{position:relative;height:100%%;padding:44px 52px 34px}
+.card::before{content:"";position:absolute;inset:22px;border:1px solid rgba(166,58,36,.24);pointer-events:none}
+h1{font-family:'Zen Old Mincho',serif;font-weight:900;font-size:40px;line-height:1.34;
+   color:#2b2620;text-align:center;margin-bottom:26px}
+svg{display:block;width:100%%;height:auto}
+.sig{margin-top:22px;text-align:right;font-family:'Zen Old Mincho',serif;
+     font-size:18px;font-weight:700;color:#8a8172}
+</style></head><body><div class="card"><h1>%(title)s</h1>%(svg)s
+<div class="sig">NGraph. ngraph.jp</div></div></body></html>"""
+
+
+def fig_height(title, svg, w=1200):
+    """台紙の高さを中身から決める（固定だと図の下に死んだ余白が残る）。"""
+    inner = w - 52 * 2                      # .card の左右padding
+    m = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', svg)
+    svg_h = float(m.group(2)) * inner / float(m.group(1)) if m else 560.0
+    lines = max(1, -(-len(title) // max(1, int(inner / 40))))   # 40px和文＝1文字40px相当
+    return int(44 + lines * 54 + 26 + svg_h + 22 + 27 + 34)
+
+
+def render_fig(title, svg, out, w=1200):
+    """図1点をPNGで書き出す。ブラウザペイン起動中でも落ちないよう毎回使い捨てプロファイルを使う。"""
+    tmpdir = tempfile.gettempdir()
+    stamp = int(time.time() * 1000)
+    src = os.path.join(tmpdir, "ngxfig_%d.html" % stamp)
+    png = os.path.join(tmpdir, "ngxfig_%d.png" % stamp)
+    h = fig_height(title, svg, w)
+    open(src, "w", encoding="utf-8").write(
+        FIG_CARD % {"w": w, "h": h, "title": esc(title), "svg": svg})
+    for _ in range(3):
+        udd = tempfile.mkdtemp(prefix="ngxfig_udd_")
+        subprocess.run([EDGE, "--headless=new", "--no-sandbox", "--disable-gpu",
+                        "--disable-dev-shm-usage", "--hide-scrollbars",
+                        "--user-data-dir=" + udd, "--window-size=%d,%d" % (w, h),
+                        "--virtual-time-budget=10000", "--screenshot=" + png,
+                        "file:///" + src.replace("\\", "/")],
+                       check=False, capture_output=True)
+        for _ in range(6):
+            if os.path.exists(png) and os.path.getsize(png) > 5000:
+                break
+            time.sleep(1)
+        if os.path.exists(png) and os.path.getsize(png) > 5000:
+            break
+    # returncode ではなく出力ファイルの実サイズで判定する（Edgeは無言で失敗する）
+    if not (os.path.exists(png) and os.path.getsize(png) > 5000):
+        sys.exit(f"図の書き出しに失敗した: {out}（Edgeのパスを確認）")
+    os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
+    shutil.copyfile(png, out)
+    os.remove(src)
+    os.remove(png)
+
 
 # B型に載せるH2（この3つだけ。「その他の注目ニュース」は本家記事に残す）
 KEEP_HEADINGS = ("何が起きたか", "なぜ重要か", "中小企業は何をすべきか")
@@ -284,7 +350,21 @@ def build(slug, teaser, heads=None):
     keep = tuple(heads) if heads else KEEP_HEADINGS
 
     title = art.find("h1").get_text(strip=True)
-    blocks, entities = [], []
+    blocks, entities, figs = [], [], []
+
+    def take_fig(wrap):
+        """本文の図を1点拾う。Xは貼り付けで画像が入らないので、本文には位置の目印だけ置く。"""
+        svg = wrap.find("svg")
+        if svg is None:
+            return
+        cap = wrap.find("p", class_="a-fig-title")
+        figs.append({
+            "n": len(figs) + 1,
+            "title": cap.get_text(strip=True) if cap else f"図{len(figs) + 1}",
+            "svg": str(svg),
+        })
+        blocks.append(text_block(f"［図{figs[-1]['n']}］{figs[-1]['title']}",
+                                 bold_prefix=f"［図{figs[-1]['n']}］", entities=entities))
 
     # リード（h1直後の最初の<p>）
     lead = art.find("p")
@@ -308,6 +388,8 @@ def build(slug, teaser, heads=None):
             elif sib.name == "ul":
                 for li in sib.find_all("li", recursive=False):
                     blocks.append(block(li, "unordered-list-item", entities))
+            elif "a-fig-wrap" in (sib.get("class") or []):
+                take_fig(sib)
             elif sib.name == "table" or "a-table-wrap" in (sib.get("class") or []):
                 blocks.extend(table_blocks(sib, entities))
     if kept != len(keep):
@@ -342,7 +424,7 @@ def build(slug, teaser, heads=None):
     article_url = f"{SITE}/blog/{slug}"
     blocks.append(text_block(article_url, link=article_url, entities=entities))
 
-    return title, {"blocks": blocks, "entities": entities}
+    return title, {"blocks": blocks, "entities": entities}, figs
 
 
 # ---------------------------------------------------------------- クリップボード
@@ -543,14 +625,33 @@ def main():
                     help="APIを使わず、書式付きHTMLをクリップボードに載せる（手貼り運用・課金ゼロ）")
     ap.add_argument("--dry-run", action="store_true", help="APIを叩かずJSONを書き出すだけ")
     ap.add_argument("--publish", action="store_true", help="下書きを作ってそのまま公開する（既定は下書きまで）")
+    ap.add_argument("--figs", nargs="?", const="", metavar="DIR",
+                    help="本文の図をX添付用のPNGで書き出す（既定は %%TEMP%%/x_figs_<slug>/）。"
+                         "貼った本文の［図N］の位置に、挿入ボタンで入れる")
     a = ap.parse_args()
 
     heads = [h.strip() for h in a.heads.split(",") if h.strip()] if a.heads else None
-    title, content_state = build(a.slug, a.teaser, heads)
+    title, content_state, figs = build(a.slug, a.teaser, heads)
     n = len(content_state["blocks"])
     chars = sum(len(b["text"]) for b in content_state["blocks"])
     print(f"title: {title}")
     print(f"blocks: {n} / entities: {len(content_state['entities'])} / 本文 約{chars}字")
+
+    if figs and a.figs is None:
+        print(f"⚠ 載せるH2の中に図が{len(figs)}点あります。--figs を付けるとPNGで書き出します")
+    if a.figs is not None:
+        figdir = a.figs or os.path.join(os.environ.get("TEMP", "."), f"x_figs_{a.slug}")
+        if os.path.isdir(figdir):
+            for old in os.listdir(figdir):      # 隣の記事の図を掴む事故を防ぐため毎回空にする
+                if old.lower().endswith(".png"):
+                    os.remove(os.path.join(figdir, old))
+        os.makedirs(figdir, exist_ok=True)
+        for f in figs:
+            out_png = os.path.join(figdir, f"fig{f['n']}.png")
+            render_fig(f["title"], f["svg"], out_png)
+            print(f"  ［図{f['n']}］{f['title']}\n      {out_png}")
+        if not figs:
+            print("  （載せるH2の中に図はありません）")
 
     # リポジトリ内には書かない（このリポジトリはCloudflare Pagesで全ファイル公開される）
     out = os.path.join(os.environ.get("TEMP", "."), f"x_article_{a.slug}.json")
