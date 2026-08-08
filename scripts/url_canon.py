@@ -14,7 +14,7 @@ Cloudflare Pages は /foo.html を /foo へ 307 リダイレクトする。こ�
     python scripts/url_canon.py --check    # 違反を列挙して exit 1（CI・公開前QA用）
     python scripts/url_canon.py --fix      # 書き換える
 
-対象: *.html / blog/*.html / sitemap.xml / _redirects
+対象: *.html / blog/*.html / sitemap.xml / _redirects / llms.txt
 外部ホストのURLには一切触らない（mhlw.go.jp/....html 等を壊さないため）。
 """
 import argparse
@@ -32,7 +32,9 @@ SKIP_NAMES = {"index-old.html", "ngraph-lp-v3.html"}
 def targets():
     files = [p for p in ROOT.glob("*.html") if p.name not in SKIP_NAMES]
     files += sorted(ROOT.glob("blog/*.html"))
-    for extra in ("sitemap.xml", "_redirects"):
+    # llms.txt はAI検索クローラ向けの正本。2026-08-08まで対象外で、44URL全部が
+    # .html 付き＝307経由のURLを名乗っていた（検査の穴だった）。
+    for extra in ("sitemap.xml", "_redirects", "llms.txt"):
         p = ROOT / extra
         if p.exists():
             files.append(p)
@@ -42,8 +44,9 @@ def targets():
 # 内部URLだけを捕まえる。外部URL（mhlw.go.jp/....html 等）を絶対に巻き込まないため、
 # 「ngraph.jp から始まる」か「区切り文字の直後の絶対パス」のどちらかに限定する。
 # ホスト名の途中にある /path.html （例: https://example.com/a.html）は前が英数字なので
-# どちらにも当たらない。直後に来てよいのは 引用符 / # / ? / 空白 / < / 行末 のみ。
-TAIL = r"(?=[\"'#?\s<]|$)"
+# どちらにも当たらない。直後に来てよいのは 引用符 / # / ? / 空白 / < / ) / 行末 のみ。
+# `)` は llms.txt の markdown リンク `](https://ngraph.jp/blog/foo.html)` を捕まえるために要る。
+TAIL = r"(?=[\"'#?\s<)]|$)"
 PATTERNS = [
     # https://ngraph.jp/foo/bar.html
     re.compile(r"(?P<keep>" + re.escape(SITE) + r")(?P<path>/[A-Za-z0-9._\-/]*?)\.html" + TAIL),
