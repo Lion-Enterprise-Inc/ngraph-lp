@@ -128,7 +128,37 @@ def check_alt():
     return out
 
 
-CHECKS = [check_sitemap, check_llms, check_blog_lastmod, check_alt]
+CSS = ROOT / "css" / "ngraph-zen.css"
+CSS_REF = re.compile(r"ngraph-zen\.css\?v=(\d+)")
+
+
+def check_css_version():
+    """共有CSSのキャッシュバスター `?v=N` が全ページで揃っているかを見る。
+
+    2026-08-08: 共有CSSを直したのに全ページが `?v=6` のままで、本番のCSSは新しいのに
+    既存訪問者のブラウザは古いCSSを使い続ける状態になった（CDNではなくブラウザキャッシュ）。
+    「本番に出た＝直った」ではないので、ここで揃っていることだけは機械で保証する。
+    **CSSを変えたら v を上げる**のは人の判断（見た目に影響しない変更まで上げると無駄なので）。
+    """
+    if not CSS.exists():
+        return []
+    versions = {}
+    for p in sorted(ROOT.rglob("*.html")):
+        if p.name in {"index-old.html", "ngraph-lp-v3.html"} or "__pycache__" in p.parts:
+            continue
+        for m in CSS_REF.finditer(p.read_text(encoding="utf-8")):
+            versions.setdefault(m.group(1), []).append(p.relative_to(ROOT).as_posix())
+    if len(versions) <= 1:
+        return []
+    detail = " / ".join(
+        "v=%s %d件(例 %s)" % (v, len(f), f[0]) for v, f in sorted(versions.items())
+    )
+    return [
+        "共有CSSの ?v= が揃っていません（古い方のページだけ旧CSSで表示される）: " + detail
+    ]
+
+
+CHECKS = [check_sitemap, check_llms, check_blog_lastmod, check_alt, check_css_version]
 
 
 # ---------------------------------------------------------------- 修正
@@ -268,7 +298,8 @@ def main():
         for v in violations:
             print("  " + v)
         print(
-            "\n%d件。`python scripts/publish_check.py --fix` で直せます。" % len(violations)
+            "\n%d件。多くは `python scripts/publish_check.py --fix` で直せます"
+            "（CSSの ?v= だけは人が判断して上げる）。" % len(violations)
         )
         return 1
     print("OK: sitemap / llms.txt / alt はすべて揃っています")
