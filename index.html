@@ -45,6 +45,15 @@
 .pat.kodama .p-label{color:var(--accent);transition:color .5s}
 @keyframes kodamaTilt{0%,74%,100%{transform:rotate(0)}14%{transform:rotate(-8deg)}34%{transform:rotate(6deg)}52%{transform:rotate(-3deg)}}
 @media(prefers-reduced-motion:reduce){.pat.kodama svg{animation:none}}
+/* トップ専用: 炎のヒーロービジュアルを大きく（2026-08-08 髙橋さん指示「どんと」）。
+   .hero-visual は共有CSSで fde の五重塔canvasと共用のため、ここで上書きする */
+.hero-visual{width:min(62vw,960px);height:min(100vh,900px);top:-70px;right:-9%;opacity:1}
+.hero-visual img{
+  -webkit-mask-image:radial-gradient(ellipse 64% 64% at 50% 46%,#000 56%,transparent 80%);
+  mask-image:radial-gradient(ellipse 64% 64% at 50% 46%,#000 56%,transparent 80%)}
+@media(max-width:900px){
+  .hero-visual{width:100%;max-width:540px;height:420px;top:0;right:0;margin:-8px auto 0}
+}
 </style>
 <script type="application/ld+json">
 {
