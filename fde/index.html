@@ -929,6 +929,7 @@ function drawRadar(scores){
 function renderResult(){
   var total=answers.reduce(function(a,b){return a+b;},0);
   var type=TYPES.find(function(t){return total>=t.min;});
+  if(typeof gtag==='function'){gtag('event','quiz_complete',{quiz_name:'ai_shindan8',result_type:type.name,score:total});}
   var sc=axisScores();
   var weak=AXES.map(function(a,i){return [a,sc[i]];}).sort(function(a,b){return a[1]-b[1];}).slice(0,2);
   box.innerHTML='<div class="result-head">'
