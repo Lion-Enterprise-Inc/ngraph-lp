@@ -3,51 +3,51 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ngraph.jp/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/entry</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/entry</loc>
-    <lastmod>2026-07-14</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
-  <url><loc>https://ngraph.jp/company</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/recruit</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/privacy</loc><lastmod>2026-07-14</lastmod></url>
-  <url><loc>https://ngraph.jp/legal</loc><lastmod>2026-07-14</lastmod></url>
+  <url><loc>https://ngraph.jp/company</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://ngraph.jp/recruit</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://ngraph.jp/privacy</loc><lastmod>2026-08-07</lastmod></url>
+  <url><loc>https://ngraph.jp/legal</loc><lastmod>2026-08-07</lastmod></url>
   <url>
     <loc>https://ngraph.jp/fde/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-08</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/fde/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/fde/</loc>
-    <lastmod>2026-07-15</lastmod>
+    <lastmod>2026-07-24</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/fde/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-03</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260803-saitei-chingin-2026</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260802-seisei-ai-gijiroku-domari</loc><lastmod>2026-08-02</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260802-openai-atlas-eol</loc><lastmod>2026-08-02</lastmod></url>
@@ -63,8 +63,8 @@
   <url><loc>https://ngraph.jp/blog/20260727-ai-subsidy-deadline</loc><lastmod>2026-07-27</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260726-inshoku-jinbusoku</loc><lastmod>2026-07-26</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260804-shoryokuka-8th-gbizid</loc><lastmod>2026-08-04</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260804-ai-kenshu-teichaku</loc><lastmod>2026-08-04</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260804-company-brain</loc><lastmod>2026-08-04</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260804-ai-kenshu-teichaku</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260804-company-brain</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260805-sakana-namazu</loc><lastmod>2026-08-06</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260805-gyomu-kaizen-joseikin</loc><lastmod>2026-08-05</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260806-meta-muse-code</loc><lastmod>2026-08-08</lastmod></url>
