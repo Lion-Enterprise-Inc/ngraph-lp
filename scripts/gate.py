@@ -28,6 +28,7 @@ CHECKS = [
     ("URL形式（拡張子なしに揃っているか）", "url_canon.py", ["--check"], False),
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),
+    ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
 ]
