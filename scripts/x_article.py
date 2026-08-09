@@ -628,6 +628,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
     ap.add_argument("--teaser", required=True, help="予告の1段落（本家に残した中身を名指しする）")
+    ap.add_argument("--x-title", dest="x_title",
+                    help="X Articles用のタイトル。記事のh1がX上限(全角2・半角1で100)を"
+                         "超えるとき、記事本体を書き換えずにXの場だけ短縮する")
     ap.add_argument("--heads", help="載せるH2の見出し（前方一致・カンマ区切り）。"
                                     "省略時は朝A型の3本。夕B型はここで3本ほど選ぶ")
     ap.add_argument("--clipboard", action="store_true",
@@ -642,6 +645,10 @@ def main():
 
     heads = [h.strip() for h in a.heads.split(",") if h.strip()] if a.heads else None
     title, content_state, figs = build(a.slug, a.teaser, heads, mark_figs=a.figs is not None)
+    # 記事のh1がX上限を超えるとき用。記事本体（公開済みのcanonical/JSON-LD）を
+    # 触らずにXの場だけ短縮できるようにする。指定が無ければh1をそのまま使う
+    if a.x_title:
+        title = a.x_title
     n = len(content_state["blocks"])
     chars = sum(len(b["text"]) for b in content_state["blocks"])
     tw = x_weighted_len(title)
@@ -650,8 +657,9 @@ def main():
     if over_by(title):
         # クリップボードに入れてから弾かれると貼り直しになるので、ここで止める
         sys.exit(f"NG タイトルがX上限を{over_by(title)}超過（{tw}/{X_TITLE_MAX}）。"
-                 f"全角{(over_by(title) + 1) // 2}文字ほど削って記事の<title>とh1を直すこと。\n"
-                 f"   Xは全角2・半角1で数える＝PythonのLen()（{len(title)}）を根拠にしない")
+                 f"全角{(over_by(title) + 1) // 2}文字ほど削ること。\n"
+                 f"   記事本体を直すか、公開済みで触りたくなければ --x-title \"<短縮版>\" を渡す。\n"
+                 f"   Xは全角2・半角1で数える＝Pythonのlen()（{len(title)}）を根拠にしない")
     print(f"blocks: {n} / entities: {len(content_state['entities'])} / 本文 約{chars}字")
 
     # 黙って消えるのが一番まずいので、載せなかった図は必ず1行で報告する
