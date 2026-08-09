@@ -33,6 +33,9 @@ from bs4 import BeautifulSoup, NavigableString
 sys.stdout.reconfigure(encoding="utf-8")
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
 KEYS_PATH = os.path.expanduser("~/.ngraph/x_keys.env")
 SITE = "https://ngraph.jp"
 MEDIA_URL = "https://api.x.com/2/media/upload"
@@ -634,13 +637,21 @@ def main():
     ap.add_argument("--figs", nargs="?", const="", metavar="DIR",
                     help="本文の図をX添付用のPNGで書き出す（既定は %%TEMP%%/x_figs_<slug>/）。"
                          "貼った本文の［図N］の位置に、挿入ボタンで入れる")
+    use_utf8_stdio()
     a = ap.parse_args()
 
     heads = [h.strip() for h in a.heads.split(",") if h.strip()] if a.heads else None
     title, content_state, figs = build(a.slug, a.teaser, heads, mark_figs=a.figs is not None)
     n = len(content_state["blocks"])
     chars = sum(len(b["text"]) for b in content_state["blocks"])
+    tw = x_weighted_len(title)
     print(f"title: {title}")
+    print(f"タイトル: X加重 {tw}/{X_TITLE_MAX}文字")
+    if over_by(title):
+        # クリップボードに入れてから弾かれると貼り直しになるので、ここで止める
+        sys.exit(f"NG タイトルがX上限を{over_by(title)}超過（{tw}/{X_TITLE_MAX}）。"
+                 f"全角{(over_by(title) + 1) // 2}文字ほど削って記事の<title>とh1を直すこと。\n"
+                 f"   Xは全角2・半角1で数える＝PythonのLen()（{len(title)}）を根拠にしない")
     print(f"blocks: {n} / entities: {len(content_state['entities'])} / 本文 約{chars}字")
 
     # 黙って消えるのが一番まずいので、載せなかった図は必ず1行で報告する

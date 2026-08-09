@@ -14,8 +14,16 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUTOFF = "20260808"
+# X加重100の検査を入れたのは2026-08-09。入れた時点で既存4記事が全部超過していた
+# （8/8以降ずっと超過していて、貼るたびに手で直していた＝誰も検査していなかった）。
+# 公開済みタイトルの改題は髙橋さんの判断なので既存記事では落とさない。ただし
+# 黙って除外すると「対象外」が居座って検査が死ぬので、毎回 参考 として必ず表示する。
+X_CUTOFF = "20260810"
 
 NG_PATTERNS = [
     (r"(という話|した話|になった話|してみた話|する話)$", "「〜話」で終わる＝主張のぼかし。言い切る"),
@@ -26,7 +34,9 @@ NG_PATTERNS = [
 ]
 
 def main():
+    use_utf8_stdio()
     fails = []
+    legacy = []
     checked = 0
     for path in sorted(glob.glob(os.path.join(BASE, "blog", "2026*.html"))):
         name = os.path.basename(path)
@@ -44,6 +54,14 @@ def main():
                 fails.append((name, f"{msg}: 「{title}」"))
         if not re.search(r"[0-9０-９]", title) and "「" not in title:
             fails.append((name, f"数字も「」強調も無い＝引きが弱い定型の疑い: 「{title}」"))
+        # 記事はX Articlesに貼る運用（BLOG-OPS §7）。貼る段で気付くと書き直しになるので
+        # 執筆時点で100以内に収める。Xは全角2・半角1で数える＝len()とは一致しない
+        if over_by(title):
+            msg = (f"X加重 {x_weighted_len(title)}/{X_TITLE_MAX}文字＝超過。"
+                   f"全角{(over_by(title) + 1) // 2}文字ほど削る: 「{title}」")
+            (fails if name[:8] >= X_CUTOFF else legacy).append((name, msg))
+    for name, msg in legacy:
+        print(f"参考 {name}: {msg}（公開済みのため落とさない。Xに貼るなら要短縮）")
     if fails:
         for name, msg in fails:
             print(f"NG {name}: {msg}")
