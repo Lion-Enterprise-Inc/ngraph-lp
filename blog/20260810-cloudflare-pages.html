@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準 | NGraphブログ</title>
+<meta name="description" content="ngraph.jpはCloudflare Pagesで配信しています。無料枠の3つの上限（ファイル数・容量・ビルド回数）に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせ、どちらを選ぶべきかの判断基準を解説します。">
+<meta property="og:title" content="Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準 | NGraphブログ">
+<meta property="og:description" content="無料枠の3つの上限に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせました。2桁の使用率に届きうるのは更新回数だけです。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260810-cloudflare-pages">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260810-cloudflare-pages.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260810-cloudflare-pages">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準",
+  "image": "https://ngraph.jp/assets/blog/20260810-cloudflare-pages.jpg",
+  "description": "ngraph.jpはCloudflare Pagesで配信しています。無料枠の3つの上限（ファイル数・容量・ビルド回数）に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせ、どちらを選ぶべきかの判断基準を解説します。",
+  "datePublished": "2026-08-10",
+  "dateModified": "2026-08-10",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260810-cloudflare-pages",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "Cloudflare Pagesは本当に無料で使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "静的ファイル（あらかじめ作り終えた画像やHTMLなど、閲覧のたびに作り直さないファイル）へのリクエストは無料・無制限だと公式ドキュメントに明記されています。保存にも追加費用はかかりません。ただし無料プランにはファイル数・1ファイルの容量・月間ビルド回数の上限があり、ドメイン代や制作費が無料になるという意味ではありません。"}},
+  {"@type": "Question", "name": "更新のたびにビルドが走ると、無料枠の月500回はいつ足りなくなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "更新の頻度で決まります。ngraph.jpの直近30日のcommit数は146件で、1回のpushに複数のcommitが乗ることを踏まえると、ビルド回数は多くてもこれ以下です。上限500回に対しては多くても29.2%で、これは実測ではなく上限としての値です。毎日発信するサイトほど早く近づきます。"}},
+  {"@type": "Question", "name": "いま新しく始めるなら、PagesとWorkersのどちらを選べばいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "会員機能や予約のようにサーバー側の処理が必要かどうかで判断します。処理が要らない静的なサイトで、独自ドメインを他社で管理していない場合はPagesで足ります。サーバー側の処理が要る場合や、1アカウントで100サイトを超える場合はWorkers側の案内があります。"}},
+  {"@type": "Question", "name": "他社で管理している独自ドメインでも使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "Pagesは対応していますが、Workersの互換表ではCloudflareで管理していないドメインを独自ドメインとして使う機能（Custom domains outside Cloudflare zones）が非対応と示されています。ドメインを制作会社や既存のレジストラに預けたままの会社は、この1件が移行の可否をそのまま決めます。"}},
+  {"@type": "Question", "name": "会員機能や予約フォームのあるサイトも置けますか？", "acceptedAnswer": {"@type": "Answer", "text": "Pages・Workers Static Assetsのいずれも、置いて配るのは静的なファイルです。会員機能や予約のようにサーバー側で処理が要るものは、この仕組みだけでは作れず別の仕組みが必要になります。"}},
+  {"@type": "Question", "name": "Cloudflare Pagesはいずれ終わるという話を聞きましたが、本当ですか？", "acceptedAnswer": {"@type": "Answer", "text": "2026年8月10日時点で確認したPagesのトップページ・Workers Static Assetsのドキュメント・Migrate from Pages to Workersの移行ガイド・その互換表という公式4ページには、Pagesの廃止や新規利用の非推奨を示す記述はありません。あるのは移行ガイドと機能の比較表、そして1アカウント100サイトを超える場合の案内だけです。この確認はこの4ページの範囲に限られます。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準</h1>
+  <span class="a-date">2026.08.10 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260810-cloudflare-pages.jpg" alt="Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準">
+
+<p><strong>Cloudflare Pages</strong>とは、作り終えたサイトのファイルをCloudflareの世界中のサーバーに置いて配る仕組みです。Git（ファイルの変更履歴を管理する仕組み）に変更を送ると、自動で本番に反映されます。総務省「令和6年通信利用動向調査報告書（企業編）」（2026年公表）によると、ホームページ開設率は93.2%（有効回答2,324社）でした。<strong>ただしこの調査の対象は常用雇用者100人以上の企業6,040社で、中小企業の実態を示す数字ではありません</strong>。この記事はうちが本番で運用しているCloudflare Pagesだけを題材にします。この記事でわかることは3点です。無料枠の上限は3つあり、先に埋まるのは容量ではなく更新回数だということ。PagesとWorkersの「20,000ファイル」は数える単位が違うこと。公式ドキュメントが実際には何と書いていて、何を書いていないか——です。</p>
+
+<h2>Cloudflare Pagesとは何か——「作る」と「配る」を1本でつなぐ置き場所</h2>
+<p>Cloudflare Pagesは、Git（ファイルの変更履歴つきの置き場所。誰が・いつ・何を変更したかを記録する）にサイトの素材を送ると、Cloudflareが自動でビルド（人が書いた素材を、ブラウザが読める形に組み立てる作業）して、世界中のサーバーに配る仕組みです。従来の月額レンタルサーバーとの違いは、「サーバーを借りて自分でファイルを置く」ではなく「Gitに送ると勝手に配られる」ことにあります。CDN（Content Delivery Network＝同じファイルを世界中のサーバーに複製して置き、利用者に近い場所から配る仕組み）としての性質を持つため、閲覧者は地理的に近いサーバーからファイルを受け取ります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>置き場所</th><th>置くもの</th><th>更新の仕方</th><th>静的ファイル配信の課金</th><th>向く用途</th></tr>
+<tr><td>レンタルサーバー</td><td>FTP等で手動アップロード</td><td>ファイルを1つずつ差し替え</td><td>—</td><td>更新頻度が低いサイト</td></tr>
+<tr><td>Cloudflare Pages</td><td>Gitリポジトリ</td><td>pushすると自動ビルド・自動反映</td><td>静的ファイルへのリクエストは無料・無制限（公式原文）</td><td>更新頻度が高いサイト</td></tr>
+<tr><td>Workers Static Assets</td><td>Gitリポジトリ＋Worker</td><td>pushすると自動ビルド・自動反映</td><td>静的ファイルへのリクエストは無料・無制限（公式原文）</td><td>サーバー側の処理も要るサイト</td></tr>
+</table></div>
+<p>レンタルサーバーの料金は検証していないため、この記事では書きません。Cloudflare側の課金の考え方だけが、公式ドキュメントで確認できる範囲です。</p>
+
+<h2>無料枠には3つの上限がある——うちの実測との距離</h2>
+<p>Cloudflare Pages公式ドキュメント（2026年8月10日参照）によると、無料プランには主に3つの上限があります。1サイトあたりのファイル数は<strong>20,000ファイル</strong>、1ファイルの最大サイズは<strong>25 MiB</strong>、そしてビルド回数は<strong>月500回</strong>です。同時に走らせられるビルドは1つ、1回のビルドのタイムアウトは20分と決められています。</p>
+<p>ngraph.jpはこのCloudflare Pagesで配信しています。2026年8月10日に計測した実測は、Git管理下のファイル数<strong>167</strong>（上限20,000に対し使用率0.8%）、最大のファイル<strong>1,348 KiB（約1.3MB）</strong>の画像1点（上限25 MiBに対し使用率5.3%）、直近30日のcommit数<strong>146件</strong>です。1回のpushに複数のcommitが乗るため、ビルド回数はこれ以下になります。上限500回に対しては<strong>多くても29.2%</strong>です。これは実測した回数ではなく、上限としての値である点に注意してください。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">先に埋まるのは容量ではなく更新回数</p>
+<svg viewBox="0 0 1200 302" width="100%" style="min-width:640px" role="img" aria-label="先に埋まるのは容量ではなく更新回数"><text x="211" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">更新（ビルド）回数</text><rect x="229" y="50" width="771" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">29.2%</text><text x="211" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">最大ファイルの容量</text><rect x="229" y="102" width="139" height="34" rx="2" fill="#cfc5b4"/><text x="380" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.3%</text><text x="211" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">ファイル数</text><rect x="229" y="154" width="21" height="34" rx="2" fill="#cfc5b4"/><text x="262" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0.8%</text><text x="600.0" y="244" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">無料枠の3つの上限に対する使用率。2桁に届きうるのは更新回数だけ</text><text x="8" y="286" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：上限=Cloudflare公式ドキュメント（2026年8月10日参照）／実測=ngraph.jp（2026年8月10日計測。ビルド回数は上限としての値）</text></svg>
+</div>
+<p>なぜこの差が生まれるのでしょうか。ファイル数と容量は「サイトの大きさ」で決まります。中小企業のホームページ程度の規模では、20,000ファイル・25 MiBという上限に対して桁が2つ小さいまま、ほとんど動きません。一方でビルド回数は「更新の頻度」で決まります。毎日発信するサイトほど、この上限に先に近づきます。同時ビルドが1つしかないため、短時間に複数回pushすると後続のビルドは待たされ、1回のビルドのタイムアウトは20分と定められています。</p>
+<p style="font-size:.85rem;color:var(--text-3)">無料枠の設計から自社サイトの見直しを相談したい方は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">こちら（FDE型AI導入支援・無料相談）</a></p>
+
+<h2>同じ「20,000ファイル」でも、PagesとWorkersでは数える単位が違う</h2>
+<p>ここが独自の価値がある論点です。Cloudflare公式ドキュメント（2026年8月10日参照）を突き合わせると、Pagesは「1サイトあたり20,000ファイル」、Workers Static Assetsは「<strong>1 Workerバージョンあたり</strong>20,000ファイル」という単位で上限が決まっています。プロジェクト数の上限にも違いがあります。Pagesは1アカウントあたり100プロジェクトで、公式原文には "This limit is not routinely increased."（この上限は日常的には引き上げられない）と明記されています。一方Workersは無料プランで1アカウント100 Workers、有料プランでは500 Workersです。</p>
+<p>Pagesの上限ページは、100サイトを超える場合はWorkers for PlatformsまたはWorkers Static Assetsを検討するよう案内しています。ただし<strong>数える単位そのものが違う</strong>ため、「どちらが多いか」という単純な比較は成立しません。比べるべきは数の大小ではなく、「何を1つと数えるか」です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>Cloudflare Pages</th><th>Workers Static Assets</th><th>数える単位</th></tr>
+<tr><td>ファイル数（無料）</td><td>20,000</td><td>20,000</td><td>Pages＝1サイト／Workers＝1 Workerバージョン</td></tr>
+<tr><td>ファイル数（有料）</td><td>100,000</td><td>100,000</td><td>同上</td></tr>
+<tr><td>1ファイルの最大</td><td>25 MiB</td><td>25 MiB</td><td>1ファイルあたり</td></tr>
+<tr><td>プロジェクト数（無料）</td><td>100/アカウント</td><td>100/アカウント</td><td>1アカウントあたり</td></tr>
+<tr><td>プロジェクト数（有料）</td><td>—</td><td>500/アカウント</td><td>1アカウントあたり</td></tr>
+<tr><td>_headers</td><td>100件</td><td>100件</td><td>1プロジェクトあたり</td></tr>
+<tr><td>_redirects</td><td>静的2,000件・動的100件</td><td>合計2,100件</td><td>1プロジェクトあたり</td></tr>
+</table></div>
+
+<h2>公式は「Pagesをやめろ」とは書いていない——書いてあるのは機能の一覧表</h2>
+<p>Cloudflare公式「Migrate from Pages to Workers」（ページ表記 Last updated Jul 28, 2026・2026年8月10日参照）を読むと、原文は次のように書いています。「Unlike Pages, Workers has a distinctly broader set of features available to it」（Pagesと違い、Workersにはより幅広い機能が使える）。静的ファイルへのリクエストはPagesもWorkersも無料で、コスト構造は同等だとも書かれています。</p>
+<p>この移行ガイドが持つ互換表（compatibility matrix）を数えると、<strong>Workersだけが対応している機能は15件</strong>（Cron Triggers・Workers Logs・Logpush・Tail Workers・Source Maps・Queue Consumers・Rate Limiting・Email Workers・Image Resizing・Gradual Deployments・Remote Development・Quick Editor in Dashboard・Cloudflare Vite plugin・パス配下への静的配信・ルート直下以外への配置）、<strong>Pagesが上でWorkersは部分対応にとどまる機能は5件</strong>（Early Hints・Branch Deploy Controls・Custom Branch Aliases・ファイル配置がそのままURLになる仕組み〈File-based Routing〉・Pages Plugins）、<strong>Pagesだけが対応している機能は1件</strong>です。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">機能の数ではWorkersが広い。判断を決めるのは1件</p>
+<svg viewBox="0 0 1200 302" width="100%" style="min-width:640px" role="img" aria-label="機能の数ではWorkersが広い。判断を決めるのは1件"><text x="462" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Workersだけが対応</text><rect x="480" y="50" width="520" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">15件</text><text x="462" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Pagesが上（Workersは部分対応）</text><rect x="480" y="102" width="173" height="34" rx="2" fill="#cfc5b4"/><text x="665" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5件</text><text x="462" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Pagesだけが対応</text><rect x="480" y="154" width="34" height="34" rx="2" fill="#cfc5b4"/><text x="526" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1件</text><text x="570" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#a63a24" font-weight="700" text-anchor="start">← Cloudflare管理外のドメイン。該当すると移せない</text><text x="600.0" y="244" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">数の多寡ではなく、自社に該当する1行があるかで決まる</text><text x="8" y="286" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Cloudflare公式「Migrate from Pages to Workers」の互換表を集計（2026年8月10日参照）</text></svg>
+</div>
+<p>ここが最重要の実務判断です。Pagesだけが対応している1件は、<strong>Cloudflareで管理していないドメインを独自ドメインとして使えること</strong>（互換表の原語では "Custom domains outside Cloudflare zones"）です。ドメインを制作会社や既存のレジストラなど他社に預けたままの会社にとって、この1件が移行できるかどうかをそのまま決めます。数の多寡ではなく、自社に該当する1行があるかで判断が決まるということです。</p>
+<p>そして、<strong>2026年8月10日時点で確認した公式4ページ</strong>（Pagesのトップ・Workers Static Assets・上記の移行ガイド・その互換表）に、「新規プロジェクトでPagesを使うな」「Pagesを廃止する」という記述はありません。あるのは移行ガイドと機能の比較表、そして100サイトを超えるときの案内だけです。この「無い」という確認はこの4ページの範囲に限られます。噂で急がず、仕様の日付を見ることが必要です。</p>
+
+<h2>うちがこの1年で踏んだこと——URLの末尾が黙って書き換わる</h2>
+<p>Cloudflare Pagesの配信仕様（2026年8月10日参照）には次のように書かれています。「Pages will also redirect HTML pages to their extension-less counterparts: for instance, `/contact.html` will be redirected to `/contact`, and `/about/index.html` will be redirected to `/about/`.」（Pagesは、`.html` で終わるページを拡張子なしのURLへリダイレクトする。例えば `/contact.html` は `/contact` へ、`/about/index.html` は `/about/` へ転送される）。<strong>ただし、公式にはこのリダイレクトのステータスコードが書かれていません</strong>。</p>
+<div class="a-note"><strong>私たちの一次体験：</strong>実際にcurlで測ると、`https://ngraph.jp/blog/what-is-fde.html` は<strong>307</strong>を返し、リダイレクト1回で `https://ngraph.jp/blog/what-is-fde` が<strong>200</strong>に着きます。問題は表示ではありません。表示は正常に出るので誰も気づきません。問題は、サイトが自分で名乗るURL——検索エンジンに「正式なURLはこれです」と伝えるcanonical指定や、サイトマップに載せるURL——が `.html` 付きのまま残ることでした。正式なURLとして名乗った先が、実際には転送されるURLになっていたのです。1回直しても、新しいページを作るたびに元に戻りました。手で守るのをやめて、公開の手前に機械の検査を置きました。拡張子なしに揃っているかを自動で確認し、揃っていなければ公開させない仕組みです。ここから引き出せる一般化は、置き場所を変えると、料金や速度ではなく<strong>URLの見え方のような細部</strong>が最初に効いてくるということです。そして細部は人の注意力では守れません。</div>
+
+<h2>始めるときの手順と、どこで詰まるか</h2>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>やること</th><th>詰まりやすい点</th></tr>
+<tr><td>1. アカウント作成</td><td>Cloudflareのアカウントを作る</td><td>—</td></tr>
+<tr><td>2. Git連携</td><td>サイトのファイルをGitに置く</td><td>初めてGitを使う場合は変更履歴の考え方に慣れが要る</td></tr>
+<tr><td>3. プロジェクト作成</td><td>Pagesのプロジェクトを作る</td><td>ビルドの設定を誤ると反映されない</td></tr>
+<tr><td>4. ドメイン接続</td><td>独自ドメインをつなぐ</td><td>ドメインを他社で管理している場合は移管の要否を確認</td></tr>
+<tr><td>5. 検査を仕組みにする</td><td>公開前の検査を自動化する</td><td>URLの形など、目視では見落とす細部がある</td></tr>
+</table></div>
+<p>費用の面では、静的ファイルへのリクエストは無料・無制限、保存にも追加費用はかからないと公式ドキュメントに書かれています。ただし<strong>「無料枠で足りる」は、ドメイン代と制作費が0円という意味ではありません</strong>。無料なのはCloudflare側の配信の仕組みに限った話です。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">置き場所は「更新の頻度」と「サーバー側の処理」で決まる</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="置き場所は「更新の頻度」と「サーバー側の処理」で決まる"><rect x="300" y="50" width="620" height="424" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="50" width="310.0" height="212.0" fill="rgba(166,58,36,.08)"/><text x="455.0" y="150.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">毎日更新するHP＝Pages（更新回数だけ見る）</text><rect x="610.0" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="150.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">予約・会員機能＝Workers側</text><rect x="300" y="262.0" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="362.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">会社案内・店舗HP＝Pagesで余る</text><rect x="610.0" y="262.0" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="362.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">フォームだけ動く＝Pages＋外部サービス</text><line x1="610.0" y1="50" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="262.0" x2="920" y2="262.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">サーバー側の処理 なし → あり</text><text x="278" y="262.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">更新の頻度 少ない ↑ 多い</text><text x="600.0" y="572" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">無料枠で足りるかは、サイトの大きさではなく更新の頻度で決まる</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Cloudflare公式ドキュメント（2026年8月10日参照）をもとに作成</text></svg>
+</div>
+
+<h2>よくある失敗</h2>
+<ol>
+<li><strong>URLの表記を `.html` のまま残す。</strong>表示は正常なので誰も気づきません。公開手順に機械の検査を入れて、拡張子なしに揃っているかを確認する必要があります。</li>
+<li><strong>無料枠を「容量」だけで確認して、更新回数を見ない。</strong>3項目のうち先に埋まるのは更新回数です。ファイル数・容量だけを見て「余裕がある」と判断するのは早計です。</li>
+<li><strong>ドメインを他社で管理したままWorkers側へ移そうとする。</strong>互換表では、Cloudflare管理外のドメインはWorkers非対応の1件として明記されています。</li>
+<li><strong>会員機能や予約のようにサーバー側で処理が要るものを、静的なファイルを配る仕組みだけで作ろうとする。</strong>PagesもWorkers Static Assetsも、置いて配るのは静的なファイルです。サーバー側の処理には別の仕組みが要ります。</li>
+<li><strong>「Pagesはもう終わる」という噂だけで移行を急ぐ。</strong>2026年8月10日時点で確認した公式4ページに廃止・非推奨の記述はありません。この領域の仕様は3か月で変わることがあるため、いつ時点の話かを必ず確認する必要があります。</li>
+</ol>
+<p style="font-size:.85rem;color:var(--text-3)">サイトの置き場所の見直しから相談したい方は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">こちら（FDE型AI導入支援・無料相談）</a></p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>Cloudflare Pagesは本当に無料で使えますか？</summary><p>静的ファイル（あらかじめ作り終えた画像やHTMLなど、閲覧のたびに作り直さないファイル）へのリクエストは無料・無制限だと公式ドキュメントに明記されています。保存にも追加費用はかかりません。ただし無料プランにはファイル数・1ファイルの容量・月間ビルド回数の上限があり、ドメイン代や制作費が無料になるという意味ではありません。</p></details>
+<details><summary>更新のたびにビルドが走ると、無料枠の月500回はいつ足りなくなりますか？</summary><p>更新の頻度で決まります。ngraph.jpの直近30日のcommit数は146件で、1回のpushに複数のcommitが乗ることを踏まえると、ビルド回数は多くてもこれ以下です。上限500回に対しては多くても29.2%で、これは実測ではなく上限としての値です。毎日発信するサイトほど早く近づきます。</p></details>
+<details><summary>いま新しく始めるなら、PagesとWorkersのどちらを選べばいいですか？</summary><p>会員機能や予約のようにサーバー側の処理が必要かどうかで判断します。処理が要らない静的なサイトで、独自ドメインを他社で管理していない場合はPagesで足ります。サーバー側の処理が要る場合や、1アカウントで100サイトを超える場合はWorkers側の案内があります。</p></details>
+<details><summary>他社で管理している独自ドメインでも使えますか？</summary><p>Pagesは対応していますが、Workersの互換表ではCloudflareで管理していないドメインを独自ドメインとして使う機能（Custom domains outside Cloudflare zones）が非対応と示されています。ドメインを制作会社や既存のレジストラに預けたままの会社は、この1件が移行の可否をそのまま決めます。</p></details>
+<details><summary>会員機能や予約フォームのあるサイトも置けますか？</summary><p>Pages・Workers Static Assetsのいずれも、置いて配るのは静的なファイルです。会員機能や予約のようにサーバー側で処理が要るものは、この仕組みだけでは作れず別の仕組みが必要になります。</p></details>
+<details><summary>Cloudflare Pagesはいずれ終わるという話を聞きましたが、本当ですか？</summary><p>2026年8月10日時点で確認したPagesのトップページ・Workers Static Assetsのドキュメント・Migrate from Pages to Workersの移行ガイド・その互換表という公式4ページには、Pagesの廃止や新規利用の非推奨を示す記述はありません。あるのは移行ガイドと機能の比較表、そして1アカウント100サイトを超える場合の案内だけです。この確認はこの4ページの範囲に限られます。</p></details>
+</div>
+
+<h2>まとめ——決めていないこと・分からないこと</h2>
+<p>この記事を3点に要約します。無料枠の3つの上限（ファイル数・容量・ビルド回数）のうち、うちの実測で2桁の使用率に届きうるのは更新回数だけでした。PagesとWorkers Static Assetsの「20,000ファイル」は数える単位が違うため、単純な数の比較は成立しません。そして、公式ドキュメントが「Pagesをやめろ」と書いている事実は、確認した4ページの範囲では見つかりませんでした。</p>
+<p>あわせて、うちがまだ決めていないことも書いておきます。うちはWorkersへ移していません。実測でPagesの無料枠に余裕があり、移す理由が今のところ無いためです。互換表の1件（Cloudflare管理外ドメイン）が将来Workers側で対応された場合の判断は保留しています。そして、ビルドの実回数はCloudflareの管理画面でしか正確には数えられておらず、この記事の29.2%はあくまで上限としての値です。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのサイトの置き場所、これで合っているか」から、一緒に整理します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Cloudflare「<a href="https://developers.cloudflare.com/pages/platform/limits/" target="_blank" rel="noopener">Limits — Cloudflare Pages</a>」（2026年8月10日参照）<br>
+・Cloudflare「<a href="https://developers.cloudflare.com/workers/platform/limits/" target="_blank" rel="noopener">Limits — Cloudflare Workers</a>」（2026年8月10日参照）<br>
+・Cloudflare「<a href="https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/" target="_blank" rel="noopener">Billing and limitations — Workers Static Assets</a>」（2026年8月10日参照）<br>
+・Cloudflare「<a href="https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/" target="_blank" rel="noopener">Migrate from Pages to Workers</a>」（ページ表記 Last updated Jul 28, 2026・2026年8月10日参照）<br>
+・Cloudflare「<a href="https://developers.cloudflare.com/pages/configuration/serving-pages/" target="_blank" rel="noopener">Serving Pages — Cloudflare Pages</a>」（2026年8月10日参照）<br>
+・総務省「<a href="https://www.soumu.go.jp/johotsusintokei/statistics/pdf/HR202400_002.pdf" target="_blank" rel="noopener">令和6年通信利用動向調査報告書（企業編）</a>」<br>
+・あわせて読む：<a href="/blog/20260810-openai-signals-japan">日本は仕事でAIに「やらせて」いない——OpenAI国別データ79か国中79位と、聞く側から抜ける手順</a>（当ブログ・2026年8月10日朝）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
