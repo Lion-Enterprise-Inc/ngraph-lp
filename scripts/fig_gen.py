@@ -46,6 +46,7 @@
 """
 import argparse
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -167,6 +168,33 @@ def spread(ys, gap, lo, hi):
 def text(x, y, s, size=20, fill=INK, weight=400, anchor="start", family=SANS):
     return (f'<text x="{x}" y="{y}" font-family="{family}" font-size="{size}" '
             f'fill="{fill}" font-weight="{weight}" text-anchor="{anchor}">{esc(s)}</text>')
+
+
+WRAP_HEAD = "」）】』〉》、。，．・？！ゃゅょっァィゥェォッャュョーぁぃぅぇぉ%％"
+WRAP_TAIL = "「（【『〈《"
+
+
+def wrap_text(s, size, maxw):
+    """maxw に収まるよう折り返した行のリストを返す。
+
+    SVGの <text> は自動で折り返さないので、枠に収める型（matrix等）は必ずここを通す。
+    「／」は書き手が指定した改行として扱う。行頭・行末の禁則も見る。
+    """
+    lines = []
+    for chunk in str(s).split("／"):
+        cur = ""
+        for i, ch in enumerate(chunk):
+            if cur and tw(cur + ch, size) > maxw:
+                # 次が行頭禁則／今の行末が行末禁則なら、1文字ぶん送らずに詰める
+                if ch in WRAP_HEAD or cur[-1] in WRAP_TAIL:
+                    cur += ch
+                    continue
+                lines.append(cur)
+                cur = ch
+            else:
+                cur += ch
+        lines.append(cur)
+    return [ln for ln in lines if ln != ""] or [""]
 
 
 # ---------------------------------------------------------------- 型
@@ -403,6 +431,23 @@ def fig_ratio(d, o):
     return "".join(parts)
 
 
+def fit_lines(s, size_max, size_min, maxw, max_lines):
+    """(級数, 行のリスト) を返す。maxw に収まるまで級数を落とし、それでも駄目なら折り返す。
+
+    SVGは自動で折り返さないので、キャンバス幅に対して長い文字列は黙って外へはみ出す。
+    見出し・結論のような自由文は必ずここを通す（2026-08-10、matrixの見出しが左右に
+    はみ出しているのを指摘されて入れた。1つの図だけ直しても同じことが起きるため）。
+    """
+    for size in range(size_max, size_min - 1, -1):
+        lines = wrap_text(s, size, maxw)
+        if len(lines) <= max_lines:
+            return size, lines
+    return size_min, wrap_text(s, size_min, maxw)[:max_lines]
+
+
+MATRIX_FS_MAX, MATRIX_FS_MIN = 21, 15
+
+
 def fig_matrix(d, o):
     """2軸4象限。--data は 左上=,右上=,左下=,右下= の順"""
     if len(d) < 4:
@@ -410,13 +455,38 @@ def fig_matrix(d, o):
     x0, y0, w, h = 300, o["body_top"] + 6, 620, o["body_bottom"] - o["body_top"] - 66
     mx, my = x0 + w / 2, y0 + h / 2
     cells = [(x0, y0), (mx, y0), (x0, my), (mx, my)]
+    # 象限は枠。文字は枠の内側に収める（SVGは自動で折り返さないので必ず自前で折る）
+    pad_x, pad_y = 20, 16
+    inner_w, inner_h = w / 2 - pad_x * 2, h / 2 - pad_y * 2
+    fs, wrapped = MATRIX_FS_MAX, None
+    while fs >= MATRIX_FS_MIN:
+        wrapped = [wrap_text(d[i][0], fs, inner_w) for i in range(4)]
+        if all(len(ls) * (fs * 1.45) <= inner_h for ls in wrapped):
+            break
+        fs -= 1
+    else:
+        worst = max(range(4), key=lambda i: len(wrapped[i]))
+        lab = d[worst][0]
+        max_rows = int(inner_h / (MATRIX_FS_MIN * 1.45))
+        keep = len(lab)
+        while keep and len(wrap_text(lab[:keep], MATRIX_FS_MIN, inner_w)) > max_rows:
+            keep -= 1
+        sys.exit("matrix: 象限のラベルが長すぎて枠に収まりません（%dptでも%d行・入るのは%d行）。"
+                 "「%s」をあと%d文字短くしてください（この象限は%d文字以内・"
+                 "「／」で改行を指定できます）。"
+                 % (MATRIX_FS_MIN, len(wrapped[worst]), max_rows, lab,
+                    len(lab) - keep, keep))
+    lh = fs * 1.45
     parts = [f'<rect x="{x0}" y="{y0}" width="{w}" height="{h}" fill="none" stroke="{FAINT}" stroke-width="1"/>']
     for i, (cx, cy) in enumerate(cells):
-        fill = "rgba(166,58,36,.08)" if i == o["hot"] - 1 else "rgba(92,84,74,.05)"
+        hot = o["hot"] == i + 1 and o["hot_given"]
+        fill = "rgba(166,58,36,.08)" if hot else "rgba(92,84,74,.05)"
         parts.append(f'<rect x="{cx}" y="{cy}" width="{w / 2}" height="{h / 2}" fill="{fill}"/>')
-        col = ACCENT if i == o["hot"] - 1 else INK
-        for j, ln in enumerate(d[i][0].split("／")):
-            parts.append(text(cx + w / 4, cy + h / 4 - 6 + j * 30, ln, 21, col, 700, "middle"))
+        col = ACCENT if hot else INK
+        ls = wrapped[i]
+        top = cy + h / 4 - (len(ls) - 1) * lh / 2 + fs * 0.34   # 行ブロックを象限の中央に置く
+        for j, ln in enumerate(ls):
+            parts.append(text(cx + w / 4, top + j * lh, ln, fs, col, 700, "middle"))
     parts.append(f'<line x1="{mx}" y1="{y0}" x2="{mx}" y2="{y0 + h}" stroke="{INK}" stroke-width="1.4"/>')
     parts.append(f'<line x1="{x0}" y1="{my}" x2="{x0 + w}" y2="{my}" stroke="{INK}" stroke-width="1.4"/>')
     if o["axis"]:
@@ -719,7 +789,10 @@ def build_svg(kind, d, o):
         foot_space = 96 if o["concl"] else 54
     else:
         y = 92
-        head.append(text(w / 2, y, o["title"], 46, INK, 900, "middle", SERIF))
+        tfs, tls = fit_lines(o["title"], 46, 30, w - 130, 2)
+        for j, ln in enumerate(tls):
+            head.append(text(w / 2, y + j * (tfs * 1.32), ln, tfs, INK, 900, "middle", SERIF))
+        y += (len(tls) - 1) * (tfs * 1.32)
         if o["sub"]:
             y += 40
             head.append(text(w / 2, y, o["sub"], 19, SUB, 500, "middle"))
@@ -753,19 +826,55 @@ def build_svg(kind, d, o):
     body = TYPES[kind](d, o)
     foot = []
     if o["concl"]:
-        foot.append(text(w / 2, h - (58 if bare else 104), o["concl"], 24, INK, 900, "middle", SERIF))
+        cfs, cls = fit_lines(o["concl"], 24, 17, w - 110, 2)
+        cy = h - (58 if bare else 104) - (len(cls) - 1) * (cfs * 1.4)
+        for j, ln in enumerate(cls):
+            foot.append(text(w / 2, cy + j * (cfs * 1.4), ln, cfs, INK, 900, "middle", SERIF))
     if o["src"]:
         foot.append(text(56 if not bare else 8, h - (16 if bare else 44),
                          "出所：" + o["src"], 13, FAINT, 400))
     if bare:
-        return (f'<svg viewBox="0 0 {w} {h}" width="100%" style="min-width:640px" '
-                f'role="img" aria-label="{esc(o["title"])}">'
-                + "".join(head) + body + "".join(foot) + "</svg>")
-    foot.append(text(w - 56, h - 42, "NGraph. ngraph.jp", 18, FAINT, 700, "end", SERIF))
-    return (f'<svg viewBox="0 0 {w} {h}" width="100%" role="img" aria-label="{esc(o["title"])}">'
-            f'<rect width="{w}" height="{h}" fill="{BG}"/>'
-            f'<rect x="22" y="22" width="{w - 44}" height="{h - 44}" fill="none" stroke="{LINE}"/>'
-            + "".join(head) + body + "".join(foot) + "</svg>")
+        svg = (f'<svg viewBox="0 0 {w} {h}" width="100%" style="min-width:640px" '
+               f'role="img" aria-label="{esc(o["title"])}">'
+               + "".join(head) + body + "".join(foot) + "</svg>")
+    else:
+        foot.append(text(w - 56, h - 42, "NGraph. ngraph.jp", 18, FAINT, 700, "end", SERIF))
+        svg = (f'<svg viewBox="0 0 {w} {h}" width="100%" role="img" aria-label="{esc(o["title"])}">'
+               f'<rect width="{w}" height="{h}" fill="{BG}"/>'
+               f'<rect x="22" y="22" width="{w - 44}" height="{h - 44}" fill="none" stroke="{LINE}"/>'
+               + "".join(head) + body + "".join(foot) + "</svg>")
+    assert_inside(svg, w, h)
+    return svg
+
+
+TEXT_RE = re.compile(
+    r'<text x="([-\d.]+)" y="([-\d.]+)"[^>]*?font-size="([\d.]+)"[^>]*?'
+    r'text-anchor="(\w+)"[^>]*?>(.*?)</text>')
+
+
+def assert_inside(svg, w, h):
+    """描いた文字がキャンバスからはみ出していないか、書き出す前に自分で確かめる。
+
+    SVGは自動で折り返しも縮小もしないので、長い文字列は黙って枠の外へ流れる。
+    目視は毎回できない（実際 2026-08-10 に本番の記事へはみ出した図が載った）ので、
+    生成時に必ずここを通す。新しい型を足しても自動で検査される。
+    """
+    bad = []
+    for m in TEXT_RE.finditer(svg):
+        x, y, fs, anchor = float(m.group(1)), float(m.group(2)), float(m.group(3)), m.group(4)
+        s = m.group(5)
+        width = tw(s, fs)
+        left = x - width if anchor == "end" else (x - width / 2 if anchor == "middle" else x)
+        right = left + width
+        if left < -1 or right > w + 1 or y < 0 or y > h + 1:
+            bad.append((s, round(left), round(right), fs))
+    if bad:
+        print("ERROR: 図の文字がキャンバス（幅%d・高さ%d）からはみ出しています。" % (w, h))
+        for s, l, r, fs in bad[:6]:
+            print("  x=%d〜%d (%dpt) 「%s」" % (l, r, fs, s))
+        print("  --title / --concl / --data のラベルを短くするか、"
+              "「／」で改行を入れてください（--w を広げるのは最後の手段）。")
+        sys.exit(3)
 
 
 HTML = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
@@ -857,6 +966,9 @@ def main():
 
     o = {"title": a.title, "sub": a.sub, "concl": a.concl, "src": a.src, "tag": a.tag,
          "axis": a.axis, "marks": marks, "hot": a.hot, "ink_last": a.ink_last,
+         # matrixは分類なので、--hot を書いたときだけ朱にする（既定で1象限が朱になると
+         # 強調していないものが強調に見える。2026-08-10）
+         "hot_given": any(x == "--hot" or x.startswith("--hot=") for x in sys.argv[1:]),
          "unit": a.unit, "w": a.w, "h": a.h, "diff": a.diff, "bare": a.bare,
          "ink_row": a.ink_row, "tag_row": a.tag_row, "cols": a.cols, "ref": ref}
     if a.type == "slope":
