@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点 | NGraphブログ</title>
+<meta name="description" content="Metaが2026年8月10日、300億パラメータ級AI「Muse Glimmer」をApache 2.0で公開しました。1枚のコンシューマー向けGPUで動く大きさです。同じ週にAnthropicが自動モードを既定化したという動きと合わせ、中小企業が乗る前に確かめる3点を解説します。">
+<meta property="og:title" content="Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点 | NGraphブログ">
+<meta property="og:description" content="Metaが公開したMuse Glimmerは、1枚のコンシューマー向けGPUで動く大きさの30B級AIです。中小企業が乗る前に確かめる3点を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260811-meta-muse-glimmer">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260811-meta-muse-glimmer.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260811-meta-muse-glimmer">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-fig-wrap{margin:26px 0;overflow-x:auto}.a-fig-title{font-size:.9rem;font-weight:700;color:var(--text);margin:0 0 10px}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点",
+  "image": "https://ngraph.jp/assets/blog/20260811-meta-muse-glimmer.jpg",
+  "description": "Metaが2026年8月10日、300億パラメータ級AI「Muse Glimmer」をApache 2.0で公開しました。1枚のコンシューマー向けGPUで動く大きさです。同じ週にAnthropicが自動モードを既定化したという動きと合わせ、中小企業が乗る前に確かめる3点を解説します。",
+  "datePublished": "2026-08-11",
+  "dateModified": "2026-08-11",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260811-meta-muse-glimmer",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点</h1>
+  <span class="a-date">2026.08.11 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260811-meta-muse-glimmer.jpg" alt="Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点">
+
+<p>2026年8月10日、Meta（Meta Superintelligence Labs）が新しいAIモデル「Muse Glimmer」を公開しました（<a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank" rel="noopener">一次情報</a>）。重み（＝AIの中身にあたるデータ本体）が公開されたオープンウェイトのモデルで、ライセンスはApache 2.0です。結論を先に言うと、これは中小企業にとって「データを外に出せないからAIは無理」という断り方が通らなくなる、という話です。</p>
+
+<h2>何が起きたか</h2>
+<p>Muse Glimmerは300億パラメータ級のモデルです（モデルカードの表記では、画像などを読む視覚エンコーダを含めた合計が約29.6B）。最大の特徴は、Metaのブログが「1枚のコンシューマー向けGPUで動く大きさ」と述べている点です。量子化（＝精度を少し落として容量を小さくする処理）をすると、約4bit精度で20GB未満に収まり、24GBまたは32GBのVRAM（＝画像処理用チップが持つ専用メモリ）枠に入るとブログは説明しています。モデルカードの内訳ではK-Quant-Dynamic（32GB・性能の劣化は約0.2%）とK-Quant-17GB（24GB・劣化は約1.0%）の2種類が示され、検証にはMacBook M4-Max/M5-MaxやRTX 5090が使われています。DFlashという投機的デコード（＝先に候補を作って生成を速くする手法）により、RTX 5090で3.1倍、M5 Maxで1.8倍、M4 Maxで1.5倍の高速化が確認されたとしています。コンテキスト長（＝一度に読み込める文章量）はモデルカードによれば13万トークン以上です。対応するランタイム（実行環境）はllama.cpp・MLX・ExecuTorch・Ollama・LM Studio・Unsloth・vLLM・SGLangと幅広く、Hugging Faceから直接ダウンロードできるほか、Together AI・Fireworks AI・OpenRouter経由でも使えます。想定用途はローカルAIエージェント、コーディングエージェント、tool use（AIが道具を呼び出す仕組み）、画像や書類も扱うマルチモーダル推論など。テキストと画像（スクリーンショット・図表・書類）の両方を扱えます。</p>
+
+<h2>なぜ重要か</h2>
+<p>重要なのは「重みが手元にある」という状態が何を意味するかです。1つは、データを社外のサーバーに送らずにAIを動かす選択肢が生まれること。もう1つは、使うたびに料金が発生する従量課金ではなく、機械を買った後の追加コストがほぼ無くなることです。ただし、これは「全部を手元だけで済ませられる」という話ではありません。手元で動かす価値があるのは、外に出したくないデータを扱う場面に限られます。それ以外の大半の作業には、クラウドのAPIの方が導入も運用も軽く済みます。</p>
+<p>同じ週に、もう1つの動きがありました。Anthropicが2026年8月7日、AIコーディング支援ツール「Claude Code」の自動モード（AIが1件ずつ人の承認を取らずに進むモード）を、2026年8月14日からPro/Max/Teamプランで既定にすると発表しました（<a href="https://claude.com/blog/auto-mode-default-in-claude-code" target="_blank" rel="noopener">一次情報</a>）。これはAnthropic自身が自社製品について行った検証であり、第三者による検証ではない点は明記しておきます。1,053人の有料の実務利用者を対象にした対照検証によると、危険なコマンドを止められた割合は、人によるレビューで13.6%、自動モードの判定で89%でした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">人が1件ずつ承認しても、止まったのは13.6%</p>
+<svg viewBox="0 0 1200 460" width="100%" style="min-width:640px" role="img" aria-label="人が1件ずつ承認しても、止まったのは13.6%"><rect x="220" y="277" width="220" height="32" rx="3" fill="#a63a24"/><text x="330" y="259" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#a63a24" font-weight="900" text-anchor="middle">13.6%</text><text x="330" y="343" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">人によるレビュー</text><rect x="700" y="99" width="220" height="210" rx="3" fill="#cfc5b4"/><text x="810" y="81" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#5c544a" font-weight="900" text-anchor="middle">89%</text><text x="810" y="343" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">自動モードの判定</text><line x1="570" y1="50" x2="570" y2="358" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="600.0" y="402.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">危険なコマンドを止められた割合。承認する側の集中力が先に切れる。</text><text x="8" y="444" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Anthropic「Auto mode becomes the default in Claude Code」2026年8月7日</text></svg>
+</div>
+<p>同じ発表では、手動モードで許可を求められた場面のうち97%はそのまま承認されており、CLI（コマンド入力の操作画面）利用者の49.5%が自分で許可ルールを作り、62%が設定で許可確認自体を回避していたことも分かっています。<strong>AIが手元で動く方向（Muse Glimmer）と、AIが自分で判断して進む方向（自動モードの既定化）が同じ週に来ている</strong>——この2つを並べると、承認や監視を人の注意力に置き続けることの限界が見えてきます。</p>
+<p>Muse Glimmerは英語圏の技術系コミュニティで大きな話題になりました。海外の開発者の関心は「手元の1枚のGPUで本当に動くのか」という一点に集中していたようです。ただし、この母集団は開発者です。中小企業の現場で論点になるのは性能ではなく、機械をどこに置くか・電気代をどう見るか・面倒を見る人が社内にいるか、というまったく別の話になります。</p>
+<div class="a-note"><strong>NGraphの視点：</strong>うちは本番でローカルのモデルを使っていません。ブログの定時実行や案件のコード生成は、すべてクラウドのAPI経由で運用しています。直近、話題になった別のモデルへの乗り換えも検討しましたが見送りました。理由は性能ではなく、乗り換えた後に自分たちの検査スクリプトと定時実行の運用に載せ直す手間が見合わなかったからです。比較用の簡易ベンチだけ手元に残してあります。AIに1件ずつ承認を求める運用も実際にやっていますが、承認する側が慣れて全部通すようになるのは実感として分かります。うちはそこを人の注意力に頼るのをやめ、公開前に機械が落とす検査（URLの形・載せ忘れ・タイトルの長さ・数字の裏取り）を運用に埋めました。止まるべきものは、人ではなくスクリプトが止めています。</div>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>「外に出したくないデータ」を1つだけ具体的に書き出す。</strong>手元で動かす価値があるのは、そのデータにしかありません。書き出せないなら、いまはクラウドのAPIで十分です。</li>
+<li><strong>手元の機械のVRAM（専用メモリ）を確かめる。</strong>Muse Glimmerの場合、24GBか32GBが分かれ目になります（一次情報の数字）。無い場合は機械を買う前に、同じモデルを提供しているクラウド（Together AI・Fireworks AI・OpenRouter）で先に試すのが安全です。</li>
+<li><strong>AIに作業させる前に「止める側」を決める。</strong>人の承認で危険なコマンドを止められたのは13.6%でした（Anthropicの自社検証）。承認の回数を増やすのではなく、隔離された環境と機械の検査に置き換えることが要ります。</li>
+</ul>
+<p>この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)"> FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</p>
+
+<h2>その他の注目ニュース（8月11日 朝時点）</h2>
+<ul>
+<li><strong>Docker、AIエージェント向け隔離環境の設定を宣言できる「Sandbox kits」を紹介（8月3日）</strong> — Docker Sandboxesはコーディングエージェントを閉じ込めて動かす隔離環境（microVM・使い捨てのファイルシステム・既定でネットワーク制限）で、Sandbox kitsは中に何を入れるかを`spec.yaml`で宣言する仕組みです（<a href="https://www.docker.com/blog/empty-sandboxes-break-developer-experience/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: AIに社内の機械を触らせる前に、見せる範囲と資格情報の渡し方を宣言で決められるようになります。</li>
+<li><strong>デジタル化・AI導入補助金2026、申請締切は8月25日17:00</strong> — 中小機構が公表している事業スケジュールによると、現在公表されている申請締切は2026年8月25日（火）17:00、交付決定日は2026年10月7日（水）予定です（<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: いま動けば間に合う締切が1本出ています。</li>
+</ul>
+
+<div class="a-src">参考（一次情報）：<br>
+・Meta AI Research「<a href="https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model" target="_blank" rel="noopener">Introducing Muse Glimmer: An Open Agentic Model That Runs on Your Device</a>」（2026年8月10日）<br>
+・Meta「<a href="https://huggingface.co/meta-models/Muse-Glimmer-30B" target="_blank" rel="noopener">Muse Glimmer 30B モデルカード</a>」（Hugging Face）<br>
+・Anthropic「<a href="https://claude.com/blog/auto-mode-default-in-claude-code" target="_blank" rel="noopener">Auto mode becomes the default in Claude Code</a>」（2026年8月7日）<br>
+・Docker「<a href="https://www.docker.com/blog/empty-sandboxes-break-developer-experience/" target="_blank" rel="noopener">Empty sandboxes break developer experience</a>」（2026年8月3日・Oleg Šelajev）<br>
+・中小機構「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール</a>」（デジタル化・AI導入補助金2026）<br>
+・あわせて読む：<a href="/blog/20260808-openai-astra-kengen">OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/20260808-mcp-toha">MCPとは、AIに社内の道具を使わせる共通規格——非エンジニアの会社が自作サーバーを3つのAIにつないだ手順と、2026年7月の仕様変更</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
