@@ -79,7 +79,7 @@
   <span class="a-date">2026.08.10 夕 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20260810-cloudflare-pages.jpg" alt="Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準">
 
-<p><strong>Cloudflare Pages</strong>とは、作り終えたサイトのファイルをCloudflareの世界中のサーバーに置いて配る仕組みです。Git（ファイルの変更履歴を管理する仕組み）に変更を送ると、自動で本番に反映されます。総務省「令和6年通信利用動向調査報告書（企業編）」（2026年公表）によると、ホームページ開設率は93.2%（有効回答2,324社）でした。<strong>ただしこの調査の対象は常用雇用者100人以上の企業6,040社で、中小企業の実態を示す数字ではありません</strong>。この記事はうちが本番で運用しているCloudflare Pagesだけを題材にします。この記事でわかることは3点です。無料枠の上限は3つあり、先に埋まるのは容量ではなく更新回数だということ。PagesとWorkersの「20,000ファイル」は数える単位が違うこと。公式ドキュメントが実際には何と書いていて、何を書いていないか——です。</p>
+<p><strong>Cloudflare Pages</strong>とは、作り終えたサイトのファイルをCloudflareの世界中のサーバーに置いて配る仕組みです。Git（ファイルの変更履歴を管理する仕組み）に変更を送ると、自動で本番に反映されます。総務省「令和7年通信利用動向調査報告書（企業編）」（2026年5月29日公表・調査時点は令和7年8月末）によると、ホームページ開設率は93.3%（有効回答2,488社）でした。<strong>ただしこの調査の対象は常用雇用者100人以上の企業6,040社で、中小企業の実態を示す数字ではありません</strong>。この記事はうちが本番で運用しているCloudflare Pagesだけを題材にします。この記事でわかることは3点です。無料枠の上限は3つあり、先に埋まるのは容量ではなく更新回数だということ。PagesとWorkersの「20,000ファイル」は数える単位が違うこと。公式ドキュメントが実際には何と書いていて、何を書いていないか——です。</p>
 
 <h2>Cloudflare Pagesとは何か——「作る」と「配る」を1本でつなぐ置き場所</h2>
 <p>Cloudflare Pagesは、Git（ファイルの変更履歴つきの置き場所。誰が・いつ・何を変更したかを記録する）にサイトの素材を送ると、Cloudflareが自動でビルド（人が書いた素材を、ブラウザが読める形に組み立てる作業）して、世界中のサーバーに配る仕組みです。従来の月額レンタルサーバーとの違いは、「サーバーを借りて自分でファイルを置く」ではなく「Gitに送ると勝手に配られる」ことにあります。CDN（Content Delivery Network＝同じファイルを世界中のサーバーに複製して置き、利用者に近い場所から配る仕組み）としての性質を持つため、閲覧者は地理的に近いサーバーからファイルを受け取ります。</p>
@@ -109,8 +109,7 @@
 <tr><td>ファイル数（無料）</td><td>20,000</td><td>20,000</td><td>Pages＝1サイト／Workers＝1 Workerバージョン</td></tr>
 <tr><td>ファイル数（有料）</td><td>100,000</td><td>100,000</td><td>同上</td></tr>
 <tr><td>1ファイルの最大</td><td>25 MiB</td><td>25 MiB</td><td>1ファイルあたり</td></tr>
-<tr><td>プロジェクト数（無料）</td><td>100/アカウント</td><td>100/アカウント</td><td>1アカウントあたり</td></tr>
-<tr><td>プロジェクト数（有料）</td><td>—</td><td>500/アカウント</td><td>1アカウントあたり</td></tr>
+<tr><td>プロジェクト数</td><td>100/アカウント</td><td>無料100・有料500/アカウント</td><td>1アカウントあたり</td></tr>
 <tr><td>_headers</td><td>100件</td><td>100件</td><td>1プロジェクトあたり</td></tr>
 <tr><td>_redirects</td><td>静的2,000件・動的100件</td><td>合計2,100件</td><td>1プロジェクトあたり</td></tr>
 </table></div>
@@ -125,7 +124,7 @@
 <p>ここが最重要の実務判断です。Pagesだけが対応している1件は、<strong>Cloudflareで管理していないドメインを独自ドメインとして使えること</strong>（互換表の原語では "Custom domains outside Cloudflare zones"）です。ドメインを制作会社や既存のレジストラなど他社に預けたままの会社にとって、この1件が移行できるかどうかをそのまま決めます。数の多寡ではなく、自社に該当する1行があるかで判断が決まるということです。</p>
 <p>そして、<strong>2026年8月10日時点で確認した公式4ページ</strong>（Pagesのトップ・Workers Static Assets・上記の移行ガイド・その互換表）に、「新規プロジェクトでPagesを使うな」「Pagesを廃止する」という記述はありません。あるのは移行ガイドと機能の比較表、そして100サイトを超えるときの案内だけです。この「無い」という確認はこの4ページの範囲に限られます。噂で急がず、仕様の日付を見ることが必要です。</p>
 
-<h2>うちがこの1年で踏んだこと——URLの末尾が黙って書き換わる</h2>
+<h2>うちが踏んだこと——URLの末尾が黙って書き換わる</h2>
 <p>Cloudflare Pagesの配信仕様（2026年8月10日参照）には次のように書かれています。「Pages will also redirect HTML pages to their extension-less counterparts: for instance, `/contact.html` will be redirected to `/contact`, and `/about/index.html` will be redirected to `/about/`.」（Pagesは、`.html` で終わるページを拡張子なしのURLへリダイレクトする。例えば `/contact.html` は `/contact` へ、`/about/index.html` は `/about/` へ転送される）。<strong>ただし、公式にはこのリダイレクトのステータスコードが書かれていません</strong>。</p>
 <div class="a-note"><strong>私たちの一次体験：</strong>実際にcurlで測ると、`https://ngraph.jp/blog/what-is-fde.html` は<strong>307</strong>を返し、リダイレクト1回で `https://ngraph.jp/blog/what-is-fde` が<strong>200</strong>に着きます。問題は表示ではありません。表示は正常に出るので誰も気づきません。問題は、サイトが自分で名乗るURL——検索エンジンに「正式なURLはこれです」と伝えるcanonical指定や、サイトマップに載せるURL——が `.html` 付きのまま残ることでした。正式なURLとして名乗った先が、実際には転送されるURLになっていたのです。1回直しても、新しいページを作るたびに元に戻りました。手で守るのをやめて、公開の手前に機械の検査を置きました。拡張子なしに揃っているかを自動で確認し、揃っていなければ公開させない仕組みです。ここから引き出せる一般化は、置き場所を変えると、料金や速度ではなく<strong>URLの見え方のような細部</strong>が最初に効いてくるということです。そして細部は人の注意力では守れません。</div>
 
@@ -181,7 +180,7 @@
 ・Cloudflare「<a href="https://developers.cloudflare.com/workers/static-assets/billing-and-limitations/" target="_blank" rel="noopener">Billing and limitations — Workers Static Assets</a>」（2026年8月10日参照）<br>
 ・Cloudflare「<a href="https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/" target="_blank" rel="noopener">Migrate from Pages to Workers</a>」（ページ表記 Last updated Jul 28, 2026・2026年8月10日参照）<br>
 ・Cloudflare「<a href="https://developers.cloudflare.com/pages/configuration/serving-pages/" target="_blank" rel="noopener">Serving Pages — Cloudflare Pages</a>」（2026年8月10日参照）<br>
-・総務省「<a href="https://www.soumu.go.jp/johotsusintokei/statistics/pdf/HR202400_002.pdf" target="_blank" rel="noopener">令和6年通信利用動向調査報告書（企業編）</a>」<br>
+・総務省「<a href="https://www.soumu.go.jp/johotsusintokei/statistics/pdf/HR202500_002.pdf" target="_blank" rel="noopener">令和7年通信利用動向調査報告書（企業編）</a>」（2026年5月29日公表）<br>
 ・あわせて読む：<a href="/blog/20260810-openai-signals-japan">日本は仕事でAIに「やらせて」いない——OpenAI国別データ79か国中79位と、聞く側から抜ける手順</a>（当ブログ・2026年8月10日朝）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
