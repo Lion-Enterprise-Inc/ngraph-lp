@@ -10,9 +10,9 @@
   gtag('js', new Date());
   gtag('config', 'G-L96HMXRK1D');
 </script>
-<title>Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準 | NGraphブログ</title>
+<title>会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所 | NGraphブログ</title>
 <meta name="description" content="ngraph.jpはCloudflare Pagesで配信しています。無料枠の3つの上限（ファイル数・容量・ビルド回数）に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせ、どちらを選ぶべきかの判断基準を解説します。">
-<meta property="og:title" content="Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準 | NGraphブログ">
+<meta property="og:title" content="会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所 | NGraphブログ">
 <meta property="og:description" content="無料枠の3つの上限に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせました。2桁の使用率に届きうるのは更新回数だけです。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ngraph.jp/blog/20260810-cloudflare-pages">
@@ -33,7 +33,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準",
+  "headline": "会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所",
   "image": "https://ngraph.jp/assets/blog/20260810-cloudflare-pages.jpg",
   "description": "ngraph.jpはCloudflare Pagesで配信しています。無料枠の3つの上限（ファイル数・容量・ビルド回数）に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせ、どちらを選ぶべきかの判断基準を解説します。",
   "datePublished": "2026-08-10",
@@ -75,11 +75,11 @@
 
 <article class="article-wrap">
   <div class="a-label">Evening Deep Dive</div>
-  <h1>Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準</h1>
+  <h1>会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所</h1>
   <span class="a-date">2026.08.10 夕 ｜ 株式会社NGraph</span>
-  <img class="a-eyecatch" src="/assets/blog/20260810-cloudflare-pages.jpg" alt="Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準">
+  <img class="a-eyecatch" src="/assets/blog/20260810-cloudflare-pages.jpg" alt="会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所">
 
-<p><strong>Cloudflare Pages</strong>とは、作り終えたサイトのファイルをCloudflareの世界中のサーバーに置いて配る仕組みです。Git（ファイルの変更履歴を管理する仕組み）に変更を送ると、自動で本番に反映されます。総務省「令和7年通信利用動向調査報告書（企業編）」（2026年5月29日公表・調査時点は令和7年8月末）によると、ホームページ開設率は93.3%（有効回答2,488社）でした。<strong>ただしこの調査の対象は常用雇用者100人以上の企業6,040社で、中小企業の実態を示す数字ではありません</strong>。この記事はうちが本番で運用しているCloudflare Pagesだけを題材にします。この記事でわかることは3点です。無料枠の上限は3つあり、先に埋まるのは容量ではなく更新回数だということ。PagesとWorkersの「20,000ファイル」は数える単位が違うこと。公式ドキュメントが実際には何と書いていて、何を書いていないか——です。</p>
+<p><strong>Cloudflare Pages</strong>とは、作り終えたサイトのファイルをCloudflareの世界中のサーバーに置いて配る仕組みです。Git（ファイルの変更履歴を管理する仕組み）に変更を送ると、自動で本番に反映されます。総務省「令和7年通信利用動向調査報告書（企業編）」（2026年5月29日公表・調査時点は令和7年8月末）によると、ホームページ開設率は93.3%（有効回答2,488社）でした。<strong>ただしこの調査の対象は常用雇用者100人以上の企業6,040社で、中小企業の実態を示す数字ではありません</strong>。この記事はうちが本番で運用しているCloudflare Pagesだけを題材にします。この記事でわかることは3点です。無料枠の上限は3つあり、先に埋まるのは容量ではなく更新回数だということ。PagesとWorkersの「20,000ファイル」は数える単位が違い、公式ドキュメントが実際には何と書いていて何を書いていないか。そして、うちが唯一つまずいたのは料金でも速度でもなく、URLの末尾だったこと——です。</p>
 
 <h2>Cloudflare Pagesとは何か——「作る」と「配る」を1本でつなぐ置き場所</h2>
 <p>Cloudflare Pagesは、Git（ファイルの変更履歴つきの置き場所。誰が・いつ・何を変更したかを記録する）にサイトの素材を送ると、Cloudflareが自動でビルド（人が書いた素材を、ブラウザが読める形に組み立てる作業）して、世界中のサーバーに配る仕組みです。従来の月額レンタルサーバーとの違いは、「サーバーを借りて自分でファイルを置く」ではなく「Gitに送ると勝手に配られる」ことにあります。CDN（Content Delivery Network＝同じファイルを世界中のサーバーに複製して置き、利用者に近い場所から配る仕組み）としての性質を持つため、閲覧者は地理的に近いサーバーからファイルを受け取ります。</p>

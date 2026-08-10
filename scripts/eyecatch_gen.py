@@ -96,6 +96,10 @@ def esc(s):
 # ここを566のまま計算していて、1文字あふれて3行になる回が出た（2026-08-08）。
 BOX_W = 531
 FS_MAX, FS_MIN = 68, 40
+# 表紙は一覧で縮小表示される。2行に収まっても級数が落ちると読めない
+# （2026-08-10、19文字の文言が51ptになり、隣の朝記事68ptと並んで明らかに小さかった）。
+# 上限68に対する読める下限。ここを割ったら文言を短くする＝生成させない。
+FS_LEGIBLE = 60
 
 
 MAX_LINES = 2
@@ -132,13 +136,33 @@ def fit_font_size(title):
         return FS_MAX
     for fs in range(FS_MAX, FS_MIN - 1, -1):
         if _count_lines(body, fs) <= MAX_LINES:
+            _require_legible(fs, body)
             return fs
     n = _count_lines(body, FS_MIN)
     if n > MAX_LINES:
         print("ERROR: タイトルが長すぎて%d行に収まりません（最小級数%dptでも%d行）。"
               "タイトルを短くしてください。" % (MAX_LINES, FS_MIN, n))
         sys.exit(3)
+    _require_legible(FS_MIN, body)
     return FS_MIN
+
+
+def _require_legible(fs, body):
+    """級数が読める下限を割ったら、何文字削ればよいかを出して止める。"""
+    if fs >= FS_LEGIBLE:
+        return
+    # FS_LEGIBLE で MAX_LINES 行に収まる文字数まで削る必要がある
+    keep = len(body)
+    while keep and _count_lines(body[:keep], FS_LEGIBLE) > MAX_LINES:
+        keep -= 1
+    print("ERROR: 表紙の文言が長く、級数が%dpt（読める下限%dpt・上限%dpt）まで落ちます。"
+          % (fs, FS_LEGIBLE, FS_MAX))
+    print("       一覧では縮小表示されるので、この大きさでは読めません。"
+          "いまの文言は%d文字。あと%d文字ほど削ってください（目安%d文字以内）。"
+          % (len(body), len(body) - keep, keep))
+    print("       表紙の文言は記事タイトルと同じである必要はありません"
+          "（記事タイトルの主張だけを短く言い切る）。")
+    sys.exit(3)
 
 
 def main():

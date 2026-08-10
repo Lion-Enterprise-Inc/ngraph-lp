@@ -18,7 +18,7 @@
 ## ブログ（AI導入の実践知）
 
 - [日本は仕事でAIに「やらせて」いない——OpenAI国別データ79か国中79位と、聞く側から抜ける手順](https://ngraph.jp/blog/20260810-openai-signals-japan)
-- [Cloudflare Pagesの無料枠は容量ではなく更新回数から埋まる——自社実測3項目と、Workersへ寄せる判断基準](https://ngraph.jp/blog/20260810-cloudflare-pages)
+- [会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所](https://ngraph.jp/blog/20260810-cloudflare-pages)
 - [ChatGPT無料版のテキストチャットが無制限に——事実誤り62%減でも、中小企業が使いたい機能は上限つき](https://ngraph.jp/blog/20260809-chatgpt-free-unlimited)
 - [WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き](https://ngraph.jp/blog/20260809-webmcp-toha)
 - [MCPとは、AIに社内の道具を使わせる共通規格——非エンジニアの会社が自作サーバーを3つのAIにつないだ手順と、2026年7月の仕様変更](https://ngraph.jp/blog/20260808-mcp-toha)
