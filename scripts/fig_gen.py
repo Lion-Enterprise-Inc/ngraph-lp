@@ -261,7 +261,11 @@ def fig_gap(d, o):
     if o["diff"]:
         d2 = round(abs(va - vb), 10)
         d2 = int(d2) if d2 % 1 == 0 else d2
-        parts.append(text(mx, cy - 88, f"差 {fmt(d2, o['unit'])}", 24, ACCENT, 900, "middle", SERIF))
+        # 割合どうしの差の単位は「%」ではなく「ポイント」。70%と50%の差は20ポイントであって
+        # 20%ではない（20%だと「50%の2割増し」とも読めてしまう）。2026-08-11、`--unit %`
+        # のまま「差 20%」と出た図を本番に出しかけた。単位は書いた人ではなく型の側で守る
+        du = "ポイント" if o["unit"] in ("%", "％") else o["unit"]
+        parts.append(text(mx, cy - 88, f"差 {fmt(d2, du)}", 24, ACCENT, 900, "middle", SERIF))
     return "".join(parts)
 
 
