@@ -32,6 +32,7 @@ CHECKS = [
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
     ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], False),
+    ("記事の再確認期限（鮮度）", "freshness_check.py", [], False),
 ]
 
 
