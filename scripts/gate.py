@@ -31,6 +31,7 @@ CHECKS = [
     ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
+    ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], False),
 ]
 
 

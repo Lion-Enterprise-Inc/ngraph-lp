@@ -1,0 +1,86 @@
+{
+ "20260801-ai-shared-brain": {
+  "article_h1": "AIを増やすほど記憶はバラバラになる——GitとMarkdownだけで全AIに同じ正本を読ませる構築手順",
+  "fs": null,
+  "pattern": "radial",
+  "sub": "AIを増やすほど記憶はバラバラになる——正本を1つにする構築手順",
+  "title": "AIの記憶を、1か所に。"
+ },
+ "20260803-saitei-chingin-2026": {
+  "article_h1": "最低賃金2026年度はいつから・いくら？47都道府県別の想定時給と発効日——目安55円・全国平均1,176円",
+  "fs": null,
+  "pattern": "seq",
+  "sub": "47都道府県別の試算額と、発効日は10月1日〜3月31日",
+  "title": "最低賃金2026、いつから・いくら"
+ },
+ "20260805-sakana-namazu": {
+  "article_h1": "Sakana AIが日本語特化LLM APIを提供開始——100人以下の企業のAI導入は16.6%、壁は日本語ではない",
+  "fs": null,
+  "pattern": "pyramid",
+  "sub": "Sakana AIが日本語特化LLM APIを提供開始",
+  "title": "壁は、日本語ではない"
+ },
+ "20260806-meta-muse-code": {
+  "article_h1": "MetaがコーディングAI「Muse Code」を投入——安さの対価は、自社データ",
+  "fs": null,
+  "pattern": "venn",
+  "sub": "Metaがコーディングエージェントを投入",
+  "title": "安さの対価は、自社データ"
+ },
+ "20260806-seihon-yomarenai": {
+  "article_h1": "AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法",
+  "fs": 68,
+  "pattern": "blocked",
+  "sub": "一定確率で起きる。プロンプトでは塞げない",
+  "title": "AIは指示を{nb}無視する{/nb}"
+ },
+ "20260809-chatgpt-free-unlimited": {
+  "article_h1": "ChatGPT無料版のテキストチャットが無制限に——事実誤り62%減でも、中小企業が使いたい機能は上限つき",
+  "fs": null,
+  "pattern": "balance",
+  "sub": "ChatGPT無料版の解放と、残った上限",
+  "title": "無制限になったのは、会話だけ"
+ },
+ "20260810-cloudflare-pages": {
+  "article_h1": "会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所",
+  "fs": null,
+  "pattern": "gauge",
+  "sub": "Cloudflare Pages｜上限に対し実測0.8%",
+  "title": "ホームページは無料枠で足りる"
+ },
+ "20260811-meta-muse-glimmer": {
+  "article_h1": "Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点",
+  "fs": null,
+  "pattern": "balance",
+  "sub": "Meta 30B級をApache 2.0で公開",
+  "title": "AIが、手元で動き出した"
+ },
+ "ai-and-humans": {
+  "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
+  "fs": null,
+  "pattern": "venn",
+  "sub": "「奪われる」でも「全部解決」でもない——現場で決めてきた線引き",
+  "title": "AIと人間、本当の分担"
+ },
+ "ai-cost": {
+  "article_h1": "AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳",
+  "fs": null,
+  "pattern": "pyramid",
+  "sub": "補助金の採択5万件が示す実額と、見積の内訳",
+  "title": "AI導入の費用はいくらか"
+ },
+ "fde-vs-training": {
+  "article_h1": "研修は「教える」、コンサルは「描く」、FDEは現場で「つくる」——AI導入支援3タイプの選び方",
+  "fs": null,
+  "pattern": "venn",
+  "sub": "教える／描く／つくる——3つの支援の選び方",
+  "title": "研修・コンサル・FDEの違い"
+ },
+ "what-is-fde": {
+  "article_h1": "FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6%",
+  "fs": null,
+  "pattern": "pyramid",
+  "sub": "現場でAIを入れられる人の不足 69.6%",
+  "title": "FDEとは？足りないのは研究者ではない"
+ }
+}

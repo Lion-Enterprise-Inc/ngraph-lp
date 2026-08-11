@@ -108,6 +108,14 @@ MAX_LINES = 2
 KINSOKU_HEAD = "」）】』〉》、。，．・？！ゃゅょっァィゥェォッャュョーぁぃぅぇぉ%％"
 KINSOKU_TAIL = "「（【『〈《"
 
+# サブテキストの検査（2026-08-11）。タイトルだけ級数と行数を見ていて、
+# **サブは無検査だった**。24文字のサブが566pxを10pxだけ超え、
+# 最終行に「い」1文字だけが落ちた表紙が生成された（20260806-seihon-yomarenai）。
+# .sub は width:566px・font-size:24px・letter-spacing なし。
+SUB_W = 566
+SUB_FS = 24
+MAX_SUB_LINES = 2
+
 
 def _advance(ch, fs):
     return fs * 0.57 if ord(ch) < 0x2E80 else fs * 1.04  # 1.02em + letter-spacing .02em
@@ -165,6 +173,74 @@ def _require_legible(fs, body):
     sys.exit(3)
 
 
+def _wrap_sub(sub):
+    """サブテキストを実際に折り返して各行の文字数を返す（letter-spacingなし）。"""
+    lines, cur, n = [], 0.0, 0
+    for i, ch in enumerate(sub):
+        w = SUB_FS * (0.55 if ord(ch) < 0x2E80 else 1.0)
+        if cur + w > SUB_W:
+            if ch in KINSOKU_HEAD or (i and sub[i - 1] in KINSOKU_TAIL):
+                # 禁則で1文字送られる分は、そのまま前の行に残る扱いでよい（幅は超えるが実測で収まる）
+                cur += w
+                n += 1
+                continue
+            lines.append(n)
+            cur, n = w, 1
+        else:
+            cur += w
+            n += 1
+    lines.append(n)
+    return lines
+
+
+def check_sub(sub):
+    """サブの行数と「最終行に1文字だけ残る」を生成前に落とす。"""
+    if not sub:
+        return
+    lines = _wrap_sub(sub)
+    if len(lines) > MAX_SUB_LINES:
+        over = sum(lines[MAX_SUB_LINES:])
+        print("ERROR: サブテキストが%d行になります（上限%d行）。あと%d文字ほど削ってください。"
+              % (len(lines), MAX_SUB_LINES, over))
+        sys.exit(3)
+    if len(lines) > 1 and lines[-1] <= 1:
+        print("ERROR: サブテキストの最終行に%d文字だけ残ります（%d文字が%d行に折り返す）。"
+              % (lines[-1], len(sub), len(lines)))
+        print("       1文字だけ次行に落ちると事故に見えます。"
+              "あと2文字ほど削るか、言い換えて%d文字以内に収めてください。"
+              % (len(sub) - lines[-1] - 2))
+        sys.exit(3)
+
+
+def record(slug, title, sub, pat, fs):
+    """表紙の文言を記録する（BLOG-OPS §8「表紙の文言の検査」）。
+
+    2026-08-11に入れた。**表紙の文言は焼かれたJPEGの中にしか無く、どこにも記録が無かった。**
+    そのため記事を改題しても表紙が旧文言のまま取り残され、誰も気付けない
+    （20260806-seihon-yomarenai は8/8の改題後も旧タイトルの表紙が3日間出ていた）。
+    `article_h1` は「この表紙を作った時点の記事タイトル」。ここが現在のh1とズレたら
+    `eyecatch_text_check.py` が落とす。記事より先に表紙を作る場合は null で記録され、
+    検査の初回実行時に紐付けられる。
+    """
+    import json
+    path = os.path.join(OUT, "_eyecatch.json")
+    try:
+        data = json.load(open(path, encoding="utf-8"))
+    except Exception:
+        data = {}
+    h1 = None
+    art = os.path.join(ROOT, "blog", slug + ".html")
+    if os.path.exists(art):
+        import re
+        m = re.search(r"<h1[^>]*>(.*?)</h1>", open(art, encoding="utf-8").read(), re.S)
+        if m:
+            h1 = re.sub(r"<[^>]+>", "", m.group(1)).strip()
+    data[slug] = {"title": title, "sub": sub, "pattern": pat, "fs": fs, "article_h1": h1}
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1, sort_keys=True)
+        f.write("\n")
+
+
 def main():
     if len(sys.argv) < 5:
         print(__doc__)
@@ -179,8 +255,10 @@ def main():
     if pat not in PATS:
         print("unknown pattern:", pat, "->", "/".join(PATS))
         sys.exit(1)
+    check_sub(sub)
+    fs = fit_font_size(title)
     title_html = esc(title).replace("{nb}", '<span class="nb">').replace("{/nb}", "</span>")
-    html = TPL % {"title": title_html, "sub": esc(sub), "pat": PATS[pat], "fs": fit_font_size(title)}
+    html = TPL % {"title": title_html, "sub": esc(sub), "pat": PATS[pat], "fs": fs}
     html = html.replace(">NGRAPH BLOG<", ">" + esc(label) + "<")
     tmp = tempfile.mkdtemp(prefix="eyecatch_")
     hp = os.path.join(tmp, slug + ".html")
@@ -204,6 +282,8 @@ def main():
     im = Image.open(png).convert("RGB")
     out = out_override or os.path.join(OUT, slug + ".jpg")
     im.save(out, "JPEG", quality=86)
+    if not out_override:  # --out はX添付等の単体書き出しなので、表紙の記録には入れない
+        record(slug, title, sub, pat, fs)
     print("OK", out, im.size)
 
 
