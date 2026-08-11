@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [インボイスの8割控除は2026年9月で終わる——10月から7割・「5割」と書いた解説が古い理由](https://ngraph.jp/blog/20260811-invoice-keika-sochi)
 - [Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点](https://ngraph.jp/blog/20260811-meta-muse-glimmer)
 - [日本は仕事でAIに「やらせて」いない——OpenAI国別データ79か国中79位と、聞く側から抜ける手順](https://ngraph.jp/blog/20260810-openai-signals-japan)
 - [会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所](https://ngraph.jp/blog/20260810-cloudflare-pages)
