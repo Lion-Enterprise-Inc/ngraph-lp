@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方 | NGraphブログ</title>
+<meta name="description" content="2026年8月11日、NVIDIAがオープンウェイトAI「Nemotron 3.5 Lightning」と振り分けの仕組み「NeMo Switchyard」を公開。タスク完了コストは主張値でOpus 4.8単独の約3分の1。中小企業のAI費用の考え方を解説します。">
+<meta property="og:title" content="一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方 | NGraphブログ">
+<meta property="og:description" content="NVIDIAが振り分けの仕組みを公開。コストは主張値で約3分の1に。中小企業のAI費用の考え方を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260812-ai-model-routing">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260812-ai-model-routing.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260812-ai-model-routing">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方",
+  "image": "https://ngraph.jp/assets/blog/20260812-ai-model-routing.jpg",
+  "description": "2026年8月11日、NVIDIAがオープンウェイトAI「Nemotron 3.5 Lightning」と振り分けの仕組み「NeMo Switchyard」を公開。タスク完了コストは主張値でOpus 4.8単独の約3分の1。中小企業のAI費用の考え方を解説します。",
+  "datePublished": "2026-08-12",
+  "dateModified": "2026-08-12",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260812-ai-model-routing",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方</h1>
+  <span class="a-date">2026.08.12 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260812-ai-model-routing.jpg" alt="一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方">
+
+<p>2026年8月11日、NVIDIAがオープンウェイト（AIの中身にあたるデータ本体を公開する形式）のAIモデル「Nemotron 3.5 Lightning」と、複数のAIモデルへ仕事を振り分ける仕組み「NeMo Switchyard」を公開しました（<a href="https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/" target="_blank" rel="noopener">一次情報</a>）。結論を先に言うと、これは「どのAIを選ぶか」ではなく、「どの仕事をどのAIに回すか」が費用を決める、という話です。</p>
+
+<h2>何が起きたか</h2>
+<p>「Nemotron 3.5 Lightning」は300億パラメータ（AIの学習量を示す数値）のMoE（mixture-of-experts、複数の専門モデルを必要に応じて呼び分ける設計）モデルです。重みが公開されたオープンウェイトのモデルで、Hugging Face・ModelScope・OpenRouter・build.nvidia.comから入手できます。NVIDIAは、何十手も自分で作業を進めるエージェント型AI（人の指示を都度待たず、目的達成まで自律的に作業を続ける使い方）の用途で、同クラス最高効率のモデルと位置づけています。同クラスの他モデル比で出力速度が最大4倍、それによりエージェント的なタスクの完了が30%速いとし、PinchBenchというベンチマークで最先端級の精度を維持していると述べています（これらの数値はNVIDIA自身の計測によるものです）。動作先はRTX PC・DGX Spark・DGX Station・Jetson・RTX PROワークステーション・データセンター・クラウドと幅広く用意されています。同時に、リクエストごとに最も適したモデルへ振り分けるルーティングのライブラリ「NeMo Switchyard」もオープンソースで公開されました。</p>
+
+<h2>なぜ重要か</h2>
+<p>この1年、AIの費用の話は「どのモデルが安いか」というモデル比較表が中心でした。今回の発表が前提を1つずらしているのは、同じ仕事の中で複数のモデルを使い分けることを、道具の側が標準の機能として持ち始めた点です。NeMo Switchyardは、1つのAIツールの内部でリクエストごとに送り先のモデルを変える仕組みで、これまで開発者が個別に組んでいた振り分けを、ライブラリとして誰でも使える形にしました。</p>
+<p>エージェント型の使い方では、1回の質問の値段ではなく、1つの仕事を終えるまでの合計が効いてきます。長く動くほど、全部を最上位モデルにやらせる設計の割高さが響きます。NVIDIAは、最先端級の精度を保ちながらタスク完了コストをOpus 4.8単独の約3分の1に下げられると主張しています(Opus 4.8はAnthropicの上位モデルの1つです)。これはNVIDIAの内部ベンチマークによる主張で、コスト側のベンチマーク名は当該発表に明示されていません。</p>
+<p>私たちが独自に注目しているのは、振り分けの軸が「モデルの賢さ」ではなく「やり直しのコストが高い工程かどうか」であるべき、という点です。段取りを間違えると全部やり直しになる工程には上位モデルを、決まった手順を繰り返す工程には下位モデルを回す——この基準の方が、費用と精度のバランスを実務で説明しやすくなります。</p>
+<div class="a-note"><strong>NGraphの視点：</strong>このブログ自体を、朝と夕に1本ずつ、決まった手順で出しています。ネタ選びと事実確認は上位モデル、原稿・画像・公開作業は下位モデルに投げる、と手順書に書いて固定してあります。理由は単純で、事実確認を間違えると全部書き直しになるからです。逆に公開前の検査は、人でもAIでもなくスクリプトに任せています——ここは賢さが要らないので、一番安い方法が一番強い、というのが実際の運用です。</div>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>いま払っているAIの費用を「人数×月額」ではなく「1つの仕事を終えるまで」で見る。</strong>同じ作業を1か月に何回やっているかを数えるだけでよい。</li>
+<li><strong>社内の作業を「やり直しのコストが高い／低い」で2つに分ける。</strong>高い方だけ上位プラン・上位モデルにする。全社員に一律で最上位を配るのが一番高い。</li>
+<li><strong>自動で振り分ける仕組みは今すぐ入れなくてよい。</strong>ルーティングは開発者向けの部品なので、まずは人が手で振り分ける（この作業はこのAI、と決めて書き出す）だけで効果が出る。自社の確かめ方は、ベンダーや社内担当に「どの作業がどのモデルで動いているか」を1枚で出してもらうこと。</li>
+</ul>
+<p>この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)"> FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</p>
+
+<h2>その他の注目ニュース（8月12日 朝時点）</h2>
+<ul>
+<li><strong>デジタル化・AI導入補助金2026、第4次締切は8月25日17:00</strong> — 中小機構が公表している事業スケジュールによると、第4次締切は2026年8月25日（火）17:00です。通常枠・インボイス枠2類型・セキュリティ対策推進枠・複数者連携枠の全枠共通で、交付決定日は2026年10月7日（水）予定。事務局は「締切時間を過ぎた場合は、いかなる理由であっても受付対応は一切いたしかねます」と明記しています（<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: AI・ITツールの導入費用に使える国の補助金です。次の締切まで残りわずかなので、間に合わないなら次の締切を前提に段取りを組む方が確実です。</li>
+<li><strong>Anthropic、専用データセンター基盤「Theseus Infrastructure」を発表（8月10日）</strong> — Anthropic向けの専用データセンターを開発・運営・賃貸するプラットフォーム「Theseus Infrastructure」の設立が発表されました。Macquarie Asset Managementが運用するファンドとシンガポールの政府系ファンドGICがプラットフォームを保有し、Anthropicがアンカーテナントとして長期契約で入居します（当初は米国中心）。Anthropicは送電網の増強費用を100%負担し、自社のデータセンター需要に起因する消費者の電気料金の上昇分も負担すると表明しています（<a href="https://www.macquarie.com/au/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: AI利用料の原価は電力とデータセンターへの巨額投資です。値下げ競争が続いても、安いから使い放題を前提に見積もらない方がよいでしょう。</li>
+<li><strong>プログラミング言語「Mojo」が1.0に到達（8月11日）</strong> — Modularが開発する「Mojo」が正式に1.0に到達しました。2023年の最初のリリース以来の節目で、1.x期間中の変更は原則として「追加」が中心になるとModularは表明しています。破壊的な変更はあり得るものの、C++のような成熟した言語の進め方に沿って慎重に扱うとしています（<a href="https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 直接触るものではありませんが、AIの土台側の道具が「安定版」を名乗り始めたのは、外注や内製で「来年には作り直し」になるリスクが下がる方向の変化です。ただし1.0は約束であって実績ではない、という留保はつけておきます。</li>
+</ul>
+
+<div class="a-src">参考（一次情報）：<br>
+・NVIDIA「<a href="https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/" target="_blank" rel="noopener">Nemotron 3.5 Lightning and NeMo Switchyard</a>」（2026年8月11日）<br>
+・中小機構「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール</a>」（デジタル化・AI導入補助金2026）<br>
+・Macquarie「<a href="https://www.macquarie.com/au/en/about/news/2026/anthropic-mam-gic-data-centre-infrastructure-partnership.html" target="_blank" rel="noopener">Anthropic, Macquarie Asset Management and GIC data centre infrastructure partnership</a>」（2026年8月10日）<br>
+・Modular「<a href="https://www.modular.com/blog/modular-26-5-mojo-1-0-is-here" target="_blank" rel="noopener">Mojo 1.0 is here</a>」（2026年8月11日）<br>
+・あわせて読む：<a href="/blog/20260811-meta-muse-glimmer">Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点</a>（当ブログ・昨日の朝）<br>
+・あわせて読む：<a href="/blog/ai-cost">AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

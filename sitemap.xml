@@ -47,7 +47,8 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-11</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-12</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260812-ai-model-routing</loc><lastmod>2026-08-12</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260811-meta-muse-glimmer</loc><lastmod>2026-08-11</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260811-invoice-keika-sochi</loc><lastmod>2026-08-11</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260810-openai-signals-japan</loc><lastmod>2026-08-10</lastmod></url>
