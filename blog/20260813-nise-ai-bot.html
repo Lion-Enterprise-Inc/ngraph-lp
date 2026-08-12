@@ -65,7 +65,7 @@
   <span class="a-date">2026.08.13 朝 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20260813-nise-ai-bot.jpg" alt="AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認">
 
-<p>AIのクローラー（自動でサイトを巡回するプログラム）になりすまして、サイトの弱点を探して回るアクセスが広範囲で観測されています。AIエージェントの動きを追跡するKnown Agentsは、調査「The Agentic Web Index」で「AIボットへのなりすましを装い、Webサイトの脆弱性を探す広範なキャンペーンを観測している」と報告しています（<a href="https://knownagents.com/insights" target="_blank" rel="noopener">一次情報</a>）。結論を先に言うと、これは中小企業にとって、名乗りは証拠にならない、そしていま探されているのは、AIで作りはじめた会社が新しく置いたファイルだ、という話です。</p>
+<p>AIのクローラー（自動でサイトを巡回するプログラム）になりすまして、サイトの弱点を探して回るアクセスが広範囲で観測されています。AIエージェントの動きを追跡するKnown Agentsは、調査「The Agentic Web Index」で「AIボットになりすまして、Webサイトの脆弱性を探す広範なキャンペーンを観測している」と報告しています（<a href="https://knownagents.com/insights" target="_blank" rel="noopener">一次情報</a>）。結論を先に言うと、これは中小企業にとって、名乗りは証拠にならない、そしていま探されているのは、AIで作りはじめた会社が新しく置いたファイルだ、という話です。</p>
 
 <h2>何が起きたか</h2>
 <p>Known Agentsは5,000以上のWebサイトを対象に、アクセスを日次で集計しています。大規模サイトの数字に引っ張られないよう、各サイトを同じ重みで扱う設計です。観測されているのは、AIコーディングツールが使う認証情報や設定ファイルを狙ったアクセスで、実際に探られた例として <code>/.claude/settings.json</code>、<code>/.aws/credentials</code>、<code>/.env.production</code>、<code>/.env.local</code>、<code>/terraform.tfstate</code>、<code>/service-account.json</code>、<code>dockerfile</code> が挙がっています。「なりすまし」は、既知のAIボットの名前を名乗りながら、その名前に対応する認証方式（IP検証やHTTP署名）には通らなかったアクセスとして数えています。総トラフィックに占める割合は、最も多く名乗られたのがGooglebotで0.5%、続いてChatGPT-User・GPTBot・OAI-SearchBot・PerplexityBotが各0.1%、ClaudeBot・Applebot・bingbotは0.0%でした。</p>
@@ -87,7 +87,7 @@
 <h2>その他の注目ニュース（8月13日 朝時点）</h2>
 <ul>
 <li><strong>中小企業省力化投資補助金〈一般型〉第8回、日程が確定</strong> — 事務局サイトのお知らせに、公募申請のスケジュールを更新した旨の記載があります。新しい日程は8月18日（火）公募開始、9月中旬申請受付開始、10月中旬申請締切予定です。第7回は7月31日17時に締切済みでした。補助上限額は従業員数別に5人以下750万円〜101人以上8,000万円（賃上げ特例が適用される場合はさらに上乗せ）、補助率は中小企業1/2（同2/3）、小規模事業者・再生事業者2/3です（<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 申請にはGビズIDプライムアカウントが要り、取得に時間がかかります。秋に出すつもりなら今週動いてください。当ブログの<a href="/blog/20260804-shoryokuka-8th-gbizid">8月4日朝の記事</a>では「8月中旬」までしか出ていませんでしたが、今回で日程が確定しました。</li>
-<li><strong>xAIがGrok 4.6を公開（8月12日）</strong> — API価格は100万トークンあたり入力2ドル・出力6ドルから、高速版はその倍です。CursorとGrok Buildで当日から利用可能で、APIおよびOpenRouter・Vercel・Cloudflareなどのパートナー経由でも提供されます。初週はGrok BuildとCursorの合計利用枠が2倍になる特典もあります。同社発表のベンチマーク値としてAA Intelligence Index 61などが挙げられています（<a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 上位モデルの価格帯を把握する材料の1つです。</li>
+<li><strong>xAIがGrok 4.6を公開（8月12日）</strong> — API価格は100万トークンあたり入力2ドル・出力6ドルから、高速版はその倍です。CursorとGrok Buildで当日から利用可能で、APIおよびOpenRouter・Vercel・Cloudflareなどのパートナー経由でも提供されます。初週はGrok BuildとCursorに含まれる利用枠が2倍になる特典もあります。同社発表のベンチマーク値としてAA Intelligence Index 61などが挙げられています（<a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 上位モデルの価格帯を把握する材料の1つです。</li>
 <li><strong>Qwenが超大型のオープンウェイトモデルを公開</strong> — モデル名Qwen3.8-2.4T-A95B。総パラメータ2.4兆、1トークンあたり実際に動くのは950億（95B）です。コンテキスト長（AIが一度に読める文章量の上限）は262,144トークン、拡張で最大1,010,000トークンです。ライセンスは同社独自の <code>qwen3.8-max</code> です（<a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: オープンウェイト（AIの中身を公開する形式）だからといって、自社サーバーで動かせるとは限りません。この規模は中小企業の手元では動きません。</li>
 </ul>
 
