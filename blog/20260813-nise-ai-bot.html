@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認 | NGraphブログ</title>
+<meta name="description" content="AIボットになりすまして脆弱性を探すアクセスが観測されています。名乗りは証拠にならない理由と、自社サイトを5分で確認する方法、IPで検証する手順を解説します。">
+<meta property="og:title" content="AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認 | NGraphブログ">
+<meta property="og:description" content="AIボットになりすまして脆弱性を探すアクセスが観測されています。名乗りは証拠にならない理由と、自社サイトを5分で確認する方法を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260813-nise-ai-bot">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260813-nise-ai-bot.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260813-nise-ai-bot">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認",
+  "image": "https://ngraph.jp/assets/blog/20260813-nise-ai-bot.jpg",
+  "description": "AIボットになりすまして脆弱性を探すアクセスが観測されています。名乗りは証拠にならない理由と、自社サイトを5分で確認する方法、IPで検証する手順を解説します。",
+  "datePublished": "2026-08-13",
+  "dateModified": "2026-08-13",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260813-nise-ai-bot",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認</h1>
+  <span class="a-date">2026.08.13 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260813-nise-ai-bot.jpg" alt="AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認">
+
+<p>AIのクローラー（自動でサイトを巡回するプログラム）になりすまして、サイトの弱点を探して回るアクセスが広範囲で観測されています。AIエージェントの動きを追跡するKnown Agentsは、調査「The Agentic Web Index」で「AIボットへのなりすましを装い、Webサイトの脆弱性を探す広範なキャンペーンを観測している」と報告しています（<a href="https://knownagents.com/insights" target="_blank" rel="noopener">一次情報</a>）。結論を先に言うと、これは中小企業にとって、名乗りは証拠にならない、そしていま探されているのは、AIで作りはじめた会社が新しく置いたファイルだ、という話です。</p>
+
+<h2>何が起きたか</h2>
+<p>Known Agentsは5,000以上のWebサイトを対象に、アクセスを日次で集計しています。大規模サイトの数字に引っ張られないよう、各サイトを同じ重みで扱う設計です。観測されているのは、AIコーディングツールが使う認証情報や設定ファイルを狙ったアクセスで、実際に探られた例として <code>/.claude/settings.json</code>、<code>/.aws/credentials</code>、<code>/.env.production</code>、<code>/.env.local</code>、<code>/terraform.tfstate</code>、<code>/service-account.json</code>、<code>dockerfile</code> が挙がっています。「なりすまし」は、既知のAIボットの名前を名乗りながら、その名前に対応する認証方式（IP検証やHTTP署名）には通らなかったアクセスとして数えています。総トラフィックに占める割合は、最も多く名乗られたのがGooglebotで0.5%、続いてChatGPT-User・GPTBot・OAI-SearchBot・PerplexityBotが各0.1%、ClaudeBot・Applebot・bingbotは0.0%でした。</p>
+
+<h2>なぜ重要か</h2>
+<p>User-Agent（アクセスしてきた側が自分で名乗る名前。ブラウザやAIボットの自己申告にすぎません）は、誰でも自由に書き換えられます。つまり名乗りそのものは証拠になりません。見出しに引っ張られない読み方が要ります。なりすましで最も多く名乗られていたのはGooglebotの0.5%で、AI系のボットはどれも0.1%以下でした。これは「AIボットが危ない」という話ではなく、「名乗りは全部確かめろ」という話です。</p>
+<p>本題は狙われているパスの中身です。<code>/.claude/settings.json</code> や <code>/.env.production</code> は、AIを使ってコードやサイトを作り始めた会社が新しく置くファイルです。つまりAIを使い始めたこと自体が、攻撃の入口を1つ増やしています。問われているのは「使っているAIが安全か」ではなく、「AIに作らせた成果物を、どこにどう置いたか」です。</p>
+<p>「うちのような小さい会社は狙われない」は成立しません。攻撃側は人を選ばず、パスを機械的に叩いているだけです。しかもこの指標は各サイトを同じ重みで数えています。大手だけの現象ではないということです。</p>
+<div class="a-note"><strong>NGraphの視点：</strong>このブログはCloudflare Pagesで配信していて、リポジトリに置いたファイルはそのままURLとして公開されます。だから外部サービス連携用のスクリプトが吐き出す中間ファイル（JSON）は、リポジトリの中ではなくWindowsの一時フォルダ（%TEMP%）に書く、と手順書に明記してあります。事故があってから足したルールではなく、置き場所を毎回考えなくて済むように先に決めたものです。今回の「探されているパスの一覧」を見て、この判断は当たっていたと分かりました。</div>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>自社が管理しているサイトに対してだけ、URLの末尾に <code>/.env</code> を付けてブラウザで開いてみる。</strong>「404 Not Found」以外が返ってきたら、その場で制作会社か担当者に連絡してください。同じ要領で <code>/.env.production</code> や <code>/.git/config</code> も見てください。社長でも5分でできます。</li>
+<li><strong>AIボットを名乗るアクセスは、名前ではなく検証方法で見る。</strong>Googleは、アクセス元IPを逆引き（IPアドレスからホスト名を調べること）し、返ってきたホスト名が <code>googlebot.com</code> などであることを確認したうえで、そのホスト名を正引き（ホスト名からIPアドレスを調べること）して元のIPに戻ることまで確かめる、双方向の確認方法を公式案内しています。Anthropicは自社クローラーのIPアドレス一覧を公開しています。CDN（コンテンツ配信ネットワーク。サイトを高速・安全に配信する仲介の仕組み）やレンタルサーバーの管理画面に「ボットの判定」機能があれば有効か確認してください。自社で見られないなら、サイトを作った会社に「AIボットを名乗るアクセスをIPで検証しているか」と1行聞いてください。</li>
+<li><strong>robots.txt（検索エンジンやAIボットに「ここは読んでいい・読んでほしくない」を伝えるファイル）は「お願い」であって防御ではない、を社内の共通認識にする。</strong>robots.txtに従うのは行儀のよいボットだけで、なりすましは最初から従いません。「AIに読ませるか読ませないか」の議論と、「偽装アクセスをどう止めるか」は別の話として分けてください。</li>
+</ul>
+<p>この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)"> FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</p>
+
+<h2>その他の注目ニュース（8月13日 朝時点）</h2>
+<ul>
+<li><strong>中小企業省力化投資補助金〈一般型〉第8回、日程が確定</strong> — 事務局サイトのお知らせに、公募申請のスケジュールを更新した旨の記載があります。新しい日程は8月18日（火）公募開始、9月中旬申請受付開始、10月中旬申請締切予定です。第7回は7月31日17時に締切済みでした。補助上限額は従業員数別に5人以下750万円〜101人以上8,000万円（賃上げ特例が適用される場合はさらに上乗せ）、補助率は中小企業1/2（同2/3）、小規模事業者・再生事業者2/3です（<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 申請にはGビズIDプライムアカウントが要り、取得に時間がかかります。秋に出すつもりなら今週動いてください。当ブログの<a href="/blog/20260804-shoryokuka-8th-gbizid">8月4日朝の記事</a>では「8月中旬」までしか出ていませんでしたが、今回で日程が確定しました。</li>
+<li><strong>xAIがGrok 4.6を公開（8月12日）</strong> — API価格は100万トークンあたり入力2ドル・出力6ドルから、高速版はその倍です。CursorとGrok Buildで当日から利用可能で、APIおよびOpenRouter・Vercel・Cloudflareなどのパートナー経由でも提供されます。初週はGrok BuildとCursorの合計利用枠が2倍になる特典もあります。同社発表のベンチマーク値としてAA Intelligence Index 61などが挙げられています（<a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 上位モデルの価格帯を把握する材料の1つです。</li>
+<li><strong>Qwenが超大型のオープンウェイトモデルを公開</strong> — モデル名Qwen3.8-2.4T-A95B。総パラメータ2.4兆、1トークンあたり実際に動くのは950億（95B）です。コンテキスト長（AIが一度に読める文章量の上限）は262,144トークン、拡張で最大1,010,000トークンです。ライセンスは同社独自の <code>qwen3.8-max</code> です（<a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: オープンウェイト（AIの中身を公開する形式）だからといって、自社サーバーで動かせるとは限りません。この規模は中小企業の手元では動きません。</li>
+</ul>
+
+<div class="a-src">参考（一次情報）：<br>
+・Known Agents「<a href="https://knownagents.com/insights" target="_blank" rel="noopener">The Agentic Web Index</a>」<br>
+・Anthropic「<a href="https://claude.com/crawling/bots.json" target="_blank" rel="noopener">クローラーIPアドレス一覧（bots.json）</a>」<br>
+・Google「<a href="https://developers.google.com/crawling/docs/crawlers-fetchers/verify-google-requests" target="_blank" rel="noopener">Verify Requests from Google Crawlers and Fetchers</a>」<br>
+・中小企業省力化投資補助金事務局「<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">一般型 公募情報</a>」<br>
+・xAI「<a href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">Grok 4.6</a>」（2026年8月12日）<br>
+・Qwen「<a href="https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B" target="_blank" rel="noopener">Qwen3.8-2.4T-A95B モデルカード</a>」<br>
+・あわせて読む：<a href="/blog/20260810-cloudflare-pages">会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/20260804-shoryokuka-8th-gbizid">省力化投資補助金 第8回は8月中旬公募開始——GビズIDの不具合で「申請の入口」が一部止まっている</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
