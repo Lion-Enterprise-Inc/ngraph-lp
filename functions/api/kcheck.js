@@ -41,7 +41,7 @@ async function siteChecks(rawUrl) {
   try { u = new URL(/^https?:\/\//.test(rawUrl) ? rawUrl : 'https://' + rawUrl); } catch { return { facts: [fail('URLの形式', 'input')], host: null, nameGuess: null }; }
   if (u.protocol !== 'https:' && u.protocol !== 'http:') return { facts: [fail('URLの形式', 'input')], host: null, nameGuess: null };
   const host = u.hostname;
-  if (/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|\[)/.test(host) || !host.includes('.'))
+  if (/^(localhost|127\.|0\.|10\.|192\.168\.|169\.254\.|100\.(6[4-9]|[7-9]\d|1[01]\d|12[0-7])\.|198\.1[89]\.|172\.(1[6-9]|2\d|3[01])\.|\[)/.test(host) || !host.includes('.'))
     return { facts: [fail('URLの形式', 'input')], host: null, nameGuess: null };
 
   // DNS: MX / SPF / DMARC
@@ -144,8 +144,19 @@ async function gbizByName(name, token) {
   return list.sort((a, b) => (b.name === name) - (a.name === name));
 }
 
+async function rateLimit(env, request, bucket, limit) {
+  if (!env.LEADS) return true;  // KV未設定時は通す（fail-open）
+  const ip = request.headers.get('cf-connecting-ip') || 'x';
+  const key = `rl_${bucket}_${ip}_${new Date().toISOString().slice(0, 13)}`;
+  const n = parseInt(await env.LEADS.get(key) || '0', 10) + 1;
+  await env.LEADS.put(key, String(n), { expirationTtl: 3900 });
+  return n <= limit;
+}
+
 export async function onRequestPost(context) {
   const token = context.env.GBIZINFO_TOKEN;
+  if (!(await rateLimit(context.env, context.request, 'kcheck', 20)))
+    return json({ error: '照会の上限（1時間あたり）に達しました。時間をおいてお試しください。' }, 429);
   let body;
   try { body = await context.request.json(); } catch { return json({ error: '入力を読み取れませんでした' }, 400); }
   const q = String(body.q || '').trim().slice(0, 200);

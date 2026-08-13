@@ -95,7 +95,7 @@
 
   <div id="pdfGate">
     <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px">この結果をPDFで保存する</p>
-    <p style="font-size:.78rem;color:var(--text-3);line-height:1.9;margin-bottom:10px">メールアドレスを入力するとPDF保存（印刷ダイアログ）が開きます。入力されたアドレスは本サービスに関するご連絡とNGraphからのご案内にのみ使用します（<a href="/privacy" style="text-decoration:underline">プライバシーポリシー</a>）。</p>
+    <p style="font-size:.78rem;color:var(--text-3);line-height:1.9;margin-bottom:10px">メールアドレスを入力するとPDF保存（印刷ダイアログ）が開きます。「PDFで保存」を押すことで、入力アドレスへのNGraphからのご案内（サービス改善・関連情報）の送付に同意いただいたものとします。配信停止はメール記載の方法またはお問い合わせでいつでも可能です。アドレスと調査対象は180日後に自動削除されます（<a href="/privacy" style="text-decoration:underline">プライバシーポリシー</a>）。</p>
     <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
       <input id="leadEmail" type="email" placeholder="mail@example.co.jp" autocomplete="email">
       <button id="pdfBtn">PDFで保存</button>
@@ -197,7 +197,7 @@ $('pdfBtn').addEventListener('click',async()=>{
 function shokan(d){
   const F=d.facts||[];if(!F.length)return '';
   const sig=[];const v=l=>{const f=F.find(x=>x.label.includes(l));return f?String(f.value||''):null;};
-  if(v('置換漏れ'))sig.push('サイトにテンプレート未修正の痕跡が残っている（通常の運用では起きない）');
+  if(v('置換漏れ'))sig.push('サイトにテンプレート未修正の痕跡が残っている');
   const mx=v('メール受信設定');if(mx&&mx.startsWith('なし'))sig.push('自社ドメインでメールを受信できない設定になっている');
   const tel=v('電話番号');if(tel==='サイト上に確認できず')sig.push('電話番号を公開していない');
   const sns=v('SNSの導線');const blog=v('ブログ・お知らせ');
@@ -208,11 +208,11 @@ function shokan(d){
   const unknowns=F.filter(x=>x.status==='情報なし').length;
   let lvl,body;
   if(sig.length>=3){lvl=['#a63a24','危険信号'];
-    body='以下の事実は、<strong>単体ではそれぞれ説明が可能</strong>です。しかし'+sig.length+'件が同時に重なっています。NGraphの実測経験では、この重なり方の相手と<strong>前払い・中途解約不可の契約に進むことは推奨できません</strong>。少なくとも「実在する案件・取引の実物」と「既存取引先1社へのリファレンス確認」が取れるまで、支払いを伴う契約は保留してください。<br><br>'+sig.map((s,i)=>(i+1)+'. '+s).join('<br>')+'<br><br><span style="font-size:.8rem">この所感は上記の確認が取れれば変わります（反証可能）。会社そのものの断定ではなく、現時点の公開情報に基づく契約行動への助言です。</span>';}
+    body='以下の事実は、<strong>単体ではそれぞれ説明が可能</strong>です。しかし'+sig.length+'件が同時に重なっています。この重なり方の状態で<strong>前払い・中途解約不可の契約に進むことは推奨できません</strong>。少なくとも「実在する案件・取引の実物」と「既存取引先1社へのリファレンス確認」が取れるまで、支払いを伴う契約は保留してください。<br><br>'+sig.map((s,i)=>(i+1)+'. '+s).join('<br>')+'<br><br><span style="font-size:.8rem">この所感は上記の確認が取れれば変わります（反証可能）。会社そのものの断定ではなく、現時点の公開情報に基づく契約行動への助言です。</span>';}
   else if(sig.length>=1||unknowns>=3){lvl=['#b8860b','確認不足'];
     body='契約判断に足る公開情報が揃っていません'+(sig.length?'（気になる点：'+sig.join('／')+'）':'')+'。<strong>このまま前払いを伴う契約に進む段階ではありません。</strong>「次にやること」の確認を先に済ませ、案件・取引の実物を見せてもらってから判断してください。';}
   else{lvl=['#2e6e4e','特段の危険信号なし'];
-    body='確認できた範囲では、危険信号は見当たりませんでした。<strong>実在や信用の証明ではありません</strong>が、公開情報と自己申告の間に目立つ食い違いはありません。通常の取引確認（見積・契約書の精査）に進んで差し支えない状態です。';}
+    body='確認できた範囲では、危険信号は見当たりませんでした。<strong>実在や信用の証明ではありません</strong>が、公開情報と自己申告の間に目立つ食い違いはありません。今回の確認範囲では追加のアラートはありません。見積・契約書の精査など通常の取引確認は必ず行ってください。';}
   let extra='';
   if(sig.length>=1||unknowns>=3){
     extra='<div style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--border)"><strong style="font-size:.85rem">この所感を再検討するために必要な追加情報：</strong><ul style="font-size:.84rem;line-height:2;margin:6px 0 0 20px"><li>取引・案件の実物（現行帳票・発注書・相談メールなど、相手の説明に出てくる資料そのもの）</li><li>既存取引先1社へのリファレンス（実際に成果が出たかの直接確認）</li><li>履歴事項全部証明書（登記の役員・沿革・移転履歴）</li><li>厚生年金の適用状況・被保険者数（上の年金機構リンクで確認可）</li></ul><p style="font-size:.82rem;margin-top:10px">これらの資料を踏まえた再調査（契約書のリスク確認を含む）は、<a href="/entry" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談</a>で承ります。資料が所感を覆すことは実際にあります——それを確かめるための一覧です。</p></div>';
