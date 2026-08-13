@@ -7,6 +7,9 @@
     "directory": ".",
     "binding": "ASSETS"
   },
+  "observability": {
+    "enabled": true
+  },
   "kv_namespaces": [
     { "binding": "LEADS", "id": "dd4f7a0f052b40fd818d38933c506304" }
   ]

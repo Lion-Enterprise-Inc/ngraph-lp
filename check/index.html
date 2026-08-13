@@ -32,13 +32,13 @@
 .c-hint{font-size:.78rem;color:var(--text-3);line-height:1.9}
 .c-sec{margin-top:34px}
 .c-sec h2{font-family:var(--serif);font-size:1.05rem;font-weight:700;border-left:3px solid var(--accent);padding-left:12px;margin-bottom:14px}
-.c-table{width:100%;border-collapse:collapse;font-size:.86rem}
+.c-table{width:100%;border-collapse:collapse;font-size:.875rem}
 .c-table td{border:1px solid var(--border);padding:9px 12px;line-height:1.8;color:var(--text-2);vertical-align:top}
 .c-table td:first-child{background:rgba(166,58,36,.04);color:var(--text);font-weight:700;width:34%}
-.c-src{font-size:.72rem;color:var(--text-3);display:block}
+.c-src{font-size:.75rem;color:var(--text-3);display:block}
 .c-cand{border:1px solid var(--border);border-radius:4px;background:var(--bg-card);padding:12px 16px;margin-bottom:8px;cursor:pointer;font-size:.88rem;line-height:1.8}
 .c-cand:hover{border-color:var(--accent)}
-.c-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:14px 18px;border-radius:0 3px 3px 0;font-size:.84rem;color:var(--text-2);line-height:2;margin:26px 0}
+.c-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:14px 18px;border-radius:0 3px 3px 0;font-size:.875rem;color:var(--text-2);line-height:2;margin:26px 0}
 .c-links a{display:block;padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text-2)}
 .c-links a:hover{color:var(--accent)}
 .c-err{color:var(--accent);font-size:.88rem;margin-top:10px}
@@ -168,12 +168,15 @@ function render(d,q){
   if(d.mode==='corp'){h=factsTable(d.facts)+nextSteps(d.corporate_number,null);}
   else if(d.mode==='site'){
     h=factsTable(d.facts);
-    if(d.candidates&&d.candidates.length){
+    if(d.resolvedCorporate){
+      const c=d.resolvedCorporate;
+      h+='<div class="c-sec"><h2>登記上の法人を自動特定</h2><div class="c-note" style="margin:0"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'<span class="c-src">法人番号 '+esc(c.corporate_number)+' ／ サイト記載の商号とgBizINFO候補を自動照合</span></div></div>';
+    }else if(d.candidates&&d.candidates.length){
       h+='<div class="c-sec"><h2>登記上の法人と紐づける（サイト記載名からの候補）</h2><p style="font-size:.82rem;color:var(--text-3);margin-bottom:10px">該当する法人をクリックすると、登記系情報を照会します。同名の別法人に注意してください。</p>';
       for(const c of d.candidates)h+='<div class="c-cand" data-no="'+esc(c.corporate_number)+'"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'　<span class="c-src">法人番号 '+esc(c.corporate_number)+'</span></div>';
       h+='</div>';
     }
-    h+=nextSteps(null,d.nameGuess);
+    h+=nextSteps(d.resolvedCorporate&&d.resolvedCorporate.corporate_number,d.nameGuess);
   }
   else{
     if(!d.candidates||!d.candidates.length){$('err').textContent='該当する法人が見つかりませんでした。Webサイトのある会社はURLでの調査をお試しください。';return;}

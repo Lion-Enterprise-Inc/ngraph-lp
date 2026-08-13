@@ -2,13 +2,24 @@
 // 原則: 判定しない。確認できた事実・確認できなかった項目（原因分類つき）だけを返す。
 // 入力qの自動判別: 13桁数字=法人番号 / URLらしき文字列=サイト / それ以外=企業名
 
+import {
+  extractSiteIdentity,
+  identityValues,
+  normalizeCompanyName,
+  resolveCorporateCandidate,
+} from '../lib/identity.js';
+import { safeFetch } from '../lib/safe-fetch.js';
+
+export { extractSiteIdentity, normalizeCompanyName, resolveCorporateCandidate } from '../lib/identity.js';
+
 const DOH = 'https://cloudflare-dns.com/dns-query';
 const GBIZ = 'https://info.gbiz.go.jp/hojin/v1/hojin';
-const UA = { 'User-Agent': 'Mozilla/5.0 (compatible; NGraphCheck/1.0; +https://ngraph.jp/check/)' };
 
 const ok = (label, value, source) => ({ label, value, status: '確認済', source });
 const none = (label, source) => ({ label, value: null, status: '情報なし', source });
 const fail = (label, source) => ({ label, value: null, status: '取得失敗', source });
+
+const GBIZ_SEARCH_LIMIT = 1000;
 
 async function dns(name, type) {
   const r = await fetch(`${DOH}?name=${encodeURIComponent(name)}&type=${type}`,
@@ -18,21 +29,7 @@ async function dns(name, type) {
 }
 
 async function fetchText(url, maxBytes = 400000) {
-  const r = await fetch(url, { headers: UA, redirect: 'follow', signal: AbortSignal.timeout(8000) });
-  const reader = r.body.getReader();
-  let got = 0, chunks = [];
-  while (got < maxBytes) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    chunks.push(value); got += value.length;
-  }
-  reader.cancel().catch(() => {});
-  return { status: r.status, text: new TextDecoder('utf-8', { fatal: false }).decode(concat(chunks)) };
-}
-function concat(chunks) {
-  const out = new Uint8Array(chunks.reduce((n, c) => n + c.length, 0));
-  let o = 0; for (const c of chunks) { out.set(c, o); o += c.length; }
-  return out;
+  return safeFetch(url, { deadlineMs: 8000, maxBytes, maxRedirects: 3 });
 }
 
 async function siteChecks(rawUrl) {
@@ -58,7 +55,7 @@ async function siteChecks(rawUrl) {
   } catch { facts.push(fail('送信ドメイン認証', 'DNS')); }
 
   // サイト本体
-  let nameGuess = null;
+  let nameGuess = null, identity = { names: [], addresses: [], corporateNumbers: [], phones: [] };
   try {
     const { text } = await fetchText(u.origin + '/');
     const ph = /example\.(jp|com|net|org)/i.test(text);
@@ -76,10 +73,8 @@ async function siteChecks(rawUrl) {
     facts.push(ok('ブログ・お知らせ', blog ? 'あり' : 'サイト上に確認できず', 'サイト実測'));
     if (staff) facts.push(ok('従業員数（サイト自称）', staff[0].replace(/\s+/g, ''), 'サイト記載＝自己申告'));
     if (ph) facts.push(ok('テンプレートの置換漏れ', '本文に例示用ドメイン（example.jp等）が残存', 'サイト実測'));
-    const t = text.match(/<title[^>]*>([^<]{1,80})/i);
-    const ogs = text.match(/og:site_name"\s+content="([^"]{1,60})"/i);
-    const corp = text.match(/(株式会社|合同会社|有限会社)[　-ヿ一-鿿Ａ-Ｚa-zA-Z0-9]{1,20}/);
-    nameGuess = (ogs && ogs[1]) || (corp && corp[0]) || (t && t[1].split(/[|｜–—-]/)[0].trim()) || null;
+    identity = extractSiteIdentity(text, { pageUrl: u.origin });
+    nameGuess = identity.primaryName;
   } catch { facts.push(fail('サイト本体の取得', 'サイト実測')); }
   try {
     const [rb, sm] = await Promise.all([fetchText(u.origin + '/robots.txt', 20000), fetchText(u.origin + '/sitemap.xml', 60000)]);
@@ -102,7 +97,7 @@ async function siteChecks(rawUrl) {
     }
   } catch { facts.push(fail('ドメイン登録日', 'RDAP')); }
   // Wayback（サイト履歴）はブラウザ側でCORS取得する（WorkersのIPはarchive.orgに遮断されるため）
-  return { facts, host, nameGuess };
+  return { facts, host, nameGuess, identity };
 }
 
 async function gbizByNumber(no, token) {
@@ -132,16 +127,38 @@ async function gbizByNumber(no, token) {
   return facts;
 }
 
-async function gbizByName(name, token) {
-  if (!token) return [];
-  const r = await fetch(`${GBIZ}?name=${encodeURIComponent(name)}&limit=8`,
-    { headers: { 'X-hojinInfo-api-token': token, Accept: 'application/json' } });
-  if (!r.ok) return [];
-  const list = ((await r.json())['hojin-infos'] || []).map(h => ({
-    corporate_number: h.corporate_number, name: h.name, location: h.location || '',
-  }));
+export async function gbizByName(name, token, fetchImpl = globalThis.fetch) {
+  const blocked = reason => ({
+    candidates: [], complete: false, status: 'blocked', stop_reason: 'provider_blocked', reason,
+  });
+  if (!token) return blocked('token_not_configured');
+  // 同名法人が多い商号（例: JCS）は少数件だけでは所在地一致候補が落ちる。
+  // 公式の既定件数まで取得し、上限到達時は未取得候補があり得るため自動確定しない。
+  let r;
+  try {
+    r = await fetchImpl(`${GBIZ}?name=${encodeURIComponent(name)}&limit=${GBIZ_SEARCH_LIMIT}`,
+      { headers: { 'X-hojinInfo-api-token': token, Accept: 'application/json' } });
+  } catch {
+    return blocked('network_error');
+  }
+  if (!r.ok) return blocked(`http_${r.status}`);
+  let list;
+  try {
+    list = ((await r.json())['hojin-infos'] || []).map(h => ({
+      corporate_number: h.corporate_number, name: h.name, location: h.location || '',
+    }));
+  } catch {
+    return blocked('invalid_response');
+  }
   // 完全一致を先頭に（「ステム」で「ステムセル」等が上に来る事故を防ぐ）
-  return list.sort((a, b) => (b.name === name) - (a.name === name));
+  const normalized = normalizeCompanyName(name);
+  return {
+    candidates: list.sort((a, b) =>
+      Number(normalizeCompanyName(b.name) === normalized) - Number(normalizeCompanyName(a.name) === normalized)),
+    complete: list.length < GBIZ_SEARCH_LIMIT,
+    status: 'covered',
+    stop_reason: list.length < GBIZ_SEARCH_LIMIT ? 'required_sources_exhausted' : 'provider_result_truncated',
+  };
 }
 
 async function rateLimit(env, request, bucket, limit) {
@@ -168,11 +185,47 @@ export async function onRequestPost(context) {
   }
   if (/^https?:\/\//.test(q) || (/\./.test(q) && !/[　-鿿]/.test(q))) {
     const site = await siteChecks(q);
-    const candidates = site.nameGuess ? await gbizByName(site.nameGuess, token) : [];
-    return json({ mode: 'site', host: site.host, facts: site.facts, nameGuess: site.nameGuess, candidates });
+    const search = site.nameGuess
+      ? await gbizByName(site.nameGuess, token)
+      : { candidates: [], complete: false, status: 'input_required', stop_reason: 'trusted_name_not_found' };
+    const candidates = search.candidates;
+    const resolved = resolveCorporateCandidate(site.identity, candidates, { complete: search.complete });
+    if (resolved) {
+      const corporation = resolved.candidate;
+      const matchFacts = [ok('法人の自動特定', `${corporation.name}（法人番号 ${corporation.corporate_number}）`,
+        `独立アンカー2点以上（${resolved.anchors.join(' + ')}）でサイト記載とgBizINFOを照合`)];
+      const siteAddresses = identityValues(site.identity.addresses);
+      if (site.identity.addresses.length && corporation.location) {
+        matchFacts.push(ok('サイト所在地と登記所在地の照合', resolved.addressMatch
+          ? '丁目・番地・号まで一致'
+          : `一致を確認できず（サイト: ${siteAddresses[0]} / 登記: ${corporation.location}）`,
+        'サイト記載とgBizINFO'));
+      }
+      const corporateFacts = await gbizByNumber(corporation.corporate_number, token);
+      return json({ mode: 'site', host: site.host, facts: [...site.facts, ...matchFacts, ...corporateFacts],
+        nameGuess: corporation.name, candidates: [], resolvedCorporate: {
+          ...corporation, name_match: resolved.nameMatch,
+          address_match: resolved.addressMatch,
+          anchors: resolved.anchors,
+        } });
+    }
+    const resolutionFacts = search.status === 'blocked'
+      ? [{ ...fail('法人候補の照会', 'gBizINFO'), coverage_status: 'blocked',
+        stop_reason: search.stop_reason, reason: search.reason }]
+      : [];
+    const exactCandidates = candidates.filter(candidate =>
+      normalizeCompanyName(candidate.name) === normalizeCompanyName(site.nameGuess));
+    return json({ mode: 'site', host: site.host, facts: [...site.facts, ...resolutionFacts], nameGuess: site.nameGuess,
+      resolutionCoverage: { status: search.status, stop_reason: search.stop_reason, reason: search.reason || null },
+      candidates: (exactCandidates.length ? exactCandidates : candidates).slice(0, 20) });
   }
-  const candidates = await gbizByName(q, token);
-  return json({ mode: 'name', candidates });
+  const search = await gbizByName(q, token);
+  if (search.status === 'blocked') {
+    return json({ error: '法人データベースの照会に失敗しました。候補なしとは判定していません。',
+      resolutionCoverage: { status: search.status, stop_reason: search.stop_reason, reason: search.reason } }, 502);
+  }
+  return json({ mode: 'name', candidates: search.candidates.slice(0, 20),
+    resolutionCoverage: { status: search.status, stop_reason: search.stop_reason } });
 }
 
 const json = (o, s = 200) => new Response(JSON.stringify(o), {

@@ -3,10 +3,21 @@ import { onRequestPost as kcheck } from './functions/api/kcheck.js';
 import { onRequestPost as lead } from './functions/api/lead.js';
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
-    if (request.method === 'POST' && pathname === '/api/kcheck') return kcheck({ request, env });
-    if (request.method === 'POST' && pathname === '/api/lead') return lead({ request, env });
+    if (pathname === '/api/kcheck') {
+      if (request.method === 'POST') return kcheck({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
+      return methodNotAllowed();
+    }
+    if (pathname === '/api/lead') {
+      if (request.method === 'POST') return lead({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
+      return methodNotAllowed();
+    }
     return env.ASSETS.fetch(request);
   },
 };
+
+const methodNotAllowed = () => new Response(JSON.stringify({ error: 'POSTのみ利用できます' }), {
+  status: 405,
+  headers: { 'content-type': 'application/json; charset=utf-8', allow: 'POST', 'cache-control': 'no-store' },
+});

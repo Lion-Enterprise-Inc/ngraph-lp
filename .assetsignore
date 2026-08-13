@@ -1,9 +1,15 @@
-BLOG-OPS.md
-X-OPS.md
-HANDOVER*.md
-.env
-scripts/
-worker.js
-wrangler.jsonc
-.fig*
-functions/
+# Worker実装・検証物・内部文書は静的アセットとして公開しない。
+# worker.jsからimportされるfunctions/はバンドル対象には残り、ASSETSからだけ除外される。
+/.git
+/.git/
+/.github/
+/.claude/
+/.wrangler/
+/functions/
+/scripts/
+/tests/
+/worker.js
+/wrangler.jsonc
+/*.md
+/*.py
+/.env*
