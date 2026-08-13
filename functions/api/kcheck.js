@@ -101,23 +101,7 @@ async function siteChecks(rawUrl) {
       facts.push({ label: 'ドメイン登録日', value: null, status: '対象外', source: `.${tld}は自動照会の対象外（WHOISで手動確認）` });
     }
   } catch { facts.push(fail('ドメイン登録日', 'RDAP')); }
-  // Wayback Machine（公開API）: サイトの過去履歴と採用ページの痕跡
-  try {
-    const h2 = host.replace(/^www\./, '');
-    const cdx = async q => {
-      const r = await fetch('https://web.archive.org/cdx/search/cdx?' + q, { signal: AbortSignal.timeout(8000) });
-      return (await r.text()).trim().split('\n').filter(Boolean);
-    };
-    const first = await cdx(`url=${h2}&matchType=domain&limit=1&fl=timestamp&filter=statuscode:200`);
-    if (first.length && /^\d{8}/.test(first[0])) {
-      const t = first[0];
-      facts.push(ok('Web Archiveでの初出', `${t.slice(0, 4)}-${t.slice(4, 6)}-${t.slice(6, 8)}（このサイトが初めてアーカイブされた日）`, 'Wayback Machine'));
-    } else facts.push(none('Web Archiveでの初出', 'Wayback Machine（アーカイブが存在しない）'));
-    const rec = await cdx(`url=${h2}&matchType=domain&limit=1&fl=timestamp,original&filter=urlkey:.*(recruit|saiyo|career|jobs).*`);
-    facts.push(rec.length
-      ? ok('採用ページの痕跡（過去アーカイブ）', `あり（初出 ${rec[0].slice(0, 4)}-${rec[0].slice(4, 6)}-${rec[0].slice(6, 8)}）`, 'Wayback Machine')
-      : ok('採用ページの痕跡（過去アーカイブ）', '該当なし（採用系URLのアーカイブが見つからない）', 'Wayback Machine。外部求人媒体は含まない'));
-  } catch { facts.push(fail('Web Archiveの履歴', 'Wayback Machine')); }
+  // Wayback（サイト履歴）はブラウザ側でCORS取得する（WorkersのIPはarchive.orgに遮断されるため）
   return { facts, host, nameGuess };
 }
 

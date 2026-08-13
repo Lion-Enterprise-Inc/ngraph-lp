@@ -185,6 +185,7 @@ function render(d,q){
   $('pdfGate').style.display=hasFacts?'block':'none';
   if(hasFacts){$('pDate').textContent=new Date().toLocaleDateString('ja-JP');$('pTarget').textContent=q;}
   document.querySelectorAll('.c-cand').forEach(el=>el.addEventListener('click',()=>run(el.dataset.no)));
+  if(d.mode==='site'&&d.host)wayback(d.host);
 }
 $('pdfBtn').addEventListener('click',async()=>{
   const email=$('leadEmail').value.trim();$('leadErr').textContent='';
@@ -192,6 +193,16 @@ $('pdfBtn').addEventListener('click',async()=>{
   try{await fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email,q:$('pTarget').textContent})});}catch(e){}
   window.print();
 });
+async function wayback(host){
+  const h=host.replace(/^www\./,'');const tbl=document.querySelector('.c-table');if(!tbl)return;
+  const cdx=async q=>{try{const r=await fetch('https://web.archive.org/cdx/search/cdx?'+q);const t=(await r.text()).trim();return /^\d{14}/.test(t)?t.split('\n'):[];}catch(e){return null;}};
+  const row=(l,v,s)=>{const tr=document.createElement('tr');tr.innerHTML='<td>'+esc(l)+'</td><td>'+esc(v)+'<span class="c-src">出典: '+esc(s)+'</span></td>';tbl.appendChild(tr);};
+  const f=await cdx('url='+h+'&matchType=domain&limit=1&fl=timestamp&filter=statuscode:200');
+  if(f===null)return;
+  row('Web Archiveでの初出',f.length?f[0].slice(0,4)+'-'+f[0].slice(4,6)+'-'+f[0].slice(6,8)+'（初めてアーカイブされた日）':'アーカイブなし（歴史の浅いサイトでは普通）','Wayback Machine');
+  const r2=await cdx('url='+h+'&matchType=domain&limit=1&fl=timestamp&filter=urlkey:.*(recruit|saiyo|career|jobs).*');
+  if(r2!==null)row('採用ページの痕跡（過去アーカイブ）',r2.length?'あり（初出 '+r2[0].slice(0,4)+'-'+r2[0].slice(4,6)+'-'+r2[0].slice(6,8)+'）':'該当なし（外部求人媒体は含まない）','Wayback Machine');
+}
 $('go').addEventListener('click',()=>{const q=$('q').value.trim();if(q)run(q);});
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){const q=$('q').value.trim();if(q)run(q);}});
 </script>
