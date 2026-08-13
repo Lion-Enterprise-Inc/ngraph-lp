@@ -181,6 +181,7 @@ function render(d,q){
     for(const c of d.candidates)h+='<div class="c-cand" data-no="'+esc(c.corporate_number)+'"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'　<span class="c-src">法人番号 '+esc(c.corporate_number)+'</span></div>';
     h+='</div>';
   }
+  h+=shokan(d);
   $('out').innerHTML=h;$('baseNote').style.display='block';$('cta').style.display='block';
   const hasFacts=(d.facts&&d.facts.length);
   $('pdfGate').style.display=hasFacts?'block':'none';
@@ -193,6 +194,27 @@ $('pdfBtn').addEventListener('click',async()=>{
   try{await fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email,q:$('pTarget').textContent})});}catch(e){}
   window.print();
 });
+function shokan(d){
+  const F=d.facts||[];if(!F.length)return '';
+  const sig=[];const v=l=>{const f=F.find(x=>x.label.includes(l));return f?String(f.value||''):null;};
+  if(v('置換漏れ'))sig.push('サイトにテンプレート未修正の痕跡が残っている（通常の運用では起きない）');
+  const mx=v('メール受信設定');if(mx&&mx.startsWith('なし'))sig.push('自社ドメインでメールを受信できない設定になっている');
+  const tel=v('電話番号');if(tel==='サイト上に確認できず')sig.push('電話番号を公開していない');
+  const sns=v('SNSの導線');const blog=v('ブログ・お知らせ');
+  if(sns&&!sns.includes(': あり')&&blog==='サイト上に確認できず')sig.push('SNS・ブログとも発信の導線が一切ない');
+  const st=v('従業員数（サイト自称）');const stN=st?parseInt(st.replace(/[^0-9]/g,'')):0;
+  if(stN>=30&&v('従業員数（届出）')===null&&d.mode==='site')sig.push('従業員'+stN+'名を自称しているが、公開データでは規模を確認できない');
+  if(stN>=30&&F.some(x=>x.label.includes('従業員数（届出）')&&x.status==='情報なし'))sig.push('従業員数の自称（'+stN+'名）に対し、届出ベースの従業員数が公開データで確認できない');
+  const unknowns=F.filter(x=>x.status==='情報なし').length;
+  let lvl,body;
+  if(sig.length>=3){lvl=['#a63a24','危険信号'];
+    body='以下の事実は、<strong>単体ではそれぞれ説明が可能</strong>です。しかし'+sig.length+'件が同時に重なっています。NGraphの実測経験では、この重なり方の相手と<strong>前払い・中途解約不可の契約に進むことは推奨できません</strong>。少なくとも「実在する案件・取引の実物」と「既存取引先1社へのリファレンス確認」が取れるまで、支払いを伴う契約は保留してください。<br><br>'+sig.map((s,i)=>(i+1)+'. '+s).join('<br>')+'<br><br><span style="font-size:.8rem">この所感は上記の確認が取れれば変わります（反証可能）。会社そのものの断定ではなく、現時点の公開情報に基づく契約行動への助言です。</span>';}
+  else if(sig.length>=1||unknowns>=3){lvl=['#b8860b','確認不足'];
+    body='契約判断に足る公開情報が揃っていません'+(sig.length?'（気になる点：'+sig.join('／')+'）':'')+'。<strong>このまま前払いを伴う契約に進む段階ではありません。</strong>「次にやること」の確認を先に済ませ、案件・取引の実物を見せてもらってから判断してください。';}
+  else{lvl=['#2e6e4e','特段の危険信号なし'];
+    body='確認できた範囲では、危険信号は見当たりませんでした。<strong>実在や信用の証明ではありません</strong>が、公開情報と自己申告の間に目立つ食い違いはありません。通常の取引確認（見積・契約書の精査）に進んで差し支えない状態です。';}
+  return '<div class="c-sec"><h2>NGraphの所感</h2><div class="c-note" style="border-left-color:'+lvl[0]+'"><strong style="color:'+lvl[0]+'">【'+lvl[1]+'】</strong><br>'+body+'</div></div>';
+}
 $('go').addEventListener('click',()=>{const q=$('q').value.trim();if(q)run(q);});
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){const q=$('q').value.trim();if(q)run(q);}});
 </script>
