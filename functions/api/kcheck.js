@@ -63,11 +63,17 @@ async function siteChecks(rawUrl) {
     const { text } = await fetchText(u.origin + '/');
     const ph = /example\.(jp|com|net|org)/i.test(text);
     const tel = /(0\d{1,4}-\d{1,4}-\d{3,4}|tel:0\d{8,10})/.test(text);
-    const sns = /href="https?:\/\/[^"]*(twitter\.com|x\.com|facebook\.com|instagram\.com|linkedin\.com|youtube\.com|note\.com)/i.test(text);
     const blog = /href="[^"]*\/(blog|news|column|topics)(\/|\.html|")/i.test(text);
     const staff = text.match(/(従業員数?|社員数)[^0-9０-９]{0,12}([0-9０-９]{1,4})\s*名/);
     facts.push(ok('電話番号の記載', tel ? 'あり' : 'サイト上に確認できず', 'サイト実測'));
-    facts.push(ok('SNS・ブログの導線', `SNSリンク${sns ? 'あり' : '確認できず'} / ブログ・お知らせ${blog ? 'あり' : '確認できず'}`, 'サイト実測'));
+    const snsDefs = [['X（旧Twitter）', /href="(https?:\/\/(?:www\.)?(?:x|twitter)\.com\/[^"]{1,80})"/i],
+      ['Facebook', /href="(https?:\/\/(?:www\.)?facebook\.com\/[^"]{1,80})"/i],
+      ['LinkedIn', /href="(https?:\/\/(?:[a-z]{2}\.)?linkedin\.com\/[^"]{1,80})"/i],
+      ['YouTube', /href="(https?:\/\/(?:www\.)?youtube\.com\/[^"]{1,80})"/i],
+      ['Instagram', /href="(https?:\/\/(?:www\.)?instagram\.com\/[^"]{1,80})"/i]];
+    const snsParts = snsDefs.map(([nm, re]) => { const m = text.match(re); return `${nm}: ${m ? 'あり' : '該当なし'}`; });
+    facts.push(ok('SNSの導線（サイト上のリンク）', snsParts.join(' / '), 'サイト実測。サイトにリンクが無いだけでアカウントが存在する場合もある'));
+    facts.push(ok('ブログ・お知らせ', blog ? 'あり' : 'サイト上に確認できず', 'サイト実測'));
     if (staff) facts.push(ok('従業員数（サイト自称）', staff[0].replace(/\s+/g, ''), 'サイト記載＝自己申告'));
     if (ph) facts.push(ok('テンプレートの置換漏れ', '本文に例示用ドメイン（example.jp等）が残存', 'サイト実測'));
     const t = text.match(/<title[^>]*>([^<]{1,80})/i);

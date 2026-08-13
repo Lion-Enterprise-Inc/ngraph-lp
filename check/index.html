@@ -74,10 +74,19 @@
   <p style="font-size:.92rem;color:var(--text-2);line-height:2">契約前に、10分ぶんの事実を。取引先のWebサイトURL・企業名・法人番号のどれかを入れると、公的データベースとドメインの実測で<strong>確認できた事実だけ</strong>を出典つきで一覧にします。<strong>判定はしません。</strong>結論を出すのは、あなたです。</p>
 
   <div class="c-input">
-    <input id="q" type="text" placeholder="例：https://example.co.jp ／ 株式会社◯◯ ／ 法人番号13桁" autocomplete="off">
+    <input id="q" type="text" placeholder="https://example.co.jp" autocomplete="off">
     <button id="go">調査する</button>
   </div>
-  <p class="c-hint">WebサイトのURLを貼るのが一番確実です。個人情報は収集しません。調査対象は法人のみです。</p>
+  <p class="c-hint">調査したい会社のWebサイトURLを貼ってください（法人番号13桁・企業名でも調査できます）。個人情報は収集しません。調査対象は法人のみです。</p>
+  <details style="margin-top:14px"><summary style="cursor:pointer;font-size:.85rem;color:var(--text-2);font-weight:700">調査でわかる項目一覧</summary>
+    <div style="font-size:.82rem;color:var(--text-2);line-height:2.1;padding:10px 4px 0">
+    ・<strong>登記系</strong>（gBizINFO＝経産省）：商号・本店所在地・資本金・従業員数・設立年月日（届出ベース）<br>
+    ・<strong>公的な活動の足跡</strong>：届出・認定／補助金交付／公共調達／表彰の件数<br>
+    ・<strong>ドメインの実測</strong>：登録日・メール受信設定（MX）・送信ドメイン認証（SPF/DMARC）<br>
+    ・<strong>サイトの実測</strong>：電話番号の記載・SNSの導線（X／Facebook／LinkedIn／YouTube／Instagram）・ブログ更新・テンプレート置換漏れ・自称従業員数<br>
+    ・<strong>次にやることの案内</strong>：インボイス登録・厚生年金適用事業所・求人掲載の確認リンク＋面談で聞くべき質問<br>
+    すべて出典つき。確認できない項目は「情報なし／取得失敗／対象外」を区別して表示します。</div>
+  </details>
   <p id="loading">公的データベースとドメインを照会しています…（10秒ほど）</p>
   <p id="err" class="c-err"></p>
 
