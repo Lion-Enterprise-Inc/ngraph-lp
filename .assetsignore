@@ -1,0 +1,8 @@
+BLOG-OPS.md
+X-OPS.md
+HANDOVER*.md
+.env
+scripts/
+worker.js
+wrangler.jsonc
+.fig*
