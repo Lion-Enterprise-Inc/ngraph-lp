@@ -43,6 +43,17 @@
 .c-links a:hover{color:var(--accent)}
 .c-err{color:var(--accent);font-size:.88rem;margin-top:10px}
 #loading{display:none;font-size:.85rem;color:var(--text-3);margin-top:14px}
+#pdfGate{display:none;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);padding:18px 20px;margin-top:30px}
+#pdfGate input{width:100%;max-width:340px;padding:11px 14px;border:1px solid var(--border);border-radius:4px;font-size:15px;background:#fff;color:var(--text)}
+#pdfGate button{padding:11px 22px;border:none;border-radius:4px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.88rem;cursor:pointer;margin-left:8px}
+@media print{
+  .header,.footer,.c-input,.c-hint,#pdfGate,.a-cta,#loading,.float-cta,.bg-fx{display:none!important}
+  .c-wrap{padding:20px;max-width:100%}
+  body{background:#fff}
+  .c-table td{font-size:11px;padding:6px 8px}
+  #printHead{display:block!important;border-bottom:2px solid #a63a24;padding-bottom:10px;margin-bottom:16px}
+}
+#printHead{display:none;font-size:.8rem;color:var(--text-2)}
 </style>
 </head>
 <body>
@@ -70,7 +81,18 @@
   <p id="loading">公的データベースとドメインを照会しています…（10秒ほど）</p>
   <p id="err" class="c-err"></p>
 
+  <div id="printHead"><strong style="font-family:var(--serif);font-size:1rem;color:var(--text)">企業調査レポート — NGraph</strong><br>調査日: <span id="pDate"></span> ／ 対象: <span id="pTarget"></span> ／ ngraph.jp/check/<br>本レポートは公開情報の確認結果であり、実在の証明・否定ではありません。</div>
   <div id="out"></div>
+
+  <div id="pdfGate">
+    <p style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px">この結果をPDFで保存する</p>
+    <p style="font-size:.78rem;color:var(--text-3);line-height:1.9;margin-bottom:10px">メールアドレスを入力するとPDF保存（印刷ダイアログ）が開きます。入力されたアドレスは本サービスに関するご連絡とNGraphからのご案内にのみ使用します（<a href="/privacy" style="text-decoration:underline">プライバシーポリシー</a>）。</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+      <input id="leadEmail" type="email" placeholder="mail@example.co.jp" autocomplete="email">
+      <button id="pdfBtn">PDFで保存</button>
+    </div>
+    <p id="leadErr" class="c-err"></p>
+  </div>
 
   <div class="c-note" id="baseNote" style="display:none"><strong>この結果の読み方：</strong>ここに並ぶのは「確認できた事実」と「確認できなかった項目」だけです。実在の証明でも否定でもありません。<strong>どの1点でも会社の良し悪しは断定できません。</strong>複数の事実が同じ方向を向いているか、逆方向の事実があるか——束で見てください。「情報なし」は新しい会社では普通のことです。</div>
 
@@ -150,8 +172,17 @@ function render(d,q){
     h+='</div>';
   }
   $('out').innerHTML=h;$('baseNote').style.display='block';$('cta').style.display='block';
+  const hasFacts=(d.facts&&d.facts.length);
+  $('pdfGate').style.display=hasFacts?'block':'none';
+  if(hasFacts){$('pDate').textContent=new Date().toLocaleDateString('ja-JP');$('pTarget').textContent=q;}
   document.querySelectorAll('.c-cand').forEach(el=>el.addEventListener('click',()=>run(el.dataset.no)));
 }
+$('pdfBtn').addEventListener('click',async()=>{
+  const email=$('leadEmail').value.trim();$('leadErr').textContent='';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){$('leadErr').textContent='メールアドレスの形式を確認してください';return;}
+  try{await fetch('/api/lead',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email,q:$('pTarget').textContent})});}catch(e){}
+  window.print();
+});
 $('go').addEventListener('click',()=>{const q=$('q').value.trim();if(q)run(q);});
 $('q').addEventListener('keydown',e=>{if(e.key==='Enter'){const q=$('q').value.trim();if(q)run(q);}});
 </script>
