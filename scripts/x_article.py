@@ -44,6 +44,88 @@ PUBLISH_URL = "https://api.x.com/2/articles/{article_id}/publish"
 
 EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 
+# ---- 正本（BLOG-OPS §7「応答の定型」）との版照合 -------------------------------
+# 2026-08-15新設（同日のCodexレビュー反映）。受け渡しの形式はAIの記憶から組み立てず、
+# --handoff がこの雛形を埋めて出力する。雛形は正本側にマーカーで囲って置き、
+# ハッシュをここに埋める。ズレたら止まる＝正本だけ直した/ツールだけ直した、の両方向を検出。
+# X_BLOGOPS_PATH は selftest 専用の差し替え口（運用では使わない）。
+BLOGOPS_PATH = os.environ.get("X_BLOGOPS_PATH", os.path.join(REPO, "BLOG-OPS.md"))
+TPL_START = "<!-- x-handoff-template:start -->"
+TPL_END = "<!-- x-handoff-template:end -->"
+TEMPLATE_HASH = "ed1663701576"
+
+
+def template_block(path=None):
+    """正本から定型ブロックを取り出して (正規化テキスト, hash12) を返す。失敗は ValueError。
+
+    正規化: BOM除去・CRLF→LF・各行の右端空白除去・前後の空行除去。
+    マーカーが0個でも2個以上でも失敗（どれをハッシュするか未定義になるため）。
+    """
+    import hashlib
+    p = path or BLOGOPS_PATH
+    try:
+        raw = open(p, encoding="utf-8-sig").read()
+    except OSError as e:
+        raise ValueError(f"正本 {p} が読めない: {e}")
+    starts, ends = raw.count(TPL_START), raw.count(TPL_END)
+    if starts != 1 or ends != 1:
+        raise ValueError(f"定型マーカーが一意でない（start {starts}個 / end {ends}個）。BLOG-OPS §7 を直すこと")
+    body = raw.split(TPL_START, 1)[1].split(TPL_END, 1)[0]
+    norm = "\n".join(ln.rstrip() for ln in body.replace("\r\n", "\n").split("\n")).strip("\n")
+    return norm, hashlib.sha256(norm.encode("utf-8")).hexdigest()[:12]
+
+
+def require_template_current(label):
+    """定型のハッシュを照合。ズレ・読めない、はどちらも停止（fail-closed）。
+
+    fail-closed の範囲は意図的にこのブロックだけ（BLOG-OPS の他の編集では止まらない）。"""
+    try:
+        _, h = template_block()
+    except ValueError as e:
+        sys.exit(f"NG（{label}）: {e}\n  正本が確認できない状態で受け渡しは作らない")
+    if h != TEMPLATE_HASH:
+        sys.exit(f"NG（{label}）: 正本の定型が変わっている（正本 {h} / ツール {TEMPLATE_HASH}）。\n"
+                 "  BLOG-OPS §7「応答の定型」を読み、x_article.py の出力と TEMPLATE_HASH を追随させてから使うこと")
+    return h
+
+
+def receipt_path(slug):
+    return os.path.join(os.environ.get("TEMP", "."), f"x_handoff_{slug}.json")
+
+
+def check_links(links):
+    """本文リンクの検査（§7: 3本まで・/fde/禁止）。NGなら理由の文字列、OKなら None。"""
+    fde = [u for u in links if "/fde" in u]
+    if fde:
+        return (f"NG: /fde/ へのリンクが本文に残っています（{len(fde)}本）。"
+                "BLOG-OPS §7 は末尾の記事リンクへ導線を一本化する決まりです。\n"
+                "  記事側のCTA段落の書き方が変わった可能性があります（CTA_SENTENCE を確認）")
+    if len(links) > 3:
+        return f"NG: 本文中のリンクが{len(links)}本あります（上限3本）。\n  " + "\n  ".join(links)
+    return None
+
+
+def check_caption(caption):
+    """キャプションの検査（§7）。(NG理由 or None, 警告リスト) を返す。
+
+    止めるのは事故になる2つだけ（ngraph.jp URL＝カードが2枚出て公開後に直せない／
+    ハッシュタグ3個以上）。字数は警告に留める（過剰fail-closedを避ける）。"""
+    if re.search(r"ngraph\.jp", caption):
+        return ("NG: キャプションに ngraph.jp のURLが入っています。Articlesはカードが2枚出る事故になり、"
+                "公開後に直せません（BLOG-OPS §7）", [])
+    tags = re.findall(r"[#＃][^\s#＃]+", caption)
+    if len(tags) > 2:
+        return (f"NG: ハッシュタグが{len(tags)}個。2個までです（BLOG-OPS §7）", [])
+    body = caption
+    for t in tags:
+        body = body.replace(t, "")
+    blen = len(re.sub(r"\s", "", body))
+    warns = []
+    if not (80 <= blen <= 150):
+        warns.append(f"キャプション本文が{blen}字（目安100〜130字）。直すかはそのまま判断してよい")
+    return None, warns
+# ------------------------------------------------------------------------------
+
 # 記事本文の図（.a-fig-wrap 内のインラインSVG）をX添付用のPNGにするときの台紙。
 # 本文のSVGは --bare（地色・枠・見出し・署名なし）なので、ここで単体1枚に仕立て直す。
 FIG_CARD = """<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8">
@@ -639,9 +721,15 @@ def main():
     ap.add_argument("--file", nargs="?", const="", metavar="DIR",
                     help="本文HTML・タイトル・キャプション・カバー画像をフォルダに書き出す（既定の受け渡し方法。"
                          "既定は %%TEMP%%/x_article/<slug>/）。何度でも取り直せる")
-    ap.add_argument("--caption", help="--file のとき キャプション.txt に書き出す文面")
+    ap.add_argument("--caption", help="キャプション文面（--handoff では必須）")
+    ap.add_argument("--handoff", action="store_true",
+                    help="AIが使う唯一のモード。全検査＋カバー画像コピー＋受領証を書き、応答に貼る4ブロックを出力する。"
+                         "クリップボードには触らない")
+    ap.add_argument("--cover-dir", dest="cover_dir",
+                    help="--handoff がカバー画像をコピーする先（既定は %%TEMP%%/x_handoff/<slug>/）")
     ap.add_argument("--clipboard", action="store_true",
-                    help="書式付きHTMLをクリップボードに載せる（他をコピーすると消えるので既定にしない）")
+                    help="書式付きHTMLをクリップボードに載せる（髙橋さんが貼る直前に▷で実行。"
+                         "--handoff の受領証が無いと動かない）")
     ap.add_argument("--dry-run", action="store_true", help="APIを叩かずJSONを書き出すだけ")
     ap.add_argument("--publish", action="store_true", help="下書きを作ってそのまま公開する（既定は下書きまで）")
     ap.add_argument("--figs", nargs="?", const="", metavar="DIR",
@@ -690,13 +778,9 @@ def main():
     # これ以上は導線が潰し合う。/fde/ は末尾の記事リンクに一本化するので載せない）
     links = [e["value"]["data"]["url"] for e in content_state.get("entities", [])
              if e.get("value", {}).get("type") == "link"]
-    fde = [u for u in links if "/fde" in u]
-    if fde:
-        sys.exit(f"NG: /fde/ へのリンクが本文に残っています（{len(fde)}本）。"
-                 "BLOG-OPS §7 は末尾の記事リンクへ導線を一本化する決まりです。\n"
-                 "  記事側のCTA段落の書き方が変わった可能性があります（CTA_SENTENCE を確認）")
-    if len(links) > 3:
-        sys.exit(f"NG: 本文中のリンクが{len(links)}本あります（上限3本）。\n  " + "\n  ".join(links))
+    err = check_links(links)
+    if err:
+        sys.exit(err)
     print(f"リンク: {len(links)}/3本")
 
     # リポジトリ内には書かない（このリポジトリはCloudflare Pagesで全ファイル公開される）
@@ -706,7 +790,62 @@ def main():
         json.dump(payload, f, ensure_ascii=False, indent=2)
     print(f"payload: {out}")
 
+    if a.handoff:
+        # ① 正本の定型と自分がズレていないか（fail-closed）
+        require_template_current("handoff")
+        # ② キャプション検査
+        if not a.caption:
+            sys.exit("NG（handoff）: --caption が必要です（応答の4ブロックに含めるため）")
+        cerr, cwarns = check_caption(a.caption)
+        if cerr:
+            sys.exit(cerr)
+        for w in cwarns:
+            print(f"WARN: {w}")
+        if '"' in a.teaser:
+            sys.exit("NG（handoff）: --teaser に二重引用符が入っています。▷コマンドが壊れるので「」に置き換えること")
+        # ③ カバー画像を受け渡しフォルダに1枚だけコピー（隣の記事のjpgを掴む事故を防ぐ）
+        src = os.path.join(REPO, "assets", "blog", f"{a.slug}.jpg")
+        if not os.path.exists(src):
+            sys.exit(f"NG（handoff）: アイキャッチがありません: {src}")
+        d = a.cover_dir or os.path.join(os.environ.get("TEMP", "."), "x_handoff", a.slug)
+        os.makedirs(d, exist_ok=True)
+        cover = os.path.join(d, f"カバー画像_{a.slug}.jpg")
+        shutil.copyfile(src, cover)
+        import hashlib
+        cover_sha = hashlib.sha256(open(cover, "rb").read()).hexdigest()[:16]
+        # ④ 受領証。--clipboard はこれが無いと動かない＝生成経路の強制
+        rec = {"slug": a.slug, "template_hash": TEMPLATE_HASH, "cover_sha": cover_sha,
+               "cover_path": cover, "title": title, "teaser": a.teaser, "caption": a.caption,
+               "created": __import__("datetime").datetime.now().isoformat(timespec="seconds")}
+        with open(receipt_path(a.slug), "w", encoding="utf-8") as f:
+            json.dump(rec, f, ensure_ascii=False, indent=2)
+        # ⑤ 応答に貼る4ブロック（BLOG-OPS §7 の定型を埋めた形）
+        cmd = (f'python C:/dev/ngraph-lp/scripts/x_article.py {a.slug} '
+               f'--clipboard --teaser "{a.teaser}"')
+        print(f"受領証: {receipt_path(a.slug)}")
+        print("===== ここから下を、そのまま応答に貼る =====")
+        print(f"**本文**（▷を押す。押すのは貼る直前）\n```bash\n{cmd}\n```\n")
+        print(f"**タイトル**（X加重 {tw}/{X_TITLE_MAX}）\n```\n{title}\n```\n")
+        print(f"**キャプション**（記事URLは入れていません）\n```\n{a.caption}\n```\n")
+        print(f"**カバー画像のパス**（記事名入りで1枚だけコピー済み）\n```\n{cover}\n```\n")
+        print("順番は ▷ → 記事を作成 → 本文欄に Ctrl+V → そのあとタイトル・キャプション → カバー画像 → 公開。")
+        print("===== ここまで =====")
+        return
+
     if a.clipboard:
+        # --handoff を通らずにここへ来る経路を塞ぐ（2026-08-15・Codex R5）。
+        # 受領証が無い＝AIが4ブロックを手組みした/生成経路を飛ばした、なので載せない。
+        rp = receipt_path(a.slug)
+        if not os.path.exists(rp):
+            sys.exit(f"NG: 受領証がありません（{rp}）。\n"
+                     "  先に --handoff で受け渡しを生成すること（AIが実行してよいのは --handoff だけ。"
+                     "▷のこのコマンドは、--handoff の出力に入っているものを使う）")
+        rec = json.load(open(rp, encoding="utf-8"))
+        h = require_template_current("clipboard")   # ▷を押した時点でも正本と照合する
+        if rec.get("template_hash") != h:
+            sys.exit("NG: 受領証が古い（handoff後に正本の定型が変わっている）。--handoff からやり直すこと")
+        if rec.get("teaser") != a.teaser:
+            print("WARN: 受領証のteaserとこのコマンドのteaserが違います（handoffを取り直した可能性）。このまま続けます")
         html = blocks_to_html(content_state)
         plain = "\n".join(b["text"] for b in content_state["blocks"])
         ok, err = to_clipboard(html, plain)
@@ -779,6 +918,11 @@ def main():
     print("次: https://x.com/compose/articles を開いて下書きを確認 → キャプションを入れて公開")
 
     if a.publish:
+        # 公開は人の判断（BLOG-OPS §7「公開は人が押す」）。エージェントの非対話実行では公開させない
+        if not sys.stdin.isatty():
+            sys.exit("NG: --publish は対話ターミナルでのみ実行できます（公開は人が押す＝BLOG-OPS §7）")
+        if input("公開します。よければ publish と入力: ").strip() != "publish":
+            sys.exit("中止しました（下書きは残っています）")
         r = s.post(PUBLISH_URL.format(article_id=article_id), timeout=60)
         if r.status_code != 200:
             die("publish", r)

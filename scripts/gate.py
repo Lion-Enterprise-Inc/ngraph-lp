@@ -25,6 +25,8 @@ PY = sys.executable
 
 # (表示名, スクリプト, 追加引数, 記事ファイルを引数に取るか)
 CHECKS = [
+    # selftest は必ず先頭（他の検査が緩められた/壊れた状態で走るのを防ぐ・2026-08-15）
+    ("検査の自己テスト（既知NGが通ったら検査が壊れている）", "selftest.py", [], False),
     ("URL形式（拡張子なしに揃っているか）", "url_canon.py", ["--check"], False),
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),

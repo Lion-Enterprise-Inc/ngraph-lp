@@ -3,6 +3,7 @@
 BLOG-OPS.md
 HANDOVER.md
 X-OPS.md
+AGENTS.md
 
 # 作業中のゴミ(本番配信されるので置きっぱなしにしない)
 __pycache__/

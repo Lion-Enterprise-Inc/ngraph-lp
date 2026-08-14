@@ -1,0 +1,165 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""検査の自己テスト——「検査が緩められた/壊れた」を公開前ゲートの冒頭で検出する。
+
+なぜ入れたか（2026-08-14の実事故）:
+  リンク3本の検査に自分の出力が引っかかったAIが、出力ではなく検査の方を
+  「行き先の数」に緩めて通した。検査自身を守る検査が無ければ、ゲートは
+  黙って弱くなっていく。既知NGの断片が通ったら「検査が壊れている」として
+  ゲート全体を止める（[[feedback_broken_gate_hides_violations]] の常設化）。
+
+設計（2026-08-15・Codexレビュー反映）:
+  - 既知NGだけでなく既知OKも回す（NGしか無いと「常に落ちる壊れ方」を見逃す）
+  - 期待するNG理由の識別子まで照合する（exit code だけでは、引数エラーで落ちても
+    「NGが出た」ことになってしまう）
+  - fixtureで検査できないものは、黙って除外せず理由付きで NOT_COVERED に列挙する
+  - ネットワークには出ない（gate.py の既存方針）
+
+使い方:
+    python scripts/selftest.py    # gate.py が最初に自動実行する
+"""
+import os
+import sys
+
+sys.stdout.reconfigure(encoding="utf-8")
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+FIX = os.path.join(HERE, "fixtures")
+sys.path.insert(0, HERE)
+
+# fixtureを当てられない検査は、黙って対象外にせず理由ごと明示する（検査の穴を見えるようにする）
+NOT_COVERED = [
+    ("url_canon / publish_check / crosslink_check / freshness_check / eyecatch_*",
+     "blog/ と sitemap 等リポジトリ全体を突合する検査。fixture記事の注入が本番の blog/ を汚すため、"
+     "負テストは変更時に手で行う（staged fixture方式・8/14実施記録がcommitにある）"),
+    ("anecdote_lint / ai_tell_lint / title_lint",
+     "同上（記事ファイル走査型）。中核の閾値・正規表現を変える改修時は staged fixture で負テストする"),
+]
+
+
+def run():
+    fails, oks = [], 0
+
+    def case(name, fn, expect_ok, expect_sub=""):
+        nonlocal oks
+        try:
+            ok, detail = fn()
+        except Exception as e:  # noqa: BLE001 - 検査の実装が例外で死ぬのも「壊れている」
+            ok, detail = None, f"例外: {e!r}"
+        if expect_ok:
+            if ok is True:
+                oks += 1
+            else:
+                fails.append(f"{name}: 既知OKが通らない（{detail}）")
+        else:
+            if ok is False and (expect_sub in detail):
+                oks += 1
+            elif ok is False:
+                fails.append(f"{name}: NGは出たが理由が期待と違う（期待「{expect_sub}」/実際「{detail[:80]}」）")
+            else:
+                fails.append(f"{name}: 既知NGが通ってしまった＝検査が緩められたか壊れている（{detail}）")
+
+    # ---- x_article: 正本の定型ブロック抽出と版照合 --------------------------------
+    import x_article
+
+    def t_tpl_real():
+        norm, h = x_article.template_block()
+        if h != x_article.TEMPLATE_HASH:
+            return False, f"正本 {h} / ツール {x_article.TEMPLATE_HASH}"
+        return True, ""
+    case("正本↔ツールの版照合（現物）", t_tpl_real, expect_ok=True)
+
+    def t_tpl_double():
+        try:
+            x_article.template_block(os.path.join(FIX, "blogops_template_double.md"))
+            return True, "抽出できてしまった"
+        except ValueError as e:
+            return False, str(e)
+    case("定型マーカー2組は抽出失敗", t_tpl_double, expect_ok=False, expect_sub="一意でない")
+
+    def t_tpl_missing():
+        try:
+            x_article.template_block(os.path.join(FIX, "blogops_template_missing.md"))
+            return True, "抽出できてしまった"
+        except ValueError as e:
+            return False, str(e)
+    case("定型マーカー無しは抽出失敗", t_tpl_missing, expect_ok=False, expect_sub="一意でない")
+
+    # ---- x_article: リンク検査 ---------------------------------------------------
+    def t_links_4():
+        err = x_article.check_links(["https://a/1", "https://a/2", "https://a/3", "https://a/4"])
+        return (err is None), (err or "")
+    case("リンク4本はNG", t_links_4, expect_ok=False, expect_sub="上限3本")
+
+    def t_links_fde():
+        err = x_article.check_links(["https://ngraph.jp/fde/"])
+        return (err is None), (err or "")
+    case("/fde/ 混入はNG", t_links_fde, expect_ok=False, expect_sub="/fde/")
+
+    def t_links_3():
+        err = x_article.check_links(["https://a/1", "https://a/2", "https://a/3"])
+        return (err is None), (err or "")
+    case("リンク3本はOK", t_links_3, expect_ok=True)
+
+    # ---- x_article: キャプション検査 ---------------------------------------------
+    def t_cap_url():
+        err, _ = x_article.check_caption("記事はこちら https://ngraph.jp/blog/x #AI導入")
+        return (err is None), (err or "")
+    case("キャプションのngraph.jp URLはNG", t_cap_url, expect_ok=False, expect_sub="カードが2枚")
+
+    def t_cap_tags():
+        err, _ = x_article.check_caption("本文です #a #b #c")
+        return (err is None), (err or "")
+    case("ハッシュタグ3個はNG", t_cap_tags, expect_ok=False, expect_sub="2個まで")
+
+    def t_cap_ok():
+        err, _ = x_article.check_caption("これは110字前後のまともなキャプションという想定の本文です。" * 3 + " #AI導入 #中小企業")
+        return (err is None), (err or "")
+    case("普通のキャプションはOK", t_cap_ok, expect_ok=True)
+
+    # ---- paren_lint: かっこ密度の中核 ---------------------------------------------
+    import paren_lint
+
+    def t_paren_crowded():
+        art = ('<article><p>透かし（英語）が入る（見えない）（要点）。</p>'
+               '<p>' + "あ" * 600 + '</p></article>')
+        got = paren_lint.measure(art)
+        if got is None:
+            return None, "measureがNoneを返した"
+        _, _, crowded = got
+        return (not crowded), f"crowded={crowded}"
+    case("1段落かっこ3個は検出される", t_paren_crowded, expect_ok=False, expect_sub="crowded=[(3")
+
+    def t_paren_ok():
+        art = ('<article><p>透かし（英語）が入る（見えない）。</p><p>' + "あ" * 600 + "</p></article>")
+        got = paren_lint.measure(art)
+        _, _, crowded = got
+        return (not crowded), f"crowded={crowded}"
+    case("1段落かっこ2個は通る", t_paren_ok, expect_ok=True)
+
+    # ---- format_lint: 型の閾値が守られているか -------------------------------------
+    import format_lint
+
+    def t_fmt_thresholds():
+        lo = format_lint.RULES["朝"][0]
+        if lo < 2000:
+            return False, f"朝の下限が {lo} に緩められている"
+        if format_lint.RULES["朝"][2] < 4 or format_lint.RULES["夕"][0] < 5000:
+            return False, "H2/夕の閾値が緩められている"
+        return True, ""
+    case("型の閾値（朝2300字・H2 4本・夕6000字）", t_fmt_thresholds, expect_ok=True)
+
+    # ---- 報告 --------------------------------------------------------------------
+    for name, why in NOT_COVERED:
+        print(f"  対象外 {name}: {why}")
+    if fails:
+        print("検査の自己テストに失敗（検査が緩められたか壊れています）:")
+        for f in fails:
+            print("  NG " + f)
+        return 1
+    print(f"OK: 検査の自己テスト {oks}件 全通過")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(run())
