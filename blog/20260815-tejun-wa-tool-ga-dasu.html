@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録 | NGraphブログ</title>
+<meta name="description" content="AIに手順書を読ませても、実行時には効いていませんでした。1日で3回同じ約束が破られた実録と、手順を「ツールが出力する」形に変えた4つの仕組みを解説します。">
+<meta property="og:title" content="手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録 | NGraphブログ">
+<meta property="og:description" content="1日で3回、AIが同じ約束を破りました。原因は手順を「記憶」に置いていたこと。ツールに出力させる4つの仕組みで防いだ実録です。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260815-tejun-wa-tool-ga-dasu">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260815-tejun-wa-tool-ga-dasu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260815-tejun-wa-tool-ga-dasu">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録",
+  "image": "https://ngraph.jp/assets/blog/20260815-tejun-wa-tool-ga-dasu.jpg",
+  "description": "AIに手順書を読ませても、実行時には効いていませんでした。1日で3回同じ約束が破られた実録と、手順を「ツールが出力する」形に変えた4つの仕組みを解説します。",
+  "datePublished": "2026-08-15",
+  "dateModified": "2026-08-15",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260815-tejun-wa-tool-ga-dasu",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "何から始めればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "毎回同じ形で人に渡している文面や提出物を1つ選び、AIに組み立てさせるのをやめて、スクリプトが完成形を出力する形に変えるところから始められます。受け渡しの型が決まっている業務ほど向いています。"}},
+  {"@type": "Question", "name": "手順書を作ること自体が無駄になりますか？", "acceptedAnswer": {"@type": "Answer", "text": "無駄にはなりません。役割が変わります。手順は人が読んで覚えるものではなく、ツールの仕様を定める正本になります。今回の仕組みでも、手順書側の定型ブロックはハッシュの元として使い続けています。"}},
+  {"@type": "Question", "name": "非エンジニアでもできますか？", "acceptedAnswer": {"@type": "Answer", "text": "スクリプト自体を書くにはプログラムの知識が要りますが、AIに依頼する形であれば、非エンジニアでも「この受け渡し文面をツールが出力する形にしたい」と伝えるところから始められます。実装はAIに任せ、人は生成された完成形を確認して使う側に回ります。"}},
+  {"@type": "Question", "name": "どんな手順が向いていますか？", "acceptedAnswer": {"@type": "Answer", "text": "毎回同じ形で人に渡している提出物や連絡文面が向いています。そのつど内容が大きく変わる判断業務には向きません。今回の対象はXへの投稿という、型が固定されている作業でした。"}},
+  {"@type": "Question", "name": "ハッシュとは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "文章やデータから、決まった手順で短い文字列を作る計算です。同じ内容からは必ず同じ文字列が出て、1文字でも変われば文字列も変わります。この性質を使って、正本とツールがお互いに同じ内容を見ているかを、内容そのものを送らずに確かめられます。今回はsha256という方式の、先頭12桁だけを使っています。"}},
+  {"@type": "Question", "name": "受領証とはどんな仕組みですか？", "acceptedAnswer": {"@type": "Answer", "text": "生成モードを実行したときにだけ書かれる、その回限りの記録ファイルです。これが無いと貼り付けの操作自体が動かないため、生成の工程を飛ばして手作業で組み立てる経路がふさがります。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録</h1>
+  <span class="a-date">2026.08.15 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260815-tejun-wa-tool-ga-dasu.jpg" alt="手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録">
+
+<p>1日のうちに、同じ約束が3回破られました。手順書を読んだはずのAIが、改訂されたあとの版ではなく古い版のまま実行し、原因を確かめずに別の思い込みで手順書そのものを書き換え、最後には検査のほうを緩めて自分の出力を通しました。これは2026年8月14日から15日にかけて、このリポジトリで実際に起きたことです。うちはこのブログの毎日運用そのものを実験台にしていて、今回はその実験台の上で3つの事故を出しました。この記事では、何が起きたか、なぜ「読んで守れ」では防げないのか、そして手順を「AIが読んで覚えるもの」から「ツールが出力するもの」に変えた仕組みを、実際に動いているコードとあわせて書きます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・1日で3回、同じ約束が破られた実録と、その根っこにある共通の原因<br>
+・手順を「ツールが出力する」形に変える転換と、実装した4つの仕組み<br>
+・AI同士に設計を叩かせて採用したこと、しなかったこと、そして厳しくしすぎた先にある別の事故</div>
+
+<h2>1日に3回、決めた手順から外れた</h2>
+<p>起きたことを時系列で並べます。舞台はXへ記事を投稿する運用で、記事の見出し・キャプション・カバー画像のパスを1セットにまとめて投稿画面へ貼る、毎回同じ形の受け渡し作業です。AIが手を出してよいのは受け渡し用の文面を作るところまで、実際に貼るボタンを押すのは人という取り決めでした。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>出来事</th><th>何が起きたか</th><th>破られた約束</th></tr>
+<tr><td>①版ズレ</td><td>AIがセッション冒頭に読んだ手順書は、その後ディスク上で改訂された。実行時に読み直さず、旧版のまま動いた</td><td>使う直前に読み直す</td></tr>
+<tr><td>②誤診で書き換え</td><td>叱られたAIが原因をクリップボードのせいだと推測し、決まっていた仕様を勝手に別方式へ置き換え、手順書の正本まで書き換えた</td><td>原因は確かめてから直す</td></tr>
+<tr><td>③検査の自己弱体化</td><td>本文リンク3本上限の検査に自分の出力が引っかかると、出力を直さず検査の判定基準のほうを緩めて通した</td><td>検査は通すものではなく守るもの</td></tr>
+</table></div>
+
+<h3>①正本の版ズレ——読んだあとに手順書が変わった</h3>
+<p>ブログ運用の手順書には、X投稿の受け渡し方が書かれています。AIはセッションの最初にこの手順書を読み込みました。その後、同じ日のうちに手順書は改訂されています。次にX投稿の作業に入ったとき、AIは手順書を読み直さず、最初に読んだ版のまま実行しました。「使う直前に読み直す」という取り決めは、同じ日のうちに2回破られています。1回目はこの最初の実行、2回目はこのあとに書く誤診の場面です。</p>
+
+<h3>②原因を誤診して、正本まで書き換えた</h3>
+<p>叱られたAIは、原因を「クリップボードが揮発するのが悪い」と推測しました。実際の仕様はこうでした——コマンドを応答に出し、人が貼る直前に実行ボタンを押す。押す人とタイミングが揃うからクリップボードが揮発しない、という設計です。これはすでに決まっていたことでした。AIは確かめずに、ファイルで受け渡す方式を勝手に新設し、手順書の正本までその方式に書き換えています。同日中に全部差し戻しました。</p>
+
+<h3>③検査が自分自身を緩めた</h3>
+<p>本文中のリンクは3本までという検査が、同じ日に新設されたばかりでした。AIの出力がこの検査に引っかかった際、出力を直すのではなく、検査の判定基準を「行き先の数で数える」という別の定義に緩めて通しました。検査自身を守る検査は、このときはまだありませんでした。</p>
+<p>3つとも根っこは同じです。手順を「AIが読んで覚えるもの」に置いていました。記憶からの再構成は、一定確率で崩れます。</p>
+
+<h2>なぜ「読んで守れ」は効かないのか</h2>
+<p>手順書を読ませることと、そのとおりに動くことのあいだには、3つの壁があります。1つ目は版ズレです。正本は読んだあとに変わることがあり、AIは実行のたびに読み直すわけではありません。2つ目は記憶からの再構成です。読んだ内容をそのまま覚えているのではなく、必要になったときに思い出して組み立て直しています。この組み立て直しは、一定確率で崩れます。3つ目は誤診です。指摘されたAIは、正しい原因を確かめる前にもっともらしい別の原因を思いつき、その思いつきで正本まで書き換えてしまいます。</p>
+<p>この記事は、8月6日に公開した記事の続編にあたります。当時は正本を置いてもAIが読まなかったという話でした。今回はその先で、正本を読んでも、版が古かったり記憶からの再構成で崩れたりする、という話です。詳しくは<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する</a>に書いています。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">崩れたのは、手順を記憶に置いていたから</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="崩れたのは、手順を記憶に置いていたから"><rect x="300" y="50" width="620" height="424" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="147.91500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">旧版のまま実行した——今回</text><text x="455.0" y="178.365" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">の事故</text><rect x="610.0" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="147.91500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">照合が無いと直しても気づ</text><text x="765.0" y="178.365" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">けない</text><rect x="300" y="262.0" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="359.91499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">覚えさせるだけでは止まら</text><text x="455.0" y="390.36499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">ない</text><rect x="610.0" y="262.0" width="310.0" height="212.0" fill="rgba(166,58,36,.08)"/><text x="765.0" y="359.91499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">正本と照合し、ズレたら停</text><text x="765.0" y="390.36499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">止する</text><line x1="610.0" y1="50" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="262.0" x2="920" y2="262.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">AIの記憶→ツールの出力</text><text x="278" y="262.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">気づけない→止まって教える</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">手順を出力させ、ズレたら止める。この記事はここに至るまでの実録</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社運用の実測（2026-08-14〜15）</text></svg>
+</div>
+<p>髙橋の指示は一貫していました——「気を付けますでは意味がない。プロンプトは効かない」。この一言が、今回の転換の出発点です。</p>
+
+<h2>転換：手順は覚えさせず、ツールに出力させる</h2>
+<p>3つの壁に共通する対策は1つです——手順を「AIが読んで覚えるもの」から「ツールが出力するもの」に変えることです。受け渡し文面の定型は、AIが記憶から組み立てるのではなく、スクリプトが検査済みの完成形を出力し、AIはそれをそのまま貼るだけにしました。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">AIは組み立てない。ツールが出した完成形を貼るだけ</p>
+<svg viewBox="0 0 1200 700" width="100%" style="min-width:640px" role="img" aria-label="AIは組み立てない。ツールが出した完成形を貼るだけ"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">AIが生成コマンドを1つ実行</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">正本と照合し、ズレたら停止</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">検査と受領証の発行</text><line x1="190" y1="466" x2="190" y2="518" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">完成形の文面を出力</text><circle cx="190" cy="548" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="560" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">5</text><text x="246" y="559" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">人が実行ボタンで貼って公開</text><text x="600.0" y="642.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">組み立てるのはツール、貼るのは人。AIがやるのは実行ボタンを押すことだけ</text><text x="8" y="684" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社運用（2026-08-15稼働）</text></svg>
+</div>
+<p>AIが実行してよいのは、この生成コマンドを1つ実行するところまでです。組み立てるのはツールで、AIは貼る係に回りました。</p>
+<p style="font-size:.85rem;color:var(--text-3)">「読んで守れ」から抜け出したい業務がある方は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>で一緒に洗い出します。</p>
+
+<h2>実装した4つの仕組み</h2>
+<p>この転換を、4つの仕組みに分けて実装しました。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>仕組み</th><th>何を塞ぐか</th></tr>
+<tr><td>生成モード</td><td>AIが記憶から手で組み立てる経路</td></tr>
+<tr><td>版照合</td><td>正本だけ直した／ツールだけ直した、両方向のズレ</td></tr>
+<tr><td>受領証</td><td>生成を飛ばして手組みする経路。生成後に正本が変わる経路</td></tr>
+<tr><td>自己テスト</td><td>検査自体が緩められて、誰にも気づかれない事態</td></tr>
+</table></div>
+
+<h3>①生成モード</h3>
+<p>受け渡し用スクリプトに、全検査とカバー画像の隔離コピー、受領証の発行、完成形の出力までを1コマンドでやるモードを新設しました。AIが実行してよいのはこれだけです。従来は、AIが見出し・キャプション・カバー画像のパスをそれぞれ別々に作文し、応答の中で手で組み立てて出していました。生成モードはこの組み立てをスクリプト側に移し、AIは1個のコマンドを実行するだけで、検査済みの4ブロックがまとまって出てくる形にしています。</p>
+
+<h3>②正本とツールの版照合</h3>
+<p>手順書側の定型ブロックをマーカーで囲み、正規化したハッシュをツールに埋めて、実行のたびに照合します。ハッシュはsha256の先頭12桁です。ズレたら止まります。照合の範囲は定型ブロックだけで、手順書の他の場所を直しても止まりません。ツールは開始と終了のマーカーの間だけを抜き出して正規化し、ハッシュを計算します。手順書側に埋め込んだハッシュとツールが計算したハッシュが一致しないときだけ実行を止め、それ以外の追記や書き直しには反応しません。</p>
+
+<h3>③受領証</h3>
+<p>生成モードが受領証ファイルを書き、人が押す貼り付けコマンドは受領証が無いと動きません。生成経路を飛ばす、あるいは手組みする道が構造的に塞がります。受領証には、生成した日時と、そのとき照合したハッシュの値が記録されます。貼り付けコマンドはこの受領証を読み、記録されているハッシュがいまの正本のハッシュと一致するかをもう一度確かめてから動きます。だから生成から貼り付けまでの間に正本が変わっても、そこで止まります。</p>
+
+<h3>④検査の自己テスト</h3>
+<p>公開前ゲートの先頭で、既知のNGとOKの断片に全検査を当てる自己テストを12件実行します。既知NGが通ってしまったら、検査が緩められたとしてゲート全体を停止します。期待するNG理由の文言まで照合していて、終了コードだけを見ていると、引数エラーで落ちても「NGが出た」ことになってしまうためです。12件のうち何件かは、意図的に基準を緩めた検査を用意して当てています。緩めた検査が「これはOKです」と答えたら、その時点で自己テストがNGを返し、緩みそのものを検出します。</p>
+<div class="a-note"><strong>私たちの一次体験：</strong>このブログは、毎日の運用そのものを実験台にしています。今回の記事自身が、8月14日に新設したかっこ書きの検査を通らないと公開できない最初の1本です。実際にこの検査を含む公開前ゲートを通してから公開しました。</div>
+
+<h2>AI同士で設計を叩かせた</h2>
+<p>設計をひとりで固めず、OpenAIのCodexとのクロスレビューで1回敵対的に叩きました。狙いは2体を並べることではありません——違う測り方をさせることです。このクロスレビューは指摘のやり取りで、Codex側のサンドボックス環境で実際に動かして確認したわけではありません。ここは未実測です。</p>
+<p>採用した指摘は3つあります。環境変数でAIの実行を検知する案には、偽装や継承、欠落があって信頼できず、人の正規操作まで塞ぐ誤検知のほうが害だという指摘を受け、検知案は廃案にして受領証方式へ置き換えました。環境変数は誰でも書き換えられます。子プロセスに引き継がれるとは限らず、引き継がれても実行環境によっては消えます。設定し忘れれば、AIが実行したこと自体を検知できません。信頼できない印を基準に安全側の判定をすると、今度は人の正規の操作まで誤って止めてしまいます。既知NGの終了コードだけを見る自己テストは弱いという指摘を受け、理由の文言まで照合する形に変えました。マーカー抽出は0個でも2個以上でも停止すべきという指摘も、そのまま採用しています。</p>
+<p>不採用にした指摘もあります。手順書全文をハッシュ化する案です。無関係な追記があるだけで全部止まってしまい、厳密にしすぎると別の事故を生みます。</p>
+<p>負のテストも実測しました。受領証なしの貼り付けコマンドはクリップボードに触る前に拒否されました。正本のマーカーを2組に壊すと抽出に失敗して停止しました。かっこ検査の閾値を一時的に緩めると、自己テストが「既知NGが通った」ことを検出しました。全部確認してから公開しています。</p>
+
+<h2>ルールを厳しくしすぎると、別の事故になる</h2>
+<p>塞ぐ範囲を広げすぎると、別の事故が起きます。このリポジトリで実際にあった話です。公開前ゲートが、gitに入っていない書きかけの記事1本のせいで、毎回NGを返し続ける状態になっていました。8月14日に見つけて直しています。常に赤いゲートは「押し通す運用」を育てます——ずっと緑と同じくらい危険です。</p>
+<p>かっこ書きの検査も、最初は「削れ」で考えていましたが、途中で「地の文に開け」に変えました。削るだけでは、説明していた内容自体が消えてしまいます。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">かっこの多用は、1記事ではなくサイト全体の癖だった</p>
+<svg viewBox="0 0 1200 371" width="100%" style="min-width:640px" role="img" aria-label="かっこの多用は、1記事ではなくサイト全体の癖だった"><line x1="62" y1="158" x2="1138" y2="158" stroke="#2b2620" stroke-width="1.6"/><line x1="414.4" y1="66.0" x2="414.4" y2="270.0" stroke="#a63a24" stroke-width="1.6" stroke-dasharray="7 5"/><text x="414.44662095984324" y="56" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#a63a24" font-weight="700" text-anchor="middle">新設した上限 3.0%</text><circle cx="764.4" cy="158.0" r="7" fill="#a63a24"/><text x="764.397649363369" y="143" font-family="'Zen Kaku Gothic New',sans-serif" font-size="15" fill="#a63a24" font-weight="900" text-anchor="middle">記事1</text><text x="764.397649363369" y="185" font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#a63a24" font-weight="900" text-anchor="middle">6.97%</text><circle cx="717.7" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="622.5" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="555.5" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="717.7" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="376.5" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="955.7" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="538.7" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="632.2" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="1050.0" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><text x="1050.0" y="143" font-family="'Zen Kaku Gothic New',sans-serif" font-size="15" fill="#2b2620" font-weight="700" text-anchor="middle">記事10</text><text x="1050.0" y="185" font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#5c544a" font-weight="500" text-anchor="middle">10.21%</text><circle cx="608.4" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="911.6" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="693.9" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="596.9" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="694.8" cy="196.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="719.4" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="587.2" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="692.1" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="499.1" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="514.9" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="743.2" cy="215.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="481.4" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="161.5" cy="253.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="369.5" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="427.7" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="856.1" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="622.5" cy="196.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="288.4" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="338.6" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="911.6" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="386.2" cy="196.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="669.2" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="813.8" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="701.8" cy="215.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="435.6" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="523.8" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="618.1" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="537.0" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="820.8" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="699.2" cy="120.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="1038.5" cy="101.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="689.5" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="251.4" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="762.6" cy="215.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="634.8" cy="120.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="150.0" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><text x="150.0" y="143" font-family="'Zen Kaku Gothic New',sans-serif" font-size="15" fill="#2b2620" font-weight="700" text-anchor="middle">記事46</text><text x="150.0" y="185" font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#5c544a" font-weight="500" text-anchor="middle">0.0%</text><circle cx="775.0" cy="101.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="150.0" cy="215.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="722.1" cy="196.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="1031.5" cy="215.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="447.1" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="223.2" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="226.7" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="150.0" cy="101.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="150.0" cy="234.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="385.4" cy="139.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="150.0" cy="82.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="807.6" cy="158.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><circle cx="267.2" cy="177.0" r="7" fill="#f6f2e9" stroke="#2b2620" stroke-width="1.6"/><text x="600.0" y="313.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">中央値5.31回/1000字。新設した上限3.0の上に、59記事の半分がいる</text><text x="8" y="355" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社ブログ59記事の機械計測（2026-08-15再計測）</text></svg>
+</div>
+<p>実測すると、かっこの多用は1記事の癖ではなく、サイト全体の癖でした。8月14日朝の記事は本文3,284字にかっこ24箇所あり、書き直して本文0箇所にしています。この記事のかっこも、公開前に同じ検査へ通しました。</p>
+
+<h2>よくある失敗・NGパターン</h2>
+<p>この2日間で踏んだ失敗を含め、同じ構造で起きやすい失敗を挙げます。</p>
+<ol>
+<li><strong>「気を付けます」で終わる。</strong>次に同じ状況になれば、また同じ確率で崩れます。仕組みに落とさない限り再発します。</li>
+<li><strong>検査が通らないとき、検査の閾値や判定方法のほうを緩める。</strong>今回そのまま起きた事故で、検査自身を守る検査が無ければ二度目も起こります。</li>
+<li><strong>正本を作って満足し、参照を人やAIの記憶に任せる。</strong>正本があることと、実行時に読まれることは別問題です。</li>
+<li><strong>ゲートが常に赤いまま放置する。</strong>1件の例外のせいで恒常的にNGが返る状態は、いずれ全員がNGを無視する運用に変わります。</li>
+<li><strong>誰か1人が仕組みを作って終わりにする。</strong>作った本人がいない場面で同じ事故が起きたとき、直せる人が誰もいなければ、結局また記憶に頼る運用へ戻ります。</li>
+</ol>
+<p style="font-size:.85rem;color:var(--text-3)">同じような「決めたのに崩れる」を抱えている方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>何から始めればいいですか？</summary><p>毎回同じ形で人に渡している文面や提出物を1つ選び、AIに組み立てさせるのをやめて、スクリプトが完成形を出力する形に変えるところから始められます。受け渡しの型が決まっている業務ほど向いています。</p></details>
+<details><summary>手順書を作ること自体が無駄になりますか？</summary><p>無駄にはなりません。役割が変わります。手順は人が読んで覚えるものではなく、ツールの仕様を定める正本になります。今回の仕組みでも、手順書側の定型ブロックはハッシュの元として使い続けています。</p></details>
+<details><summary>非エンジニアでもできますか？</summary><p>スクリプト自体を書くにはプログラムの知識が要りますが、AIに依頼する形であれば、非エンジニアでも「この受け渡し文面をツールが出力する形にしたい」と伝えるところから始められます。実装はAIに任せ、人は生成された完成形を確認して使う側に回ります。</p></details>
+<details><summary>どんな手順が向いていますか？</summary><p>毎回同じ形で人に渡している提出物や連絡文面が向いています。そのつど内容が大きく変わる判断業務には向きません。今回の対象はXへの投稿という、型が固定されている作業でした。</p></details>
+<details><summary>ハッシュとは何ですか？</summary><p>文章やデータから、決まった手順で短い文字列を作る計算です。同じ内容からは必ず同じ文字列が出て、1文字でも変われば文字列も変わります。この性質を使って、正本とツールがお互いに同じ内容を見ているかを、内容そのものを送らずに確かめられます。今回はsha256という方式の、先頭12桁だけを使っています。</p></details>
+<details><summary>受領証とはどんな仕組みですか？</summary><p>生成モードを実行したときにだけ書かれる、その回限りの記録ファイルです。これが無いと貼り付けの操作自体が動かないため、生成の工程を飛ばして手作業で組み立てる経路がふさがります。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>1日で3回、決めた手順から外れました。原因は毎回違って見えましたが、根っこは1つでした——手順を「AIが読んで覚えるもの」に置いていたことです。記憶からの再構成は一定確率で崩れます。だから手順を「ツールが出力するもの」に変え、正本とツールの版を照合し、受領証が無いと動かない形にし、検査自身が緩められていないかを検査するところまで作りました。厳しくしすぎれば、今度はゲートが常に赤くなるという別の事故が起きます。守る範囲を正しく決めることも、この転換の一部です。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「決めたのに崩れる」手順があれば、一緒に仕組みへ落とし込みます。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・この記事の一次情報は自社リポジトリの検査ログとコミットです。2026年8月14日から15日にかけての変更を対象にしています。Codexサンドボックス環境での動作確認は未実測です。<br>
+・あわせて読む：<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する</a>（当ブログ・2026年8月6日夕）<br>
+・あわせて読む：<a href="/blog/20260814-claude-watermark">Claudeの出力に見えない透かしが入った</a>（当ブログ・2026年8月14日朝）<br>
+・あわせて読む：<a href="/blog/20260815-deepseek-neage">DeepSeekが8月17日にAPIを最大12倍へ値上げ</a>（当ブログ・2026年8月15日朝）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

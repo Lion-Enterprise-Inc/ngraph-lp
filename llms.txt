@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [手順書はAIの記憶に置かない——1日に3回同じ約束を破られて、手順を「ツールが出力する」形に変えた実録](https://ngraph.jp/blog/20260815-tejun-wa-tool-ga-dasu)
 - [DeepSeekが8月17日にAPIを最大12倍へ値上げ——日本の業務時間が丸ごと割高な時間帯に入る理由](https://ngraph.jp/blog/20260815-deepseek-neage)
 - [ホームページの維持費は、ドメイン代とAIの月額だけになった——サーバー代が0円になる理由と実際の請求額](https://ngraph.jp/blog/20260814-homepage-iji-hi)
 - [Claudeの出力に見えない透かしが入った——「AIが書いた証拠」にならない理由と、社内で決める1行](https://ngraph.jp/blog/20260814-claude-watermark)
