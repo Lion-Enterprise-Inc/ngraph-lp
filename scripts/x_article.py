@@ -393,6 +393,9 @@ def build(slug, teaser, heads=None, mark_figs=False):
             if sib.name == "h2":
                 break
             if sib.name == "p":
+                # /fde/ への一文は段落ごと落とす（.a-note の外に置かれる記事があるため）
+                if CTA_SENTENCE.match(sib.get_text(" ", strip=True)):
+                    continue
                 blocks.extend(split_long(block(sib, "unstyled", entities)))
             elif sib.name == "ul":
                 for li in sib.find_all("li", recursive=False):
@@ -633,8 +636,12 @@ def main():
                          "超えるとき、記事本体を書き換えずにXの場だけ短縮する")
     ap.add_argument("--heads", help="載せるH2の見出し（前方一致・カンマ区切り）。"
                                     "省略時は朝A型の3本。夕B型はここで3本ほど選ぶ")
+    ap.add_argument("--file", nargs="?", const="", metavar="DIR",
+                    help="本文HTML・タイトル・キャプション・カバー画像をフォルダに書き出す（既定の受け渡し方法。"
+                         "既定は %%TEMP%%/x_article/<slug>/）。何度でも取り直せる")
+    ap.add_argument("--caption", help="--file のとき キャプション.txt に書き出す文面")
     ap.add_argument("--clipboard", action="store_true",
-                    help="APIを使わず、書式付きHTMLをクリップボードに載せる（手貼り運用・課金ゼロ）")
+                    help="書式付きHTMLをクリップボードに載せる（他をコピーすると消えるので既定にしない）")
     ap.add_argument("--dry-run", action="store_true", help="APIを叩かずJSONを書き出すだけ")
     ap.add_argument("--publish", action="store_true", help="下書きを作ってそのまま公開する（既定は下書きまで）")
     ap.add_argument("--figs", nargs="?", const="", metavar="DIR",
@@ -679,6 +686,19 @@ def main():
         if not figs:
             print("  （載せるH2の中に図はありません）")
 
+    # リンクの本数を検査する（BLOG-OPS §7: リード内の一次情報／関連記事／末尾の本家記事の3本まで。
+    # これ以上は導線が潰し合う。/fde/ は末尾の記事リンクに一本化するので載せない）
+    links = [e["value"]["data"]["url"] for e in content_state.get("entities", [])
+             if e.get("value", {}).get("type") == "link"]
+    fde = [u for u in links if "/fde" in u]
+    if fde:
+        sys.exit(f"NG: /fde/ へのリンクが本文に残っています（{len(fde)}本）。"
+                 "BLOG-OPS §7 は末尾の記事リンクへ導線を一本化する決まりです。\n"
+                 "  記事側のCTA段落の書き方が変わった可能性があります（CTA_SENTENCE を確認）")
+    if len(links) > 3:
+        sys.exit(f"NG: 本文中のリンクが{len(links)}本あります（上限3本）。\n  " + "\n  ".join(links))
+    print(f"リンク: {len(links)}/3本")
+
     # リポジトリ内には書かない（このリポジトリはCloudflare Pagesで全ファイル公開される）
     out = os.path.join(os.environ.get("TEMP", "."), f"x_article_{a.slug}.json")
     payload = {"title": title, "content_state": content_state}
@@ -694,11 +714,40 @@ def main():
             sys.exit(f"クリップボードに載せられませんでした: {err[:300]}")
         cover = os.path.join(REPO, "assets", "blog", f"{a.slug}.jpg")
         print("クリップボードに載せました（書式つき）")
+        print("⚠ クリップボードは他をコピーした時点で消えます。取り直せる形が要るなら --file を使ってください")
         print("  1. https://x.com/compose/articles →「記事を作成」")
         print(f"  2. タイトル欄に貼る: {title}")
         print("  3. 本文欄で Ctrl+V（見出し・太字・リンクごと入る）")
         print(f"  4. カバー画像をアップ: {cover}")
         print("  5. キャプションを入れて公開")
+        return
+
+    if a.file is not None:
+        # 受け渡しはファイル。クリップボードは他をコピーすると消えるので唯一の手段にしない
+        # （髙橋さん指示 2026-08-14「クリップボードにいれても他の作業でコピーしたらできなくなる」）
+        d = a.file or os.path.join(os.environ.get("TEMP", "."), "x_article", a.slug)
+        os.makedirs(d, exist_ok=True)
+        body = os.path.join(d, "本文（開いてCtrl+A→Ctrl+C）.html")
+        page = ("<!doctype html><meta charset=\"utf-8\"><title>%s</title>"
+                "<body style=\"font-family:'Zen Kaku Gothic New',sans-serif;line-height:1.9;"
+                "max-width:720px;margin:40px auto;padding:0 20px\">%s"
+                % (esc(title), blocks_to_html(content_state)))
+        open(body, "w", encoding="utf-8").write(page)
+        open(os.path.join(d, "タイトル.txt"), "w", encoding="utf-8").write(title)
+        if a.caption:
+            open(os.path.join(d, "キャプション.txt"), "w", encoding="utf-8").write(a.caption)
+        src = os.path.join(REPO, "assets", "blog", f"{a.slug}.jpg")
+        cover = os.path.join(d, f"カバー画像_{a.slug}.jpg")
+        if os.path.exists(src):
+            shutil.copyfile(src, cover)   # 同じフォルダに1枚だけ置く（隣の記事のjpgを掴む事故を防ぐ）
+        print(f"出力しました: {d}")
+        print("  本文  : 本文（開いてCtrl+A→Ctrl+C）.html をブラウザで開く → Ctrl+A → Ctrl+C")
+        print("          （何度でも取り直せます。クリップボードが消えても開き直すだけ）")
+        print("  タイトル: タイトル.txt")
+        if a.caption:
+            print("  キャプション: キャプション.txt")
+        if os.path.exists(cover):
+            print(f"  カバー画像: {os.path.basename(cover)}")
         return
 
     if a.dry_run:
