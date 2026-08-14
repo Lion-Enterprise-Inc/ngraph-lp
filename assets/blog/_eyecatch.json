@@ -104,6 +104,20 @@
   "sub": "ホームページの維持費の実額",
   "title": "サーバー代は、0円になった"
  },
+ "20260815-deepseek-neage": {
+  "article_h1": "DeepSeekが8月17日にAPIを最大12倍へ値上げ——日本の業務時間が丸ごと割高な時間帯に入る理由",
+  "fs": 68,
+  "pattern": "gauge",
+  "sub": "DeepSeekが8月17日に最大12倍へ",
+  "title": "安いAIは、安いままではない"
+ },
+ "20260815-tejun-wa-tool-ga-dasu": {
+  "article_h1": null,
+  "fs": 68,
+  "pattern": "balance",
+  "sub": "AIの記憶からツールの出力へ",
+  "title": "手順は、覚えさせない"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,
