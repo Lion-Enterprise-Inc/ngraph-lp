@@ -23,9 +23,23 @@ BLOG-OPS の目安は朝2,500〜3,500字だが、**直近2本が3,60x字**であ
 正常な運用が毎回赤くなる。ここで落とすのは「明らかな型外れ」だけにして、目安への
 寄せ方は人が判断する（検査は運用を止めるためのものではない）。
 
+2026-08-14追加・ガイド型（G型）と「同じ枠が2本」の検査:
+  `20260813-torihikisaki-check`（自社ツールの使い方・4,531字・H2 8本）が「夕」を
+  名乗って夕Bの下限6,000字で落ちた。だが8/13は既に朝(3,570字)・夕(9,005字)が
+  揃っており、**これは3本目＝定時枠の記事ではない**。ラベルの方が間違っている。
+  6,000字に伸ばす手段は言い換え段落の追加しかなく、それは BLOG-OPS §3 の
+  水増し禁止条項そのものなので、字数を下げるのでも slug を除外するのでもなく
+  **型を1つ増やす**（BLOG-OPS §3.5）。slug の除外リストは「型を持たない記事」を
+  作り続ける許可になり、この検査が塞いだ穴を制度化するので採らない。
+
+  同時に、本当の穴だった「同じ日に同じ枠が2本ある」を検査する。字数がたまたま
+  下限を超えていれば、型違いの記事が「夕」を名乗って一覧に混ざるのを字数だけでは
+  止められない（今回それが起きた）。ガイド型が枠を消費していないかも見る。
+
 使い方:
     python scripts/format_lint.py
 """
+import collections
 import glob
 import os
 import re
@@ -43,9 +57,17 @@ import published_set  # noqa: E402
 RULES = {
     "朝": (2300, 4000, 4, 4),
     "夕": (6000, None, 7, None),
+    "ガイド": (3000, 6000, 5, 10),
 }
 TARGET = {"朝": "2,500〜3,500字・H2 4本（BLOG-OPS §2）",
-          "夕": "6,000〜8,000字・H2 7〜9本（BLOG-OPS §3）"}
+          "夕": "6,000〜8,000字・H2 7〜9本（BLOG-OPS §3）",
+          "ガイド": "3,000〜6,000字・H2 5〜10本（BLOG-OPS §3.5）"}
+# 上限を超えたときに何が壊れるかは型ごとに違う。使い回すと理由が嘘になる
+OVER = {"朝": "速報性が死ぬ",
+        "ガイド": "使い方の材料が尽きて水増しになる。深掘りなら夕B型で書く"}
+# 定時の枠。1日1本ずつしか無い。ガイド型は枠を消費しない3本目
+SLOTS = ("朝", "夕")
+LABEL_RE = r"(20\d\d)\.(\d\d)\.(\d\d)\s*(朝|夕|ガイド)"
 
 
 def measure(html):
@@ -61,13 +83,15 @@ def measure(html):
     prose = re.sub(r"<svg.*?</svg>", "", article, flags=re.S)
     text = re.sub(r"\s", "", re.sub(r"<[^>]+>", "", prose))
     h2 = len(re.findall(r"<h2", article))
-    lab = re.search(r"(20\d\d)\.(\d\d)\.(\d\d)\s*(朝|夕)", article)
+    lab = re.search(LABEL_RE, article)
     return len(text), h2, lab
 
 
 def main():
     fails = []
     legacy = []
+    notes = []
+    by_day = collections.defaultdict(list)  # 日付 -> [(型, slug), ...]
     checked = 0
 
     found = sorted(os.path.basename(p)[:-5]
@@ -98,6 +122,7 @@ def main():
             continue
 
         kind = lab.group(4)
+        by_day[slug[:8]].append((kind, slug))
         if "".join(lab.group(1, 2, 3)) != slug[:8]:
             fails.append("%s: 日付ラベル %s.%s.%s が slug の日付と違う"
                          % (slug, lab.group(1), lab.group(2), lab.group(3)))
@@ -107,19 +132,42 @@ def main():
             fails.append("%s（%s型）: %d字は薄い（下限%d字）。目安は%s"
                          % (slug, kind, chars, lo, TARGET[kind]))
         if hi and chars > hi:
-            fails.append("%s（%s型）: %d字は長すぎる（上限%d字・速報性が死ぬ）。目安は%s"
-                         % (slug, kind, chars, hi, TARGET[kind]))
+            fails.append("%s（%s型）: %d字は長すぎる（上限%d字・%s）。目安は%s"
+                         % (slug, kind, chars, hi, OVER.get(kind, "型から外れる"),
+                            TARGET[kind]))
         if h2 < h2lo:
             fails.append("%s（%s型）: H2が%d本。%d本以上必要。目安は%s"
                          % (slug, kind, h2, h2lo, TARGET[kind]))
         if h2hi and h2 > h2hi:
-            fails.append("%s（%s型）: H2が%d本。%s型は%d本ちょうど（BLOG-OPS §2）"
-                         % (slug, kind, h2, kind, h2hi))
+            limit = ("%d本ちょうど" % h2hi) if h2lo == h2hi else ("%d本まで" % h2hi)
+            fails.append("%s（%s型）: H2が%d本。%s型は%s。目安は%s"
+                         % (slug, kind, h2, kind, limit, TARGET[kind]))
+
+    # 枠の重複（2026-08-14新設）。字数だけでは型違いの記事が「夕」を名乗って
+    # 混ざるのを止められない。定時の枠は1日1本ずつなので、2本目は必ず別の型
+    for day in sorted(by_day):
+        kinds = [k for k, _ in by_day[day]]
+        for slot in SLOTS:
+            dup = [s for k, s in by_day[day] if k == slot]
+            if len(dup) > 1:
+                fails.append("%s: 「%s」のラベルが%d本ある（%s）。定時の枠は1日1本ずつ。"
+                             "枠の記事でないものは §3.5 のガイド型にする"
+                             % (day, slot, len(dup), "／".join(sorted(dup))))
+        # ガイド型は枠を消費しない3本目。落とさないのは、朝を書いた時点では
+        # その日の夕がまだ無いのが正常だから（常に赤いゲートは押し通す運用を育てる）
+        if "ガイド" in kinds:
+            missing = [s for s in SLOTS if s not in kinds]
+            if missing:
+                notes.append("%s: ガイド型があるがその日の%sが無い。ガイド型は朝A/夕Bの枠を"
+                             "消費しない3本目（BLOG-OPS §3.5）。枠の記事を落としていないか確認"
+                             % (day, "・".join(missing)))
 
     memo = published_set.note(unpublished, indent="")
     if memo:
         print(memo)
 
+    for line in notes:
+        print("参考 " + line)
     for line in legacy:
         print("参考 " + line + "（公開済みのため落とさない）")
     for line in fails:
