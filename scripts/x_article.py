@@ -695,15 +695,9 @@ def main():
         sys.exit(f"NG: /fde/ へのリンクが本文に残っています（{len(fde)}本）。"
                  "BLOG-OPS §7 は末尾の記事リンクへ導線を一本化する決まりです。\n"
                  "  記事側のCTA段落の書き方が変わった可能性があります（CTA_SENTENCE を確認）")
-    # 数えるのは「行き先の数」。同じURLが2回出ても導線は潰し合わない（リードで一次情報を出し、
-    # 記事末の参考枠で同じ発表元をもう一度示す形は §1 が求めている書き方そのもの）。
-    dests = list(dict.fromkeys(links))
-    dup = len(links) - len(dests)
-    if len(dests) > 3:
-        sys.exit(f"NG: 本文中のリンクの行き先が{len(dests)}件あります（上限3件）。\n  "
-                 + "\n  ".join(dests))
-    print(f"リンク: 行き先 {len(dests)}/3件"
-          + (f"（同じURLの重複 {dup}本は数えていない）" if dup else ""))
+    if len(links) > 3:
+        sys.exit(f"NG: 本文中のリンクが{len(links)}本あります（上限3本）。\n  " + "\n  ".join(links))
+    print(f"リンク: {len(links)}/3本")
 
     # リポジトリ内には書かない（このリポジトリはCloudflare Pagesで全ファイル公開される）
     out = os.path.join(os.environ.get("TEMP", "."), f"x_article_{a.slug}.json")
