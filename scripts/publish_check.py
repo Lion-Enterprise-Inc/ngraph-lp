@@ -37,10 +37,22 @@ LLMS = ROOT / "llms.txt"
 LLMS_SECTION = "## ブログ（AI導入の実践知）"
 DATED = re.compile(r"^(\d{4})(\d{2})(\d{2})-")
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import published_set  # noqa: E402
+
+UNPUBLISHED = []
+
 
 def articles():
-    """記事slugの一覧（index.html は一覧ページなので除く）。"""
-    return sorted(p.stem for p in BLOG.glob("*.html") if p.stem != "index")
+    """記事slugの一覧（index.html は一覧ページなので除く）。
+
+    gitに入っていない記事は本番に存在しないので対象外（published_set.py 参照）。
+    除外したものは main() が「参考」として必ず表示する。
+    """
+    found = sorted(p.stem for p in BLOG.glob("*.html") if p.stem != "index")
+    kept, skipped = published_set.split_unpublished(found)
+    UNPUBLISHED[:] = skipped
+    return kept
 
 
 def slug_date(slug):
@@ -286,6 +298,9 @@ def main():
 
     if args.fix:
         done = [msg for fn in FIXES for msg in fn()]
+        memo = published_set.note(UNPUBLISHED, indent="  ")
+        if memo:
+            print(memo)
         if not done:
             print("修正するものはありません")
         for d in done:
@@ -293,6 +308,9 @@ def main():
         return 0
 
     violations = [v for fn in CHECKS for v in fn()]
+    memo = published_set.note(UNPUBLISHED, indent="  ")
+    if memo:
+        print(memo)
     if violations:
         print("記事の配線に漏れがあります:")
         for v in violations:

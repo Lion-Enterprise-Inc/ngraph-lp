@@ -36,6 +36,9 @@ sys.stdout.reconfigure(encoding="utf-8")
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUTOFF = "20260812"
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import published_set  # noqa: E402
+
 # (型, 字数の下限, 字数の上限, H2の下限, H2の上限)
 RULES = {
     "朝": (2300, 4000, 4, 4),
@@ -67,9 +70,13 @@ def main():
     legacy = []
     checked = 0
 
-    for path in sorted(glob.glob(os.path.join(BASE, "blog", "2026*.html"))):
-        name = os.path.basename(path)
-        slug = name[:-5]
+    found = sorted(os.path.basename(p)[:-5]
+                   for p in glob.glob(os.path.join(BASE, "blog", "2026*.html")))
+    live, unpublished = published_set.split_unpublished(found)
+
+    for slug in live:
+        path = os.path.join(BASE, "blog", slug + ".html")
+        name = slug + ".html"
         html = open(path, encoding="utf-8").read()
         chars, h2, lab = measure(html)
         if chars is None:
@@ -108,6 +115,10 @@ def main():
         if h2hi and h2 > h2hi:
             fails.append("%s（%s型）: H2が%d本。%s型は%d本ちょうど（BLOG-OPS §2）"
                          % (slug, kind, h2, kind, h2hi))
+
+    memo = published_set.note(unpublished, indent="")
+    if memo:
+        print(memo)
 
     for line in legacy:
         print("参考 " + line + "（公開済みのため落とさない）")
