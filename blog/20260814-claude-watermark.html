@@ -65,15 +65,17 @@
   <span class="a-date">2026.08.14 朝 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20260814-claude-watermark.jpg" alt="Claudeの出力に見えない透かしが入った——「AIが書いた証拠」にならない理由と、社内で決める1行">
 
-<p>Anthropicが2026年8月11日、AIモデル「Claude」が生成する文章やファイルに機械可読な印を付ける方針を公式ヘルプセンターで公開しました（<a href="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content" target="_blank" rel="noopener">一次情報</a>）。結論から言うと、これは中小企業にとって「AIで書いたかどうかを、印の有無で自動判定できるようになる」という話ではありません。むしろ、その判定を社外に委ねずに、自分たちで1行のルールを決めておく必要があるという話です。</p>
+<p><a href="https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content" target="_blank" rel="noopener">Anthropicが2026年8月11日に公開した説明</a>によると、AIモデル「Claude」が生成した文章やファイルには、機械が読み取れる印が付きます。結論から言うと、これは中小企業にとって「AIで書いたかどうかを、印の有無で自動判定できるようになる」という話ではありません。むしろ、その判定を社外に委ねずに、自分たちで1行のルールを決めておく必要があるという話です。</p>
 
 <h2>何が起きたか</h2>
-<p>Anthropicの発表によると、Claudeが生成するテキストには目に見えない埋め込み型の透かし（imperceptible watermark）が、生成ファイルには署名付きの来歴メタデータが付きます。ファイルのメタデータは、コンテンツの来歴を記録するオープン規格「C2PA（Coalition for Content Provenance and Authenticity）」に沿った形式です。適用範囲はClaude Platform（API）・Claude・Claude Code・Claude Cowork・Claude Tag、およびAWS・Google Cloud・Microsoft経由の利用まで、「Claudeを使うあらゆる場所」に及びます。2026年8月2日以降にリリースされたモデルはリリース時点から標準対応し、それより前のモデルには法律上の移行期間があり、Anthropicは対応を進めていると書いています（完了時期は明記されていません）。透かしはコピー&ペーストを経ても、編集を経ても残ることがあるとされています。背景には、EUのAI法が定める透明性義務が2026年8月2日から適用開始しているという制度の動きがあります（<a href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content" target="_blank" rel="noopener">一次情報</a>）。</p>
+<p>Claudeが生成した文章には、目に見えない透かしが埋め込まれます。生成したファイルのほうには、署名付きの来歴データが付きます。ファイル側で使うのはC2PAという規格です。そのファイルがどこで作られ、どう加工されたかを記録しておくための共通仕様だと思ってください。</p>
+<p>対象は特定の製品に限りません。API経由の利用、Claudeのアプリ、Claude Code、Claude Cowork、Claude Tag、さらにAWS・Google Cloud・Microsoft経由の利用まで、Anthropicは「Claudeを使うあらゆる場所」と書いています。2026年8月2日以降に公開されたモデルは、公開の時点から標準で対応します。それより前のモデルには法律上の移行期間があり、対応を進めているとだけ書かれていて、完了時期は示されていません。透かしはコピー＆ペーストを経ても残り、編集を経ても残ることがあるとされています。</p>
+<p>背景にあるのは制度の動きです。<a href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content" target="_blank" rel="noopener">EUのAI法が定める透明性の義務</a>が、2026年8月2日から適用され始めました。</p>
 
 <h2>なぜ重要か</h2>
 <p>「EUの規制対応の話」で片づけると、読み違えます。印はモデル側の出力に埋め込まれる仕組みなので、日本国内で日本語の文章を作っていても等しく付きます。EU向けにサービスを売っていない会社にも関係する話です。</p>
 <p>もっと重要なのは、これが検出器ではないという線引きです。Anthropicは自分たちで限界を書いています。印が見つかっても決定的ではなく、Claudeが著者だとは限らない。人が書いた文章をClaudeに校正・翻訳・要約・変換させただけでも印は付き得る。逆に印が無いことも、AIを通していない証明にはならない。強い編集や、対応していない形式では検出できなくなるとされています。つまり印が示すのは「Claudeを通ったかもしれない」という由来であって、「誰が書いたか」という著者の判定ではありません。</p>
-<p>ここが実務で効いてきます。人が書いた文章をAIに整えさせただけで印が付き得るということは、「印がある=AIが全部書いた」として扱えば、必ずどこかで誤判定します。しかもこの誤解は、判定に使いたくなる側（発注者・審査側）と、使われる側（受注する中小企業）の両方が同時にやってしまいます。発注者が「印があったから突き返す」と決め打ちすれば、人が確認・編集した成果物まで疑われますし、受注側が「印を消せば安全」と考えれば、それも見当違いです。加えて、検出の仕組みが第三者にどう開かれるかはまだ公開されておらず、現時点では自分のサイトや自社の書類に印があるかどうかを、自分で確かめる手段がありません。</p>
+<p>ここが実務で効いてきます。人が書いた文章をAIに整えさせただけでも印は付き得る。ということは、「印がある＝AIが全部書いた」として扱えば、必ずどこかで誤判定します。しかもこの誤解は、判定に使いたくなる側と、使われる側の両方で同時に起きます。発注する側や審査する側が「印があったから突き返す」と決め打ちすれば、人が確認して編集した成果物まで疑われます。受注する側が「印を消せば安全だ」と考えれば、それも見当違いです。加えて、検出の仕組みが第三者にどう開かれるかは、まだ公開されていません。いま自分のサイトや自社の書類に印があるかどうかを、自分で確かめる手段はないということです。</p>
 <p>海外の技術者コミュニティでは、この発表に対して「透かしは編集でどこまで消えるのか」「誤検出はどう扱われるのか」という技術的な関心が先に立つ傾向があります。ただしそこは開発者に偏った母集団で、中小企業の現場で先に来る問いはそこではありません。取引先や審査側に「AIをどう使ったか」をどう説明するかのほうが先に来ます。技術者の関心と現場の関心はズレていて、そのズレ自体を意識しておく価値があります。</p>
 
 <div class="a-note"><strong>NGraphの視点：</strong>このブログもAIと一緒に書いています。だから他人事として書ける話ではありません。ただ、うちが記録として残しているのは「AIを通したかどうか」ではなく、「公開前に何を機械で検査したか」です。公開前ゲートを通さない記事は出さない運用にしてあり、通した記録は手元に残ります。透かしが示すのはAIを通った可能性の側だけで、公開前に何を確認したかは、透かしからは分かりません。</div>
@@ -84,13 +86,13 @@
 <li><strong>AI検出ツールの判定を、社内の意思決定に組み込まない。</strong>その代わり、取引先から「AIで書いたのでは」と指摘されたときに、印が意味するのは由来であって著者の判定ではないことを、その場で説明できるようにしておきます。</li>
 <li><strong>誰が最終確認したかを残す。</strong>成果物の責任は、AIを使ったかどうかではなく、確認した人の側にあります。</li>
 </ul>
-<p>この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)"> FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</p>
+<p>この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援</a>で受け付けています。無料相談と無料AI診断があります。</p>
 
-<h2>その他の注目ニュース（8月14日 朝時点）</h2>
+<h2>その他の注目ニュース</h2>
 <ul>
-<li><strong>Google、「Gemini 3.7 Flash」を公開（8月13日）</strong> — 導入価格は2026年12月31日まで入力100万トークンあたり0.75ドル・出力3.75ドルですが、2027年1月1日からは入力1.50ドル・出力7.50ドルへと2倍になります。前世代の3.6 Flashに対し、デバッグや課題解決といったコーディング作業で改善したとしています（<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 今の単価は期間限定です。AIの利用料を固定費として見積もりに置かず、年明けに見直す前提で契約と設計を組んでください。</li>
-<li><strong>OpenAI、企業のAI利用に関するレポート2本を公開（8月12日）</strong> — 利用者1人あたりの出力トークン数で見ると、上位10%の企業（frontier firms）は平均的な企業の8.3倍に達しています。2026年1月時点では2.6倍だったので、差が開いています。週あたりのプラグイン利用者は、上位10%の企業で21%、平均的な企業で9%でした（<a href="https://openai.com/index/how-enterprises-put-ai-to-work/" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 差がついているのは「AIを契約したか」ではなく「どれだけ深く使っているか」です。使用量は導入の成否を測る現実的な代理指標になります。</li>
-<li><strong>デジタル化・AI導入補助金2026、第4次締切は8月25日</strong> — 通常枠・インボイス枠・セキュリティ対策推進枠の第4次締切が8月25日です（第1次は5月12日、第2次は6月15日、第3次は7月21日でした）。複数者連携デジタル化・AI導入枠も同じ8月25日ですが、こちらは第2次締切にあたります（<a href="https://www.chusho.meti.go.jp/koukai/hojyokin/kobo.html" target="_blank" rel="noopener">一次情報</a>）。中小企業への一言: 今日から11日です。準備が要る枠なので、使うつもりなら今週中に見積もりを取ってください。</li>
+<li><strong>Googleが<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank" rel="noopener">「Gemini 3.7 Flash」</a>を8月13日に公開</strong> — 導入価格は2026年12月31日まで、入力100万トークンあたり0.75ドル・出力3.75ドルです。2027年1月1日からは入力1.50ドル・出力7.50ドルへと2倍になります。前世代の3.6 Flashに比べ、デバッグや課題解決といったコーディング作業で改善したとしています。中小企業への一言: 今の単価は期間限定です。AIの利用料を固定費として見積もりに置かず、年明けに見直す前提で契約と設計を組んでください。</li>
+<li><strong>OpenAIが<a href="https://openai.com/index/how-enterprises-put-ai-to-work/" target="_blank" rel="noopener">企業のAI利用に関するレポート2本</a>を8月12日に公開</strong> — 利用者1人あたりの出力トークン数で見ると、上位10%の企業は平均的な企業の8.3倍に達しています。2026年1月時点では2.6倍だったので、差が開いています。週あたりでプラグインを使う人の割合も、上位10%の企業では21%、平均的な企業では9%でした。中小企業への一言: 差がついているのは「AIを契約したか」ではなく「どれだけ深く使っているか」です。使用量は導入の成否を測る現実的な代理指標になります。</li>
+<li><strong><a href="https://www.chusho.meti.go.jp/koukai/hojyokin/kobo.html" target="_blank" rel="noopener">デジタル化・AI導入補助金2026</a>の第4次締切は8月25日</strong> — 通常枠・インボイス枠・セキュリティ対策推進枠の第4次締切が8月25日です。第1次は5月12日、第2次は6月15日、第3次は7月21日でした。複数者連携デジタル化・AI導入枠も同じ8月25日ですが、こちらは第2次締切にあたります。中小企業への一言: 今日から11日です。準備が要る枠なので、使うつもりなら今週中に見積もりを取ってください。</li>
 </ul>
 
 <div class="a-src">参考（一次情報）：<br>
@@ -99,9 +101,9 @@
 ・Google「<a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" target="_blank" rel="noopener">Introducing Gemini 3.7 Flash</a>」（2026年8月13日）<br>
 ・OpenAI「<a href="https://openai.com/index/how-enterprises-put-ai-to-work/" target="_blank" rel="noopener">From assistance to execution: How enterprises put AI to work</a>」（2026年8月12日）<br>
 ・中小企業庁「<a href="https://www.chusho.meti.go.jp/koukai/hojyokin/kobo.html" target="_blank" rel="noopener">補助金公募情報</a>」<br>
-・あわせて読む：<a href="/blog/why-ai-stalls">AIを導入したのに現場で使われない3つの理由</a>（当ブログ）<br>
-・あわせて読む：<a href="/blog/ai-hojokin">AI導入に使える補助金はどれか——8制度の対象経費を読み解く実務判定表</a>（当ブログ）<br>
-・あわせて読む：<a href="/blog/20260814-homepage-iji-hi">ホームページの維持費は、ドメイン代とAIの月額だけになった——サーバー代が0円になる理由と実際の請求額</a>（当ブログ・2026年8月14日夕）</div>
+・あわせて読む：<a href="/blog/why-ai-stalls">AIを導入したのに現場で使われない3つの理由</a><br>
+・あわせて読む：<a href="/blog/ai-hojokin">AI導入に使える補助金はどれか——8制度の対象経費を読み解く実務判定表</a><br>
+・あわせて読む：<a href="/blog/20260814-homepage-iji-hi">ホームページの維持費は、ドメイン代とAIの月額だけになった——サーバー代が0円になる理由と実際の請求額</a>（2026年8月14日夕）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
 </article>

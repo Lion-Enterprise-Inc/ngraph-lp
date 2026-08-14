@@ -30,10 +30,12 @@ CHECKS = [
     ("タイトルの弱い定型", "title_lint.py", [], False),
     ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
+    ("AI生成の痕跡（ダーシの密度・反復・AI文体）", "ai_tell_lint.py", [], True),
+    ("かっこ書きの多用（読みにくさ）", "paren_lint.py", [], False),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
     ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], False),
     ("記事の再確認期限（鮮度）", "freshness_check.py", [], False),
-    ("型（朝A/夕B・字数・H2・朝夕ラベル）", "format_lint.py", [], False),
+    ("型（朝A/夕B/ガイドG・字数・H2・ラベル・枠の重複）", "format_lint.py", [], False),
 ]
 
 
