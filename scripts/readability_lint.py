@@ -47,6 +47,10 @@ PHRASE_CHARS = 16        # 反復とみなす最短の長さ
 PHRASE_TIMES = 3         # 同じ言い回しがこの回数以上で反復
 MAX_PHRASES = 3          # 反復とみなした言い回しの種類の上限
 MAX_ABSTRACT_PER_1000 = 5.5   # 抽象語の密度の上限（/1000字）
+MAX_END_RUN = 2          # 同じ語尾の連続の上限（3連続でNG。プロ編集の共通則・2026-08-16
+                         # 髙橋さん「ました。ました。ました。って日本語やばいな」。8/15記事の
+                         # 実測=「ました。」30/87文・最長4連続）
+MAX_MASHITA_PCT = 30     # 「ました。」が全文末に占める割合の上限（%）
 
 # 具体物の代わりに置かれがちな言葉。これが増えるほど「絵が浮かばない文章」になる
 ABSTRACT = r"(?:仕組み|経路|形で|形に|方式|工程|構造|定型|運用|処理)"
@@ -64,6 +68,29 @@ def body_of(html):
         a = re.sub(pat, " ", a, flags=re.S)
     a = re.sub(r"<[^>]+>", " ", a)
     return re.sub(r"\s+", " ", htmllib.unescape(a)).strip()
+
+
+def ending_of(sent):
+    """文末の語尾（判定単位）。「ました。」「います。」等の4字で見る。"""
+    t = sent.rstrip("。」）)").rstrip()
+    return t[-3:] + "。" if len(t) >= 3 else t + "。"
+
+
+def ending_monotony(text):
+    """(最長の同語尾連続, 「ました。」の割合%) を返す。"""
+    ss = [x for x in sentences(text) if len(x) > 5]
+    if not ss:
+        return 0, 0
+    run, worst, prev = 0, 0, None
+    mashita = 0
+    for x in ss:
+        e = ending_of(x)
+        if x.rstrip("」）)").rstrip().endswith("ました。".rstrip("。")) or e == "ました。":
+            mashita += 1
+        run = run + 1 if e == prev else 1
+        worst = max(worst, run)
+        prev = e
+    return worst, round(mashita * 100 / len(ss))
 
 
 def sentences(text):
@@ -154,7 +181,9 @@ def main():
         p = os.path.join(BASE, "blog", slug + ".html")
         if not os.path.exists(p):
             continue
-        ratio, longs, phrases, abst = measure(open(p, encoding="utf-8").read())
+        html = open(p, encoding="utf-8").read()
+        ratio, longs, phrases, abst = measure(html)
+        run, mashita = ending_monotony(body_of(html))
         # 日付で始まらないslug（what-is-fde・ai-cost 等の恒久記事）は日付比較が
         # 成立しないので、必ず「参考」側に置く。文字列比較だと 'a' > '2' で
         # 新記事扱いになり、定時運用と無関係な記事でゲートが落ちる
@@ -173,6 +202,12 @@ def main():
         if len(phrases) > MAX_PHRASES:
             fails.append("%s: 同じ言い回しが%d回以上出てくる箇所が %d種（上限 %d種）\n     例: %s"
                          % (slug, PHRASE_TIMES, len(phrases), MAX_PHRASES, phrases[0][:50] + "…"))
+        if run > MAX_END_RUN:
+            fails.append("%s: 同じ語尾が%d連続（上限%d連続まで）。時制を混ぜる・文を統合する・"
+                         "主語を物や仕組みに替える（Skill ja-article-craft §3）" % (slug, run, MAX_END_RUN))
+        if mashita > MAX_MASHITA_PCT:
+            fails.append("%s: 文末の%d%%が「ました。」（上限%d%%）。出来事は過去形・意味づけは現在形に"
+                         "分ける（Skill ja-article-craft §3）" % (slug, mashita, MAX_MASHITA_PCT))
         if abst > MAX_ABSTRACT_PER_1000:
             fails.append("%s: 抽象語が %.1f/1000字（上限 %.1f・全61記事の中央は1.8）\n"
                          "     「%s」あたりを具体物の名前に戻す"

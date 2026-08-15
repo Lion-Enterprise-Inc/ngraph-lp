@@ -164,9 +164,23 @@ def run():
         return (not rd.is_claim("Forward Deployed Engineer")), "用語を主張と誤判定"
     case("用語の反復は反復とみなさない", t_read_term_not_claim, expect_ok=True)
 
+    def t_read_endrun():
+        art = "<article><p>" + "きのう店で味噌汁を出しました。客がそれを飲みました。私は器を洗いました。" * 8 + "</p></article>"
+        run, mashita = rd.ending_monotony(rd.body_of(art))
+        return (run <= rd.MAX_END_RUN), f"run={run} mashita={mashita}"
+    case("同じ語尾3連続は検出される", t_read_endrun, expect_ok=False, expect_sub="run=")
+
+    def t_read_endrun_ok():
+        art = "<article><p>" + "きのう店で味噌汁を出しました。客は残さず飲む。器はもう洗ってある。次は朝の仕込みです。" * 8 + "</p></article>"
+        run, mashita = rd.ending_monotony(rd.body_of(art))
+        return (run <= rd.MAX_END_RUN and mashita <= rd.MAX_MASHITA_PCT), f"run={run} mashita={mashita}"
+    case("語尾を混ぜた本文は通る", t_read_endrun_ok, expect_ok=True)
+
     def t_read_thresholds():
         if rd.MAX_ABSTRACT_PER_1000 > 6.0 or rd.MAX_LONG_RATIO > 45:
             return False, "読みにくさの閾値が緩められている"
+        if rd.MAX_END_RUN > 2 or rd.MAX_MASHITA_PCT > 35:
+            return False, "語尾単調の閾値が緩められている"
         return True, ""
     case("読みにくさの閾値（抽象5.5・長文40%）", t_read_thresholds, expect_ok=True)
 
@@ -181,6 +195,36 @@ def run():
             return False, "H2/夕の閾値が緩められている"
         return True, ""
     case("型の閾値（朝2300字・H2 4本・夕6000字）", t_fmt_thresholds, expect_ok=True)
+
+    # ---- blog_files: 検査対象の集合に穴が開いていないか ------------------------------
+    # 2026-08-16の実事故: format_lint / paren_lint / title_lint が `blog/2026*.html` を
+    # 個別に glob していたため、日付を持たないナレッジ型 `k-*.html` が3つの検査から
+    # 丸ごと外れたまま、ゲートは「全通過」と表示していた。対象集合は検査の前提なので、
+    # 集合が縮んだら検査そのものが壊れたとみなす。
+    import blog_files
+
+    def t_scope_knowledge():
+        if not blog_files.in_scope("k-blog-gate", "20260812"):
+            return False, "ナレッジ型が対象外になっている"
+        if blog_files.in_scope("what-is-fde", "20260812"):
+            return False, "日付なしの既存恒久記事まで対象に入っている"
+        if not blog_files.in_scope("20260815-x", "20260812"):
+            return False, "日付slugの新記事が対象外になっている"
+        if blog_files.in_scope("20260101-x", "20260812"):
+            return False, "cutoff より前の記事が対象に入っている"
+        return True, ""
+    case("検査対象の判定（ナレッジ型は対象・既存恒久記事は対象外）",
+         t_scope_knowledge, expect_ok=True)
+
+    def t_scope_lints_share():
+        # 3つのリントが blog_files を使わずに独自 glob へ戻ったら、この検査で気付く
+        bad = []
+        for mod in ("format_lint", "paren_lint", "title_lint"):
+            src = open(os.path.join(HERE, mod + ".py"), encoding="utf-8").read()
+            if "2026*.html" in src:
+                bad.append(mod)
+        return (not bad), f"独自globに戻っている: {bad}"
+    case("リントが対象集合を自前で持っていない", t_scope_lints_share, expect_ok=True)
 
     # ---- 報告 --------------------------------------------------------------------
     for name, why in NOT_COVERED:
