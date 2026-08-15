@@ -78,18 +78,36 @@
 <p>なぜ賢いAIが会社のことを毎回ゼロから聞き直すのかは、<a href="/blog/20260804-company-brain">別の記事</a>で扱いました。この記事は「なぜ起きるか」ではなく「どう分けるか」を扱います。整理は目的ではありません。会社の事実と判断を、次の意思決定に使える状態にすることが目的です。</p>
 <p>AIツールを増やすほど、この崩れは目立つようになります。ツールは情報を探す速さを上げますが、探す先の情報がバラバラなら、速く見つかる答えもバラバラなままです。ここで要るのは新しいツールではありません。情報を置く前の、共通の基準です。</p>
 
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">AIは優秀。でも、昨日を覚えていない</p>
+<img src="/assets/blog/brain-deck-forget.jpg" alt="前日は文脈を理解していたAIが、翌日や別のAIでは「はじめまして」と応じる図" loading="lazy" style="min-width:760px;width:100%">
+<p class="a-fig-cap">理解が会話の中に閉じている限り、次の人にも次のAIにも引き継げない。自社の営業資料より。</p>
+</div>
+
 <h2>設計に名前をつける——「会社の脳」と2つの検問</h2>
 <p>分け方を決める前に、まず設計に名前を付けます。NGraphではこれを「会社の脳」と呼んでいます。特別なシステムではなく、書き込む側・正本・読み出す側という3つの場所を、ひとつの流れとしてつなぐ設計です。</p>
 <p>現場の決定や変更、教訓、メモや写真が入り口から入ります。入る前に、内容を確かめる関所を置きます。ここを通ったものだけが正本に積み上がります。読み出す側は、PCのAIでもスマホのAIでも、同じ場所を同じ基準で読みに行きます。答えを出す前にも、もう一つ関所を置きます。正本を読んでいなければ、答えさせません。この出口側の関所は<a href="/blog/20260806-seihon-yomarenai">別の記事</a>で詳しく書いたので、この記事では深掘りしません。</p>
 <div class="a-fig-wrap">
-<p class="a-fig-title">会社の脳は、正本と2つの検問でできている</p>
-<svg viewBox="0 0 1200 588" width="100%" style="min-width:640px" role="img" aria-label="会社の脳は、正本と2つの検問でできている"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">入れる｜現場の決定・変更・教訓</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">入れる前の検問｜日付と根拠が無ければ保存しない</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">読む｜どのAIも同じ読み口・非公開は自動遮断</text><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">出す前の検問｜読んでいなければ答えさせない</text><text x="600.0" y="530.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">訂正も新しい決定も、また入口へ戻る。この輪が回り続けるかどうかが分かれ目</text><text x="8" y="572" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraph 自社運用（2026年8月）</text></svg>
+<p class="a-fig-title">「会社の脳」の全体構図</p>
+<img src="/assets/blog/brain-deck-flow.jpg" alt="書き込む側から入れる前の検問を通って正本へ、正本から出す前の検問を通って読み出す側へ至る流れの図" loading="lazy" style="min-width:760px;width:100%">
+<p class="a-fig-cap">正しい情報だけが入り、許されたAIだけが読み、根拠付きで答える。訂正も新しい決定も、また入口へ戻る。自社の営業資料より。</p>
 </div>
 <p>正本と検問だけでは終わりません。AIの記憶そのものは会話をつないでいるだけで、会話が終われば消えます。判断の根拠を残すのは、AIの記憶ではなく会社の正本の役目です。AIは日々賢くなっていきますが、それでも会社の正本の代わりにはなりません。担当者が変わっても、AIが変わっても、判断の基準は正本に残ります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">AIは借りる。資産は持つ</p>
+<img src="/assets/blog/brain-deck-ownership.jpg" alt="個人が自分のAIに覚えさせる形と、社員それぞれが好きなAIから会社の正本を参照する形の対比図" loading="lazy" style="min-width:760px;width:100%">
+<p class="a-fig-cap">AIの記憶は会話をつなぐもの。判断の根拠を残すのは会社の正本の役目。自社の営業資料より。</p>
+</div>
 <p>設計に名前を付けておくと、不具合が起きたときに直す場所がすぐ分かります。入り口が壊れているのか、正本の置き方が崩れているのか、読み出し口が違う基準で読んでいるのか。名前の無いまま3つをひとかたまりに扱っていると、どこから手を付ければいいか誰にも判断できません。</p>
 
 <h2>分ける基準は2つだけ——ABC整理×状態整理</h2>
 <p>分け方の基準は2つだけです。ひとつは、その情報が誰のものかという軸。もうひとつは、その情報がいまどんな状態かという軸です。この2軸を掛け合わせると、会社の情報はすべて次の6マスのどこかに収まります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">情報を、会社の正本にする——ABC整理×状態整理</p>
+<img src="/assets/blog/brain-deck-abc.jpg" alt="誰の情報かを示すABCの3行と、決まっていること・動いていることの2列からなる6マスの表と、正本に保存する3原則" loading="lazy" style="min-width:760px;width:100%">
+<p class="a-fig-cap">「誰の情報か」×「状態は何か」の2軸だけで、AIも人も同じ基準に揃う。自社の営業資料より。</p>
+</div>
 <div class="a-table-wrap"><table class="a-table">
 <tr><th>ABC整理｜誰の情報か</th><th>決まっていること</th><th>動いていること</th></tr>
 <tr><td>A. 自社</td><td>規則・商品・役割・決定</td><td>売上・原価・案件の現在地</td></tr>
