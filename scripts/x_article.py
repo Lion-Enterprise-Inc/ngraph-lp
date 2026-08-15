@@ -52,7 +52,7 @@ EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 BLOGOPS_PATH = os.environ.get("X_BLOGOPS_PATH", os.path.join(REPO, "BLOG-OPS.md"))
 TPL_START = "<!-- x-handoff-template:start -->"
 TPL_END = "<!-- x-handoff-template:end -->"
-TEMPLATE_HASH = "e3b0592cd475"
+TEMPLATE_HASH = "a59a44c3ea02"
 
 
 def template_block(path=None):
@@ -838,7 +838,8 @@ def main():
         print(f"**本文**（▷を押す。押すのは貼る直前）\n```bash\n{cmd}\n```\n")
         print(f"**タイトル**（X加重 {tw}/{X_TITLE_MAX}）\n```\n{title}\n```\n")
         print(f"**キャプション**（記事URLは入れていません）\n```\n{a.caption}\n```\n")
-        print(f"**カバー画像のパス**（記事名入りで1枚だけコピー済み）\n```\n{cover}\n```\n")
+        print(f'**カバー画像**（▷を押すとフォルダが開き、対象の1枚が選択済み。そのままXへドラッグ）\n'
+              f'```bash\nexplorer /select,"{cover}"\n```\n')
         print("順番は ▷ → 記事を作成 → 本文欄に Ctrl+V → そのあとタイトル・キャプション → カバー画像 → 公開。")
         print("===== ここまで =====")
         return
