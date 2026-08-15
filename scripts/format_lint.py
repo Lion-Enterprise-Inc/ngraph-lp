@@ -51,6 +51,7 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CUTOFF = "20260812"
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import blog_files  # noqa: E402
 import published_set  # noqa: E402
 
 # (型, 字数の下限, 字数の上限, H2の下限, H2の上限)
@@ -98,8 +99,7 @@ def main():
     by_day = collections.defaultdict(list)  # 日付 -> [(型, slug), ...]
     checked = 0
 
-    found = sorted(os.path.basename(p)[:-5]
-                   for p in glob.glob(os.path.join(BASE, "blog", "2026*.html")))
+    found = blog_files.article_slugs()
     live, unpublished = published_set.split_unpublished(found)
 
     for slug in live:
@@ -112,7 +112,7 @@ def main():
 
         # 対象外の既存記事でも、ラベルが無いものは毎回「参考」で出す。
         # 黙って除外すると、混ざったまま誰も見ない状態が続く（それが今回の事故そのもの）
-        if name[:8] < CUTOFF:
+        if not blog_files.in_scope(slug, CUTOFF):
             if not lab:
                 legacy.append("%s: 朝/夕のラベルが無い（%d字・H2 %d本）。定時の型を通っていない記事"
                               % (slug, chars, h2))
@@ -126,10 +126,20 @@ def main():
             continue
 
         kind = lab.group(4)
-        by_day[slug[:8]].append((kind, slug))
-        if "".join(lab.group(1, 2, 3)) != slug[:8]:
-            fails.append("%s: 日付ラベル %s.%s.%s が slug の日付と違う"
-                         % (slug, lab.group(1), lab.group(2), lab.group(3)))
+        # ナレッジ型は日付を持たない恒久slug（KNOWLEDGE-OPS §1）＝定時の枠を消費しない。
+        # 型とslugの形を相互に縛る（片方だけ名乗れると、また型が抜ける経路ができる）
+        if blog_files.is_knowledge(slug):
+            if kind != "ナレッジ":
+                fails.append("%s: k- の恒久slugだがラベルが「%s」。ナレッジ型のslugに"
+                             "朝夕の型を載せない（KNOWLEDGE-OPS §1）" % (slug, kind))
+        else:
+            if kind == "ナレッジ":
+                fails.append("%s: ラベルが「ナレッジ」だが日付slug。ナレッジ型のslugは"
+                             "k-<topic> の恒久slugにする（KNOWLEDGE-OPS §1）" % slug)
+            by_day[slug[:8]].append((kind, slug))
+            if "".join(lab.group(1, 2, 3)) != slug[:8]:
+                fails.append("%s: 日付ラベル %s.%s.%s が slug の日付と違う"
+                             % (slug, lab.group(1), lab.group(2), lab.group(3)))
 
         lo, hi, h2lo, h2hi = RULES[kind]
         if chars < lo:

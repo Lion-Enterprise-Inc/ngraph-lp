@@ -6,8 +6,9 @@
 シャープさ自体は機械で測れないので、ここで落とすのは「弱いタイトルの定型」だけ。
 言い切りの検査（タイトルだけで主張が復元できるか）は BLOG-OPS §9 のチェックリストで行う。
 
-対象: blog/2026*.html のうち slug が 20260808 以降の記事のみ（既存記事は対象外）。
-恒久ページ（what-is-fde 等・日付なしslug）はキーワード狙いのため対象外。
+対象: slug が 20260808 以降の日付付き記事と、ナレッジ型の恒久slug（k-*）。
+既存記事は対象外。恒久ページ（what-is-fde 等・日付なしslug）はキーワード狙いのため対象外。
+対象集合の定義は blog_files.py が持つ（各検査が自前で glob すると新しいslugの型が漏れる）。
 """
 import glob
 import os
@@ -15,6 +16,7 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import blog_files  # noqa: E402
 from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,9 +40,10 @@ def main():
     fails = []
     legacy = []
     checked = 0
-    for path in sorted(glob.glob(os.path.join(BASE, "blog", "2026*.html"))):
+    for path in blog_files.article_paths():
         name = os.path.basename(path)
-        if name[:8] < CUTOFF:
+        slug = name[:-5]
+        if not blog_files.in_scope(slug, CUTOFF):
             continue
         checked += 1
         html = open(path, encoding="utf-8").read()
@@ -59,7 +62,7 @@ def main():
         if over_by(title):
             msg = (f"X加重 {x_weighted_len(title)}/{X_TITLE_MAX}文字＝超過。"
                    f"全角{(over_by(title) + 1) // 2}文字ほど削る: 「{title}」")
-            (fails if name[:8] >= X_CUTOFF else legacy).append((name, msg))
+            (fails if blog_files.in_scope(slug, X_CUTOFF) else legacy).append((name, msg))
     for name, msg in legacy:
         print(f"参考 {name}: {msg}（公開済みのため落とさない。Xに貼るなら要短縮）")
     if fails:

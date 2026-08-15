@@ -37,6 +37,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import blog_files  # noqa: E402
 import published_set  # noqa: E402
 
 CUTOFF = "20260815"        # これ以降のslugは落とす。既存記事は「参考」で出すだけ
@@ -78,8 +79,7 @@ def measure(html):
 
 
 def main():
-    found = sorted(os.path.basename(p)[:-5]
-                   for p in glob.glob(os.path.join(BASE, "blog", "2026*.html")))
+    found = blog_files.article_slugs()
     live, unpublished = published_set.split_unpublished(found)
 
     fails, legacy, checked = [], [], 0
@@ -94,8 +94,9 @@ def main():
         # 日付で始まらないslug（what-is-fde・ai-cost 等の恒久記事）は日付比較が
         # 成立しない。文字列比較だと 'a' > '2' で新記事扱いになり、定時運用と
         # 無関係な恒久記事でゲートが落ちる（2026-08-16に readability_lint を
-        # 作る過程で同じ穴を踏んで発見。こちらは閾値未満で表面化していなかった）
-        if not re.match(r"^\d{8}$", slug[:8]) or slug[:8] < CUTOFF:
+        # 作る過程で同じ穴を踏んで発見。こちらは閾値未満で表面化していなかった）。
+        # 判定は blog_files に寄せた（ナレッジ型 k- は日付を持たないが常に対象）
+        if not blog_files.in_scope(slug, CUTOFF):
             if per1000 > MAX_PER_1000:
                 legacy.append("%s: かっこ %d箇所・%.1f回/1000字" % (slug, len(hits), per1000))
             continue
