@@ -137,6 +137,39 @@ def run():
         return (not crowded), f"crowded={crowded}"
     case("1段落かっこ2個は通る", t_paren_ok, expect_ok=True)
 
+    # ---- readability_lint: 読みにくさの中核 ---------------------------------------
+    import readability_lint as rd
+
+    def t_read_abstract():
+        # 抽象語だけを並べた本文は、密度の上限を超えるので落ちなければならない
+        art = "<article><p>" + "この仕組みは処理の経路を運用の形に定めた方式です。" * 12 + "</p></article>"
+        d = rd.abstract_density(rd.body_of(art))
+        return (d <= rd.MAX_ABSTRACT_PER_1000), f"density={d}"
+    case("抽象語だらけの本文は検出される", t_read_abstract, expect_ok=False, expect_sub="density=")
+
+    def t_read_ok():
+        art = "<article><p>" + "きのう店で味噌汁を出した。客は残さず飲んだ。" * 12 + "</p></article>"
+        d = rd.abstract_density(rd.body_of(art))
+        return (d <= rd.MAX_ABSTRACT_PER_1000), f"density={d}"
+    case("具体的な本文は通る", t_read_ok, expect_ok=True)
+
+    def t_read_long():
+        art = "<article><p>" + ("あ" * 80 + "。") * 10 + "</p></article>"
+        ratio, longs, _, _ = rd.measure(art)
+        return (ratio <= rd.MAX_LONG_RATIO), f"ratio={ratio}"
+    case("長い文だらけの本文は検出される", t_read_long, expect_ok=False, expect_sub="ratio=100")
+
+    def t_read_term_not_claim():
+        # 用語の反復は正当（FDE記事の Forward Deployed Engineer 等）＝落としてはいけない
+        return (not rd.is_claim("Forward Deployed Engineer")), "用語を主張と誤判定"
+    case("用語の反復は反復とみなさない", t_read_term_not_claim, expect_ok=True)
+
+    def t_read_thresholds():
+        if rd.MAX_ABSTRACT_PER_1000 > 6.0 or rd.MAX_LONG_RATIO > 45:
+            return False, "読みにくさの閾値が緩められている"
+        return True, ""
+    case("読みにくさの閾値（抽象5.5・長文40%）", t_read_thresholds, expect_ok=True)
+
     # ---- format_lint: 型の閾値が守られているか -------------------------------------
     import format_lint
 

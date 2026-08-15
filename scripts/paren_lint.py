@@ -91,7 +91,11 @@ def main():
         chars, hits, crowded = got
         per1000 = len(hits) / chars * 1000
 
-        if slug[:8] < CUTOFF:
+        # 日付で始まらないslug（what-is-fde・ai-cost 等の恒久記事）は日付比較が
+        # 成立しない。文字列比較だと 'a' > '2' で新記事扱いになり、定時運用と
+        # 無関係な恒久記事でゲートが落ちる（2026-08-16に readability_lint を
+        # 作る過程で同じ穴を踏んで発見。こちらは閾値未満で表面化していなかった）
+        if not re.match(r"^\d{8}$", slug[:8]) or slug[:8] < CUTOFF:
             if per1000 > MAX_PER_1000:
                 legacy.append("%s: かっこ %d箇所・%.1f回/1000字" % (slug, len(hits), per1000))
             continue
