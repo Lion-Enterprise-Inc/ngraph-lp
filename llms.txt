@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [ブログを毎日2本、目視ゼロで公開する——13本の検査を1つの入口にまとめた](https://ngraph.jp/blog/k-blog-gate)
 - [AIに「読んで守れ」は効かない——1日に3回破られた約束と、手順をツールに出力させる方法](https://ngraph.jp/blog/20260815-tejun-wa-tool-ga-dasu)
 - [DeepSeekが8月17日にAPIを最大12倍へ値上げ——日本の業務時間が丸ごと割高な時間帯に入る理由](https://ngraph.jp/blog/20260815-deepseek-neage)
 - [ホームページの維持費は、ドメイン代とAIの月額だけになった——サーバー代が0円になる理由と実際の請求額](https://ngraph.jp/blog/20260814-homepage-iji-hi)
