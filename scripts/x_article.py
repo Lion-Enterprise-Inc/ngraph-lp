@@ -475,8 +475,12 @@ def build(slug, teaser, heads=None, mark_figs=False):
             if sib.name == "h2":
                 break
             if sib.name == "p":
-                # /fde/ への一文は段落ごと落とす（.a-note の外に置かれる記事があるため）
-                if CTA_SENTENCE.match(sib.get_text(" ", strip=True)):
+                # /fde/ への一文は段落ごと落とす（.a-note の外に置かれる記事があるため）。
+                # 2026-08-16改訂: 文言の前方一致（CTA_SENTENCE）だけだと、CTAの書き方を変えた
+                # 記事で素通りする（8/15夕記事で実際に起きた）。CTAの定義は文言ではなく
+                # 「/fde/ へのリンクを含む段落」＝§7の導線一本化の対象そのものなので、そちらで判定する
+                if CTA_SENTENCE.match(sib.get_text(" ", strip=True)) or \
+                   any("/fde" in (link.get("href") or "") for link in sib.find_all("a")):
                     continue
                 blocks.extend(split_long(block(sib, "unstyled", entities)))
             elif sib.name == "ul":
