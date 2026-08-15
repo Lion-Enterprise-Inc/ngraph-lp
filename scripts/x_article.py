@@ -52,7 +52,7 @@ EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 BLOGOPS_PATH = os.environ.get("X_BLOGOPS_PATH", os.path.join(REPO, "BLOG-OPS.md"))
 TPL_START = "<!-- x-handoff-template:start -->"
 TPL_END = "<!-- x-handoff-template:end -->"
-TEMPLATE_HASH = "ed1663701576"
+TEMPLATE_HASH = "e3b0592cd475"
 
 
 def template_block(path=None):
@@ -820,8 +820,15 @@ def main():
         with open(receipt_path(a.slug), "w", encoding="utf-8") as f:
             json.dump(rec, f, ensure_ascii=False, indent=2)
         # ⑤ 応答に貼る4ブロック（BLOG-OPS §7 の定型を埋めた形）
+        # 夕B型は --heads（H2を3本だけ載せる）、タイトル短縮時は --x-title を▷コマンドにも
+        # 引き継ぐ（handoffと▷で本文が変わると、検査した物と貼る物が別物になるため）
+        extra = ""
+        if a.heads:
+            extra += f' --heads "{a.heads}"'
+        if a.x_title:
+            extra += f' --x-title "{a.x_title}"'
         cmd = (f'python C:/dev/ngraph-lp/scripts/x_article.py {a.slug} '
-               f'--clipboard --teaser "{a.teaser}"')
+               f'--clipboard --teaser "{a.teaser}"{extra}')
         print(f"受領証: {receipt_path(a.slug)}")
         print("===== ここから下を、そのまま応答に貼る =====")
         print(f"**本文**（▷を押す。押すのは貼る直前）\n```bash\n{cmd}\n```\n")
