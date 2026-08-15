@@ -1,0 +1,13 @@
+#!/bin/sh
+# 公開前ゲートをpushの直前に強制する（2026-08-16新設）。
+# 起点: gate.py の出力をパイプに通して exit code を潰し、NGのまま push した実事故
+# （AIの呼び出しミス）。人もAIも、gateが赤ならこのリポジトリからpushできない。
+# 再インストール: python scripts/install_hooks.py
+echo "[pre-push] 公開前ゲートを実行..."
+python "$(git rev-parse --show-toplevel)/scripts/gate.py"
+rc=$?
+if [ $rc -ne 0 ]; then
+  echo "[pre-push] 公開前ゲートNG。pushを中止しました（直してから再push）"
+  exit 1
+fi
+exit 0
