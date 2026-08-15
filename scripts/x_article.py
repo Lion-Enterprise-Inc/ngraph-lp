@@ -874,6 +874,11 @@ def main():
             extra += f' --heads "{a.heads}"'
         if a.x_title:
             extra += f' --x-title "{a.x_title}"'
+        if a.figs is not None:
+            # ［図N］の目印は --figs のときだけ本文に入る。▷に引き継がないと、
+            # 検査した本文（目印あり）と貼る本文（目印なし）が別物になり、
+            # 図をどこに挿すか分からなくなる（2026-08-16に気付いた）
+            extra += " --figs" + (f' "{a.figs}"' if a.figs else "")
         cmd = (f'python C:/dev/ngraph-lp/scripts/x_article.py {a.slug} '
                f'--clipboard --teaser "{a.teaser}"{extra}')
         print(f"受領証: {receipt_path(a.slug)}")
