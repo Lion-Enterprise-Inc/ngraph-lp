@@ -117,6 +117,51 @@ def run():
         return (err is None), (err or "")
     case("普通のキャプションはOK", t_cap_ok, expect_ok=True)
 
+    # ---- x_article: ナレッジ型の末尾一文と図の取り込み（2026-08-16新設）-------------
+    from bs4 import BeautifulSoup
+
+    def soup_of(html):
+        return BeautifulSoup(html, "html.parser")
+
+    def t_offer():
+        art = soup_of('<div class="a-cta"><p>見出し。</p>'
+                      '<p>NGraphでは、企業の「会社の脳」を構築し、'
+                      'そこまで伴走する支援を承っております。ご依頼は随時募集しています。</p></div>')
+        got = x_article.offer_sentence(art)
+        return (got == "NGraphでは、企業の「会社の脳」を構築し、そこまで伴走する支援を承っております。"), f"got={got!r}"
+    case("ナレッジ型の末尾一文をCTAから取り出す", t_offer, expect_ok=True)
+
+    def t_offer_missing():
+        # 「承っております。」が無いCTAで一文を組み立ててしまうと、記事とXで呼称がズレる
+        art = soup_of('<div class="a-cta"><p>お気軽にご相談ください。</p></div>')
+        got = x_article.offer_sentence(art)
+        return (got is None), f"got={got!r}"
+    case("承っておりますが無ければ一文を作らない", t_offer_missing, expect_ok=True)
+
+    def t_fig_img():
+        # 図はSVGとは限らない。img決め打ちで落とすと図が黙って全部消える
+        _t, _cs, _f = None, None, None
+        wrap = soup_of('<div class="a-fig-wrap"><p class="a-fig-title">全体構図</p>'
+                       '<img src="/assets/blog/x.jpg" alt=""></div>')
+        found = wrap.find("div").find("img")
+        return (found is not None and found["src"].startswith("/assets/")), "imgを拾えない"
+    case("画像の図を図として認識する", t_fig_img, expect_ok=True)
+
+    def t_internal_link_dropped():
+        # 自ブログへの関連リンクはXでは文字に落とす（末尾の本家1本に導線を集約）
+        text, styles, ranges, ents = [], [], [], []
+        node = soup_of('<p>詳しくは<a href="/blog/foo">別の記事</a>で書きました。</p>').find("p")
+        x_article.inline(node, text, styles, ranges, ents)
+        return (len(ents) == 0 and "別の記事" in "".join(text)), f"entities={len(ents)}"
+    case("自ブログへの内部リンクはXで文字に落とす", t_internal_link_dropped, expect_ok=True)
+
+    def t_external_link_kept():
+        text, styles, ranges, ents = [], [], [], []
+        node = soup_of('<p>出典は<a href="https://example.com/a">ここ</a>です。</p>').find("p")
+        x_article.inline(node, text, styles, ranges, ents)
+        return (len(ents) == 1), f"entities={len(ents)}"
+    case("外部リンクは落とさない", t_external_link_kept, expect_ok=True)
+
     # ---- paren_lint: かっこ密度の中核 ---------------------------------------------
     import paren_lint
 

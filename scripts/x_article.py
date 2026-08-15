@@ -35,6 +35,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import blog_files
 from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
 KEYS_PATH = os.path.expanduser("~/.ngraph/x_keys.env")
 SITE = "https://ngraph.jp"
@@ -222,6 +223,12 @@ def inline(node, text, styles, ranges, entities):
         elif name in ("em", "i"):
             styles.append({"offset": start, "length": length, "style": "italic"})
         elif name == "a" and child.get("href"):
+            # 自ブログの他記事へのリンクは、Xでは文字に落として導線を末尾の本家1本に集約する
+            # （BLOG-OPS §7「これ以上増やすと潰し合う」の趣旨そのもの）。
+            # 記事どうしを結ぶ内部リンクは本家で読ませる価値であって、Xで散らす価値ではない。
+            # 2026-08-16、記事内の関連リンク3本＋本家URLで上限4本になって表面化した
+            if re.match(r"^(/blog/|https://ngraph\.jp/blog/)", child["href"]):
+                continue
             key = str(len(entities))
             entities.append({
                 "key": key,
@@ -444,15 +451,20 @@ def build(slug, teaser, heads=None, mark_figs=False):
         Xは貼り付けで画像が入らず、1点ごとに挿入操作が要るため手間に見合わないという判断。
         --figs を付けたときだけ、本文に位置の目印［図N］を置いてPNGを書き出す。
         """
-        svg = wrap.find("svg")
-        if svg is None:
-            return
         cap = wrap.find("p", class_="a-fig-title")
-        figs.append({
-            "n": len(figs) + 1,
-            "title": cap.get_text(strip=True) if cap else f"図{len(figs) + 1}",
-            "svg": str(svg),
-        })
+        entry = {"n": len(figs) + 1,
+                 "title": cap.get_text(strip=True) if cap else f"図{len(figs) + 1}"}
+        svg = wrap.find("svg")
+        if svg is not None:
+            entry["svg"] = str(svg)
+        else:
+            # 図はSVGとは限らない。営業資料のスライドを画像で貼る記事がある
+            # （2026-08-16・k-company-brain-abc）。svg決め打ちだと**図が黙って全部落ちる**
+            img = wrap.find("img")
+            if img is None or not (img.get("src") or "").startswith("/assets/"):
+                return
+            entry["img"] = os.path.join(REPO, img["src"].lstrip("/").replace("/", os.sep))
+        figs.append(entry)
         if mark_figs:
             blocks.append(text_block(f"［図{figs[-1]['n']}］{figs[-1]['title']}",
                                      bold_prefix=f"［図{figs[-1]['n']}］", entities=entities))
@@ -522,7 +534,32 @@ def build(slug, teaser, heads=None, mark_figs=False):
     article_url = f"{SITE}/blog/{slug}"
     blocks.append(text_block(article_url, link=article_url, entities=entities))
 
+    # ナレッジ型（N-KNOWLEDGE）は末尾に受注の一文を必ず置く（KNOWLEDGE-OPS §3）。
+    # リンクではなくテキスト＝リンク3本制限と衝突しない。
+    # 文言は記事の .a-cta から取る。ここで文面を組み立てると、記事とXでサービスの
+    # 呼び名がズレる（§0-2 が禁じているのはまさにそれ）
+    if blog_files.is_knowledge(slug):
+        offer = offer_sentence(art)
+        if not offer:
+            sys.exit("NG: ナレッジ型なのに末尾の一文が作れません。\n"
+                     "  記事の <div class=\"a-cta\"> に「…を承っております。」の一文が要ります"
+                     "（KNOWLEDGE-OPS §0-4／§3）")
+        blocks.append(text_block(offer, entities=entities))
+
     return title, {"blocks": blocks, "entities": entities}, figs
+
+
+def offer_sentence(art):
+    """記事のCTAから「…を承っております。」の一文をそのまま取り出す。無ければ None。"""
+    cta = art.find("div", class_="a-cta")
+    if cta is None:
+        return None
+    for p in cta.find_all("p"):
+        text = p.get_text(" ", strip=True)
+        for sent in re.split(r"(?<=。)", text):
+            if "承っております。" in sent:
+                return sent.strip()
+    return None
 
 
 # ---------------------------------------------------------------- クリップボード
@@ -768,10 +805,16 @@ def main():
         figdir = a.figs or os.path.join(os.environ.get("TEMP", "."), f"x_figs_{a.slug}")
         if os.path.isdir(figdir):
             for old in os.listdir(figdir):      # 隣の記事の図を掴む事故を防ぐため毎回空にする
-                if old.lower().endswith(".png"):
+                if old.lower().endswith((".png", ".jpg", ".jpeg")):
                     os.remove(os.path.join(figdir, old))
         os.makedirs(figdir, exist_ok=True)
         for f in figs:
+            if "img" in f:
+                # 画像の図は台紙に載せ直さない。記事に出ているものをそのまま渡す
+                out_img = os.path.join(figdir, f"fig{f['n']}" + os.path.splitext(f["img"])[1])
+                shutil.copyfile(f["img"], out_img)
+                print(f"  ［図{f['n']}］{f['title']}\n      {out_img}")
+                continue
             out_png = os.path.join(figdir, f"fig{f['n']}.png")
             render_fig(f["title"], f["svg"], out_png)
             print(f"  ［図{f['n']}］{f['title']}\n      {out_png}")
