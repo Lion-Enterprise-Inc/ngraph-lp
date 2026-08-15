@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則 | NGraphブログ</title>
+<meta name="description" content="会社の情報をAIが読める正本にするには、ABC整理（誰の情報か）と状態整理（決まっている／動いている）の2軸で分け、出どころ・現在地・機密の3原則で保存します。分け方の設計と最小の実践パスを書きます。">
+<meta property="og:title" content="会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則 | NGraphブログ">
+<meta property="og:description" content="会社の情報をAIが読める正本にするには、ABC整理（誰の情報か）と状態整理（決まっている／動いている）の2軸で分け、出どころ・現在地・機密の3原則で保存します。分け方の設計と最小の実践パスを書きます。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-company-brain-abc">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-company-brain-abc.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-company-brain-abc">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則",
+  "image": "https://ngraph.jp/assets/blog/k-company-brain-abc.jpg",
+  "description": "会社の情報をAIが読める正本にするには、ABC整理（誰の情報か）と状態整理（決まっている／動いている）の2軸で分け、出どころ・現在地・機密の3原則で保存します。分け方の設計と最小の実践パスを書きます。",
+  "datePublished": "2026-08-16",
+  "dateModified": "2026-08-16",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-company-brain-abc",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則</h1>
+  <span class="a-date">2026.08.16 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-company-brain-abc.jpg" alt="会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則">
+<p>「うちの会社のことをAIに聞くと、聞くたびに答えが変わる」。AI導入の相談で、いちばん多く聞く言葉です。理由はAIの性能ではありません。会社の情報が、誰の情報で・いまどんな状態かに分けられていないからです。この記事では、会社の情報をAIが読める正本にする、分け方の設計を持ち帰れる形で書きます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・会社の情報が「なんとなく」でしか整理されない理由<br>
+・「会社の脳」という設計の骨格——正本と2つの検問<br>
+・分ける基準はABC整理×状態整理の2軸だけということ<br>
+・保存の3原則と、破ったときに何が起きるか<br>
+・明日からできる最小の実践パス</div>
+
+<h2>会社の情報は、なぜ「なんとなく」でしか整理されないのか</h2>
+<p>中小企業の情報は、たいてい複数の場所に散らばっています。就業規則はExcel、顧客担当者の名前はチャットの履歴、原価の推移は紙の帳簿、競合の動きは社長の頭の中。ひとつひとつは間違っていません。困るのは、AIにまとめて聞いたときです。</p>
+<p>同じ質問をPCのAIとスマホのAIに投げると、参照する場所が違うので答えも違います。担当者が代われば、さらに崩れます。原因は情報の量ではありません。何を、どこに、どんな基準で置くかという分け方が、そもそも決まっていないことです。</p>
+<p>なぜ賢いAIが会社のことを毎回ゼロから聞き直すのかは、<a href="/blog/20260804-company-brain">別の記事</a>で扱いました。この記事は「なぜ起きるか」ではなく「どう分けるか」を扱います。整理は目的ではありません。会社の事実と判断を、次の意思決定に使える状態にすることが目的です。</p>
+<p>AIツールを増やすほど、この崩れは目立つようになります。ツールは情報を探す速さを上げますが、探す先の情報がバラバラなら、速く見つかる答えもバラバラなままです。ここで要るのは新しいツールではありません。情報を置く前の、共通の基準です。</p>
+
+<h2>設計に名前をつける——「会社の脳」と2つの検問</h2>
+<p>分け方を決める前に、まず設計に名前を付けます。NGraphではこれを「会社の脳」と呼んでいます。特別なシステムではなく、書き込む側・正本・読み出す側という3つの場所を、ひとつの流れとしてつなぐ設計です。</p>
+<p>現場の決定や変更、教訓、メモや写真が入り口から入ります。入る前に、内容を確かめる関所を置きます。ここを通ったものだけが正本に積み上がります。読み出す側は、PCのAIでもスマホのAIでも、同じ場所を同じ基準で読みに行きます。答えを出す前にも、もう一つ関所を置きます。正本を読んでいなければ、答えさせません。この出口側の関所は<a href="/blog/20260806-seihon-yomarenai">別の記事</a>で詳しく書いたので、この記事では深掘りしません。</p>
+<p>正本と検問だけでは終わりません。AIの記憶そのものは会話をつないでいるだけで、会話が終われば消えます。判断の根拠を残すのは、AIの記憶ではなく会社の正本の役目です。AIは日々賢くなっていきますが、それでも会社の正本の代わりにはなりません。担当者が変わっても、AIが変わっても、判断の基準は正本に残ります。</p>
+<p>設計に名前を付けておくと、不具合が起きたときに直す場所がすぐ分かります。入り口が壊れているのか、正本の置き方が崩れているのか、読み出し口が違う基準で読んでいるのか。名前の無いまま3つをひとかたまりに扱っていると、どこから手を付ければいいか誰にも判断できません。</p>
+
+<h2>分ける基準は2つだけ——ABC整理×状態整理</h2>
+<p>分け方の基準は2つだけです。ひとつは、その情報が誰のものかという軸。もうひとつは、その情報がいまどんな状態かという軸です。この2軸を掛け合わせると、会社の情報はすべて次の6マスのどこかに収まります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>ABC整理｜誰の情報か</th><th>決まっていること</th><th>動いていること</th></tr>
+<tr><td>A. 自社</td><td>規則・商品・役割・決定</td><td>売上・原価・案件の現在地</td></tr>
+<tr><td>B. 相手</td><td>顧客情報・担当者・契約</td><td>商談・依頼・関係の現在地</td></tr>
+<tr><td>C. 外部環境</td><td>制度・法令・競合の存在</td><td>改正予定・競合動向・期限</td></tr>
+</table></div>
+<p>判別の仕方は簡単です。情報を見たら「この主語は、自社か・特定の相手か・自社の外側か」を自分に問います。次に「これは決めなければ変わらないことか、決めなくても勝手に変わることか」を問います。答えが出れば、置き場所が決まります。</p>
+<p>例えば、取引先の担当者名はB列の決まっていることに入ります。同じ取引先でも、いま進んでいる商談の状況はB列の動いていることです。同じ相手についての情報でも、中身が変われば行き先が変わります。</p>
+<p>他の列も同じ要領です。A列の決まっていることは、就業規則や商品の仕様、誰が何を決める権限を持つかという役割分担です。A列の動いていることは、今月の売上や原価、進行中の案件がいまどこまで進んだかです。C列の決まっていることは、業界にかかる制度や法令、競合が存在するという事実そのものです。C列の動いていることは、その制度がいつ改正されるか、競合がいまどう動いているかという期限や動向です。迷ったら、まず主語を確かめ、次に決めなければ変わらないか・決めなくても変わるかを確かめる。この順番を崩さなければ、担当者が変わっても同じマスに落ち着きます。</p>
+<p>このシリーズには<a href="/blog/20260801-ai-shared-brain">個人用のブレインを構築する記事</a>もありますが、そちらのABCは意味が違います。個人版は<strong>A=ずっと変わらない事実・B=いま動いている案件・C=鍵とパスワード</strong>という、保存する情報の性質で分けた3分類でした。今回のABCは、情報の主語が自社か・相手か・外部環境かで分けています。同じ記号を別の軸に使っているので、読み比べるときは混同しないよう注意してください。</p>
+
+<h2>正本に保存する3原則、それぞれ守らないと何が起きるか</h2>
+<p>原則は3つです。表だけでは伝わらないので、破ったときに何が起きるかとセットで書きます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>原則</th><th>やること</th><th>守らないと何が起きるか</th></tr>
+<tr><td>出どころを残す</td><td>根拠・確認日・更新者を添える。未確定は「要確認」と書く</td><td>根拠のない数字がそのまま独り歩きする。誰も検証できないまま社内に広がる</td></tr>
+<tr><td>現在地は1つ</td><td>最新を現行に置き、古い情報は履歴へ動かす</td><td>同じ質問に複数の答えが返る。古い契約条件のまま提案してしまう</td></tr>
+<tr><td>機密は場所だけ</td><td>個人情報・認証情報は保管場所と権限だけを書く</td><td>機密そのものが正本に紛れ込み、権限の無い人まで読める状態になる</td></tr>
+</table></div>
+<p>「要確認」という印も、原則のひとつです。担当者が忙しく、根拠をすぐに確かめられないことは実際にあります。そこで数字だけを先に書いてしまうと、あとで誰も「確かめていない」ことに気づけません。要確認の印を付けたまま正本に置いておけば、次に読んだ人が未検証だと分かります。印を付けることは手を抜くことではなく、手を抜いていないと記録する作業です。</p>
+<p>自社では、この3原則を検問の判定基準としてそのまま使っています。「根拠の無い金額は保存できない」という検問を置いてから、出どころの分からない数字が正本に残っていた件数はゼロです。ただしこれは自社環境での実測であり、他社に同じ効果を約束するものではありません。</p>
+
+<h2>入れる前の検問——どう運用するか</h2>
+<p>情報を入れる場所は、正本そのものではなく入り口です。現場の決定・変更・教訓、メモ・写真・ファイルが最初に集まります。ここで大事な線引きがひとつあります。提案は正本に入れません。承認を経て決定になってから、初めて入れます。検討中のものと決まったものを同じ場所に置くと、読み手はどちらか分からなくなります。</p>
+<p>入り口の先に検問を置きます。検問は3つを確かめます。まず、この情報がABCと状態のどのマスに入るか。次に、日付・根拠・更新者があるか。最後に、不明な点が残っていれば「要確認」と印を付けて通します。止めて終わりにはしません。</p>
+<p>検問を通すのは、専任の担当者である必要はありません。現場で決定した本人が、入力の最後に自分でこの3つを確かめる形にすると、あとから他の人が確認する手間そのものが要らなくなります。確認をあとの工程に送ると、その場にいなかった担当者が判断を推測することになり、かえって誤りが増えます。</p>
+<p>自社では、正本・検問・読み出し口の3つを2026年8月時点で社内向けに先行して動かしています。外出先で書き戻した情報を、別の経路のAIが31秒後に参照できたことも確かめました。速さも実測しています。以前はスマホのAIが会社のことに答えるまで90秒かかっていましたが、いまは0.6秒です。索引の作り方を変えた結果で、次の図はその実測です。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">検問を置いたら、会社のことに答える速さが変わった</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="検問を置いたら、会社のことに答える速さが変わった"><line x1="501" y1="64" x2="501" y2="536" stroke="#8a8172" stroke-width="1.2"/><line x1="961" y1="64" x2="961" y2="536" stroke="#8a8172" stroke-width="1.2"/><text x="501" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">検問を置く前</text><text x="961" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">検問を置いた後</text><line x1="501" y1="146.4" x2="961" y2="459.6" stroke="#a63a24" stroke-width="3.6" stroke-linecap="round"/><circle cx="501" cy="146.4" r="7" fill="#a63a24"/><circle cx="961" cy="459.6" r="7" fill="#a63a24"/><text x="388.6" y="153.38235294117646" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">スマホのAIが会社のことに答えるまで</text><text x="447" y="153.38235294117646" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="end">90秒</text><text x="1015" y="466.61764705882354" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="start">0.6秒</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">同じ質問でも、正本を検問付きで通した後は0.6秒で返る（自社実測）</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraph 自社運用の実測（2026年8月）</text></svg>
+</div>
+<p>これらの数字はすべて、自社の環境で実際に測った値です。顧客の環境に導入したときに同じ効果を約束するものではなく、環境ごとに測り直す必要があります。あわせて、4つの経路のAIに同じ質問をして、同じ答えが返ることも確かめました。</p>
+<p style="font-size:.85rem;color:var(--text-3)">「AIが正本を読まずに答えてしまう」ほうの悩みがあれば<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>で一緒に洗い出します。</p>
+
+<h2>自社で始めるなら——最小の実践パス</h2>
+<p>読者の会社で始めるときも、いきなり全部を正本に移す必要はありません。順番があります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>やること</th><th>飛ばすとどうなるか</th></tr>
+<tr><td>1. 対象を選ぶ</td><td>1つの業務、1つのフォルダだけを対象にする</td><td>全社一斉になり、どこから手を付けるかで止まる</td></tr>
+<tr><td>2. ABC×状態で仕分ける</td><td>既存の情報を、上の表の6マスに当てはめて仕分ける</td><td>分類の基準が担当者ごとに変わり、また属人化する</td></tr>
+<tr><td>3. 出どころ欄を必須にする</td><td>根拠・確認日・更新者を書く欄をテンプレートに足す</td><td>数字だけが残り、あとで誰も確かめられなくなる</td></tr>
+<tr><td>4. 検問を1つだけ置く</td><td>正本に入れる直前に、ABC・状態・出どころの3つだけ確かめる</td><td>入れる基準が人によってばらつく</td></tr>
+<tr><td>5. 1回、AIに聞いて確かめる</td><td>実際にAIへ質問し、出どころ付きで答えが返るかを見る</td><td>正本を作った満足で終わり、読まれているかを誰も確かめない</td></tr>
+</table></div>
+<p>対象を大きく取りすぎると、分類の基準を決めるだけで何週間もかかります。最初の対象は、迷わず選べる小さな範囲にするほど、5段目まで早く到達できます。</p>
+<p>5段目を飛ばす会社が多いです。分類して保存しただけでは、AIが読める状態になったかどうかは分かりません。実際に聞いて、根拠付きの答えが返ってくるところまで確かめて、初めて正本と呼べます。</p>
+
+<h2>まとめ</h2>
+<div class="a-toc">
+・会社の情報がバラバラに答えるのは、量の問題ではなく分け方が無いから<br>
+・「会社の脳」は、正本と入口・出口2つの検問をつなぐ設計<br>
+・分ける基準はABC整理（誰の情報か）×状態整理（決まっている／動いている）の2軸だけ<br>
+・保存の3原則は、出どころを残す・現在地は1つ・機密は場所だけ<br>
+・提案は正本に入れない。承認を経てから入れる<br>
+・自社の実測値は自社環境のものであり、効果を約束する数字ではない<br>
+・始め方は1業務・1フォルダから。5段目「実際に聞いて確かめる」を飛ばさない</div>
+<p>ここまでの分け方は、そのまま御社の情報にも当てはめられます。基準が2軸と3原則しかないぶん、担当者が代わっても、部署が違っても、同じ結果に落ち着きます。会社の脳を構築し、どのAIに聞いても同じ正本から根拠付きで答えられる状態まで、現場に入って一緒に作るのがこの支援の中身です。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">会社の情報を、誰が聞いても同じ根拠で答えられる状態にします。</p>
+  <p>NGraphでは、企業の「会社の脳」を構築し、どのAIに聞いても同じ正本から根拠付きで答えが返る状態まで伴走する支援を承っております。ご依頼は随時募集しています。お気軽にご相談ください。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">Xのダイレクトメッセージでも受け付けています → <a href="https://x.com/japan19840824" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・この記事の分類軸（ABC整理×状態整理）と保存の3原則は、自社の営業資料「会社の脳」デッキ（2026年8月時点）の内容にもとづきます。速さ・件数などの数字は自社リポジトリと運用記録による、2026年8月時点の自社環境での実測です。<br>
+・あわせて読む：<a href="/blog/20260804-company-brain">会社の脳はもうある、散らばっているだけ</a>／<a href="/blog/20260801-ai-shared-brain">AIを増やすほど記憶はバラバラになる</a>（個人版ブレインの構築手順）／<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する</a>（出す前の検問の深掘り）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
