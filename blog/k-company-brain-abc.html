@@ -81,6 +81,10 @@
 <h2>設計に名前をつける——「会社の脳」と2つの検問</h2>
 <p>分け方を決める前に、まず設計に名前を付けます。NGraphではこれを「会社の脳」と呼んでいます。特別なシステムではなく、書き込む側・正本・読み出す側という3つの場所を、ひとつの流れとしてつなぐ設計です。</p>
 <p>現場の決定や変更、教訓、メモや写真が入り口から入ります。入る前に、内容を確かめる関所を置きます。ここを通ったものだけが正本に積み上がります。読み出す側は、PCのAIでもスマホのAIでも、同じ場所を同じ基準で読みに行きます。答えを出す前にも、もう一つ関所を置きます。正本を読んでいなければ、答えさせません。この出口側の関所は<a href="/blog/20260806-seihon-yomarenai">別の記事</a>で詳しく書いたので、この記事では深掘りしません。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">会社の脳は、正本と2つの検問でできている</p>
+<svg viewBox="0 0 1200 588" width="100%" style="min-width:640px" role="img" aria-label="会社の脳は、正本と2つの検問でできている"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">入れる｜現場の決定・変更・教訓</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">入れる前の検問｜日付と根拠が無ければ保存しない</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">読む｜どのAIも同じ読み口・非公開は自動遮断</text><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">出す前の検問｜読んでいなければ答えさせない</text><text x="600.0" y="530.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">訂正も新しい決定も、また入口へ戻る。この輪が回り続けるかどうかが分かれ目</text><text x="8" y="572" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraph 自社運用（2026年8月）</text></svg>
+</div>
 <p>正本と検問だけでは終わりません。AIの記憶そのものは会話をつないでいるだけで、会話が終われば消えます。判断の根拠を残すのは、AIの記憶ではなく会社の正本の役目です。AIは日々賢くなっていきますが、それでも会社の正本の代わりにはなりません。担当者が変わっても、AIが変わっても、判断の基準は正本に残ります。</p>
 <p>設計に名前を付けておくと、不具合が起きたときに直す場所がすぐ分かります。入り口が壊れているのか、正本の置き方が崩れているのか、読み出し口が違う基準で読んでいるのか。名前の無いまま3つをひとかたまりに扱っていると、どこから手を付ければいいか誰にも判断できません。</p>
 
@@ -112,12 +116,8 @@
 <p>情報を入れる場所は、正本そのものではなく入り口です。現場の決定・変更・教訓、メモ・写真・ファイルが最初に集まります。ここで大事な線引きがひとつあります。提案は正本に入れません。承認を経て決定になってから、初めて入れます。検討中のものと決まったものを同じ場所に置くと、読み手はどちらか分からなくなります。</p>
 <p>入り口の先に検問を置きます。検問は3つを確かめます。まず、この情報がABCと状態のどのマスに入るか。次に、日付・根拠・更新者があるか。最後に、不明な点が残っていれば「要確認」と印を付けて通します。止めて終わりにはしません。</p>
 <p>検問を通すのは、専任の担当者である必要はありません。現場で決定した本人が、入力の最後に自分でこの3つを確かめる形にすると、あとから他の人が確認する手間そのものが要らなくなります。確認をあとの工程に送ると、その場にいなかった担当者が判断を推測することになり、かえって誤りが増えます。</p>
-<p>自社では、正本・検問・読み出し口の3つを2026年8月時点で社内向けに先行して動かしています。外出先で書き戻した情報を、別の経路のAIが31秒後に参照できたことも確かめました。速さも実測しています。以前はスマホのAIが会社のことに答えるまで90秒かかっていましたが、いまは0.6秒です。索引の作り方を変えた結果で、次の図はその実測です。</p>
-<div class="a-fig-wrap">
-<p class="a-fig-title">検問を置いたら、会社のことに答える速さが変わった</p>
-<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="検問を置いたら、会社のことに答える速さが変わった"><line x1="501" y1="64" x2="501" y2="536" stroke="#8a8172" stroke-width="1.2"/><line x1="961" y1="64" x2="961" y2="536" stroke="#8a8172" stroke-width="1.2"/><text x="501" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">検問を置く前</text><text x="961" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">検問を置いた後</text><line x1="501" y1="146.4" x2="961" y2="459.6" stroke="#a63a24" stroke-width="3.6" stroke-linecap="round"/><circle cx="501" cy="146.4" r="7" fill="#a63a24"/><circle cx="961" cy="459.6" r="7" fill="#a63a24"/><text x="388.6" y="153.38235294117646" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">スマホのAIが会社のことに答えるまで</text><text x="447" y="153.38235294117646" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="end">90秒</text><text x="1015" y="466.61764705882354" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="start">0.6秒</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">同じ質問でも、正本を検問付きで通した後は0.6秒で返る（自社実測）</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraph 自社運用の実測（2026年8月）</text></svg>
-</div>
-<p>これらの数字はすべて、自社の環境で実際に測った値です。顧客の環境に導入したときに同じ効果を約束するものではなく、環境ごとに測り直す必要があります。あわせて、4つの経路のAIに同じ質問をして、同じ答えが返ることも確かめました。</p>
+<p>入り口に検問を置くと、正本に残るものが変わります。うちの入り口では、日付と根拠の無い数値はそもそも保存できません。書き手が気をつけるのではなく、書けない形にしてあります。この判定を入れてから、出どころの分からない数字が正本に残ったことはありません。</p>
+<p>読み出し側も同じ基準で確かめています。同じ質問を4つの経路のAIに投げて、同じ答えが返るかどうか。返らなければ、AIの出来ではなく正本の書き方が揃っていない、と判断します。</p>
 <p style="font-size:.85rem;color:var(--text-3)">「AIが正本を読まずに答えてしまう」ほうの悩みがあれば<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>で一緒に洗い出します。</p>
 
 <h2>自社で始めるなら——最小の実践パス</h2>
@@ -140,7 +140,6 @@
 ・分ける基準はABC整理（誰の情報か）×状態整理（決まっている／動いている）の2軸だけ<br>
 ・保存の3原則は、出どころを残す・現在地は1つ・機密は場所だけ<br>
 ・提案は正本に入れない。承認を経てから入れる<br>
-・自社の実測値は自社環境のものであり、効果を約束する数字ではない<br>
 ・始め方は1業務・1フォルダから。5段目「実際に聞いて確かめる」を飛ばさない</div>
 <p>ここまでの分け方は、そのまま御社の情報にも当てはめられます。基準が2軸と3原則しかないぶん、担当者が代わっても、部署が違っても、同じ結果に落ち着きます。会社の脳を構築し、どのAIに聞いても同じ正本から根拠付きで答えられる状態まで、現場に入って一緒に作るのがこの支援の中身です。</p>
 
@@ -152,7 +151,7 @@
 </div>
 
 <div class="a-src">参考（一次情報）：<br>
-・この記事の分類軸（ABC整理×状態整理）と保存の3原則は、自社の営業資料「会社の脳」デッキ（2026年8月時点）の内容にもとづきます。速さ・件数などの数字は自社リポジトリと運用記録による、2026年8月時点の自社環境での実測です。<br>
+・この記事の分類軸（ABC整理×状態整理）と保存の3原則は、自社の営業資料「会社の脳」デッキ（2026年8月時点）の内容にもとづきます。自社運用に関する記述は、2026年8月時点の自社環境での実際の運用にもとづきます。<br>
 ・あわせて読む：<a href="/blog/20260804-company-brain">会社の脳はもうある、散らばっているだけ</a>／<a href="/blog/20260801-ai-shared-brain">AIを増やすほど記憶はバラバラになる</a>（個人版ブレインの構築手順）／<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する</a>（出す前の検問の深掘り）</div>
 
   <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
