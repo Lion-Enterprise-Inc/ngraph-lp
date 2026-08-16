@@ -162,6 +162,20 @@ def run():
         return (len(ents) == 1), f"entities={len(ents)}"
     case("外部リンクは落とさない", t_external_link_kept, expect_ok=True)
 
+    # ---- deck_fig: スライドの切り出し（2026-08-16新設）------------------------------
+    def t_deck_crop():
+        # 本文の下に空白を挟んで置かれた細い帯＝資料のフッター。Xでは落とす
+        from PIL import Image, ImageDraw
+        import deck_fig
+        im = Image.new("RGB", (400, 300), (250, 249, 247))
+        d = ImageDraw.Draw(im)
+        d.rectangle([40, 30, 360, 200], fill=(30, 30, 30))     # 本文
+        d.rectangle([40, 270, 360, 278], fill=(30, 30, 30))    # フッター帯
+        box = deck_fig.crop_box(im)
+        # フッターは含まれず、本文は欠けない
+        return (box[3] < 265 and box[3] > 200), f"box={box}"
+    case("スライドのフッター帯を落とし、本文は欠けない", t_deck_crop, expect_ok=True)
+
     # ---- paren_lint: かっこ密度の中核 ---------------------------------------------
     import paren_lint
 

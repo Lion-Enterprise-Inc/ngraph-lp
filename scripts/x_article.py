@@ -36,6 +36,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import blog_files
+import deck_fig
 from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
 KEYS_PATH = os.path.expanduser("~/.ngraph/x_keys.env")
 SITE = "https://ngraph.jp"
@@ -773,6 +774,9 @@ def main():
                          "--handoff の受領証が無いと動かない）")
     ap.add_argument("--dry-run", action="store_true", help="APIを叩かずJSONを書き出すだけ")
     ap.add_argument("--publish", action="store_true", help="下書きを作ってそのまま公開する（既定は下書きまで）")
+    ap.add_argument("--cover-fig", dest="cover_fig", type=int, metavar="N",
+                    help="Xのカバー画像に、本文の図N（［図N］）を使う。省略時は記事のアイキャッチ。"
+                         "概念図をそのまま表紙にしたいとき用。--figs と併用する")
     ap.add_argument("--figs", nargs="?", const="", metavar="DIR",
                     help="本文の図をX添付用のPNGで書き出す（既定は %%TEMP%%/x_figs_<slug>/）。"
                          "貼った本文の［図N］の位置に、挿入ボタンで入れる")
@@ -810,10 +814,19 @@ def main():
         os.makedirs(figdir, exist_ok=True)
         for f in figs:
             if "img" in f:
-                # 画像の図は台紙に載せ直さない。記事に出ているものをそのまま渡す
-                out_img = os.path.join(figdir, f"fig{f['n']}" + os.path.splitext(f["img"])[1])
-                shutil.copyfile(f["img"], out_img)
-                print(f"  ［図{f['n']}］{f['title']}\n      {out_img}")
+                # Xに出す画像は本文の使い回しにしない〔髙橋さん 2026-08-16〕。
+                # 元スライドから作り直す（本文用は縮めてJPEGにした物なので二重圧縮になる。
+                # 資料のページ番号と連絡先の帯も、1枚で流れるXでは意味が無い）
+                out_img = os.path.join(figdir, f"fig{f['n']}.jpg")
+                name = os.path.basename(f["img"])
+                if deck_fig.render(name, "x", out_img):
+                    print(f"  ［図{f['n']}］{f['title']}（元スライドから生成）\n      {out_img}")
+                else:
+                    # 元が無いときは黙って諦めず、代替したことを出す
+                    shutil.copyfile(f["img"], out_img)
+                    print(f"  ［図{f['n']}］{f['title']}（元スライドが無いので本文の画像で代替）"
+                          f"\n      {out_img}")
+                f["x_img"] = out_img
                 continue
             out_png = os.path.join(figdir, f"fig{f['n']}.png")
             render_fig(f["title"], f["svg"], out_png)
@@ -852,6 +865,17 @@ def main():
             sys.exit("NG（handoff）: --teaser に二重引用符が入っています。▷コマンドが壊れるので「」に置き換えること")
         # ③ カバー画像を受け渡しフォルダに1枚だけコピー（隣の記事のjpgを掴む事故を防ぐ）
         src = os.path.join(REPO, "assets", "blog", f"{a.slug}.jpg")
+        if a.cover_fig:
+            # 概念図をそのまま表紙にする〔髙橋さん 2026-08-16〕。
+            # ブログの表紙（KNOWLEDGE-OPS §2・B案図解ハブ）は変えない。Xの場だけの選択
+            if a.figs is None:
+                sys.exit("NG（handoff）: --cover-fig は --figs と一緒に使ってください（図を書き出してから選ぶ）")
+            pick = next((f for f in figs if f["n"] == a.cover_fig), None)
+            if pick is None or "x_img" not in pick:
+                sys.exit(f"NG（handoff）: 図{a.cover_fig} がありません（本文の図は "
+                         f"{'／'.join(str(f['n']) for f in figs) or 'なし'}）")
+            src = pick["x_img"]
+            print(f"カバー画像: ［図{pick['n']}］{pick['title']} を使います（記事のアイキャッチではなく）")
         if not os.path.exists(src):
             sys.exit(f"NG（handoff）: アイキャッチがありません: {src}")
         d = a.cover_dir or os.path.join(os.environ.get("TEMP", "."), "x_handoff", a.slug)

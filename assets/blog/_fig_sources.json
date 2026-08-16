@@ -1,0 +1,19 @@
+{
+  "_note": "ブログに貼った図の出所。用途別に作り直すときに元へ戻れるようにするための対応表（scripts/deck_fig.py が読む）。元ファイルはリポジトリの外なので、見つからないときは既存の画像で代替される。",
+  "brain-deck-forget.jpg": {
+    "src": "C:/Users/shing/Documents/Codex/2026-08-13/new-chat/NGraph_会社の脳_営業資料_完成版_PNG/05.png",
+    "slide": "05 PROBLEM｜AIは優秀。でも、昨日を覚えていない。"
+  },
+  "brain-deck-ownership.jpg": {
+    "src": "C:/Users/shing/Documents/Codex/2026-08-13/new-chat/NGraph_会社の脳_営業資料_完成版_PNG/04.png",
+    "slide": "04 OWNERSHIP｜AIは借りる。資産は持つ。"
+  },
+  "brain-deck-abc.jpg": {
+    "src": "C:/Users/shing/Documents/Codex/2026-08-13/new-chat/NGraph_会社の脳_営業資料_完成版_PNG/07.png",
+    "slide": "07 DEFINITION｜情報を、会社の正本にする。（ABC整理×状態整理）"
+  },
+  "brain-deck-flow.jpg": {
+    "src": "C:/Users/shing/Documents/Codex/2026-08-13/new-chat/NGraph_会社の脳_営業資料_完成版_PNG/08.png",
+    "slide": "08 SOLUTION｜「会社の脳」の全体構図"
+  }
+}
