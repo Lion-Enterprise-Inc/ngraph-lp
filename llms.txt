@@ -17,7 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
-- [いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り](https://ngraph.jp/blog/20260817-x-algorithm-code)
+- [イーロン・マスクが公開したコードから逆算する、Xの伸ばし方——いいねは0.5点、リンクコピーは20点](https://ngraph.jp/blog/20260817-x-algorithm-code)
 - [省力化投資補助金は生成AIの月額料金を補助しない——8月18日開始の第8回と、対象になるAIの条件](https://ngraph.jp/blog/20260817-shoryokuka-8ji)
 - [会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則](https://ngraph.jp/blog/k-company-brain-abc)
 - [毎日出す仕事を、人の目で守るのをやめる——公開前ゲート13本の設計](https://ngraph.jp/blog/k-blog-gate)
