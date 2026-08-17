@@ -36,7 +36,7 @@ CHECKS = [
     ("かっこ書きの多用（読みにくさ）", "paren_lint.py", [], False),
     ("読みにくさ（長い文・言い回しの反復・抽象語）", "readability_lint.py", [], False),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
-    ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], False),
+    ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], True),
     ("記事の再確認期限（鮮度）", "freshness_check.py", [], False),
     ("型（朝A/夕B/ガイドG・字数・H2・ラベル・枠の重複）", "format_lint.py", [], False),
     ("図のブロックの二重包み", "fig_lint.py", [], False),
