@@ -616,7 +616,10 @@ def build(slug, teaser, heads=None, mark_figs=False):
             sys.exit("NG: ナレッジ型なのに末尾の一文が作れません。\n"
                      "  記事の <div class=\"a-cta\"> に「…を承っております。」の一文が要ります"
                      "（KNOWLEDGE-OPS §0-4／§3）")
-        blocks.append(text_block(offer, entities=entities))
+        # DM案内はKNOWLEDGE-OPS §0-4の確定文型（②随時募集 ③問い合わせ口）。読者は既にX上に
+        # いるので、口はDM一本に絞る〔髙橋さん指示 2026-08-18「お仕事ご依頼はDMにて、みたいな最後の案内いる」〕
+        blocks.append(text_block(offer + "ご依頼は随時募集しています。お気軽にDMください。",
+                                 entities=entities))
 
     return title, {"blocks": blocks, "entities": entities}, figs
 
