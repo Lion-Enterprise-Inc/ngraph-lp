@@ -74,7 +74,7 @@
 <p>同じGoogleの中でも、モデルの寿命はばらばらです。今回終わったImagen 4の3モデルは、リリースから終了まで約14か月でした。一方、文章の意味を数値に変換するtext-embedding-004は2024年4月9日のリリースから2026年1月14日の終了まで約21か月、その後継にあたるgemini-embedding-001は2025年7月14日のリリースから2028年5月14日の終了予定まで約34か月です。移行先はどちらもgemini-embedding-2ですが、寿命は14か月から34か月まで、2倍以上開いています。</p>
 <p>だから「AIモデルはだいたい2年もつ」のような当てずっぽうは効きません。効くのは、公式の一覧表を自分の目で見ることだけです。しかも終了の連絡は、この英語のドキュメントに1行が追加される形でしか来ません。日本語の営業窓口や担当者から電話やメールが来るわけではないので、見に行かなければそのまま止まります。</p>
 <p>さらに、影響が及ぶ単位は「使っているサービス名」ではありません。効いてくるのは「呼んでいるモデルID」の方です。ここは自社で確かめてわかったことです。</p>
-<div class="a-note"><strong>NGraphの視点：</strong>2026年8月18日、自社の料理画像生成ツールのソースコードを検索し、実際に呼んでいる画像モデルIDを確かめました。出てきたのはgemini-2.5-flash-imageとgemini-3-pro-image-previewの2つで、今回終了したimagen-4.0系のモデルは自社のコードには一つもありませんでした。ただし、同じフォルダの中にある配布ライブラリの説明文には、例としてimagen-4.0-generate-001が11か所出てきました。これは自分たちが呼び出しているコードではありません。ここからわかったことは3つです。影響が来る単位は「使っているサービス名」ではありません。来るのは「呼んでいるモデルID」の単位です。加えて、ライブラリの中に古いモデルIDが例として残っているため、検索で当たったことだけを見て慌てるのも安心するのも間違いです。そして自社が呼んでいるモデルのうち1つ、gemini-3-pro-image-previewは名前のとおりプレビュー、つまり正式版ではありません。</div>
+<div class="a-note"><strong>NGraphの視点：</strong>2026年8月18日、自社の料理画像生成ツールのソースコードを検索し、実際に呼んでいる画像モデルIDを確かめました。出てきたのはgemini-2.5-flash-imageとgemini-3-pro-image-previewの2つで、今回終了したimagen-4.0系のモデルは自社のコードには一つもありませんでした。ただし、同じフォルダの中にある配布ライブラリの説明文には、例としてimagen-4.0-generate-001が11か所出てきました。これは自分たちが呼び出しているコードではありません。つまり、ライブラリの中に古いモデルIDが例として残っているので、検索で当たったことだけを見て慌てるのも安心するのも間違いになります。もう1つわかったのは、自社が呼んでいるモデルのうちgemini-3-pro-image-previewは名前のとおりプレビュー、つまり正式版ではないということです。</div>
 
 <h2>中小企業は何をすべきか</h2>
 <ul>
@@ -87,16 +87,16 @@
 <ul>
 <li><strong>省力化投資補助金〈一般型〉第8回が本日8月18日、公募開始の予定です。</strong>申請受付は9月中旬、締切は10月中旬の予定で、申請には取得に時間がかかる<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">GビズIDプライムアカウント</a>が必要です。「AIの月額料金は対象外」の詳細は<a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない</a>で解説しています。</li>
 <li><strong>AIが直したコードが穴になり、別のAIが自動でそこを突きました。</strong>セキュリティ企業Wizが2026年8月17日に<a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener">公開した調査</a>によると、GitHub Copilot Autofixが共著者として入ったPRが6月18日にマージされ、安全な書き方が直接の文字列展開に置き換わってGitHub Actionsにコマンドを差し込める穴ができました。Wizの自動エージェントが6月23日にこの穴を見つけて突き、認証情報を持ち出してSnowflakeの社内Jiraに読み取りアクセスしています。<a href="/blog/20260801-ai-agent-permission">つないでいい範囲を先に決める</a>という話は、AIが書いたコードのレビューにもそのままあてはまります。</li>
-<li><strong>Googleは2026年8月13日、Gemini 3.7 Flashを正式提供開始しました。</strong>コーディングとエージェント用途の主力モデルと位置づけ、2026年末までの導入価格を提示しています（<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">一次情報</a>）。新しいモデルが出るのと古いモデルが止まるのは同じ流れの表裏で、導入価格には期限があります。</li>
+<li><strong>Googleは2026年8月13日、Gemini 3.7 Flashを正式提供開始しました。</strong>コーディングとエージェント用途の主力モデルと位置づけ、2026年末までの導入価格を<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Gemini APIの更新履歴</a>で提示しています。新しいモデルが出るのと古いモデルが止まるのは同じ流れの表裏で、導入価格には期限があります。</li>
 </ul>
 
 <div class="a-note"><strong>NGraphの視点：</strong>自社が呼んでいるモデルIDの棚卸しは、AI導入支援の初回でも必ず確認する項目です。この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</div>
 
 <div class="a-src">参考（一次情報）：<br>
-・Google「<a href="https://ai.google.dev/gemini-api/docs/deprecations" target="_blank" rel="noopener">Gemini API モデルの廃止一覧</a>」（2026年8月18日閲覧）<br>
+・Google「<a href="https://ai.google.dev/gemini-api/docs/deprecations" target="_blank" rel="noopener">Gemini deprecations</a>」（2026年8月18日閲覧）<br>
 ・中小機構「<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">中小企業省力化投資補助金〈一般型〉</a>」（2026年8月18日閲覧）<br>
-・Wiz「<a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener">Red Agent: Snowflake, Copilot, and a CI/CD bug</a>」（2026年8月17日）<br>
-・Google「<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Gemini API changelog</a>」（2026年8月18日閲覧）<br>
+・Wiz「<a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener">Red Agent Exploits Snowflake Vuln Missed by Github Copilot</a>」（2026年8月17日）<br>
+・Google「<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Release notes</a>」（Gemini API・2026年8月18日閲覧）<br>
 ・あわせて読む：<a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない</a>（2026年8月17日夕）<br>
 ・あわせて読む：<a href="/blog/20260801-ai-agent-permission">Anthropicが自社AIの侵入事案3件を公表</a>（2026年8月1日）</div>
 
