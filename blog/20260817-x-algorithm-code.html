@@ -96,26 +96,30 @@
 <p class="a-fig-title">重みの実数——いいねは0.5点、リンクコピーは20点</p>
 <svg viewBox="0 0 1200 562" width="100%" style="min-width:640px" role="img" aria-label="重みの実数——いいねは0.5点、リンクコピーは20点"><text x="162" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リンクコピー</text><rect x="180" y="50" width="820" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">20.0点</text><text x="162" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リプライ</text><rect x="180" y="102" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">引用</text><rect x="180" y="154" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">DM共有</text><rect x="180" y="206" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">フォロー</text><rect x="180" y="258" width="164" height="34" rx="2" fill="#cfc5b4"/><text x="356" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">4.0点</text><text x="162" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">共有</text><rect x="180" y="310" width="82" height="34" rx="2" fill="#cfc5b4"/><text x="274" y="336" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">2.0点</text><text x="162" y="387" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リポスト</text><rect x="180" y="362" width="41" height="34" rx="2" fill="#cfc5b4"/><text x="233" y="388" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1.0点</text><text x="162" y="439" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">いいね</text><rect x="180" y="414" width="20" height="34" rx="2" fill="#cfc5b4"/><text x="212" y="440" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0.5点</text><text x="600.0" y="504.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">いいね0.5点に対し、リンクコピーは20点——40倍の重み</text><text x="8" y="546" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：xai-org/x-algorithm param.rs（2026-08-14時点）</text></svg>
 </div>
-<p>いいねは0.5点、リポストは1.0点です。プロフィールをクリックする行動の重みは0点で、最終スコアに影響しません。もっとも重いのはリンクコピーの20点で、いいねの40倍にあたります。負の重みも設定されていて、興味なしはマイナス43.2点、ブロックはマイナス31.2点、ミュートはマイナス58.8点、通報はマイナス234.0点です。投稿を見ても滞在しなかった場合は、マイナス0.02点というごく小さな減点になります。</p>
+<p>重い順に並べると、序列がそのまま物語になります。頂点はリンクコピーの20点で、いいねの40倍です。次にリプライ・引用・DM共有が5点で並び、フォローが4点。いいねは0.5点しかなく、プロフィールクリックは0点で最終スコアに影響しません。マイナス側も同じで、最も重い通報がマイナス234.0点、ミュートがマイナス58.8点、興味なしがマイナス43.2点、ブロックがマイナス31.2点と続きます。投稿を見ても滞在しなかった場合は、マイナス0.02点というごく小さな減点です。</p>
 <div class="a-table-wrap"><table class="a-table">
-<tr><th>行動</th><th>重み</th></tr>
-<tr><td>いいね</td><td>0.5</td></tr>
+<tr><th>行動（重い順）</th><th>重み</th></tr>
+<tr><td><strong>リンクコピー</strong></td><td><strong>20.0</strong></td></tr>
 <tr><td>リプライ</td><td>5.0</td></tr>
-<tr><td>リポスト</td><td>1.0</td></tr>
 <tr><td>引用</td><td>5.0</td></tr>
-<tr><td>共有</td><td>2.0</td></tr>
 <tr><td>DM共有</td><td>5.0</td></tr>
-<tr><td>リンクコピー</td><td>20.0</td></tr>
 <tr><td>フォロー</td><td>4.0</td></tr>
-<tr><td>プロフィールクリック</td><td>0.0</td></tr>
-<tr><td>写真展開</td><td>0.05</td></tr>
-<tr><td>動画オープン</td><td>0.05</td></tr>
+<tr><td>共有</td><td>2.0</td></tr>
+<tr><td>リポスト</td><td>1.0</td></tr>
+<tr><td>いいね</td><td>0.5</td></tr>
 <tr><td>クリック</td><td>0.4</td></tr>
 <tr><td>リンクを開く</td><td>0.2</td></tr>
+<tr><td>写真展開</td><td>0.05</td></tr>
+<tr><td>動画オープン</td><td>0.05</td></tr>
+<tr><td>プロフィールクリック</td><td>0.0</td></tr>
+</table></div>
+
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>マイナスの行動（減点が重い順）</th><th>重み</th></tr>
+<tr><td><strong>通報</strong></td><td><strong>-234.0</strong></td></tr>
+<tr><td>ミュート</td><td>-58.8</td></tr>
 <tr><td>興味なし</td><td>-43.2</td></tr>
 <tr><td>ブロック</td><td>-31.2</td></tr>
-<tr><td>ミュート</td><td>-58.8</td></tr>
-<tr><td>通報</td><td>-234.0</td></tr>
 <tr><td>滞在しなかった</td><td>-0.02</td></tr>
 </table></div>
 
