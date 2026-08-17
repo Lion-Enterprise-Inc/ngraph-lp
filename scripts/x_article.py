@@ -580,12 +580,16 @@ def build(slug, teaser, heads=None, mark_figs=False):
     note = art.find("div", class_="a-note")
     if note is not None:
         strong = note.find("strong")
-        label = strong.get_text(strip=True) if strong else "NGraphの視点："
-        if not label.endswith("："):
-            label += "："
+        raw_label = strong.get_text(strip=True) if strong else "NGraphの視点："
         body = CTA_SENTENCE.sub("", note.get_text(" ", strip=True)).strip()
         body = re.sub(r"：\s+", "：", body)
-        if not body.startswith(label):
+        # strongが「短いラベル（末尾：）」でも「長い題（：なし）」でも二重貼りしない。
+        # 2026-08-18のk-x-loopで、：を足したラベルと本文先頭の照合が外れて
+        # 「一次体験：…話：一次体験：…話——」と二重になった実バグの修正
+        if body.startswith(raw_label):
+            label = raw_label
+        else:
+            label = raw_label if raw_label.endswith("：") else raw_label + "："
             body = label + body
         blocks.extend(split_long(text_block(body, bold_prefix=label, entities=entities)))
 
