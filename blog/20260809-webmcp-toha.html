@@ -79,7 +79,7 @@
   <span class="a-date">2026.08.09 夕 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20260809-webmcp-toha.jpg" alt="WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き">
 
-<p><strong>WebMCP</strong>とは、自社のWebサイトに置いたJavaScript（Webページを動かすためのプログラミング言語）で、AIエージェントに実行させてよい機能を「ツール」として宣言できるようにする仕組みです。W3C（Webの技術ルールを決める国際団体）に置かれた有志の検討グループが、<strong>2026年7月28日付</strong>で草案を公開しました。W3Cの場を借りてはいますが、<strong>W3Cが正式なルールとして認めたものではありません</strong>。まだ標準ではなく、標準化の道筋にすら乗っていない段階です。</p>
+<p><strong>WebMCP</strong>とは、自社のWebサイトに置いたJavaScript（Webページを動かすためのプログラミング言語）で、AIエージェントに実行させてよい機能を「ツール」として宣言できるようにする仕組みです。W3C（Webの技術ルールを決める国際団体）に置かれた有志の検討グループが、<strong>2026年7月28日付</strong>で草案を公開しました。W3Cの場を借りてはいますが、<strong>W3Cが正式なルールとして認めたものではありません</strong>。標準化はこれからで、正式な検討の道筋にもまだ乗っていません。</p>
 <div class="a-toc"><strong>この記事でわかること</strong><br>
 ・WebMCPが何を宣言する仕組みなのか、MCPとどう違うのか<br>
 ・ドラフトが用意した「AIにさせない」ための3つの設定<br>
@@ -91,7 +91,7 @@
 <p>ドラフトはツールを呼ぶ側を3つに分けて定義しています。<strong>agent</strong>は利用者の目標を理解し代わりに行動する自律的なアシスタント、<strong>browser's agent</strong>はブラウザ自身が提供するエージェント、そして<strong>AI platform</strong>の例としてOpenAIのChatGPT・AnthropicのClaude・GoogleのGeminiが名指しされています。「AI」とひとくくりにせず、誰がツールを呼ぶ可能性があるかを分けて考える必要がある、というのがドラフトの立て付けです。</p>
 
 <h2>AnthropicのMCPとは何が違うのか——動く場所が「サーバー」から「ブラウザ」へ</h2>
-<p>WebMCPという名前から連想するのは、Anthropicが2024年11月に公開したMCP（Model Context Protocol）です。両者の関係について、ドラフト本文は次のように明記しています。「Web pages that use WebMCP can be thought of as Model Context Protocol [MCP] servers that implement tools in client-side script instead of on the backend」（WebMCPを使うWebページは、バックエンドではなくクライアント側スクリプト——訪問者のブラウザ内で動くプログラム——でツールを実装したMCPサーバーだと考えられる）。これは筆者の推測ではなく、仕様本文が言っていることです。</p>
+<p>WebMCPという名前から連想するのは、Anthropicが2024年11月に公開したMCP（Model Context Protocol）です。両者の関係について、ドラフト本文は次のように明記しています。「Web pages that use WebMCP can be thought of as Model Context Protocol [MCP] servers that implement tools in client-side script instead of on the backend」（WebMCPを使うWebページは、バックエンドではなくクライアント側スクリプト——訪問者のブラウザ内で動くプログラム——でツールを実装したMCPサーバーだと考えられる）。筆者の解釈を挟まず、仕様本文がそのまま言っている一文です。</p>
 <p>つまりMCPは「AIと社内の道具」を、サーバー側でつなぐ規格でした。WebMCPは同じ発想を、サイト訪問者のブラウザ側に持ち込んだものだと整理できます。誰が窓口を出すか、どこで動くかを比較すると次のようになります。</p>
 <div class="a-table-wrap"><table class="a-table">
 <tr><th>項目</th><th>MCP</th><th>WebMCP</th></tr>
@@ -111,7 +111,7 @@
 </div>
 <p>実装面では、Chrome for Developersのブログ（2026年6月9日公開）が「Chrome 149からWebMCPのオリジントライアルに参加できる」と告知しています。<strong>オリジントライアル</strong>とは、正式リリース前の機能を限定したサイトで試せる期間限定のプログラムのことです。ブラウザベンダー1社が期間限定で試験提供している段階で、このブログ記事自体に具体的なAPIの呼び出しコード例は載っていません。</p>
 <p>仕様の中身も全部が決まっているわけではありません。HTMLに注釈を書くだけでツールを登録できる<strong>Declarative（宣言的）</strong>方式が構想されていますが、ドラフト本文はこの方式の実行手順について「登録されたツールについては、まだ定義されていない一連の『内部』ステップになる」と書き、Declarativeの節自体も「This section is entirely a TODO（この節はまるごと未着手）」とだけ記されています。今すぐ動くのは、標準的なJavaScriptでツールを1つずつ登録する<strong>Imperative（命令的）</strong>方式だけです。</p>
-<p>まとめると、標準化の手続き上も、ブラウザでの実装上も、仕様の中身自体も、いずれも「まだ実装する段階ではない」という同じ結論を指しています。ここで急ぐ理由はありません。</p>
+<p>標準化の手続きも、ブラウザでの実装も、仕様の中身自体も、いずれも「まだ実装する段階ではない」という同じ結論を指しています。ここで急ぐ理由はありません。</p>
 
 <h2>ドラフトが用意した3つの「させない」設定</h2>
 <p>ここが本題です。WebMCPのドラフトは、ツールを登録するときに付けられる目印（annotations）を用意しています。中心になるのは次の3つです。</p>
@@ -125,24 +125,24 @@
 <tr><td>untrustedContentHint</td><td>返す内容を信頼できる文脈として扱ってよいか（既定false）</td><td>プロンプトインジェクション</td></tr>
 <tr><td>exposedTo</td><td>どのオリジンにツールを見せるか（既定は空＝同一オリジンのみ）</td><td>意図しない相手への公開</td></tr>
 </table></div>
-<p>ここから見えてくるWebMCPの性格は、「AIに何でもさせるための規格」ではなく、「サイト側が何をさせるかを1つずつ宣言し、宣言していないことはさせない規格」だということです。2つの目印の初期値がどちらもfalse、見せる相手の初期値も空リストという設計は、機能を足すたびにサイト側が意識して選択することを前提にしています。</p>
+<p>ここから見えてくるWebMCPの性格は、「サイト側が何をさせるかを1つずつ宣言し、宣言していないことはさせない規格」です。AIに何でもさせるための規格と読むと、設計の向きを取り違えます。2つの目印の初期値がどちらもfalse、見せる相手の初期値も空リストという設計は、機能を足すたびにサイト側が意識して選択することを前提にしています。</p>
 
 <h2>ドラフト自身が挙げているリスク4つ</h2>
 <p>ドラフトにはセキュリティ・プライバシー節があり、対処すべきリスクを自ら列挙しています。夢のような機能として書かれているわけではない、という点が重要です。</p>
 <h3>プロンプトインジェクションと意図の偽装</h3>
 <p><strong>プロンプトインジェクション</strong>（AIへの指示に見せかけた不正な入力を紛れ込ませる攻撃）について、ドラフトは「Tool descriptions and return values could be treated as trusted context（ツールの説明文や返り値が、信頼できる文脈としてそのまま扱われる可能性がある）」と指摘しています。ツールの説明や実行結果に含まれる文字列を、AIが指示だと誤認する余地があるということです。もう1つの<strong>Misrepresentation of Intent（意図の偽装）</strong>では、「no guarantee that a WebMCP tool's declared intent matches its actual behavior（WebMCPツールが宣言した意図と、実際の動作が一致する保証はない)」と明記されています。ツールの説明文に「これは読み取り専用です」と書いても、そのとおりに実装されているかは規格の外側、実装者の責任です。</p>
 <h3>プライバシー漏えい——サイト側が加害者になり得る指摘</h3>
-<p>3つ目の<strong>Privacy Leakage（プライバシー漏えい）</strong>は、他の3つと性格が違います。「Sites can design highly parameterized WebMCP tools to extract sensitive user data（サイトは、高度にパラメータ化されたWebMCPツールを設計することで、利用者の機微な情報を抜き出すことができる）」——これはAIや外部の攻撃者ではなく、<strong>サイトを作る側が意図的・非意図的に加害者側になり得る</strong>という指摘です。検索条件を細かく絞り込めるツールや、会員情報を条件検索できるツールを何気なく設計すると、悪意がなくても個人情報を引き出しやすい形になってしまう可能性があります。ここは自社がツールを設計するときに、自分たちの手元で気をつけるべき論点です。</p>
+<p>3つ目の<strong>Privacy Leakage（プライバシー漏えい）</strong>は、他の3つと性格が違います。「Sites can design highly parameterized WebMCP tools to extract sensitive user data（サイトは、高度にパラメータ化されたWebMCPツールを設計することで、利用者の機微な情報を抜き出すことができる）」——外部の攻撃者の話ではありません。<strong>サイトを作る側が、意図の有無にかかわらず加害者側になり得る</strong>という指摘です。検索条件を細かく絞り込めるツールや、会員情報を条件検索できるツールを何気なく設計すると、悪意がなくても個人情報を引き出しやすい形になってしまう可能性があります。ここは自社がツールを設計するときに、自分たちの手元で気をつけるべき論点です。</p>
 <p>4つ目の<strong>Private Browsing（プライベートブラウジング）</strong>については、「may inadvertently leak information across this boundary（この境界を越えて意図せず情報が漏れる可能性がある）」とだけ記載されています。シークレットモードのような通常とは切り離された閲覧状態と、通常の閲覧状態の間で情報が混ざる懸念があると読めますが、具体的な対策はまだ書き込まれていません。</p>
 
 <h2>自社サイトで先に決めておく線引き</h2>
-<p>ここまでの内容を、実装の話ではなく「決めること」の話として並べ直すと、次の4つになります。</p>
+<p>ここまでの内容を、実装の話はいったん置いて「決めること」として並べ直すと、次の4つになります。</p>
 <div class="a-fig-wrap">
 <p class="a-fig-title">実装より先に決める4つ</p>
 <svg viewBox="0 0 1200 546" width="100%" style="min-width:640px" role="img" aria-label="実装より先に決める4つ"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#a63a24" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#a63a24" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">AIに何をさせるかを1つ選ぶ</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">それは読み取りだけで済むか決める</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">誰に見せるか（相手のオリジン）を決める</text><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">人が最後に確認する箇所を決める</text></svg>
 </div>
-<p>1つ目と2つ目はreadOnlyHintに、3つ目はexposedToに対応します。4つ目は規格には書かれていない、自社の運用として決めておくべき項目です。ツールの実行結果を誰も確認しないまま次の行動に使わせるのか、どこかで人の目を挟むのかは、WebMCPが決めることではなく自社が決めることです。</p>
-<div class="a-note"><strong>私たちの一次体験：</strong>私たちは自社ブログで<code>llms.txt</code>（AIに読ませてよい情報の一覧を書いたテキストファイル）を運用している。記事を出すたびに一覧の先頭に追加していて、AIに読ませたい入口を自分の手で管理している。やってみて分かったのは、面倒なのはファイルを置くことではなく、「何を載せて何を載せないか」を毎回決めることのほうだった。WebMCPで問われるのは、これと同じ種類の判断が、読ませるだけでなく「操作させる」側にも来るということだ。</div>
+<p>1つ目と2つ目はreadOnlyHintに、3つ目はexposedToに対応します。4つ目は規格には書かれていない、自社の運用として決めておくべき項目です。ツールの実行結果を誰も確認しないまま次の行動に使わせるのか、どこかで人の目を挟むのか。そこを決めるのはWebMCPの仕様ではありません。自社の運用です。</p>
+<div class="a-note"><strong>私たちの一次体験：</strong>私たちは自社ブログで<code>llms.txt</code>（AIに読ませてよい情報の一覧を書いたテキストファイル）を運用している。記事を出すたびに一覧の先頭に追加していて、AIに読ませたい入口を自分の手で管理している。やってみて分かったのは、面倒なのはファイルを置くことではなく、「何を載せて何を載せないか」を毎回決めることのほうだった。WebMCPで問われるのは、これと同じ種類の判断だ。読ませる範囲を決めてきた判断が、今度は「操作させる」範囲にも及ぶ。</div>
 
 <h2>よくある失敗・NGパターン</h2>
 <p>ドラフトの記述から導ける範囲で、検討段階の会社が陥りやすいパターンを挙げます。</p>
@@ -166,7 +166,7 @@
 
 <h2>まとめ</h2>
 <p>WebMCPは、自社サイトの機能をAIエージェント（と支援技術）に「ツール」として宣言する仕組みです。仕様本文が自ら「バックエンドではなくクライアント側でツールを実装したMCPサーバー」と説明しているとおり、MCPと同じ発想をブラウザ側に持ち込んだものだと整理できます。用意されている3つの設定——readOnlyHint・untrustedContentHint・exposedTo——はいずれも初期値が制限的な側にあり、規格そのものが「宣言していないことはさせない」方向に設計されています。ドラフトはプロンプトインジェクション・意図の偽装・プライバシー漏えい・プライベートブラウジングという4つのリスクも自ら列挙しており、特にプライバシー漏えいはサイトを作る側が加害者になり得るという指摘です。</p>
-<p>そして何より、文書自身が「W3Cの標準ではなく標準化トラックにも乗っていない」と書いています。今の段階で中小企業がやるべきなのは実装ではなく、自社サイトでAIに何をさせたいか、何をさせたくないかを言語化しておくことです。</p>
+<p>そして何より、文書自身が「W3Cの標準ではなく標準化トラックにも乗っていない」と書いています。今の段階で中小企業に必要なのは実装ではありません。自社サイトでAIに何をさせたいか、何をさせたくないかを、言葉にして決めておくことです。</p>
 
 <div class="a-cta">
   <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのサイトでAIに何をさせるか」から、一緒に整理します。</p>
