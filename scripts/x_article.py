@@ -91,6 +91,49 @@ def require_template_current(label):
     return h
 
 
+def make_wide_cover(slug, d, cover, is_fig=False):
+    """X Articles 用の横長カバー（1500x600）を作り、そのパスを返す。
+
+    なぜ要るか〔実測 2026-08-17・アップロード画面の枠は約2.5〜2.7:1〕: ブログの表紙は
+    1200x630（1.90:1）で、そのまま上げると**上下が切れてタイトルと NGRAPH BLOG ラベルが飛ぶ**。
+    前回（8/17）は手で合成して差し替える運用にしたが、受け渡しフォルダに残っていたのは
+    1200x630 のまま（＝手作業は次の --handoff 実行で黙って上書きされていた）。
+    手順書に「手で作る」と書いても再現しないので、生成器の側に寄せる。
+
+    表紙は `eyecatch_gen.py --wide` で**同じHTMLをビューポート1500x600で描き直す**。
+    本文ボックスは幅566px固定なので、折り返しも級数も 1200x630 版と一致する
+    ＝目視した文言・級数がそのまま通用する（拡大や切り抜きではないので字が甘くならない）。
+
+    作れない場合（記録が無い／図をカバーに指定した／生成に失敗）は 1200x630 のまま返す。
+    **黙って落とさず、理由と「上下が切れる」ことを画面に出す。**
+    """
+    if is_fig:
+        print("カバー画像: 図を指定したので横長版は作りません（図は上下に余白があり切れにくい）")
+        return cover
+    store = os.path.join(REPO, "assets", "blog", "_eyecatch.json")
+    try:
+        rec = json.load(open(store, encoding="utf-8"))[slug]
+    except Exception:
+        print("⚠ カバー画像: 表紙の記録が無いので1200x630のまま。Xでは上下が切れます"
+              "（eyecatch_gen.py で作り直すと横長版が付きます）")
+        return cover
+    wide = os.path.join(d, f"カバー画像_{slug}_1500x600.jpg")
+    r = subprocess.run(
+        [sys.executable, os.path.join(REPO, "scripts", "eyecatch_gen.py"), slug,
+         rec.get("title", ""), rec.get("sub", ""), rec.get("pattern", ""),
+         "--wide", "--out=" + wide],
+        capture_output=True, encoding="utf-8", errors="replace",
+        env=dict(os.environ, PYTHONIOENCODING="utf-8"))
+    if r.returncode != 0 or not os.path.exists(wide):
+        print("⚠ カバー画像: 横長版の生成に失敗したので1200x630のまま。Xでは上下が切れます")
+        print("   " + (r.stdout or r.stderr or "").strip()[:200])
+        return cover
+    # 1枚だけ渡す（隣のjpgを掴む事故の防止・BLOG-OPS §7）
+    os.remove(cover)
+    print("カバー画像: X用の横長版 1500x600 を生成（ブログ側のOGPは1200x630のまま）")
+    return wide
+
+
 def hang_text(slug):
     """ぶら下がり（本ポスト直下の自己リプ）の文面を記事から自動生成する（2026-08-17新設・
     髙橋さん「Xのアルゴリズムの仕様などうちのブログ運用全部に恒久的に効くように構造取り込んで」）。
@@ -906,6 +949,7 @@ def main():
         os.makedirs(d, exist_ok=True)
         cover = os.path.join(d, f"カバー画像_{a.slug}.jpg")
         shutil.copyfile(src, cover)
+        cover = make_wide_cover(a.slug, d, cover, is_fig=(a.cover_fig is not None))
         import hashlib
         cover_sha = hashlib.sha256(open(cover, "rb").read()).hexdigest()[:16]
         # ④ 受領証。--clipboard はこれが無いと動かない＝生成経路の強制

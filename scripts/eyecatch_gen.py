@@ -246,12 +246,23 @@ def main():
         print(__doc__)
         sys.exit(1)
     slug, title, sub, pat = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-    label, out_override = "NGRAPH BLOG", None
+    label, out_override, wide = "NGRAPH BLOG", None, False
     for a in sys.argv[5:]:
         if a.startswith("--label="):
             label = a[8:]
         elif a.startswith("--out="):
             out_override = a[6:]
+        elif a == "--wide":
+            wide = True
+    # --wide = X Articles 用の横長版（1500x600）。X側がカバーを約2.5〜2.7:1にクロップするため、
+    # 1200x630（1.90:1）を上げると上下＝タイトルとNGRAPH BLOGラベルが切れる〔実測 2026-08-17〕。
+    # 描くのは同じHTMLで、ビューポートだけ変える。本文ボックスは幅566px固定なので
+    # 折り返しも級数も 1200x630 版と一致する（＝文言の検査結果がそのまま通用する）。
+    # 記録（_eyecatch.json）には入れない。ブログの表紙は 1200x630 のままが正。
+    if wide and not out_override:
+        print("NG: --wide は --out= と一緒に使う（ブログ用の表紙を上書きしないため）")
+        sys.exit(1)
+    cw, ch = (1500, 600) if wide else (1200, 630)
     if pat not in PATS:
         print("unknown pattern:", pat, "->", "/".join(PATS))
         sys.exit(1)
@@ -259,13 +270,15 @@ def main():
     fs = fit_font_size(title)
     title_html = esc(title).replace("{nb}", '<span class="nb">').replace("{/nb}", "</span>")
     html = TPL % {"title": title_html, "sub": esc(sub), "pat": PATS[pat], "fs": fs}
+    if wide:
+        html = html.replace("width:1200px;height:630px", "width:%dpx;height:%dpx" % (cw, ch))
     html = html.replace(">NGRAPH BLOG<", ">" + esc(label) + "<")
     tmp = tempfile.mkdtemp(prefix="eyecatch_")
     hp = os.path.join(tmp, slug + ".html")
     open(hp, "w", encoding="utf-8").write(html)
     png = os.path.join(tmp, slug + ".png")
     udd = tempfile.mkdtemp(prefix="eyecatch_udd_")
-    subprocess.run([EDGE, "--headless=new", "--no-sandbox", "--disable-gpu", "--window-size=1200,630",
+    subprocess.run([EDGE, "--headless=new", "--no-sandbox", "--disable-gpu", "--window-size=%d,%d" % (cw, ch),
                     "--user-data-dir=" + udd,
                     "--hide-scrollbars", "--virtual-time-budget=8000",
                     "--screenshot=" + png, "file:///" + hp.replace("\\", "/")],
@@ -276,7 +289,7 @@ def main():
         time.sleep(1)
     if not os.path.exists(png) or os.path.getsize(png) <= 10000:
         print("ERROR: Edge screenshot failed. Run the Edge command manually from bash:")
-        print(f'"{EDGE}" --headless=new --disable-gpu --window-size=1200,630 --hide-scrollbars --virtual-time-budget=8000 --screenshot={png} file:///{hp}')
+        print(f'"{EDGE}" --headless=new --disable-gpu --window-size={cw},{ch} --hide-scrollbars --virtual-time-budget=8000 --screenshot={png} file:///{hp}')
         sys.exit(2)
     from PIL import Image
     im = Image.open(png).convert("RGB")
