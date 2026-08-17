@@ -41,6 +41,7 @@ CHECKS = [
     ("型（朝A/夕B/ガイドG・字数・H2・ラベル・枠の重複）", "format_lint.py", [], False),
     ("図のブロックの二重包み", "fig_lint.py", [], False),
     ("正本の出所（誰が決めた行かの印）", "knowledge_ops_lint.py", [], False),
+    ("書いたのにpushされていない記事・表紙（report-only）", "unpushed_check.py", [], False),
 ]
 
 
