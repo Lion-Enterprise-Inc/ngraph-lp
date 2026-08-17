@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方 | NGraphブログ</title>
+<meta name="description" content="Googleが2026年8月17日、画像生成AI Imagen 4の3モデルの提供を終了しました。リリースから約14か月という短さと、同じ廃止一覧に並ぶ他モデルとの寿命の差、自社のモデルIDを確かめた実測から、中小企業がすべき対応を解説します。">
+<meta property="og:title" content="Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方 | NGraphブログ">
+<meta property="og:description" content="Googleが2026年8月17日、Imagen 4の3モデルの提供を終了。リリースから約14か月という短さと、自社のモデルIDを確かめた実測から、中小企業がすべき対応を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260818-imagen4-shutdown">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260818-imagen4-shutdown.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260818-imagen4-shutdown">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方",
+  "image": "https://ngraph.jp/assets/blog/20260818-imagen4-shutdown.jpg",
+  "description": "Googleが2026年8月17日、画像生成AI Imagen 4の3モデルの提供を終了しました。リリースから約14か月という短さと、同じ廃止一覧に並ぶ他モデルとの寿命の差、自社のモデルIDを確かめた実測から、中小企業がすべき対応を解説します。",
+  "datePublished": "2026-08-18",
+  "dateModified": "2026-08-18",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260818-imagen4-shutdown",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方</h1>
+  <span class="a-date">2026.08.18 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260818-imagen4-shutdown.jpg" alt="Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方">
+
+<p>Googleは2026年8月17日、画像生成AI「Imagen 4」を構成する3つのモデルの提供を終了しました。この一覧は<a href="https://ai.google.dev/gemini-api/docs/deprecations" target="_blank" rel="noopener">Gemini APIの廃止モデル一覧</a>で公開されています。これはGoogle1社の出来事ではありません。自社が導入しているAIツールがどのモデルIDを呼んでいるかを、サービス名ではなく型番で把握していないと、ある日突然使えなくなるという話です。</p>
+
+<h2>何が起きたか</h2>
+<p>終了したのは、標準版の<code>imagen-4.0-generate-001</code>、高品質版の<code>imagen-4.0-ultra-generate-001</code>、高速版の<code>imagen-4.0-fast-generate-001</code>の3モデルです。3モデルとも2025年6月24日にリリースされていて、Googleが示す移行先は画像生成に対応した新しいモデルgemini-3.1-flash-imageです。この情報は単独のニュースとして発表された形ではありません。Googleが公開している「廃止モデル一覧」ページに、他の数十件のモデルと並んで1行として載っています。ページには「最短でこの日に終了する可能性がある」という注記もあり、実際の停止時期はあらためて案内するとされています。</p>
+
+<h2>なぜ重要か</h2>
+<p>同じGoogleの中でも、モデルの寿命はばらばらです。今回終わったImagen 4の3モデルは、リリースから終了まで約14か月でした。一方、文章の意味を数値に変換するtext-embedding-004は2024年4月9日のリリースから2026年1月14日の終了まで約21か月、その後継にあたるgemini-embedding-001は2025年7月14日のリリースから2028年5月14日の終了予定まで約34か月です。移行先はどちらもgemini-embedding-2ですが、寿命は14か月から34か月まで、2倍以上開いています。</p>
+<p>だから「AIモデルはだいたい2年もつ」のような当てずっぽうは効きません。効くのは、公式の一覧表を自分の目で見ることだけです。しかも終了の連絡は、この英語のドキュメントに1行が追加される形でしか来ません。日本語の営業窓口や担当者から電話やメールが来るわけではないので、見に行かなければそのまま止まります。</p>
+<p>さらに、影響が及ぶ単位は「使っているサービス名」ではありません。効いてくるのは「呼んでいるモデルID」の方です。ここは自社で確かめてわかったことです。</p>
+<div class="a-note"><strong>NGraphの視点：</strong>2026年8月18日、自社の料理画像生成ツールのソースコードを検索し、実際に呼んでいる画像モデルIDを確かめました。出てきたのはgemini-2.5-flash-imageとgemini-3-pro-image-previewの2つで、今回終了したimagen-4.0系のモデルは自社のコードには一つもありませんでした。ただし、同じフォルダの中にある配布ライブラリの説明文には、例としてimagen-4.0-generate-001が11か所出てきました。これは自分たちが呼び出しているコードではありません。ここからわかったことは3つです。影響が来る単位は「使っているサービス名」ではありません。来るのは「呼んでいるモデルID」の単位です。加えて、ライブラリの中に古いモデルIDが例として残っているため、検索で当たったことだけを見て慌てるのも安心するのも間違いです。そして自社が呼んでいるモデルのうち1つ、gemini-3-pro-image-previewは名前のとおりプレビュー、つまり正式版ではありません。</div>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>自社ツールや外注先が呼んでいるモデルIDを一覧にする。</strong>外注先には「うちのシステムが呼んでいるAIのモデルIDを、バージョンまで含めて教えてください」とそのまま聞くのが早い道です。サービス名や機能名を聞いても、今回のような終了は追えません。</li>
+<li><strong>その中に「-preview」付きが混ざっていないか確認する。</strong>プレビュー付きのモデルIDは正式版ではありません。正式版よりさらに短い周期で終わったり、仕様が変わったりします。自社の一次体験でも、実際に使っていた2モデルのうち1つがこれでした。</li>
+<li><strong>公式の廃止一覧を誰がいつ見るかを日付で決める。</strong>「気づいたら見る」は人の記憶に頼る運用で、必ず抜けます。月1回の見る日を決め、担当者名まで割り振っておくと止まりません。</li>
+</ul>
+
+<h2>その他の注目ニュース</h2>
+<ul>
+<li><strong>省力化投資補助金〈一般型〉第8回が本日8月18日、公募開始の予定です。</strong>申請受付は9月中旬、締切は10月中旬の予定で、申請には取得に時間がかかる<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">GビズIDプライムアカウント</a>が必要です。「AIの月額料金は対象外」の詳細は<a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない</a>で解説しています。</li>
+<li><strong>AIが直したコードが穴になり、別のAIが自動でそこを突きました。</strong>セキュリティ企業Wizが2026年8月17日に<a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener">公開した調査</a>によると、GitHub Copilot Autofixが共著者として入ったPRが6月18日にマージされ、安全な書き方が直接の文字列展開に置き換わってGitHub Actionsにコマンドを差し込める穴ができました。Wizの自動エージェントが6月23日にこの穴を見つけて突き、認証情報を持ち出してSnowflakeの社内Jiraに読み取りアクセスしています。<a href="/blog/20260801-ai-agent-permission">つないでいい範囲を先に決める</a>という話は、AIが書いたコードのレビューにもそのままあてはまります。</li>
+<li><strong>Googleは2026年8月13日、Gemini 3.7 Flashを正式提供開始しました。</strong>コーディングとエージェント用途の主力モデルと位置づけ、2026年末までの導入価格を提示しています（<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">一次情報</a>）。新しいモデルが出るのと古いモデルが止まるのは同じ流れの表裏で、導入価格には期限があります。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>自社が呼んでいるモデルIDの棚卸しは、AI導入支援の初回でも必ず確認する項目です。この分野の導入相談は<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a>からどうぞ。</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Google「<a href="https://ai.google.dev/gemini-api/docs/deprecations" target="_blank" rel="noopener">Gemini API モデルの廃止一覧</a>」（2026年8月18日閲覧）<br>
+・中小機構「<a href="https://shoryokuka.smrj.go.jp/ippan/" target="_blank" rel="noopener">中小企業省力化投資補助金〈一般型〉</a>」（2026年8月18日閲覧）<br>
+・Wiz「<a href="https://www.wiz.io/blog/red-agent-snowflake-copilot-cicd-bug" target="_blank" rel="noopener">Red Agent: Snowflake, Copilot, and a CI/CD bug</a>」（2026年8月17日）<br>
+・Google「<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Gemini API changelog</a>」（2026年8月18日閲覧）<br>
+・あわせて読む：<a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない</a>（2026年8月17日夕）<br>
+・あわせて読む：<a href="/blog/20260801-ai-agent-permission">Anthropicが自社AIの侵入事案3件を公表</a>（2026年8月1日）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

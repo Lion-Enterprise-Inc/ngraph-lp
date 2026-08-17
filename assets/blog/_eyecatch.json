@@ -139,6 +139,13 @@
   "sub": "Xはコードでこう数えている",
   "title": "いいね40個 ＝ リンクコピー1個"
  },
+ "20260818-imagen4-shutdown": {
+  "article_h1": "Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方",
+  "fs": 68,
+  "pattern": "deadline",
+  "sub": "Google Imagen 4、8月17日に終了",
+  "title": "画像AIは、{nb}14か月{/nb}で消えた"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,
@@ -175,12 +182,12 @@
   "title": "会社の情報は、分け方で決まる"
  },
  "k-x-loop": {
-  "article_h1": "Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図",
+  "article_h1": "Claude CodeにXの伸ばし方を48時間ごとに学ばせる——フォロワー95人で回している「標本ループ」の設計図",
   "fs": 72,
+  "note": "2026-08-18 v4(2026-08-18 48hサイクルに仕様同期): 髙橋さん文言（LoopEngineering軸）＋X本体ロゴ形状シルエット。生成器=scratchpad k-x-loop-cover2.html",
   "pattern": "k-b-diagram",
   "sub": "AIが収集し、比較し、学び、改善する／LOOP ENGINEERING",
-  "title": "自己改善ループをXで実装する",
-  "note": "2026-08-18 v3: 髙橋さん文言（LoopEngineering軸）＋X本体ロゴ形状シルエット。生成器=scratchpad k-x-loop-cover2.html"
+  "title": "自己改善ループをXで実装する"
  },
  "what-is-fde": {
   "article_h1": "FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6%",
