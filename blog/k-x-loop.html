@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図 | NGraphブログ</title>
+<meta name="description" content="伸びている他人の投稿を標本として集め、自分の投稿の実測と突き合わせて、書き方のルールをAIが毎週更新する「標本ループ」の設計図です。4つの原則と、フォロワー95人のアカウントで回した初回1周の実測を公開します。">
+<meta property="og:title" content="Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図 | NGraphブログ">
+<meta property="og:description" content="伸びている他人の投稿を標本として集め、自分の投稿の実測と突き合わせて、書き方のルールをAIが毎週更新する「標本ループ」の設計図です。4つの原則と、初回1周の実測を公開します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-x-loop">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-x-loop.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-x-loop">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図",
+  "image": "https://ngraph.jp/assets/blog/k-x-loop.jpg",
+  "description": "伸びている他人の投稿を標本として集め、自分の投稿の実測と突き合わせて、書き方のルールをAIが毎週更新する「標本ループ」の設計図です。4つの原則と、フォロワー95人のアカウントで回した初回1周の実測を公開します。",
+  "datePublished": "2026-08-18",
+  "dateModified": "2026-08-18",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-x-loop",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図</h1>
+  <span class="a-date">2026.08.18 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-x-loop.jpg" alt="Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図">
+<p>NGraphは、X（旧Twitter）の運用改善をAIに任せています。毎週1回、伸びている他人の投稿を「標本」として集めさせ、自分の投稿の実数と突き合わせ、書き方のルールをAIが更新する。この仕組みを<strong>標本ループ</strong>と呼んでいます。回しているのはフォロワー95人（2026年8月18日時点）の小さなアカウントです。小さいからこそ、改善が数字に出やすい。この記事では、ループを構成する4つの原則と、初回1周で見えた実測を、そのまま公開します。同じ記事形式なのに表示回数が284と130万に分かれた、対照標本の話も含みます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・SNSの改善が「感想戦」で止まる、2つの構造的な理由<br>
+・標本ループの4原則＝外から集める・仮説どまり・48時間・ルールに戻す<br>
+・初回1周の実測：表示284と130万を分けたのはタイトルだった<br>
+・自社で回すときの最小5段階（週30分・表計算だけで始められる）</div>
+
+<h2>SNSの改善が「感想戦」で止まる理由は2つある</h2>
+<p>SNSを事業で使っている会社の多くが、同じ場所で止まります。投稿は続けている。ただ、伸びない。改善しようとすると「もっと画像を入れよう」「文体を柔らかくしよう」という感想の言い合いになり、翌週には忘れられている。うちも先月までこの状態でした。</p>
+<p>止まる理由は、担当者のセンスではありません。構造が2つあります。</p>
+<p>1つ目は、<strong>自分の数字だけでは標本が足りない</strong>ことです。週に3〜5本しか投稿しない会社が、自分の投稿の結果だけから学ぼうとすると、月に十数個のデータしか手に入りません。しかもテーマも形式もばらばらで、比較になりません。学習の材料が構造的に不足しています。</p>
+<p>2つ目は、<strong>判断が記録に残らない</strong>ことです。「この投稿は伸びた気がする」という感想は、翌週のルールになりません。担当者が変われば勘ごと消えます。生成AIに投稿文を書かせている会社も増えましたが、書かせるだけでは同じ品質の文章が量産されるだけで、学習はどこにも起きていません。</p>
+<p>この2つを同時に解くのが、標本ループです。</p>
+
+<h2>標本ループとは——4つの原則でできている</h2>
+<p>標本ループは、次の6工程を毎週1回、AIに回させる仕組みです。うちではClaude Code（コーディング用のAIエージェント）に定時タスクとして実行させていますが、工程自体はどのAIでも、極端に言えば人力でも回せます。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">標本ループ：上段で仮説を作り、下段で確定する</p>
+<svg viewBox="0 0 1200 560" width="100%" style="min-width:640px" role="img" aria-label="標本ループの6工程。標本を集める、型を抽出する、仮説を立てるの上段と、投稿で検証する、48時間後に実測する、ルールに確定するの下段が循環する">
+<rect x="80" y="120" width="280" height="100" rx="4" fill="none" stroke="#8a8172" stroke-width="1.5"/><text x="220" y="163" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#2b2620" font-weight="700" text-anchor="middle">① 標本を集める</text><text x="220" y="197" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#5c544a" text-anchor="middle">伸びている他人の投稿を週10件</text>
+<rect x="460" y="120" width="280" height="100" rx="4" fill="none" stroke="#8a8172" stroke-width="1.5"/><text x="600" y="163" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#2b2620" font-weight="700" text-anchor="middle">② 型を抽出する</text><text x="600" y="197" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#5c544a" text-anchor="middle">1行目・構造・数字の置き方</text>
+<rect x="840" y="120" width="280" height="100" rx="4" fill="none" stroke="#8a8172" stroke-width="1.5"/><text x="980" y="163" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#2b2620" font-weight="700" text-anchor="middle">③ 仮説を立てる</text><text x="980" y="197" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#5c544a" text-anchor="middle">共通パターンを1行で言葉に</text>
+<rect x="840" y="340" width="280" height="100" rx="4" fill="#a63a24"/><text x="980" y="383" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#f6f2e9" font-weight="700" text-anchor="middle">④ 投稿で検証する</text><text x="980" y="417" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#f6f2e9" text-anchor="middle">次の投稿に仮説を1つだけ載せる</text>
+<rect x="460" y="340" width="280" height="100" rx="4" fill="#a63a24"/><text x="600" y="383" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#f6f2e9" font-weight="700" text-anchor="middle">⑤ 48時間後に実測</text><text x="600" y="417" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#f6f2e9" text-anchor="middle">育つ前の数字で判断しない</text>
+<rect x="80" y="340" width="280" height="100" rx="4" fill="#a63a24"/><text x="220" y="383" font-family="'Zen Kaku Gothic New',sans-serif" font-size="26" fill="#f6f2e9" font-weight="700" text-anchor="middle">⑥ ルールに確定</text><text x="220" y="417" font-family="'Zen Kaku Gothic New',sans-serif" font-size="17" fill="#f6f2e9" text-anchor="middle">運用の正本に1行追記する</text>
+<line x1="360" y1="170" x2="452" y2="170" stroke="#8a8172" stroke-width="2"/><path d="M452 170 l-14 -7 v14 z" fill="#8a8172"/>
+<line x1="740" y1="170" x2="832" y2="170" stroke="#8a8172" stroke-width="2"/><path d="M832 170 l-14 -7 v14 z" fill="#8a8172"/>
+<line x1="980" y1="220" x2="980" y2="332" stroke="#8a8172" stroke-width="2"/><path d="M980 332 l-7 -14 h14 z" fill="#8a8172"/>
+<line x1="840" y1="390" x2="748" y2="390" stroke="#8a8172" stroke-width="2"/><path d="M748 390 l14 -7 v14 z" fill="#8a8172"/>
+<line x1="460" y1="390" x2="368" y2="390" stroke="#8a8172" stroke-width="2"/><path d="M368 390 l14 -7 v14 z" fill="#8a8172"/>
+<line x1="220" y1="340" x2="220" y2="228" stroke="#8a8172" stroke-width="2"/><path d="M220 228 l-7 14 h14 z" fill="#8a8172"/>
+<text x="600" y="290" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">上段＝外部標本（仮説を作る）／下段＝自分の投稿（実測で確定する）</text>
+<text x="8" y="540" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" text-anchor="start">週1回・AIが自動実行。人に残るのは公開の判断と、機械に写らない成果（DM・相談）の記録だけ</text>
+</svg>
+</div>
+<p>この6工程を支えているのが、次の4原則です。</p>
+<h3>原則1：標本は外から集める</h3>
+<p>Xには、伸びている投稿が今日も何万件も流れています。書き方・言葉の選び方・数字の置き方・テンポ。教材は無料で、しかも表示回数つきで公開されています。自分の投稿だけを見つめて学ぶより、外の標本から学ぶほうが、材料は桁違いに多い。集めるのは<strong>1行目と構造と数字の置き方だけ</strong>です。学ぶのは型であって、本文の丸写しは学習になりません。</p>
+<h3>原則2：外部標本は仮説どまり。確定は自分の実測だけ</h3>
+<p>ここを飛ばすと事故になります。フォロワー10万人のアカウントで伸びた型が、95人のアカウントで同じように働く保証はどこにもありません。他人の数字は、その人のフォロワー規模と文脈の中の数字です。だから外部標本から取り出した型には「仮説」の札を付け、<strong>自分の投稿で検証して初めてルールに昇格</strong>させます。もう1つ、伸びている標本には煽り口調のものも多く混ざります。移植してよいのは構造だけで、口調まで真似ると自社の信用を削ります。</p>
+<h3>原則3：育つ前の数字で判断しない</h3>
+<p>Xの表示回数は数日かけて積み上がります。投稿直後の数字で判断すると、正しい型を殺します。うちは実際にこれで一度、運用そのものを止めるという誤った意思決定をしました（後述します）。ルールは単純で、<strong>投稿から48時間たつまで、その投稿を評価しない</strong>。それだけです。</p>
+<h3>原則4：学びはルールの正本に戻す</h3>
+<p>検証で確定した型は、運用ルールを書いた1つの文書に日付つきで追記します。担当者の頭に置いたままにしません。次の投稿文は、AIがその文書を読んでから書きます。これで学習が人に依存しなくなります。担当者が変わっても、AIのモデルを替えても、蓄積は文書の側に残り続けます。</p>
+
+<h2>初回1周の実測——284と130万を分けたのは、形式ではなくタイトルだった</h2>
+<p>設計の話はここまでにして、初回1周（2026年8月11日〜18日）で実際に何が見えたかを出します。</p>
+<p>まず自分の側。直近7日の投稿18本の表示回数は、最小5から最大749まで散らばりました。上位帯の263〜749を占めたのは、<strong>具体的な数字と「分かれ目」を1〜2行目に置いた投稿</strong>です。たとえば「必要なメモリは24GBか32GBか」「単価が最大約12.1倍になる」のような、読んだ人が自分の判断に使える数字です。下位に沈んだのは短いつぶやきの表示18と、動画を付けた2本の48と109でした。</p>
+<p>次に外部標本。今回いちばん大きな発見は、<strong>同じ「記事」形式の投稿が、片方は表示284、片方は表示130万に分かれていた</strong>ことです。284の方は統計数字を解説する型で、構成はうちの記事とよく似ていました。130万の方は、実在の有名企業名と具体的なツール名をタイトルに掲げ、「あの会社はどうやって◯◯を安全に社内利用しているのか」という、経営者が実際に口にする質問をそのまま題にしていました。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>観察対象</th><th>形式</th><th>タイトルの型</th><th>表示回数</th></tr>
+<tr><td>外部標本A</td><td>記事</td><td>統計数字の解説（うちと同型）</td><td>284</td></tr>
+<tr><td>外部標本B</td><td>記事</td><td>実在企業名×具体ツール名×「どうやって」</td><td>130万</td></tr>
+<tr><td>自社の上位帯</td><td>通常投稿</td><td>具体数字＋分かれ目が1〜2行目</td><td>263〜749</td></tr>
+<tr><td>自社の下位帯</td><td>つぶやき・動画</td><td>感想・動画添付</td><td>18〜109</td></tr>
+</table></div>
+<p>ここから立てた仮説はこうです。「記事形式は伸びない」のではない。<strong>タイトルが抽象的な概念の解説型になっていると読まれず、固有名詞と読者の既にある質問を掲げると読まれる</strong>。この仮説はまだ札付きの仮説で、自分の投稿で検証してから確定します。実は、いま読んでいるこの記事のタイトルに具体的なツール名を入れたこと自体が、その検証の1回目です。結果は実測が出たら追記します。</p>
+<div class="a-note"><strong>一次体験：「表示5回」で運用を止めた話</strong>——うちは今月上旬、投稿の数時間後に表示回数が5回だったのを見て、「この形式は伸びない」と定時投稿の運用を止める判断をしました。ところが後日、集計データで同じ投稿を見直すと、表示は1,358まで積み上がっていました。全投稿の中で最大です。育つ前の数字を見て、いちばん伸びた投稿を根拠に、運用を止めていたことになります。原則3の48時間ルールは、この失敗から来ています。</div>
+
+<h2>自社で回すなら、表計算だけで始める最小の5段階</h2>
+<p>この仕組みは、専用ツールがなくても始められます。うちはAIに自動実行させていますが、工程を人力に置き換えても週30分で回ります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>やること</th><th>かかる時間</th><th>つまずきやすい点</th></tr>
+<tr><td>1. 記録の場所を作る</td><td>自分の投稿の表示回数・反応を、48時間たってから表計算に記録する</td><td>週15分</td><td>投稿直後の数字を書いてしまう（原則3違反）</td></tr>
+<tr><td>2. 標本を集める</td><td>自分の分野で伸びている投稿を週10件、1行目と構造だけメモする</td><td>週10分</td><td>本文を丸ごと保存してしまう。真似の誘惑が生まれ、学習にならない</td></tr>
+<tr><td>3. 仮説を1行で書く</td><td>標本の共通点を「◯◯だと伸びるのでは」と言葉にする</td><td>週5分</td><td>感想（「なんかいい」）のまま言葉にしない</td></tr>
+<tr><td>4. 次の投稿で1つだけ試す</td><td>仮説を1つだけ載せた投稿を出す。2つ同時に変えない</td><td>—</td><td>複数同時に変えると、何が効いたか分からなくなる</td></tr>
+<tr><td>5. ルールに追記する</td><td>48時間後の実測で仮説を確定か破棄し、運用ルールの文書に日付つきで1行足す</td><td>週5分</td><td>頭で覚えて文書に書かない。担当者が変わると全部消える</td></tr>
+</table></div>
+<p>AIに任せる場合に追加で決めておくべきことは1つだけです。<strong>「今週は判断材料が足りない」と言える設計にする</strong>こと。毎週必ず結論を出させると、AIは材料がなくても、それらしい結論を作文します。確定できない週は「確定なし」と報告させるのが、長く回すコツです。</p>
+
+<h2>なぜAIに回させるのか。週30分は、人だと続かない</h2>
+<p>工程だけ見れば人力でも回ります。それでもAIに任せる理由は、続かないからです。週30分の集計と記録は、繁忙期に最初に削られる仕事です。削られた週が2回続くと、記録に穴が空き、比較ができなくなり、ループは静かに死にます。</p>
+<p>AIに任せると、毎週同じ曜日に、集計・標本収集・仮説の言語化・レポートまでが自動で終わります。人に残る仕事は2つだけです。公開してよいかの判断と、機械には写らない成果の記録（「Xを見ました」というDMや相談が来たか）。数字の収集と分析はAIが人より速く、成果の判定と責任は人にしかできない。この分担は、SNSに限らずAI導入全般で崩してはいけない線だと考えています。</p>
+<p>もう1つ、うちがこの設計を選ぶ理由があります。学びをルールの正本に戻す仕組みにしておくと、<strong>蓄積がAIの中に残らず、会社の側に貯まる</strong>ことです。AIを替えても蓄積は残ります。これはうちが「会社の脳」と呼んで構築しているものの、いちばん小さな実例です。</p>
+
+<h2>まとめ</h2>
+<ul>
+<li>SNS改善が止まるのは、自分の数字だけでは標本が足りず、判断が記録に残らないから</li>
+<li>標本ループの4原則＝①標本は外から集める ②外部標本は仮説どまり、確定は自分の実測だけ ③48時間たつまで評価しない ④学びはルールの正本に戻す</li>
+<li>初回1周の実測では、同じ記事形式が表示284と130万に分かれた。分けたのはタイトルの固有名詞と「読者が既に持っている質問」。この記事のタイトルがその検証の1回目</li>
+<li>表計算だけで週30分から始められる。AIに任せるなら「確定なしと言える設計」を忘れずに</li>
+<li>人に残すのは公開の判断と、機械に写らない成果の記録だけ</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、FDE型AI導入伴走支援を承っております。</p>
+  <p>今回のような「業務が自分で改善し続ける学習ループ」の構築を、エンジニアが御社の現場に入って行います。SNS運用に限らず、日々の定型業務・記録・検査の仕組み化まで一貫して支援します。ご依頼は随時募集しています。お気軽にご相談ください。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a>　／　<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援の詳細はこちら →</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・本文の表示回数はすべて2026年8月18日時点の実測（自社アカウントは分析画面、外部標本はXに公開されている表示数）。外部標本は特定を避けるため発信者名を伏せています<br>
+・Xのおすすめ欄の仕組み（公開されたコードの実測）は<a href="/blog/20260817-x-algorithm-code">イーロン・マスクが公開したコードから逆算する、Xの伸ばし方</a>で解説しています<br>
+・関連記事：<a href="/blog/k-blog-gate">毎日出す仕事を、人の目で守るのをやめる——公開前ゲート13本の設計</a>／<a href="/blog/k-company-brain-abc">会社の情報は「誰の・どの状態か」で分ける</a></div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
