@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り | NGraphブログ</title>
+<meta name="description" content="Xが2026年8月13日に公開したFor Youアルゴリズムのコードを、行番号まで読みました。フォローの重みは+12ではなく4.0、通報はいいねの468倍ではないなど、広まっている解説とコードの実際のズレを解説します。">
+<meta property="og:title" content="いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り | NGraphブログ">
+<meta property="og:description" content="Xが2026年8月13日に公開したFor Youアルゴリズムのコードを、行番号まで読みました。フォローの重みは+12ではなく4.0、通報はいいねの468倍ではないなど、広まっている解説とコードの実際のズレを解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260817-x-algorithm-code">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260817-x-algorithm-code.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260817-x-algorithm-code">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り",
+  "image": "https://ngraph.jp/assets/blog/20260817-x-algorithm-code.jpg",
+  "description": "Xが2026年8月13日に公開したFor Youアルゴリズムのコードを、行番号まで読みました。フォローの重みは+12ではなく4.0、通報はいいねの468倍ではないなど、広まっている解説とコードの実際のズレを解説します。",
+  "datePublished": "2026-08-17",
+  "dateModified": "2026-08-17",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260817-x-algorithm-code",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "自分でコードを読むには何が必要ですか", "acceptedAnswer": {"@type": "Answer", "text": "リポジトリxai-org/x-algorithmはApache License 2.0で公開されています。GitHubで無料で閲覧でき、重みの数値はhome-mixer/params/param.rsというファイルにまとまっています。プログラムを書けなくても、数値だけを追って確認することはできます。"}},
+  {"@type": "Question", "name": "自分のアカウントがシャドウバンされているか確認できますか", "acceptedAnswer": {"@type": "Answer", "text": "8月13日の公開と同時に、透明性ツール「Under the Hood」が使えるようになりました。x.com/i/under_the_hood で、自分のアカウントや投稿に表示制限のラベルが付いているかどうかを、集計の形で確認できます。"}},
+  {"@type": "Question", "name": "通報1件はいいね468件分の重みですか", "acceptedAnswer": {"@type": "Answer", "text": "違います。通報の重みはマイナス234.0、いいねの重みは0.5で、単純に割ると468倍という数字が出ますが、README自身がこの計算を誤りだと述べています。重みは行動の予測確率に掛かるものであり、件数の倍率として使う数字ではありません。"}},
+  {"@type": "Question", "name": "パラメータの数値は今後も変わりますか", "acceptedAnswer": {"@type": "Answer", "text": "変わり得ます。READMEは、実験を通じて重みが調整されることを前提にしています。この記事の数値は2026年8月14日時点のコードに基づくもので、時期がずれると変わっている可能性があります。"}},
+  {"@type": "Question", "name": "フォロワーが少ないと不利になりますか", "acceptedAnswer": {"@type": "Answer", "text": "一律に不利というわけではありません。フォロワー1,000以下で投稿から24時間以内であれば、Cold Startという救済枠でおすすめの15〜16枠目に試験的に表示される機会があります。ただし24時間を過ぎるとこの対象から外れます。"}},
+  {"@type": "Question", "name": "相互フォローなら常に投稿が伸びますか", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。相互フォローの加点が効くのは、リプライでもリポストでもない、相互フォロー相手のオリジナル投稿だけです。相互フォロー相手へのリプライやリポスト自体は、この加点の対象になりません。"}},
+  {"@type": "Question", "name": "2023年に公開されたコードと何が違いますか", "acceptedAnswer": {"@type": "Answer", "text": "この記事は2026年8月13日と14日の更新を対象にしています。README上、この時点で予測行動の重み・フィルタのコード・Phoenixモデルの学習コードが新たに加わったと明記されており、以前の公開内容とは対象範囲が異なります。数値の比較まではこの記事では行っていません。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Blog</div>
+  <h1>いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り</h1>
+  <span class="a-date">2026.08.17 ガイド ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260817-x-algorithm-code.jpg" alt="いいねは0.5点、リンクコピーは20点——Xのコードを読んで分かった実数と、広まる数字の誤り">
+
+<p>Xが2026年8月13日、おすすめ欄（For You）を決めているアルゴリズムのコードを大幅公開しました。公開先は<a href="https://github.com/xai-org/x-algorithm" target="_blank" rel="noopener">GitHubリポジトリxai-org/x-algorithm</a>で、ライセンスはApache License 2.0です。誰でも無料で複製・改変ができる、ソフトウェアの世界で広く使われるライセンスの一つで、中身を隠さない意思表示にもなっています。私たちはこのコードを実際にクローンし、重みの数値が並ぶファイルを行番号まで読みました。この記事でわかるのは、いいねやリンクコピーといった行動ごとの重みの実数、SNSで流通している解説とコードの実際がどこでズレているか、そして中小企業の発信で何を変えるべきかの3点です。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・いいね0.5点からリンクコピー20点まで、行動ごとの重みの実数<br>
+・「フォローは+12」など広まっている解説とコードの実際のズレ<br>
+・中小企業の発信で見直すべき3つのこと</div>
+
+<h2>何が公開されたか——8月13日の大幅公開とUnder the Hood</h2>
+<p>公式リポジトリの更新履歴によれば、2026年8月13日の公開で新しく加わったのは3つです。利用者がその後どう行動するかを予測する重み、投稿の表示・非表示を判定するフィルタのコード、そして予測モデル「Phoenix」を学習させるコードです。同じ日に、投稿を表示するか・非表示にするか・ワンクッション挟んで表示するかを判定する可視性フィルタリングと、ボット運用者などにラベルを付ける仕組みも公開されました。8月14日にも更新があり、ブラジルの選挙法に対応するフィルタが追加されています。この追加は、変更の存在とその中身がコードで確認できる例として紹介されていました。</p>
+<p>公開に合わせて、透明性ツール「Under the Hood」も使えるようになりました。x.com/i/under_the_hood で、自分のアカウントや投稿に表示制限のラベルが付いているかどうかを、集計の形で見られます。</p>
+<h3>点数の正体は「行動確率×重み」</h3>
+<p>公開されたコードの説明を読むと、For Youの並び順は単純な足し算ではありません。「Phoenix」というモデルが、その利用者がその投稿に対していいね・リプライ・通報といった各行動を取る確率を予測します。そのうえで、行動ごとに決められた重みをその確率に掛けて合計する式で、最終的なスコアが決まります。式で書くと、最終スコアはΣ（重み×行動の確率）です。次の章から、この重みの実数を見ていきます。</p>
+
+<h2>重みの実数——いいねは0.5点、リンクコピーは20点</h2>
+<p>重みの数値は、param.rsという設定ファイルに行動ごとに書かれています。私たちが2026年8月14日時点のコードで確認した主な数値は次のとおりです。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">重みの実数——いいねは0.5点、リンクコピーは20点</p>
+<svg viewBox="0 0 1200 562" width="100%" style="min-width:640px" role="img" aria-label="重みの実数——いいねは0.5点、リンクコピーは20点"><text x="162" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リンクコピー</text><rect x="180" y="50" width="820" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">20.0点</text><text x="162" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リプライ</text><rect x="180" y="102" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">引用</text><rect x="180" y="154" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">DM共有</text><rect x="180" y="206" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.0点</text><text x="162" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">フォロー</text><rect x="180" y="258" width="164" height="34" rx="2" fill="#cfc5b4"/><text x="356" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">4.0点</text><text x="162" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">共有</text><rect x="180" y="310" width="82" height="34" rx="2" fill="#cfc5b4"/><text x="274" y="336" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">2.0点</text><text x="162" y="387" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">リポスト</text><rect x="180" y="362" width="41" height="34" rx="2" fill="#cfc5b4"/><text x="233" y="388" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1.0点</text><text x="162" y="439" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">いいね</text><rect x="180" y="414" width="20" height="34" rx="2" fill="#cfc5b4"/><text x="212" y="440" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0.5点</text><text x="600.0" y="504.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">いいね0.5点に対し、リンクコピーは20点——40倍の重み</text><text x="8" y="546" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：xai-org/x-algorithm param.rs（2026-08-14時点）</text></svg>
+</div>
+<p>いいねは0.5点、リポストは1.0点です。プロフィールをクリックする行動の重みは0点で、最終スコアに影響しません。もっとも重いのはリンクコピーの20点で、いいねの40倍にあたります。負の重みも設定されていて、興味なしはマイナス43.2点、ブロックはマイナス31.2点、ミュートはマイナス58.8点、通報はマイナス234.0点です。投稿を見ても滞在しなかった場合は、マイナス0.02点というごく小さな減点になります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>行動</th><th>重み</th></tr>
+<tr><td>いいね</td><td>0.5</td></tr>
+<tr><td>リプライ</td><td>5.0</td></tr>
+<tr><td>リポスト</td><td>1.0</td></tr>
+<tr><td>引用</td><td>5.0</td></tr>
+<tr><td>共有</td><td>2.0</td></tr>
+<tr><td>DM共有</td><td>5.0</td></tr>
+<tr><td>リンクコピー</td><td>20.0</td></tr>
+<tr><td>フォロー</td><td>4.0</td></tr>
+<tr><td>プロフィールクリック</td><td>0.0</td></tr>
+<tr><td>写真展開</td><td>0.05</td></tr>
+<tr><td>動画オープン</td><td>0.05</td></tr>
+<tr><td>クリック</td><td>0.4</td></tr>
+<tr><td>リンクを開く</td><td>0.2</td></tr>
+<tr><td>興味なし</td><td>-43.2</td></tr>
+<tr><td>ブロック</td><td>-31.2</td></tr>
+<tr><td>ミュート</td><td>-58.8</td></tr>
+<tr><td>通報</td><td>-234.0</td></tr>
+<tr><td>滞在しなかった</td><td>-0.02</td></tr>
+</table></div>
+
+<h2>広まっている数字とコードのズレ</h2>
+<h3>フォローの重みは「+12」ではなく4.0</h3>
+<p>ネット上の解説記事には、フォローの重みを「+12」とするものが広まっています。しかし私たちが読んだコードでは、フォローの重みは4.0でした。表の中では中位の重みで、リプライや引用の5.0より軽く、共有の2.0より重い位置にあります。</p>
+<h3>README自身が警告する「件数換算」の誤解</h3>
+<p>公式のREADMEは、よくある誤解を名指しで注意しています。重みは行動の予測確率に掛かる数値であって、件数に掛かる倍率ではありません。通報の重みはマイナス234.0、いいねの重みは0.5なので、単純に割り算すると468倍という数字が出ます。README原文はこの割り算そのものについて「a report has 468 times higher weight than a like」という比較は成り立つとしながら、そこから「通報1件がいいね468件分を打ち消す」と結論づけるのは誤りだと書いています。行動ごとに確率の出方がそもそも違うため、件数どうしを直接比較する計算は成立しません。</p>
+<h3>逆に、広まっている解説が正しかった点</h3>
+<p>ズレばかりではありません。私たちが確認した範囲では、連投減衰の数値、相互フォローブーストの適用条件、フォロー外の投稿に掛かる係数、投稿から48時間で対象外になる期限、Cold Startという救済枠の存在については、広まっている解説とコードが一致していました。誤りが目立つのは重みの実数のような細部で、大枠の骨格は正しく伝わっていたことになります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>広まっている解説</th><th>コードの実際</th></tr>
+<tr><td>フォローの重み</td><td>+12</td><td>4.0</td></tr>
+<tr><td>通報といいねの関係</td><td>通報1件でいいね468件を相殺</td><td>件数の相殺ではなく確率への重み</td></tr>
+<tr><td>連投減衰の数値</td><td>2本目0.625等</td><td>一致</td></tr>
+<tr><td>フォロー外の係数</td><td>0.75倍</td><td>一致</td></tr>
+<tr><td>投稿の対象期限</td><td>48時間</td><td>一致</td></tr>
+</table></div>
+<p style="font-size:.85rem;color:var(--text-3)">自社の投稿が件数ではなく確率で評価されている前提を踏まえて発信を組み立てたい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
+
+<h2>連投・相互フォロー・フォロー外の実装</h2>
+<h3>同じ著者の連投は2本目から減衰する</h3>
+<p>同じ著者の投稿がタイムラインに連続して並ばないよう、連投には減衰の係数がかかります。数値はAuthorDiversityDecay 0.5、AuthorDiversityFloor 0.25です。計算すると、同じ著者の1本目の係数は1.0、2本目は0.625、3本目は0.4375、4本目は0.34375で、0.25という床に近づいていきます。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">同じ著者の連投は、2本目から表示が減衰する</p>
+<svg viewBox="0 0 1200 354" width="100%" style="min-width:640px" role="img" aria-label="同じ著者の連投は、2本目から表示が減衰する"><text x="162" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">1本目</text><rect x="180" y="50" width="820" height="34" rx="2" fill="#cfc5b4"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1.0倍</text><text x="162" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">2本目</text><rect x="180" y="102" width="512" height="34" rx="2" fill="#cfc5b4"/><text x="704" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0.625倍</text><text x="162" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">3本目</text><rect x="180" y="154" width="358" height="34" rx="2" fill="#cfc5b4"/><text x="550" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0.4375倍</text><text x="162" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">4本目</text><rect x="180" y="206" width="281" height="34" rx="2" fill="#2b2620"/><text x="473" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="start">0.34375倍</text><text x="600.0" y="296.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">4本目でほぼ床（0.25）に漸近する</text><text x="8" y="338" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：xai-org/x-algorithm param.rs（AuthorDiversityDecay 0.5・Floor 0.25）</text></svg>
+</div>
+<h3>相互フォローブーストが効くのは「オリジナル投稿だけ」</h3>
+<p>相互フォロー関係にある著者からの投稿を強くする重みもparam.rsにあります。値はBidirectionalFollowReplyWeightBoost 15.0です。適用条件を書いたコード、ranking_scorer.rsの180〜193行を読むと、この加点が効くのはリプライではなくリポストでもない、相互フォローの著者による投稿だけでした。対象の投稿が「リプライされる確率」に掛かる重みが、5.0から20.0に引き上がります。強くなるのは相互フォロー相手のオリジナル投稿だけで、相互フォロー相手へのリプライやリポスト自体はこの加点を受けません。</p>
+<div class="a-note"><strong>私たちの一次体験：</strong>このコードを検証する過程で、私たちも一度、名前から意味を読み違えました。BidirectionalFollowReplyWeightBoostという変数名を見て、最初は相互フォロー同士のリプライを全般的に強くするものだと考えていました。実際にranking_scorer.rsの適用条件まで読むと、対象は相互フォロー相手のオリジナル投稿だけでした。名前や解説から推測すると、逆に読んでしまうことがあります。適用条件のコードまで読んで、初めて事実になります。</div>
+<h3>フォロー外は0.75倍、投稿は48時間で対象外になる</h3>
+<p>フォローしていない著者の投稿は、スコアに0.75を掛けた値で評価されます。名前はOonWeightFactorです。投稿から48時間を過ぎると、候補を絞る段階でAgeFilterが除外します。設定名はMAX_POST_AGE、記載はconfig.rsの36行です。</p>
+
+<h2>小さいアカウントが救済される4つの条件</h2>
+<p>フォロワーが少ないアカウントのための仕組み「Cold Start」も、param.rsの647〜679行に書かれています。条件は4つ重なっていて、どれか1つでも外れると対象になりません。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>条件</th><th>数値</th></tr>
+<tr><td>フォロワー数の上限</td><td>1,000以下</td></tr>
+<tr><td>試験表示の枠</td><td>おすすめの15〜16枠目</td></tr>
+<tr><td>元のランキングの条件</td><td>上位85%以内</td></tr>
+<tr><td>投稿からの経過時間</td><td>24時間以内</td></tr>
+</table></div>
+<p>このうち4つ目、投稿から24時間以内という条件は、私たちが確認した範囲では、広まっている解説には出てきていませんでした。フォロワー1,000以下という条件だけを覚えていても、投稿から時間が経てば対象から外れます。</p>
+<p>通報についてもREADMEは補足しています。通報の影響は主に、通報した人と似た利用者への推薦に効くという説明です。悪意のある大量通報が、全員に対して同じだけランキングを下げるわけではありません。</p>
+
+<h2>中小企業の発信は何を変えるべきか</h2>
+<p>ここまでの実数を踏まえると、見直したいことは3つあります。</p>
+<p>1つ目は、いいね数だけで自社投稿の成否を判断しないことです。いいねの重みは0.5点、リンクコピーは20点で、40倍の差があります。いいねが並んでいても、コピーされて別の場所に貼られていない投稿は、この評価では軽いままです。</p>
+<p>2つ目は、連投で量を稼ぐより、誰かに送りたくなる1本を作ることです。同じ著者の投稿は2本目から係数が下がり、4本目でほぼ床に近づきます。数を出しても、2本目以降は表示上不利になっていきます。</p>
+<p>3つ目は、フォロワー1,000以下のアカウントほど、投稿から24時間以内の初速が勝負になることです。Cold Startの対象になれるのはこの24時間だけで、過ぎれば通常の評価に戻ります。重みの数値そのものは今後の実験で調整され得ますが、行動の予測確率で評価するという骨格は、公開されたコードを読む限り簡単には動きません。</p>
+
+<h2>よくある失敗——NGパターン</h2>
+<ul>
+<li><strong>①解説記事の数字をそのまま鵜呑みにする。</strong>フォローの重みを「+12」と信じて発信を組み立てると、実際の4.0とは前提がずれます。</li>
+<li><strong>②重みを件数の倍率と読み違える。</strong>通報1件はいいね468件分、という計算はREADME自身が誤りだとしています。重みは確率に掛かる数値です。</li>
+<li><strong>③古い版の数字と混同する。</strong>この記事の数値は2026年8月14日時点のコードに基づきます。時期がずれれば数値も変わり得ます。</li>
+<li><strong>④バズを狙って同じアカウントから連投する。</strong>2本目から係数が下がるため、投稿を増やすほど1本あたりの表示は不利になっていきます。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社の発信をこの実数に合わせて組み立て直したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>自分でコードを読むには何が必要ですか</summary><p>リポジトリxai-org/x-algorithmはApache License 2.0で公開されています。GitHubで無料で閲覧でき、重みの数値はhome-mixer/params/param.rsというファイルにまとまっています。プログラムを書けなくても、数値だけを追って確認することはできます。</p></details>
+<details><summary>自分のアカウントがシャドウバンされているか確認できますか</summary><p>8月13日の公開と同時に、透明性ツール「Under the Hood」が使えるようになりました。x.com/i/under_the_hood で、自分のアカウントや投稿に表示制限のラベルが付いているかどうかを、集計の形で確認できます。</p></details>
+<details><summary>通報1件はいいね468件分の重みですか</summary><p>違います。通報の重みはマイナス234.0、いいねの重みは0.5で、単純に割ると468倍という数字が出ますが、README自身がこの計算を誤りだと述べています。重みは行動の予測確率に掛かるものであり、件数の倍率として使う数字ではありません。</p></details>
+<details><summary>パラメータの数値は今後も変わりますか</summary><p>変わり得ます。READMEは、実験を通じて重みが調整されることを前提にしています。この記事の数値は2026年8月14日時点のコードに基づくもので、時期がずれると変わっている可能性があります。</p></details>
+<details><summary>フォロワーが少ないと不利になりますか</summary><p>一律に不利というわけではありません。フォロワー1,000以下で投稿から24時間以内であれば、Cold Startという救済枠でおすすめの15〜16枠目に試験的に表示される機会があります。ただし24時間を過ぎるとこの対象から外れます。</p></details>
+<details><summary>相互フォローなら常に投稿が伸びますか</summary><p>いいえ。相互フォローの加点が効くのは、リプライでもリポストでもない、相互フォロー相手のオリジナル投稿だけです。相互フォロー相手へのリプライやリポスト自体は、この加点の対象になりません。</p></details>
+<details><summary>2023年に公開されたコードと何が違いますか</summary><p>この記事は2026年8月13日と14日の更新を対象にしています。README上、この時点で予測行動の重み・フィルタのコード・Phoenixモデルの学習コードが新たに加わったと明記されており、以前の公開内容とは対象範囲が異なります。数値の比較まではこの記事では行っていません。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>Xは2026年8月13日、For Youアルゴリズムのコードを大幅公開しました。実際に読むと、いいねは0.5点、リンクコピーは20点で40倍の差があります。フォローの重みは、広まっている「+12」ではなく4.0でした。README自身は、重みを件数の倍率として読む誤解を名指しで注意しています。連投は2本目から係数が下がり、相互フォローブーストが効くのはオリジナル投稿だけで、フォロワー1,000以下のアカウントは投稿から24時間以内が救済の対象です。中小企業の発信で見るべきは、いいね数ではなく、コピーされて送られる1本を作れているかどうかです。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「バズらせる」ではなく、実数に基づいた発信を一緒に組み立てます。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・xai-org「<a href="https://github.com/xai-org/x-algorithm" target="_blank" rel="noopener">x-algorithm</a>」（GitHubリポジトリ・2026年8月13日大幅公開、8月14日更新確認）<br>
+・X「<a href="https://x.com/i/under_the_hood" target="_blank" rel="noopener">Under the Hood</a>」（透明性ツール・2026年8月13日公開）<br>
+・あわせて読む：<a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない</a>（当ブログ・2026年8月17日夕）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
