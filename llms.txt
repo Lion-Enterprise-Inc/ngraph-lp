@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [Qwenの最強モデルより手元で動く27Bが32倍ダウンロードされた——中小企業がローカルAIを判断する基準](https://ngraph.jp/blog/20260817-qwen-27b-local)
 - [イーロン・マスクが公開したコードから逆算する、Xの伸ばし方——いいねは0.5点、リンクコピーは20点](https://ngraph.jp/blog/20260817-x-algorithm-code)
 - [省力化投資補助金は生成AIの月額料金を補助しない——8月18日開始の第8回と、対象になるAIの条件](https://ngraph.jp/blog/20260817-shoryokuka-8ji)
 - [会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則](https://ngraph.jp/blog/k-company-brain-abc)
