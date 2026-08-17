@@ -75,7 +75,12 @@ def scan(path):
     if im.size != CANVAS:
         return None, "サイズが %s（想定 %s）" % (im.size, CANVAS)
     px = im.load()
-    x0, x1, y0, y1 = (KX0, KX1, KY0, KY1) if pattern_of(path) == "k-b-diagram" else (X0, X1, Y0, Y1)
+    pat = pattern_of(path)
+    # visual-gen（2026-08-17・画像生成表紙の試験運用）: 全面イラストで「テキスト枠と図案の重なり」
+    # という前提自体が無い。検査対象外にする（対象外は呼び出し側の出力で見えるようにする）
+    if pat == "visual-gen":
+        return 0, None
+    x0, x1, y0, y1 = (KX0, KX1, KY0, KY1) if pat == "k-b-diagram" else (X0, X1, Y0, Y1)
     n = 0
     for y in range(y0, y1):
         for x in range(x0, x1):
