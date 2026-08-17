@@ -54,7 +54,7 @@ EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 BLOGOPS_PATH = os.environ.get("X_BLOGOPS_PATH", os.path.join(REPO, "BLOG-OPS.md"))
 TPL_START = "<!-- x-handoff-template:start -->"
 TPL_END = "<!-- x-handoff-template:end -->"
-TEMPLATE_HASH = "a59a44c3ea02"
+TEMPLATE_HASH = "cf0fd5083c6a"
 
 
 def template_block(path=None):
@@ -89,6 +89,30 @@ def require_template_current(label):
         sys.exit(f"NG（{label}）: 正本の定型が変わっている（正本 {h} / ツール {TEMPLATE_HASH}）。\n"
                  "  BLOG-OPS §7「応答の定型」を読み、x_article.py の出力と TEMPLATE_HASH を追随させてから使うこと")
     return h
+
+
+def hang_text(slug):
+    """ぶら下がり（本ポスト直下の自己リプ）の文面を記事から自動生成する（2026-08-17新設・
+    髙橋さん「Xのアルゴリズムの仕様などうちのブログ運用全部に恒久的に効くように構造取り込んで」）。
+
+    役割: 本文カードを汚さずにリンクの置き場を作る＝①一次情報（記事の参考枠の先頭外部リンク）
+    ②ブログ版URL（t.co計測の導線・GA4で参照元x.comとして数えられる）。
+    アルゴリズム上リプライ自体は加点対象外だが、目的はリーチではなく導線と計測。"""
+    src = open(os.path.join(REPO, "blog", slug + ".html"), encoding="utf-8").read()
+    soup = BeautifulSoup(src, "html.parser")
+    box = soup.find("div", class_="a-src")
+    first = None
+    if box:
+        for a in box.find_all("a"):
+            href = a.get("href") or ""
+            if href.startswith("http") and "ngraph.jp" not in href:
+                first = (a.get_text(strip=True), href)
+                break
+    parts = []
+    if first:
+        parts += [f"一次情報（{first[0]}）", first[1], ""]
+    parts += ["ブログ版（全文・図表つき）", f"{SITE}/blog/{slug}"]
+    return chr(10).join(parts)
 
 
 def receipt_path(slug):
@@ -912,6 +936,8 @@ def main():
         print(f"**キャプション**（記事URLは入れていません）\n```\n{a.caption}\n```\n")
         print(f'**カバー画像**（▷を押すとフォルダが開き、対象の1枚が選択済み。そのままXへドラッグ）\n'
               f'```bash\nexplorer /select,"{cover}"\n```\n')
+        print('**ぶら下がり**（Article公開後、自分のポストに返信で貼る）\n'
+              '```\n' + hang_text(a.slug) + '\n```\n')
         print("順番は ▷ → 記事を作成 → 本文欄に Ctrl+V → そのあとタイトル・キャプション → カバー画像 → 公開。")
         print("===== ここまで =====")
         return
