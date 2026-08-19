@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [106万円の壁は2026年10月に消える——1,016円で自動加入になる仕組みと、51人未満の会社に来る2027年10月](https://ngraph.jp/blog/20260819-106man-kabe)
 - [AIが作った営業資料は、絵で落ちる——15枚の移植で2回差し戻された理由と、文字と絵を分ける設計](https://ngraph.jp/blog/20260818-ai-shiryo-sakusei)
 - [Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方](https://ngraph.jp/blog/20260818-imagen4-shutdown)
 - [Claude CodeにXの伸ばし方を毎週学ばせる——フォロワー95人で回し始めた「標本ループ」の設計図](https://ngraph.jp/blog/k-x-loop)
