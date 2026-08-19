@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則</title>
+<meta name="description" content="AIに同じ注意を繰り返している会社は多いはずです。基準を会話から指示書と機械検査に降ろす「基準の三段降ろし」という設計と、実測した閾値の根拠、行き詰まった2つの失敗をそのまま公開します。">
+<meta property="og:title" content="AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則">
+<meta property="og:description" content="AIに同じ注意を繰り返している会社は多いはずです。基準を会話から指示書と機械検査に降ろす「基準の三段降ろし」という設計と、実測した閾値の根拠、行き詰まった2つの失敗をそのまま公開します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-writing-standard">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-writing-standard.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-writing-standard">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則",
+  "image": "https://ngraph.jp/assets/blog/k-writing-standard.jpg",
+  "description": "AIに同じ注意を繰り返している会社は多いはずです。基準を会話から指示書と機械検査に降ろす「基準の三段降ろし」という設計と、実測した閾値の根拠、行き詰まった2つの失敗をそのまま公開します。",
+  "datePublished": "2026-08-19",
+  "dateModified": "2026-08-19",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-writing-standard",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則</h1>
+  <span class="a-date">2026.08.19 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-writing-standard.jpg" alt="AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則">
+<p>AIに文章を書かせている会社の多くが、同じ場所でつまずきます。担当者が言い回しを直させ、その回は直る。ところが次の生成では、同じ癖がまた出てきます。うちも先週まで同じ状態でした。2026年8月16日、代表の髙橋から「同じ語尾が3回続く日本語はやばい」「最初の一文で何の話か分からないと、そこで離脱する」という指摘を受けた日、直す先を担当者への注意から変えました。AIが毎回読む指示書と、公開前に必ず走る機械検査に、基準そのものを移したのです。この記事では、その設計に付けた名前「基準の三段降ろし」と、実際に置いた5つの原則、そして基準を作った本人が自分の基準に落ちたという失敗を、実測した数字とともに公開します。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・AIへの注意が翌週に残らない、2つの構造的な理由<br>
+・基準の三段降ろし＝口頭の注意→指示書→機械検査という設計<br>
+・機械に渡してよい基準と、人が持つべき基準の分け方<br>
+・自社で今日から始められる最小5段階</div>
+
+<h2>「気をつけます」で終わった指摘は、翌週には残っていない</h2>
+<p>AIに文章を書かせている現場で、同じ場面がよく起きます。担当者が「ここの言い回しを直して」と指摘し、その回だけは直ります。ところが次に生成させると、同じ癖がまた出てきます。担当者は同じ注意をもう一度口にし、そのうち指摘そのものをやめてしまいます。</p>
+<p>原因は担当者の根気ではありません。AIは前回の注意を、次の会話に持ち越さないからです。会話の中だけで直した基準は、その会話が終わった瞬間に消えます。ところが多くの現場では、基準は担当者の記憶と、過去のやり取りの奥にしか置かれていません。文章に限った話ではなく、見積の書き方でも、報告の形式でも、同じことが起きます。</p>
+<p>うちも同じ場所で止まっていました。2026年8月16日、代表の髙橋から「同じ語尾が3回続く日本語はやばい」「最初の一文で何の話か分からないと、そこで離脱する」という指摘を受けました。その日のうちに取った行動は、その回の文章を直すことではありませんでした。指摘そのものを、AIが毎回読む場所へ移したのです。</p>
+
+<h2>基準を置ける場所は3つある</h2>
+<p>基準には、置ける場所が3つあります。1つ目は口頭の注意です。会話の中でその場だけ直す方法で、直った証拠は誰かの記憶にしか残りません。担当者が変わった瞬間、あるいはAIとの会話が終わった瞬間に消えます。</p>
+<p>2つ目は、AIが毎回読む指示書です。生成の前に必ず目を通す場所に基準を書いておけば、会話をまたいでも同じ基準が効きます。書き手が誰であっても、AIのモデルが替わっても、指示書がある限り基準は残ります。</p>
+<p>3つ目は、公開する前に必ず走る機械の検査です。人はどれだけ丁寧に注意していても、忙しい日には確認を飛ばします。機械の検査は忘れません。数えられる基準だけしか渡せませんが、走らせ忘れることがないという一点で、指示書よりさらに強い場所です。</p>
+<p>私たちはこの3段を「基準の三段降ろし」と呼んでいます。下の図が、その3段それぞれの基準がどれだけ残り、誰を守るかをまとめたものです。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">基準の三段降ろし</p>
+<svg viewBox="0 0 1200 420" width="100%" style="min-width:640px" role="img" aria-label="基準を置ける3つの場所。①口頭の注意は1回で消え聞いていた本人しか守らない。②毎回読ませる指示書はAIが生成前に毎回読み、書き換えるまで残り、AIが書くもの全部を守る。③公開前の機械検査は人が忘れても走り、検査を緩めない限り恒久に残り、担当者が変わっても同じ基準で守る">
+<rect x="40" y="80" width="340" height="260" rx="4" fill="none" stroke="#8a8172" stroke-width="1.5"/>
+<text x="210" y="135" font-family="'Zen Kaku Gothic New',sans-serif" font-size="25" fill="#2b2620" font-weight="700" text-anchor="middle">① 口頭の注意</text>
+<text x="210" y="172" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">会話の中でその場だけ直す</text>
+<text x="210" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">残る期間：1回</text>
+<text x="210" y="270" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">守る相手：聞いていた本人だけ</text>
+
+<rect x="430" y="80" width="340" height="260" rx="4" fill="none" stroke="#8a8172" stroke-width="2.5"/>
+<text x="600" y="135" font-family="'Zen Kaku Gothic New',sans-serif" font-size="25" fill="#2b2620" font-weight="700" text-anchor="middle">② 毎回読ませる指示書</text>
+<text x="600" y="172" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">AIが生成する前に必ず読む</text>
+<text x="600" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">残る期間：書き換えるまで</text>
+<text x="600" y="270" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#5c544a" text-anchor="middle">守る相手：AIが書くもの全部</text>
+
+<rect x="820" y="80" width="340" height="260" rx="4" fill="#a63a24"/>
+<text x="990" y="135" font-family="'Zen Kaku Gothic New',sans-serif" font-size="25" fill="#f6f2e9" font-weight="700" text-anchor="middle">③ 公開前の機械検査</text>
+<text x="990" y="172" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#f6f2e9" text-anchor="middle">人が忘れても検査は走る</text>
+<text x="990" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#f6f2e9" text-anchor="middle">残る期間：緩めない限り恒久</text>
+<text x="990" y="270" font-family="'Zen Kaku Gothic New',sans-serif" font-size="16" fill="#f6f2e9" text-anchor="middle">守る相手：担当者が変わっても同じ</text>
+
+<line x1="380" y1="210" x2="422" y2="210" stroke="#8a8172" stroke-width="2"/><path d="M422 210 l-14 -7 v14 z" fill="#8a8172"/>
+<line x1="770" y1="210" x2="812" y2="210" stroke="#8a8172" stroke-width="2"/><path d="M812 210 l-14 -7 v14 z" fill="#8a8172"/>
+<text x="8" y="400" font-family="'Zen Kaku Gothic New',sans-serif" font-size="14" fill="#8a8172" text-anchor="start">右へ進むほど、基準が消えにくくなる。機械に渡せるのは数えられる基準だけ</text>
+</svg>
+</div>
+
+<h2>原則1：基準は会話ではなく「毎回読ませる指示書」に書く</h2>
+<p>AIに同じ注意を2回しても直らなかったら、直す先を担当者の言葉ではなく、AIが毎回読む指示書に変えます。これが原則1です。AIは前回の注意を持ち越さないので、基準は会話の外に置くしかありません。</p>
+<p>2026年8月16日の指摘を受けたその日のうちに、私たちは読まれている記事や文章術の本から要素を取り出し、AIが毎回読む指示書を作りました。同じ日の記事で、同じ語尾が続く最長の連続は4回から2回に減りました。基準を会話から指示書へ移しただけで、その日のうちに数字が動いたことになります。</p>
+<p>指示書に書くのは、直った理由の長い説明ではありません。何を避け、何を選ぶかという、判断のための短い基準です。説明を長く書くほど、AIはどこが基準でどこが背景説明かを見失います。</p>
+
+<h2>原則2：数えられるものだけを機械に渡す</h2>
+<p>指示書に書いた基準のうち、機械で数えられるものだけを、さらに公開前の検査に渡します。私たちがいま機械にしている基準は4つです。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>番号</th><th>機械に渡した基準</th><th>上限</th></tr>
+<tr><td>①</td><td>同じ語尾の3連続を落とす</td><td>3連続まで</td></tr>
+<tr><td>②</td><td>文末に占める「ました。」の割合</td><td>30%</td></tr>
+<tr><td>③</td><td>60字を超える文の割合</td><td>40%</td></tr>
+<tr><td>④</td><td>絵の浮かばない抽象語の密度</td><td>1000字あたり5.5回</td></tr>
+</table></div>
+<p>数えられないものを機械に渡さない、というのが原則2のもう半分です。分かりにくいと言われた原因は、主語が他人事のように書かれていることと、新しく作った言葉に説明がないことでした。この2つは、文字列を数えるだけでは判定できません。無理に機械へ渡すと、通っていない文章を通ったと誤判定する検査ができあがります。だから数えられないものは、最初から人が持つと決めています。</p>
+
+<h2>原則3：閾値は勘で置かず、自分の過去の実測から引く</h2>
+<p>基準を機械に渡すと決めても、線をどこに引くかで検査の意味が変わります。私たちは、既存の61本の記事を実測してから線を引きました。</p>
+<p>60字を超える文の割合は、最も少ない記事で3%、真ん中の記事で31%、平均で28.5%、最も多い記事で54%でした。上限を40%に置いたのは、真ん中の31%にはまだ余裕があり、実測の中でもとくに悪かった43%から54%の群だけが落ちる位置だからです。</p>
+<p>絵の浮かばない抽象語の密度は、1000字あたりに直すと、真ん中の記事で1.8回、平均で1.9回、最も多い記事で6.8回でした。分布を見ると、5.4回と6.6回のあいだにだけ自然な切れ目があり、そこに線を引いて5.5回としました。基準点は2つあります。「内容はいいが、何を言っているか分からない」と言われた記事が6.8回、「いい記事だ」と評された記事が2.9回でした。</p>
+
+<h2>原則4：検査そのものを検査する</h2>
+<p>検査は、落とすべき文章だけを見本にして作ると育ちません。落ちてほしくない文章を見本として書き、それが実際に通るかどうかも、検査を作った本人が確かめる必要があります。</p>
+<p>これを怠ると起きるのが、検査を作った本人が、自分の検査に落ちるという事故です。私たちはこれを実際に経験しました。次の章で正直に書きます。</p>
+<p>検査そのものを検査するとは、通ってほしい文章と、落ちてほしい文章を、両方とも用意しておくことです。落ちてほしい文章しか用意しないと、検査が厳しすぎて普段の執筆を止めているのか、逆に緩すぎて何も拾っていないのかが、誰にも分からなくなります。</p>
+
+<h2>原則5：「通ったから良い」ではない、と検査自身に書いておく</h2>
+<p>機械の検査は、基準の一部しか見ていません。この事実を、検査の説明の冒頭に書いておくのが原則5です。</p>
+<p>指摘の主な原因だった「主語が他人事のように書かれている」ことと、「新しく作った言葉に説明がない」ことは、文字列では判定できません。実際、分かりにくいと言われたその記事は、長い文の割合が11%、言い回しの反復が0件で、この2つの検査には引っかかっていませんでした。引っかかったのは、抽象語の密度、ただ1つの検査だけです。</p>
+<p>だから検査の説明の冒頭には「これを通ったから読みやすい、という意味ではない」と書いてあります。作った人間が忘れやすいのは、検査に落ちた文章の直し方ではなく、検査を通った文章をそのまま信じてしまうことのほうです。</p>
+
+<h2>つまずいた2つ</h2>
+<p>うまくいった話だけでは、この設計は再現できません。実際に踏んだ2つの失敗を、そのまま書きます。</p>
+<div class="a-note"><strong>1つ目：合格側の見本として書いた文章が、自分で決めた基準に引っかかりました。</strong> 検査に通るべき文章の見本を書こうとしたところ、絵の浮かばない抽象語の密度が、自分で置いた上限を超えていました。基準を作った本人が、その基準を満たす文章をすぐには書けなかったことになります。閾値が現実的かどうかは、通る側の見本を実際に書いてみるまで分かりません。数字だけを見て線を引いた段階では、まだ答え合わせが終わっていないということです。</div>
+<div class="a-note"><strong>2つ目：1本の記事を手で直しても、次の記事で必ず再発しました。</strong> 指摘を受けた記事だけをその場で直して終わると、指摘は資産になりません。人が手で直した修正は、その記事の中にしか残らず、次にAIが書く記事には引き継がれません。基準を指示書と検査に降ろして初めて、次の記事にも同じ基準が働きます。</div>
+
+<h2>自社でやるなら：最小5段階</h2>
+<p>専用の道具がなくても、この設計は始められます。人力と表計算だけで、次の5段階から始められます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>やること</th><th>かかる時間</th></tr>
+<tr><td>1. 回数を数える</td><td>直近1週間で、同じ注意を何回したかを数える</td><td>10分</td></tr>
+<tr><td>2. 基準文にする</td><td>その注意を1行の基準文にして、AIに毎回読ませる場所へ置く</td><td>15分</td></tr>
+<tr><td>3. 検査を1つ選ぶ</td><td>数えられる基準を1つだけ選び、公開前に見る検査にする</td><td>15分</td></tr>
+<tr><td>4. 見本を2本置く</td><td>通るべき見本とダメな見本を、それぞれ1本ずつ置く</td><td>15分</td></tr>
+<tr><td>5. 直前の位置に置く</td><td>提出・公開の直前に、必ず目を通す位置に検査を置く</td><td>5分</td></tr>
+</table></div>
+<p>AIに任せる場合に決めておくことが1つあります。数えられる基準だけを検査に渡し、数えられない基準は人が持つと最初に決めることです。この線引きを曖昧にしたまま検査を作ると、通っていない文章を通ったと誤判定する検査ができあがります。</p>
+
+<h2>まとめ</h2>
+<ul>
+<li>AIは前回の注意を持ち越さない。基準は会話ではなく、AIが毎回読む指示書に書く</li>
+<li>基準の置き場所は3段ある。口頭の注意は1回で消え、指示書は毎回効き、機械検査は人が忘れても走る</li>
+<li>機械に渡すのは数えられる基準だけ。数えられない基準は人が持つと先に決める</li>
+<li>閾値は勘で置かない。自分の過去の実測から、悪い群だけが落ちる位置に線を引く</li>
+<li>検査そのものを検査する。通るべき見本を書いてみて、初めて閾値の現実性が分かる</li>
+<li>「通ったから良い」ではないと、検査の説明自身に書いておく</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、FDE型AI導入伴走支援を承っております。</p>
+  <p>今回のような「品質基準を指示書と機械検査に降ろす仕組み」の構築を、エンジニアが御社の現場に入って行います。文章に限らず、見積・報告・検査といった定型業務まで一貫して支援します。ご依頼は随時募集しています。お気軽にご相談ください。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a>　／　<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援の詳細はこちら →</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・本文の数値はすべて2026年8月時点の自社リポジトリでの実測です<br>
+・関連記事：<a href="/blog/k-blog-gate">毎日出す仕事を、人の目で守るのをやめる——公開前ゲート13本の設計</a>／<a href="/blog/k-company-brain-abc">会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則</a>／<a href="/blog/k-x-loop">Claude CodeにXの伸ばし方を48時間ごとに学ばせる——フォロワー95人で回している「標本ループ」の設計図</a></div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

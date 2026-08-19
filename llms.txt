@@ -85,6 +85,7 @@
 - [AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳](https://ngraph.jp/blog/ai-cost)
 - [中小企業のAI導入ロードマップ](https://ngraph.jp/blog/ai-roadmap)
 - [AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き](https://ngraph.jp/blog/ai-and-humans)
+- [AIに同じ注意を3回したら、直すのは指示書のほう——文章の品質を機械で守る5つの原則](https://ngraph.jp/blog/k-writing-standard)
 
 ## 会社情報
 
