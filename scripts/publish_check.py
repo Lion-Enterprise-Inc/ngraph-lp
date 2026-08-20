@@ -33,6 +33,7 @@ SITE = "https://ngraph.jp"
 BLOG = ROOT / "blog"
 SITEMAP = ROOT / "sitemap.xml"
 LLMS = ROOT / "llms.txt"
+INDEX = ROOT / "blog" / "index.html"
 
 LLMS_SECTION = "## ブログ（AI導入の実践知）"
 DATED = re.compile(r"^(\d{4})(\d{2})(\d{2})-")
@@ -112,6 +113,40 @@ def check_llms():
     ]
 
 
+def check_title_sync():
+    """一覧（blog/index.html）と llms.txt のタイトルが、記事のh1と一致しているか。
+
+    ⚠なぜ要るか〔2026-08-20実測〕: `k-writing-standard` は、記事本体だけ改題されて
+    一覧と llms.txt が**旧タイトルのまま公開されていた**（しかも一覧の説明文は
+    没にした旧構想「基準の三段降ろし」のまま。記事本文は「基準の移送」）。
+    改題は記事HTMLの5箇所を直すので「直した」感覚になるが、配線側は別ファイルなので
+    黙って取り残される。既存の配線検査は **URLがあるか**しか見ていないため素通りした。
+    改題は今後も起きる（この記事だけで2回）ので、突合を機械に持たせる。
+
+    比較は記事h1の全文一致。一覧は文字数の都合で短縮したくなるが、**短縮したい
+    ならh1ごと短くする**のが正しい（一覧と本体で別の題が存在する状態を許さない）。
+    """
+    bad = []
+    idx = INDEX.read_text(encoding="utf-8")
+    lms = LLMS.read_text(encoding="utf-8")
+    for s in articles():
+        h1 = h1_of(s)
+        if not h1:
+            continue
+        # 一覧のカード: <h3><a href="/blog/<slug>">タイトル</a></h3>
+        m = re.search(r'<h3><a href="/blog/%s">(.*?)</a></h3>' % re.escape(s), idx, re.S)
+        if m:
+            got = html.unescape(" ".join(re.sub(r"<[^>]+>", "", m.group(1)).split()))
+            if got != h1:
+                bad.append("一覧のタイトルが記事h1と違う: %s\n    一覧: %s\n    記事: %s" % (s, got, h1))
+        # llms.txt: - [タイトル](https://ngraph.jp/blog/<slug>)
+        m = re.search(r"- \[(.*?)\]\(%s/blog/%s\)" % (re.escape(SITE), re.escape(s)), lms)
+        if m and m.group(1) != h1:
+            bad.append("llms.txt のタイトルが記事h1と違う: %s\n    llms: %s\n    記事: %s"
+                       % (s, m.group(1), h1))
+    return bad
+
+
 def check_blog_lastmod():
     latest = latest_article_date()
     if not latest:
@@ -171,6 +206,15 @@ def check_css_version():
 
 
 CHECKS = [check_sitemap, check_llms, check_blog_lastmod, check_alt, check_css_version]
+# check_title_sync は CHECKS に入れない（gate.py が report-only で回す）。
+# 理由〔2026-08-20〕: 導入時点で既存14件が不一致で、fail-closed にすると公開が全部止まる。
+# しかも14件は性質が3つに分かれ、機械では正解を決められない——
+#   ①改題が配線に反映されていない事故（最低賃金・k-x-loop 等6件。直すべき）
+#   ②llms.txt が恒久記事の題を意図的に短縮している（「営業のAI活用」等6件。正しいかもしれない）
+#   ③引用符だけの差（1件）
+# ②を機械が「不一致」として書き換えると、意図した索引名を壊す。よって**落とさず毎回全件出す**
+# （黙って対象外にすると検査が死ぬ＝memory feedback_broken_gate_hides_violations）。
+# 全件が①②のどちらか確定したら fail-closed へ上げる。
 
 
 # ---------------------------------------------------------------- 修正

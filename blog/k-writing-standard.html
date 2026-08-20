@@ -10,9 +10,9 @@
   gtag('js', new Date());
   gtag('config', 'G-L96HMXRK1D');
 </script>
-<title>「ちゃんと指示すれば直る」と思う会社ほど、AIに同じ修正を出し続ける——品質基準を人の口から外す設計 | NGraphブログ</title>
+<title>AIに同じ修正を3回出している会社は、4回目も同じ結果になる | NGraphブログ</title>
 <meta name="description" content="AIに出した修正指示は、次の生成には引き継がれません。基準を人の口から外し、AIが毎回読む指示書と、提出前に必ず走る検査へ移す設計です。閾値の決め方と、基準を作った本人が自分の基準に落ちた失敗まで公開します。">
-<meta property="og:title" content="「ちゃんと指示すれば直る」と思う会社ほど、AIに同じ修正を出し続ける——品質基準を人の口から外す設計 | NGraphブログ">
+<meta property="og:title" content="AIに同じ修正を3回出している会社は、4回目も同じ結果になる | NGraphブログ">
 <meta property="og:description" content="AIに出した修正指示は、次の生成には引き継がれません。基準を人の口から外し、AIが毎回読む指示書と、提出前に必ず走る検査へ移す設計です。閾値の決め方と、基準を作った本人が自分の基準に落ちた失敗まで公開します。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ngraph.jp/blog/k-writing-standard">
@@ -33,7 +33,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "「ちゃんと指示すれば直る」と思う会社ほど、AIに同じ修正を出し続ける——品質基準を人の口から外す設計",
+  "headline": "AIに同じ修正を3回出している会社は、4回目も同じ結果になる",
   "image": "https://ngraph.jp/assets/blog/k-writing-standard.jpg",
   "description": "AIに出した修正指示は、次の生成には引き継がれません。基準を人の口から外し、AIが毎回読む指示書と、提出前に必ず走る検査へ移す設計です。閾値の決め方と、基準を作った本人が自分の基準に落ちた失敗まで公開します。",
   "datePublished": "2026-08-19",
@@ -61,9 +61,9 @@
 
 <article class="article-wrap">
   <div class="a-label">N-KNOWLEDGE</div>
-  <h1>「ちゃんと指示すれば直る」と思う会社ほど、AIに同じ修正を出し続ける——品質基準を人の口から外す設計</h1>
+  <h1>AIに同じ修正を3回出している会社は、4回目も同じ結果になる</h1>
   <span class="a-date">2026.08.19 ナレッジ ｜ 株式会社NGraph</span>
-  <img class="a-eyecatch" src="/assets/blog/k-writing-standard.jpg" alt="「ちゃんと指示すれば直る」と思う会社ほど、AIに同じ修正を出し続ける——品質基準を人の口から外す設計">
+  <img class="a-eyecatch" src="/assets/blog/k-writing-standard.jpg" alt="AIに同じ修正を3回出している会社は、4回目も同じ結果になる">
 <p>AIに議事録や見積の下書きを書かせている会社で、同じ場面が繰り返し起きています。担当者が「この言い回しを直して」と指示を出し、その回は直る。ところが翌日また書かせると、同じ癖が戻っている。担当者はもう一度同じ指示を出し、3回目あたりで指摘するのをやめます。これはAIの性能でも、担当者の根気でもなく、<strong>指示を置いた場所</strong>の問題です。NGraphは2026年8月16日にこの問題へ正面からぶつかり、その日のうちに基準の置き場所を変えました。この記事で公開するのは、そのとき使った「基準の移送」という設計と、閾値の決め方、そして基準を作った本人が自分の基準に落ちた失敗です。</p>
 <div class="a-toc"><strong>この記事でわかること</strong><br>
 ・AIへの指示が翌日に残らない理由と、それが担当者の責任ではない根拠<br>

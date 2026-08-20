@@ -43,6 +43,7 @@ CHECKS = [
     ("図のブロックの二重包み", "fig_lint.py", [], False),
     ("正本の出所（誰が決めた行かの印）", "knowledge_ops_lint.py", [], False),
     ("書いたのにpushされていない記事・表紙（report-only）", "unpushed_check.py", [], False),
+    ("一覧/llms.txt と記事h1のタイトル不一致（report-only）", "title_sync_check.py", [], False),
 ]
 
 
