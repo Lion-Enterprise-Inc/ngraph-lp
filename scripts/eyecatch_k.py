@@ -133,7 +133,11 @@ def main():
     p.add_argument("--label",default="N-KNOWLEDGE")
     p.add_argument("--foot",default="FIELD NOTE  /  COMPANY BRAIN")
     p.add_argument("--out",required=True);p.add_argument("--record");p.add_argument("--article")
+    p.add_argument("--wide",action="store_true",
+                   help="X Articles用の横長版(1500x600)。ブログの表紙は1200x630のままが正なので --record と併用不可")
     a=p.parse_args()
+    if a.wide and a.record:
+        print("NG: --wide は --record と併用しない（ブログ用の表紙の記録を横長版で上書きしないため）",file=sys.stderr);return 3
     try:
         out=Path(a.out);out.parent.mkdir(parents=True,exist_ok=True)
         if a.layout=="title":
@@ -149,7 +153,7 @@ def main():
             svg=build(a.slug,a.title,a.sub,a.hub,nodes,a.label,a.foot,fs,ls)
         # 移植時の統合（2026-08-15）: --out が .jpg なら既存表紙と同じ経路でJPG化する。
         # SVG生成と自己検査までがCodexの納品契約で、レンダリングは受入側の持ち場
-        if out.suffix.lower() in (".jpg",".jpeg"):svg_to_jpg(svg,str(out))
+        if out.suffix.lower() in (".jpg",".jpeg"):svg_to_jpg(svg,str(out),wide=a.wide)
         else:out.write_text(svg+"\n",encoding="utf-8")
         if a.record:record(Path(a.record),a.slug,a.title.replace("|",""),a.sub,fs,a.article,
                            "k-title" if a.layout=="title" else "k-b-diagram")
@@ -166,17 +170,34 @@ import time as _time
 
 _EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 
-def svg_to_jpg(svg_text, out_jpg):
+def svg_to_jpg(svg_text, out_jpg, wide=False):
+    """SVGをJPGにする。wide=True で X Articles 用の横長版（1500x600）。
+
+    なぜ横長版が要るか〔実測 2026-08-17・eyecatch_gen.py と同じ根拠〕: Xのカバー枠は
+    約2.5〜2.7:1で、1200x630（1.90:1）を上げると**上下が切れて見出しとラベルが飛ぶ**。
+
+    k系の表紙は座標が焼かれたSVGなので、eyecatch_gen.py の --wide（同じHTMLを広い
+    ビューポートで描き直す）と同じ手は使えない。代わりに**1500x600の地色の上に、
+    SVG全体を高さ600に合わせて（1143x600）中央へ置く**。切り抜きではないので文字は
+    1つも欠けない（縦横とも95.2%の等倍縮小）。左右の余白は表紙と同じ地色 #f6f2e9 で埋める。
+    """
+    cw, ch = (1500, 600) if wide else (1200, 630)
+    if wide:
+        sw, sh = 1143, 600          # 1200x630 を高さ600に合わせた等倍（左右に178.5pxずつ余白）
+        box = ('body{width:1500px;height:600px;overflow:hidden;background:#f6f2e9;'
+               'display:flex;align-items:center;justify-content:center}'
+               'svg{display:block;width:%dpx;height:%dpx}' % (sw, sh))
+    else:
+        box = ('body{width:1200px;height:630px;overflow:hidden}'
+               'svg{display:block;width:1200px;height:630px}')
     d = _tmp.mkdtemp(prefix="eyecatch_k_")
     hp = os.path.join(d, "cover.html")
     open(hp, "w", encoding="utf-8").write(
-        '<!doctype html><meta charset="utf-8"><style>*{margin:0}'
-        'body{width:1200px;height:630px;overflow:hidden}'
-        'svg{display:block;width:1200px;height:630px}</style>' + svg_text)
+        '<!doctype html><meta charset="utf-8"><style>*{margin:0}' + box + '</style>' + svg_text)
     png = os.path.join(d, "cover.png")
     udd = _tmp.mkdtemp(prefix="eyecatch_k_udd_")
     _sp.run([_EDGE, "--headless=new", "--no-sandbox", "--disable-gpu",
-             "--window-size=1200,630", "--user-data-dir=" + udd,
+             "--window-size=%d,%d" % (cw, ch), "--user-data-dir=" + udd,
              "--hide-scrollbars", "--virtual-time-budget=8000",
              "--screenshot=" + png, "file:///" + hp.replace("\\", "/")],
             capture_output=True)
@@ -194,4 +215,7 @@ def svg_to_jpg(svg_text, out_jpg):
 
 
 if __name__ == "__main__":
-    main()
+    # main() の戻り値を捨てていたため、ERROR でも exit 0 で返っていた（2026-08-20実測）。
+    # 呼び出し側（x_article.py の横長カバー生成）は returncode で成否を見るので、
+    # 失敗が成功として通っていた
+    sys.exit(main())

@@ -118,19 +118,42 @@ def make_wide_cover(slug, d, cover, is_fig=False):
               "（eyecatch_gen.py で作り直すと横長版が付きます）")
         return cover
     wide = os.path.join(d, f"カバー画像_{slug}_1500x600.jpg")
-    r = subprocess.run(
-        [sys.executable, os.path.join(REPO, "scripts", "eyecatch_gen.py"), slug,
-         rec.get("title", ""), rec.get("sub", ""), rec.get("pattern", ""),
-         "--wide", "--out=" + wide],
-        capture_output=True, encoding="utf-8", errors="replace",
-        env=dict(os.environ, PYTHONIOENCODING="utf-8"))
-    if r.returncode != 0 or not os.path.exists(wide):
-        print("⚠ カバー画像: 横長版の生成に失敗したので1200x630のまま。Xでは上下が切れます")
-        print("   " + (r.stdout or r.stderr or "").strip()[:200])
+    # 表紙の生成器は2系統ある（BLOG-OPS §3＝eyecatch_gen.py ／ KNOWLEDGE-OPS §2＝eyecatch_k.py）。
+    # pattern で振り分ける。ここを1系統だと決め打ちしていたため、ナレッジ記事(k-title)は
+    # 「unknown pattern」で横長版が作れず、上下が切れたまま渡っていた〔2026-08-20実測〕。
+    pattern = rec.get("pattern", "")
+    # 表紙の生成器は2系統ある（BLOG-OPS §3＝eyecatch_gen.py ／ KNOWLEDGE-OPS §2＝eyecatch_k.py）。
+    # 描き直せるのは前者だけ: 後者の記録は改行指定「|」を落として保存しているため（eyecatch_k.py
+    # の record()）、記録からは行が復元できず「行が助詞で始まる」で必ず落ちる。
+    # よって描き直しは通常パターンに限り、それ以外は下の台紙置きへ回す〔2026-08-20実測〕。
+    if pattern and not pattern.startswith("k-") and pattern != "visual-gen":
+        r = subprocess.run(
+            [sys.executable, os.path.join(REPO, "scripts", "eyecatch_gen.py"), slug,
+             rec.get("title", ""), rec.get("sub", ""), pattern, "--wide", "--out=" + wide],
+            capture_output=True, encoding="utf-8", errors="replace",
+            env=dict(os.environ, PYTHONIOENCODING="utf-8"))
+        if r.returncode == 0 and os.path.exists(wide):
+            os.remove(cover)
+            print("カバー画像: X用の横長版 1500x600 を生成（ブログ側のOGPは1200x630のまま）")
+            return wide
+        print("   横長版の描き直しに失敗したので台紙に置く: "
+              + (r.stdout or r.stderr or "").strip()[:120])
+    # 台紙置き（描き直せない表紙ぜんぶの受け皿）。既存の1200x630を高さ600の等倍に縮めて
+    # 1500x600の地色の上へ中央配置する。切り抜きではないので文字は1つも欠けない。
+    # 地色は表紙の左上1pxから取る（系統ごとに違うので決め打ちしない）
+    try:
+        from PIL import Image
+        src = Image.open(cover).convert("RGB")
+        sw = max(1, round(src.width * 600 / src.height))
+        canvas = Image.new("RGB", (1500, 600), src.getpixel((1, 1)))
+        canvas.paste(src.resize((sw, 600), Image.LANCZOS), ((1500 - sw) // 2, 0))
+        canvas.save(wide, "JPEG", quality=88)
+    except Exception as e:
+        print(f"⚠ カバー画像: 横長版を作れなかったので1200x630のまま。Xでは上下が切れます（{e}）")
         return cover
-    # 1枚だけ渡す（隣のjpgを掴む事故の防止・BLOG-OPS §7）
     os.remove(cover)
-    print("カバー画像: X用の横長版 1500x600 を生成（ブログ側のOGPは1200x630のまま）")
+    print(f"カバー画像: X用の横長版 1500x600 を生成（表紙 {pattern or '不明'} は描き直せないので"
+          "地色の台紙に等倍で載せた。ブログ側のOGPは1200x630のまま）")
     return wide
 
 
