@@ -38,12 +38,14 @@ def fit(s):
     raise ValueError(f"主張が2行に収まりません（60ptでも超過）。あと{max(1,len(s)-keep)}文字ほど削ってください。")
 def one(s,fs,mw,name):
     if "\n" in s or width(s,fs,fs*.02)>mw:raise ValueError(f"{name}が1行に収まりません。短くしてください。")
-def record(path,slug,title,sub,fs,article,pattern="k-b-diagram"):
+def record(path,slug,title,sub,fs,article,pattern="k-b-diagram",raw=None):
     d=json.loads(path.read_text(encoding="utf-8")) if path.exists() else {};h1=None
     if article and Path(article).exists():
         m=re.search(r"<h1\b[^>]*>(.*?)</h1>",Path(article).read_text(encoding="utf-8"),re.I|re.S)
         if m:h1=re.sub(r"<[^>]+>","",m.group(1)).strip()
-    d[slug]={"title":title,"sub":sub,"pattern":pattern,"fs":fs,"article_h1":h1};path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(d,ensure_ascii=False,indent=1,sort_keys=True)+"\n",encoding="utf-8")
+    # title_raw は '|'（改行位置）を残したまま保存する。落とすと記録から表紙を描き直せない
+    # ＝X用の横長版が作れず、上下が切れたカバーがそのまま渡っていた〔2026-08-20実測〕
+    d[slug]={"title":title,"title_raw":raw or title,"sub":sub,"pattern":pattern,"fs":fs,"article_h1":h1};path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(d,ensure_ascii=False,indent=1,sort_keys=True)+"\n",encoding="utf-8")
 def build(slug,title,sub,hub,nodes,label,foot,fs,ls):
     if len(nodes)!=4:raise ValueError("--nodes は4語を指定してください")
     one(sub,22,510,"サブ")
@@ -77,7 +79,21 @@ TITLE_BOX = 1056          # 左右マージン72ずつ
 TITLE_MAXLINES = 3
 
 def fit_title(s, box=TITLE_BOX, maxlines=TITLE_MAXLINES, fs_max=96, fs_min=52):
-    """タイトルを最大3行に収める級数と行を返す。'|' があれば手動改行を優先する。"""
+    """タイトルを最大3行に収める級数と行を返す。改行位置 '|' は必須。
+
+    ⚠**自動折り返しは禁止**〔2026-08-20・髙橋さん「改行おかしいだろ、なんで分からない？」＝2回目の指摘〕。
+    幅だけで折ると語の途中で割れる。実際 k-writing-standard は
+    「…直る」と／思う会社ほど、AIに／同じ修正を出し続ける と割れたまま公開されていた
+    （「と思う」が2行に裂けている）。行頭の助詞は下の検査で止まるが、
+    **行末で語が切れる形は幅の計算からは判定できない**——意味の切れ目は機械には見えない。
+    よって「機械が黙って決める」経路自体を塞ぎ、書き手に '|' を書かせる。
+    誤検知はゼロ（'|' があるかないかしか見ない）。
+    同じ理由で、雑な意味判定の検査は作らない（KNOWLEDGE-OPS §2「主語の機械判定は不成立」と同じ轍）。
+    """
+    if "|" not in s:
+        raise ValueError(
+            "改行位置 '|' が指定されていません。幅だけで折ると語の途中で割れるので、"
+            "意味の切れ目に '|' を入れてください（例: 「…直る」と思う|会社ほど、AIに同じ修正を|出し続ける）")
     if "|" in s:
         lines = [x.strip() for x in s.split("|") if x.strip()]
         if len(lines) > maxlines:
@@ -156,7 +172,7 @@ def main():
         if out.suffix.lower() in (".jpg",".jpeg"):svg_to_jpg(svg,str(out),wide=a.wide)
         else:out.write_text(svg+"\n",encoding="utf-8")
         if a.record:record(Path(a.record),a.slug,a.title.replace("|",""),a.sub,fs,a.article,
-                           "k-title" if a.layout=="title" else "k-b-diagram")
+                           "k-title" if a.layout=="title" else "k-b-diagram",raw=a.title)
         print(f"OK {out} fs={fs} lines={len(ls)}");return 0
     except (ValueError,OSError,json.JSONDecodeError) as e:print(f"ERROR: {e}",file=sys.stderr);return 3
 
