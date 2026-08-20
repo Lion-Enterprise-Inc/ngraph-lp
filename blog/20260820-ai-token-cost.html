@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み | NGraphブログ</title>
+<meta name="description" content="AIの請求は文字ではなく画像で膨らみます。同じ1920×1080のスクリーンショットが送り先によって1,105〜2,691トークンに開く理由と、自社144セッションの実測で分かった、キャッシュで9割引きになる読み直しの仕組みを解説します。">
+<meta property="og:title" content="AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み | NGraphブログ">
+<meta property="og:description" content="同じ画像1枚が、送り先によって1,105〜2,691トークンに開きます。自社144セッションの実測で分かった、請求が膨らむ本当の原因と止め方です。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260820-ai-token-cost">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260820-ai-token-cost.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260820-ai-token-cost">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み",
+  "image": "https://ngraph.jp/assets/blog/20260820-ai-token-cost.jpg",
+  "description": "AIの請求は文字ではなく画像で膨らみます。同じ1920×1080のスクリーンショットが送り先によって1,105〜2,691トークンに開く理由と、自社144セッションの実測で分かった、キャッシュで9割引きになる読み直しの仕組みを解説します。",
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-08-20",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260820-ai-token-cost",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "同じ画像でもAIによってトークン数が違うのはなぜですか？", "acceptedAnswer": {"@type": "Answer", "text": "画像をどう刻んでトークンに数えるかが、会社ごとに違うためです。OpenAIは画像を512pxのタイルに分けて数え、Anthropicは28×28pxのパッチで数えます。さらに同じAnthropicの中でも、モデルの解像度ティア（標準・高解像度）によって、同じ1920×1080の画像が1,560トークンにも2,691トークンにもなります。"}},
+  {"@type": "Question", "name": "画像は何pxくらいに抑えれば安全ですか？", "acceptedAnswer": {"@type": "Answer", "text": "Anthropic公式は、1メッセージに20枚を超える画像を含むリクエストには厳しい寸法制限がかかるとしたうえで、全プラットフォームで安全にするには各画像を2000px以下にするか、画像と文書のブロックを合計20個以下に抑えることを挙げています。"}},
+  {"@type": "Question", "name": "プロンプトキャッシュはどのくらい安くなりますか？", "acceptedAnswer": {"@type": "Answer", "text": "Anthropic公式・OpenAI公式のいずれも、キャッシュの読み出しは基本の入力価格の0.1倍（9割引き）としています。一方で書き込みには追加費用がかかり、Anthropicは5分キャッシュで1.25倍・1時間キャッシュで2倍、OpenAIはGPT-5.6以降で1.25倍としています。"}},
+  {"@type": "Question", "name": "キャッシュはどんな条件で当たりますか？", "acceptedAnswer": {"@type": "Answer", "text": "OpenAI公式は、キャッシュは完全な前方一致でしか当たらないと明記しています。プロンプトの先頭から同じ内容・同じ順序で送らないとキャッシュは効かず、途中の一言を変えるだけでも当たらなくなります。"}},
+  {"@type": "Question", "name": "自社の144セッションでは、何が最も無駄になっていましたか？", "acceptedAnswer": {"@type": "Answer", "text": "出力が大きいセッション上位20本を数えたところ、画像を読ませた呼び出しは全体の呼び出し回数のうち約2%（105回／5,435回）にすぎませんでしたが、その呼び出しが出力文字量の51.7%を占めていました。1回あたりの文字量は、画像を読ませた呼び出しがそれ以外の呼び出しの54.2倍でした。"}},
+  {"@type": "Question", "name": "上限にすぐ当たるとき、何から確認すればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "まず請求のダッシュボードで、キャッシュの書き込み・読み出し・非キャッシュ入力の内訳を見ることです。感覚で「使いすぎている」と判断する前に、どの呼び出しが量を作っているかを実際に数えると、原因が画像やキャッシュ切れに集中していることが多くあります。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み</h1>
+  <span class="a-date">2026.08.20 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260820-ai-token-cost.jpg" alt="AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み">
+
+<p>「AIの利用料が思ったより高い」「上限にすぐ当たる」——この悩みを、私たちは経営者や社内でAIを任された担当者から何度も聞いてきました。今回、自社で使っているCodex CLIのセッションログ144本を実際に数え、入力トークン925,558,988のうち93.3%がキャッシュ経由だったこと、そして出力が大きいセッションの中身を分解すると、原因は「使った量」ではなく特定の呼び出し方への集中だったことが分かりました。請求はガソリンメーターのように使った分だけ増える仕組みではありません。決まるのは、入力・出力・読み直し・画像という4つの蛇口の開き方です。この記事では、同じ画像1枚が送り先によって何倍にもトークンを消費する理由、請求の9割超を占める「読み直し」がなぜ安くなるのか、そして自社の実測から見えた無駄の正体を解説します。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・同じ画像1枚が、送り先の会社とモデルによって1,105〜2,691トークンに開く理由<br>
+・請求の9割超を占める「読み直し」が、なぜ基本価格の1/10になるのか<br>
+・自社の144セッション実測から分かった、呼び出しの2%が量の半分を作っていた事実と、明日からの止め方</div>
+
+<h2>AIの料金は「使った量」では決まらない</h2>
+<p>AIの請求は、会話の回数や利用時間に比例して増えるものだと思われがちです。ですが実際に請求を作っているのは、入力・出力・キャッシュ・画像という4つの独立した蛇口です。入力は毎回AIに送る文章の量、出力はAIが返す文章の量、キャッシュは同じ前置きを読み直す処理、画像は画面や資料をそのまま読ませたときに発生するトークンです。この4つは単価も挙動もまったく別物で、経営者が感覚として持つ「たくさん使った」と、請求書に載る金額の内訳は一致しません。特にズレが大きいのが画像とキャッシュで、次の章から順に見ていきます。</p>
+
+<h2>同じ画像1枚が、1,105トークンにも2,691トークンにもなる</h2>
+<p>まず、最も分かりにくいところから見ます。同じ1枚の画像でも、どの会社のどのモデルに読ませるかによって、消費するトークン数はまったく違います。例えば、パソコンの画面をそのまま撮った1920×1080pxのスクリーンショットを考えます。OpenAI公式が示す計算手順にこの画像を当てはめると、GPT-4oのhigh detail設定では約1,105トークンになります。一方、Anthropic公式が示す表では、同じ解像度の画像はClaudeの標準ティアで1,560トークン、高解像度ティアでは2,691トークンです。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>送り先</th><th>設定・ティア</th><th>1920×1080画像のトークン数</th><th>出所</th></tr>
+<tr><td>OpenAI GPT-4o</td><td>high detail（公式の計算式に当てはめた例）</td><td>約1,105</td><td>OpenAI公式 images-vision guide</td></tr>
+<tr><td>Claude</td><td>標準ティア（Claude 4.7未満等）</td><td>1,560</td><td>Anthropic公式 vision docs・公式表</td></tr>
+<tr><td>Claude</td><td>高解像度ティア（Claude 4.7以降）</td><td>2,691</td><td>Anthropic公式 vision docs・公式表</td></tr>
+</table></div>
+<div class="a-fig-wrap">
+<p class="a-fig-title">同じ1枚が、送り先で2.4倍ひらく</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="同じ1枚が、送り先で2.4倍ひらく"><text x="400" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">OpenAI GPT-4o（計算例）</text><rect x="418" y="50" width="238" height="34" rx="2" fill="#a63a24"/><text x="668" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">1105トークン</text><text x="400" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Claude 標準ティア</text><rect x="418" y="102" width="337" height="34" rx="2" fill="#cfc5b4"/><text x="767" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1560トークン</text><text x="400" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Claude 高解像度ティア</text><rect x="418" y="154" width="582" height="34" rx="2" fill="#cfc5b4"/><text x="1012" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">2691トークン</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">1920×1080のスクリーンショット1枚が、送り先によって1,105〜2,691トークンに開く</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：OpenAI公式 images-vision guide／Anthropic公式 vision docs（計算例はOpenAIの手順に当てはめた試算）</text></svg>
+</div>
+<p>最も安い経路と最も高い経路の間には、約2.4倍の開きがあります。同じ画像を渡しているのに、請求の重さが変わるということです。この開きの正体を、社内でAIを任された担当者ほど自分の目で確かめておく価値があります。自社の使い方がどちらの経路に近いかを知りたい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料のAI診断</a>で現在地を確認できます。</p>
+
+<h2>数字がズレる理由——トークンは画像の性質ではなく、事業者の刻み方の性質</h2>
+<h3>刻み方が違う——タイル方式とパッチ方式</h3>
+<p>数字がズレる理由は、画像そのものの性質ではありません。事業者が画像をどう機械的に刻んでいるか、その刻み方が違うだけです。OpenAI公式は、high detail設定でのトークン化の手順を4段階で説明しています。まず画像を2048×2048px以内に収め、次に短辺を768pxにし、そのうえで512pxの正方形タイルに分けて数え、最後に基準となるベース分と、タイル数に単価をかけた分を足します。GPT-4o・4.1・4.5ではベースが85トークン、タイル1枚あたり170トークンです。公式の計算例では、1024×1024pxの画像は4タイルに分かれ、85＋4×170で765トークンになります。2560×1920pxの画像は2048×1536pxへ縮小されたうえで約12タイルとなり、85＋12×170で2,125トークンです。</p>
+<p>Anthropic公式は、まったく別の刻み方を採用しています。画像は28×28pxの「パッチ」という単位で数えられ、1枚の画像は縦横それぞれをパッチ数に切り上げた値の掛け算で視覚トークンになります。タイルという長方形の塊で数えるOpenAIに対し、Anthropicはもっと細かい格子で画像を刻んでいる形です。この違いだけでも、同じ画像を渡して返ってくるトークン数が一致しない理由になります。</p>
+<h3>同じ会社でも、解像度ティアで1,560と2,691に割れる</h3>
+<p>さらにややこしいのは、Anthropicの中でも数字が1つに定まらないことです。Claudeには解像度のティアが2つあり、Claude 4.7以降の高解像度ティアは長辺2576pxまで許容し、視覚トークンの上限は4,784です。それ以外の標準ティアは長辺1568pxまでで、上限は1,568です。公式の表には、1920×1080pxの画像を標準ティアに送ると1456×819pxへ縮小されたうえで1,560トークン、高解像度ティアでは縮小なしで2,691トークンになるという実数値が載っています。3840×2160pxの4K画像だと差はさらに開き、標準ティアは縮小されて1,560トークンのままなのに対し、高解像度ティアは2576×1449pxへ縮小されたうえで4,784トークンです。つまり同じ画像・同じ会社であっても、モデルが選ぶ解像度ティアだけで視覚トークンは最大で約3倍動きます。「画像1枚＝何トークン」という一般解は存在せず、答えは「どの会社の、どのモデルの、どのティアに送るか」を決めて初めて出るものです。</p>
+<p>この差は金額にも直結します。Anthropic公式が挙げる例では、標準ティアのClaude Haiku 4.5（入力100万トークンあたり1ドル）に1000×1000pxの画像を1,000枚送ると約1.30ドルですが、高解像度ティアのClaude Opus 5（同5ドル）に同じ画像を1,000枚送ると約6.48ドル、4K画像であれば約23.92ドルになります。画像の中身は同じでも、選んだモデルのティアだけで請求は数倍から十数倍に動きます。</p>
+
+<h2>請求の9割超は「読み直し」で、そこは1/10になる</h2>
+<p>ここまでは画像の話でしたが、実際の請求で金額の大部分を占めるのは、多くの場合、画像ではなく「読み直し」です。AIとの会話は、過去のやり取りや指示書を毎回まるごと読み直しながら進みます。この読み直しの部分を安く処理する仕組みが、プロンプトキャッシュです。OpenAI公式は、1,024トークン以上のプロンプトであれば自動的にキャッシュが有効になり、キャッシュされた入力トークンは非キャッシュの0.1倍、つまり9割引きになるとしています。Anthropic公式も同じく、キャッシュの読み出しは基本入力価格の0.1倍です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>Anthropic公式</th><th>OpenAI公式</th></tr>
+<tr><td>自動で効き始める下限</td><td>モデル別に512〜4,096トークン</td><td>1,024トークン以上で自動</td></tr>
+<tr><td>キャッシュへの書き込み</td><td>5分キャッシュ=1.25倍／1時間キャッシュ=2倍</td><td>1.25倍（GPT-5.6以降。それ以前は書き込み料なし）</td></tr>
+<tr><td>キャッシュの読み出し</td><td>基本価格の0.1倍</td><td>基本価格の0.1倍（90%割引）</td></tr>
+<tr><td>既定の保持時間（TTL）</td><td>5分。使うたび追加料金なしで更新</td><td>30分のみ（GPT-5.6以降。既定かつ唯一の値）</td></tr>
+<tr><td>当たる条件</td><td>—</td><td>完全な前方一致でしか当たらない</td></tr>
+</table></div>
+<p>Anthropicの最小キャッシュ長はモデルによって幅があります。Claude Opus 5・Fable 5・Mythos 5は512トークン、Sonnet 5・Opus 4.8等は1,024トークン、Opus 4.7等は2,048トークン、Opus 4.6・4.5・Haiku 4.5は4,096トークンです。金額の例として、Claude Opus 5は基本入力が100万トークンあたり5ドル、5分キャッシュへの書き込みが6.25ドル、1時間キャッシュへの書き込みが10ドル、キャッシュの読み出しは0.50ドルです。読み出しの安さだけを見ると小さな最適化に思えますが、書き込みには割増がかかるという事実も同時に押さえておく必要があります。</p>
+<p>もう一つ、実務に効くのがOpenAI公式の一文です。キャッシュは完全な前方一致でしか当たりません。プロンプトの先頭から一言一句、そして送る順序まで同じでなければ、直前の会話とほとんど同じ内容を送っても割引は発生しません。指示書の一部を毎回書き換えて送っている会社ほど、この条件を知らずにキャッシュの恩恵を取り逃がしている可能性があります。</p>
+
+<h2>自社で144セッションを数えたら、呼び出しの2%が量の半分を作っていた</h2>
+<h3>144セッションの中身——入力9億トークン超の93.3%はキャッシュ</h3>
+<p>ここからは自社の実測です。2026年8月20日、自社で使っているCodex CLIのセッションログ144本を本日再実行して数え直しました。入力トークンは合計925,558,988で、そのうち863,447,552（93.3%）がキャッシュ経由、残る62,111,436が非キャッシュでした。出力は2,802,734トークンで、うち937,052（33.4%）は推論に使われたトークンです。セッションをサイズ別に4つの区分で見ると、キャッシュ率には大きな差があります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">短いセッションほど、キャッシュが効かない</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="短いセッションほど、キャッシュが効かない"><text x="190" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">〜5万</text><rect x="208" y="50" width="212" height="34" rx="2" fill="#a63a24"/><text x="432" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">25.1%</text><text x="190" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">5万〜20万</text><rect x="208" y="102" width="620" height="34" rx="2" fill="#cfc5b4"/><text x="840" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">73.2%</text><text x="190" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">20万〜100万</text><rect x="208" y="154" width="698" height="34" rx="2" fill="#cfc5b4"/><text x="918" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">82.5%</text><text x="190" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">100万〜</text><rect x="208" y="206" width="792" height="34" rx="2" fill="#cfc5b4"/><text x="1012" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">93.5%</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">セッションが大きくなるほどキャッシュ率は上がり、100万トークン超で93.5%に達する</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社実測 2026-08-20・144セッション</text></svg>
+</div>
+<p>〜5万トークンのセッションは62本あり、キャッシュ率は25.1%、非キャッシュは219,589トークンです。5万〜20万トークンは24本でキャッシュ率73.2%、非キャッシュは762,868トークン。20万〜100万トークンは28本でキャッシュ率82.5%、非キャッシュは2,396,914トークン。100万トークン以上は30本でキャッシュ率93.5%、非キャッシュは58,732,065トークンです。100万トークンを超えるこの30本だけで、非キャッシュ全体の94.6%を占めています。つまり、実コストの大半を作っていたのは長く続いた少数の大きなセッションであり、短いやり取りの積み重ねではありませんでした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">入力トークンの93.3%は、0.1倍の値段で通っている</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="入力トークンの93.3%は、0.1倍の値段で通っている"><circle cx="330" cy="294" r="128" fill="none" stroke="#ddd5c6" stroke-width="40"/><circle cx="330" cy="294" r="128" fill="none" stroke="#a63a24" stroke-width="40" stroke-dasharray="750.4 53.9" transform="rotate(-90 330 294)" stroke-linecap="butt"/><text x="330" y="316" font-family="'Zen Kaku Gothic New',sans-serif" font-size="66" fill="#a63a24" font-weight="900" text-anchor="middle">93.3%</text><text x="660" y="268" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#2b2620" font-weight="700" text-anchor="start">キャッシュ経由</text><text x="660" y="320" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#5c544a" font-weight="500" text-anchor="start">非キャッシュ</text><text x="660" y="364" font-family="'Zen Kaku Gothic New',sans-serif" font-size="34" fill="#5c544a" font-weight="900" text-anchor="start">6.7%</text><text x="600.0" y="548.4" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">925,558,988トークンのうち863,447,552トークンがキャッシュ読み出し＝基本価格の0.1倍で処理</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">された</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社実測 2026-08-20・144セッション</text></svg>
+</div>
+<h3>出力が重いセッションの中身——画像を読ませた呼び出しが、文字量の半分を作っていた</h3>
+<p>次に見たのは出力側です。出力が大きいセッション上位20本を対象に、AIへの1回の呼び出しごとの出力量を数えました。ここでいう「文字量」は、AIが1回の呼び出しで返したテキストの文字数であり、ここまで説明してきた入力トークンとは別の単位で数えています。この2つを混同すると数字の意味を取り違えるので、分けて捉える必要があります。結果、画像を読ませた呼び出しは105回あり、合計235,926,559文字、全体の51.7%を占めていました。1回あたりの平均は2,246,919文字です。一方、それ以外の呼び出しは5,330回あり、合計220,777,740文字（48.3%）、1回あたりの平均は41,421文字でした。画像を読ませた1回は、それ以外の呼び出し1回の54.2倍の文字量になっています。呼び出しの回数で見ると、画像を読ませた呼び出しは全体5,435回のうち105回、約2%にすぎません。その2%が、文字量の51.7%を作っていたことになります。この倍率は「上位何本を数えるか」で動く数字で、上位10本に絞ると50.8倍という結果になりました。ここで示した54.2倍は上位20本を母集団にした数字であり、単独の見出しとして独り歩きさせるべき値ではありません。</p>
+<div class="a-note"><strong>自社の現場から：</strong>「AIの使用量がすぐ上限に当たる」という感覚を、これまで測らずに語っていた自覚があります。今回、実際にセッションログを数えてみて、うまくいったのは、量が消えている先を一発で名指しできたことでした。画像を読ませた呼び出しに、量が集中していたのです。ダメだったのは、最も重かった呼び出しの中身でした。営業資料のPNGを7枚まとめてAIに読ませたループが、単発の呼び出しとしては最大でした。しかもこの作業自体は、以前ここで書いた<a href="/blog/20260818-ai-shiryo-sakusei">「AIに任せていいのは文字だけだった」</a>という記事の題材そのもので、記事にした当の作業が、社内で最もトークンを浪費していたことになります。7枚まとめて読ませていたという事実までは確認できましたが、その回のログは本日の再実行では再現しておらず、文字数は書きません。いまは画像を渡す前の入口で呼び出しを止める仕組みを1つ入れ、止まる経路（2枚以上・ループでの読み込み）と、通る経路（1枚・普通の呼び出し）の両方を実際に動かして確認しました。</div>
+
+<h2>よくある失敗——見えていない4つのNGパターン</h2>
+<p>ここまでの数字から、よくある失敗パターンを4つに整理できます。1つでも心当たりがあれば、次の章の手順から確認してください。</p>
+<ul>
+<li><strong>①画像をループでまとめて読ませる。</strong>自社の実測でも、最も重かった呼び出しは画像を複数枚まとめて読ませる形でした。1回の呼び出しに複数の画像を積むと、その回だけトークンが跳ね上がります。</li>
+<li><strong>②短いセッションを何度も立ち上げる。</strong>自社の実測では、〜5万トークンのセッションのキャッシュ率は25.1%で、最も効きが悪い区分でした。会話を毎回ゼロから始め直すと、せっかくのキャッシュの恩恵をほとんど受けられません。</li>
+<li><strong>③画像を原寸のまま渡す。</strong>縮小せずに送っても、AIの側で一定の上限を超えると自動的に縮小されるため、画質だけが落ちてトークンは思ったほど減らないことがあります。Anthropic公式が挙げる安全な目安は、1枚あたり2000px以下です。</li>
+<li><strong>④測らずに「上限が厳しい」と言う。</strong>感覚だけで原因を語ると、本当の原因が画像なのかキャッシュ切れなのか分からないまま、対策も的外れになります。まず数える、が最初の一歩です。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社のAI利用の内訳を一緒に確認したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
+
+<h2>明日できること——測り方と、止め方</h2>
+<p>数字がそろったところで、明日から実行できる手順に落とし込みます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>やること</th><th>具体的な確認場所・手順</th><th>ポイント</th></tr>
+<tr><td>1. 自社の内訳を見る</td><td>利用しているAIサービスの請求ダッシュボード（利用状況・使用量の画面）で、入力・出力・キャッシュ書き込み・キャッシュ読み出しの内訳を確認する</td><td>感覚で判断せず、まず数字の内訳を見る。ここが今回の記事全体の出発点</td></tr>
+<tr><td>2. 画像は渡す前に縮小</td><td>スクリーンショットや資料の画像を渡す前に、長辺を2000px以下にリサイズする</td><td>Anthropic公式が挙げる、全プラットフォームで安全な目安</td></tr>
+<tr><td>3. 前置きの順序を固定</td><td>AIに送る指示書や前提説明を、毎回同じ内容・同じ順序で先頭に置く</td><td>キャッシュは完全な前方一致でしか当たらない（OpenAI公式）。順序が変わるとキャッシュが切れる</td></tr>
+<tr><td>4. 画像は1回1枚</td><td>1回の呼び出しにまとめて複数の画像を積まず、1枚ずつ渡す</td><td>自社実測で最も重かったのは、複数枚をまとめて読ませたループだった</td></tr>
+</table></div>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>同じ画像でもAIによってトークン数が違うのはなぜですか？</summary><p>画像をどう刻んでトークンに数えるかが、会社ごとに違うためです。OpenAIは画像を512pxのタイルに分けて数え、Anthropicは28×28pxのパッチで数えます。さらに同じAnthropicの中でも、モデルの解像度ティア（標準・高解像度）によって、同じ1920×1080の画像が1,560トークンにも2,691トークンにもなります。</p></details>
+<details><summary>画像は何pxくらいに抑えれば安全ですか？</summary><p>Anthropic公式は、1メッセージに20枚を超える画像を含むリクエストには厳しい寸法制限がかかるとしたうえで、全プラットフォームで安全にするには各画像を2000px以下にするか、画像と文書のブロックを合計20個以下に抑えることを挙げています。</p></details>
+<details><summary>プロンプトキャッシュはどのくらい安くなりますか？</summary><p>Anthropic公式・OpenAI公式のいずれも、キャッシュの読み出しは基本の入力価格の0.1倍（9割引き）としています。一方で書き込みには追加費用がかかり、Anthropicは5分キャッシュで1.25倍・1時間キャッシュで2倍、OpenAIはGPT-5.6以降で1.25倍としています。</p></details>
+<details><summary>キャッシュはどんな条件で当たりますか？</summary><p>OpenAI公式は、キャッシュは完全な前方一致でしか当たらないと明記しています。プロンプトの先頭から同じ内容・同じ順序で送らないとキャッシュは効かず、途中の一言を変えるだけでも当たらなくなります。</p></details>
+<details><summary>自社の144セッションでは、何が最も無駄になっていましたか？</summary><p>出力が大きいセッション上位20本を数えたところ、画像を読ませた呼び出しは全体の呼び出し回数のうち約2%（105回／5,435回）にすぎませんでしたが、その呼び出しが出力文字量の51.7%を占めていました。1回あたりの文字量は、画像を読ませた呼び出しがそれ以外の呼び出しの54.2倍でした。</p></details>
+<details><summary>上限にすぐ当たるとき、何から確認すればいいですか？</summary><p>まず請求のダッシュボードで、キャッシュの書き込み・読み出し・非キャッシュ入力の内訳を見ることです。感覚で「使いすぎている」と判断する前に、どの呼び出しが量を作っているかを実際に数えると、原因が画像やキャッシュ切れに集中していることが多くあります。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>AIの請求を決めるのは、使った回数や時間ではありません。入力・出力・キャッシュ・画像という4つの蛇口の開き方です。同じ1920×1080の画像でも、送り先の会社とモデルのティアによって1,105〜2,691トークンまで開きます。その差を生むのは事業者ごとの刻み方の違いであって、画像そのものの性質ではありません。一方で請求の9割超を占めるのは多くの場合キャッシュ経由の読み直しで、Anthropic・OpenAIともに読み出しは基本価格の0.1倍です。ただし完全な前方一致という条件を知らずに前置きを毎回書き換えていると、この割引を取り逃がします。自社の144セッションを数えた結果、非キャッシュの94.6%は100万トークンを超える少数のセッションに集中し、出力が重いセッションでは画像を読ませた呼び出しがわずか2%の回数で文字量の半分を作っていました。感覚で「上限が厳しい」と言う前に、まず自社の内訳を数える——それが、今回の実測から得た最初の一歩です。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのAI利用の内訳、どうなっているか」から、一緒に確認します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Anthropic「<a href="https://platform.claude.com/docs/en/build-with-claude/vision" target="_blank" rel="noopener">Vision</a>」（Anthropic公式ドキュメント）<br>
+・Anthropic「<a href="https://platform.claude.com/docs/en/docs/build-with-claude/prompt-caching" target="_blank" rel="noopener">Prompt caching</a>」（Anthropic公式ドキュメント）<br>
+・OpenAI「<a href="https://developers.openai.com/api/docs/guides/prompt-caching" target="_blank" rel="noopener">Prompt caching</a>」（OpenAI公式ドキュメント）<br>
+・OpenAI「<a href="https://developers.openai.com/api/docs/guides/images-vision" target="_blank" rel="noopener">Images and vision</a>」（OpenAI公式ドキュメント）<br>
+・あわせて読む：<a href="/blog/20260820-ai-hakusho-2026">AI白書2026が今日発売——効果を数字で測れている非上場企業は13.7%</a>（当ブログ・2026年8月20日朝）・<a href="/blog/20260818-ai-shiryo-sakusei">AIに任せていいのは文字だけだった——営業資料15枚の移植で2回差し戻された理由と、イラストと書体の渡し方</a>（当ブログ・2026年8月18日）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
