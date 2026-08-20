@@ -52,6 +52,15 @@ def main():
             fails.append((name, "<title>が無い"))
             continue
         title = m.group(1).strip()
+        # 2026-08-19: k-writing-standard が「| NGraphブログ」無しで本番へ出た。
+        # 対象25記事のうち欠けていたのは1本だけ＝サイトの慣行として確立している。
+        # 検索結果とタブに出るのは <title> なので、ここが欠けると1本だけ名乗りが消える。
+        if not re.search(r"<title>[^<]*\|\s*NGraphブログ\s*</title>", html):
+            fails.append((name, f"<title>に「 | NGraphブログ」が無い: 「{title}」"))
+        # og:title も同じ形で揃える（SNSカードに出る名前）
+        og = re.search(r'<meta property="og:title" content="([^"]*)"', html)
+        if og and "| NGraphブログ" not in og.group(1):
+            fails.append((name, f"og:titleに「 | NGraphブログ」が無い: 「{og.group(1)}」"))
         for pat, msg in NG_PATTERNS:
             if re.search(pat, title):
                 fails.append((name, f"{msg}: 「{title}」"))
