@@ -37,7 +37,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import blog_files
 import deck_fig
-from xcount import X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
+from xcount import X_CAPTION_MAX, X_TITLE_MAX, over_by, use_utf8_stdio, x_weighted_len
 KEYS_PATH = os.path.expanduser("~/.ngraph/x_keys.env")
 SITE = "https://ngraph.jp"
 MEDIA_URL = "https://api.x.com/2/media/upload"
@@ -118,11 +118,10 @@ def make_wide_cover(slug, d, cover, is_fig=False):
               "（eyecatch_gen.py で作り直すと横長版が付きます）")
         return cover
     wide = os.path.join(d, f"カバー画像_{slug}_1500x600.jpg")
-    # 表紙の生成器は2系統ある（BLOG-OPS §3＝eyecatch_gen.py ／ KNOWLEDGE-OPS §2＝eyecatch_k.py）。
-    # pattern で振り分ける。ここを1系統だと決め打ちしていたため、ナレッジ記事(k-title)は
-    # 「unknown pattern」で横長版が作れず、上下が切れたまま渡っていた〔2026-08-20実測〕。
     pattern = rec.get("pattern", "")
     # 表紙の生成器は2系統ある（BLOG-OPS §3＝eyecatch_gen.py ／ KNOWLEDGE-OPS §2＝eyecatch_k.py）。
+    # ここを1系統だと決め打ちしていたため、ナレッジ記事(k-title)は「unknown pattern」で
+    # 横長版が作れず、上下が切れたまま渡っていた〔2026-08-20実測〕。
     # 描き直せるのは前者だけ: 後者の記録は改行指定「|」を落として保存しているため（eyecatch_k.py
     # の record()）、記録からは行が復元できず「行が助詞で始まる」で必ず落ちる。
     # よって描き直しは通常パターンに限り、それ以外は下の台紙置きへ回す〔2026-08-20実測〕。
@@ -200,8 +199,21 @@ def check_links(links):
 def check_caption(caption):
     """キャプションの検査（§7）。(NG理由 or None, 警告リスト) を返す。
 
-    止めるのは事故になる2つだけ（ngraph.jp URL＝カードが2枚出て公開後に直せない／
-    ハッシュタグ3個以上）。字数は警告に留める（過剰fail-closedを避ける）。"""
+    止めるのは事故になる3つ（ngraph.jp URL＝カードが2枚出て公開後に直せない／
+    ハッシュタグ3個以上／**X加重が上限256超**）。
+
+    ⚠**加重の上限だけは fail-closed にする**〔2026-08-20・髙橋さん「キャプション文字オーバー。
+    前にも指摘したぞ」＝2回目〕。旧版は「字数は警告に留める（過剰fail-closedを避ける）」として
+    **素の文字数（約123字）が目安100〜130に収まっていることだけ**を見ていたが、Xが数えるのは
+    加重（全角2）で、実機は 262/256 で赤字＝**貼れない**。目安の字数は編集上の好みなので警告の
+    ままでよいが、**貼れないかどうかはXが決める硬い上限**なので通してはいけない。
+    タイトル側（title_lint）は同じ事故を2026-08-09に起こして既に fail-closed 化済みで、
+    キャプションだけ取り残されていた。式は xcount.py に一本化する（2箇所に書かない）。
+    """
+    over = over_by(caption, X_CAPTION_MAX)
+    if over:
+        return (f"NG: キャプションがX加重 {x_weighted_len(caption)}/{X_CAPTION_MAX} で"
+                f"超過（実機で赤字になり貼れません）。全角{-(-over // 2)}文字ほど削ってください", [])
     if re.search(r"ngraph\.jp", caption):
         return ("NG: キャプションに ngraph.jp のURLが入っています。Articlesはカードが2枚出る事故になり、"
                 "公開後に直せません（BLOG-OPS §7）", [])
