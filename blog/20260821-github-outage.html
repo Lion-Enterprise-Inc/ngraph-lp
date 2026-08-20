@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流 | NGraphブログ</title>
+<meta name="description" content="GitHubが8月17日に7時間47分停止。8月20日の事後報告は原因を「容量の問題」とし、月間コミットは4か月で14億から29億に倍増しました。中小企業のAI導入で先に壊れるのは、AIそのものではなく下流だという話です。">
+<meta property="og:title" content="GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流 | NGraphブログ">
+<meta property="og:description" content="止まったのは、誰かが壊したからではなく、量に追いつかなかったから。GitHub障害の事後報告を、中小企業のAI導入の視点で読み解きます。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260821-github-outage">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260821-github-outage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260821-github-outage">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流",
+  "image": "https://ngraph.jp/assets/blog/20260821-github-outage.jpg",
+  "description": "GitHubが8月17日に7時間47分停止。8月20日の事後報告は原因を「容量の問題」とし、月間コミットは4か月で14億から29億に倍増しました。中小企業のAI導入で先に壊れるのは、AIそのものではなく下流だという話です。",
+  "datePublished": "2026-08-21",
+  "dateModified": "2026-08-21",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260821-github-outage",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流</h1>
+  <span class="a-date">2026.08.21 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260821-github-outage.jpg" alt="GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流">
+
+<p>GitHubが2026年8月17日に7時間47分にわたって止まり、その<a href="https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/" target="_blank" rel="noopener">事後報告</a>を8月20日、GitHubのCTOであるVladimir Fedorov氏の名義で公開しました。GitHubは、プログラムのソースコードを保管し共有するサービスで、世界の開発現場の土台になっています。結論から言うと、これは中小企業にとって、AI導入で先に増えるのは処理する量で、先に詰まるのはその下流だという話です。</p>
+
+<h2>何が起きたか</h2>
+<p>8月17日の障害は7時間47分続きました。止まったのはgithub.comの表示だけでなく、ログインの仕組み、自動でテストや公開作業を進めるGitHub Actions、外部の道具とつなぐ窓口であるAPI、コードの変更をレビューするプルリクエスト、課題を管理するIssues、AIがコードを補完するCopilotまで、開発の主要な機能全体に及びました。</p>
+<p>発表はこう説明しています。トラフィックが新たなピークに達し、Central USデータセンターの重要なインフラ部品がそれに合わせてスケールできなかった。コードの変更や設定の変更が引き金ではありません。GitHubは、8月17日の障害も、その前の8月6日に起きた障害も、原因はどちらも容量、つまりシステムが処理できる上限の問題だったと認めています。</p>
+
+<h2>なぜ重要か</h2>
+<p>普通の障害は、誰かが何かを壊して起きます。設定を間違えた、コードにバグが混ざった、という具合です。今回は違います。誰も壊していないのに止まりました。壊れたのではなく、追いつかなかった。そう言った方が近いはずです。</p>
+<p>GitHubの発表には、もう一つ数字が載っています。4月以降、月間のコミット数、つまりコードの変更を記録する単位が、14億から29億へ増えました。4か月で倍です。土台の設計が前提にしていた量を、実際の量が追い越しました。GitHubは、その成長がシステムへの負荷を説明するが、障害を正当化するものではないと書いています。</p>
+<p>ここで書いておかなければならないことがあります。GitHubはコミットがなぜ倍になったのかを、発表の中で一切説明していません。AIやAIエージェント、Copilotのような自動化が増加の原因だとは書かれていません。倍になったという事実と、なぜ倍になったかという理由は別で、後者は今回の発表に存在しないのです。ここを埋めずに「AIがコードを書く量が増えたから止まった」と言い切ってしまうと、発表していないことを発表したことにしてしまいます。発表が言っていないことをこちらも埋めない、という姿勢そのものが、この障害から中小企業が持ち帰れる独自の視点だと考えます。</p>
+
+<div class="a-note"><strong>NGraphの現場から：</strong>このブログの公開経路は、git push でGitHubに上げるとCloudflare Pagesが自動でデプロイする、この一本だけです。手でファイルを上げ直す手段は用意していません。GitHubが止まっている間は、記事を書けても出す先がないということです。8月17日にたまたま公開が止まらなかったのも、代替手段があったからではなく、単に障害の時間帯と重ならなかっただけです。</div>
+
+<p>その上で中小企業に置き換えると、こうなります。AI導入で最初に増えるのは、判断ではなく処理する量です。AIが作った文書、下書き、見積、問い合わせへの返信の数が先に増えます。詰まるのは、その量を確認し、承認し、保管する側です。AIそのものではなく、AIが生み出した量を受け取る下流の工程が、先に壊れます。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>効果を「作った量」だけで測らない。</strong>AI導入の効果を測るときは、増えた量を受け取る側、確認・承認・保管・請求といった工程に人と時間が残っているかを、同じ表で見ます。</li>
+<li><strong>止まると一番困る業務を1つだけ選ぶ。</strong>「その日はどうするか」を紙で決めておきます。全業務の代替手段は用意できないので、1つに絞ります。</li>
+<li><strong>開発を外注しているなら、外部ライブラリの出所を一度聞く。</strong>取り込んでいる部品がどこから来ているかを確認する仕組みがあるかどうかです。</li>
+</ul>
+
+<h2>その他の注目ニュース</h2>
+<ul>
+<li><strong>デジタル化・AI導入補助金2026、1次締切分は8月25日17時</strong> — 公式サイトの<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール</a>によると、「デジタル化・AI導入補助金2026」の1次締切分は2026年8月25日17時です。通常枠・インボイス枠・セキュリティ対策推進枠・複数者連携デジタル化・AI導入枠は、いずれも同じ締切です。交付決定は10月7日予定、事業の実施期間は2027年3月31日までで、2次以降の日程はまだ公表されていません。申請を検討しているなら、今週のうちに準備の進み具合を確かめてください。</li>
+<li><strong>新事業進出・ものづくり商業サービス補助金、第1回公募は8月31日受付開始</strong> — 中小企業庁は<a href="https://mirasapo-plus.go.jp/infomation/33311/" target="_blank" rel="noopener">第1回公募要領</a>を公開し、申請受付期間は2026年8月31日から9月30日までとしています。補助上限額は革新的新製品・サービス枠が最大3,500万円、新事業進出枠とグローバル枠が最大9,000万円です。補助率は中小企業が1/2、条件により2/3、小規模事業者は2/3、グローバル枠の中小企業は2/3となっています。受付開始まで10日、対象経費を先に確認しておく価値があります。</li>
+<li><strong>Rustのライブラリ配布所crates.ioで、ビルド中に外部コードを実行するマルウェアが確認された</strong> — セキュリティ企業SafeDepの<a href="https://safedep.io/arrayref-proc-macro1-rust-build-time-malware/" target="_blank" rel="noopener">調査</a>によると、Rustはプログラミング言語の一種で、そのライブラリ配布所crates.ioに置かれていたarrayref・internment・append-only-vecの3パッケージが、正規のproc-macro2に似せた偽物proc-macro1に依存していました。ビルド、つまりコードをアプリの形にまとめる作業の最中に、外部からバイナリをダウンロードして実行する仕組みです。対象はLinuxとWindowsのx86_64、macOSのx86_64とaarch64です。arrayrefの累計ダウンロードは約2億4,500万件で、crates.ioは悪性バージョンを削除済みです。開発を外注しているなら、取り込んでいる外部ライブラリの出所をどう確認しているか、一度聞いてみてください。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの視点：</strong>私たちはエンジニアが現場に入るFDE型のAI導入伴走支援を提供しており、AI導入後に増える処理量をどの工程で受け止めるかを、導入と同時に設計しています。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a> からどうぞ。</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・GitHub「<a href="https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/" target="_blank" rel="noopener">The August 17 outage, and the work ahead</a>」（Vladimir Fedorov・2026年8月20日）<br>
+・「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール ｜ デジタル化・AI導入補助金2026</a>」（公式サイト）<br>
+・中小企業庁「<a href="https://mirasapo-plus.go.jp/infomation/33311/" target="_blank" rel="noopener">【補助金】新事業進出・ものづくり商業サービス補助金の第１回公募要領を公開【申請受付期間：8/31～9/30】</a>」（2026年6月30日）<br>
+・SafeDep「<a href="https://safedep.io/arrayref-proc-macro1-rust-build-time-malware/" target="_blank" rel="noopener">Malicious Rust Crate arrayref Runs a Build-Time Payload</a>」（2026年8月20日）<br>
+・あわせて読む：<a href="/blog/20260807-ai-approval-fatigue">危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/ai-hojokin">AI導入に使える補助金はどれか——「AI」と書いてある制度は1つもない。8制度の対象経費を読み解く実務判定表</a>（当ブログ）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
