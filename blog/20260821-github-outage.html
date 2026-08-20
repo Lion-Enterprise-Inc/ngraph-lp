@@ -76,7 +76,7 @@
 <p>GitHubの発表には、もう一つ数字が載っています。4月以降、月間のコミット数、つまりコードの変更を記録する単位が、14億から29億へ増えました。4か月で倍です。土台の設計が前提にしていた量を、実際の量が追い越しました。GitHubは、その成長がシステムへの負荷を説明するが、障害を正当化するものではないと書いています。</p>
 <p>ここで書いておかなければならないことがあります。GitHubはコミットがなぜ倍になったのかを、発表の中で一切説明していません。AIやAIエージェント、Copilotのような自動化が増加の原因だとは書かれていません。倍になったという事実と、なぜ倍になったかという理由は別で、後者は今回の発表に存在しないのです。ここを埋めずに「AIがコードを書く量が増えたから止まった」と言い切ってしまうと、発表していないことを発表したことにしてしまいます。発表が言っていないことをこちらも埋めない、という姿勢そのものが、この障害から中小企業が持ち帰れる独自の視点だと考えます。</p>
 
-<div class="a-note"><strong>NGraphの現場から：</strong>このブログの公開経路は、git push でGitHubに上げるとCloudflare Pagesが自動でデプロイする、この一本だけです。手でファイルを上げ直す手段は用意していません。GitHubが止まっている間は、記事を書けても出す先がないということです。8月17日にたまたま公開が止まらなかったのも、代替手段があったからではなく、単に障害の時間帯と重ならなかっただけです。</div>
+<div class="a-note"><strong>NGraphの現場から：</strong>このブログの公開経路は、git push でGitHubに上げるとCloudflare Pagesが自動でデプロイする、この一本だけです。手でファイルを上げ直す手段は用意していません。GitHubが止まっている間は、記事を書けても出す先がないということです。8月17日にたまたま公開が止まらなかったのも、代替手段を持っていたからではありません。その日の作業が障害の時間帯と重なっていたかどうかは、いまも確かめていないのです。</div>
 
 <p>その上で中小企業に置き換えると、こうなります。AI導入で最初に増えるのは、判断ではなく処理する量です。AIが作った文書、下書き、見積、問い合わせへの返信の数が先に増えます。詰まるのは、その量を確認し、承認し、保管する側です。AIそのものではなく、AIが生み出した量を受け取る下流の工程が、先に壊れます。</p>
 
@@ -94,7 +94,7 @@
 <li><strong>Rustのライブラリ配布所crates.ioで、ビルド中に外部コードを実行するマルウェアが確認された</strong> — セキュリティ企業SafeDepの<a href="https://safedep.io/arrayref-proc-macro1-rust-build-time-malware/" target="_blank" rel="noopener">調査</a>によると、Rustはプログラミング言語の一種で、そのライブラリ配布所crates.ioに置かれていたarrayref・internment・append-only-vecの3パッケージが、正規のproc-macro2に似せた偽物proc-macro1に依存していました。ビルド、つまりコードをアプリの形にまとめる作業の最中に、外部からバイナリをダウンロードして実行する仕組みです。対象はLinuxとWindowsのx86_64、macOSのx86_64とaarch64です。arrayrefの累計ダウンロードは約2億4,500万件で、crates.ioは悪性バージョンを削除済みです。開発を外注しているなら、取り込んでいる外部ライブラリの出所をどう確認しているか、一度聞いてみてください。</li>
 </ul>
 
-<div class="a-note"><strong>NGraphの視点：</strong>私たちはエンジニアが現場に入るFDE型のAI導入伴走支援を提供しており、AI導入後に増える処理量をどの工程で受け止めるかを、導入と同時に設計しています。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a> からどうぞ。</div>
+<div class="a-note"><strong>NGraphの視点：</strong>私たちは、エンジニアが現場に入ってAI導入を完走させるFDE型の伴走支援をしています。AIを入れて増えるのは処理量なので、その量を受け取る工程まで見ないと、導入は現場で止まります。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a> からどうぞ。</div>
 
 <div class="a-src">参考（一次情報）：<br>
 ・GitHub「<a href="https://github.blog/news-insights/company-news/the-august-17-outage-and-the-work-ahead/" target="_blank" rel="noopener">The August 17 outage, and the work ahead</a>」（Vladimir Fedorov・2026年8月20日）<br>
