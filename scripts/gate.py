@@ -34,6 +34,7 @@ CHECKS = [
     ("一次体験の使い回し", "anecdote_lint.py", [], True),
     ("AI生成の痕跡（ダーシの密度・反復・AI文体）", "ai_tell_lint.py", [], True),
     ("かっこ書きの多用（読みにくさ）", "paren_lint.py", [], False),
+    ("AI感（NG表現・語尾3連続・文体混在）", "style_lint.py", [], True),
     ("読みにくさ（長い文・言い回しの反復・抽象語）", "readability_lint.py", [], False),
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
     ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], True),

@@ -94,7 +94,7 @@
 <p>候補が複数あるときは、対象を絞り込むための会議をあらためて開く必要はありません。「一番件数が多い業務」か「一番同じ質問を繰り返している業務」のどちらかを選べば、たいてい外れません。逆に向かないのは、まだ社内でやり方が固まっていない新しい業務や、法改正・繁忙期など条件が毎回変わる業務です。手順が固まっていない業務は、AIに渡す前に人の側で一度決める作業が先に必要になります。</p>
 
 <h2>②現場の窓口1人：決裁者ではなく、毎日やっている人</h2>
-<p>次に決めるのは、窓口になる1人です。選ぶのは、その業務を毎日実際にやっている人です。決裁者は「何を目指すか」を答えられても、「実際にどの順番で、何を見て、何を入力しているか」までは説明しきれないことが多いためです。</p>
+<p>次に決めるのは、窓口になる1人。その業務を毎日実際にやっている人を選んでください。決裁者は「何を目指すか」を答えられても、「実際にどの順番で、何を見て、何を入力しているか」までは説明しきれないことが多いためです。</p>
 <p>窓口が決まっていないと、エンジニアは業務の手順を複数の人に少しずつ聞いて回ることになります。同じ質問を何人にも繰り返すことになり、答えが人によって微妙に食い違う場面も出てきます。</p>
 
 <h2>③AIに渡してよい情報の線引き</h2>
@@ -128,7 +128,7 @@
 <p class="a-fig-title">初月の4週間はこの順で進む</p>
 <svg viewBox="0 0 1200 588" width="100%" style="min-width:640px" role="img" aria-label="初月の4週間はこの順で進む"><line x1="190" y1="130" x2="190" y2="182" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="100" r="27" fill="none" stroke="#a63a24" stroke-width="2.5"/><text x="190" y="112" font-family="'Zen Old Mincho',serif" font-size="30" fill="#a63a24" font-weight="900" text-anchor="middle">1</text><text x="246" y="111" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">W1 ヒアリング・業務分解</text><line x1="190" y1="242" x2="190" y2="294" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="212" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="224" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="223" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">W2 その場で構築</text><line x1="190" y1="354" x2="190" y2="406" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="324" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="336" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">W3 既存システムと接続</text><circle cx="190" cy="436" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="448" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="447" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">W4 定着・引き継ぎの準備</text><text x="600.0" y="530.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">範囲や連携の複雑さで期間は変わるが、進む順番はこの4段階</text><text x="8" y="572" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraphの支援設計（/fde/ のサービス構成に基づく・業界共通の標準ではない）</text></svg>
 </div>
-<p>W1は現場ヒアリングと業務分解です。選んだ1業務の手順を、実際の画面や書類を見ながら分解していきます。W2はその場でのプロンプト設計とAI構築です。分解した手順をもとに、エンジニアが現場でAIへの指示文を書き、その場で動かして確認します。W3は既存システムとの接続です。受発注・会計・チャットなど、あらかじめ決めておいた道具とAIをつなぎます。W4は社内定着と引き継ぎで、窓口の担当者が自分で操作できる状態まで持っていき、判定の材料を確認して締めくくります。頼む前の5つが決まっているほど、W1にかかる日数は短くなります。</p>
+<p>W1は現場ヒアリングと業務分解です。選んだ1業務の手順を、実際の画面や書類を見ながら分解していきます。W2はその場でのプロンプト設計とAI構築です。分解した手順をもとに、エンジニアが現場でAIへの指示文を書き、その場で動かして確認します。W3は既存システムとの接続で、受発注・会計・チャットなど、あらかじめ決めておいた道具が相手です。W4は社内定着と引き継ぎ。窓口の担当者が自分で操作できる状態まで持っていき、判定の材料を確認して締めくくります。頼む前の5つが決まっているほど、W1にかかる日数は短くなります。</p>
 <p>依頼する前に用意しておくと、初回のヒアリングがそのまま使える持ち物と、目安の所要時間です。用意は社内で一度集まって、下の5項目を紙1枚に書き出すだけで足ります。</p>
 <div class="a-table-wrap"><table class="a-table">
 <tr><th>持ち物</th><th>所要時間の目安</th></tr>
