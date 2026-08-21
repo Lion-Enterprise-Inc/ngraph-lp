@@ -45,7 +45,14 @@ def main():
         days = ""
         if os.path.exists(full):
             days = "%d日前に更新" % int((time.time() - os.path.getmtime(full)) / 86400)
-        kind = "未追跡（gitに無い＝本番に存在しない）" if code.strip() == "??" else "未コミットの変更"
+        if code.strip() == "??":
+            kind = "未追跡（gitに無い＝本番に存在しない）"
+        elif code[0] == "A":
+            # 2026-08-22: 8/21夕Bの記事が add 済みのまま commit されず、本番404で1日放置された。
+            # 「未コミットの変更」では既存記事の小修正と区別がつかず読み飛ばされる。名指しを変える
+            kind = "ステージ済みで未コミット（新記事がcommitから取りこぼされている＝本番に無い）"
+        else:
+            kind = "未コミットの変更"
         rows.append((path, kind, days))
 
     if not rows:
