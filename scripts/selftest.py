@@ -196,6 +196,35 @@ def run():
         return (not crowded), f"crowded={crowded}"
     case("1段落かっこ2個は通る", t_paren_ok, expect_ok=True)
 
+    # ---- style_lint: AI感（NG表現・語尾3連続・文体混在）2026-08-22 ------------------
+    import style_lint as st
+
+    def t_style_tail_run():
+        m = st.measure("<p>設定を開きます。値を変えます。保存します。</p>")
+        return (not m["runs"]), f"runs={m['runs']}"
+    case("同じ語尾3連続は検出される", t_style_tail_run, expect_ok=False, expect_sub="runs=[('ます'")
+
+    def t_style_tail_two_ok():
+        m = st.measure("<p>設定を開きます。値を変えます。保存して終わりです。</p>")
+        return (not m["runs"]), f"runs={m['runs']}"
+    case("同じ語尾2連続は通る", t_style_tail_two_ok, expect_ok=True)
+
+    def t_style_ng_word():
+        m = st.measure("<p>この設定が効きます。単なる自動化ではなく仕組み化です。</p>")
+        ids = sorted(k for k, *_ in m["hits"])
+        return (not ids), f"hits={ids}"
+    case("「効きます。」「単なるAではなく」は検出される", t_style_ng_word, expect_ok=False, expect_sub="hits=['ng:kiku', 'ng:tanaru']")
+
+    def t_style_ng_word_narrowed():
+        m = st.measure("<p>この薬が効くのは服用後30分からで、痛みが半分になります。</p>")
+        return (not m["hits"]), f"hits={m['hits']}"
+    case("効く先を書いた「効く」は通る（狭めた条件）", t_style_ng_word_narrowed, expect_ok=True)
+
+    def t_style_fix_present():
+        missing = [r["id"] for r in st.NG_WORDS if not r.get("fix")]
+        return (not missing), f"代替なし={missing}"
+    case("ng_words.json は全行に代替がある", t_style_fix_present, expect_ok=True)
+
     # ---- readability_lint: 読みにくさの中核 ---------------------------------------
     import readability_lint as rd
 
