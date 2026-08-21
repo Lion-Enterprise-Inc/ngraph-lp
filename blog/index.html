@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
-<style>.b-thumb{display:block;margin:-6px -6px 14px;border-radius:4px;overflow:hidden;border:1px solid var(--border)}.b-thumb img{width:100%;height:auto;display:block;transition:transform .3s}.blog-card:hover .b-thumb img{transform:scale(1.02)}</style>
+<style>.b-thumb{display:block;margin:-6px -6px 14px;border-radius:4px;overflow:hidden;border:1px solid var(--border)}.b-thumb img{width:100%;height:auto;display:block;transition:transform .3s}.blog-card:hover .b-thumb img{transform:scale(1.02)}.b-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}.b-tab{font:inherit;font-size:.82rem;padding:7px 14px;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--text-2,#5c544a);cursor:pointer}.b-tab.is-on{background:var(--accent);border-color:var(--accent);color:#fdfaf4;font-weight:700}.b-tabs-note{font-size:.85rem;color:var(--text-2,#5c544a);margin:-10px 0 20px}.blog-card[hidden]{display:none}</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,540 +59,549 @@
       <h2 class="section-title">AI導入の実践知</h2>
       <p class="section-sub">AI導入が現場で止まる理由、FDE型伴走支援の中身、部門別の活用法——現場でつくってきた経験から書いています。</p>
     </div>
+    <nav class="b-tabs" aria-label="カテゴリ">
+      <button type="button" class="b-tab is-on" data-cat="all">すべて</button>
+      <button type="button" class="b-tab" data-cat="news">AIニュース</button>
+      <button type="button" class="b-tab" data-cat="adoption">AI導入の判断</button>
+      <button type="button" class="b-tab" data-cat="subsidy">補助金・制度</button>
+      <button type="button" class="b-tab" data-cat="security">セキュリティ・権限</button>
+      <button type="button" class="b-tab" data-cat="tech">技術の地図</button>
+    </nav>
+    <p class="b-tabs-note" data-for="adoption" hidden>FDE型の伴走支援そのものは <a href="/fde/">/fde/</a> にまとめています。</p>
     <div class="blog-list">
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.22 ガイド</span>
         <a href="/blog/20260822-ai-keiyaku-tsukawarenai" class="b-thumb"><img src="/assets/blog/20260822-ai-keiyaku-tsukawarenai.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260822-ai-keiyaku-tsukawarenai">AIは、契約した後の5か所で止まる——場所ごとに直す人が違う</a></h3>
         <p>AIが契約後に使われなくなるのは、意欲や教育不足である前に、業務の流れの5つの場所のどこかで止まっているからです。入口・入力・出力の信頼・業務への接続・直す人——場所ごとの見分け方と、直す人が現場か経営者か外部のエンジニアかを整理します。</p>
         <a href="/blog/20260822-ai-keiyaku-tsukawarenai" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.22 ガイド</span>
         <a href="/blog/20260822-fde-irai-mae-ni-kimeru" class="b-thumb"><img src="/assets/blog/20260822-fde-irai-mae-ni-kimeru.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260822-fde-irai-mae-ni-kimeru">FDEに頼む前に社内で決めておく5つのこと——初月の4週間に何が起きるかまで</a></h3>
         <p>FDE型のAI導入支援は、依頼する前に社内で5つのことを決めておくと初月から現場で動きます。最初の1業務・現場の窓口・AIに渡してよい情報の線引きなど、頼む前の準備とNGraphの初月4週間の進み方をまとめました。</p>
         <a href="/blog/20260822-fde-irai-mae-ni-kimeru" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.22 ガイド</span>
         <a href="/blog/20260822-ai-irekawaru-nokoru-shisan" class="b-thumb"><img src="/assets/blog/20260822-ai-irekawaru-nokoru-shisan.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260822-ai-irekawaru-nokoru-shisan">AIは入れ替わる。会社に残るのは、この4つだけ——正本・手順・権限・検査</a></h3>
         <p>AIの看板モデルは、Anthropic・OpenAI・Google各社の公式発表だけで見ても1年前後で入れ替わります。エンジニアが現場を離れたあと会社に残すべきは、正本・手順・権限・検査という4つの資産です。AIツールを乗り換える前の確認点も解説します。</p>
         <a href="/blog/20260822-ai-irekawaru-nokoru-shisan" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.21 夕</span>
         <a href="/blog/20260821-130man-kabe" class="b-thumb"><img src="/assets/blog/20260821-130man-kabe.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260821-130man-kabe">残業代は「130万円の壁」に入らなくなった——2026年4月に変わった判定と、使えない会社の条件</a></h3>
         <p>厚生労働省と日本年金機構は、健康保険の被扶養者の認定基準（130万円の壁）を2026年4月から労働契約の内容で見込む方式に変えました。何が変わり、どんな会社が使えないのかを一次情報のQ&A第2版から解説します。</p>
         <a href="/blog/20260821-130man-kabe" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.21 朝</span>
         <a href="/blog/20260821-github-outage" class="b-thumb"><img src="/assets/blog/20260821-github-outage.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260821-github-outage">GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流</a></h3>
         <p>GitHubが8月17日に7時間47分停止。8月20日の事後報告は原因を「容量の問題」とし、月間コミットは4か月で14億から29億に倍増しました。中小企業のAI導入で先に壊れるのは、AIそのものではなく下流だという話です。</p>
         <a href="/blog/20260821-github-outage" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.20 夕</span>
         <a href="/blog/20260820-ai-token-cost" class="b-thumb"><img src="/assets/blog/20260820-ai-token-cost.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260820-ai-token-cost">AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み</a></h3>
         <p>AIの請求は文字ではなく画像で膨らみます。同じ1920×1080のスクリーンショットが送り先によって1,105〜2,691トークンに開く理由と、自社144セッションの実測で分かった、キャッシュで9割引きになる読み直しの仕組みを解説します。</p>
         <a href="/blog/20260820-ai-token-cost" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.20 朝</span>
         <a href="/blog/20260820-ai-hakusho-2026" class="b-thumb"><img src="/assets/blog/20260820-ai-hakusho-2026.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260820-ai-hakusho-2026">AI白書2026が今日発売——効果を数字で測れている非上場企業は13.7%</a></h3>
         <p>角川アスキー総合研究所『AI白書2026』の独自調査によると、AIの効果を定量把握できている非上場企業は13.7%。調査対象は上場企業か従業員300人以上のみで、中小企業は入っていません。</p>
         <a href="/blog/20260820-ai-hakusho-2026" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.19 夕</span>
         <a href="/blog/20260819-106man-kabe" class="b-thumb"><img src="/assets/blog/20260819-106man-kabe.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260819-106man-kabe">106万円の壁は2026年10月に消える——1,016円で自動加入になる仕組みと、51人未満の会社に来る2027年10月</a></h3>
         <p>厚生労働省の資料は、社会保険加入の賃金要件（106万円の壁）を2026年10月に撤廃予定としています。1,016円という時給の出どころと、51人未満の会社に2027年10月から段階的に来る企業規模要件、事業主負担の増加額を一次情報で解説します。</p>
         <a href="/blog/20260819-106man-kabe" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.19 ナレッジ</span>
         <a href="/blog/k-writing-standard" class="b-thumb"><img src="/assets/blog/k-writing-standard.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/k-writing-standard">AIに同じ修正を3回出している会社は、4回目も同じ結果になる</a></h3>
         <p>AIに出した修正指示は、次の生成には引き継がれません。基準を人の口から外し、AIが毎回読む指示書と、提出前に必ず走る検査へ移す設計です。閾値の決め方と、基準を作った本人が自分の基準に落ちた失敗まで公開します。</p>
         <a href="/blog/k-writing-standard" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.18 夕</span>
         <a href="/blog/20260818-ai-shiryo-sakusei" class="b-thumb"><img src="/assets/blog/20260818-ai-shiryo-sakusei.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260818-ai-shiryo-sakusei">AIに任せていいのは文字だけだった——営業資料15枚の移植で2回差し戻された理由と、イラストと書体の渡し方</a></h3>
         <p>AIに営業資料を作らせると、文章と表はそのまま使えます。作り直しになるのはイラストとロゴ、そして書体です。15枚のPowerPoint移植で2回差し戻された理由と、文字と絵で渡し方を分ける考え方を書きました。</p>
         <a href="/blog/20260818-ai-shiryo-sakusei" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.18 朝</span>
         <a href="/blog/20260818-imagen4-shutdown" class="b-thumb"><img src="/assets/blog/20260818-imagen4-shutdown.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260818-imagen4-shutdown">Googleが画像生成AIを3つ止めた——モデルの寿命は14か月、自社が呼んでいるモデルの確かめ方</a></h3>
         <p>Googleが2026年8月17日、画像生成AI Imagen 4の3モデルの提供を終了しました。リリースから約14か月という短さと、同じ廃止一覧に並ぶ他モデルとの寿命の差、自社のモデルIDを確かめた実測から、中小企業がすべき対応を解説します。</p>
         <a href="/blog/20260818-imagen4-shutdown" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.18 ナレッジ</span>
         <a href="/blog/k-x-loop" class="b-thumb"><img src="/assets/blog/k-x-loop.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/k-x-loop">Claude CodeにXの伸ばし方を48時間ごとに学ばせる——フォロワー95人で回している「標本ループ」の設計図</a></h3>
         <p>伸びている他人の投稿を標本として集め、自分の投稿の実測と突き合わせて、書き方のルールをAIが48時間ごとに更新する「標本ループ」。4つの原則と、表示284と130万を分けた対照標本まで、初回1周の実測を公開します。</p>
         <a href="/blog/k-x-loop" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.17 朝</span>
         <a href="/blog/20260817-qwen-27b-local" class="b-thumb"><img src="/assets/blog/20260817-qwen-27b-local.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260817-qwen-27b-local">Qwenの最強モデルより手元で動く27Bが32倍ダウンロードされた——中小企業がローカルAIを判断する基準</a></h3>
         <p>アリババのQwenチームが公開した270億パラメータの「Qwen3.8-27B」は、2日前に出た最上位モデルより32倍ダウンロードされていました。実測データから、中小企業がローカルAIを判断する基準を解説します。</p>
         <a href="/blog/20260817-qwen-27b-local" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.17 ガイド</span>
         <a href="/blog/20260817-x-algorithm-code" class="b-thumb"><img src="/assets/blog/20260817-x-algorithm-code.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260817-x-algorithm-code">イーロン・マスクが公開したコードから逆算する、Xの伸ばし方——いいねは0.5点、リンクコピーは20点</a></h3>
         <p>Xが2026年8月13日に公開したFor Youアルゴリズムのコードを、行番号まで読みました。フォローの重みは+12ではなく4.0、通報はいいねの468倍ではないなど、広まっている解説とコードの実際のズレを解説します。</p>
         <a href="/blog/20260817-x-algorithm-code" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.17 夕</span>
         <a href="/blog/20260817-shoryokuka-8ji" class="b-thumb"><img src="/assets/blog/20260817-shoryokuka-8ji.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260817-shoryokuka-8ji">省力化投資補助金は生成AIの月額料金を補助しない——8月18日開始の第8回と、対象になるAIの条件</a></h3>
         <p>省力化投資補助金〈一般型〉の第8回は8月18日公募開始です。必須要件「単価50万円以上の設備投資」と、導入済み企業の82.6%が使う生成AIの月額料金がなぜ噛み合わないかを、公募要領と中小機構の実態調査から解説します。</p>
         <a href="/blog/20260817-shoryokuka-8ji" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.16 ナレッジ</span>
         <a href="/blog/k-company-brain-abc" class="b-thumb"><img src="/assets/blog/k-company-brain-abc.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/k-company-brain-abc">会社の情報は「誰の・どの状態か」で分ける——AIが読める正本にする2軸と3原則</a></h3>
         <p>会社の情報をAIが読める正本にするには、ABC整理（誰の情報か）と状態整理（決まっている／動いている）の2軸で分け、出どころ・現在地・機密の3原則で保存します。分け方の設計と最小の実践パスを書きます。</p>
         <a href="/blog/k-company-brain-abc" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.16 ナレッジ</span>
         <a href="/blog/k-blog-gate" class="b-thumb"><img src="/assets/blog/k-blog-gate.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/k-blog-gate">毎日出す仕事を、人の目で守るのをやめる——公開前ゲート13本の設計</a></h3>
         <p>毎日同じ形で外に出る仕事の品質を、担当者の目視ではなく出す直前の1か所で機械に確かめさせる設計です。4つの原則と、自社で13本まで増えた実録、今日見つけた抜け穴まで書きます。</p>
         <a href="/blog/k-blog-gate" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.15 夕</span>
         <a href="/blog/20260815-tejun-wa-tool-ga-dasu" class="b-thumb"><img src="/assets/blog/20260815-tejun-wa-tool-ga-dasu.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260815-tejun-wa-tool-ga-dasu">AIに「読んで守れ」は効かない——1日に3回破られた約束と、手順をツールに出力させる方法</a></h3>
         <p>AIに手順書を読ませても「読んで守れ」は効きませんでした。1日で3回、私は同じ約束を破りました。何が起きたかと、その原因と、手順をツールに出力させて防いだ仕組みを書きます。</p>
         <a href="/blog/20260815-tejun-wa-tool-ga-dasu" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.15 朝</span>
         <a href="/blog/20260815-deepseek-neage" class="b-thumb"><img src="/assets/blog/20260815-deepseek-neage.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260815-deepseek-neage">DeepSeekが8月17日にAPIを最大12倍へ値上げ——日本の業務時間が丸ごと割高な時間帯に入る理由</a></h3>
         <p>DeepSeekが日本時間8月17日午前1時からAPI料金を改定します。ピーク時間帯の単価は現行の最大約12.1倍で、日本の業務時間の大半が割高な時間帯に重なります。中小企業が今日から確認すべき3点を解説します。</p>
         <a href="/blog/20260815-deepseek-neage" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.14 夕</span>
         <a href="/blog/20260814-homepage-iji-hi" class="b-thumb"><img src="/assets/blog/20260814-homepage-iji-hi.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260814-homepage-iji-hi">ホームページの維持費は、ドメイン代とAIの月額だけになった——サーバー代が0円になる理由と実際の請求額</a></h3>
         <p>ホームページの維持費はドメイン代とAIの月額だけです。自社のドメイン更新請求とAnthropic公式料金表から実額を出し、.comと.jpで1.8倍違う理由まで解説します。</p>
         <a href="/blog/20260814-homepage-iji-hi" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.14 朝</span>
         <a href="/blog/20260814-claude-watermark" class="b-thumb"><img src="/assets/blog/20260814-claude-watermark.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260814-claude-watermark">Claudeの出力に見えない透かしが入った——「AIが書いた証拠」にならない理由と、社内で決める1行</a></h3>
         <p>Anthropicが2026年8月11日、Claudeの出力に機械可読な印を付ける方針を公開しました。透かしがあってもAIが著者とは限らない理由と、中小企業が社内で決めておくべき1行のルールを解説します。</p>
         <a href="/blog/20260814-claude-watermark" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="security">
         <span class="b-date">2026.08.13 夕</span>
         <a href="/blog/20260813-anken-shokai-eigyo" class="b-thumb"><img src="/assets/blog/20260813-anken-shokai-eigyo.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260813-anken-shokai-eigyo">AI導入支援の会社を狙う「案件を紹介します」詐欺にご用心——構造は同じ、中身だけAIで変えてくる</a></h3>
         <p>テレアポ、面談でまず自社紹介をさせる、そのあと話に合った案件概要をチャットで送る、月5万円の一括先払い、電子契約で締結。手口の順序まで同じ営業を、同じ月に2社から受けました。公開情報だけで実測した結果と、相手を見分けずに済む4つの契約条件をまとめます。</p>
         <a href="/blog/20260813-anken-shokai-eigyo" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.13 朝</span>
         <a href="/blog/20260813-nise-ai-bot" class="b-thumb"><img src="/assets/blog/20260813-nise-ai-bot.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260813-nise-ai-bot">AIボットを名乗る偽アクセスが/.envを探している——robots.txtが防御にならない理由と5分の確認</a></h3>
         <p>AIボットになりすまして脆弱性を探すアクセスが観測されています。名乗りは証拠にならない理由と、自社サイトを5分で確認する方法、IPで検証する手順を解説します。</p>
         <a href="/blog/20260813-nise-ai-bot" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.12 朝</span>
         <a href="/blog/20260812-ai-model-routing" class="b-thumb"><img src="/assets/blog/20260812-ai-model-routing.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260812-ai-model-routing">一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方</a></h3>
         <p>NVIDIAが2026年8月11日、オープンウェイトAI「Nemotron 3.5 Lightning」と振り分けの仕組み「NeMo Switchyard」を公開しました。タスク完了コストは主張値でOpus 4.8単独の約3分の1。中小企業のAI費用の考え方を解説します。</p>
         <a href="/blog/20260812-ai-model-routing" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.11 夕</span>
         <a href="/blog/20260811-invoice-keika-sochi" class="b-thumb"><img src="/assets/blog/20260811-invoice-keika-sochi.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260811-invoice-keika-sochi">インボイスの8割控除は2026年9月で終わる——10月から7割・「5割」と書いた解説が古い理由</a></h3>
         <p>免税事業者への支払いに使える仕入税額控除は2026年9月で80%が終わり、10月から70%になります。控除限度額も10億円から1億円に変わります。「10月から5割」という解説が今も残る理由と、2割特例の終了、個人事業者の3割特例・法人の簡易課税を解説します。</p>
         <a href="/blog/20260811-invoice-keika-sochi" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.11 朝</span>
         <a href="/blog/20260811-meta-muse-glimmer" class="b-thumb"><img src="/assets/blog/20260811-meta-muse-glimmer.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260811-meta-muse-glimmer">Metaが30B級AIをApache 2.0で公開——PC1台で動くAIと、中小企業が乗る前に確かめる3点</a></h3>
         <p>Metaが2026年8月10日、300億パラメータ級AI「Muse Glimmer」をApache 2.0で公開しました。1枚のコンシューマー向けGPUで動く大きさです。中小企業が乗る前に確かめる3点を解説します。</p>
         <a href="/blog/20260811-meta-muse-glimmer" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.10 夕</span>
         <a href="/blog/20260810-cloudflare-pages" class="b-thumb"><img src="/assets/blog/20260810-cloudflare-pages.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260810-cloudflare-pages">会社のホームページは無料枠で足りる——Cloudflare Pagesの上限に対し実測0.8%と、唯一つまずいた1か所</a></h3>
         <p>ngraph.jpはCloudflare Pagesで配信しています。無料枠の3つの上限に対する自社実測と、公式ドキュメントのWorkers移行案内を突き合わせ、どちらを選ぶべきかの判断基準を解説します。</p>
         <a href="/blog/20260810-cloudflare-pages" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.10 朝</span>
         <a href="/blog/20260810-openai-signals-japan" class="b-thumb"><img src="/assets/blog/20260810-openai-signals-japan.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260810-openai-signals-japan">日本は仕事でAIに「やらせて」いない——OpenAI国別データ79か国中79位と、聞く側から抜ける手順</a></h3>
         <p>OpenAIが2026年8月6日に公開した国別データOpenAI Signalsを取得し、日本の行を抽出しました。仕事関連メッセージのうちAIに作業を任せる比率は79か国中79位で最下位です。中小企業が見るべき論点を解説します。</p>
         <a href="/blog/20260810-openai-signals-japan" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.09 朝</span>
         <a href="/blog/20260809-chatgpt-free-unlimited" class="b-thumb"><img src="/assets/blog/20260809-chatgpt-free-unlimited.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260809-chatgpt-free-unlimited">ChatGPT無料版のテキストチャットが無制限に——事実誤り62%減でも、中小企業が使いたい機能は上限つき</a></h3>
         <p>OpenAIが2026年8月6日、ChatGPT無料版のテキストチャットを無制限にすると発表。事実誤りは社内評価で62%減った一方、ファイル・画像などのツールには従来通り上限が残ります。中小企業が見るべき判断基準を解説します。</p>
         <a href="/blog/20260809-chatgpt-free-unlimited" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.09 夕</span>
         <a href="/blog/20260809-webmcp-toha" class="b-thumb"><img src="/assets/blog/20260809-webmcp-toha.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260809-webmcp-toha">WebMCPとは？自社サイトがAIエージェントの窓口になる——W3Cドラフトが用意した3つの「させない」設定と、公開前に決める線引き</a></h3>
         <p>WebMCPは自社サイトの機能をAIエージェントに「ツール」として開放する仕組みです。2026年7月28日付W3Cドラフトの一次情報から、readOnlyHint・untrustedContentHint・exposedToという3つの「させない」設定と、公開前に決めるべき線引きを解説します。</p>
         <a href="/blog/20260809-webmcp-toha" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.08 夕</span>
         <a href="/blog/20260808-mcp-toha" class="b-thumb"><img src="/assets/blog/20260808-mcp-toha.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260808-mcp-toha">MCPとは、AIに社内の道具を使わせる共通規格——非エンジニアの会社が自作サーバーを3つのAIにつないだ手順と、2026年7月の仕様変更</a></h3>
         <p>MCPは2024年11月にAnthropicが公開した、AIに社内の道具を使わせる共通規格です。決めていること・決めていないこと、2026年7月28日版での変更点、非エンジニアの会社が自作サーバーを3つのAIにつないだ手順を解説します。</p>
         <a href="/blog/20260808-mcp-toha" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.08 朝</span>
         <a href="/blog/20260808-openai-astra-kengen" class="b-thumb"><img src="/assets/blog/20260808-openai-astra-kengen.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260808-openai-astra-kengen">OpenAIが新モデルAstraに最初にやったのは、権限を絞ることだった——中小企業のAI導入にそのまま効く3つの設計</a></h3>
         <p>OpenAIが開発中の新モデルAstraについて、Critical(重大)サイバー能力を否定できないと公表。実際に取った対応は「隔離・権限制限・監視」の3つでした。中小企業のAI導入にそのまま効く設計を解説します。</p>
         <a href="/blog/20260808-openai-astra-kengen" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.07</span>
         <a href="/blog/ai-hojokin" class="b-thumb"><img src="/assets/blog/ai-hojokin.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/ai-hojokin">AI導入に使える補助金はどれか——「AI」と書いてある制度は1つもない。8制度の対象経費を読み解く実務判定表</a></h3>
         <p>AI導入の補助金を探しても「AI」と書いてある制度はありません。8制度の締切・上限額・対象経費・GビズID要否を実務判定表で整理し、150万円のAI導入なら自己負担いくらかを計算例で示します。</p>
         <a href="/blog/ai-hojokin" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.07 夕</span>
         <a href="/blog/20260807-jinbusoku-tosan" class="b-thumb"><img src="/assets/blog/20260807-jinbusoku-tosan.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260807-jinbusoku-tosan">人手不足倒産は227件か237件か——2つの集計がズレる理由と、「採れない」から「払えない」への転換</a></h3>
         <p>2026年上半期の人手不足倒産は帝国データバンクで227件、東京商工リサーチで237件。同じ期間で数字が違う理由を定義から解き、増加の主因が「求人難」ではなく「人件費高騰」に移った構造と、中小企業が採用以外に打てる手を解説します。</p>
         <a href="/blog/20260807-jinbusoku-tosan" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.07 朝</span>
         <a href="/blog/20260807-ai-approval-fatigue" class="b-thumb"><img src="/assets/blog/20260807-ai-approval-fatigue.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260807-ai-approval-fatigue">危険な命令の3回に1回が承認された——40万件の実測。中小企業に要るのは承認ボタンではなく「できない設定」</a></h3>
         <p>AIエージェントの操作を人が承認する実験ゲームの集計（40,000プレイ・409,000判断）で、危険な命令の3回に1回が承認されていた。中小企業がAIに持たせるべきは承認ボタンではなく「できない設定」である理由を、一次情報から解説します。</p>
         <a href="/blog/20260807-ai-approval-fatigue" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.06</span>
         <a href="/blog/20260806-deepseek-v4-price" class="b-thumb"><img src="/assets/blog/20260806-deepseek-v4-price.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260806-deepseek-v4-price">DeepSeek V4の出力単価は主力モデルの約1/43——乗り換えを保留した3つの理由</a></h3>
         <p>DeepSeek V4-Flashの出力単価は100万トークンあたり0.28ドル、主力モデルの約43分の1です。ただし同じ低価格帯と比べれば4.3分の1。倍率が比較相手で変わる仕組みと、公式の値上げ予告を一次情報で整理します。</p>
         <a href="/blog/20260806-deepseek-v4-price" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.06</span>
         <a href="/blog/20260806-ai-cross-review" class="b-thumb"><img src="/assets/blog/20260806-ai-cross-review.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260806-ai-cross-review">AIを2体並べても、同じ間違いをします——検算には順番がある</a></h3>
         <p>AIの出力を別のAIに検算させれば安心、とはいきません。1つの設計書を別のAIに3回レビューさせたら、直すたびに新しい間違いが入りました。機械→AI→人という順番と、置き場を3つに分けた理由を実例で解説します。</p>
         <a href="/blog/20260806-ai-cross-review" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.06 夕</span>
         <a href="/blog/20260806-seihon-yomarenai" class="b-thumb"><img src="/assets/blog/20260806-seihon-yomarenai.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法</a></h3>
         <p>社内の情報をAIが読める形に整えても、AIがそれを読むとは限りません。帝国データバンク調査（2026年3月・1万312社）で活用企業の86.7%が効果を認める一方、活用は34.5%どまり。自社で起きた「正本があるのにAIが読まなかった」事故と、読み出し側に検問を置いて塞いだ方法を解説します。</p>
         <a href="/blog/20260806-seihon-yomarenai" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.06 朝</span>
         <a href="/blog/20260806-meta-muse-code" class="b-thumb"><img src="/assets/blog/20260806-meta-muse-code.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260806-meta-muse-code">MetaがコーディングAI「Muse Code」を投入——安さの対価は、自社データ</a></h3>
         <p>Metaが2026年8月5日、初のコーディングエージェント「Muse Code」をベータ公開。海外報道によれば、入力データを学習に使わせる同意と引き換えに料金が下がる「コントリビューター枠」も登場しました。値下げより「対価が現金以外になった」ことの意味を中小企業の視点で解説します。</p>
         <a href="/blog/20260806-meta-muse-code" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.05 夕</span>
         <a href="/blog/20260805-gyomu-kaizen-joseikin" class="b-thumb"><img src="/assets/blog/20260805-gyomu-kaizen-joseikin.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260805-gyomu-kaizen-joseikin">業務改善助成金 令和8年度とは？9月1日受付開始——「最大600万円」の実額と、AIツールが対象になる線引き</a></h3>
         <p>令和8年度の業務改善助成金は9月1日受付開始。「最大600万円」の実額がいくらになるか、令和7年度からの変更点、AIツール・ソフトウェアが対象になる線引きを厚生労働省の一次資料から解説します。</p>
         <a href="/blog/20260805-gyomu-kaizen-joseikin" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.05 朝</span>
         <a href="/blog/20260805-sakana-namazu" class="b-thumb"><img src="/assets/blog/20260805-sakana-namazu.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260805-sakana-namazu">Sakana AIが日本語特化LLM APIを提供開始——100人以下の企業のAI導入は16.6%、壁は日本語ではない</a></h3>
         <p>Sakana AIが2026年8月3日、日本語特化LLM API「Sakana Namazu」を提供開始。中立性ベンチが34.10%から56.30%に向上した一方、IPA調査では従業員100人以下の企業のAI導入率は16.6%にとどまります。モデルの日本語が上手くなっても導入率が動かない理由を解説します。</p>
         <a href="/blog/20260805-sakana-namazu" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.04 夜</span>
         <a href="/blog/20260804-company-brain" class="b-thumb"><img src="/assets/blog/20260804-company-brain.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260804-company-brain">会社の脳はもうある、散らばっているだけ——AIに会社を覚えさせる仕組みと「導入前チェック6問」</a></h3>
         <p>AIが賢くならないのは知識が無いからではなく、散らばっているから。知識をAIが読める1か所の正本に集める「会社の脳」の仕組み（正本・検問・読み口）と自社運用の実測値、導入前に自社を診断できるチェック6問を公開します。</p>
         <a href="/blog/20260804-company-brain" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.04 夕</span>
         <a href="/blog/20260804-ai-kenshu-teichaku" class="b-thumb"><img src="/assets/blog/20260804-ai-kenshu-teichaku.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260804-ai-kenshu-teichaku">AI研修が定着しない理由——「時間がない45.5%」と、助成金が「実務の中の練習」を対象外にする構造</a></h3>
         <p>厚生労働省が2026年7月31日に公表した令和7年度「能力開発基本調査」では、能力開発に問題があるとした事業所が80.1%、問題点の1位は「指導する人材が不足している」59.5%、3位が「人材育成を行う時間がない」45.5%でした。AI研修が現場で定着しない理由を、公的統計と人材開発支援助成金の要件から解説します。</p>
         <a href="/blog/20260804-ai-kenshu-teichaku" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.04 朝</span>
         <a href="/blog/20260804-shoryokuka-8th-gbizid" class="b-thumb"><img src="/assets/blog/20260804-shoryokuka-8th-gbizid.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260804-shoryokuka-8th-gbizid">省力化投資補助金 第8回は8月中旬公募開始——GビズIDの不具合で「申請の入口」が一部止まっている</a></h3>
         <p>中小企業省力化投資補助金は第7回を7月31日に締切、第8回は8月中旬公募開始予定です。同時にGビズIDで法人情報確認システムの不具合が発生し、一部法人の申請審査が止まっています。中小企業が今週すべきことを解説します。</p>
         <a href="/blog/20260804-shoryokuka-8th-gbizid" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.08.03 夕</span>
         <a href="/blog/20260803-saitei-chingin-2026" class="b-thumb"><img src="/assets/blog/20260803-saitei-chingin-2026.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260803-saitei-chingin-2026">最低賃金2026年度はいつから・いくら？47都道府県別の想定時給と発効日——目安55円・全国平均1,176円</a></h3>
         <p>令和8年度の最低賃金の目安は全国加重平均で55円引き上げ・1,176円。47都道府県ごとの2026年度の想定時給と、令和7年度の発効日（2025年10月1日〜2026年3月31日）を一覧に。自社が下回っていないかの確認方法まで解説します。</p>
         <a href="/blog/20260803-saitei-chingin-2026" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.08.02 夕</span>
         <a href="/blog/20260802-seisei-ai-gijiroku-domari" class="b-thumb"><img src="/assets/blog/20260802-seisei-ai-gijiroku-domari.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260802-seisei-ai-gijiroku-domari">生成AIが「議事録止まり」になる理由——効果実感72.3%の一極集中と、社内データ接続24.5%の壁</a></h3>
         <p>総務省の白書(2026年7月公表)によると、日本企業が効果を実感する業務は議事録・メール作成補助が72.3%で突出。社内データにAIをつないだ企業はわずか24.5%(米国57.2%)。議事録止まりの構造を3つの調査から読み解きます。</p>
         <a href="/blog/20260802-seisei-ai-gijiroku-domari" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.02 朝</span>
         <a href="/blog/20260802-openai-atlas-eol" class="b-thumb"><img src="/assets/blog/20260802-openai-atlas-eol.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260802-openai-atlas-eol">OpenAIのブラウザAtlasが8月9日に停止——AIツールは「終売」前提で選ぶ</a></h3>
         <p>OpenAIはAI搭載ブラウザ「ChatGPT Atlas」を2026年8月9日に停止します。告知から約30日という猶予の短さと、単機能AI製品が消えていく規則性を、中小企業のツール選びの視点で解説します。</p>
         <a href="/blog/20260802-openai-atlas-eol" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="tech">
         <span class="b-date">2026.08.01 夕</span>
         <a href="/blog/20260801-ai-shared-brain" class="b-thumb"><img src="/assets/blog/20260801-ai-shared-brain.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260801-ai-shared-brain">AIを増やすほど記憶はバラバラになる——GitとMarkdownだけで全AIに同じ正本を読ませる構築手順</a></h3>
         <p>複数のAI CLIを併用すると記憶が分断される。預かり型SaaSに頼らず、GitリポジトリのMarkdownを正本にして全AIに読み書きさせる自前ブレインの構築手順を、コピペで再現できる形で公開します。</p>
         <a href="/blog/20260801-ai-shared-brain" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.08.01 朝</span>
         <a href="/blog/20260801-ai-agent-permission" class="b-thumb"><img src="/assets/blog/20260801-ai-agent-permission.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260801-ai-agent-permission">Anthropicが自社AIの侵入事案3件を公表——中小企業が先に決めるべきは「つないでいい範囲」</a></h3>
         <p>Anthropicは2026年7月30日、自社AIのサイバーセキュリティ評価環境から実在企業への侵入事案3件を公表しました。14万回超の検査で見つかった事案の中身と、中小企業がAI導入で先に決めるべき「つないでいい範囲」の考え方を解説します。</p>
         <a href="/blog/20260801-ai-agent-permission" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.31 夕</span>
         <a href="/blog/20260731-seisei-ai-riyoritsu" class="b-thumb"><img src="/assets/blog/20260731-seisei-ai-riyoritsu.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260731-seisei-ai-riyoritsu">生成AI利用率86.4%と34.5%はどちらも本当——数字のズレと「組織的な取組なし27%」の壁</a></h3>
         <p>総務省の白書は86.4%、帝国データバンクは34.5%。数字がズレる理由を母集団・設問・時期から読み解き、日本企業の27.0%が「組織的な取組はない」と答えた本当の論点を解説します。</p>
         <a href="/blog/20260731-seisei-ai-riyoritsu" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.31 朝</span>
         <a href="/blog/20260731-openai-price-cut" class="b-thumb"><img src="/assets/blog/20260731-openai-price-cut.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260731-openai-price-cut">OpenAIがGPT-5.6の一部を最大80%値下げ（7/30）——中小企業のAI費用は「乗り換え前提」で組む</a></h3>
         <p>OpenAIは2026年7月30日、GPT-5.6の低価格モデルLunaを80%、中位のTerraを20%値下げしました。AIの利用料は下がり続けます。中小企業が今すぐ見直すべき3点を、一次情報の数字とともに整理します。</p>
         <a href="/blog/20260731-openai-price-cut" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.30 朝</span>
         <a href="/blog/20260730-eu-ai-act-transparency" class="b-thumb"><img src="/assets/blog/20260730-eu-ai-act-transparency.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260730-eu-ai-act-transparency">EUのAI透明性ルールが8月2日始動——中小企業も「これはAIです」を今から</a></h3>
         <p>欧州委員会が2026年7月20日、EU AI法・第50条の透明性ガイドラインを公表。8月2日から適用が始まる義務の中身と、日本の中小企業が今から備えるべきことを解説します。</p>
         <a href="/blog/20260730-eu-ai-act-transparency" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="security">
         <span class="b-date">2026.07.29 夕</span>
         <a href="/blog/20260729-seisei-ai-security" class="b-thumb"><img src="/assets/blog/20260729-seisei-ai-security.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260729-seisei-ai-security">生成AIの情報漏洩対策とは？中小企業の65%が「個人任せ」——リスクと社内ルールの作り方を統計で解説</a></h3>
         <p>中小企業の64.9%が会社導入なし・個人任せ（商工中金2026年1月）。情報漏洩の3経路、数字がズレる理由、社内ルールの作り方とNGパターンを統計と現場から解説。</p>
         <a href="/blog/20260729-seisei-ai-security" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.29 朝</span>
         <a href="/blog/20260729-mcp-standard-smb" class="b-thumb"><img src="/assets/blog/20260729-mcp-standard-smb.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260729-mcp-standard-smb">AIに社内の道具を使わせる共通規格「MCP」が新版に(7/28)——中小企業のツール選びが変わる</a></h3>
         <p>AIアシスタントに会計ソフトや予約システムを使わせる共通規格MCPの最終仕様が7/28に始動。中小企業のツール選びの新しい判断軸を解説。</p>
         <a href="/blog/20260729-mcp-standard-smb" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.28 朝</span>
         <a href="/blog/20260728-shinjigyo-monodukuri-subsidy" class="b-thumb"><img src="/assets/blog/20260728-shinjigyo-monodukuri-subsidy.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260728-shinjigyo-monodukuri-subsidy">新事業進出・ものづくり補助金、第1回公募が8月31日スタート——設備投資・新事業を最大数千万円で後押し</a></h3>
         <p>設備投資・新事業を後押しする大型補助金の第1回公募が8月31日開始。夏の補助金の締切も合わせて整理。</p>
         <a href="/blog/20260728-shinjigyo-monodukuri-subsidy" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.27 夕</span>
         <a href="/blog/20260727-inbound-multilingual" class="b-thumb"><img src="/assets/blog/20260727-inbound-multilingual.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260727-inbound-multilingual">訪日客の飲食費は年2兆円規模——中小飲食店の多言語対応を、AIで"省力化"する現実解</a></h3>
         <p>訪日客の旅行消費額は2025年に9.5兆円と過去最高、うち飲食費は約2.07兆円。2026年は客数が前年割れに転じる中、中小飲食店が多言語対応を人手をかけず省力化する手順・費用・失敗例を、官公庁統計と現場経験から解説します。</p>
         <a href="/blog/20260727-inbound-multilingual" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.27 朝</span>
         <a href="/blog/20260727-ai-subsidy-deadline" class="b-thumb"><img src="/assets/blog/20260727-ai-subsidy-deadline.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260727-ai-subsidy-deadline">デジタル化・AI導入補助金、四次締切は8月25日——中小企業のAI導入を国が後押し</a></h3>
         <p>デジタル化・AI導入補助金2026の四次締切が8月25日17時に迫る。5つの申請枠と省力化投資補助金との使い分け、当週のGemini 3.6 Flash・GPT-5.6の動向もあわせて解説します。</p>
         <a href="/blog/20260727-ai-subsidy-deadline" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.26 夕</span>
         <a href="/blog/20260726-inshoku-jinbusoku" class="b-thumb"><img src="/assets/blog/20260726-inshoku-jinbusoku.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260726-inshoku-jinbusoku">飲食店の人手不足はなぜ解消しないのか——数字で見る「採用で埋める」の限界と省力化の現在地</a></h3>
         <p>飲食店の非正社員の人手不足は59.1%（帝国データバンク2026年4月）。前年から6.2pt改善したのに現場が楽にならないのはなぜか。有効求人倍率や消費者調査から「採用で埋める」の限界と省力化の優先順位を解説します。</p>
         <a href="/blog/20260726-inshoku-jinbusoku" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.26 朝</span>
         <a href="/blog/20260726-claude-opus5-smb" class="b-thumb"><img src="/assets/blog/20260726-claude-opus5-smb.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260726-claude-opus5-smb">Claude Opus 5登場、AIエージェントは"高性能・低コスト"へ——中小企業は最上位を追わなくていい</a></h3>
         <p>Anthropicが7月24日に公開したClaude Opus 5は、エージェント性能を前世代の2倍超に上げながらコストは低下。各社の値下げ競争を、中小企業が何をAIに任せるかの視点で解説します。</p>
         <a href="/blog/20260726-claude-opus5-smb" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.07.25 夕</span>
         <a href="/blog/20260725-gbizid" class="b-thumb"><img src="/assets/blog/20260725-gbizid.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260725-gbizid">GビズIDとは？補助金申請の最初の壁を「3アカウント・発行日数・2026年新設の有効期限」で解説</a></h3>
         <p>1つのID・パスワードで補助金申請などにログインできる共通認証システム。3種類のアカウントの選び方、発行日数の差、2026年7月9日に新設された有効期限（2年3か月）を整理。</p>
         <a href="/blog/20260725-gbizid" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.25 朝</span>
         <a href="/blog/20260725-shoryokuka-subsidy" class="b-thumb"><img src="/assets/blog/20260725-shoryokuka-subsidy.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260725-shoryokuka-subsidy">省力化投資補助金 第7回が7月31日締切——中小企業の人手不足投資に最大1億円</a></h3>
         <p>中小企業省力化投資補助金（一般型）第7回が7月31日17時締切。人手不足の設備・システム投資に最大1億円。GビズID取得の注意とデジタル化・AI導入補助金との使い分けを解説。</p>
         <a href="/blog/20260725-shoryokuka-subsidy" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="subsidy">
         <span class="b-date">2026.07.24 夕</span>
         <a href="/blog/20260724-ai-subsidy-2026" class="b-thumb"><img src="/assets/blog/20260724-ai-subsidy-2026.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260724-ai-subsidy-2026">デジタル化・AI導入補助金2026とは？旧IT導入補助金でAIツールが補助対象に——上限450万円の中小企業向けの使い方</a></h3>
         <p>旧IT導入補助金が名称変更。AI搭載ツールが補助対象に明記された5つの申請枠と、上限1億円まで届く省力化投資補助金との桁違いの理由、3制度の使い分けを解説。</p>
         <a href="/blog/20260724-ai-subsidy-2026" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.24 朝</span>
         <a href="/blog/20260724-openai-presence-fde" class="b-thumb"><img src="/assets/blog/20260724-openai-presence-fde.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260724-openai-presence-fde">OpenAIが「Presence」を発表——AIエージェント導入を担うのは"人（FDE）"だった</a></h3>
         <p>企業向けAIエージェント基盤の発表。導入を担うのはOpenAI自身のFDE(現場常駐エンジニア)だった話を中小企業視点で解説。補助金・DeepSeek・Kimi K3の短信つき。</p>
         <a href="/blog/20260724-openai-presence-fde" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.23 朝</span>
         <a href="/blog/20260723-openai-small-business" class="b-thumb"><img src="/assets/blog/20260723-openai-small-business.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260723-openai-small-business">Gemini 3.6 Flashが出力価格を引き下げ——AIの壁は「価格」から「使い方」の伴走へ</a></h3>
         <p>Google・OpenAI・HCLTechの7月21日発表を突合。値下げが続くほど、差がつくのは「使いこなせるか」という一点に移っていく話。</p>
         <a href="/blog/20260723-openai-small-business" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.22 夕</span>
         <a href="/blog/20260722-sme-ai-adoption" class="b-thumb"><img src="/assets/blog/20260722-sme-ai-adoption.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260722-sme-ai-adoption">中小企業のAI導入率は20.4%——足りないのは費用より「事例と選び方」だった</a></h3>
         <p>中小機構・商工中金・Leachの3調査を突合。数字が12%〜31%に割れる理由と、「会社主導」で効果が10ポイント変わる事実。</p>
         <a href="/blog/20260722-sme-ai-adoption" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="news">
         <span class="b-date">2026.07.22 朝</span>
         <a href="/blog/20260722-openai-smb" class="b-thumb"><img src="/assets/blog/20260722-openai-smb.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/20260722-openai-smb">OpenAIが中小企業向けプログラムを発表——AI最大手が「研修と伴走」に踏み込んだ</a></h3>
         <p>ツールを配って終わり、が終わる合図。7月21日の発表を日本の中小企業の視点で解説します。</p>
         <a href="/blog/20260722-openai-smb" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.17</span>
         <a href="/blog/ai-and-humans" class="b-thumb"><img src="/assets/blog/ai-and-humans.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/ai-and-humans">AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き</a></h3>
         <p>「奪われる」でも「全部解決」でもない。現場で決めてきたAIと人間の線引きを、実例と早見表で書きました。</p>
         <a href="/blog/ai-and-humans" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/what-is-fde" class="b-thumb"><img src="/assets/blog/what-is-fde.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/what-is-fde">FDE（フォワード・デプロイド・エンジニア）とは？ 企業が本当に足りないのは「現場でAIを入れられる人」——不足69.6%</a></h3>
         <p class="b-excerpt">IPA「DX動向2026」では「現場でAI導入を推進できる従業員」の不足が69.6%、一方でAI研究者は56.7%が「自社には必要ない」。足りない人材の正体を解説。</p>
         <a href="/blog/what-is-fde" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/why-ai-stalls" class="b-thumb"><img src="/assets/blog/why-ai-stalls.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/why-ai-stalls">AIを導入したのに現場で使われない——よくある3つの理由と処方箋</a></h3>
         <p class="b-excerpt">ツールはある、研修もやった、なのに現場は変わらない。停滞の典型3パターンを分解し、それぞれの処方箋を示す。</p>
         <a href="/blog/why-ai-stalls" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/fde-vs-training" class="b-thumb"><img src="/assets/blog/fde-vs-training.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/fde-vs-training">研修は「教える」、コンサルは「描く」、FDEは現場で「つくる」——AI導入支援3タイプの選び方</a></h3>
         <p class="b-excerpt">「教える」研修、「描く」コンサル、「現場でつくる」FDE。3タイプの守備範囲と選び方を整理。</p>
         <a href="/blog/fde-vs-training" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/keiri-ai" class="b-thumb"><img src="/assets/blog/keiri-ai.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/keiri-ai">経理業務でAIに任せられること・任せられないこと</a></h3>
         <p class="b-excerpt">経理は「AIに向く仕事」と「人が握るべき仕事」の線引きが最も大事な部署。実務目線で整理。</p>
         <a href="/blog/keiri-ai" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/eigyo-ai" class="b-thumb"><img src="/assets/blog/eigyo-ai.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/eigyo-ai">営業のAI活用——提案書・見積・顧客対応はどこまで任せられるか</a></h3>
         <p class="b-excerpt">営業のAIは「代わりに売る」ではなく「売る人の雑務を消す」。現実的な適用範囲を解説。</p>
         <a href="/blog/eigyo-ai" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/inshoku-ai" class="b-thumb"><img src="/assets/blog/inshoku-ai.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/inshoku-ai">飲食店のAI活用——接客・メニュー・多言語対応の実例</a></h3>
         <p class="b-excerpt">AI接客サービスを実店舗で運用して見えた、飲食×AIの現実的な効き所。自社実例ベース。</p>
         <a href="/blog/inshoku-ai" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/prompt-design" class="b-thumb"><img src="/assets/blog/prompt-design.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/prompt-design">現場で本当に使えるプロンプトの作り方——一般論で終わらせない5つの原則</a></h3>
         <p class="b-excerpt">「良いプロンプトの書き方」一般論では業務は変わらない。現場で動くプロンプト設計の5原則。</p>
         <a href="/blog/prompt-design" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/legacy-integration" class="b-thumb"><img src="/assets/blog/legacy-integration.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/legacy-integration">既存システムを捨てずにAIを組み込む方法——Excel・チャットツール・業務システム連携の考え方</a></h3>
         <p class="b-excerpt">「AI導入=システム刷新」ではない。いまの道具を活かしてAIを差し込む現実解。</p>
         <a href="/blog/legacy-integration" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/ai-cost" class="b-thumb"><img src="/assets/blog/ai-cost.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/ai-cost">AI導入の費用はいくらか——補助金の採択5万件データで見る実額と見積の内訳</a></h3>
         <p class="b-excerpt">補助金の採択5万件の交付額分布と、費用でつまずく6つのNGパターンを一次情報で解説します。</p>
         <a href="/blog/ai-cost" class="b-more">読む →</a>
       </div>
-      <div class="card blog-card">
+      <div class="card blog-card" data-cat="adoption">
         <span class="b-date">2026.07.14</span>
         <a href="/blog/ai-roadmap" class="b-thumb"><img src="/assets/blog/ai-roadmap.jpg" alt="" loading="lazy"></a>
         <h3><a href="/blog/ai-roadmap">中小企業のAI導入ロードマップ——無料相談から定着までの4ステップ</a></h3>
@@ -626,6 +635,21 @@
 (function(){var f=document.getElementById('floatCta');if(!f)return;
 function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
 window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.b-tab'),cards=document.querySelectorAll('.blog-card'),notes=document.querySelectorAll('.b-tabs-note');
+  var allowed={all:1,news:1,adoption:1,subsidy:1,security:1,tech:1};
+  function show(cat,push){
+    if(!allowed[cat])cat='all';
+    tabs.forEach(function(t){t.classList.toggle('is-on',t.dataset.cat===cat)});
+    cards.forEach(function(c){c.hidden=!(cat==='all'||c.dataset.cat===cat)});
+    notes.forEach(function(n){n.hidden=n.dataset.for!==cat});
+    if(push){var u=new URL(location.href);cat==='all'?u.searchParams.delete('cat'):u.searchParams.set('cat',cat);history.replaceState(null,'',u)}
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.cat,true)})});
+  show(new URLSearchParams(location.search).get('cat')||'all',false);
+})();
 </script>
 </body>
 </html>
