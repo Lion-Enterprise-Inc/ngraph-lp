@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる | NGraphブログ</title>
+<meta name="description" content="DeepSeekが2026年8月21日、画像を読める新モデルdeepseek-v4-flash-vision-expを公開しました。価格はテキストのみのモデルと同一で、画像1枚は384トークンが上限という設計です。他社との比較と、中小企業が費用を見積もる際の注意点を解説します。">
+<meta property="og:title" content="DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる | NGraphブログ">
+<meta property="og:description" content="DeepSeekが画像を読める新モデルを公開。価格はテキストのみのモデルと同一で、画像1枚は384トークンが上限です。他社との比較と、中小企業が知っておくべき注意点を解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260822-deepseek-gazou-token">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260822-deepseek-gazou-token.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260822-deepseek-gazou-token">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる",
+  "image": "https://ngraph.jp/assets/blog/20260822-deepseek-gazou-token.jpg",
+  "description": "DeepSeekが2026年8月21日、画像を読める新モデルdeepseek-v4-flash-vision-expを公開しました。価格はテキストのみのモデルと同一で、画像1枚は384トークンが上限という設計です。他社との比較と、中小企業が費用を見積もる際の注意点を解説します。",
+  "datePublished": "2026-08-22",
+  "dateModified": "2026-08-22",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260822-deepseek-gazou-token",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる</h1>
+  <span class="a-date">2026.08.22 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260822-deepseek-gazou-token.jpg" alt="DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる">
+
+<p>2026年8月21日、中国のAI企業DeepSeekが、画像を読み取れる新しいAPIモデル「<a href="https://api-docs.deepseek.com/updates/" target="_blank" rel="noopener">deepseek-v4-flash-vision-exp</a>」を公開しました。テキストのみで使う場合と同じ価格で画像を送れる、実験的な視覚理解モデルです。結論から言うと、これは中小企業にとって、現場の写真をAIに読ませる費用が先に計算できるようになったという話です。</p>
+
+<h2>何が起きたか</h2>
+<p>DeepSeekの<a href="https://api-docs.deepseek.com/updates/" target="_blank" rel="noopener">Change Log</a>には、8月21日の項として deepseek-v4-flash-vision-exp の公開が記載されています。ベンチマークはTerminal Bench 2.1で83.9、Chartography(図表の読み取り)で64.3。DeepSeekはテキストのみの能力(エージェント動作・推論・世界知識など)はdeepseek-v4-flashと同等で、画像理解を要するエージェントのベンチマークではv4-flashから大きく前進し、Opus-4.8に近づくとしています。ただしこれはDeepSeek社の自己申告で、第三者による検証ではありません。</p>
+<p><a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener">価格ページ</a>によると、deepseek-v4-flash-vision-expの単価はdeepseek-v4-flashとまったく同じです。入力はキャッシュヒット時オフピーク100万トークンあたり0.007ドル・ピーク0.014ドル、キャッシュミス時はオフピーク0.22ドル・ピーク0.44ドル、出力はオフピーク0.66ドル・ピーク1.32ドルとなっています。上位モデルdeepseek-v4-proの出力(オフピーク1.98ドル)と比べると、画像を読ませる用途では明確に安いモデルという位置づけです。</p>
+
+<h2>なぜ重要か</h2>
+<p>価格が同じだからといって、画像の扱いも他社と同じというわけではありません。DeepSeek公式の<a href="https://api-docs.deepseek.com/guides/vision" target="_blank" rel="noopener">Visionガイド</a>は、推論の前にすべての画像を自動でリサイズすると説明しています。総画素数がおおよそ384×384を下回る画像は拡大し、それより大きい画像は縮小して、リサイズ後の総画素数をおおよそ800×800相当にそろえる設計です。この結果、画像1枚あたりのトークン数には<strong>384トークンという上限</strong>が生まれます。2000×2000pxの画像も5000×5000pxの画像も、リサイズ後は同じトークン数として扱われる計算になります。</p>
+<p>一方、当ブログが2026年8月20日の<a href="/blog/20260820-ai-token-cost">記事</a>で公式ドキュメントから検証した数字では、1920×1080pxのスクリーンショット1枚のトークン数は、OpenAI GPT-4o(high detail)で約1,105、Claude標準ティアで1,560、Claude高解像度ティアで2,691でした。並べると、同じ1枚の写真が送り先によって384〜2,691トークンに開くことになります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">同じ1枚の写真が、送り先で384〜2,691トークンに開く</p>
+<svg viewBox="0 0 1200 354" width="100%" style="min-width:640px" role="img" aria-label="同じ1枚の写真が、送り先で384〜2,691トークンに開く"><text x="462" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">DeepSeek（上限・寸法によらず）</text><rect x="480" y="50" width="74" height="34" rx="2" fill="#a63a24"/><text x="566" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">384トークン</text><text x="462" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">OpenAI GPT-4o（1920×1080）</text><rect x="480" y="102" width="213" height="34" rx="2" fill="#cfc5b4"/><text x="705" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1105トークン</text><text x="462" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Claude 標準ティア（同）</text><rect x="480" y="154" width="301" height="34" rx="2" fill="#cfc5b4"/><text x="793" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1560トークン</text><text x="462" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">Claude 高解像度ティア（同）</text><rect x="480" y="206" width="520" height="34" rx="2" fill="#cfc5b4"/><text x="1012" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">2691トークン</text><text x="600.0" y="296.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">DeepSeekは上限を先に決める設計。安いぶん、推論前に約800×800相当まで縮められる</text><text x="8" y="338" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：各社の公式ドキュメント（2026年8月時点）</text></svg>
+</div>
+<p>この比較は、物差しが完全にはそろっていません。DeepSeekの384は「どんな寸法の画像でも超えない上限」で、他社の数字は「1920×1080という特定の寸法での実数」です。DeepSeekが少なく見えるのは、推論前に約800×800相当まで画像を縮小しているからで、性能で上回っているという意味ではありません。安さは、解像度を落とすことと引き換えです。</p>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>いま自社のどの業務で「写真をAIに読ませて」いるかを1つ挙げる。</strong>棚卸し、検品、契約書の撮影確認など、思ったより多くの業務が候補になります。</li>
+<li><strong>その写真で読ませたいのが「全体の様子」か「小さい文字」かを分ける。</strong>後者は画像の縮小に弱く、DeepSeekのように先に縮小してから読む設計では読み取れなくなる場合があります。</li>
+<li><strong>1枚あたりのトークン数を各社の公式ドキュメントで確かめてから、枚数を掛ける。</strong>単価だけでは費用は見積もれません。画像1枚が何トークンになるかを先に確認してから、想定枚数を掛けます。</li>
+</ul>
+
+<h2>その他の注目ニュース</h2>
+<ul>
+<li><strong>デジタル化・AI導入補助金2026、第4次締切は8月25日17時</strong> — <a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">公式サイトの事業スケジュール</a>によると、通常枠・インボイス枠・セキュリティ対策推進枠の第4次締切、複数社連携デジタル化・AI導入枠の第2次締切は、いずれも2026年8月25日(火)17時です。締切を過ぎるといかなる理由でも受け付けないと明記されています。gBizIDプライムを未取得なら、取得に時間がかかるため今回は間に合わない可能性が高いです。</li>
+<li><strong>生成AIで宿題の点は上がり、試験の点は下がったという研究結果</strong> — 中国の中学・高校生26,811人を30か月追跡した<a href="https://cepr.org/publications/dp21577" target="_blank" rel="noopener">CEPRの研究</a>は、AI導入で宿題の点数が18%上昇した一方、6か月以内に月次試験の点数が20%低下したと報告しています。学習損失はAI利用者のおよそ80%に集中し、その層は宿題の外注に一致する行動(極端に短い所要時間と高い宿題点数)を示していました。論文自体は2026年6月2日の公開で、今週になって英語圏で広く読まれています。社員にAIを配るときも、差を作るのは使ったかどうかではなく、時間ごと外注したかどうかです。</li>
+<li><strong>Anthropic、サイバー防御側にClaude Mythos 5を開放</strong> — Anthropicは<a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener">2026年8月21日の発表</a>で、サイバー防御側にClaude Mythos 5のセキュリティ機能を開放し、オープンソースの脆弱性修正などに3,500万ドル分のクレジットを配る基金を新設したと明らかにしました。Claude Enterpriseの顧客は自社コードベースを走査し、修正案を得られます。中小企業が直接使う話ではなく、攻撃側にも同じ性能が出回る前提で、防御側の道具が追いついてきたと読むべきです。</li>
+</ul>
+
+<div class="a-note"><strong>NGraphの現場から：</strong>厨房で撮った商品ラベルの写真から、原材料表示をAIに読ませたことがあります。写真全体が何の商品かは、縮小した画像でも問題なく通りました。ですが、原材料欄の小さい文字は、画像が縮められた時点で読めなくなりました。今回DeepSeekが示した384トークンという上限は、この「縮めてから読む」設計の一種です。全体の様子を読ませたいのか、小さい文字まで読ませたいのかを分けて考える必要があるという実感と一致します。この分野の導入相談は <a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援(無料相談・無料AI診断)</a> からどうぞ。</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・DeepSeek「<a href="https://api-docs.deepseek.com/updates/" target="_blank" rel="noopener">Change Log | DeepSeek API Docs</a>」<br>
+・DeepSeek「<a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank" rel="noopener">Models &amp; Pricing | DeepSeek API Docs</a>」<br>
+・DeepSeek「<a href="https://api-docs.deepseek.com/guides/vision" target="_blank" rel="noopener">Vision | DeepSeek API Docs</a>」<br>
+・デジタル化・AI導入補助金2026「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール</a>」<br>
+・CEPR「<a href="https://cepr.org/publications/dp21577" target="_blank" rel="noopener">DP21577 The Generative AI Learning Penalty: Evidence from Chinese Secondary Education</a>」（David Strömberg・Victor Lei・Yanhui Wu・2026年6月2日）<br>
+・Anthropic「<a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener">Bringing the cybersecurity capabilities of Claude Mythos 5 to more defenders</a>」（2026年8月21日）<br>
+・あわせて読む：<a href="/blog/20260820-ai-token-cost">AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み</a>（当ブログ・2026年8月20日夕）<br>
+・あわせて読む：<a href="/blog/20260822-ai-irekawaru-nokoru-shisan">AIは入れ替わる。会社に残るのは、この4つだけ——正本・手順・権限・検査</a>（当ブログ・2026年8月22日ガイド）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

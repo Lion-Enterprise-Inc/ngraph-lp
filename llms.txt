@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる](https://ngraph.jp/blog/20260822-deepseek-gazou-token)
 - [AIは、契約した後の5か所で止まる——場所ごとに直す人が違う](https://ngraph.jp/blog/20260822-ai-keiyaku-tsukawarenai)
 - [FDEに頼む前に社内で決めておく5つのこと——初月の4週間に何が起きるかまで](https://ngraph.jp/blog/20260822-fde-irai-mae-ni-kimeru)
 - [AIは入れ替わる。会社に残るのは、この4つだけ——正本・手順・権限・検査](https://ngraph.jp/blog/20260822-ai-irekawaru-nokoru-shisan)

@@ -202,6 +202,13 @@
   "sub": "契約後に、直す人が変わる",
   "title": "AIは、5か所で止まる"
  },
+ "20260822-deepseek-gazou-token": {
+  "article_h1": "DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる",
+  "fs": 68,
+  "pattern": "gauge",
+  "sub": "DeepSeekが画像入力を追加料金なしで公開",
+  "title": "写真1枚は、384トークン"
+ },
  "20260822-fde-irai-mae-ni-kimeru": {
   "article_h1": "FDEに頼む前に社内で決めておく5つのこと——初月の4週間に何が起きるかまで",
   "fs": 68,
