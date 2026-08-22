@@ -20,6 +20,7 @@
 - [AIは、契約した後の5か所で止まる——場所ごとに直す人が違う](https://ngraph.jp/blog/20260822-ai-keiyaku-tsukawarenai)
 - [FDEに頼む前に社内で決めておく5つのこと——初月の4週間に何が起きるかまで](https://ngraph.jp/blog/20260822-fde-irai-mae-ni-kimeru)
 - [AIは入れ替わる。会社に残るのは、この4つだけ——正本・手順・権限・検査](https://ngraph.jp/blog/20260822-ai-irekawaru-nokoru-shisan)
+- [カスハラ対策は10月1日から全事業主の義務——猶予なし、30〜99人の会社の42.5%が未実施](https://ngraph.jp/blog/20260822-kasuhara-gimuka)
 - [残業代は「130万円の壁」に入らなくなった——2026年4月に変わった判定と、使えない会社の条件](https://ngraph.jp/blog/20260821-130man-kabe)
 - [GitHubが7時間47分止まった原因は、バグではなく量だった——AI導入で先に壊れるのは下流](https://ngraph.jp/blog/20260821-github-outage)
 - [AIの請求は、文字ではなく画像で膨らむ——同じ1枚が2.4倍ひらく理由と、9割引きになる読み直しの仕組み](https://ngraph.jp/blog/20260820-ai-token-cost)
