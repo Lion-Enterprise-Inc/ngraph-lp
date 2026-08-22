@@ -24,6 +24,7 @@
     python scripts/eyecatch_text_check.py
 """
 import glob
+import published_set
 import json
 import os
 import re
@@ -53,6 +54,16 @@ def main():
     data = load()
     files = sorted(glob.glob(os.path.join(ROOT, "blog", "*.html")))
     files = [f for f in files if os.path.basename(f) != "index.html"]
+    # gitに無い記事は本番に存在しない＝対象外（published_set.py）。
+    # 並行セッションの書きかけでゲートが赤いままになると、押し通す運用が育つ。
+    kept, skipped = published_set.split_unpublished(
+        [os.path.basename(f)[:-5] for f in files])
+    kept = set(kept)
+    files = [f for f in files if os.path.basename(f)[:-5] in kept]
+
+    note = published_set.note(skipped, indent="")
+    if note:
+        print(note)
 
     bad, linked, unrecorded = [], [], []
     for f in files:

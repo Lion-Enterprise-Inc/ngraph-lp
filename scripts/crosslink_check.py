@@ -25,6 +25,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xcount import use_utf8_stdio
+import published_set
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 2026-08-09の夕タスクでこの検査を入れ、同時に08-09の両記事を直した。
@@ -39,12 +40,21 @@ def slug_of(name):
 
 def main():
     use_utf8_stdio()
-    by_day = collections.defaultdict(list)
+    names_all = []
     for path in sorted(glob.glob(os.path.join(BASE, "blog", "2026*.html"))):
         name = os.path.basename(path)
         if not re.match(r"^\d{8}-", name):
             continue
-        by_day[name[:8]].append(name)
+        names_all.append(name)
+
+    # gitに無い記事は本番に存在しない＝対象外（published_set.py）。
+    # 並行セッションの書きかけを理由にゲートが赤いままになると、押し通す運用が育つ。
+    kept, skipped = published_set.split_unpublished([n[:-5] for n in names_all])
+    kept = set(kept)
+    by_day = collections.defaultdict(list)
+    for name in names_all:
+        if name[:-5] in kept:
+            by_day[name[:8]].append(name)
 
     fails, legacy, checked = [], [], 0
     for day in sorted(by_day):
@@ -66,6 +76,9 @@ def main():
                    % ("／".join(slug_of(o) for o in others), slug_of(others[0])))
             (fails if day >= CUTOFF else legacy).append((name, msg))
 
+    note = published_set.note(skipped, indent="")
+    if note:
+        print(note)
     for name, msg in legacy:
         print("参考 %s: %s（公開済みのため落とさない）" % (name, msg))
     if fails:
