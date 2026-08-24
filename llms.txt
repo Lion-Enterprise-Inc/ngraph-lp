@@ -18,6 +18,7 @@
 ## ブログ（AI導入の実践知）
 
 - [OpenAIがGPT-5.6 Solを20%値下げ——中小企業の月額プランは対象外、下がるのは従量課金だけ](https://ngraph.jp/blog/20260824-openai-sol-price)
+- [業務改善助成金は9月1日開始——締切は県ごとに最短30日、AIの月額料金が対象になる条件](https://ngraph.jp/blog/20260824-gyomu-kaizen-joseikin)
 - [DeepSeekが画像を読むモデルを追加料金なしで公開——写真1枚が384トークンで頭打ちになる](https://ngraph.jp/blog/20260822-deepseek-gazou-token)
 - [AIは、契約した後の5か所で止まる——場所ごとに直す人が違う](https://ngraph.jp/blog/20260822-ai-keiyaku-tsukawarenai)
 - [FDEに頼む前に社内で決めておく5つのこと——初月の4週間に何が起きるかまで](https://ngraph.jp/blog/20260822-fde-irai-mae-ni-kimeru)
