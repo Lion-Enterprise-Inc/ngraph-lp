@@ -123,6 +123,17 @@ test('照会URLはJSON形式・履歴なしで、アプリケーションIDを�
   assert.match(requested, /history=0/);
 });
 
+// UAを付けずに投げると国税庁が403を返す。WorkersのfetchはUAを付けないので、
+// これが抜けると本番だけが取得失敗になり、ローカルでは再現しない。
+test('名乗り（User-Agent）を付けて照会する', async () => {
+  let headers = null;
+  await lookupInvoiceRegistration(SAMPLE, APP_ID, async (_url, init) => {
+    headers = init.headers;
+    return { ok: true, status: 200, json: async () => payload([]) };
+  });
+  assert.match(headers['User-Agent'], /^NGraph-vendor-check\/[\d.]+ \(\+https:\/\/ngraph\.jp\//);
+});
+
 test('公表情報と登記の照合は全角半角・住所表記の差を吸収する', async () => {
   const { facts } = await invoiceChecks(SAMPLE, APP_ID, {
     corporate_number: SAMPLE,

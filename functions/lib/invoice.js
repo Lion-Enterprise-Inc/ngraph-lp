@@ -8,6 +8,9 @@
 
 const ENDPOINT = 'https://web-api.invoice-kohyo.nta.go.jp/1/num';
 const TIMEOUT_MS = 6000;
+// WorkersのfetchはUser-Agentを付けない。国税庁側はUA無しの要求を403で拒否するため、
+// 名乗りを明示する。これを外すと本番だけが「取得失敗」になり、ローカルでは再現しない。
+const USER_AGENT = 'NGraph-vendor-check/1.0 (+https://ngraph.jp/check/)';
 
 const text = value => (value == null ? '' : String(value).trim());
 
@@ -30,7 +33,7 @@ export async function lookupInvoiceRegistration(corporateNumber, appId, fetchImp
   let response;
   try {
     response = await fetchImpl(invoiceRequestUrl(number, appId), {
-      headers: { Accept: 'application/json' },
+      headers: { Accept: 'application/json', 'User-Agent': USER_AGENT },
       signal: typeof AbortSignal?.timeout === 'function' ? AbortSignal.timeout(TIMEOUT_MS) : undefined,
     });
   } catch {
