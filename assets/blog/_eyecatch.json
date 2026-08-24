@@ -223,6 +223,20 @@
   "sub": "猶予なし。30〜99人の42.5%が未実施",
   "title": "カスハラ対策が、10月から義務"
  },
+ "20260824-gyomu-kaizen-joseikin": {
+  "article_h1": null,
+  "fs": 68,
+  "pattern": "deadline",
+  "sub": "9月1日開始。締切は県の最低賃金発効日で決まる",
+  "title": "業務改善助成金は、最短30日"
+ },
+ "20260824-openai-sol-price": {
+  "article_h1": "OpenAIがGPT-5.6 Solを20%値下げ——中小企業の月額プランは対象外、下がるのは従量課金だけ",
+  "fs": 68,
+  "pattern": "fork",
+  "sub": "OpenAIの20%減は従量課金だけ",
+  "title": "AIの値下げは、月額に来ない"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,
