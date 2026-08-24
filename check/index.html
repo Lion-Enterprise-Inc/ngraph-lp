@@ -83,11 +83,11 @@
     ・<strong>登記系</strong>（gBizINFO＝経産省）：商号・本店所在地・資本金・従業員数・設立年月日（届出ベース）<br>
     ・<strong>公的な活動の足跡</strong>：届出・認定／補助金交付／公共調達／表彰の件数<br>
     ・<strong>ドメインの実測</strong>：登録日・メール受信設定（MX）・送信ドメイン認証（SPF/DMARC）<br>
-    ・<strong>サイトの実測</strong>：電話番号の記載・SNSの導線（X／Facebook／LinkedIn／YouTube／Instagram）・ブログ更新・テンプレート置換漏れ・自称従業員数<br>
+    ・<strong>サイトの実測</strong>：トップページ・会社情報・連絡先・ブログ等の複数ページとサイトマップから、電話番号・SNSリンク・ブログ導線・テンプレート置換漏れ・自称従業員数を確認<br>
     ・<strong>次にやることの案内</strong>：インボイス登録・厚生年金適用事業所・求人掲載の確認リンク＋面談で聞くべき質問<br>
-    すべて出典つき。確認できない項目は「情報なし／取得失敗／対象外」を区別して表示します。</div>
+    すべて出典つき。確認できない項目は「未確認／情報なし／取得失敗／対象外」を区別し、未検出を不存在とは表示しません。</div>
   </details>
-  <p id="loading">公的データベースとドメインを照会しています…（10秒ほど）</p>
+  <p id="loading">公的データベース・ドメイン・サイト内の主要ページを照会しています…（20秒ほど）</p>
   <p id="err" class="c-err"></p>
 
   <div id="printHead"><strong style="font-family:var(--serif);font-size:1rem;color:var(--text)">取引先チェック — NGraph</strong><br>調査日: <span id="pDate"></span> ／ 対象: <span id="pTarget"></span> ／ ngraph.jp/check/<br>本レポートは公開情報の確認結果であり、実在の証明・否定ではありません。</div>
@@ -149,14 +149,14 @@ function factsTable(facts){
   if(okRows.length){h+='<div class="c-sec"><h2>確認できた事実（'+okRows.length+'件）</h2><table class="c-table">';
     for(const f of okRows)h+='<tr><td>'+esc(f.label)+'</td><td>'+esc(f.value)+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';
     h+='</table></div>';}
-  if(ngRows.length){h+='<div class="c-sec"><h2>確認できなかった項目（'+ngRows.length+'件）</h2><table class="c-table">';
-    for(const f of ngRows)h+='<tr><td>'+esc(f.label)+'</td><td>'+esc(f.status==='情報なし'?'公開データに情報なし':(f.status==='対象外'?esc(f.source):'照会に失敗（時間をおいて再試行）'))+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';
+  if(ngRows.length){h+='<div class="c-sec"><h2>未確認・取得できなかった項目（'+ngRows.length+'件）</h2><table class="c-table">';
+    for(const f of ngRows){const msg=f.value|| (f.status==='情報なし'?'公開データに情報なし':(f.status==='対象外'?f.source:'照会に失敗（時間をおいて再試行）'));h+='<tr><td>'+esc(f.label)+'</td><td><strong>'+esc(f.status)+'</strong><br>'+esc(msg)+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';}
     h+='</table></div>';}
   return h;
 }
 function nextSteps(corpNo,name){
   let h='<div class="c-sec"><h2>次にやること（人の目で確かめる項目）</h2><div class="c-links">';
-  if(corpNo)h+='<a href="https://www.invoice-kohyo.nta.go.jp/" target="_blank" rel="noopener">インボイス登録を確認する（国税庁・登録番号 '+esc(corpNo)+' で検索）→</a>';
+  if(corpNo)h+='<a href="https://www.invoice-kohyo.nta.go.jp/" target="_blank" rel="noopener">インボイス登録の原本を国税庁の公表サイトで確認する（登録番号 T'+esc(corpNo)+'）→</a>';
   if(name||corpNo)h+='<a href="https://web.archive.org/web/*/'+encodeURIComponent(document.getElementById('q').value.trim())+'" target="_blank" rel="noopener">サイトの過去の姿・採用ページの痕跡を確認する（Wayback Machine）→</a>';
   h+='<a href="https://www2.nenkin.go.jp/do/search_section/" target="_blank" rel="noopener">厚生年金の適用事業所か確認する（日本年金機構'+(corpNo?'・法人番号で検索':'')+'）→</a>';
   if(name)h+='<a href="https://www.google.com/search?q='+encodeURIComponent('"'+name+'" 求人')+'" target="_blank" rel="noopener">求人が出ているか確認する（従業員数を名乗るのに求人ゼロなら要確認）→</a>';
@@ -199,25 +199,23 @@ $('pdfBtn').addEventListener('click',async()=>{
 });
 function shokan(d){
   const F=d.facts||[];if(!F.length)return '';
-  const sig=[];const v=l=>{const f=F.find(x=>x.label.includes(l));return f?String(f.value||''):null;};
+  const sig=[];const v=l=>{const f=F.find(x=>x.status==='確認済'&&x.label.includes(l));return f?String(f.value||''):null;};
   if(v('置換漏れ'))sig.push('サイトにテンプレート未修正の痕跡が残っている');
   const mx=v('メール受信設定');if(mx&&mx.startsWith('なし'))sig.push('自社ドメインでメールを受信できない設定になっている');
-  const tel=v('電話番号');if(tel==='サイト上に確認できず')sig.push('電話番号を公開していない');
-  const sns=v('SNSの導線');const blog=v('ブログ・お知らせ');
-  if(sns&&!sns.includes(': あり')&&blog==='サイト上に確認できず')sig.push('SNS・ブログとも発信の導線が一切ない');
-  const st=v('従業員数（サイト自称）');const stN=st?parseInt(st.replace(/[^0-9]/g,'')):0;
-  if(stN>=30&&v('従業員数（届出）')===null&&d.mode==='site')sig.push('従業員'+stN+'名を自称しているが、公開データでは規模を確認できない');
-  if(stN>=30&&F.some(x=>x.label.includes('従業員数（届出）')&&x.status==='情報なし'))sig.push('従業員数の自称（'+stN+'名）に対し、届出ベースの従業員数が公開データで確認できない');
-  const unknowns=F.filter(x=>x.status==='情報なし').length;
+  const inv=v('インボイス登録（');if(inv&&/登録取消|登録失効/.test(inv))sig.push('インボイス（適格請求書発行事業者）の登録が取消・失効の状態で公表されている');
+  const incomplete=F.filter(x=>x.status!=='確認済');
   let lvl,body;
+  const list=sig.map((s,i)=>(i+1)+'. '+s).join('<br>');
   if(sig.length>=3){lvl=['#a63a24','危険信号'];
-    body='以下の事実は、<strong>単体ではそれぞれ説明が可能</strong>です。しかし'+sig.length+'件が同時に重なっています。この重なり方の状態で<strong>前払い・中途解約不可の契約に進むことは推奨できません</strong>。少なくとも「実在する案件・取引の実物」と「既存取引先1社へのリファレンス確認」が取れるまで、支払いを伴う契約は保留してください。<br><br>'+sig.map((s,i)=>(i+1)+'. '+s).join('<br>')+'<br><br><span style="font-size:.8rem">この所感は上記の確認が取れれば変わります（反証可能）。会社そのものの断定ではなく、現時点の公開情報に基づく契約行動への助言です。</span>';}
-  else if(sig.length>=1||unknowns>=3){lvl=['#b8860b','確認不足'];
-    body='契約判断に足る公開情報が揃っていません'+(sig.length?'（気になる点：'+sig.join('／')+'）':'')+'。<strong>このまま前払いを伴う契約に進む段階ではありません。</strong>「次にやること」の確認を先に済ませ、案件・取引の実物を見せてもらってから判断してください。';}
-  else{lvl=['#2e6e4e','特段の危険信号なし'];
-    body='確認できた範囲では、危険信号は見当たりませんでした。<strong>実在や信用の証明ではありません</strong>が、公開情報と自己申告の間に目立つ食い違いはありません。今回の確認範囲では追加のアラートはありません。見積・契約書の精査など通常の取引確認は必ず行ってください。';}
+    body='以下の事実は、<strong>単体ではそれぞれ説明が可能</strong>です。しかし'+sig.length+'件が同時に重なっています。この重なり方の状態で<strong>前払い・中途解約不可の契約に進むことは推奨できません</strong>。少なくとも「実在する案件・取引の実物」と「既存取引先1社へのリファレンス確認」が取れるまで、支払いを伴う契約は保留してください。<br><br>'+list+'<br><br><span style="font-size:.8rem">この所感は上記の確認が取れれば変わります（反証可能）。会社そのものの断定ではなく、現時点の公開情報に基づく契約行動への助言です。</span>';}
+  else if(sig.length){lvl=['#b8860b','確認事項あり'];
+    body='取得できた情報の中に、契約前に理由を確認したい事実があります。これは会社の良否を示す判定ではありません。<br><br>'+list+'<br><br><span style="font-size:.8rem">相手方の説明と追加資料で結論が変わり得ます。契約条件と実在する取引資料を照合してください。</span>';}
+  else if(incomplete.length){lvl=['#5f6670','評価保留'];
+    body='未確認または取得できなかった項目があるため、公開情報から追加の注意点があるかどうかを<strong>評価していません</strong>。未検出は「存在しない」「安全」のどちらも意味しません。各項目の探索範囲と取得状況を確認し、必要な情報を相手方へ確認してください。';}
+  else{lvl=['#2e6e4e','確認範囲内の追加事項なし'];
+    body='今回取得できた範囲では、追加確認を要する機械的な事実は検出されませんでした。<strong>実在や信用の証明ではありません。</strong>見積・契約書・案件実物など通常の取引確認は必ず行ってください。';}
   let extra='';
-  if(sig.length>=1||unknowns>=3){
+  if(sig.length||incomplete.length){
     extra='<div style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--border)"><strong style="font-size:.85rem">この所感を再検討するために必要な追加情報：</strong><ul style="font-size:.84rem;line-height:2;margin:6px 0 0 20px"><li>取引・案件の実物（現行帳票・発注書・相談メールなど、相手の説明に出てくる資料そのもの）</li><li>既存取引先1社へのリファレンス（実際に成果が出たかの直接確認）</li><li>履歴事項全部証明書（登記の役員・沿革・移転履歴）</li><li>厚生年金の適用状況・被保険者数（上の年金機構リンクで確認可）</li></ul><p style="font-size:.82rem;margin-top:10px">これらの資料を踏まえた再調査（契約書のリスク確認を含む）は、<a href="/entry" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談</a>で承ります。資料が所感を覆すことは実際にあります——それを確かめるための一覧です。</p><p style="font-size:.78rem;color:var(--text-3);margin-top:10px">この所感は入力された公開情報のみに基づく機械的な出力であり、対象企業の信用や違法性を判断するものではありません。当該企業のご関係者で記載に事実誤認がある場合は、<a href="/entry" style="text-decoration:underline">お問い合わせ窓口</a>より訂正を承ります。</p></div>';
   }
   return '<div class="c-sec"><h2>NGraphの所感</h2><div class="c-note" style="border-left-color:'+lvl[0]+'"><strong style="color:'+lvl[0]+'">【'+lvl[1]+'】</strong><br>'+body+extra+'</div></div>';

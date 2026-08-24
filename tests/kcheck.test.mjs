@@ -2,11 +2,32 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  createRuntimeSiteFetch,
   extractSiteIdentity,
   gbizByName,
   normalizeCompanyName,
   resolveCorporateCandidate,
 } from '../functions/api/kcheck.js';
+
+test('Worker自身のホストは公開自己fetchでなくASSETS bindingから読む', async () => {
+  let assetUrl = null;
+  const fetchSite = createRuntimeSiteFetch({
+    request: new Request('https://ngraph.jp/api/kcheck'),
+    env: {
+      ASSETS: {
+        async fetch(request) {
+          assetUrl = request.url;
+          return new Response('<a href="/blog/">ブログ</a>', {
+            status: 200, headers: { 'content-type': 'text/html' },
+          });
+        },
+      },
+    },
+  });
+  const response = await fetchSite('https://ngraph.jp/');
+  assert.equal(response.status, 200);
+  assert.equal(assetUrl, 'https://ngraph.jp/');
+});
 
 test('gBizINFOの503を候補なしでなくprovider blockedとして返す', async () => {
   const result = await gbizByName('株式会社例示', 'test-token', async () => ({ status: 503, ok: false }));

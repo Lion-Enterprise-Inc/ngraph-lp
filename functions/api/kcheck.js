@@ -3,12 +3,15 @@
 // 入力qの自動判別: 13桁数字=法人番号 / URLらしき文字列=サイト / それ以外=企業名
 
 import {
+  addressMatches,
   extractSiteIdentity,
   identityValues,
   normalizeCompanyName,
   resolveCorporateCandidate,
 } from '../lib/identity.js';
+import { lookupInvoiceRegistration } from '../lib/invoice.js';
 import { safeFetch } from '../lib/safe-fetch.js';
+import { discoverSite } from '../lib/site-discovery.js';
 
 export { extractSiteIdentity, normalizeCompanyName, resolveCorporateCandidate } from '../lib/identity.js';
 
@@ -18,6 +21,8 @@ const GBIZ = 'https://info.gbiz.go.jp/hojin/v1/hojin';
 const ok = (label, value, source) => ({ label, value, status: '確認済', source });
 const none = (label, source) => ({ label, value: null, status: '情報なし', source });
 const fail = (label, source) => ({ label, value: null, status: '取得失敗', source });
+const unconfirmed = (label, value, source, details = {}) =>
+  ({ label, value, status: '未確認', source, ...details });
 
 const GBIZ_SEARCH_LIMIT = 1000;
 
@@ -28,11 +33,17 @@ async function dns(name, type) {
   return (await r.json()).Answer || [];
 }
 
-async function fetchText(url, maxBytes = 400000) {
-  return safeFetch(url, { deadlineMs: 8000, maxBytes, maxRedirects: 3 });
+async function fetchText(url, maxBytes = 400000, options = {}) {
+  return safeFetch(url, {
+    deadlineMs: options.deadlineMs || 6000,
+    maxBytes,
+    maxRedirects: 3,
+    fetchImpl: options.fetchImpl,
+    resolveHost: options.resolveHost,
+  });
 }
 
-async function siteChecks(rawUrl) {
+export async function siteChecks(rawUrl, options = {}) {
   const facts = [];
   let u;
   try { u = new URL(/^https?:\/\//.test(rawUrl) ? rawUrl : 'https://' + rawUrl); } catch { return { facts: [fail('URLの形式', 'input')], host: null, nameGuess: null }; }
@@ -54,33 +65,60 @@ async function siteChecks(rawUrl) {
     facts.push(ok('送信ドメイン認証', `SPF ${spf ? 'あり' : '確認できず'} / DMARC ${dm ? 'あり' : '確認できず'}`, 'DNS'));
   } catch { facts.push(fail('送信ドメイン認証', 'DNS')); }
 
-  // サイト本体
+  // サイト本体。未検出を不存在へ変換せず、探索範囲と停止理由を残す。
   let nameGuess = null, identity = { names: [], addresses: [], corporateNumbers: [], phones: [] };
-  try {
-    const { text } = await fetchText(u.origin + '/');
-    const ph = /example\.(jp|com|net|org)/i.test(text);
-    const tel = /(0\d{1,4}-\d{1,4}-\d{3,4}|tel:0\d{8,10})/.test(text);
-    const blog = /href="[^"]*\/(blog|news|column|topics)(\/|\.html|")/i.test(text);
-    const staff = text.match(/(従業員数?|社員数)[^0-9０-９]{0,12}([0-9０-９]{1,4})\s*名/);
-    facts.push(ok('電話番号の記載', tel ? 'あり' : 'サイト上に確認できず', 'サイト実測'));
-    const snsDefs = [['X（旧Twitter）', /href="(https?:\/\/(?:www\.)?(?:x|twitter)\.com\/[^"]{1,80})"/i],
-      ['Facebook', /href="(https?:\/\/(?:www\.)?facebook\.com\/[^"]{1,80})"/i],
-      ['LinkedIn', /href="(https?:\/\/(?:[a-z]{2}\.)?linkedin\.com\/[^"]{1,80})"/i],
-      ['YouTube', /href="(https?:\/\/(?:www\.)?youtube\.com\/[^"]{1,80})"/i],
-      ['Instagram', /href="(https?:\/\/(?:www\.)?instagram\.com\/[^"]{1,80})"/i]];
-    const snsParts = snsDefs.map(([nm, re]) => { const m = text.match(re); return `${nm}: ${m ? 'あり' : '該当なし'}`; });
-    facts.push(ok('SNSの導線（サイト上のリンク）', snsParts.join(' / '), 'サイト実測。サイトにリンクが無いだけでアカウントが存在する場合もある'));
-    facts.push(ok('ブログ・お知らせ', blog ? 'あり' : 'サイト上に確認できず', 'サイト実測'));
-    if (staff) facts.push(ok('従業員数（サイト自称）', staff[0].replace(/\s+/g, ''), 'サイト記載＝自己申告'));
-    if (ph) facts.push(ok('テンプレートの置換漏れ', '本文に例示用ドメイン（example.jp等）が残存', 'サイト実測'));
-    identity = extractSiteIdentity(text, { pageUrl: u.origin });
+  let siteCoverage = { status: 'blocked', stop_reason: 'root_fetch_failed' };
+  const maxBytesFor = (url, kind) => kind === 'page' ? 400000
+    : /robots\.txt(?:$|\?)/i.test(url) ? 50000 : 200000;
+  const discovery = await discoverSite({
+    origin: u.origin,
+    maxPages: 5,
+    maxSitemaps: 3,
+    fetchPage: (url, kind) => fetchText(url, maxBytesFor(url, kind), options),
+  });
+  siteCoverage = discovery.coverage;
+  if (!discovery.ok) {
+    facts.push(fail('サイト本体の取得', `サイト実測（${discovery.rootFailure}）`));
+  } else {
+    identity = discovery.identity;
     nameGuess = identity.primaryName;
-  } catch { facts.push(fail('サイト本体の取得', 'サイト実測')); }
-  try {
-    const [rb, sm] = await Promise.all([fetchText(u.origin + '/robots.txt', 20000), fetchText(u.origin + '/sitemap.xml', 60000)]);
-    if (/example\.(jp|com|net|org)/i.test(rb.text + sm.text))
-      facts.push(ok('テンプレートの置換漏れ', 'robots.txt / sitemap.xml が例示用ドメインを参照', 'サイト実測'));
-  } catch { /* 無くても正常 */ }
+    const paths = discovery.pages.map(url => {
+      try { return new URL(url).pathname || '/'; } catch { return url; }
+    });
+    const source = `サイト実測（取得${discovery.pages.length}ページ: ${paths.join(', ')}／停止: ${siteCoverage.stop_reason}）`;
+    facts.push(ok('サイト内の確認範囲', `${discovery.pages.length}ページを取得して確認`, source));
+
+    if (discovery.phones.length) {
+      facts.push(ok('電話番号（サイト記載）', discovery.phones.slice(0, 3).join(' / '), source));
+    } else {
+      facts.push(unconfirmed('電話番号（サイト内確認）',
+        `確認した${discovery.pages.length}ページ内では検出できず。電話番号が存在しないとは判断していません。`, source,
+        { coverage_status: siteCoverage.status, stop_reason: siteCoverage.stop_reason }));
+    }
+
+    if (discovery.socialLinks.length) {
+      facts.push(ok('SNSリンク（サイト内で確認）', discovery.socialLinks
+        .map(item => `${item.platform}: ${item.url}`).join(' / '), source));
+    } else {
+      facts.push(unconfirmed('SNSリンク（サイト内確認）',
+        `確認した${discovery.pages.length}ページ内では公式リンクを検出できず。SNSアカウントが存在しないとは判断していません。`, source,
+        { coverage_status: siteCoverage.status, stop_reason: siteCoverage.stop_reason }));
+    }
+    facts.push(unconfirmed('SNSアカウント（サイト外Web検索）',
+      '未実施。公式サイトからリンクされていないアカウントは、この確認だけでは有無を判断できません。',
+      '外部検索provider未接続', { coverage_status: 'blocked', stop_reason: 'provider_not_connected' }));
+
+    const blogUrl = discovery.blogLinks[0] || discovery.feedLinks[0];
+    if (blogUrl) {
+      facts.push(ok('ブログ・お知らせ', `あり（${blogUrl}）`, source));
+    } else {
+      facts.push(unconfirmed('ブログ・お知らせ',
+        `確認した${discovery.pages.length}ページとサイトマップ内では導線を検出できず。存在しないとは判断していません。`, source,
+        { coverage_status: siteCoverage.status, stop_reason: siteCoverage.stop_reason }));
+    }
+    if (discovery.staff) facts.push(ok('従業員数（サイト自称）', discovery.staff, 'サイト記載＝自己申告'));
+    if (discovery.placeholder) facts.push(ok('テンプレートの置換漏れ', '本文に例示用ドメイン（example.jp等）が残存', source));
+  }
 
   // ドメイン登録日（.com/.netのみRDAP。他TLDは対象外として明示）
   try {
@@ -97,12 +135,13 @@ async function siteChecks(rawUrl) {
     }
   } catch { facts.push(fail('ドメイン登録日', 'RDAP')); }
   // Wayback（サイト履歴）はブラウザ側でCORS取得する（WorkersのIPはarchive.orgに遮断されるため）
-  return { facts, host, nameGuess, identity };
+  return { facts, host, nameGuess, identity, siteCoverage };
 }
 
 async function gbizByNumber(no, token) {
   const facts = [];
-  if (!token) return [fail('登記系情報（gBizINFO）', '設定')];
+  let corporation = null;
+  if (!token) return { facts: [fail('登記系情報（gBizINFO）', '設定')], corporation };
   const get = async p => {
     const r = await fetch(`${GBIZ}/${p}`, { headers: { 'X-hojinInfo-api-token': token, Accept: 'application/json' } });
     if (!r.ok) throw new Error('gbiz ' + r.status);
@@ -110,6 +149,7 @@ async function gbizByNumber(no, token) {
   };
   try {
     const h = (await get(no))[0] || {};
+    corporation = { corporate_number: no, name: h.name || null, location: h.location || null };
     facts.push(ok('商号（登記）', h.name || '該当なし', 'gBizINFO'));
     if (h.location) facts.push(ok('本店所在地（登記）', h.location, 'gBizINFO'));
     facts.push(h.capital_stock ? ok('資本金（届出）', h.capital_stock + '円', 'gBizINFO') : none('資本金（届出）', 'gBizINFO'));
@@ -124,7 +164,57 @@ async function gbizByNumber(no, token) {
       } catch { facts.push(fail(jp, 'gBizINFO')); }
     }
   } catch (e) { facts.push(fail('登記系情報（gBizINFO）', 'gBizINFO')); }
-  return facts;
+  return { facts, corporation };
+}
+
+const INVOICE_SOURCE = '国税庁 適格請求書発行事業者公表システム Web-API';
+const INVOICE_LABEL = 'インボイス登録（適格請求書発行事業者）';
+
+// 公表情報と登記の食い違いは、公表側の更新時期の差でも起きる。事実と両方の値だけを出す。
+function invoiceMatchFact(entry, corporation) {
+  if (!corporation) return null;
+  const parts = [];
+  if (entry.name && corporation.name) {
+    parts.push(normalizeCompanyName(entry.name) === normalizeCompanyName(corporation.name)
+      ? '商号は一致' : `商号は一致を確認できず（公表: ${entry.name} ／ 登記: ${corporation.name}）`);
+  }
+  if (entry.address && corporation.location) {
+    parts.push(addressMatches(entry.address, corporation.location)
+      ? '所在地は丁目・番地・号まで一致'
+      : `所在地は一致を確認できず（公表: ${entry.address} ／ 登記: ${corporation.location}）`);
+  }
+  if (!parts.length) return null;
+  return ok('インボイス公表情報と登記の照合', parts.join(' / '),
+    `${INVOICE_SOURCE}とgBizINFO。公表情報の更新時期の差でも不一致は生じます`);
+}
+
+export const invoiceCoverage = result =>
+  ({ status: result.status, stop_reason: result.stop_reason, registered: result.registered });
+
+export async function invoiceChecks(corporateNumber, appId, corporation = null, fetchImpl) {
+  const result = await lookupInvoiceRegistration(corporateNumber, appId, fetchImpl);
+  if (result.status === 'blocked') {
+    return { facts: [{ ...fail(INVOICE_LABEL, INVOICE_SOURCE), value:
+      '照会できませんでした。登録が無いとは判断していません。',
+    coverage_status: 'blocked', stop_reason: result.stop_reason }], result };
+  }
+  const asOf = result.lastUpdateDate ? `${INVOICE_SOURCE}（${result.lastUpdateDate} 時点）` : INVOICE_SOURCE;
+  if (!result.registered) {
+    return { facts: [ok(INVOICE_LABEL,
+      `登録なし（${result.number} は公表システムに存在しない）。免税事業者など、登録していない事業者は普通にあります`,
+      asOf)], result };
+  }
+  const entry = result.entry;
+  const state = entry.disposalDate ? `登録取消（取消年月日 ${entry.disposalDate}）`
+    : entry.expireDate ? `登録失効（失効年月日 ${entry.expireDate}）`
+      : '登録あり（取消・失効の記載なし）';
+  const facts = [ok(INVOICE_LABEL, `${state}／登録番号 ${result.number}`, asOf)];
+  if (entry.registrationDate) facts.push(ok('インボイス登録年月日', entry.registrationDate, asOf));
+  if (entry.name) facts.push(ok('公表されている名称（インボイス）', entry.name, asOf));
+  if (entry.address) facts.push(ok('公表されている所在地（インボイス）', entry.address, asOf));
+  const match = invoiceMatchFact(entry, corporation);
+  if (match) facts.push(match);
+  return { facts, result };
 }
 
 export async function gbizByName(name, token, fetchImpl = globalThis.fetch) {
@@ -170,6 +260,19 @@ async function rateLimit(env, request, bucket, limit) {
   return n <= limit;
 }
 
+// Worker自身の公開ホストを調べる場合は、公開URLへの自己subrequestではなく
+// 同じデプロイの静的アセットbindingを使う。ホスト名のハードコードはしない。
+export function createRuntimeSiteFetch(context) {
+  const runtimeOrigin = new URL(context.request.url).origin;
+  return async (resource, init = {}) => {
+    const target = new URL(resource);
+    if (context.env.ASSETS && target.origin === runtimeOrigin) {
+      return context.env.ASSETS.fetch(new Request(target.toString(), init));
+    }
+    return globalThis.fetch(resource, init);
+  };
+}
+
 export async function onRequestPost(context) {
   const token = context.env.GBIZINFO_TOKEN;
   if (!(await rateLimit(context.env, context.request, 'kcheck', 20)))
@@ -181,10 +284,13 @@ export async function onRequestPost(context) {
 
   const digits = q.replace(/[^0-9]/g, '');
   if (/^\d{13}$/.test(digits) && digits.length === q.replace(/[T\-\s]/g, '').length) {
-    return json({ mode: 'corp', corporate_number: digits, facts: await gbizByNumber(digits, token) });
+    const gbiz = await gbizByNumber(digits, token);
+    const invoice = await invoiceChecks(digits, context.env.INVOICE_API_ID, gbiz.corporation);
+    return json({ mode: 'corp', corporate_number: digits,
+      facts: [...gbiz.facts, ...invoice.facts], invoiceCoverage: invoiceCoverage(invoice.result) });
   }
   if (/^https?:\/\//.test(q) || (/\./.test(q) && !/[　-鿿]/.test(q))) {
-    const site = await siteChecks(q);
+    const site = await siteChecks(q, { fetchImpl: createRuntimeSiteFetch(context) });
     const search = site.nameGuess
       ? await gbizByName(site.nameGuess, token)
       : { candidates: [], complete: false, status: 'input_required', stop_reason: 'trusted_name_not_found' };
@@ -201,9 +307,12 @@ export async function onRequestPost(context) {
           : `一致を確認できず（サイト: ${siteAddresses[0]} / 登記: ${corporation.location}）`,
         'サイト記載とgBizINFO'));
       }
-      const corporateFacts = await gbizByNumber(corporation.corporate_number, token);
-      return json({ mode: 'site', host: site.host, facts: [...site.facts, ...matchFacts, ...corporateFacts],
-        nameGuess: corporation.name, candidates: [], resolvedCorporate: {
+      const corporateFacts = (await gbizByNumber(corporation.corporate_number, token)).facts;
+      const invoice = await invoiceChecks(corporation.corporate_number, context.env.INVOICE_API_ID, corporation);
+      return json({ mode: 'site', host: site.host,
+        facts: [...site.facts, ...matchFacts, ...corporateFacts, ...invoice.facts],
+        invoiceCoverage: invoiceCoverage(invoice.result),
+        nameGuess: corporation.name, candidates: [], siteCoverage: site.siteCoverage, resolvedCorporate: {
           ...corporation, name_match: resolved.nameMatch,
           address_match: resolved.addressMatch,
           anchors: resolved.anchors,
@@ -216,6 +325,7 @@ export async function onRequestPost(context) {
     const exactCandidates = candidates.filter(candidate =>
       normalizeCompanyName(candidate.name) === normalizeCompanyName(site.nameGuess));
     return json({ mode: 'site', host: site.host, facts: [...site.facts, ...resolutionFacts], nameGuess: site.nameGuess,
+      siteCoverage: site.siteCoverage,
       resolutionCoverage: { status: search.status, stop_reason: search.stop_reason, reason: search.reason || null },
       candidates: (exactCandidates.length ? exactCandidates : candidates).slice(0, 20) });
   }
