@@ -1,0 +1,7 @@
+#!/bin/sh
+# 他セッションのステージ済み記事を巻き込んでいないか見る。
+# 2026-08-26: `git add -- <2ファイル>` のあと pathspec 無しで `git commit` したため、
+# 並行セッションがステージ済みだった記事1本と配線3ファイルを丸ごと公開してしまった。
+# git commit は index 全体を commit するので、add の pathspec は守りにならない。
+# メッセージを読むので pre-commit ではなく commit-msg（$1 にメッセージのパスが来る）。
+exec python "$(git rev-parse --show-toplevel)/scripts/commit_scope_check.py" "$1"
