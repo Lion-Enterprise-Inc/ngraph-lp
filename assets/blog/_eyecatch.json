@@ -214,7 +214,7 @@
   "fs": 68,
   "pattern": "seq",
   "sub": "頼む前の準備と、初月4週間の進み方",
-  "title": "FDEは、{nb}5つ決めてから{/nb}{nb}呼ぶ{/nb}"
+  "title": "FDEは、{nb}5つ決めてから呼ぶ{/nb}"
  },
  "20260822-kasuhara-gimuka": {
   "article_h1": "カスハラ対策は10月1日から全事業主の義務——猶予なし、30〜99人の会社の42.5%が未実施",
@@ -236,6 +236,13 @@
   "pattern": "fork",
   "sub": "OpenAIの20%減は従量課金だけ",
   "title": "AIの値下げは、月額に来ない"
+ },
+ "20260826-ai-nine-rules": {
+  "article_h1": "Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール",
+  "fs": 68,
+  "pattern": "steps",
+  "sub": "Anthropic社内の実例。9つのルールで配れた",
+  "title": "AIは、無いURLを作る"
  },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",

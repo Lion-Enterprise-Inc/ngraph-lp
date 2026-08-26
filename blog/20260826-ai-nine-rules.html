@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール | NGraphブログ</title>
+<meta name="description" content="Anthropic公式ブログ（2026年8月24日）の実例を解説。1時間で組んだ仕組みが、配れる状態になるまでに9つのルールを要した理由と、最初のルール「URLを発明するな」の中身を、中小企業のAI活用の視点で読み解きます。">
+<meta property="og:title" content="Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール | NGraphブログ">
+<meta property="og:description" content="仕組みは1時間で組めた。配れるようになるまでに要ったのは9つのルールでした。Anthropic社内の実例を、中小企業のAI活用の視点で解説します。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260826-ai-nine-rules">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260826-ai-nine-rules.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260826-ai-nine-rules">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール",
+  "image": "https://ngraph.jp/assets/blog/20260826-ai-nine-rules.jpg",
+  "description": "Anthropic公式ブログ（2026年8月24日）の実例を解説。1時間で組んだ仕組みが、配れる状態になるまでに9つのルールを要した理由と、最初のルール「URLを発明するな」の中身を、中小企業のAI活用の視点で読み解きます。",
+  "datePublished": "2026-08-26",
+  "dateModified": "2026-08-26",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260826-ai-nine-rules",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Morning News</div>
+  <h1>Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール</h1>
+  <span class="a-date">2026.08.26 朝 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260826-ai-nine-rules.jpg" alt="Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール">
+
+<p>2026年8月24日、Anthropicが<a href="https://claude.com/blog/how-an-anthropic-field-marketer-uses-claude-code-to-send-weekly-personalized-updates-to-every-sales-rep" target="_blank" rel="noopener">自社ブログ</a>で、マーケティング担当者が営業チーム向けの週次レポート作成にClaude Codeを使った実例を公開しました。仕組みそのものは、社内ハッカソンで割り当てられた1時間で組み上がっています。結論：中小企業がAI活用の手本にすべきなのは「1時間で作れた」ことではなく、それを毎週配れる状態に育てるまでに要った9つのルールのほうです。</p>
+
+<h2>何が起きたか</h2>
+<p>Anthropicのマーケティングチームでフィールドマーケターを務めるAdam Ward氏が、この実例を明かしました。以前は日曜の夜に社内各所から情報を集めてスライドを作り、月曜朝15分の朝会で営業チームに共有し、Slackにデッキを貼っていました。支援するチームが増えるにつれ、この手作業が追いつかなくなったといいます。きっかけはマーケティングのハッカソンでした。Ward氏はこの問題に1時間を充てました。BigQueryは、HubSpot・Clay・Salesforceのデータが集まる、マーケティングチームの正本となるデータ基盤です。MCPは、AIを社内のデータや道具につなぐための共通の接続口です。Ward氏はMCPでBigQueryとClaude Codeをつなぎ、CRMから営業担当者の担当領域を、Slackから担当先の動きを取り出して突き合わせ、営業1人ずつ別々の週次ダイジェストを作る仕組みを組みました。毎週月曜の朝、Slackのダイレクトメッセージで届きます。</p>
+
+<h2>なぜ重要か</h2>
+<p>仕組みが動き出した直後に、最初の事故が起きました。元データのシートにイベントのURLが無いとき、Claudeは「もっともらしい」アドレスを作り、そのリンクはどこにも通じませんでした。Ward氏はすぐにプロンプトへ絶対ルールとして「URLを発明するな」と書き加えました。いまはリンクの文字列が、アドレスの記載されたシートと1文字ずつ一致するときだけ表示されます。後の版では、リンクの無いイベントをダイジェストから丸ごと落とすようにもなりました。登録できないイベントを載せても、雑音にしかならないと気づいたためです。</p>
+<p>1週目が終わるころには、プロンプトに9つの内容ルールが載っていました。知識労働者向けのワークショップにエンジニアリング担当のVPが推薦されたという指摘を受け、担当者の役職とイベントの対象を突き合わせる仕組みを足しました。小売の担当先を金融の会食の招待から外す、業種によるゲートも加わっています。担当先がまだ無い新人には、空のメッセージの代わりに短い歓迎文を送るようにしました。9つはすべて、売り手かマネージャーからのフィードバック1件ずつにたどれます。</p>
+<p>ここに、この記事でいちばん持ち帰ってほしい発見があります。AIで何かを作れること自体は、もう差になりません。差がつくのは、現場の指摘をルールに落として運用に載せる往復のほうです。エンジニアが現場に入り、この往復を回し続ける役割は<a href="/blog/what-is-fde">FDE</a>と呼ばれます。</p>
+<div class="a-note"><strong>NGraphの視点：</strong>同じ癖に、私たちも別の場所で当たったことがあります。2026年8月18日、当ブログの朝の記事で、記事末の「参考（一次情報）」に載せた出典の題名が、実在しないものになって公開されました。元のページを開かずに、URLの一部からそれらしい題名が組み立てられていたのです。出典の題名は書き手が最も自然に作れてしまう場所で、通読して目で確かめるだけでは見つかりませんでした。いまは公開前に、参考枠の外部リンクを実際に開いてページの題名と突き合わせる検査を通しています。AIは、元データが欠けている場所を、聞かれるまで黙って埋めます。起きた場所が違うだけで、Anthropicの事例と同じ癖です。</div>
+
+<h2>中小企業は何をすべきか</h2>
+<ul>
+<li><strong>いま手作業でやっている、いちばん時間を食う繰り返し作業から始める。</strong>良し悪しを自分で判断できる作業を選べば、AIの出力ミスに自分で気づけます。他人に配る前に、まず自分宛てに何度か送って誤りを探す期間を置きます。</li>
+<li><strong>指示は平易な言葉で書き、直すたびに版として残す。</strong>Ward氏は共有ドキュメントから始め、編集する人が増えた段階で変更履歴の残る保管場所に移しました。何を直したかを1行でも書き残すと、次に同じ間違いを踏みません。</li>
+<li><strong>少人数の協力してくれる相手で試し、指摘の一つひとつを明示的なルールに畳み込む。</strong>Ward氏の9つのルールは、最初の10人からのフィードバックの積み重ねです。指摘を感想で終わらせず、プロンプトに書ける条件文に変えるところまでやります。</li>
+</ul>
+<p>外部の伴走支援に依頼する場合は、<a href="/blog/20260822-fde-irai-mae-ni-kimeru">FDEに頼む前に決めておく5つのこと</a>を先に社内で固めておくと、最初のルール作りが早く進みます。</p>
+
+<h2>その他の注目ニュース（8月26日 朝時点）</h2>
+<ul>
+<li><strong>Apple、M6とM5 Ultraを発表（8月25日）</strong> — Appleは<a href="https://www.apple.com/jp/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/" target="_blank" rel="noopener">M6とM5 Ultra</a>を発表しました。M5 Ultraは最大512GBのユニファイドメモリと1.2TB/sの帯域を備え、数千億のパラメータを持つ大規模なLLMを完全にデバイス上で実行できるとしています。社外にデータを出せないことを理由にAI導入を止めていた会社にとって、手元の機械で動かす選択肢が現実味を増しました。ただし手元で動かすとは、更新と運用を自社で持つということでもあります。</li>
+<li><strong>「責任あるAI導入には作業手順の設計が要る」（8月24日）</strong> — <a href="https://stackoverflow.blog/2026/08/24/responsible-ai-adoption-needs-developer-workflow-design" target="_blank" rel="noopener">Stack Overflowの記事</a>は、方針文書を出すだけでは行動は変わらず、それが会社の把握していないAI利用を生む最短の道になると論じています。使用禁止の通達より、承認したツールの使い勝手のほうが結果を決めるという指摘です。</li>
+<li><strong>デジタル化・AI導入補助金2026、5次締切は9月29日</strong> — <a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事務局の事業スケジュール</a>によると、通常枠・インボイス枠・セキュリティ対策推進枠の5次締切は2026年9月29日17時です。事務局は締切後の受付は理由を問わず一切しないと明記しています。補助対象のITツールは事前登録された製品からしか選べないため、申請を決めた時点でベンダー選びが先に来ます。</li>
+</ul>
+
+<p style="margin:26px 0"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">AI導入の進め方を相談する（FDE型AI導入支援・無料相談）</a></p>
+
+<div class="a-src">参考（一次情報）：<br>
+・Anthropic「<a href="https://claude.com/blog/how-an-anthropic-field-marketer-uses-claude-code-to-send-weekly-personalized-updates-to-every-sales-rep" target="_blank" rel="noopener">How an Anthropic field marketer uses Claude Code to send weekly personalized updates to every sales rep</a>」（2026年8月24日）<br>
+・Apple「<a href="https://www.apple.com/jp/newsroom/2026/08/apple-introduces-m6-and-m5-ultra-for-a-big-leap-in-performance-and-ai-compute/" target="_blank" rel="noopener">Apple、パフォーマンスとAI演算の大幅な向上をもたらすM6とM5 Ultraを発表</a>」（2026年8月25日）<br>
+・Stack Overflow「<a href="https://stackoverflow.blog/2026/08/24/responsible-ai-adoption-needs-developer-workflow-design" target="_blank" rel="noopener">Responsible AI adoption needs developer workflow design</a>」（2026年8月24日）<br>
+・デジタル化・AI導入補助金2026事務局「<a href="https://it-shien.smrj.go.jp/schedule/" target="_blank" rel="noopener">事業スケジュール ｜ デジタル化・AI導入補助金2026</a>」（5次締切2026年9月29日）</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

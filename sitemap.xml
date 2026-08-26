@@ -47,7 +47,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-24</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-openai-sol-price</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-gyomu-kaizen-joseikin</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260822-deepseek-gazou-token</loc><lastmod>2026-08-22</lastmod></url>
@@ -100,6 +100,7 @@
   <url><loc>https://ngraph.jp/blog/20260806-meta-muse-code</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260806-ai-cross-review</loc><lastmod>2026-08-06</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260806-seihon-yomarenai</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260826-ai-nine-rules</loc><lastmod>2026-08-26</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260806-deepseek-v4-price</loc><lastmod>2026-08-06</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260807-ai-approval-fatigue</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260807-jinbusoku-tosan</loc><lastmod>2026-08-07</lastmod></url>
