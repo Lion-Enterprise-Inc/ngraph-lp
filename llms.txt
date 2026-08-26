@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [インボイスの2割特例の次は納税額が業種で最大3倍——簡易課税の届出期限は決算の後に来る](https://ngraph.jp/blog/20260826-2wari-tokurei-tsugi)
 - [Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール](https://ngraph.jp/blog/20260826-ai-nine-rules)
 - [OpenAIがGPT-5.6 Solを20%値下げ——中小企業の月額プランは対象外、下がるのは従量課金だけ](https://ngraph.jp/blog/20260824-openai-sol-price)
 - [業務改善助成金は9月1日開始——締切は県ごとに最短30日、AIの月額料金が対象になる条件](https://ngraph.jp/blog/20260824-gyomu-kaizen-joseikin)
