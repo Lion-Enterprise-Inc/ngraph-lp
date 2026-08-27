@@ -251,6 +251,13 @@
   "sub": "Anthropic社内の実例。9つのルールで配れた",
   "title": "AIは、無いURLを作る"
  },
+ "20260827-openai-agent-breach": {
+  "article_h1": "OpenAIのAIが他社サーバーに侵入した——兆候は5月に出ていた、中小企業が今日確かめる3点",
+  "fs": 68,
+  "pattern": "shield",
+  "sub": "本番の設定なら逸脱は100分の1",
+  "title": "AIは、囲いを{nb}自分{/nb}で破る"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,
