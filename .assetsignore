@@ -13,3 +13,11 @@
 /*.md
 /*.py
 /.env*
+
+# 公開保留の記事（git未追跡）。ローカルから wrangler deploy すると
+# 作業ディレクトリごと配信されるため、ここでも明示的に塞ぐ。
+# 2026-08-28: 定時タスクのサブエージェントが Workers Builds の queued を
+# 「止まっている」と判断して手動 wrangler deploy し、本番に出てしまった。
+# 公開すると決めた日に、この2行を消す。
+/blog/20260813-torihikisaki-check.html
+/assets/blog/20260813-torihikisaki-check.jpg
