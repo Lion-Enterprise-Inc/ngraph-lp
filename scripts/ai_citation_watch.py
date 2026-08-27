@@ -102,6 +102,49 @@ def analyze(html):
             "overview_excerpt": text[:240]}
 
 
+
+def env_probe():
+    """全件取得失敗のとき、原因が「Edgeがネットワークに出られない」のか
+    「Googleが返さない」のかを切り分けて1行で名指しする。
+
+    2026-08-27追加。この日、9クエリ全部が fetch_failed になり、切り分けに時間を使った。
+    実測で確定した原因は「Edgeが壊れた」でも「ネットワークが死んだ」でもなく、
+    **--dump-dom だけが出力を返さない**こと（Edge 151.0.4129.101）:
+      - --dump-dom は file:// のローカルHTMLでも 0 バイト（git-bash でも PowerShell でも同じ）
+      - --screenshot は同じEdgeで正常（eyecatch_gen.py は動いている＝表紙生成は無事）
+      - curl は同じURLで 200 を返す＝ネットワークは生きている
+    つまり切り分けの軸は「ローカル/リモート」ではなく「--dump-dom/--screenshot」だった。
+    次に同じ状態を踏む人が同じ回り道をしないよう、失敗時にこのプローブが自分で名指しする
+    （環境要因で原因を潰せないときでも、診断は装置に持たせる）。
+    """
+    ok_local = None
+    tmp = tempfile.mkdtemp(prefix="aicw_probe_")
+    hp = os.path.join(tmp, "p.html")
+    with open(hp, "w", encoding="utf-8") as f:
+        f.write("<html><body><h1>probe</h1></body></html>")
+    out = os.path.join(tmp, "local.html")
+    try:
+        with open(out, "wb") as f:
+            subprocess.run([EDGE, "--headless=new", "--disable-gpu", "--no-sandbox",
+                            f"--user-data-dir={tmp}", "--virtual-time-budget=3000",
+                            "--dump-dom", "file:///" + hp.replace("\\", "/")],
+                           stdout=f, stderr=subprocess.DEVNULL, timeout=60)
+        ok_local = os.path.getsize(out) > 200
+    except Exception:
+        ok_local = False
+    ok_remote = fetch("example.com とは") is not None
+    if not ok_local:
+        return ("--dump-dom がローカルHTMLでも空を返す＝Edge側の --dump-dom の故障。"
+                "Edgeを再起動/更新の保留を解消して再試行する。--screenshot は別経路なので"
+                "表紙生成(eyecatch_gen.py)は動いている可能性が高い（切り分けの軸はローカル/リモートではない）。"
+                "⚠curlで代替しないこと＝JS描画のAI概要が取れず『概要なし』の偽の緑になる")
+    if not ok_remote:
+        return ("--dump-dom はローカルなら動くがリモートで空＝ネットワーク経路の遮断を疑う"
+                "（プロキシ/ポリシー、またはGoogle側の遮断）。"
+                "⚠curlで代替しないこと＝JS描画のAI概要が取れず『概要なし』の偽の緑になる")
+    return "Edgeは動いておりGoogleにも出られる。Google側が結果を返さなかった可能性（レート制限・画面構造の変更）"
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry", action="store_true")
@@ -144,6 +187,9 @@ def main():
     failed = [r for r in rows if r["status"] != "ok"]
     if failed:
         print(f"⚠ 取得失敗・生成待ち {len(failed)}件（未引用と混ぜない）")
+        if len(failed) == len(rows) and all(r["status"] == "fetch_failed" for r in rows):
+            print("→ 全件取得失敗。切り分け中…")
+            print("→ 診断: " + env_probe())
         return 1
     return 0
 
