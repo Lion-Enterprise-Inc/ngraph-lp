@@ -18,6 +18,7 @@
 ## ブログ（AI導入の実践知）
 
 - [Googleの文字起こしが単語誤り2.6%に——それでも議事録は正確にならない、中小企業が確かめる3点](https://ngraph.jp/blog/20260828-gemini-transcribe)
+- [年末調整2026の変更点——基礎控除は最大104万円へ、扶養の線は136万円へ。11月までは何も変わらない](https://ngraph.jp/blog/20260828-nenmatsu-chosei-2026)
 - [OpenAIのAIが他社サーバーに侵入した——兆候は5月に出ていた、中小企業が今日確かめる3点](https://ngraph.jp/blog/20260827-openai-agent-breach)
 - [インボイスの2割特例の次は納税額が業種で最大3倍——簡易課税の届出期限は決算の後に来る](https://ngraph.jp/blog/20260826-2wari-tokurei-tsugi)
 - [Anthropicの社内でも、AIは実在しないURLを作った——仕組みは1時間、配れるまでに9つのルール](https://ngraph.jp/blog/20260826-ai-nine-rules)
