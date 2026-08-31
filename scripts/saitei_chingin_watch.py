@@ -139,6 +139,51 @@ def extract(text):
     return got
 
 
+def extract_by_checksum(text):
+    """語順に依存せず「現行額＋引上げ額＝答申額」が成立する組だけを採る。
+
+    なぜ入れたか（2026-09-01）: 宮崎の答申（8/25）を取りこぼしていた。発表本文が
+    「現在の宮崎県最低賃金時間額1,023円から『62円引上げ』となる『時間額1,085円』」型で、
+    extract() のどの型にも当たらず、汎用型が先頭の**現行額**1,023円を掴んで
+    plausible() に弾かれ、「答申額を抽出できなかった」に落ちていた。
+    ⚠**弾かれた県は「未答申の可能性」の県と同じ塊で表示される**ので、
+    取りこぼしと未答申が区別できない（2026-08-11・08-25と同じ型の再発）。
+
+    局ごとに言い回しが違うので、型を足し続けても次の言い回しでまた落ちる。
+    金額そのものの検算（現行＋引上げ＝答申）が通る組だけを採れば語順に依存しない。
+    検算の通る組が複数あって答申額が割れる場合は、**採らない**（黙って選ばない）。
+    """
+    n = norm(text)
+    amounts = set()
+    for m in re.finditer(r"([0-9],[0-9]{3})円", n):
+        v = yen(m.group(1))
+        if v:
+            amounts.add(v)
+    ups = set()
+    for m in re.finditer(r"([0-9]{2})円[」』]?引き?上げ", n):
+        ups.add(int(m.group(1)))
+    for m in re.finditer(r"引き?上げ[額]?[^0-9]{0,6}([0-9]{2})円", n):
+        ups.add(int(m.group(1)))
+    hits = set()
+    for cur in amounts:
+        for up in ups:
+            if cur + up in amounts:
+                hits.add((cur, up, cur + up))
+    if not hits:
+        return None
+    if len({h[2] for h in hits}) != 1:
+        return None  # 答申額の候補が割れた。推測しない
+    cur, up, amt = sorted(hits)[-1]
+    got = {"amount": "{:,}".format(amt), "up": str(up), "start": None, "rate": None}
+    m = re.search(r"([0-9]{1,2}\.[0-9]{1,2})%", n)
+    if m:
+        got["rate"] = m.group(1)
+    m = re.search(r"発効予定日[^0-9]{0,6}([0-9]{1,2})月([0-9]{1,2})日", n)
+    if m:
+        got["start"] = "%s月%s日" % (m.group(1), m.group(2))
+    return got
+
+
 def yen(s):
     try:
         return int(str(s).replace(",", ""))
@@ -198,17 +243,28 @@ def probe(pref, tmpdir, now_yen=None):
         a = yen(got["amount"])
         return not (now_yen and a and a <= now_yen)
 
+    def read(text):
+        """型で拾う→ダメなら金額の検算で拾う。どちらも現行額以下は採らない。"""
+        got = extract(text)
+        if plausible(got):
+            return got
+        got = extract_by_checksum(text)
+        if got and plausible(got):
+            return got
+        return None
+
+    saw_pdf = False
     for url, label in cands[:2]:
         # 見出し自体に金額が書かれている型（例: 奈良「時間額56円引上げ1,107円へ」）
-        got = extract(label)
-        if plausible(got):
+        got = read(label)
+        if got:
             return got, label
         try:
             page = fetch(url)
         except Exception:
             continue
-        got = extract(page)
-        if plausible(got):
+        got = read(page)
+        if got:
             return got, label
         for pm in list(re.finditer(r'href="([^"]+\.pdf)"', page, re.I))[:3]:
             purl = urllib.parse.urljoin(url, pm.group(1))
@@ -218,10 +274,15 @@ def probe(pref, tmpdir, now_yen=None):
                 continue
             t = pdf_text(data, os.path.join(tmpdir, "%s.pdf" % pref))
             if not t:
+                # PDFを開けたのに文字が取れていない＝読めない経路。緑に紛れさせない
+                saw_pdf = True
                 continue
-            got = extract(t)
-            if plausible(got):
+            got = read(t)
+            if got:
                 return got, label
+    if saw_pdf:
+        return None, ("答申ページのPDFから文字が取れなかった（**PDFの読み取りが効いていない可能性**"
+                      "・要確認）: %s" % cands[0][1])
     return None, "答申ページはあるが答申額を抽出できなかった（現行額しか拾えない等）: %s" % cands[0][1]
 
 
@@ -237,6 +298,10 @@ def article_state():
     for row in re.findall(r"<tr>(.*?)</tr>", tbl[0], re.S)[1:]:
         cells = [re.sub(r"<[^>]+>", "", c).strip() for c in re.findall(r"<td.*?</td>", row, re.S)]
         if len(cells) < 2:
+            continue
+        # 表には「全国加重平均」の行も入っている。県として数えると
+        # 巡回対象でもないのに「試算のまま」が1件多く出続ける（2026-09-01に実測）
+        if cells[0] not in BUREAU:
             continue
         out[cells[0]] = (cells[-1], "答申" in cells[-1], cells[1] if len(cells) > 2 else "")
     return out
