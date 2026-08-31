@@ -47,7 +47,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-08-30</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-openai-sol-price</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-gyomu-kaizen-joseikin</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260822-deepseek-gazou-token</loc><lastmod>2026-08-22</lastmod></url>
@@ -104,6 +104,7 @@
   <url><loc>https://ngraph.jp/blog/20260827-openai-agent-breach</loc><lastmod>2026-08-27</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260828-gemini-transcribe</loc><lastmod>2026-08-28</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260828-nenmatsu-chosei-2026</loc><lastmod>2026-08-28</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260901-ai-shomen-kakunin</loc><lastmod>2026-09-01</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260830-toritekiho-kakaku-tenka</loc><lastmod>2026-08-30</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260826-2wari-tokurei-tsugi</loc><lastmod>2026-08-27</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260806-deepseek-v4-price</loc><lastmod>2026-08-06</lastmod></url>
