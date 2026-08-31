@@ -18,6 +18,7 @@
 ## ブログ（AI導入の実践知）
 
 - [豪の労働紛争機関がAI利用の申告を義務化——「確認はAIではなく人が」と明記、申立ては3年で7割増](https://ngraph.jp/blog/20260901-ai-shomen-kakunin)
+- [賃上げ促進税制の上乗せが1つ消えた——中小企業の最大は45%から35%へ、要件は給与の「総額」で決まる](https://ngraph.jp/blog/20260901-chinage-sokushin-zeisei)
 - [下請法が取適法に変わって半年、動いたのは支払い方法だった——価格転嫁率は0.7ポイント](https://ngraph.jp/blog/20260830-toritekiho-kakaku-tenka)
 - [Googleの文字起こしが単語誤り2.6%に——それでも議事録は正確にならない、中小企業が確かめる3点](https://ngraph.jp/blog/20260828-gemini-transcribe)
 - [年末調整2026の変更点——基礎控除は最大104万円へ、扶養の線は136万円へ。11月までは何も変わらない](https://ngraph.jp/blog/20260828-nenmatsu-chosei-2026)
