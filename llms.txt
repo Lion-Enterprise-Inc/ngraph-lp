@@ -107,6 +107,7 @@
 - [AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き](https://ngraph.jp/blog/ai-and-humans)
 - [AIに同じ修正を3回出している会社は、4回目も同じ結果になる](https://ngraph.jp/blog/k-writing-standard)
 - [飲食店の英語ページは、日本語の5倍書く——多言語サイトを「情報密度」から設計する](https://ngraph.jp/blog/k-multilingual-density)
+- [AIに補助金の申請書を下書きさせる前に、人が決める4つの前提](https://ngraph.jp/blog/k-subsidy-draft)
 
 ## 会社情報
 
