@@ -314,6 +314,72 @@ def run():
         return (not bad), f"独自globに戻っている: {bad}"
     case("リントが対象集合を自前で持っていない", t_scope_lints_share, expect_ok=True)
 
+    # ---- source_title_check: PDF出典の判定（2026-09-02新設）------------------------
+    # なぜ: 出典がPDFのとき <title> が無く、捏造でも実在でも「未確認」で素通りしていた。
+    # 補助金・税制の記事の一次情報はPDFが主なので、一番捏造されやすい型が無検査だった。
+    # ネットワークにも実PDFにも依存させないため fetch と pdf_titles を差し替えて
+    # 判定の分岐だけを見る（PDFからの文字取り出しは pypdf の仕事）。
+    import source_title_check as stc
+
+    G = "https://x.example/doc/guide.pdf"
+    IDX = "https://x.example/doc.html"
+    IDX_HTML = ('<a href="/doc/guide.pdf">中小企業向け賃上げ促進税制ご利用ガイドブック</a>'
+                '<a href="/doc/pamph.pdf">「賃上げ促進税制」パンフレット（令和8年6月時点版）</a>')
+    P = "https://x.example/doc/pamph.pdf"
+
+    def with_stub(body_titles, fetch_map, fn):
+        """fetch / pdf_titles を差し替えて fn を走らせ、必ず元に戻す。"""
+        of, op = stc.fetch, stc.pdf_titles
+        stc.fetch = lambda url, limit=8_000_000, tries=3: fetch_map.get(
+            url, (None, None, "neterr"))
+        stc.pdf_titles = lambda raw: body_titles
+        try:
+            return fn()
+        finally:
+            stc.fetch, stc.pdf_titles = of, op
+
+    PDF = (b"%PDF-" + b"x" * 200, "application/pdf", None)
+    FMAP = {G: PDF, P: PDF, IDX: (IDX_HTML.encode("utf-8"), "text/html", None)}
+
+    def t_pdf_body_ok():
+        got = with_stub(["中小企業向け賃上げ促進税制ご利用ガイドブック"], FMAP,
+                        lambda: stc.check_pdf("fix", "中小企業向け賃上げ促進税制ご利用ガイドブック",
+                                              G, [IDX]))
+        return (got == "ok"), f"got={got}"
+    case("PDF本文に題名があればOK", t_pdf_body_ok, expect_ok=True)
+
+    def t_pdf_index_ok():
+        # 題名がPDFの中に一度も出てこない実例（中小企業庁のパンフレット）。
+        # 掲載ページのリンク表記を根拠に認めないと、正しい出典をNGにしてしまう
+        got = with_stub(["賃上げに取り組む経営者の皆様へ"], FMAP,
+                        lambda: stc.check_pdf("fix", "「賃上げ促進税制」パンフレット（令和8年6月時点版）",
+                                              P, [IDX]))
+        return (got == "ok"), f"got={got}"
+    case("PDF本文に無くても掲載ページの表記と一致すればOK", t_pdf_index_ok, expect_ok=True)
+
+    def t_pdf_fabricated():
+        # 2026-08-18の事故と同じ型（URLのスラッグから題名を合成した）
+        got = with_stub(["中小企業向け賃上げ促進税制ご利用ガイドブック"], FMAP,
+                        lambda: stc.check_pdf("fix", "賃上げ促進税制ガイドブック 令和8年度改正のポイント",
+                                              G, [IDX]))
+        return (got != "ng"), f"got={got}"
+    case("PDFの題名を捏造したらNG", t_pdf_fabricated, expect_ok=False, expect_sub="got=ng")
+
+    def t_pdf_404():
+        got = with_stub([], {G: (None, None, "missing")},
+                        lambda: stc.check_pdf("fix", "存在しない資料", G, []))
+        return (got != "ng"), f"got={got}"
+    case("PDFが404ならNG", t_pdf_404, expect_ok=False, expect_sub="got=ng")
+
+    def t_pdf_blocked():
+        # 中小企業庁は連続で叩くと中身ゼロを返す。取得できないことは出典の誤りではないので
+        # NGにしない（ここをNGにすると、正しい記事が公開できなくなる）
+        got = with_stub([], {G: (None, None, "empty")},
+                        lambda: stc.check_pdf("fix", "中小企業向け賃上げ促進税制ご利用ガイドブック",
+                                              G, []))
+        return (got == "unknown"), f"got={got}"
+    case("サイトが空応答を返しても止めない（未確認）", t_pdf_blocked, expect_ok=True)
+
     # ---- 報告 --------------------------------------------------------------------
     for name, why in NOT_COVERED:
         print(f"  対象外 {name}: {why}")
