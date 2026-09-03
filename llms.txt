@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [中小企業の生成AI導入率は20.4%か34.5%か——調査3本が割れる理由と、自社が入る数字の見分け方](https://ngraph.jp/blog/20260903-chusho-genai-doritsu)
 - [豪の労働紛争機関がAI利用の申告を義務化——「確認はAIではなく人が」と明記、申立ては3年で7割増](https://ngraph.jp/blog/20260901-ai-shomen-kakunin)
 - [賃上げ促進税制の上乗せが1つ消えた——中小企業の最大は45%から35%へ、要件は給与の「総額」で決まる](https://ngraph.jp/blog/20260901-chinage-sokushin-zeisei)
 - [同一労働同一賃金の2026年10月改正とは？明示事項の追加・過料10万円・手当9項目を解説](https://ngraph.jp/blog/20260902-part-yuki-2026-10)
