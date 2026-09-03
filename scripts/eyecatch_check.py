@@ -81,6 +81,27 @@ def scan(path):
     # という前提自体が無い。検査対象外にする（対象外は呼び出し側の出力で見えるようにする）
     if pat == "visual-gen":
         return 0, None
+    # cards / doodle（2026-09-01新設・表紙v2・2型システム）: 旧パターンのような
+    # 「左テキスト枠・右図案域」の分離が無いレイアウト（カード4枚 or 3コマ落書き）。
+    # 旧域(X0-X1)をそのまま流用すると通常のカード文字を誤検知する
+    # （初回実測・20260902-part-yuki-2026-10 で発覚：墨8341px）。
+    # ただし k-title と同じ理由で、検査ごと外すと「この型で唯一起こりうる本物の事故＝
+    # 文字が左右の余白を突き破る」を誰も見なくなる。cards は判定対象を
+    # 「安全余白の外に墨があるか」へ差し替える（実測: cards の墨は x=105〜1054 に収まる）。
+    if pat == "cards":
+        n = 0
+        for y in range(0, H_PX):
+            for x in list(range(0, 62)) + list(range(1138, 1200)):
+                r, g, b = px[x, y]
+                if max(r, g, b) < INK_MAX:
+                    n += 1
+        return n, None
+    # doodle だけは余白帯の検査も前提が成立しない。3コマの枠線と絵が意図的に
+    # キャンバス端まで届く設計で、実測でも x=61 と x=1139 に墨が出る（2026-09-02）。
+    # 「余白は必ず地色」という前提が無い型に余白検査を当てると、正しい表紙を落とす。
+    # 文字あふれは eyecatch_gen2.py が生成時に exit 3 で止める（BLOG-OPS §3）
+    if pat == "doodle":
+        return 0, None
     # k-title（2026-08-19新設・タイトル全文型）: 図案そのものが無いので「本文が図案に
     # 重なる」という前提が成立しない。ただし検査を外すと、この型で唯一起こりうる本物の
     # 事故——巨大級数の文字が左右の余白を突き破る——を誰も見なくなる。判定対象を
@@ -135,7 +156,10 @@ def main():
         print("NG: アイキャッチ %d 枚で本文が図案に重なっている" % len(bad))
         for name, why in bad:
             print("  - %s: %s" % (name, why))
-        print("  直し方: python scripts/eyecatch_gen.py <slug> \"<短いタイトル>\" \"<サブ>\" <pattern> で作り直す")
+        print("  直し方: 表紙を作り直す。和禅テンプレ（既存記事の表紙）なら")
+        print("         python scripts/eyecatch_gen.py <slug> \"<短いタイトル>\" \"<サブ>\" <pattern>")
+        print("         表紙v2（cards / doodle・2026-09-01以降の新記事）なら")
+        print("         python scripts/eyecatch_gen2.py <cards|doodle> <slug> \"<タイトル>\" ...")
         print("         （生成側は文字数に応じて自動で級数を落とすので、作り直せば解消する）")
         return 1
     print("OK: アイキャッチ %d 枚、本文と図案の重なりなし" % len(files))
