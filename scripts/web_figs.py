@@ -29,13 +29,15 @@ MARK = "/* ===== 以下 figures/*.css から自動連結（web_figs.py）。こ�
 def inject(path):
     s = io.open(path, encoding="utf-8").read()
     n = 0
+    # en/ 配下のページは figures/en/<name>.html（英訳した断片）を使う
+    figdir = FIG / "en" if path.replace("\\", "/").startswith("en/") else FIG
 
     def rep(m):
         nonlocal n
         name = m.group(1)
-        f = FIG / (name + ".html")
+        f = figdir / (name + ".html")
         if not f.exists():
-            print("  警告 figures/%s.html が無い（据え置き）" % name)
+            print("  警告 %s/%s.html が無い（据え置き）" % (figdir.name, name))
             return m.group(0)
         n += 1
         frag = io.open(f, encoding="utf-8").read().strip("\n")

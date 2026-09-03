@@ -24,6 +24,7 @@ export async function onRequestPost({ request, env }) {
   let body;
   try { body = await request.json(); } catch { return json({ ok: false, error: '形式が不正です' }, 400); }
   const q = String(body.q || '').replace(/\s+/g, ' ').trim().slice(0, MAX_Q);
+  const lang = String(body.lang || 'ja').toLowerCase() === 'en' ? 'en' : 'ja';
   if (q.length < 2) return json({ ok: false, error: '質問を入力してください' }, 400);
 
   // レート制限（既存の LEADS KV を使う。KVが無ければ止めない）
@@ -44,14 +45,15 @@ export async function onRequestPost({ request, env }) {
   try { docs = await gatherDocs(env, q); }
   catch (e) { return json({ ok: false, error: '記録の読み取りに失敗しました' }, 502); }
   if (!docs.length) {
-    return json({ ok: true, answer: 'その点は公開情報に無いので未確認です。無料相談（https://ngraph.jp/entry）でお聞きください。', sources: [] });
+    return json({ ok: true, answer: lang === 'en' ? 'That is not in our published information, so it is unconfirmed. Please ask us via the free consultation form (https://ngraph.jp/en/entry).' : 'その点は公開情報に無いので未確認です。無料相談（https://ngraph.jp/entry）でお聞きください。', sources: [] });
   }
 
   // 2) LLM に答えさせる
   const context = docs.map((d) => `【公開文書: ${d.title}（${d.path}・${d.date}）】\n${d.text}`).join('\n\n');
   const user = `【質問】\n${q}\n\n【公開文書】\n${context}`;
   let answer;
-  try { answer = await callLLM(env, provider, SYSTEM, user); }
+  const system = lang === 'en' ? SYSTEM + '\n7. 回答は英語で書く（Answer in English. The source documents are Japanese; translate faithfully. Keep the final line as "Source: <document title>").' : SYSTEM;
+  try { answer = await callLLM(env, provider, system, user); }
   catch (e) { return json({ ok: false, error: '回答の生成に失敗しました' }, 502); }
   answer = String(answer || '').trim().slice(0, 1500);
   if (!answer) return json({ ok: false, error: '回答を作れませんでした' }, 502);
