@@ -492,6 +492,42 @@
 
 html[lang="en"] .fg-problem .pb-mid::before{content:"Yesterday → Today"}
 
+/* ── figures/process.css ── */
+/* ── 進め方（土台＋Project の階段）── 資料 s12 の階段構図をWebで */
+.fg-process{max-width:1000px}
+.fg-process .pr-formula{font-family:var(--serif);color:var(--red);font-weight:700;font-size:1.02rem;text-align:center;margin:0 0 16px;letter-spacing:.04em;line-height:1.7}
+.fg-process .pr-stairs{position:relative}
+.fg-process .pr-steps{list-style:none;margin:0;padding:0 2%;display:grid;grid-template-columns:repeat(4,1fr);gap:0;align-items:end}
+.fg-process .pr-step{position:relative;background:#fff;border:1.6px solid var(--red);border-bottom:none;border-radius:12px 12px 0 0;padding:20px 12px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;margin-left:-1.6px}
+.fg-process .pr-step.s1{min-height:196px;margin-left:0}
+.fg-process .pr-step.s2{min-height:236px}
+.fg-process .pr-step.s3{min-height:276px}
+.fg-process .pr-step.s4{min-height:316px}
+.fg-process .pr-step:not(.s1)::before{content:"";position:absolute;left:-1.6px;top:0;bottom:0;border-left:1.6px solid var(--red)}
+.fg-process .pr-ic{width:48px;height:42px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
+.fg-process .pr-ic svg{width:44px;height:38px;fill:none;stroke:var(--red);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fg-process .pr-ic svg .w{fill:#fff}
+.fg-process .pr-k{font-family:'Noto Sans JP',sans-serif;font-size:.74rem;font-weight:700;letter-spacing:.2em;color:var(--red)}
+.fg-process .pr-t{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.4;color:var(--ink)}
+.fg-process .pr-d{font-size:.8rem;color:var(--sub);line-height:1.6}
+.fg-process .pr-e{margin-top:auto;padding-top:10px;font-size:.8rem;color:var(--ink);letter-spacing:.02em;white-space:nowrap}
+.fg-process .pr-base{border:1.6px solid var(--red);border-radius:12px;background:var(--tint);padding:18px 24px;text-align:center;display:flex;flex-direction:column;gap:4px;position:relative;z-index:1}
+.fg-process .pr-base-t{font-family:var(--serif);font-size:1.45rem;font-weight:700;color:var(--red);letter-spacing:.06em;line-height:1.4}
+.fg-process .pr-base-d{font-size:.9rem;color:var(--sub);line-height:1.8}
+.fg-process .pr-note{margin:14px 0 0;font-size:.84rem;color:var(--sub);text-align:center;line-height:1.9}
+@media(max-width:900px){
+  .fg-process .pr-steps{grid-template-columns:repeat(2,1fr);gap:10px;padding:0}
+  .fg-process .pr-step{margin-left:0;border-bottom:1.6px solid var(--red);border-radius:12px;min-height:0!important}
+  .fg-process .pr-step::before{display:none}
+  .fg-process .pr-base{margin-top:10px}
+}
+@media(max-width:560px){
+  .fg-process .pr-steps{grid-template-columns:1fr}
+  .fg-process .pr-formula{font-size:.92rem}
+}
+
+.fg-process+.fg-statement{margin-bottom:48px}
+
 /* ── figures/structure.css ── */
 /* ── 全体構図（書き込む側 → 会社の脳 → 読み出す側） ── */
 .fg-structure{font-family:var(--serif)}
