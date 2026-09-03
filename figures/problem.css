@@ -1,0 +1,60 @@
+/* ── 課題（AIは優秀。でも、昨日を覚えていない。） ── */
+.fg-problem .pb-stage{display:grid;grid-template-columns:1fr auto 1.12fr;gap:0 16px;align-items:start}
+.fg-problem .pb-scene{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.fg-problem .pb-cap{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--red);letter-spacing:.12em;text-align:center;line-height:1.5}
+.fg-problem .pb-art{position:relative}
+.fg-problem .pb-art img{display:block;width:100%;height:auto}
+
+
+
+
+
+
+.fg-problem .pb-big::before,.fg-problem .pb-big::after{content:"";position:absolute;top:56%;width:0;height:0;border:8px solid transparent;border-left:0}
+.fg-problem .pb-big::before{left:-10px;border-right-color:var(--ink);margin-top:-8px}
+.fg-problem .pb-big::after{left:-7px;border-right-color:#fff;margin-top:-8px}
+.fg-problem .pb-list{display:none;list-style:none;padding:0;margin:0;flex-direction:column;gap:6px}
+.fg-problem .pb-list li{font-family:var(--serif);font-size:.92rem;line-height:1.6;background:#fff;border:1px solid var(--line2);border-radius:8px;padding:6px 12px;position:relative}
+.fg-problem .pb-list li.ai{border-color:var(--ink);margin-left:14px;text-align:right}
+.fg-problem .pb-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;max-width:150px;align-self:center;padding-top:34px}
+.fg-problem .pb-cal{display:flex;align-items:center;gap:4px}
+.fg-problem .pb-cal svg{width:64px;height:64px;stroke:var(--ink);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.fg-problem .pb-cal .d{fill:var(--ink);stroke:none}
+.fg-problem .pb-cal .fold{fill:var(--bg);stroke:var(--ink)}
+.fg-problem .pb-cal .pb-arrow{width:60px;height:22px;stroke:var(--red);stroke-width:3}
+.fg-problem .pb-cal .hd{fill:var(--red);stroke:none}
+.fg-problem .pb-midcap{margin:0;font-family:var(--serif);font-size:.8rem;letter-spacing:.06em;text-align:center;line-height:1.5}
+.fg-problem .pb-lead{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:700;text-align:center;letter-spacing:.06em;line-height:1.6;margin:18px 0 0}
+.fg-problem .pb-sym{list-style:none;padding:0;margin:14px 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:8px 0}
+.fg-problem .pb-sym li{font-family:var(--serif);font-size:1.05rem;letter-spacing:.2em;padding:0 22px;line-height:1.4;border-left:1.5px solid var(--line2)}
+.fg-problem .pb-sym li:first-child{border-left:none}
+.fg-problem .fg-rule{margin-top:24px}
+@media(max-width:1000px){.fg-problem .pb-stage{gap:0 12px}.fg-problem .pb-mid{max-width:120px;align-self:end;padding:0 0 4px}.fg-problem .pb-cal svg{width:54px;height:54px}.fg-problem .pb-cal .pb-arrow{width:40px;height:18px}}
+@media(max-width:760px){
+  .fg-problem .pb-stage{grid-template-columns:1fr;gap:18px}
+  .fg-problem .pb-scene{max-width:640px;width:100%;margin:0 auto}
+  .fg-problem .pb-mid{max-width:none;padding-top:0;flex-direction:row;gap:14px}
+  .fg-problem .pb-cal{flex-direction:column;gap:2px}
+  .fg-problem .pb-cal .pb-arrow{transform:rotate(90deg);width:40px;height:18px;margin:12px 0 6px}
+  .fg-problem .pb-sym li{padding:0 14px;letter-spacing:.14em}
+}
+@media(max-width:640px){
+  
+  .fg-problem .pb-mid::before{content:"昨日 → 今日";display:block;color:var(--red);font-family:var(--serif);font-size:.9rem;font-weight:700;letter-spacing:.08em;margin-bottom:4px}
+
+  .fg-problem .pb-list{display:flex}
+  .fg-problem .pb-mid{flex-direction:column;gap:4px}
+  .fg-problem .pb-cal{flex-direction:row}
+  .fg-problem .pb-cal .pb-arrow{transform:none;margin:0}
+  .fg-problem .pb-sym li{font-size:.92rem;padding:0 9px;letter-spacing:.04em}
+}
+
+/* 吹き出しは画像と同じ座標系（SVG）に組み込み、一緒に拡縮する */
+.fg-problem .pb-svg{display:block;width:100%;height:auto}
+.fg-problem .pb-svg .bub rect{fill:#fff;stroke:var(--ink);stroke-width:2.5}
+.fg-problem .pb-svg .bub .tail{fill:#fff;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round}
+.fg-problem .pb-svg .bub text{font-family:var(--serif);font-size:30px;font-weight:600;fill:var(--ink);letter-spacing:.04em}
+.fg-problem .pb-svg .bub.big rect{stroke-width:3.5}
+.fg-problem .pb-svg .bub.big text{font-size:38px;font-weight:700}
+.fg-problem .pb-stage{align-items:end}
+@media(max-width:640px){.fg-problem .pb-svg .bub{display:none}}

@@ -1,0 +1,47 @@
+/* ── 体制（現実を、AIが読める形に構造化する。） ── */
+.fg-team{display:grid;grid-template-columns:1fr minmax(220px,300px) 1fr;gap:22px;align-items:start}
+.fg-team .tm-person{display:grid;grid-template-columns:minmax(120px,158px) 1fr;gap:22px;align-items:start;min-width:0}
+.fg-team .tm-r{grid-template-columns:1fr minmax(120px,158px)}
+.fg-team .tm-r .tm-photo{grid-column:2;grid-row:1}
+.fg-team .tm-r .tm-txt{grid-column:1;grid-row:1}
+.fg-team .tm-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:10px;display:block;background:var(--bg-2)}
+.fg-team .tm-txt{min-width:0;font-family:var(--serif)}
+.fg-team .tm-role{margin:0;font-size:.9rem;font-weight:700;color:var(--red);letter-spacing:.18em;line-height:1.5}
+.fg-team .tm-name{font-size:clamp(1.5rem,2.4vw,1.9rem);font-weight:700;line-height:1.35;margin:8px 0 0;letter-spacing:.02em}
+.fg-team .tm-name-en{font-weight:500}
+.fg-team .tm-en{margin:0;font-size:.8rem;letter-spacing:.2em;color:var(--sub);line-height:1.5}
+.fg-team .tm-title{font-size:.92rem;margin:10px 0 0;line-height:1.6}
+.fg-team .tm-tag{font-size:clamp(1.15rem,1.9vw,1.35rem);font-weight:700;line-height:1.5;margin:14px 0 0;padding-top:14px;position:relative;letter-spacing:.02em}
+.fg-team .tm-tag::before{content:"";position:absolute;left:0;top:0;width:36px;height:2px;background:var(--red)}
+.fg-team .tm-list{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:5px}
+.fg-team .tm-list li{font-size:.86rem;line-height:1.6;padding-left:20px;position:relative;letter-spacing:.04em}
+.fg-team .tm-list li::before{content:"";position:absolute;left:0;top:.75em;width:11px;height:2px;background:var(--red)}
+.fg-team .tm-center{align-self:center;margin-top:44px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;min-width:0}
+.fg-team .tm-link{display:flex;align-items:center;width:100%;margin-bottom:6px}
+.fg-team .tm-ic{width:64px;height:64px;flex-shrink:0;border:1.5px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff}
+.fg-team .tm-ic svg{width:34px;height:34px;stroke:var(--red);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.fg-team .tm-ic .w{fill:#fff}
+.fg-team .tm-ic .dot{fill:var(--red);stroke:none}
+.fg-team .tm-ic .ai{fill:var(--red);stroke:none;font:700 16px 'Noto Sans JP','Zen Kaku Gothic New',sans-serif;text-anchor:middle;dominant-baseline:central}
+.fg-team .tm-line{flex:1;height:0;border-top:1.5px solid var(--red);position:relative;margin:0 4px}
+.fg-team .tm-line::after{content:"";position:absolute;right:-2px;top:-6px;border:6px solid transparent;border-left:9px solid var(--red);border-right:0}
+.fg-team .tm-lead{font-family:var(--serif);font-size:clamp(1.15rem,1.8vw,1.3rem);font-weight:700;color:var(--red);line-height:1.5;margin:0;letter-spacing:.04em}
+.fg-team .tm-sub{font-family:var(--serif);font-size:.9rem;font-weight:700;letter-spacing:.24em;line-height:1.5;margin:0}
+.fg-team-sub{display:block;font-size:.72em;font-weight:700;letter-spacing:.14em;color:var(--text);margin-top:6px}
+@media(max-width:900px){
+  .fg-team{grid-template-columns:1fr 1fr;gap:24px 20px}
+  .fg-team .tm-center{margin-top:0;grid-column:1/-1;grid-row:2;max-width:360px;justify-self:center;width:100%}
+  .fg-team .tm-person{grid-template-columns:minmax(100px,130px) 1fr;gap:16px;align-items:start}
+  .fg-team .tm-r{grid-template-columns:minmax(100px,130px) 1fr}
+  .fg-team .tm-r .tm-photo{grid-column:1}
+  .fg-team .tm-r .tm-txt{grid-column:2}
+}
+@media(max-width:640px){
+  .fg-team{grid-template-columns:1fr;gap:18px}
+  .fg-team .tm-center{order:2}
+  .fg-team .tm-r{order:3}
+  .fg-team .tm-center{grid-column:auto;grid-row:auto}
+  .fg-team .tm-person,.fg-team .tm-r{grid-template-columns:minmax(88px,110px) 1fr;gap:14px}
+  .fg-team .tm-en{letter-spacing:.1em}
+  .fg-team .tm-list li{letter-spacing:0}
+}

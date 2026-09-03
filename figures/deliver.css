@@ -1,0 +1,45 @@
+/* ── 納品物（御社に残る３つの資産） ── */
+.fg-deliver{font-family:var(--serif)}
+.fg-deliver .dl-sheet{position:relative;padding:30px 7.3% 12px 5.9%}
+.fg-deliver .dl-shape{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.fg-deliver .dl-shape path{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.fg-deliver .dl-head{position:relative;display:flex;align-items:center;gap:20px;margin:0 0 30px 14.5%;font-size:1.2rem;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.fg-deliver .dl-head i{flex:1;height:1.3px;background:var(--ink)}
+.fg-deliver .dl-cards{position:relative;display:grid;grid-template-columns:repeat(3,1fr);column-gap:52px;align-items:stretch}
+.fg-deliver .dl-card{position:relative;background:var(--paper);border:1.5px solid var(--ink);padding:24px 16px 26px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.fg-deliver .dl-card+.dl-card::before{content:'';position:absolute;left:-27px;top:36px;bottom:30px;border-left:1.3px dashed var(--sub)}
+.fg-deliver .dl-fold{position:absolute;top:-1.5px;right:-1.5px;width:34px;height:34px}
+.fg-deliver .dl-fold path{fill:none;stroke:var(--ink);stroke-width:1.6;vector-effect:non-scaling-stroke}
+.fg-deliver .dl-fold .dl-fold-bg{fill:var(--bg,#f6f2e9);stroke:none}
+.fg-deliver .dl-no{color:var(--red);font-size:1.6rem;font-weight:700;line-height:1.2;padding-bottom:6px;border-bottom:2px solid var(--red);margin-bottom:26px}
+.fg-deliver .dl-ic{width:88px;height:64px;margin-bottom:26px}
+.fg-deliver .dl-ic svg{stroke-width:2}
+.fg-deliver .dl-ic-shield{width:60px;height:68px;margin-bottom:22px}
+.fg-deliver .dl-ic-plug{width:86px;height:56px;margin:4px 0 30px}
+.fg-deliver .dl-card strong{font-size:1.3rem;font-weight:700;letter-spacing:.2em;line-height:1.4;margin-bottom:12px}
+.fg-deliver .dl-d{font-size:.95rem;letter-spacing:.05em;line-height:1.6;color:var(--sub)}
+.fg-deliver .dl-band{display:flex;align-items:center;justify-content:center;gap:22px;margin:0 4% 0 3.7%;border:2px solid var(--red);border-radius:14px;padding:15px 24px;background:var(--tint)}
+.fg-deliver .dl-ribbon{width:40px;height:56px}
+.fg-deliver .dl-ribbon svg{stroke-width:1.8}
+.fg-deliver .dl-ribbon .dl-check{stroke:var(--red);stroke-width:3.4}
+.fg-deliver .dl-band p{margin:0;color:var(--red);font-size:1.3rem;font-weight:700;letter-spacing:.1em;line-height:1.6;text-align:center}
+@media(max-width:900px){
+  .fg-deliver .dl-cards{column-gap:36px}
+  .fg-deliver .dl-card+.dl-card::before{left:-19px}
+  .fg-deliver .dl-card strong{font-size:1.2rem;letter-spacing:.14em}
+  .fg-deliver .dl-band p{font-size:1.1rem;letter-spacing:.1em}
+  .fg-deliver .dl-band{gap:18px;padding:12px 18px}
+}
+@media(max-width:700px){
+  .fg-deliver .dl-sheet{padding:22px 16px 16px;border:1.5px solid var(--ink);border-radius:var(--r) var(--r) 0 0}
+  .fg-deliver .dl-shape{display:none}
+  .fg-deliver .dl-head{margin:0 0 20px;font-size:1.1rem}
+  .fg-deliver .dl-cards{grid-template-columns:1fr;row-gap:16px}
+  .fg-deliver .dl-card+.dl-card::before{display:none}
+  .fg-deliver .dl-card{padding:22px 16px 22px}
+  .fg-deliver .dl-no{margin-bottom:18px}
+  .fg-deliver .dl-ic{margin-bottom:18px}
+  .fg-deliver .dl-ic-plug{margin-bottom:20px}
+  .fg-deliver .dl-band{margin:-1.5px 0 0;border-radius:0 0 var(--r) var(--r);flex-wrap:wrap;gap:12px}
+  .fg-deliver .dl-band p{font-size:1.05rem;letter-spacing:.06em}
+}

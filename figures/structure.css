@@ -1,0 +1,76 @@
+/* ── 全体構図（書き込む側 → 会社の脳 → 読み出す側） ── */
+.fg-structure{font-family:var(--serif)}
+.fg-structure .st-head{display:grid;grid-template-columns:1fr 30% 1fr;align-items:center;margin-bottom:38px}
+.fg-structure .st-hw,.fg-structure .st-hr{display:flex;align-items:center;gap:14px}
+.fg-structure .st-hw{padding-left:17%}
+.fg-structure .st-hr{padding-right:8%}
+.fg-structure .st-hw i,.fg-structure .st-hr i{flex:1;height:1.5px;background:var(--line2)}
+.fg-structure .st-side-lbl{font-size:1.15rem;font-weight:700;letter-spacing:.3em;white-space:nowrap}
+.fg-structure .st-hc{position:relative;text-align:center;font-size:1rem;font-weight:700;letter-spacing:.12em;white-space:nowrap}
+.fg-structure .st-hc em{font-style:normal;color:var(--red)}
+.fg-structure .st-hc::after{content:'';position:absolute;left:50%;top:calc(100% + 10px);height:18px;border-left:1.5px solid var(--line2)}
+.fg-structure .st-body{position:relative;display:grid;grid-template-columns:1fr 30% 1fr;grid-template-areas:"sw hub sr" "foot foot foot";align-items:stretch}
+.fg-structure .st-arrows{position:absolute;left:0;top:0;width:100%;height:100%;grid-area:sw / sw / hub / sr;pointer-events:none;overflow:visible}
+.fg-structure .st-cv{fill:none;stroke:var(--red);stroke-width:2.4;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.fg-structure .st-ah,.fg-structure .st-dot{fill:var(--red);stroke:none}
+.fg-structure .st-back .st-cv{stroke:var(--line2);stroke-width:2}
+.fg-structure .st-back .st-ah{fill:var(--line2)}
+.fg-structure .st-side{position:relative;display:flex;flex-direction:column;justify-content:space-between;z-index:1}
+.fg-structure .st-write{grid-area:sw;padding:0 0 9% 17%}
+.fg-structure .st-read{grid-area:sr;padding:0 8% 9% 34%}
+.fg-structure .st-item{display:flex;flex-direction:column;align-items:flex-start;line-height:1.5}
+.fg-structure .st-no{color:var(--red);font-size:1rem;font-weight:700;letter-spacing:.22em;line-height:1.3}
+.fg-structure .st-item strong{font-size:1.2rem;font-weight:700;letter-spacing:.1em;line-height:1.4;margin-bottom:6px}
+.fg-structure .st-d,.fg-structure .st-r{font-family:'Noto Sans JP','Zen Kaku Gothic New',sans-serif;font-size:.9rem;line-height:1.6}
+.fg-structure .st-d{color:var(--ink)}
+.fg-structure .st-r{color:var(--red);font-weight:700}
+.fg-structure .st-eye{width:36px;height:24px;margin-left:2px}
+.fg-structure .st-hub{grid-area:hub;position:relative;aspect-ratio:194/202.5;border:1.5px solid var(--red);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:0 8%;z-index:1;max-width:230px;justify-self:center}
+.fg-structure .st-hub::before{content:'';position:absolute;inset:9px;border:1.5px solid var(--red);border-radius:50%}
+.fg-structure .st-hub-ic{width:40px;height:34px;margin-bottom:10px}
+.fg-structure .st-hub-cap{color:var(--red);font-size:1rem;font-weight:700;letter-spacing:.2em}
+.fg-structure .st-hub strong{font-size:clamp(1.7rem,3.3vw,2.4rem);font-weight:700;letter-spacing:.14em;line-height:1.3;margin:2px 0 6px}
+.fg-structure .st-hub-sub{font-size:.9rem;font-weight:700;letter-spacing:.12em;line-height:1.5}
+.fg-structure .st-lbl{position:absolute;grid-area:sw / sw / hub / sr;font-size:.9rem;font-weight:700;letter-spacing:.08em;white-space:nowrap;z-index:2;line-height:1;background:var(--bg);padding:0 6px}
+.fg-structure .st-lw{left:29.5%;top:85%}
+.fg-structure .st-lr{left:68.5%;top:47%}
+.fg-structure .st-foot{grid-area:foot;position:relative;padding-top:56px;margin-top:2px}
+.fg-structure .st-back{position:absolute;left:0;top:0;width:100%;height:48px;pointer-events:none;overflow:visible}
+.fg-structure .st-shield{position:absolute;top:0;width:34px;height:40px}
+.fg-structure .st-shield-l{left:5.8%}
+.fg-structure .st-shield-r{left:79%}
+.fg-structure .st-loop{text-align:center;font-size:.9rem;letter-spacing:.14em;color:var(--ink);margin:0}
+.fg-structure .fg-rule{margin-top:30px}
+@media(max-width:1000px){
+  .fg-structure .st-hub strong{letter-spacing:.1em}
+  .fg-structure .st-read{padding:0 4% 9% 30%}
+  .fg-structure .st-lr{left:64%;top:42%}
+  .fg-structure .st-eye{display:none}
+  .fg-structure .st-hc{font-size:.95rem;letter-spacing:.08em}
+  .fg-structure .st-side-lbl{font-size:1.05rem;letter-spacing:.2em}
+}
+@media(max-width:640px){
+  .fg-structure .st-head{grid-template-columns:1fr;gap:10px;margin-bottom:22px}
+  .fg-structure .st-hw,.fg-structure .st-hr{display:none}
+  .fg-structure .st-hc{white-space:normal}
+  .fg-structure .st-hc::after{display:none}
+  .fg-structure .st-body{grid-template-columns:1fr;grid-template-areas:"sw" "lw" "hub" "lr" "sr" "foot";row-gap:14px;justify-items:center}
+  .fg-structure .st-arrows{display:none}
+  .fg-structure .st-body::before{content:"↓";display:block;color:var(--red);font-size:1.3rem;line-height:1;grid-area:lw;margin:-4px 0}
+  .fg-structure .st-body::after{content:"↓";display:block;color:var(--red);font-size:1.3rem;line-height:1;grid-area:lr;margin:-4px 0}
+  .fg-structure .st-side{width:100%;padding:0;gap:18px;justify-content:flex-start;align-items:center}
+  .fg-structure .st-write::before,.fg-structure .st-read::before{content:attr(data-side);font-size:1.05rem;font-weight:700;letter-spacing:.3em;padding-bottom:6px;border-bottom:1.5px solid var(--line2);width:100%;text-align:center}
+  .fg-structure .st-item{width:min(100%,320px);align-items:center;text-align:center}
+  .fg-structure .st-eye{display:none}
+  .fg-structure .st-hub{width:min(78vw,300px)}
+  .fg-structure .st-hub strong{font-size:1.9rem}
+  .fg-structure .st-lbl{position:static;text-align:center;font-size:.9rem;color:var(--red)}
+  .fg-structure .st-lw{grid-area:lw}
+  .fg-structure .st-lr{grid-area:lr}
+  .fg-structure .st-lbl::before{content:'↓';display:block;font-size:1.2rem;margin-bottom:6px}
+  .fg-structure .st-foot{width:100%;padding-top:12px;margin-top:6px;border-top:1px dashed var(--line2);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  .fg-structure .st-back{display:none}
+  .fg-structure .st-shield{position:static;width:24px;height:28px}
+  .fg-structure .st-shield-r{display:none}
+  .fg-structure .st-loop{letter-spacing:.06em}
+}

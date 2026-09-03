@@ -1,0 +1,36 @@
+/* ── 見積（費用は、対象業務と接続範囲で決まります。） ── */
+.fg-estimate .est-phases{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.fg-estimate .est-phases li{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.05rem;font-weight:700;letter-spacing:.12em;white-space:nowrap}
+.fg-estimate .est-phases li::before,.fg-estimate .est-phases li::after{content:"";flex:1;border-top:1px solid var(--line2)}
+.fg-estimate .est-phases li.on{color:var(--red)}
+.fg-estimate .est-cards{display:grid;grid-template-columns:repeat(3,1fr);background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.fg-estimate .est-card{position:relative;padding:28px 26px 26px;display:flex;flex-direction:column}
+.fg-estimate .est-card+.est-card{border-left:1px solid var(--line)}
+.fg-estimate .est-card+.est-card::before{content:"→";position:absolute;left:-10px;top:60px;padding:2px 0;background:var(--paper);color:var(--ink);font-size:1.15rem;line-height:1}
+.fg-estimate .est-phase{display:none}
+.fg-estimate .est-top{display:flex;align-items:center;gap:16px;padding-bottom:16px;margin-bottom:14px;border-bottom:1px solid var(--line)}
+.fg-estimate .est-top .fg-ic{width:60px;height:60px}
+.fg-estimate .est-top .fg-ic svg{stroke-width:1.5}
+.fg-estimate .est-ttl{display:flex;align-items:baseline;gap:10px;line-height:1.3}
+.fg-estimate .est-ttl .num{font-family:var(--serif);font-size:1.25rem;font-weight:700;color:var(--red);letter-spacing:.04em}
+.fg-estimate .est-ttl strong{font-family:var(--serif);font-size:1.3rem;font-weight:700;letter-spacing:.06em}
+.fg-estimate .est-q{font-size:.88rem;color:var(--sub);margin-top:4px;letter-spacing:.04em}
+.fg-estimate .est-card ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.fg-estimate .est-card li{position:relative;padding-left:16px;font-size:.95rem;font-family:var(--serif);font-weight:600;letter-spacing:.04em;line-height:1.6}
+.fg-estimate .est-card li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:7px;border-radius:50%;background:var(--red)}
+@media(max-width:900px){
+  .fg-estimate .est-phases li{font-size:.92rem;letter-spacing:.08em;gap:8px}
+  .fg-estimate .est-card{padding:20px 16px 18px}
+  .fg-estimate .est-top{gap:12px}
+  .fg-estimate .est-top .fg-ic{width:50px;height:50px}
+  .fg-estimate .est-ttl strong{font-size:1.18rem}
+  .fg-estimate .est-card+.est-card::before{top:50px}
+}
+@media(max-width:640px){
+  .fg-estimate .est-phases{display:none}
+  .fg-estimate .est-cards{grid-template-columns:1fr}
+  .fg-estimate .est-card+.est-card{border-left:none;border-top:1px solid var(--line)}
+  .fg-estimate .est-card+.est-card::before{left:50%;top:-12px;transform:translateX(-50%) rotate(90deg);padding:0 3px}
+  .fg-estimate .est-phase{display:inline-block;align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.14em;line-height:1;padding:5px 9px;border-radius:999px;background:var(--red);color:#fff;margin-bottom:12px}
+  .fg-estimate .est-card:last-child .est-phase{background:#57524c}
+}
