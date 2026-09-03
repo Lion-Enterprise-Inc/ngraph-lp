@@ -1,12 +1,17 @@
 // ngraph.jp Worker: /api/* をFunctionsへ、その他は静的アセットへ
 import { onRequestPost as kcheck } from './functions/api/kcheck.js';
 import { onRequestPost as lead } from './functions/api/lead.js';
+import { onRequestPost as ask } from './functions/api/ask.js';
 
 export default {
   async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
     if (pathname === '/api/kcheck') {
       if (request.method === 'POST') return kcheck({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
+      return methodNotAllowed();
+    }
+    if (pathname === '/api/ask') {
+      if (request.method === 'POST') return ask({ request, env });
       return methodNotAllowed();
     }
     if (pathname === '/api/lead') {

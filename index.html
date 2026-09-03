@@ -37,7 +37,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
-<link rel="stylesheet" href="/css/figures.css?v=18">
+<link rel="stylesheet" href="/css/figures.css?v=19">
 <style>
 /* 構造化パターンのこだま演出: 時々1つが首をかしげ、朱に灯る */
 .pat{transition:transform .35s ease}
@@ -613,6 +613,30 @@
     </div>
     <p class="fg-statement reveal"><span class="nb lead">人が探す仕事から、</span><span class="nb">聞けば返る仕事へ。</span></p>
     <!-- /fig -->
+    <!-- 会社の脳に聞く（公開文書だけを読むボット） -->
+    <div class="ask reveal" id="ask">
+      <div class="ask-head">
+        <span class="ask-kicker">試してみる</span>
+        <h3 class="ask-title"><span class="nb">会社の脳に、</span><span class="nb">聞いてみてください。</span></h3>
+        <p class="ask-sub"><span class="nb">NGraphの公開情報だけを読んで答えます。</span><span class="nb">出典と日付つき。</span><span class="nb">記録に無いことは「未確認」と返します。</span></p>
+      </div>
+      <form class="ask-form" id="askForm" autocomplete="off">
+        <input type="text" id="askInput" name="q" maxlength="300" placeholder="例：料金はどう決まりますか？　既存システムは入れ替えが必要？" aria-label="質問">
+        <button type="submit" class="btn btn-primary" id="askBtn">聞く</button>
+      </form>
+      <div class="ask-chips" aria-label="質問の例">
+        <button type="button" data-q="料金はどう決まりますか？">料金はどう決まりますか？</button>
+        <button type="button" data-q="既存の業務システムは入れ替えが必要ですか？">既存システムの入れ替えは必要？</button>
+        <button type="button" data-q="納品時に何が残りますか？">納品時に何が残る？</button>
+        <button type="button" data-q="ChatGPTからClaudeに乗り換えられますか？">AIの乗り換えはできる？</button>
+      </div>
+      <div class="ask-out" id="askOut" hidden>
+        <div class="ask-q" id="askQ"></div>
+        <div class="ask-a" id="askA"></div>
+        <div class="ask-src" id="askSrc"></div>
+      </div>
+      <p class="ask-note"><span class="nb">お客様向けの案内役です。</span><span class="nb">詳しい相談は</span><a href="/entry">無料相談</a><span class="nb">へ。</span></p>
+    </div>
   </div>
 </section>
 <section class="section dks section-alt" id="deliverables">
@@ -1005,6 +1029,37 @@ setInterval(function(){
   var el=pats[i];el.classList.add('kodama');
   setTimeout(function(){el.classList.remove('kodama')},1750);
 },4200);
+})();
+</script>
+
+<script>
+// 会社の脳に聞く
+(function(){
+  var f=document.getElementById('askForm'),inp=document.getElementById('askInput'),btn=document.getElementById('askBtn');
+  var out=document.getElementById('askOut'),qEl=document.getElementById('askQ'),aEl=document.getElementById('askA'),sEl=document.getElementById('askSrc');
+  if(!f)return;
+  function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]});}
+  function render(t){
+    var h=esc(t).replace(/(https?:\/\/[^\s）)]+)/g,'<a href="$1" rel="noopener">$1</a>');
+    return h.split(/
++/).map(function(l){return '<p>'+l.replace(/^[-・]\s*/,'・')+'</p>';}).join('');
+  }
+  function ask(q){
+    q=(q||'').trim(); if(q.length<2)return;
+    out.hidden=false; qEl.textContent=q; aEl.innerHTML='<p class="ask-wait">記録を読んでいます…</p>'; sEl.innerHTML=''; btn.disabled=true;
+    fetch('/api/ask',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({q:q})})
+      .then(function(r){return r.json();})
+      .then(function(j){
+        if(!j.ok){aEl.innerHTML='<p>'+esc(j.error||'いまは答えられません')+'</p>';return;}
+        aEl.innerHTML=render(j.answer);
+        if(j.sources&&j.sources.length){sEl.innerHTML='<span>読んだ記録：</span>'+j.sources.map(function(s){return '<span class="ask-tag">'+esc(s.title)+(s.date?'（'+esc(s.date)+'）':'')+'</span>';}).join('');}
+        if(window.gtag)gtag('event','ask_brain',{q:q.slice(0,80)});
+      })
+      .catch(function(){aEl.innerHTML='<p>通信に失敗しました。時間をおいてお試しください。</p>';})
+      .finally(function(){btn.disabled=false;});
+  }
+  f.addEventListener('submit',function(e){e.preventDefault();ask(inp.value);});
+  document.querySelectorAll('.ask-chips button').forEach(function(b){b.addEventListener('click',function(){inp.value=b.getAttribute('data-q');ask(inp.value);});});
 })();
 </script>
 </body>
