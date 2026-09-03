@@ -480,6 +480,8 @@
 .fg-problem .pb-stage{align-items:end}
 @media(max-width:640px){.fg-problem .pb-svg .bub{display:none}}
 
+html[lang="en"] .fg-problem .pb-mid::before{content:"Yesterday → Today"}
+
 /* ── figures/structure.css ── */
 /* ── 全体構図（書き込む側 → 会社の脳 → 読み出す側） ── */
 .fg-structure{font-family:var(--serif)}

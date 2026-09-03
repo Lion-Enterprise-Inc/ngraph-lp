@@ -58,3 +58,5 @@
 .fg-problem .pb-svg .bub.big text{font-size:38px;font-weight:700}
 .fg-problem .pb-stage{align-items:end}
 @media(max-width:640px){.fg-problem .pb-svg .bub{display:none}}
+
+html[lang="en"] .fg-problem .pb-mid::before{content:"Yesterday → Today"}

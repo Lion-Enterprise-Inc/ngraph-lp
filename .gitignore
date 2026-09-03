@@ -25,3 +25,4 @@ assets/blog/fig/
 assets/blog/*-fig.png
 fde/gas-quiz-logger.gs
 .dev.vars
+.wrangler/
