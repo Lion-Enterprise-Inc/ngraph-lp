@@ -124,6 +124,23 @@
 .fg-definition .df-ill{width:44px;height:40px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}
 .fg-definition .df-ill img{max-width:100%;max-height:100%;object-fit:contain}
 
+/* SP: 表を行カードに積む（狭い幅での語中改行を止める） */
+@media(max-width:640px){
+  .fg-definition .def-table{display:block;min-width:0}
+  .fg-definition .def-table thead{display:none}
+  .fg-definition .def-table tbody{display:block}
+  .fg-definition .def-table tbody tr{display:block;border:1.5px solid var(--line2);border-radius:10px;background:var(--paper);overflow:hidden}
+  .fg-definition .def-table tbody tr+tr{margin-top:10px}
+  .fg-definition .def-table tbody tr+tr th,.fg-definition .def-table tbody tr+tr td{border-top:none}
+  .fg-definition .def-table tbody th{display:block;padding:12px 14px 8px;border-bottom:1px dashed var(--line2);font-size:1.05rem}
+  .fg-definition .def-table tbody td{display:flex;align-items:baseline;gap:10px;text-align:left;border-left:none;padding:9px 14px;font-size:.92rem;letter-spacing:.02em}
+  .fg-definition .def-table tbody td+td{border-top:1px dashed var(--line2)}
+  .fg-definition .def-table tbody td::before{content:attr(data-label);flex:0 0 8.2em;white-space:nowrap;font-family:var(--serif);font-weight:700;font-size:.8rem;letter-spacing:.06em;color:var(--sub)}
+  .fg-definition .def-table tbody td:nth-child(3)::before{color:var(--red)}
+  .fg-definition .def-table tbody td .nb{white-space:normal}
+  .fg-definition .def-axes-sp{display:flex;justify-content:space-between;font-size:.78rem;color:var(--sub);letter-spacing:.06em;margin:0 2px 8px}
+}
+
 /* ── figures/deliver.css ── */
 /* ── 納品物（御社に残る３つの資産） ── */
 .fg-deliver{font-family:var(--serif)}
@@ -426,6 +443,15 @@
 @media(max-width:640px){
   .fg-own .own-svg .lab,.fg-own .own-svg .cap,.fg-own .own-svg .hint,.fg-own .own-svg .lead{display:none}
   .fg-own .own-list{display:block}
+}
+
+/* SP: 図の下の説明リストは「凡例」として見せる（図の重複に見えないよう枠と札を付ける） */
+@media(max-width:640px){
+  .fg-own .own-list{margin:14px 0 0;border:1px solid var(--line2);border-radius:10px;background:var(--paper);padding:2px 12px;font-size:.86rem;line-height:1.75}
+  .fg-own .own-list li{padding:9px 0}
+  .fg-own .own-list li+li{border-top:1px dashed var(--line2)}
+  .fg-own .own-list strong{display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--sub);border-radius:999px;padding:1px 9px;margin:0 8px 2px 0;vertical-align:middle}
+  .fg-own .own-list li:last-child strong{background:var(--red)}
 }
 
 /* ── figures/problem.css ── */

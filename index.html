@@ -37,7 +37,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
-<link rel="stylesheet" href="/css/figures.css?v=24">
+<link rel="stylesheet" href="/css/figures.css?v=26">
 <style>
 /* 構造化パターンのこだま演出: 時々1つが首をかしげ、朱に灯る */
 .pat{transition:transform .35s ease}
@@ -264,7 +264,7 @@
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "publisher": { "@id": "https://ngraph.jp/#organization" },
-      "description": "メニュー表を送るだけで、AIがテーブルに常駐。お客様の質問に130ヶ国の言語で答える飲食店向けAI接客サービス。"
+      "description": "メニュー表を送るだけで、AIがテーブルに常駐。お客様の質問に多言語で答える飲食店向けAI接客サービス。"
     },
     {
       "@type": "SoftwareApplication",
@@ -385,7 +385,7 @@
     <div class="section-head reveal">
       <div class="section-label">OWNERSHIP</div>
       <h2 class="section-title" id="s04_ownership-t">AIは借りる。資産は持つ。</h2>
-      <p class="section-sub"><span class="nb">Memoryは会話をつなぐ。</span><span class="nb">会社の脳は判断の根拠を残す。</span></p>
+      <p class="section-sub"><span class="nb">AIのメモリは会話をつなぐ。</span><span class="nb">会社の脳は判断の根拠を残す。</span></p>
     </div>
     <!-- fig:own -->
     <div class="fg fg-own reveal">
@@ -407,7 +407,7 @@
           <path class="lead" d="M720 140 L665 185"/>
           <g class="lab brain" transform="translate(696,26)"><rect width="300" height="112" rx="14"/><text class="k" x="150" y="42" text-anchor="middle">一つの記録 ＝</text><text class="b" x="150" y="92" text-anchor="middle">会社の脳</text></g>
         </svg>
-        <p class="own-cap"><span class="nb">3人のAIが、</span><span class="nb">同じ会社の脳につながる。</span><span class="nb">誰が聞いても、同じ記録から答える。</span></p>
+        <p class="own-cap"><span class="nb">3人が使うAIが、</span><span class="nb">同じ会社の脳につながる。</span><span class="nb">誰が聞いても、同じ記録から答える。</span></p>
         <ul class="own-who"><li><strong>社長</strong>経営判断・意思決定</li><li><strong>部長</strong>組織運営・マネジメント</li><li><strong>社員</strong>実行・業務遂行</li></ul>
         <div class="own-ais"><span class="cap">使うAIは自由に選べる</span><span class="lk">AI</span>Anthropic<img src="/assets/brain/official-logos/openai-official.svg" alt="">OpenAI<img src="/assets/brain/official-logos/gemini-official.svg" alt="">Google Gemini</div>
       </figure>
@@ -416,7 +416,7 @@
         <li><strong>NGraph</strong>人はAIを選び、AIは会社の脳を参照する。社長・部長・社員が同じ一つの記録を読む</li>
       </ul>
     </div>
-    <p class="fg-statement reveal"><span class="nb">AIのメモリーが進化しても、</span><span class="nb"><em>会社の記録</em>にはならない。</span></p>
+    <p class="fg-statement reveal"><span class="nb">AIのメモリが進化しても、</span><span class="nb"><em>会社の記録</em>にはならない。</span></p>
     <!-- /fig -->
   </div>
 </section>
@@ -529,18 +529,18 @@
           <tbody>
             <tr>
               <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_jisha.png" alt="" loading="lazy"></span><span class="nb">A. 自社</span></span></th>
-              <td><span class="nb">規則・商品・役割・決定</span></td>
-              <td><span class="nb">売上・原価・案件の現在地</span></td>
+              <td data-label="決まっていること"><span class="nb">規則・商品・役割・決定</span></td>
+              <td data-label="動いていること"><span class="nb">売上・原価・案件の現在地</span></td>
             </tr>
             <tr>
               <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_aite.png" alt="" loading="lazy"></span><span class="nb">B. 相手</span></span></th>
-              <td><span class="nb">顧客情報・担当者・契約</span></td>
-              <td><span class="nb">商談・依頼・関係の現在地</span></td>
+              <td data-label="決まっていること"><span class="nb">顧客情報・担当者・契約</span></td>
+              <td data-label="動いていること"><span class="nb">商談・依頼・関係の現在地</span></td>
             </tr>
             <tr>
               <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_gaibu.png" alt="" loading="lazy"></span><span class="nb">C. 外部環境</span></span></th>
-              <td><span class="nb">制度・法令・競合の存在</span></td>
-              <td><span class="nb">改正予定・競合動向・期限</span></td>
+              <td data-label="決まっていること"><span class="nb">制度・法令・競合の存在</span></td>
+              <td data-label="動いていること"><span class="nb">改正予定・競合動向・期限</span></td>
             </tr>
           </tbody>
         </table>
@@ -643,7 +643,7 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">DELIVERABLES</div>
-      <h2 class="section-title" id="s06_deliverables-t">納品時、御社に残る３つの資産。</h2>
+      <h2 class="section-title" id="s06_deliverables-t">納品時、御社に残る3つの資産。</h2>
       <p class="section-sub">AIサービスの利用権ではなく、御社が持ち続ける運用一式です。</p>
     </div>
     <!-- fig:deliver -->
@@ -680,7 +680,7 @@
       </div>
       <div class="dl-band">
         <div class="fg-ic dl-ribbon"><svg viewBox="0 0 48 68"><circle cx="24" cy="24" r="23"/><path class="dl-check" d="M14 25L21 32L35 15"/><path d="M9 45L9 68L24 60L39 68L39 45"/></svg></div>
-        <p><span class="nb">３点すべて、</span><span class="nb">御社管理の</span><span class="nb">ファイルとして納品。</span></p>
+        <p><span class="nb">3点すべて、</span><span class="nb">御社管理の</span><span class="nb">ファイルとして納品。</span></p>
       </div>
     </div>
     <p class="fg-statement reveal"><span class="nb">人が変わっても、</span><span class="nb">AIが変わっても、</span><span class="nb"><em>会社の判断は残る。</em></span></p>
@@ -747,7 +747,7 @@
       <p class="section-sub"><span class="nb">構造化技術から生まれた自社プロダクトを</span><span class="nb">本番で運用しています。</span><span class="nb">AI導入支援は、</span><span class="nb">その実装力で行います。</span></p>
     </div>
     <ul class="prod-list reveal">
-      <li><a href="https://omiseai.com/" target="_blank" rel="noopener"><span class="pl-name">OMISEAI</span><span class="pl-desc">飲食店向けのAI接客。130ヶ国の言語で料理の質問に答え、福井・金沢の実店舗で本番運用中。</span></a></li>
+      <li><a href="https://omiseai.com/" target="_blank" rel="noopener"><span class="pl-name">OMISEAI</span><span class="pl-desc">飲食店向けのAI接客。多言語で料理の質問に答え、福井・金沢の実店舗で本番運用中。</span></a></li>
       <li><a href="https://nicomachos.com/" target="_blank" rel="noopener"><span class="pl-name">Teles</span><span class="pl-desc">偉人の思考を構造化したAIアドバイザー。</span></a></li>
       <li><a href="https://nicomachos.com/cases" target="_blank" rel="noopener"><span class="pl-name">アルケー</span><span class="pl-desc">事業を普遍的な評価軸で採点・診断するAI。</span></a></li>
       <li><a href="https://autowrite.jp/" target="_blank" rel="noopener"><span class="pl-name">AutoWrite</span><span class="pl-desc">補助金計画書をAIが下書きするSaaS。</span></a></li>
@@ -801,7 +801,7 @@
       <a href="/privacy">プライバシーポリシー</a>
     </div>
   </div>
-  <div class="footer-copy">&copy; 2025 NGraph Inc.</div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
 </footer>
 
 <script>
@@ -1042,8 +1042,7 @@ setInterval(function(){
   function render(t){
     var h=esc(t).replace(/(https?:\/\/[^\s）)]+)/g,'<a href="$1" rel="noopener">$1</a>');
     h=h.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
-    return h.split(/
-+/).map(function(l){return '<p>'+l.replace(/^\s*[-*・]\s*/,'・')+'</p>';}).join('');
+    return h.split(/\n+/).map(function(l){return '<p>'+l.replace(/^\s*[-*・]\s*/,'・')+'</p>';}).join('');
   }
   function ask(q){
     q=(q||'').trim(); if(q.length<2)return;

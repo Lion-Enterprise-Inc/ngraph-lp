@@ -40,3 +40,12 @@
   .fg-own .own-svg .lab,.fg-own .own-svg .cap,.fg-own .own-svg .hint,.fg-own .own-svg .lead{display:none}
   .fg-own .own-list{display:block}
 }
+
+/* SP: 図の下の説明リストは「凡例」として見せる（図の重複に見えないよう枠と札を付ける） */
+@media(max-width:640px){
+  .fg-own .own-list{margin:14px 0 0;border:1px solid var(--line2);border-radius:10px;background:var(--paper);padding:2px 12px;font-size:.86rem;line-height:1.75}
+  .fg-own .own-list li{padding:9px 0}
+  .fg-own .own-list li+li{border-top:1px dashed var(--line2)}
+  .fg-own .own-list strong{display:inline-block;font-family:'Noto Sans JP',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--sub);border-radius:999px;padding:1px 9px;margin:0 8px 2px 0;vertical-align:middle}
+  .fg-own .own-list li:last-child strong{background:var(--red)}
+}
