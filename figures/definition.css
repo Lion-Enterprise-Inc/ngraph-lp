@@ -45,3 +45,6 @@
   .fg-definition .def-rules li{padding:12px 6px}
   .fg-definition .def-rules li+li{border-left:none;border-top:1px dashed var(--line2)}
 }
+
+.fg-definition .df-ill{width:44px;height:40px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}
+.fg-definition .df-ill img{max-width:100%;max-height:100%;object-fit:contain}
