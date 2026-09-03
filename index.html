@@ -1041,8 +1041,9 @@ setInterval(function(){
   function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]});}
   function render(t){
     var h=esc(t).replace(/(https?:\/\/[^\s）)]+)/g,'<a href="$1" rel="noopener">$1</a>');
+    h=h.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
     return h.split(/
-+/).map(function(l){return '<p>'+l.replace(/^[-・]\s*/,'・')+'</p>';}).join('');
++/).map(function(l){return '<p>'+l.replace(/^\s*[-*・]\s*/,'・')+'</p>';}).join('');
   }
   function ask(q){
     q=(q||'').trim(); if(q.length<2)return;
