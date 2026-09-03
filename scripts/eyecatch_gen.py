@@ -247,13 +247,21 @@ def main():
         sys.exit(1)
     slug, title, sub, pat = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
     label, out_override, wide = "NGRAPH BLOG", None, False
+    brand, hanko = None, None  # --brand="名前|説明" --hanko=漢字1字（note等ブログ以外の表紙用・--outと併用）
     for a in sys.argv[5:]:
         if a.startswith("--label="):
             label = a[8:]
         elif a.startswith("--out="):
             out_override = a[6:]
+        elif a.startswith("--brand="):
+            brand = a[8:]
+        elif a.startswith("--hanko="):
+            hanko = a[8:]
         elif a == "--wide":
             wide = True
+    if (brand or hanko) and not out_override:
+        print("NG: --brand/--hanko は --out= と一緒に使う（ブログ用の表紙を上書きしないため）")
+        sys.exit(1)
     # --wide = X Articles 用の横長版（1500x600）。X側がカバーを約2.5〜2.7:1にクロップするため、
     # 1200x630（1.90:1）を上げると上下＝タイトルとNGRAPH BLOGラベルが切れる〔実測 2026-08-17〕。
     # 描くのは同じHTMLで、ビューポートだけ変える。本文ボックスは幅566px固定なので
@@ -273,6 +281,12 @@ def main():
     if wide:
         html = html.replace("width:1200px;height:630px", "width:%dpx;height:%dpx" % (cw, ch))
     html = html.replace(">NGRAPH BLOG<", ">" + esc(label) + "<")
+    if brand:
+        bn, _, bu = brand.partition("|")
+        html = html.replace('<span class="n">NGraph<i>.</i></span><span class="u">ngraph.jp — AI導入伴走支援</span>',
+                            '<span class="n">' + esc(bn) + '<i>.</i></span><span class="u">' + esc(bu) + '</span>')
+    if hanko:
+        html = html.replace('<div class="hanko">構</div>', '<div class="hanko">' + esc(hanko[:1]) + '</div>')
     tmp = tempfile.mkdtemp(prefix="eyecatch_")
     hp = os.path.join(tmp, slug + ".html")
     open(hp, "w", encoding="utf-8").write(html)
