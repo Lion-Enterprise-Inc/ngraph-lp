@@ -54,7 +54,7 @@ EDGE = r"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 BLOGOPS_PATH = os.environ.get("X_BLOGOPS_PATH", os.path.join(REPO, "BLOG-OPS.md"))
 TPL_START = "<!-- x-handoff-template:start -->"
 TPL_END = "<!-- x-handoff-template:end -->"
-TEMPLATE_HASH = "cf0fd5083c6a"
+TEMPLATE_HASH = "ac2e7bb1ccf5"
 
 
 def template_block(path=None):
@@ -117,7 +117,10 @@ def make_wide_cover(slug, d, cover, is_fig=False):
         print("⚠ カバー画像: 表紙の記録が無いので1200x630のまま。Xでは上下が切れます"
               "（eyecatch_gen.py で作り直すと横長版が付きます）")
         return cover
-    wide = os.path.join(d, f"カバー画像_{slug}_1500x600.jpg")
+    # ⚠ファイル名は半角のみ。日本語を入れると Git Bash(UTF-8) → explorer.exe(cp932) の
+    # 変換で化けて「そんなパスは無い」になり、▷を押しても**黙って何も開かない**
+    # 〔2026-09-03に実際に発生。髙橋さん「カバー画像がでない」〕
+    wide = os.path.join(d, f"cover_{slug}_1500x600.jpg")
     pattern = rec.get("pattern", "")
     # 表紙の生成器は2系統ある（BLOG-OPS §3＝eyecatch_gen.py ／ KNOWLEDGE-OPS §2＝eyecatch_k.py）。
     # ここを1系統だと決め打ちしていたため、ナレッジ記事(k-title)は「unknown pattern」で
@@ -989,9 +992,18 @@ def main():
             sys.exit(f"NG（handoff）: アイキャッチがありません: {src}")
         d = a.cover_dir or os.path.join(os.environ.get("TEMP", "."), "x_handoff", a.slug)
         os.makedirs(d, exist_ok=True)
-        cover = os.path.join(d, f"カバー画像_{a.slug}.jpg")
+        cover = os.path.join(d, f"cover_{a.slug}.jpg")
         shutil.copyfile(src, cover)
         cover = make_wide_cover(a.slug, d, cover, is_fig=(a.cover_fig is not None))
+        # 受け渡しのパスは半角のみ＝この検査が「▷を押しても何も開かない」の再発を止める。
+        # 日本語名を渡すと Git Bash(UTF-8) → explorer.exe(cp932) の変換で化けて
+        # explorer が黙って終わる（エラーも出ない）ため、名前の側で断つ。
+        # ⚠NG経路で実際に発火することを確認済み〔2026-09-03・--cover-dir に全角の
+        #   フォルダ名を渡して停止(exit 1)することを実測。ずっと緑の検査は信用しない〕
+        if not cover.isascii():
+            sys.exit("NG（handoff）: カバー画像のパスに全角文字があります: "
+                     f"{cover}\n  explorer に渡すと化けて黙って開かない。"
+                     "ファイル名を半角にすること（make_wide_cover / cover_<slug>.jpg）")
         import hashlib
         cover_sha = hashlib.sha256(open(cover, "rb").read()).hexdigest()[:16]
         # ④ 受領証。--clipboard はこれが無いと動かない＝生成経路の強制
@@ -1072,7 +1084,7 @@ def main():
         if a.caption:
             open(os.path.join(d, "キャプション.txt"), "w", encoding="utf-8").write(a.caption)
         src = os.path.join(REPO, "assets", "blog", f"{a.slug}.jpg")
-        cover = os.path.join(d, f"カバー画像_{a.slug}.jpg")
+        cover = os.path.join(d, f"cover_{a.slug}.jpg")
         if os.path.exists(src):
             shutil.copyfile(src, cover)   # 同じフォルダに1枚だけ置く（隣の記事のjpgを掴む事故を防ぐ）
         print(f"出力しました: {d}")
