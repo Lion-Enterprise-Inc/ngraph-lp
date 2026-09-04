@@ -1,0 +1,162 @@
+<div class="a-note calc" id="calc">
+<p class="calc-h">御社の数字で計算する——賃上げでいくら増えて、業務改善助成金でいくら戻るか</p>
+<p class="calc-sub">県の額は上の表と同じ時点のもの（決定・答申・試算の別も表のとおり）、助成金の率と上限は厚生労働省の令和8年度交付要綱にもとづきます。</p>
+
+<div class="calc-step"><span class="calc-n">1</span>都道府県を選ぶ</div>
+<select id="c-pref" class="calc-pref" aria-label="都道府県"></select>
+
+<div class="calc-step"><span class="calc-n">2</span>会社の数字を入れる</div>
+<div class="calc-grid">
+<label><span class="calc-l">いまの事業場内の最低時給<span class="calc-u">円</span></span><input type="number" inputmode="numeric" id="c-now" min="800" max="2000" step="1"></label>
+<label><span class="calc-l">時給を上げる人数<span class="calc-u">人</span></span><input type="number" inputmode="numeric" id="c-n" min="1" max="500" value="5"></label>
+<label><span class="calc-l">1人あたり月の労働時間<span class="calc-u">時間</span></span><input type="number" inputmode="numeric" id="c-h" min="1" max="250" value="132"><small>例: 6時間×22日＝132</small></label>
+<label><span class="calc-l">事業場の労働者数</span><select id="c-size"><option value="s">30人未満</option><option value="l">30人以上</option></select></label>
+<label class="calc-wide"><span class="calc-l">検討中の設備投資額（税抜）<span class="calc-u">円</span></span><input type="number" inputmode="numeric" id="c-inv" min="0" step="10000" value="1500000"></label>
+</div>
+<p class="calc-hint">人数の数え方：事業場内で最低賃金の人と、その人に賃金を追い抜かれるので一緒に上げる人を数えます。申請するコースの額（50円・70円・90円）以上に上げる人だけが対象です。</p>
+
+<div class="calc-step"><span class="calc-n">3</span>結果</div>
+<div class="calc-tiles">
+<div class="calc-tile"><div class="calc-tl">増える人件費（年）</div><div class="calc-tv" id="c-year">—</div><div class="calc-ts" id="c-month"></div></div>
+<div class="calc-tile"><div class="calc-tl">業務改善助成金の目安</div><div class="calc-tv" id="c-sub">—</div><div class="calc-ts" id="c-own"></div></div>
+</div>
+<div id="c-out" class="calc-out" aria-live="polite"></div>
+<p class="a-src calc-caveat">⚠ 目安の計算です。助成の可否・コース・上限は労働局の審査で決まります。<strong>交付決定前に発注・導入したものは対象外</strong>／事務用の汎用パソコン・タブレットは対象外／クラウド・月額利用料は契約時から3年分が上限／申請期限は<strong>あなたの県の最低賃金の発効日の前日</strong>か11月30日の早い方。</p>
+
+<div class="calc-actions">
+<a class="btn calc-btn" id="c-cta" href="/entry?type=%E6%A5%AD%E5%8B%99%E6%94%B9%E5%96%84%E5%8A%A9%E6%88%90%E9%87%91">この結果を持って、対象経費になるか30分で確認する（無料）→</a>
+<p class="a-src">計算結果が相談フォームに入った状態で開きます。受発注・請求の転記、シフト作成、社内の問い合わせ対応のような「人の時間を食っている業務」を、助成の対象になる形で設備投資に落とすところまで一緒に見ます。</p>
+<form id="c-mail" class="calc-mail" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
+<div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+<input type="hidden" name="お名前" value="（試算の控え）">
+<input type="hidden" name="会社名・店舗名" value="">
+<input type="hidden" name="お問い合わせ種別" value="試算の控え（最低賃金記事の計算機）">
+<input type="hidden" name="お問い合わせ内容" id="c-memo" value="">
+<label class="calc-mail-l">社内で共有するなら、この試算の文面をメールで受け取れます</label>
+<div class="calc-mail-row"><input type="email" name="メールアドレス" placeholder="メールアドレス" required autocomplete="email"><button type="submit" class="btn calc-btn2" id="c-mail-btn">試算をメールで受け取る</button></div>
+<p class="a-src">送るのは上の試算の文面だけです。営業の電話はしません。</p>
+<p class="calc-mail-done" id="c-mail-done" hidden>送りました。届かないときは迷惑メールをご確認ください。</p>
+</form>
+</div>
+</div>
+<style>
+.article-wrap .calc{padding:22px 22px 24px}
+.article-wrap .calc-h{font-weight:700;font-size:1.05rem;margin:0 0 8px}
+.article-wrap .calc-sub{font-size:.9rem;color:var(--text-3);margin:0 0 18px}
+.article-wrap .calc-step{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;margin:22px 0 10px}
+.article-wrap .calc-n{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:.85rem;font-weight:700}
+.article-wrap .calc-pref,.article-wrap .calc-grid input,.article-wrap .calc-grid select{width:100%;box-sizing:border-box;min-height:52px;font-size:1.1rem;padding:0 14px;border:1.5px solid var(--border-strong);border-radius:6px;background:#fff;color:var(--text);line-height:1.2}
+.article-wrap .calc-pref,.article-wrap .calc-grid select{-webkit-appearance:none;appearance:none;padding-right:44px;background:#fff url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%23b8503c' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E") no-repeat right 14px center;cursor:pointer}
+.article-wrap .calc-pref{font-size:1.25rem;font-weight:700;min-height:58px}
+.article-wrap .calc-grid input:focus,.article-wrap .calc-pref:focus,.article-wrap .calc-grid select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.article-wrap .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin:0}
+.article-wrap .calc-grid label{display:flex;flex-direction:column;gap:6px;font-size:.92rem;font-weight:600;color:var(--text);min-width:0}
+.article-wrap .calc-grid .calc-wide{grid-column:1/-1}
+.article-wrap .calc-u{font-weight:400;color:var(--text-3);margin-left:4px;font-size:.85rem}
+.article-wrap .calc-grid small{font-size:.78rem;font-weight:400;color:var(--text-3)}
+.article-wrap .calc-hint{font-size:.85rem;color:var(--text-3);margin:10px 0 0;line-height:1.8}
+.article-wrap .calc-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 12px}
+.article-wrap .calc-tile{background:#fff;border:1px solid var(--border);border-top:3px solid var(--accent);border-radius:6px;padding:14px 16px}
+.article-wrap .calc-tl{font-size:.82rem;color:var(--text-3)}
+.article-wrap .calc-tv{font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1.3;margin-top:4px;word-break:keep-all}
+.article-wrap .calc-tv.calc-ng{font-size:1.05rem;color:#8a3b2c}
+.article-wrap .calc-ts{font-size:.85rem;color:var(--text-3);margin-top:4px}
+.article-wrap .calc-out{background:#fff;border:1px solid var(--border);border-radius:6px;padding:12px 16px}
+.article-wrap .calc-out table{width:100%;border-collapse:collapse;font-size:.92rem}
+.article-wrap .calc-out td{padding:8px 4px;border-bottom:1px solid var(--border);vertical-align:top}
+.article-wrap .calc-out tr:last-child td{border-bottom:0}
+.article-wrap .calc-out td:last-child{text-align:right;white-space:nowrap;font-weight:600}
+.article-wrap .calc-out td small{font-weight:400;white-space:normal}
+.article-wrap .calc-out .c-ng{color:#8a3b2c;white-space:normal;font-weight:500}
+.article-wrap .calc-caveat{margin-top:12px}
+.article-wrap .calc-actions{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
+.article-wrap .calc-btn{display:block;text-align:center;padding:16px 18px;font-size:1.02rem;font-weight:700;background:var(--accent);color:#fff;border:1.5px solid var(--accent);border-radius:6px;text-decoration:none}
+.article-wrap .calc-btn:hover{background:#9f4331;border-color:#9f4331;color:#fff}
+.article-wrap .calc-btn2{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);border:1.5px solid var(--accent);border-radius:6px;font-weight:700;cursor:pointer}
+.article-wrap .calc-btn2:hover{background:var(--bg-card)}
+.article-wrap .calc-btn2[disabled]{opacity:.6;cursor:default}
+.article-wrap .calc-mail{margin-top:18px;padding:16px;border:1px dashed var(--border-strong);border-radius:6px;background:rgba(255,255,255,.6)}
+.article-wrap .calc-mail-l{display:block;font-size:.92rem;font-weight:600;margin-bottom:10px}
+.article-wrap .calc-mail-row{display:flex;gap:10px}
+.article-wrap .calc-mail-row input{flex:1 1 auto;min-width:0;min-height:50px;font-size:1rem;padding:0 14px;border:1.5px solid var(--border-strong);border-radius:6px;background:#fff}
+.article-wrap .calc-btn2{flex:0 0 auto;padding:0 18px;min-height:50px;font-size:.95rem;white-space:nowrap}
+.article-wrap .calc-mail-done{margin:10px 0 0;font-weight:600;color:var(--accent)}
+.article-wrap .calc .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media(max-width:640px){
+  .article-wrap .calc{padding:18px 16px 20px}
+  .article-wrap .calc-grid,.article-wrap .calc-tiles{grid-template-columns:1fr}
+  .article-wrap .calc-out td:last-child{white-space:normal}
+  .article-wrap .calc-mail-row{flex-direction:column}
+  .article-wrap .calc-tv{font-size:1.5rem}
+}
+</style>
+<script>
+(function(){
+var P=__P__;
+var C=__C__;
+var $=function(id){return document.getElementById(id)};
+var sel=$('c-pref');P.forEach(function(p,i){var o=document.createElement('option');o.value=i;o.textContent=p[0];sel.appendChild(o)});
+sel.value=__FUKUI__;
+function yen(n){return n.toLocaleString('ja-JP')+'円'}
+function eff(s){if(!s)return '';var m=s.split('-');return '・'+(+m[1])+'月'+(+m[2])+'日発効'}
+function course(d){return d>=90?'90円':d>=70?'70円':d>=50?'50円':null}
+/* 「10人以上」の区分は特例事業者（事業場内最低賃金1,050円未満、または物価高騰等要件）だけ。
+   通常の事業者は8人以上が最上位（厚労省 業務改善助成金ページ・2026-09-04確認）。
+   ここで機械的に判定できるのは賃金要件（now<1050）だけなので、それ以外は8人以上に置く */
+function bracket(n,tokurei){return n<=1?'1人':n<=3?'2〜3人':n<=5?'4〜5人':n<=7?'6〜7人':(n>=10&&tokurei)?'10人以上':'8人以上'}
+function cap(co,n,size,tokurei){
+  var b=bracket(n,tokurei);var rows=C.filter(function(r){return r[0]===co});
+  var hit=rows.filter(function(r){return r[1]===b})[0];
+  return hit?(size==='s'?hit[2]:hit[3]):null;
+}
+function tiles(year,month,sub,own,ng){
+  $('c-year').textContent=yen(year);$('c-month').textContent=month>0?'月 '+yen(month):'';
+  var t=$('c-sub');t.className='calc-tv'+(ng?' calc-ng':'');t.textContent=ng?ng:yen(sub);
+  $('c-own').textContent=ng?'':'実質負担の目安 '+yen(own);
+}
+function setMemo(memo){
+  $('c-memo').value=memo;
+  $('c-cta').href='/entry?type='+encodeURIComponent('業務改善助成金')+'&memo='+encodeURIComponent(memo);
+}
+function calc(){
+  var p=P[+sel.value];var now=+$('c-now').value||p[1];var n=+$('c-n').value||0;var h=+$('c-h').value||0;var size=$('c-size').value;var inv=+$('c-inv').value||0;
+  var target=p[2];var diff=Math.max(0,target-now);var month=diff*n*h;var year=month*12;
+  var html='<table>';
+  html+='<tr><td>'+p[0]+'の2026年度の最低賃金</td><td>'+yen(target)+'<small>（'+p[3]+eff(p[4])+'）</small></td></tr>';
+  html+='<tr><td>いまの事業場内最低時給との差</td><td>'+(diff>0?'+'+diff+'円':'差なし（すでに上回っています）')+'</td></tr>';
+  html+='<tr><td>増える人件費（'+n+'人×'+h+'時間）</td><td>月 '+yen(month)+' ／ 年 '+yen(year)+'</td></tr>';
+  var eligible=now<target;var raise=target-now;var co=course(raise);var sub=null;var own=0;
+  var base='【賃上げ・助成金の試算】'+p[0]+'／2026年度 '+yen(target)+'（'+p[3]+'）／現在 '+yen(now)+'／'+n+'人×'+h+'h／人件費 年'+yen(year);
+  if(!eligible){html+='<tr><td>業務改善助成金</td><td class="c-ng">対象外の見込み——事業場内最低賃金が2026年度の地域別最低賃金以上のため</td></tr>';tiles(year,month,0,0,'対象外の見込み');}
+  else if(!co){html+='<tr><td>業務改善助成金</td><td class="c-ng">この差（'+raise+'円）だけでは50円コースに届きません<br><small>50円以上に上げれば対象。例: '+yen(now+50)+'に上げる（最低賃金より+'+(now+50-target)+'円上乗せ）</small></td></tr>';tiles(year,month,0,0,'50円コースに届かない');}
+  else if(inv<100000){html+='<tr><td>業務改善助成金</td><td class="c-ng">助成対象経費の下限は10万円です（交付要綱）。10万円以上の設備投資で計算してください</td></tr>';tiles(year,month,0,0,'投資額が下限未満');html+='</table>';$('c-out').innerHTML=html;setMemo(base+'／投資額10万円未満');return;}
+  else{
+    var rate=now<1050?0.8:0.75;var tokurei=now<1050;var cp=cap(co,n,size,tokurei);
+    /* 交付要綱: 助成額は1,000円未満切り捨て（2026-09-04 一次資料で確認） */
+    sub=Math.floor(Math.min(inv*rate,cp||0)/1000)*1000;own=inv-sub;
+    html+='<tr><td>コース／助成率／上限</td><td>'+co+'コース／'+(rate===0.8?'4/5':'3/4')+'／'+yen(cp)+'<small>（'+bracket(n,tokurei)+'・'+(size==='s'?'30人未満':'30人以上')+'）</small></td></tr>';
+    html+='<tr><td>設備投資 '+yen(inv)+' に対する助成額（目安）</td><td>'+yen(sub)+'</td></tr>';
+    html+='<tr><td>実質負担（目安）</td><td>'+yen(own)+'</td></tr>';
+    if(inv*rate>cp)html+='<tr><td colspan="2"><small>上限に当たっています。'+yen(Math.floor(cp/rate))+'までの投資なら助成率どおりです。</small></td></tr>';
+    if(n>=10&&!tokurei)html+='<tr><td colspan="2"><small>「10人以上」の上限区分（'+yen(cap(co,n,size,true))+'）は特例事業者だけ＝事業場内最低賃金が1,050円未満か、物価高騰等で利益率が前年度比3ポイント以上下がっている場合。後者に当たるなら相談時に確認します。</small></td></tr>';
+    tiles(year,month,sub,own,null);
+  }
+  html+='</table>';
+  $('c-out').innerHTML=html;
+  setMemo(base+(sub!==null?'／'+co+'コース 助成目安 '+yen(sub)+'（投資'+yen(inv)+'・'+bracket(n,now<1050)+'区分）':'／助成: 要確認'));
+}
+['c-pref','c-now','c-n','c-h','c-size','c-inv'].forEach(function(id){$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});
+sel.addEventListener('change',function(){$('c-now').value=P[+sel.value][1];calc()});
+$('c-now').value=P[__FUKUI__][1];calc();
+var seen=false;$('c-inv').addEventListener('change',function(){if(!seen&&window.gtag){seen=true;gtag('event','calc_use');}});
+var mf=$('c-mail');
+mf.addEventListener('submit',function(ev){
+  ev.preventDefault();
+  if(mf.querySelector('[name="_honey"]').value)return;
+  var btn=$('c-mail-btn');btn.disabled=true;btn.textContent='送信中...';
+  fetch(mf.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(mf))})
+  .then(function(){$('c-mail-done').hidden=false;btn.textContent='送りました';if(window.gtag)gtag('event','calc_mail');})
+  .catch(function(){btn.disabled=false;btn.textContent='試算をメールで受け取る';alert('送信に失敗しました。時間をおいて再度お試しください。');});
+});
+})();
+</script>
