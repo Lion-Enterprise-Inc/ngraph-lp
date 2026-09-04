@@ -48,13 +48,14 @@ html[lang="en"] .fg-own .own-tag{gap:0 .3em}
   .fg-own .own-ov .nb{display:inline-block}
   .fg-own .ov-main{right:2%;top:4%;max-width:66%}
   .fg-own .ov-sub{right:2%;top:34%;background:var(--paper);border:1px solid var(--line2);border-radius:999px;font-family:'Noto Sans JP',sans-serif;font-weight:500;font-size:.74rem;color:var(--sub);padding:4px 12px;max-width:70%}
-  .fg-own .ov-red{left:1%;top:4%;border-color:var(--red);color:var(--red);max-width:58%}
-  .fg-own .ov-brain{right:1%;top:2%;background:var(--tint);border:1.5px solid var(--red);text-align:center;padding:6px 12px;max-width:44%}
+  .fg-own .own-scene.after .own-art{padding-top:74px}
+  .fg-own .ov-red{left:1%;top:0;border-color:var(--red);color:var(--red);max-width:58%}
+  .fg-own .ov-brain{right:1%;top:0;background:var(--tint);border:1.5px solid var(--red);text-align:center;padding:6px 12px;max-width:44%}
   .fg-own .ov-brain .k{display:block;font-family:'Noto Sans JP',sans-serif;font-size:.66rem;letter-spacing:.16em;color:var(--red)}
   .fg-own .ov-brain .b{display:block;font-size:1.05rem;letter-spacing:.08em}
-  .fg-own .ov-brain::after{content:"";position:absolute;left:-14px;bottom:8px;width:16px;height:16px;border-left:1.5px solid var(--red);border-bottom:1.5px solid var(--red);transform:skewX(-20deg);opacity:.9}
+  .fg-own .ov-brain::after{content:"";position:absolute;left:38%;bottom:-18px;width:1.5px;height:18px;background:var(--red);transform:rotate(25deg);transform-origin:top}
   /* 社長・部長・社員は人物の真下に3列 */
-  .fg-own .own-who{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:-6px 0 0;padding:0 2% 0 6%;text-align:center}
+  .fg-own .own-who{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:6px 0 0;padding:0 2% 0 6%;text-align:center}
   .fg-own .own-who li{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:.7rem;line-height:1.4}
   .fg-own .own-who li::before{content:"";width:1px;height:12px;background:var(--red);margin-bottom:2px}
   .fg-own .own-who strong{margin:0;font-size:.95rem}
