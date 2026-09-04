@@ -308,11 +308,11 @@
   "title": "中小企業の生成AI導入率は、3つに割れる"
  },
  "20260904-claude-code-codex-one-setup": {
-  "article_h1": "Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方",
-  "fs": 68,
-  "pattern": "tree_up",
-  "sub": "原本は1つ。リンクで束ねる。ツールが更新されても壊れない",
-  "title": "2つのAIツールを同じ設定で"
+  "article_h1": "Claude CodeとCodexを自由に切り替えられる置き方。原本は「1つ」、仕事もルールもスキルも引き継ぐ",
+  "title": "Claude Code × Codex",
+  "sub": "Gemini nano-banana-2 生成（公式ロゴを参照画像で指定）・2026-09-04 髙橋さん指示で差し替え",
+  "pattern": "visual-gen",
+  "fs": 0
  },
  "20260904-juhachu-tenki-ai": {
   "article_h1": "受発注の転記をAIに任せても、社員に渡した瞬間に止まる——3か月後も現場で回っている状態にするまでの設計",
