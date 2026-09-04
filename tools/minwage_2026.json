@@ -1,0 +1,335 @@
+{
+ "as_of": "2026-09-01",
+ "source": "blog/20260803-saitei-chingin-2026.html（各労働局一次資料で突合済み）",
+ "prefectures": [
+  {
+   "pref": "北海道",
+   "now": 1075,
+   "new": 1131,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "青森",
+   "now": 1029,
+   "new": 1090,
+   "kind": "答申",
+   "effective": "2026-10-29"
+  },
+  {
+   "pref": "岩手",
+   "now": 1031,
+   "new": 1090,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "宮城",
+   "now": 1038,
+   "new": 1098,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "秋田",
+   "now": 1031,
+   "new": 1087,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "山形",
+   "now": 1032,
+   "new": 1092,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "福島",
+   "now": 1033,
+   "new": 1094,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "茨城",
+   "now": 1074,
+   "new": 1136,
+   "kind": "答申",
+   "effective": "2026-10-18"
+  },
+  {
+   "pref": "栃木",
+   "now": 1068,
+   "new": 1125,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "群馬",
+   "now": 1063,
+   "new": 1120,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "埼玉",
+   "now": 1141,
+   "new": 1196,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "千葉",
+   "now": 1140,
+   "new": 1195,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "東京",
+   "now": 1226,
+   "new": 1280,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "神奈川",
+   "now": 1225,
+   "new": 1279,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "新潟",
+   "now": 1050,
+   "new": 1108,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "富山",
+   "now": 1062,
+   "new": 1119,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "石川",
+   "now": 1054,
+   "new": 1113,
+   "kind": "答申",
+   "effective": "2026-10-03"
+  },
+  {
+   "pref": "福井",
+   "now": 1053,
+   "new": 1112,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "山梨",
+   "now": 1052,
+   "new": 1108,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "長野",
+   "now": 1061,
+   "new": 1117,
+   "kind": "答申",
+   "effective": "2026-10-02"
+  },
+  {
+   "pref": "岐阜",
+   "now": 1065,
+   "new": 1121,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "静岡",
+   "now": 1097,
+   "new": 1154,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "愛知",
+   "now": 1140,
+   "new": 1195,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "三重",
+   "now": 1087,
+   "new": 1143,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "滋賀",
+   "now": 1080,
+   "new": 1136,
+   "kind": "答申",
+   "effective": "2026-10-03"
+  },
+  {
+   "pref": "京都",
+   "now": 1122,
+   "new": 1180,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "大阪",
+   "now": 1177,
+   "new": 1231,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "兵庫",
+   "now": 1116,
+   "new": 1172,
+   "kind": "答申",
+   "effective": "2026-10-01"
+  },
+  {
+   "pref": "奈良",
+   "now": 1051,
+   "new": 1107,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "和歌山",
+   "now": 1045,
+   "new": 1101,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "鳥取",
+   "now": 1030,
+   "new": 1090,
+   "kind": "答申",
+   "effective": "2026-10-03"
+  },
+  {
+   "pref": "島根",
+   "now": 1033,
+   "new": 1092,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "岡山",
+   "now": 1047,
+   "new": 1104,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "広島",
+   "now": 1085,
+   "new": 1141,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "山口",
+   "now": 1043,
+   "new": 1101,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "徳島",
+   "now": 1046,
+   "new": 1102,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "香川",
+   "now": 1036,
+   "new": 1092,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "愛媛",
+   "now": 1033,
+   "new": 1093,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "高知",
+   "now": 1023,
+   "new": 1086,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "福岡",
+   "now": 1057,
+   "new": 1114,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "佐賀",
+   "now": 1030,
+   "new": 1086,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "長崎",
+   "now": 1031,
+   "new": 1087,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "熊本",
+   "now": 1034,
+   "new": 1090,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "大分",
+   "now": 1035,
+   "new": 1096,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "宮崎",
+   "now": 1023,
+   "new": 1085,
+   "kind": "答申",
+   "effective": null
+  },
+  {
+   "pref": "鹿児島",
+   "now": 1026,
+   "new": 1082,
+   "kind": "試算",
+   "effective": null
+  },
+  {
+   "pref": "沖縄",
+   "now": 1023,
+   "new": 1079,
+   "kind": "試算",
+   "effective": null
+  }
+ ]
+}

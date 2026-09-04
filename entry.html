@@ -106,6 +106,7 @@
             <option value="飲食店の多言語対応">飲食店の多言語メニュー対応</option>
             <option value="構造化データ・AEO">サイトへの構造化データ埋め込み・AEO対策</option>
             <option value="共同開発・PoC">共同開発・PoC</option>
+            <option value="業務改善助成金">賃上げ・業務改善助成金を使った設備投資の相談</option>
             <option value="その他">採用・取材・その他</option>
           </select>
         </div>
@@ -159,6 +160,13 @@ form.addEventListener('submit',function(e){
   .then(()=>{form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});if(window.gtag)gtag('event','generate_lead');})
   .catch(()=>{alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='送信する';});
 });
+</script>
+<script>
+(function(){var q=new URLSearchParams(location.search);var f=document.getElementById('contact-form');if(!f)return;
+var t=q.get('type'),m=q.get('memo');
+if(t){var s=f.querySelector('[name="お問い合わせ種別"]');for(var i=0;i<s.options.length;i++){if(s.options[i].value===t){s.selectedIndex=i;break;}}}
+if(m){var ta=f.querySelector('[name="お問い合わせ内容"]');if(ta&&!ta.value)ta.value=m+'\n\n（上の試算を見ながら、対象になる設備投資の形を相談したい）';}
+})();
 </script>
 </body>
 </html>

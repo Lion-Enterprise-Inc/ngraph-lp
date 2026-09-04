@@ -1,0 +1,127 @@
+{
+ "as_of": "2026-08-24",
+ "source": "blog/20260824-gyomu-kaizen-joseikin.html（厚労省 令和8年度 交付要綱・Q&Aで突合済み）",
+ "rate": {
+  "lt1050": "4/5",
+  "ge1050": "3/4"
+ },
+ "min_raise": 50,
+ "apply_from": "2026-09-01",
+ "apply_until": "地域別最低賃金の発効日の前日 または 2026-11-30 の早い方",
+ "caps": [
+  {
+   "course": "50円",
+   "headcount": "1人",
+   "small_lt30": 400000,
+   "other": 300000
+  },
+  {
+   "course": "50円",
+   "headcount": "2〜3人",
+   "small_lt30": 700000,
+   "other": 400000
+  },
+  {
+   "course": "50円",
+   "headcount": "4〜5人",
+   "small_lt30": 700000,
+   "other": 700000
+  },
+  {
+   "course": "50円",
+   "headcount": "6〜7人",
+   "small_lt30": 900000,
+   "other": 900000
+  },
+  {
+   "course": "50円",
+   "headcount": "8人以上",
+   "small_lt30": 1100000,
+   "other": 1100000
+  },
+  {
+   "course": "50円",
+   "headcount": "10人以上",
+   "small_lt30": 1300000,
+   "other": 1300000
+  },
+  {
+   "course": "70円",
+   "headcount": "1人",
+   "small_lt30": 500000,
+   "other": 400000
+  },
+  {
+   "course": "70円",
+   "headcount": "2〜3人",
+   "small_lt30": 1000000,
+   "other": 500000
+  },
+  {
+   "course": "70円",
+   "headcount": "4〜5人",
+   "small_lt30": 1300000,
+   "other": 1300000
+  },
+  {
+   "course": "70円",
+   "headcount": "6〜7人",
+   "small_lt30": 1800000,
+   "other": 1800000
+  },
+  {
+   "course": "70円",
+   "headcount": "8人以上",
+   "small_lt30": 2300000,
+   "other": 2300000
+  },
+  {
+   "course": "70円",
+   "headcount": "10人以上",
+   "small_lt30": 3000000,
+   "other": 3000000
+  },
+  {
+   "course": "90円",
+   "headcount": "1人",
+   "small_lt30": 1000000,
+   "other": 900000
+  },
+  {
+   "course": "90円",
+   "headcount": "2〜3人",
+   "small_lt30": 2400000,
+   "other": 1500000
+  },
+  {
+   "course": "90円",
+   "headcount": "4〜5人",
+   "small_lt30": 2700000,
+   "other": 2700000
+  },
+  {
+   "course": "90円",
+   "headcount": "6〜7人",
+   "small_lt30": 3600000,
+   "other": 3600000
+  },
+  {
+   "course": "90円",
+   "headcount": "8人以上",
+   "small_lt30": 4500000,
+   "other": 4500000
+  },
+  {
+   "course": "90円",
+   "headcount": "10人以上",
+   "small_lt30": 6000000,
+   "other": 6000000
+  }
+ ],
+ "eligible_notes": [
+  "汎用PC・タブレット・スマホは対象外（特定業務専用システム付随は対象となる場合あり）",
+  "クラウド・月額利用料はライセンス契約等として対象・契約時から3年分が上限",
+  "経営コンサルティング経費は国家資格者等または金融機関の経営相談に限る",
+  "交付決定前に発注・導入したものは対象外"
+ ]
+}
