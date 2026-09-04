@@ -74,3 +74,8 @@
   .fg-structure .st-shield-r{display:none}
   .fg-structure .st-loop{letter-spacing:.06em}
 }
+
+/* EN: 円の中の説明が長いので SP では小さく */
+@media(max-width:640px){html[lang="en"] .fg-structure .st-hub-sub{font-size:.68rem;line-height:1.35;letter-spacing:0}
+html[lang="en"] .fg-structure .st-hub strong{font-size:1.5rem;letter-spacing:.04em}
+html[lang="en"] .fg-structure .st-hub-sub .nb{display:inline}}

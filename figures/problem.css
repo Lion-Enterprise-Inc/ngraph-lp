@@ -57,6 +57,23 @@
 .fg-problem .pb-svg .bub.big rect{stroke-width:3.5}
 .fg-problem .pb-svg .bub.big text{font-size:38px;font-weight:700}
 .fg-problem .pb-stage{align-items:end}
-@media(max-width:640px){.fg-problem .pb-svg .bub{display:none}}
+@media(max-width:640px){
+  /* SP: SVGの吹き出しは小さすぎるので消し、同じ台詞をHTMLの吹き出しとして画像の上に重ねる */
+  .fg-problem .pb-svg .bub{display:none}
+  .fg-problem .pb-list{display:block;position:absolute;inset:0;pointer-events:none;margin:0}
+  .fg-problem .pb-list li{position:absolute;max-width:54%;font-size:.82rem;line-height:1.55;padding:7px 11px;border:1.5px solid var(--ink);border-radius:12px;background:#fff;margin:0;text-align:left;letter-spacing:.02em}
+  .fg-problem .pb-list li::after{content:"";position:absolute;bottom:-11px;width:0;height:0;border:6px solid transparent;border-top:12px solid var(--ink);border-bottom:0}
+  .fg-problem .pb-list li::before{content:"";position:absolute;bottom:-8px;width:0;height:0;border:5px solid transparent;border-top:10px solid #fff;border-bottom:0;z-index:1}
+  .fg-problem .pb-list li:first-child{left:3%;top:9%;max-width:42%;z-index:2}
+  .fg-problem .pb-list li:first-child::after{left:40%}
+  .fg-problem .pb-list li:first-child::before{left:calc(40% + 1px)}
+  .fg-problem .pb-list li.ai{right:2%;top:2%;max-width:50%;z-index:1}
+  .fg-problem .pb-list li.ai::after{left:28%}
+  .fg-problem .pb-list li.ai::before{left:calc(28% + 1px)}
+  .fg-problem .pb-after .pb-list li:first-child{top:4%;max-width:46%}
+  .fg-problem .pb-after .pb-list li.ai{top:0;max-width:52%;font-weight:700;border-width:2px}
+}
 
 html[lang="en"] .fg-problem .pb-mid::before{content:"Yesterday → Today"}
+
+@media(max-width:640px){.fg-problem .pb-list li .nb{display:inline-block}}

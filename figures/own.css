@@ -1,8 +1,12 @@
 .fg-own{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.15fr);gap:18px;align-items:start}
 .fg-own .own-scene{margin:0;min-width:0}
 .fg-own .own-scene.after{position:relative}
-.fg-own .own-tag{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px;flex-wrap:wrap}
+.fg-own .own-tag{display:flex;align-items:center;gap:0;font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:8px;flex-wrap:wrap}
 .fg-own .own-svg{display:block;width:100%;height:auto}
+.fg-own .own-art{position:relative}
+.fg-own .own-ov{display:none}
+.fg-own .own-tag .pill{margin-right:8px}
+html[lang="en"] .fg-own .own-tag{gap:0 .3em}
 .fg-own .own-svg .lab rect{fill:#fff;stroke:var(--ink);stroke-width:2.5}
 .fg-own .own-svg .lab text{font-family:var(--serif);font-size:30px;font-weight:700;fill:var(--ink);letter-spacing:.02em}
 .fg-own .own-svg .lab.sub rect{fill:var(--paper);stroke:var(--line2);stroke-width:2}
@@ -38,7 +42,23 @@
 }
 @media(max-width:640px){
   .fg-own .own-svg .lab,.fg-own .own-svg .cap,.fg-own .own-svg .hint,.fg-own .own-svg .lead{display:none}
-  .fg-own .own-list{display:block}
+  .fg-own .own-list{display:none!important}
+  /* PCと同じ内容を、SPでは読める大きさのHTMLで画像の上に重ねる */
+  .fg-own .own-ov{display:block;position:absolute;font-family:var(--serif);font-weight:700;font-size:.82rem;line-height:1.5;letter-spacing:.02em;background:#fff;border:1.5px solid var(--ink);border-radius:10px;padding:7px 11px;color:var(--ink);max-width:56%}
+  .fg-own .own-ov .nb{display:inline-block}
+  .fg-own .ov-main{right:2%;top:4%;max-width:66%}
+  .fg-own .ov-sub{right:2%;top:34%;background:var(--paper);border:1px solid var(--line2);border-radius:999px;font-family:'Noto Sans JP',sans-serif;font-weight:500;font-size:.74rem;color:var(--sub);padding:4px 12px;max-width:70%}
+  .fg-own .ov-red{left:1%;top:4%;border-color:var(--red);color:var(--red);max-width:58%}
+  .fg-own .ov-brain{right:1%;top:2%;background:var(--tint);border:1.5px solid var(--red);text-align:center;padding:6px 12px;max-width:44%}
+  .fg-own .ov-brain .k{display:block;font-family:'Noto Sans JP',sans-serif;font-size:.66rem;letter-spacing:.16em;color:var(--red)}
+  .fg-own .ov-brain .b{display:block;font-size:1.05rem;letter-spacing:.08em}
+  .fg-own .ov-brain::after{content:"";position:absolute;left:-14px;bottom:8px;width:16px;height:16px;border-left:1.5px solid var(--red);border-bottom:1.5px solid var(--red);transform:skewX(-20deg);opacity:.9}
+  /* 社長・部長・社員は人物の真下に3列 */
+  .fg-own .own-who{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:-6px 0 0;padding:0 2% 0 6%;text-align:center}
+  .fg-own .own-who li{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:.7rem;line-height:1.4}
+  .fg-own .own-who li::before{content:"";width:1px;height:12px;background:var(--red);margin-bottom:2px}
+  .fg-own .own-who strong{margin:0;font-size:.95rem}
+  .fg-own .own-cap{margin-top:12px}
 }
 
 /* SP: 図の下の説明リストは「凡例」として見せる（図の重複に見えないよう枠と札を付ける） */

@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
-<link rel="stylesheet" href="/css/figures.css?v=26">
+<link rel="stylesheet" href="/css/figures.css?v=31">
 <style>
 
 .pat{transition:transform .35s ease}
@@ -329,11 +329,11 @@
               <g class="bub" transform="translate(30,120)"><rect width="250" height="112" rx="16"/><path class="tail" d="M120 112 l18 30 l22 -30z"/><text x="125" y="46" text-anchor="middle">You got</text><text x="125" y="88" text-anchor="middle">it all</text></g>
               <g class="bub" transform="translate(560,70)"><rect width="360" height="150" rx="16"/><path class="tail" d="M120 150 l-14 32 l40 -32z"/><text x="180" y="46" text-anchor="middle">Great. Yes,</text><text x="180" y="88" text-anchor="middle">leave the rest</text><text x="180" y="130" text-anchor="middle">to me</text></g>
             </svg>
-          </div>
           <ul class="pb-list">
             <li>You got it all</li>
             <li class="ai">Great. Yes, leave the rest to me</li>
           </ul>
+          </div>
         </figure>
         <div class="pb-mid">
           <div class="pb-cal">
@@ -350,11 +350,11 @@
               <g class="bub" transform="translate(40,40)"><rect width="270" height="150" rx="16"/><path class="tail" d="M150 150 l10 32 l30 -32z"/><text x="135" y="46" text-anchor="middle">Wait, we were</text><text x="135" y="88" text-anchor="middle">mid-task</text><text x="135" y="130" text-anchor="middle">yesterday…</text></g>
               <g class="bub big" transform="translate(560,14)"><rect width="420" height="160" rx="18"/><path class="tail" d="M110 160 l-30 40 l60 -40z"/><text x="210" y="62" text-anchor="middle">Nice to meet you.</text><text x="210" y="120" text-anchor="middle">And you are?</text></g>
             </svg>
-          </div>
           <ul class="pb-list">
             <li>Wait, we were mid-task yesterday…</li>
             <li class="ai">Nice to meet you. And you are?</li>
           </ul>
+          </div>
         </figure>
       </div>
       <p class="pb-lead"><span class="nb">The understanding you built yesterday</span> <span class="nb">is gone today.</span></p>
@@ -376,23 +376,31 @@
     <div class="fg fg-own reveal">
       <figure class="own-scene before">
         <div class="own-tag"><span class="pill">Before</span><span class="nb">One person</span> <span class="nb">teaches their own AI</span></div>
+        <div class="own-art">
         <svg class="own-svg" viewBox="0 0 1000 780" role="img" aria-label="One person entrusts knowledge to their own AI, and it disappears when they cancel or switch">
           <image href="/assets/brain/ill/own-before.png" x="0" y="30" width="1000" height="750"/>
           <g class="lab" transform="translate(470,62)"><rect width="480" height="130" rx="14"/><text x="30" y="52">Cancel or switch the AI,</text><text x="30" y="102">and the knowledge is lost</text></g>
           <g class="lab sub" transform="translate(640,214)"><rect width="310" height="64" rx="32"/><text x="155" y="40" text-anchor="middle">Knowledge: in the chat</text></g>
           <text class="cap" x="60" y="740">Your work × your own AI (Anthropic / OpenAI / Google / Kimi)</text>
         </svg>
+          <div class="own-ov ov-main"><span class="nb">Cancel or switch the AI,</span><span class="nb">and the knowledge is lost</span></div>
+          <div class="own-ov ov-sub"><span class="nb">Knowledge: in the chat</span></div>
+        </div>
       </figure>
-      <div class="own-turn" aria-hidden="true"><span>Knowledge<br>to the company</span><i>→</i></div>
+      <div class="own-turn" aria-hidden="true"><span>Knowledge <br>to the company</span><i>→</i></div>
       <figure class="own-scene after">
         <div class="own-tag"><span class="pill red">NGraph</span><span class="nb">One company record,</span> <span class="nb">used by everyone</span></div>
+        <div class="own-art">
         <svg class="own-svg" viewBox="0 0 1000 780" role="img" aria-label="The CEO, a manager, and an employee each connect from their own device to a single Company Brain floating above them">
           <image href="/assets/brain/ill/own-after.png" x="0" y="33" width="1000" height="747"/>
           <g class="lab red small" transform="translate(6,44)"><rect width="352" height="120" rx="14"/><text x="24" y="48">People choose the AI,</text><text x="24" y="94">the AI reads the Brain</text></g>
           <path class="lead" d="M720 140 L665 185"/>
           <g class="lab brain" transform="translate(696,26)"><rect width="300" height="112" rx="14"/><text class="k" x="150" y="42" text-anchor="middle">One record =</text><text class="b" x="150" y="92" text-anchor="middle">The Brain</text></g>
         </svg>
-        <p class="own-cap"><span class="nb">Three AIs,</span> <span class="nb">connected to one Company Brain.</span> <span class="nb">Whoever asks, the answer comes from the same record.</span></p>
+          <div class="own-ov ov-red"><span class="nb">People choose the AI,</span><span class="nb">the AI reads the Brain</span></div>
+          <div class="own-ov ov-brain"><span class="k">One record =</span><span class="b">The Brain</span></div>
+        </div>
+        <p class="own-cap"><span class="nb">Three people's AIs,</span> <span class="nb">connected to one Company Brain.</span> <span class="nb">Whoever asks, the answer comes from the same record.</span></p>
         <ul class="own-who"><li><strong>CEO</strong>Strategy and decisions</li><li><strong>Manager</strong>Operations and management</li><li><strong>Employee</strong>Execution and daily work</li></ul>
         <div class="own-ais"><span class="cap">Choose any AI you like</span><span class="lk">AI</span>Anthropic<img src="/assets/brain/official-logos/openai-official.svg" alt="">OpenAI<img src="/assets/brain/official-logos/gemini-official.svg" alt="">Google Gemini</div>
       </figure>
@@ -968,7 +976,7 @@
   n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open')});
   // reveal on scroll
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  document.querySelectorAll('.reveal').forEach(function(el){if(location.search.indexOf('noreveal')>-1){el.classList.add('in');return}io.observe(el)});
 
   // FDE map: one wire from the engineer to each workplace, measured from layout
   (function(){

@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
-<link rel="stylesheet" href="/css/figures.css?v=26">
+<link rel="stylesheet" href="/css/figures.css?v=31">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -870,7 +870,7 @@ var t=document.getElementById('navToggle'),n=document.getElementById('nav');
 t.addEventListener('click',function(){n.classList.toggle('open')});
 n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open')});
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+document.querySelectorAll('.reveal').forEach(function(el){if(location.search.indexOf('noreveal')>-1){el.classList.add('in');return}io.observe(el)});
   // Hero visual: first view only (reversible fade on scroll, desktop only)
   (function(){var hv=document.querySelector('.hero-visual');
     if(!hv||!window.matchMedia('(min-width:901px)').matches)return;
