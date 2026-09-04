@@ -1,6 +1,6 @@
 {
- "as_of": "2026-09-01",
- "source": "blog/20260803-saitei-chingin-2026.html（各労働局一次資料で突合済み）",
+ "as_of": "2026-09-04",
+ "source": "blog/20260803-saitei-chingin-2026.html の47県表（各労働局一次資料で突合済み）",
  "prefectures": [
   {
    "pref": "北海道",
@@ -90,8 +90,8 @@
    "pref": "東京",
    "now": 1226,
    "new": 1280,
-   "kind": "答申",
-   "effective": null
+   "kind": "決定",
+   "effective": "2026-10-01"
   },
   {
    "pref": "神奈川",
@@ -160,7 +160,7 @@
    "pref": "愛知",
    "now": 1140,
    "new": 1195,
-   "kind": "答申",
+   "kind": "決定",
    "effective": "2026-10-01"
   },
   {

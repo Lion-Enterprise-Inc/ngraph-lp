@@ -19,7 +19,31 @@ ART = os.path.join(ROOT, "blog", "20260803-saitei-chingin-2026.html")
 ENTRY = os.path.join(ROOT, "entry.html")
 MARK_S, MARK_E = "<!-- calc:start -->", "<!-- calc:end -->"
 
-mw = json.load(open(os.path.join(ROOT, "tools", "minwage_2026.json"), encoding="utf-8"))
+def extract_minwage(html):
+    """記事の47県表から JSON を作り直す（記事を直したら計算機も追随する＝二重管理をなくす）。
+    kind は 決定／答申／試算 の3値（労働局の3段階＝諮問→答申→決定。saitei_chingin_watch.py と同じ語）"""
+    tables = re.findall(r"<table[^>]*>(.*?)</table>", html, re.S)
+    t47 = next(tb for tb in tables if "<td>沖縄</td>" in tb)
+    rows = re.findall(r"<tr[^>]*>(.*?)</tr>", t47, re.S)
+    out = []
+    for r in rows:
+        c = [re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", x)).strip() for x in re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", r, re.S)]
+        if len(c) < 5 or c[0] in ("都道府県", "全国加重平均"):
+            continue
+        now = int(c[1].replace("円", "").replace(",", ""))
+        m = re.search(r"([\d,]+)円\s*(決定|答申|試算)", c[4])
+        assert m, "2026年度の時給の欄に 決定/答申/試算 が無い: " + c[0] + " / " + c[4]
+        eff = re.search(r"(\d{1,2})月(\d{1,2})日発効", c[4])
+        out.append({"pref": c[0], "now": now, "new": int(m.group(1).replace(",", "")), "kind": m.group(2),
+                    "effective": "2026-%02d-%02d" % (int(eff.group(1)), int(eff.group(2))) if eff else None})
+    assert len(out) == 47, "47県でない: %d" % len(out)
+    return {"as_of": dt.date.today().isoformat(), "source": "blog/20260803-saitei-chingin-2026.html の47県表（各労働局一次資料で突合済み）", "prefectures": out}
+
+
+import datetime as dt
+mw = extract_minwage(open(ART, encoding="utf-8").read())
+json.dump(mw, open(os.path.join(ROOT, "tools", "minwage_2026.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+print("47県JSON再生成: 決定%d／答申%d／試算%d" % tuple(sum(p["kind"] == k for p in mw["prefectures"]) for k in ("決定", "答申", "試算")))
 gk = json.load(open(os.path.join(ROOT, "tools", "gyomu_kaizen_2026.json"), encoding="utf-8"))
 P = json.dumps([[p["pref"], p["now"], p["new"], p["kind"], p["effective"]] for p in mw["prefectures"]],
                ensure_ascii=False, separators=(",", ":"))
