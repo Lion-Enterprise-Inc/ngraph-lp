@@ -26,17 +26,7 @@
 <div class="calc-actions">
 <a class="btn calc-btn" id="c-cta" href="/entry?type=%E6%A5%AD%E5%8B%99%E6%94%B9%E5%96%84%E5%8A%A9%E6%88%90%E9%87%91">この結果を持って、対象経費になるか30分で確認する（無料）→</a>
 <p class="a-src">計算結果が相談フォームに入った状態で開きます。受発注・請求の転記、シフト作成、社内の問い合わせ対応のような「人の時間を食っている業務」を、助成の対象になる形で設備投資に落とすところまで一緒に見ます。</p>
-<form id="c-mail" class="calc-mail" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
-<div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
-<input type="hidden" name="お名前" value="（試算の控え）">
-<input type="hidden" name="会社名・店舗名" value="">
-<input type="hidden" name="お問い合わせ種別" value="試算の控え（最低賃金記事の計算機）">
-<input type="hidden" name="お問い合わせ内容" id="c-memo" value="">
-<label class="calc-mail-l">社内で共有するなら、この試算の文面をメールで受け取れます</label>
-<div class="calc-mail-row"><input type="email" name="メールアドレス" placeholder="メールアドレス" required autocomplete="email"><button type="submit" class="btn calc-btn2" id="c-mail-btn">試算をメールで受け取る</button></div>
-<p class="a-src">送るのは上の試算の文面だけです。営業の電話はしません。</p>
-<p class="calc-mail-done" id="c-mail-done" hidden>送りました。届かないときは迷惑メールをご確認ください。</p>
-</form>
+<button type="button" class="calc-btn2" id="c-print">この試算を印刷・PDF保存する（社内で共有用）</button>
 </div>
 </div>
 <style>
@@ -72,16 +62,8 @@
 .article-wrap .calc-actions{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}
 .article-wrap .calc-btn{display:block;text-align:center;padding:16px 18px;font-size:1.02rem;font-weight:700;background:var(--accent);color:#fff;border:1.5px solid var(--accent);border-radius:6px;text-decoration:none}
 .article-wrap .calc-btn:hover{background:#9f4331;border-color:#9f4331;color:#fff}
-.article-wrap .calc-btn2{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:var(--accent);border:1.5px solid var(--accent);border-radius:6px;font-weight:700;cursor:pointer}
+.article-wrap .calc-btn2{display:block;width:100%;margin-top:12px;padding:13px 18px;font-size:.95rem;font-weight:700;background:#fff;color:var(--accent);border:1.5px solid var(--accent);border-radius:6px;cursor:pointer;font-family:inherit}
 .article-wrap .calc-btn2:hover{background:var(--bg-card)}
-.article-wrap .calc-btn2[disabled]{opacity:.6;cursor:default}
-.article-wrap .calc-mail{margin-top:18px;padding:16px;border:1px dashed var(--border-strong);border-radius:6px;background:rgba(255,255,255,.6)}
-.article-wrap .calc-mail-l{display:block;font-size:.92rem;font-weight:600;margin-bottom:10px}
-.article-wrap .calc-mail-row{display:flex;gap:10px}
-.article-wrap .calc-mail-row input{flex:1 1 auto;min-width:0;min-height:50px;font-size:1rem;padding:0 14px;border:1.5px solid var(--border-strong);border-radius:6px;background:#fff}
-.article-wrap .calc-btn2{flex:0 0 auto;padding:0 18px;min-height:50px;font-size:.95rem;white-space:nowrap}
-.article-wrap .calc-mail-done{margin:10px 0 0;font-weight:600;color:var(--accent)}
-.article-wrap .calc .hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 @media(max-width:640px){
   .article-wrap .calc{padding:18px 16px 20px}
   .article-wrap .calc-grid,.article-wrap .calc-tiles{grid-template-columns:1fr}
@@ -124,8 +106,9 @@ function tiles(year,month,sub,own,ng){
   var t=$('c-sub');t.className='calc-tv'+(ng?' calc-ng':'');t.textContent=ng?ng:yen(sub);
   $('c-own').textContent=ng?'':'実質負担の目安 '+yen(own);
 }
+var last={memo:'',html:'',pref:''};
 function setMemo(memo){
-  $('c-memo').value=memo;
+  last.memo=memo;
   $('c-cta').href='/entry?type='+encodeURIComponent('業務改善助成金')+'&memo='+encodeURIComponent(memo);
 }
 function calc(){
@@ -153,21 +136,24 @@ function calc(){
     tiles(year,month,sub,own,null);
   }
   html+='</table>';
-  $('c-out').innerHTML=html;
+  $('c-out').innerHTML=html;last.html=html;last.pref=p[0];
   setMemo(base+(sub!==null?'／'+co+'コース 助成目安 '+yen(sub)+'（投資'+yen(inv)+'・'+bracket(n,now<1050)+'区分）':'／助成: 要確認'));
 }
+/* 印刷・PDF保存＝社内で共有する1枚。メールは取らない（2026-09-04 髙橋さん判断）。押した数は calc_print で数える */
+$('c-print').addEventListener('click',function(){
+  var w=window.open('','_blank');if(!w)return;
+  var d=new Date();var stamp=d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日';
+  w.document.write('<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><title>賃上げ・業務改善助成金の試算（'+last.pref+'）</title><style>body{font-family:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;color:#2b2620;margin:32px;line-height:1.7}h1{font-size:18px;margin:0 0 4px}p.s{color:#6b6253;font-size:12px;margin:0 0 18px}table{width:100%;border-collapse:collapse;font-size:14px}td{padding:8px 4px;border-bottom:1px solid #ddd;vertical-align:top}td:last-child{text-align:right;font-weight:600}small{font-weight:400;color:#6b6253}.c-ng{color:#8a3b2c;font-weight:500}p.n{font-size:11px;color:#6b6253;margin-top:18px}@media print{body{margin:12mm}}</style></head><body>'
+    +'<h1>賃上げ・業務改善助成金の試算（'+last.pref+'）</h1><p class="s">'+stamp+'作成／ngraph.jp/tools/gyomu-kaizen/ で計算</p>'+last.html
+    +'<p class="n">目安の計算です。助成の可否・コース・上限は労働局の審査で決まります。交付決定前に発注・導入したものは対象外。事務用の汎用パソコン・タブレットは対象外。クラウド・月額利用料は契約時から3年分が上限。申請期限は地域別最低賃金の発効日の前日か11月30日の早い方。出典＝厚生労働省 令和8年度 業務改善助成金 交付要綱・各都道府県労働局の答申。</p>'
+    +'</body></html>');
+  w.document.close();
+  if(window.gtag)gtag('event','calc_print');
+  setTimeout(function(){w.focus();w.print();},300);
+});
 ['c-pref','c-now','c-n','c-h','c-size','c-inv'].forEach(function(id){$(id).addEventListener('input',calc);$(id).addEventListener('change',calc)});
 sel.addEventListener('change',function(){$('c-now').value=P[+sel.value][1];calc()});
 $('c-now').value=P[__FUKUI__][1];calc();
 var seen=false;$('c-inv').addEventListener('change',function(){if(!seen&&window.gtag){seen=true;gtag('event','calc_use');}});
-var mf=$('c-mail');
-mf.addEventListener('submit',function(ev){
-  ev.preventDefault();
-  if(mf.querySelector('[name="_honey"]').value)return;
-  var btn=$('c-mail-btn');btn.disabled=true;btn.textContent='送信中...';
-  fetch(mf.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(mf))})
-  .then(function(){$('c-mail-done').hidden=false;btn.textContent='送りました';if(window.gtag)gtag('event','calc_mail');})
-  .catch(function(){btn.disabled=false;btn.textContent='試算をメールで受け取る';alert('送信に失敗しました。時間をおいて再度お試しください。');});
-});
 })();
 </script>
