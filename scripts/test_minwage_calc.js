@@ -123,6 +123,15 @@ for (const [pref, kind] of [['東京', '決定'], ['福井', '答申'], [shisan 
   expect('ラベル: ' + pref + ' は' + kind + '（データ側）', p[3] === kind);
   expect('ラベル: ' + pref + ' の表示に（' + kind, run(pref, p[1], 1, 100, 's', 100000).text.includes('（' + kind));
 }
+// 8') 申請締切: 発効日あり→前日／11月30日超→上限／未公表→前年の発効日を手がかり
+{
+  expect('締切: 東京（10/1発効）→ 9月30日', run('東京', 1226, 1, 100, 's', 100000).text.includes('申請締切（東京） 9月30日'));
+  const late = P.find(p => p[4] && p[4] > '2026-12-01');
+  if (late) expect('締切: ' + late[0] + '（' + late[4] + '発効）→ 11月30日の上限', run(late[0], late[1], 1, 100, 's', 100000).text.includes('申請締切（' + late[0] + '） 11月30日'));
+  const unk = P.find(p => !p[4] && p[5]);
+  if (unk) expect('締切: ' + unk[0] + '（発効日未公表）→ 未公表＋前年の手がかり', run(unk[0], unk[1], 1, 100, 's', 100000).text.includes('未公表') && run(unk[0], unk[1], 1, 100, 's', 100000).text.includes('前年は'));
+  expect('データ: 全県に前年の発効日がある', P.every(p => p[5]), P.filter(p => !p[5]).map(p => p[0]).join(','));
+}
 // 9) 発効日: 東京 2026-10-01 → 10月1日発効
 expect('発効日: 東京 10月1日発効', run('東京', 1226, 1, 100, 's', 100000).text.includes('10月1日発効'));
 // 10) データの整合: 47県・new>now・答申/決定の県は now+目安 と別物でよい・試算の県は now+54or56

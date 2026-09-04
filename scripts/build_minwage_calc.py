@@ -34,8 +34,10 @@ def extract_minwage(html):
         m = re.search(r"([\d,]+)円\s*(決定|答申|試算)", c[4])
         assert m, "2026年度の時給の欄に 決定/答申/試算 が無い: " + c[0] + " / " + c[4]
         eff = re.search(r"(\d{1,2})月(\d{1,2})日発効", c[4])
+        prev = re.search(r"(\d{4})年(\d{1,2})月(\d{1,2})日", c[2])  # 「この時給になった日」＝前年度の発効日
         out.append({"pref": c[0], "now": now, "new": int(m.group(1).replace(",", "")), "kind": m.group(2),
-                    "effective": "2026-%02d-%02d" % (int(eff.group(1)), int(eff.group(2))) if eff else None})
+                    "effective": "2026-%02d-%02d" % (int(eff.group(1)), int(eff.group(2))) if eff else None,
+                    "prev_effective": "%s-%02d-%02d" % (prev.group(1), int(prev.group(2)), int(prev.group(3))) if prev else None})
     assert len(out) == 47, "47県でない: %d" % len(out)
     return {"as_of": dt.date.today().isoformat(), "source": "blog/20260803-saitei-chingin-2026.html の47県表（各労働局一次資料で突合済み）", "prefectures": out}
 
@@ -45,7 +47,7 @@ mw = extract_minwage(open(ART, encoding="utf-8", newline="").read())
 json.dump(mw, open(os.path.join(ROOT, "tools", "minwage_2026.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("47県JSON再生成: 決定%d／答申%d／試算%d" % tuple(sum(p["kind"] == k for p in mw["prefectures"]) for k in ("決定", "答申", "試算")))
 gk = json.load(open(os.path.join(ROOT, "tools", "gyomu_kaizen_2026.json"), encoding="utf-8"))
-P = json.dumps([[p["pref"], p["now"], p["new"], p["kind"], p["effective"]] for p in mw["prefectures"]],
+P = json.dumps([[p["pref"], p["now"], p["new"], p["kind"], p["effective"], p["prev_effective"]] for p in mw["prefectures"]],
                ensure_ascii=False, separators=(",", ":"))
 C = json.dumps([[c["course"], c["headcount"], c["small_lt30"], c["other"]] for c in gk["caps"]],
                ensure_ascii=False, separators=(",", ":"))
@@ -119,3 +121,113 @@ if "q.get('memo')" not in e:
     e = e.replace("</body>", PRE + "</body>", 1)
 write_lf(ENTRY, e)
 print("/entry: 種別「業務改善助成金」＋URL事前入力 OK")
+
+# ---------------------------------------------------------------------------
+# 独自URL版 /tools/gyomu-kaizen/（2026-09-04 髙橋さんGO「いいね」）
+# 狙い＝「業務改善助成金 計算／シミュレーション／いくら戻る」を検索する人（＝設備投資を考えている人）を
+# 取りに行く。記事内の計算機と同じテンプレを、ページとして独立させる。
+# ---------------------------------------------------------------------------
+TOOL_DIR = os.path.join(ROOT, "tools", "gyomu-kaizen")
+TOOL = os.path.join(TOOL_DIR, "index.html")
+TOOL_URL = "https://ngraph.jp/tools/gyomu-kaizen/"
+os.makedirs(TOOL_DIR, exist_ok=True)
+chk = read_lf(os.path.join(ROOT, "check", "index.html"))
+head_common = chk[chk.find("<script async src=\"https://www.googletagmanager.com"):chk.find("<title>")]
+fonts = chk[chk.find("<link rel=\"icon\""):chk.find("<style>")]
+header = chk[chk.find("<header class=\"header scrolled\">"):chk.find("</header>") + len("</header>")]
+footer = chk[chk.find("<footer class=\"footer\">"):chk.find("</footer>") + len("</footer>")]
+faq = [
+    ("業務改善助成金の対象になる会社の条件は？",
+     "中小企業・小規模事業者で、事業場内の最低賃金が令和8年度の地域別最低賃金を下回っていること、解雇や賃金引下げなどの不交付事由がないことが要件です。事業場内最低賃金を50円以上、1回で引き上げ、生産性向上に資する設備投資などを行うと、その費用の一部が助成されます。"),
+    ("申請の締切はいつですか？",
+     "令和8年9月1日から、申請する事業場の都道府県で適用される地域別最低賃金の発効日の前日、または11月30日のいずれか早い日までです。発効日は都道府県ごとに違い、早い県は10月1日です。上の計算機で県を選ぶと締切の目安が出ます。"),
+    ("AIやクラウドの月額料金は対象になりますか？",
+     "クラウドサービスの利用料はライセンス契約等として対象で、契約時から3年分が上限です。事務用の汎用パソコン・タブレット・スマートフォンは対象外です。経営コンサルティングの費用は国家資格者等によるものに限られます。交付決定の前に発注・導入したものは対象外になります。"),
+]
+faq_html = "".join("<details><summary>%s</summary><p>%s</p></details>" % q for q in faq)
+faq_ld = json.dumps({"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}, ensure_ascii=False)
+page_ld = json.dumps({"@context": "https://schema.org", "@type": "WebPage", "name": "業務改善助成金はいくら戻るか——都道府県別の計算機",
+                      "url": TOOL_URL, "dateModified": dt.date.today().isoformat(), "inLanguage": "ja",
+                      "publisher": {"@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/"}}, ensure_ascii=False)
+page = f'''<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+{head_common}<title>業務改善助成金はいくら戻る？都道府県別の計算機——賃上げで増える人件費・助成額・実質負担・申請締切 | 株式会社NGraph</title>
+<meta name="description" content="県と、事業場内の最低時給・人数・設備投資額を入れると、2026年度の賃上げで増える人件費と、業務改善助成金の助成額・実質負担・申請締切の目安が出ます。厚生労働省の令和8年度交付要綱と各労働局の答申にもとづく計算です。">
+<meta property="og:title" content="業務改善助成金はいくら戻る？都道府県別の計算機 | 株式会社NGraph">
+<meta property="og:description" content="賃上げで増える人件費と、業務改善助成金の助成額・実質負担・申請締切を、県と会社の数字から30秒で。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{TOOL_URL}">
+<meta property="og:site_name" content="株式会社NGraph">
+<link rel="canonical" href="{TOOL_URL}">
+{fonts}<style>
+.c-wrap{{max-width:760px;margin:0 auto;padding:140px 20px 80px}}
+.t-h1{{font-family:var(--serif);font-size:1.6rem;font-weight:900;line-height:1.6;margin:10px 0 14px}}
+.t-lead{{font-size:.95rem;color:var(--text-2);line-height:2;margin-bottom:8px}}
+.article-wrap .a-faq details{{border-bottom:1px solid var(--border);padding:12px 0}}
+.article-wrap .a-faq summary{{cursor:pointer;font-weight:700}}
+.t-links a{{display:block;padding:10px 0;border-bottom:1px solid var(--border);font-size:.9rem}}
+</style>
+<script type="application/ld+json">{page_ld}</script>
+<script type="application/ld+json">{faq_ld}</script>
+</head>
+<body>
+<div class="bg-fx" aria-hidden="true"></div>
+{header}
+
+<div class="c-wrap"><div class="article-wrap">
+  <div class="section-label">Tool</div>
+  <h1 class="t-h1">業務改善助成金はいくら戻るか——都道府県別の計算機</h1>
+  <p class="t-lead">2026年度の最低賃金の引上げで御社の人件費がいくら増えるか。その賃上げに合わせて設備投資をしたとき、業務改善助成金でいくら戻り、実質負担がいくらになるか。申請の締切はいつか。県と会社の数字を入れると、30秒で目安が出ます。</p>
+  <p class="t-lead">県ごとの額は各都道府県労働局の答申・決定、未答申の県は目安からの試算です。助成率と上限額は厚生労働省の令和8年度交付要綱にもとづきます。数字の時点と出典は<a href="/blog/20260803-saitei-chingin-2026">47都道府県別の一覧記事</a>と同じです。</p>
+
+{block}
+
+  <h2>よくある質問</h2>
+  <div class="a-faq">{faq_html}</div>
+
+  <h2>あわせて読む</h2>
+  <div class="t-links">
+    <a href="/blog/20260824-gyomu-kaizen-joseikin">業務改善助成金は9月1日開始——締切は県ごとに最短30日、AIの月額料金が対象になる条件</a>
+    <a href="/blog/20260803-saitei-chingin-2026">最低賃金2026年度はいつから・いくら？47都道府県別の時給と発効日</a>
+    <a href="/blog/ai-hojokin">AI導入に使える補助金はどれか——8制度の対象経費を読み解く実務判定表</a>
+  </div>
+
+  <div class="a-src" style="margin-top:28px">参考（一次情報）：厚生労働省「<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/zigyonushi/shienjigyou/03.html" target="_blank" rel="noopener">業務改善助成金</a>」／同「<a href="https://www.mhlw.go.jp/content/11200000/001693416.pdf" target="_blank" rel="noopener">業務改善助成金のご案内</a>」／同「<a href="https://www.mhlw.go.jp/content/11200000/001693388.pdf" target="_blank" rel="noopener">交付要綱</a>」（いずれも令和8年度）</div>
+</div></div>
+
+{footer}
+</body>
+</html>
+'''
+write_lf(TOOL, page)
+print("tools/gyomu-kaizen/index.html を生成")
+
+# sitemap（冪等）
+SM = os.path.join(ROOT, "sitemap.xml")
+sm = read_lf(SM)
+entry = "  <url><loc>%s</loc><lastmod>%s</lastmod></url>\n" % (TOOL_URL, dt.date.today().isoformat())
+if TOOL_URL not in sm:
+    k = sm.find("</url>\n") + len("</url>\n")
+    sm = sm[:k] + entry + sm[k:]
+else:
+    sm = re.sub(r"  <url><loc>%s</loc><lastmod>[^<]+</lastmod></url>\n" % re.escape(TOOL_URL), entry, sm)
+write_lf(SM, sm)
+print("sitemap.xml:", TOOL_URL)
+
+# 既に(a)の読者がいる2記事から計算機へ（冪等・リード直後）
+LINK_S, LINK_E = "<!-- calc-link:start -->", "<!-- calc-link:end -->"
+link = LINK_S + '''<p class="calc-lead"><a href="/tools/gyomu-kaizen/">▶ 御社の県と人数で、業務改善助成金がいくら戻るか・申請締切はいつかを30秒で計算する</a></p>
+<style>.article-wrap .calc-lead{margin:-8px 0 28px}.article-wrap .calc-lead a{display:block;border:1px solid var(--accent);border-radius:4px;padding:12px 16px;font-size:.95rem;font-weight:600;color:var(--accent);text-decoration:none;background:#fff}.article-wrap .calc-lead a:hover{background:var(--bg-card)}</style>''' + LINK_E
+for slug in ("20260824-gyomu-kaizen-joseikin", "ai-hojokin"):
+    fp = os.path.join(ROOT, "blog", slug + ".html")
+    a = read_lf(fp)
+    a = re.sub(r"\n?" + re.escape(LINK_S) + r".*?" + re.escape(LINK_E), "", a, flags=re.S)
+    t = a.find('<div class="a-toc">')
+    assert t > 0, slug + ": a-toc が無い"
+    a = a[:t] + link + "\n" + a[t:]
+    write_lf(fp, a)
+    print("導線:", slug, "→ /tools/gyomu-kaizen/")
