@@ -131,8 +131,8 @@
   {
    "pref": "山梨",
    "now": 1052,
-   "new": 1108,
-   "kind": "試算",
+   "new": 1113,
+   "kind": "答申",
    "effective": null
   },
   {
@@ -250,9 +250,9 @@
   {
    "pref": "徳島",
    "now": 1046,
-   "new": 1102,
-   "kind": "試算",
-   "effective": null
+   "new": 1103,
+   "kind": "答申",
+   "effective": "2026-11-01"
   },
   {
    "pref": "香川",
@@ -299,9 +299,9 @@
   {
    "pref": "熊本",
    "now": 1034,
-   "new": 1090,
-   "kind": "試算",
-   "effective": null
+   "new": 1092,
+   "kind": "答申",
+   "effective": "2026-12-01"
   },
   {
    "pref": "大分",
@@ -327,9 +327,9 @@
   {
    "pref": "沖縄",
    "now": 1023,
-   "new": 1079,
-   "kind": "試算",
-   "effective": null
+   "new": 1086,
+   "kind": "答申",
+   "effective": "2026-12-02"
   }
  ]
 }

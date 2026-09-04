@@ -41,7 +41,7 @@ def extract_minwage(html):
 
 
 import datetime as dt
-mw = extract_minwage(open(ART, encoding="utf-8").read())
+mw = extract_minwage(open(ART, encoding="utf-8", newline="").read())
 json.dump(mw, open(os.path.join(ROOT, "tools", "minwage_2026.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("47県JSON再生成: 決定%d／答申%d／試算%d" % tuple(sum(p["kind"] == k for p in mw["prefectures"]) for k in ("決定", "答申", "試算")))
 gk = json.load(open(os.path.join(ROOT, "tools", "gyomu_kaizen_2026.json"), encoding="utf-8"))
@@ -54,7 +54,7 @@ FUKUI = next(i for i, p in enumerate(mw["prefectures"]) if p["pref"] == "福井"
 HTML = r'''
 <div class="a-note" id="calc" style="border-left:3px solid var(--accent)">
 <p><strong>御社の数字で計算する——賃上げでいくら増えて、業務改善助成金でいくら戻るか</strong></p>
-<p style="margin-bottom:10px">上の表の自分の県を選び、いまの事業場内の最低時給と人数を入れると、<strong>2026年度の引上げで増える人件費</strong>と、<strong>業務改善助成金を使って設備投資をした場合の助成額・実質負担</strong>が出ます。数字は2026年9月1日時点の答申額（未答申の県は試算）と、厚生労働省の令和8年度交付要綱にもとづきます。</p>
+<p style="margin-bottom:10px">上の表の自分の県を選び、いまの事業場内の最低時給と人数を入れると、<strong>2026年度の引上げで増える人件費</strong>と、<strong>業務改善助成金を使って設備投資をした場合の助成額・実質負担</strong>が出ます。県の額は上の表と同じ時点のもの（決定・答申・試算の別も表のとおり）、助成金の率と上限は厚生労働省の令和8年度交付要綱にもとづきます。</p>
 <div class="calc-grid">
 <label>都道府県<select id="c-pref"></select></label>
 <label>いまの事業場内の最低時給（円）<input type="number" id="c-now" min="800" max="2000" step="1"></label>
@@ -112,7 +112,10 @@ function calc(){
   if(!eligible){html+='<tr><td>業務改善助成金</td><td class="c-ng">対象外の見込み——事業場内最低賃金が2026年度の地域別最低賃金以上のため</td></tr>';}
   else if(!co){html+='<tr><td>業務改善助成金</td><td class="c-ng">この差（'+raise+'円）だけでは50円コースに届きません<br><small>50円以上に上げれば対象。例: '+yen(now+50)+'に上げる（最低賃金より+'+(now+50-target)+'円上乗せ）</small></td></tr>';}
   else{
-    var rate=now<1050?0.8:0.75;var tokurei=now<1050;var cp=cap(co,n,size,tokurei);sub=Math.min(Math.floor(inv*rate),cp||0);var own=inv-sub;
+    var rate=now<1050?0.8:0.75;var tokurei=now<1050;var cp=cap(co,n,size,tokurei);
+    /* 交付要綱: 助成対象経費の下限10万円／助成額は1,000円未満切り捨て（2026-09-04 一次資料で確認） */
+    if(inv<100000){html+='<tr><td>業務改善助成金</td><td class="c-ng">助成対象経費の下限は10万円です（交付要綱）。10万円以上の設備投資で計算してください</td></tr>';html+='</table>';$('c-out').innerHTML=html;$('c-cta').href='/entry?type='+encodeURIComponent('業務改善助成金')+'&memo='+encodeURIComponent('【賃上げ・助成金の試算】'+p[0]+'／2026年度 '+yen(target)+'（'+p[3]+'）／現在 '+yen(now)+'／'+n+'人×'+h+'h／人件費 年'+yen(year)+'／投資額10万円未満');return;}
+    sub=Math.floor(Math.min(inv*rate,cp||0)/1000)*1000;var own=inv-sub;
     html+='<tr><td>コース／助成率／上限</td><td>'+co+'コース／'+(rate===0.8?'4/5':'3/4')+'／'+yen(cp)+'<small>（'+bracket(n,tokurei)+'・'+(size==='s'?'30人未満':'30人以上')+'）</small></td></tr>';
     html+='<tr><td>設備投資 '+yen(inv)+' に対する助成額（目安）</td><td><span class="c-big">'+yen(sub)+'</span></td></tr>';
     html+='<tr><td>実質負担（目安）</td><td>'+yen(own)+'</td></tr>';
@@ -134,7 +137,17 @@ var seen=false;$('c-inv').addEventListener('change',function(){if(!seen&&window.
 HTML = HTML.replace("__P__", P).replace("__C__", C).replace("__FUKUI__", str(FUKUI))
 block = MARK_S + HTML + MARK_E
 
-h = open(ART, encoding="utf-8").read()
+# 改行は LF に固定する。Windows の text モードで書くと記事全体が CRLF に化ける
+# （2026-09-04 に実際に化けた＝348行の記事が丸ごと差分になった）。読み書きとも newline='' で通す
+def read_lf(p):
+    return open(p, encoding="utf-8", newline="").read().replace("\r\n", "\n")
+
+
+def write_lf(p, s):
+    open(p, "w", encoding="utf-8", newline="").write(s)
+
+
+h = read_lf(ART)
 # 既存ブロックは一度外してから、正しい位置に入れ直す（冪等）
 h, n_removed = re.subn(r"\n?" + re.escape(MARK_S) + r".*?" + re.escape(MARK_E), "", h, flags=re.S)
 # 挿入位置＝47県表（5列・1列目が県名）の末尾。「沖縄」の文字列検索だと先に出るランク表
@@ -163,12 +176,12 @@ if "計算機へ</a>" not in h:
 assert "計算機へ</a>" in h
 h = h.replace('<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a>',
               '<div class="float-cta" id="floatCta"><a href="#calc">御社の数字で計算する →</a>', 1)
-open(ART, "w", encoding="utf-8").write(h)
+write_lf(ART, h)
 print("冒頭導線: リード直後 / わかること1行 / 追従CTA→#calc")
 print("記事:", how, "/ dateModified:", re.findall(r'dateModified"\s*:\s*"([^"]+)', h))
 
 # /entry: 種別の追加＋URLパラメータで事前入力（冪等）
-e = open(ENTRY, encoding="utf-8").read()
+e = read_lf(ENTRY)
 opt = '<option value="その他">採用・取材・その他</option>'
 newopt = '<option value="業務改善助成金">賃上げ・業務改善助成金を使った設備投資の相談</option>'
 if newopt not in e:
@@ -185,5 +198,5 @@ if(m){var ta=f.querySelector('[name="お問い合わせ内容"]');if(ta&&!ta.val
 if "q.get('memo')" not in e:
     assert e.count("</body>") == 1
     e = e.replace("</body>", PRE + "</body>", 1)
-open(ENTRY, "w", encoding="utf-8").write(e)
+write_lf(ENTRY, e)
 print("/entry: 種別「業務改善助成金」＋URL事前入力 OK")
