@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方 | NGraphブログ</title>
+<meta name="description" content="1台のPCで2つのAIコーディングツールを併用すると、指示書とスキルが2か所に分かれて必ずズレます。私たちが27個のスキルを両方に読ませている実運用から、原本を1つにする3つの置き方と、壊れる場所、AI自身に前提を確かめさせる仕組みを書きます。">
+<meta property="og:title" content="Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方 | NGraphブログ">
+<meta property="og:description" content="指示書は AGENTS.md を原本にして CLAUDE.md は1行、スキルは1か所にしてリンクで束ねる、フックに安全性を預けない。2つのAIコーディングツールを同じ記録で動かす置き方を、実運用と公式文書から書きます。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260904-claude-code-codex-one-setup">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260904-claude-code-codex-one-setup.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260904-claude-code-codex-one-setup">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方",
+  "image": "https://ngraph.jp/assets/blog/20260904-claude-code-codex-one-setup.jpg",
+  "datePublished": "2026-09-04",
+  "dateModified": "2026-09-04",
+  "author": {"@type": "Person", "name": "髙橋 真吾", "worksFor": {"@type": "Organization", "name": "株式会社NGraph"}},
+  "publisher": {"@type": "Organization", "name": "株式会社NGraph", "logo": {"@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png"}},
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260904-claude-code-codex-one-setup"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "片方のツールしか入っていなくても、この置き方にする意味はありますか", "acceptedAnswer": {"@type": "Answer", "text": "あります。原本を AGENTS.md に置き、CLAUDE.md を1行にしておけば、後からもう片方を入れたときに設定を変えずに済みます。スキルの置き場も同じで、Codex だけの人はリンクの手順を飛ばし、Claude Code を入れた日に1手順足すだけです。"}},
+    {"@type": "Question", "name": "すでに CLAUDE.md がある場合はどうしますか", "acceptedAnswer": {"@type": "Answer", "text": "上書きしません。CLAUDE.md の中身を AGENTS.md に移し、CLAUDE.md には @AGENTS.md の1行と、Claude Code にしか無い機能の注意だけを残します。移す前に差分を人が見て承認する手順にしています。"}},
+    {"@type": "Question", "name": "ChatGPT や Gemini でも同じ仕組みになりますか", "acceptedAnswer": {"@type": "Answer", "text": "この記事の置き方は、リポジトリの中の AGENTS.md と SKILL.md を読むコーディングツールが対象です。Codex は AGENTS.md を読みます。チャット画面の ChatGPT や Gemini はリポジトリのファイルを自動では読まないので、同じ仕組みにはなりません。"}},
+    {"@type": "Question", "name": "2つのツールの受け渡しを無人にできますか", "acceptedAnswer": {"@type": "Answer", "text": "この記事の型では、人が相手のツールを開いて1行言う必要があります。無人にするには依頼の台帳と常駐の実行役が要り、認証切れや二重実行の問題が別に出ます。私たちはそれも別の仕組みで運用していますが、切り替えの基本形には入れていません。"}}
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方</h1>
+  <span class="a-date">2026.09.04 ガイド ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260904-claude-code-codex-one-setup.jpg" alt="Claude Code と Codex を同じ設定で使い分ける。原本を1つにして、ツールが更新されても壊れない置き方">
+
+<p>私たちは1台のPCで、Anthropic の Claude Code と OpenAI の Codex という2つのAIコーディングツールを併用し、27個のスキル（AIに手順を教えるファイル）を両方に読ませています。どちらを開いても同じ会社の記録を読み、同じ手順で仕事をします。この記事は、その置き方を公式文書と実運用の失敗から書いたものです。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・2つのツールを入れると、なぜ設定がズレるのか<br>
+・原本を1つにする3つの置き方と、その根拠<br>
+・壊れる場所を先に知り、AI自身に前提を確かめさせる仕組み</div>
+
+<h2>2つ入れると、なぜズレるのか</h2>
+<p>2つのツールは、読むファイルが違います。指示書は Claude Code が CLAUDE.md、Codex が AGENTS.md。スキルの置き場も、フックと呼ばれる安全装置の設定も、それぞれ別の場所にあります。私たちも最初は、片方の設定をコピーしてもう片方に置きました。ズレはそこから始まります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>読むもの</th><th>Claude Code</th><th>Codex</th></tr>
+<tr><td>指示書</td><td>CLAUDE.md</td><td>AGENTS.md</td></tr>
+<tr><td>スキル</td><td>.claude/skills/</td><td>.agents/skills/</td></tr>
+<tr><td>安全装置（フック）</td><td>settings.json</td><td>hooks.json</td></tr>
+</table></div>
+<p>私たちの環境で実際に起きたことを2つ書きます。1つは、CLAUDE.md の「Claude」を「Codex」に機械置換して AGENTS.md を作ったところ、「Codex API」という存在しないサービス名が文中に生まれていたことです。もう1つは、フックの設定ファイルを8月11日から9月2日までの間に22回作り直していたことです（残っていたバックアップの数）。版が上がって壊れた分と、自分で変えた分の区別は、もうつきません。コピーは必ず古くなり、ツール固有の仕掛けに預けた規則は、いつ消えたか分からなくなります。</p>
+
+<h2>原本を1つにする、3つの置き方</h2>
+<p>ズレの原因が「2か所に同じものがある」ことなら、答えは1か所にすることです。生成も置換もしません。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>何を</th><th>原本</th><th>もう片方</th><th>根拠</th></tr>
+<tr><td>指示書</td><td>AGENTS.md</td><td>CLAUDE.md に <code>@AGENTS.md</code> と1行書く</td><td>Claude Code 公式文書が「AGENTS.md を使う他ツールと共存する形」として明記</td></tr>
+<tr><td>スキル</td><td>.agents/skills/</td><td>.claude/skills を同じ場所へのリンクにする</td><td>Codex 公式文書が「シンボリックリンクを追う」と明記。Windows はジャンクションで管理者権限不要（実測）</td></tr>
+<tr><td>安全装置</td><td>文章と git</td><td>フックは任意。入れても規則は文書側にも書く</td><td>フック設定は壊れやすい（3週間で22回作り直した実測）</td></tr>
+</table></div>
+<p>指示書の本文にはツール名を書きません。「あなた」「このAI」と書き、あるツールだけに要る注意は末尾に節を作って両方から見える場所に置きます。片方だけが知っている規則を作らないためです。Windows でファイルのシンボリックリンクを作るには管理者権限が要りますが、ディレクトリのジャンクションは要りません。Claude Code の公式文書も、Windows では import を使うよう案内しています。</p>
+
+<h2>受け渡しは、ファイルで残す</h2>
+<p>使い分ける最大の利点は、片方に書かせたものをもう片方に見せられることです。ここでプロセスの起動や API を挟むと、認証切れや実行時間の制限で止まります。私たちは依頼を1ファイル、応答を1ファイルにして、人が相手のツールを開いて「依頼を処理して」と1行言う型にしました。状態は依頼ファイルの中に持ち、未着手、着手、完了、失敗の4つだけです。</p>
+<div class="a-note"><strong>相手に仕様書を敵対的に読ませた。</strong>この置き方を仕様書にまとめた日、その仕様書を Codex に渡して「Codex 側から見て不可能・曖昧・危険な手順を挙げよ」と依頼した。返ってきたのは、同じ設定ファイルについて2つの節で矛盾した指示を書いていたこと、受け渡しの状態管理に二重応答と取り違えの穴が5つあること、実測を一般の保証のように書いている行があること。すべて仕様書に反映し、依頼と応答はそのまま受け渡しの記録として残した。</div>
+<p>同じ文書を両方に読ませると、片方が書いたものをもう片方が別の目で読みます。同じ会社が2社の検収を受けるのに近い形になります。</p>
+
+<h2>壊れる場所を、先に書いておく</h2>
+<p>この置き方にも壊れる場所があります。先に知っておけば、壊れたときに原因を探す時間が消えます。</p>
+<ul>
+<li><strong>git はジャンクションを普通のフォルダとして記録する。</strong>そのままコミットすると、clone した先ではスキルが複製になり、原本が2つに戻ります。リンクは git に入れず、clone した人が1手順で作り直す形にします（実測 2026年9月4日）。</li>
+<li><strong>Codex は AGENTS.md を合計 32 KiB で打ち切る。</strong>長い規則は後ろが読まれません。200行以内に収め、手順の詳細はスキルへ移します。</li>
+<li><strong>ツールは月単位で変わる。</strong>今日の公式文書の記述が来月も同じとは限りません。</li>
+</ul>
+<p>3つ目への答えとして、仕様書の冒頭に「鮮度確認」の節を置きました。AIが仕様書を読んだら、まず自分の版を控え、壊れると導入が失敗する前提を5つに絞って公式文書を開き、該当箇所を引用できたものだけ「成立」と判定します。崩れていたら手元の設定だけ直し、仕様書本体は書き換えず、人に渡す報告文を作る決まりです。導入後は指示書に「最後に検収した版」が書かれ、AIは毎回自分の版と比べて、ズレたら人に言われる前に再検収する仕組みにしました。</p>
+<p>導入直後の検収は9項目です。抜き出すと次のようになります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>確認すること</th><th>合格の条件</th></tr>
+<tr><td>自分はどの指示ファイルを読んでいるか</td><td>Claude Code は CLAUDE.md 経由で AGENTS.md の内容、Codex は AGENTS.md</td></tr>
+<tr><td>AGENTS.md の規則にツール名が無いか</td><td>0件</td></tr>
+<tr><td>Claude Code 側のパスでスキルが読めるか</td><td>読める（リンクが解決している）</td></tr>
+<tr><td>リンクが git に入っていないか</td><td><code>git ls-files .claude/skills</code> が空</td></tr>
+<tr><td>受け渡しの見本を読み、手順を3行で言えるか</td><td>状態の遷移と応答の置き場が仕様と一致</td></tr>
+</table></div>
+
+<h2>明日やること</h2>
+<p>やることは3つです。プロジェクトのフォルダで、いま使っているツールを開く。原本にする指示書を AGENTS.md の名前で置き、CLAUDE.md には <code>@AGENTS.md</code> の1行を書く。スキルの置き場を .agents/skills に決め、Claude Code 側をリンクにする。ここまでで、後からもう片方を入れても設定は変わりません。</p>
+<p>この置き方を、AIが読んでそのまま導入し、検収まで自分で行う仕様書の形にまとめました。雛形、受け渡しのスキル、検収の見本をすべて1本の文書に入れてあり、貼れば入ります。<a href="https://note.com/ngraph/n/nc5e5681a8554" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">note で配布しています（有料・1,980円）</a>。</p>
+<p style="font-size:.85rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">会社の記録を複数のAIに同じように読ませる設計は、無料相談で一緒に考えられます →</a></p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>片方のツールしか入っていなくても、この置き方にする意味はありますか</summary><p>あります。原本を AGENTS.md に置き、CLAUDE.md を1行にしておけば、後からもう片方を入れたときに設定を変えずに済みます。スキルの置き場も同じで、Codex だけの人はリンクの手順を飛ばし、Claude Code を入れた日に1手順足すだけです。</p></details>
+<details><summary>すでに CLAUDE.md がある場合はどうしますか</summary><p>上書きしません。CLAUDE.md の中身を AGENTS.md に移し、CLAUDE.md には <code>@AGENTS.md</code> の1行と、Claude Code にしか無い機能の注意だけを残します。移す前に差分を人が見て承認する手順にしています。</p></details>
+<details><summary>ChatGPT や Gemini でも同じ仕組みになりますか</summary><p>この記事の置き方は、リポジトリの中の AGENTS.md と SKILL.md を読むコーディングツールが対象です。Codex は AGENTS.md を読みます。チャット画面の ChatGPT や Gemini はリポジトリのファイルを自動では読まないので、同じ仕組みにはなりません。</p></details>
+<details><summary>2つのツールの受け渡しを無人にできますか</summary><p>この記事の型では、人が相手のツールを開いて1行言う必要があります。無人にするには依頼の台帳と常駐の実行役が要り、認証切れや二重実行の問題が別に出ます。私たちはそれも別の仕組みで運用していますが、切り替えの基本形には入れていません。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>2つのAIコーディングツールを入れると、指示書とスキルが2か所に分かれてズレます。答えは、原本を1つにすること。指示書は AGENTS.md を原本に CLAUDE.md は1行、スキルは1か所にしてリンクで束ね、安全装置はフックに預けず文書と git で持ちます。受け渡しはファイルで残し、壊れる場所は先に書き、ツールの更新はAI自身に前提を確かめさせました。会社の記録をAIの外に置き、どのAIにも同じものを読みに来させる形です。私たちが顧客の現場で作っているものと、同じ形をしています。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">会社の記録を、どのAIにも同じように読ませる形で残します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry?type=%E4%BC%9A%E7%A4%BE%E3%81%AE%E8%84%B3" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Anthropic「<a href="https://code.claude.com/docs/en/memory" target="_blank" rel="noopener">How Claude remembers your project</a>」（Claude Code 公式文書・AGENTS.md の節・2026年9月4日閲覧）<br>
+・OpenAI「<a href="https://learn.chatgpt.com/docs/agent-configuration/agents-md" target="_blank" rel="noopener">AGENTS.md</a>」（Codex 公式文書・2026年9月4日閲覧）<br>
+・OpenAI「<a href="https://learn.chatgpt.com/docs/build-skills" target="_blank" rel="noopener">Build skills</a>」（Codex 公式文書・2026年9月4日閲覧）<br>
+・あわせて読む：<a href="/blog/20260904-juhachu-tenki-ai">受発注の転記をAIに任せても、社員に渡した瞬間に止まる——3か月後も現場で回っている状態にするまでの設計</a>（当ブログ・2026年9月4日夕）<br>
+・あわせて読む：<a href="/blog/20260817-x-algorithm-code">Xのアルゴリズムを公開コードで読む</a>（当ブログ・2026年8月17日ガイド）</div>
+
+<!-- recheck: 2026-10-04 | Claude Code と Codex の公式文書（import 構文・.agents/skills・32KiB・SKILL.md frontmatter）が変わっていないか。変わっていたら本文の表と note の仕様書 §2 を直す -->
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
