@@ -1,0 +1,295 @@
+/* ===== SP専用の構成上書き（2026-09-05） =====
+   PCの構成・部品・文言は触らない。SP（≤900 / ≤768 / ≤640px）だけ、
+   「PCの並びをそのまま縦に積む」のをやめて、スマホの構図に組み替える。
+   すべてのページで ngraph-zen.css / figures.css の後に読む（後勝ち）。
+
+   参考にしたSP（2026-09-05に375px幅で実測）:
+   baigie / 才流 / LIG / Goodpatch / SmartHR / LayerX / ナイル / モノサス / Helpfeel / Stripe / Notion
+   そこから取った6原則:
+     1. ヒーローは絵を先に、文は短く（SmartHR・LayerX・Notion・LIG）
+     2. 見出しは短く、セクションの余白は56px前後（baigie・LayerX）
+     3. 3枚以上のカードは横スワイプ（LIG・ナイル・Goodpatch・Notionのロゴ帯）
+     4. 大きなカードの縦積みは「アイコン左・文字右」の行に（LayerX・baigie・才流）
+     5. 小さな要素は2列に（SmartHR・Helpfeel・Stripe）
+     6. 図解は縦に流さず、中心（会社の脳）の上下に2列で組み替える（SmartHRの同心円図）
+*/
+
+/* ── 0. 共通（見出し・余白・結論） ── */
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .header-inner{padding:0 20px}
+  .section{padding:56px 0}
+  .section-head{margin-bottom:28px;max-width:none}
+  .section-label{font-size:.7rem;letter-spacing:.26em;margin-bottom:10px}
+  .section-title{font-size:clamp(1.35rem,5.6vw,1.6rem);line-height:1.5;margin-bottom:10px}
+  .section-title::after{width:32px;margin-top:14px}
+  .section-sub{font-size:.88rem;line-height:1.85}
+  .fg-statement{font-size:1.08rem;margin-top:22px;line-height:1.7}
+  .fg-rule{margin-top:20px}
+  .fg-note{font-size:.76rem}
+  .footer{padding:40px 0 28px;margin-top:0}
+  /* 左揃えの長文は語句単位(auto-phrase)で折ると狭い幅で行末がガタつく（ブログ抜粋・記事本文・会社概要）。
+     SPでは普通の折返しにし、中央揃えの短文（見出し下・ヒーロー・図解の札）だけ auto-phrase を残す */
+  p,li,dd{word-break:normal}
+  .section-sub,.section-title,.hero p,.fg p,.fg li,.fg-statement,.msg-compact .lead,.contact h2{word-break:auto-phrase}
+  .cta-micro{word-break:keep-all}
+}
+
+/* ── 1. ヒーロー：絵を見出しの直下に（トップ＝脳の線画／fde＝入室の線画） ──
+   .hero-copy を display:contents にして、見出し→絵→本文→CTA の順に並べ替える。 */
+@media(max-width:900px){
+  .hero{padding:88px 0 40px !important}
+  .hero .hero-grid{display:grid;grid-template-columns:1fr;gap:0;text-align:center}
+  .hero .hero-copy{display:contents}
+  .hero .eyebrow,.hero .lp-badge{order:1;justify-self:center;margin:0 auto 14px}
+  .hero .hero-h1{order:2;margin-bottom:8px}
+  .hero .lp-badge~.hero-tagline{order:2;margin-bottom:8px}
+  .hero .hero-visual{order:3;max-width:none;width:100%;margin:0 auto 12px}
+  .hero .hero-visual img{max-height:min(56vw,270px);object-position:center}
+  .hero .hero-tagline{order:4;font-size:.95rem;line-height:1.85;margin:0 auto 18px;max-width:34em}
+  .hero .lp-badge~.hero-tagline{font-size:clamp(1.55rem,7vw,1.9rem);line-height:1.45;max-width:none}
+  .hero p.lead{order:4;font-size:.92rem;line-height:1.85;margin:0 auto 18px;max-width:34em}
+  .hero .hero-cta{order:5;margin-top:0}
+  .hero .cta-micro{order:6;margin-top:10px;font-size:.76rem}
+  .hero .hero-trust{order:7;margin-top:14px;gap:6px 14px;justify-content:center}
+  .hero .hero-trust>span,.hero .hero-trust span{font-size:.72rem}
+  .hero .hero-trust svg{width:13px;height:13px}
+}
+@media(max-width:640px){
+  .hero .hero-h1{font-size:clamp(1.55rem,7.4vw,1.8rem);line-height:1.35}
+  /* fde: 3つの安心は1行ずつ・左揃えの小さな列に */
+  .hero .lp-badge~.hero-trust{flex-direction:column;align-items:center;gap:4px}
+  .hero .lp-badge~.hero-trust span{align-items:flex-start;text-align:left;max-width:100%}
+  .hero .lp-badge~.hero-trust svg{margin-top:3px}
+}
+
+/* ── 2. 課題（前日／翌日の2場面） ── */
+@media(max-width:640px){
+  .fg-problem .pb-stage{gap:12px}
+  .fg-problem .pb-cap{font-size:.88rem;letter-spacing:.08em}
+  .fg-problem .pb-lead{font-size:1.15rem;margin-top:12px}
+  .fg-problem .pb-sym{margin-top:10px}
+  .fg-problem .fg-rule{margin-top:18px}
+}
+
+/* ── 3. 所有（自分のAI → 会社の脳） ── */
+@media(max-width:640px){
+  .fg-own{gap:8px}
+  .fg-own .own-tag{font-size:.92rem;margin-bottom:6px}
+  .fg-own .own-cap{font-size:.88rem;margin-top:8px}
+  .fg-own .own-ais{font-size:.8rem;margin-top:8px;padding-top:8px}
+}
+
+/* ── 4. 全体構図：縦1列 → 「入口2列 ↓ 会社の脳 ↓ 出口2列」に組み替え ── */
+@media(max-width:640px){
+  .fg-structure .st-head{margin-bottom:12px}
+  .fg-structure .st-hc{font-size:.9rem;letter-spacing:.08em}
+  .fg-structure .st-body{row-gap:6px}
+  .fg-structure .st-body::before,.fg-structure .st-body::after{display:none}
+  .fg-structure .st-side{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch}
+  .fg-structure .st-write::before,.fg-structure .st-read::before{grid-column:1/-1;font-size:.8rem;letter-spacing:.22em;color:var(--sub);padding-bottom:4px;margin-bottom:0}
+  .fg-structure .st-item{width:auto;align-items:flex-start;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 12px 10px;line-height:1.45}
+  .fg-structure .st-no{font-size:.76rem;letter-spacing:.16em}
+  .fg-structure .st-item strong{font-size:1rem;letter-spacing:.04em;margin-bottom:5px}
+  .fg-structure .st-d,.fg-structure .st-r{font-size:.78rem;line-height:1.55}
+  .fg-structure .st-r{margin-top:4px}
+  .fg-structure .st-lbl{font-size:.8rem;padding:0}
+  .fg-structure .st-lbl::before{font-size:1rem;margin-bottom:2px}
+  .fg-structure .st-hub{width:min(56vw,210px)}
+  .fg-structure .st-hub-ic{width:30px;height:26px;margin-bottom:4px}
+  .fg-structure .st-hub-cap{font-size:.8rem;letter-spacing:.14em}
+  .fg-structure .st-hub strong{font-size:1.45rem;margin:0 0 4px;letter-spacing:.1em}
+  .fg-structure .st-hub-sub{font-size:.74rem;line-height:1.4}
+  .fg-structure .st-foot{padding-top:10px;margin-top:4px}
+  .fg-structure .st-loop{font-size:.82rem}
+  .fg-structure .fg-rule{margin-top:20px}
+}
+
+/* ── 5. 定義（ABC整理 × 状態整理） ── */
+@media(max-width:640px){
+  .fg-definition .def-lead{font-size:.84rem;margin-bottom:6px;letter-spacing:.02em}
+  .fg-definition .def-title{font-size:1.5rem;margin-bottom:12px}
+  .fg-definition .def-table tbody th{padding:10px 12px 6px;font-size:1rem}
+  .fg-definition .def-table tbody td{padding:7px 12px;font-size:.88rem}
+  .fg-definition .def-table tbody td::before{flex-basis:7.6em;font-size:.76rem}
+  .fg-definition .def-rules{margin-top:18px}
+  .fg-definition .def-rules .cap{font-size:.95rem;margin-bottom:6px}
+  .fg-definition .def-rules li{padding:9px 6px}
+  .fg-definition .def-rules strong{font-size:1rem}
+  .fg-definition .def-rules li>span{font-size:.84rem}
+}
+
+/* ── 6. 実現例：質問はチャット風の左寄せ、答え3枚は横スワイプ ── */
+@media(max-width:640px){
+  .fg-enables .en-q{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .fg-enables .en-bubble{min-height:0;padding:8px 14px;text-align:left;border-radius:14px 14px 14px 4px;max-width:88%;flex-direction:row;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .fg-enables .en-bubble::before,.fg-enables .en-bubble::after{display:none}
+  .fg-enables .en-bubble small{font-size:.68rem;letter-spacing:.08em;white-space:nowrap}
+  .fg-enables .en-bubble strong{font-size:.95rem}
+  .fg-enables .en-brain{margin-top:14px;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"ic t" "ic d";column-gap:12px;row-gap:2px;text-align:left;padding:12px 14px;align-items:center}
+  .fg-enables .en-brain .fg-ic{grid-area:ic;width:44px;height:40px}
+  .fg-enables .en-brain strong{grid-area:t;font-size:1.15rem;letter-spacing:.06em}
+  .fg-enables .en-brain .desc{grid-area:d;width:auto;font-size:.8rem;line-height:1.5}
+  .fg-enables .en-arrows{grid-template-columns:1fr;margin:6px 0 0}
+  .fg-enables .en-arrows span:nth-child(n+2){display:none}
+  .fg-enables .en-ans{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:8px -20px 0;padding:2px 20px 10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .fg-enables .en-ans::-webkit-scrollbar{display:none}
+  .fg-enables .en-card{flex:0 0 78%;scroll-snap-align:start;min-height:0;padding:16px 16px 18px}
+  .fg-enables .en-cap{font-size:1.05rem;margin-bottom:14px}
+  .fg-enables .en-card:has(.en-bars){padding-bottom:40px}
+  .fg-enables .en-bars .bar{height:96px}
+  .fg-enables .en-band{margin-top:10px;padding:10px 12px}
+  .fg-enables .en-band>span{padding:5px 0}
+  .fg-enables .en-band .t,.fg-enables .en-band .d{font-size:.9rem}
+  .fg-enables .en-band .logos img,.fg-enables .en-band .logos .k,.fg-enables .en-band .logos .lk{width:22px;height:22px;line-height:22px}
+}
+
+/* ── 7. 納品物：大カード3枚の縦積み → 「番号・アイコン左／文字右」の行3本 ── */
+@media(max-width:700px){
+  .fg-deliver .dl-sheet{padding:16px 14px 14px}
+  .fg-deliver .dl-head{margin-bottom:12px;font-size:1rem;gap:12px}
+  .fg-deliver .dl-cards{row-gap:10px}
+  .fg-deliver .dl-card{display:grid;grid-template-columns:auto 56px 1fr;column-gap:12px;row-gap:1px;align-items:center;text-align:left;padding:12px 40px 12px 12px}
+  .fg-deliver .dl-no{grid-column:1;grid-row:1/4;font-size:1.05rem;border-bottom:none;margin:0;padding:0;line-height:1}
+  .fg-deliver .dl-ic,.fg-deliver .dl-ic-shield,.fg-deliver .dl-ic-plug{grid-column:2;grid-row:1/4;width:56px;height:44px;margin:0;display:flex;align-items:center;justify-content:center}
+  .fg-deliver .dl-ic svg{width:100%;height:100%}
+  .fg-deliver .dl-card strong{grid-column:3;font-size:1.05rem;letter-spacing:.08em;margin-bottom:2px}
+  .fg-deliver .dl-d{grid-column:3;font-size:.8rem;line-height:1.5}
+  .fg-deliver .dl-fold{width:26px;height:26px}
+  .fg-deliver .dl-band{padding:10px 14px;gap:10px}
+  .fg-deliver .dl-ribbon{width:28px;height:40px}
+  .fg-deliver .dl-band p{font-size:.95rem}
+}
+
+/* ── 8. 体制（2人） ── */
+@media(max-width:640px){
+  .fg-team{gap:14px}
+  .fg-team .tm-center{margin:0}
+  .fg-team .tm-link{margin-bottom:2px}
+  .fg-team .tm-ic{width:48px;height:48px}
+  .fg-team .tm-ic svg{width:26px;height:26px}
+  .fg-team .tm-lead{font-size:1rem}
+  .fg-team .tm-sub{font-size:.8rem}
+  .fg-team .tm-name{font-size:1.35rem}
+  .fg-team .tm-tag{font-size:1.05rem;margin-top:10px;padding-top:10px}
+  .fg-team .tm-list{margin-top:6px}
+  .fg-team .tm-list li{font-size:.82rem}
+}
+
+/* ── 9. プロダクト一覧・締め・代表の一言（トップ） ── */
+@media(max-width:640px){
+  .prod-list li>a,.prod-list li{padding:12px 4px;gap:2px}
+  .pl-desc{font-size:.82rem;line-height:1.7}
+  .contact{padding:30px 20px 26px}
+  .contact h2{font-size:1.3rem;margin-bottom:12px}
+  .contact p{text-align:left;font-size:.9rem;line-height:1.9;margin-bottom:18px}
+  .contact p .nb,.msg-compact p .nb,.vs-note .nb,.mid-cta p .nb{display:inline;word-break:normal}
+  .contact-btns{flex-direction:column;gap:10px}
+  .contact-btns .btn{width:100%;justify-content:center}
+  .msg-compact{padding:26px 20px}
+  .msg-compact .lead{font-size:1.05rem;margin-bottom:12px}
+  .msg-compact p{font-size:.88rem;line-height:1.95;margin-bottom:14px}
+  .message-card .sign{flex-wrap:wrap;justify-content:flex-start;gap:8px 10px;margin-top:18px;font-size:.78rem}
+  .message-card .sign>*{flex-shrink:0}
+  .message-card .sign strong{white-space:nowrap}
+  .msg-link{margin-left:auto;white-space:nowrap}
+  .ask{margin-top:28px}
+  .ask-title{font-size:1.15rem}
+  .ask-sub{font-size:.8rem}
+}
+
+/* ── 10. fde：4ステップは「絵左・文字右」の行に、Projectの階段は2列 ── */
+@media(max-width:640px){
+  .fg-fde .fde-flow{font-size:.9rem}
+  .fg-fde .fde-steps{gap:8px;margin-top:16px}
+  .fg-fde .fde-steps li{display:grid;grid-template-columns:72px 1fr;grid-template-areas:"ic step" "ic t" "ic d";column-gap:12px;row-gap:2px;text-align:left;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .fg-fde .fde-steps .fg-ic.fd-ill{grid-area:ic;width:72px;height:64px;margin:0;align-items:center}
+  .fg-fde .fde-steps .step{grid-area:step;font-size:.68rem;letter-spacing:.18em}
+  .fg-fde .fde-steps strong{grid-area:t;font-size:1.08rem;line-height:1.3}
+  .fg-fde .fde-steps p{grid-area:d;font-size:.8rem;line-height:1.55}
+  .fg-fde .fde-return{margin-top:14px;padding-top:10px}
+  .fg-fde .fde-return span{font-size:.8rem}
+  .fg-fde+.fg-statement{margin-top:24px}
+
+  .fg-model .model-grid{gap:8px}
+  .fg-model .model-lab{padding-top:6px}
+  .fg-model .model-lab strong{font-size:1.05rem}
+  .fg-model .model-card,.fg-model .model-card.after{padding:12px 14px 12px}
+  .fg-model .model-card .ttl{font-size:1rem;padding-bottom:6px;margin-bottom:6px}
+  .fg-model .model-card p{font-size:.84rem;line-height:1.65}
+  .fg-model .model-side{margin-bottom:8px}
+  .fg-model .model-ex{padding:10px 14px}
+  .fg-model .model-ex p{font-size:.84rem;line-height:1.65}
+  .fg-model .model-chart{padding-top:10px}
+
+  .fg-process .pr-formula{font-size:.84rem;margin-bottom:10px}
+  .fg-process .pr-steps{grid-template-columns:1fr 1fr;gap:8px}
+  .fg-process .pr-step{padding:12px 8px 10px;gap:2px}
+  .fg-process .pr-ic{width:36px;height:32px;margin-bottom:2px}
+  .fg-process .pr-ic svg{width:34px;height:30px}
+  .fg-process .pr-k{font-size:.66rem;letter-spacing:.12em}
+  .fg-process .pr-t{font-size:1rem}
+  .fg-process .pr-d{font-size:.74rem;line-height:1.5}
+  .fg-process .pr-e{font-size:.72rem;padding-top:6px;white-space:normal}
+  .fg-process .pr-base{padding:12px 14px;margin-top:8px}
+  .fg-process .pr-base-t{font-size:1.15rem}
+  .fg-process .pr-base-d{font-size:.8rem;line-height:1.6}
+  .fg-process .pr-note{font-size:.78rem;margin-top:10px}
+  .fg-process+.fg-statement{margin-bottom:28px}
+
+  .fg-estimate .est-card{padding:14px 14px 12px}
+  .fg-estimate .est-top{padding-bottom:10px;margin-bottom:8px;gap:10px}
+  .fg-estimate .est-top .fg-ic{width:40px;height:40px}
+  .fg-estimate .est-ttl strong{font-size:1.05rem}
+  .fg-estimate .est-q{font-size:.8rem}
+  .fg-estimate .est-card ul{gap:6px}
+  .fg-estimate .est-card li{font-size:.86rem}
+  .fg-estimate .est-phase{margin-bottom:8px}
+}
+@media(max-width:768px){
+  /* 3枚カード（完了条件／固定価格／2本目〜・土台／Project／まず無料相談）は左に朱の線を引いた行に */
+  .trio,.engage{display:grid;grid-template-columns:1fr;gap:10px}
+  .trio .card,.engage .card{padding:14px 16px;border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
+  .proc-trio h3,.engage .card h3{font-size:.98rem !important;margin-bottom:5px !important}
+  .proc-trio p,.engage .card p{font-size:.82rem !important;line-height:1.75 !important}
+  .vs-note{font-size:.8rem;margin-top:16px;text-align:left}
+  .mid-cta{margin-top:30px}
+  .mid-cta p{font-size:.88rem;text-align:left}
+  .mid-cta .btn{width:100%;justify-content:center}
+  .quiz-wrap{padding:22px 16px}
+  .q-text{font-size:1rem;margin-bottom:16px}
+  .q-opts button{padding:12px 14px;font-size:.86rem}
+  .q-inds{grid-template-columns:1fr 1fr;gap:8px}
+  .q-inds button{font-size:.8rem;padding:10px 8px;line-height:1.45}
+  .trust-grid{padding:22px 18px;gap:16px}
+  .trust-grid .trust-photo{width:150px}
+  .trust-cap{white-space:nowrap}
+  .trust-body h3{font-size:1.05rem;margin-bottom:8px}
+  .trust-body p{font-size:.84rem;line-height:1.8;margin-bottom:10px}
+  .trust-list li{font-size:.84rem;line-height:1.8;margin-bottom:2px}
+  .dl-wrap{padding:22px 18px;gap:16px}
+  .dl-thumb{width:150px}
+  .dl-body h3{font-size:1.05rem;line-height:1.6}
+  .dl-body>p{font-size:.84rem;line-height:1.8;margin-bottom:12px}
+  .dl-points{margin-bottom:16px}
+  .dl-points li{font-size:.82rem}
+  .faq-list details{padding:0 14px}
+  .faq-list summary{font-size:.9rem;padding:13px 0;padding-right:26px}
+  .faq-list details p{font-size:.84rem;line-height:1.85;padding-bottom:14px}
+  .lp-form{padding:22px 16px}
+  .case-feature{padding:20px 16px}
+}
+
+/* ── 11. 会社概要・その他の下層 ── */
+@media(max-width:640px){
+  .page-hero{padding:96px 0 20px}
+  .page-hero h1{font-size:1.5rem}
+  .mission-card,.message-card{padding:26px 20px}
+  .mission-card{text-align:left}
+  .mission-card h2{font-size:1.15rem;text-align:center;margin-bottom:14px}
+  .mission-card p{font-size:.88rem;line-height:1.95}
+  .team{gap:12px}
+  .team .card{padding:22px 20px}
+  .about-table th{padding:14px 18px 0}
+  .about-table td{padding:4px 18px 14px;line-height:1.8}
+}
