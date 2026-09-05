@@ -33,6 +33,8 @@
   p,li,dd{word-break:normal}
   .section-sub,.section-title,.hero p,.fg p,.fg li,.fg-statement,.msg-compact .lead,.contact h2{word-break:auto-phrase}
   .cta-micro{word-break:keep-all}
+  /* Safari/Firefox は auto-phrase 未対応で語の途中で折れる。js/jp-wrap.js（BudouX）が語句の切れ目に
+     ゼロ幅スペースを入れて .bdx を付けるので、切れ目以外では折らせない（PC・SP共通・下の共通ブロック） */
 }
 
 /* ── 1. ヒーロー：絵を見出しの直下に（トップ＝脳の線画／fde＝入室の線画） ──
@@ -197,7 +199,7 @@
   .contact{padding:30px 20px 26px}
   .contact h2{font-size:1.3rem;margin-bottom:12px}
   .contact p{text-align:left;font-size:.9rem;line-height:1.9;margin-bottom:18px}
-  .contact p .nb,.msg-compact p .nb,.vs-note .nb,.mid-cta p .nb{display:inline;word-break:normal}
+  .contact p .nb,.msg-compact p .nb,.vs-note .nb,.mid-cta p .nb{display:inline}
   .contact-btns{flex-direction:column;gap:10px}
   .contact-btns .btn{width:100%;justify-content:center}
   .msg-compact{padding:26px 20px}
@@ -266,7 +268,7 @@
   .trio .card,.engage .card{padding:14px 16px;border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
   .proc-trio h3,.engage .card h3{font-size:.98rem !important;margin-bottom:5px !important}
   .proc-trio p,.engage .card p{font-size:.82rem !important;line-height:1.75 !important}
-  .trio .card p .nb,.engage .card p .nb{display:inline;word-break:normal}
+  .trio .card p .nb,.engage .card p .nb{display:inline}
   .vs-note{font-size:.8rem;margin-top:16px;text-align:left}
   .mid-cta{margin-top:30px}
   .mid-cta p{font-size:.88rem;text-align:left}
@@ -308,3 +310,6 @@
   .about-table th{padding:14px 18px 0}
   .about-table td{padding:4px 18px 14px;line-height:1.8}
 }
+
+/* ── 12. 語句単位の折返し（js/jp-wrap.js が付ける .bdx。全幅共通） ── */
+.bdx{word-break:keep-all;overflow-wrap:anywhere}
