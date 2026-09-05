@@ -5,7 +5,10 @@
   "compatibility_date": "2026-08-01",
   "assets": {
     "directory": ".",
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    // 2026-09-05: HTMLに js/jp-wrap.js を差し込むため、静的ファイルも worker を通す
+    // （既定はファイルが在るURLは worker を素通りし、worker.js の HTMLRewriter が動かない）
+    "run_worker_first": true
   },
   "observability": {
     "enabled": true
