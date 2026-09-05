@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計 | NGraphブログ</title>
+<meta name="description" content="AIがどれだけ速くシフト案を出しても、確定した後の変更には本人の同意が要ります。厚生労働省の留意事項と毎月勤労統計から、AIを入れても止まる理由3つと、現場に入って先に決めておけば3か月後も回り続ける設計を書きます。">
+<meta property="og:title" content="AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計 | NGraphブログ">
+<meta property="og:description" content="シフト表は予定表ではなく労働条件そのものに触れる書類です。確定より後ろの説明・合意・組み直し・勤怠との突合はAIに渡っていません。止まる理由3つと、止めない設計を一次情報から書きます。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260905-shift-kintai-ai">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260905-shift-kintai-ai.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260905-shift-kintai-ai">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-table td:first-child{white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計",
+  "image": "https://ngraph.jp/assets/blog/20260905-shift-kintai-ai.jpg",
+  "description": "AIがどれだけ速くシフト案を出しても、確定した後の変更には本人の同意が要ります。厚生労働省の留意事項と毎月勤労統計から、AIを入れても止まる理由3つと、現場に入って先に決めておけば3か月後も回り続ける設計を書きます。",
+  "datePublished": "2026-09-05",
+  "dateModified": "2026-09-05",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260905-shift-kintai-ai",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "AIが組んだシフトを、確定した後に店長の判断だけで変更できますか", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。厚生労働省の留意事項は、一旦確定した労働日や労働時間等の変更は基本的に労働条件の変更に該当し、使用者と労働者双方の合意が必要だとしています。AIが出した変更案も、本人の同意を得るまでは確定しません。"}},
+  {"@type": "Question", "name": "自社がシフト制に当たるかどうかは何で見分けますか", "acceptedAnswer": {"@type": "Answer", "text": "労働契約の締結時点で労働日・労働時間が確定しているかで見分けます。確定しておらず、一定期間ごとに作るシフト表で初めて決まる働き方が留意事項の言うシフト制で、三交替勤務のようにあらかじめ決まったパターンを組み合わせるだけの働き方は除かれます。"}},
+  {"@type": "Question", "name": "パートタイム労働者比率が高い業種は、シフト制で働く人が多いと言えますか", "acceptedAnswer": {"@type": "Answer", "text": "比率とシフト制の有無は別の統計です。毎月勤労統計調査はパートタイム労働者比率を数えていますが、シフト制で働いているかどうかは調べていません。比率が高い業種ほど、シフト表を作る現場が多いと考えられます。"}},
+  {"@type": "Question", "name": "AIにシフトの希望収集からやらせれば、担当者の仕事は減りますか", "acceptedAnswer": {"@type": "Answer", "text": "希望を集める前段の仕組みを変えないままAIを入れると、担当者がAI用に希望を転記する仕事が新しく増え、前より遅くなることがあります。希望の集め方自体を設計し直す必要があります。"}},
+  {"@type": "Question", "name": "AIが作ったシフト表を、勤怠の記録として使ってもいいですか", "acceptedAnswer": {"@type": "Answer", "text": "いいえ。労働時間の適正な把握のためのガイドラインは、始業・終業時刻の確認と記録を、タイムカードなど客観的な記録を基礎に行うことを原則としています。シフトは予定であり、実績の記録の代わりにはなりません。"}},
+  {"@type": "Question", "name": "業務改善助成金はシフト作成のAIシステムに使えますか", "acceptedAnswer": {"@type": "Answer", "text": "事業場内最低賃金の引上げなど交付要件を満たし、労働局の交付決定を受けた後に導入すれば、対象経費として使える場合があります。助成率や上限額は引上げ前の賃金水準や引き上げる人数によって変わるため、自社の場合は計算機で確認してください。"}},
+  {"@type": "Question", "name": "3か月で成果が出なかったら、どうすればいいですか", "acceptedAnswer": {"@type": "Answer", "text": "まず担当者の仕事が実際に減っているかを確認します。確認・差し戻し・二重入力の手間が担当者側に残ったままなら、シフトの作成・変更・設定のルール整備からやり直します。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計</h1>
+  <span class="a-date">2026.09.05 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260905-shift-kintai-ai.jpg" alt="AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計">
+
+<p>AIがシフトの候補をどれだけ速く出しても、いったん確定した後の変更には使用者と労働者双方の合意が必要だ。厚生労働省の留意事項（令和4年1月7日公表）にそう書かれている。だからAIにシフトを組ませても、確定より後ろの工程——説明・合意・組み直し・勤怠との突合——は担当者にそのまま残り、AIを入れた分だけ仕事が増えてしまう。厚生労働省「毎月勤労統計調査」2026年（令和8年）6月分確報を見ると、宿泊業，飲食サービス業のパートタイム労働者比率は78.26%で、調査産業計31.35%の2倍を超えていた。シフトが組まれる現場は、この業種に集中する。この記事では、AIにシフトを任せても止まる理由を3つに分解し、現場に入って先に決めておけば3か月後も回り続ける設計を書く。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・シフトが組まれる現場が、どんな業種に集中しているか<br>
+・AIにシフトを組ませても止まる理由3つ——担当者から見て何が増えるか<br>
+・止めない設計の決めごとと、3か月後に残る成果物の形</div>
+
+<h2>シフトを組む仕事は、パートが8割の産業に集中している</h2>
+<p>シフト表を作る仕事が、どんな業種に集中しているかを見る。厚生労働省「毎月勤労統計調査 全国調査」2026年（令和8年）6月分確報（事業所規模5人以上）は、産業ごとに常用雇用に占めるパートタイム労働者の比率を毎月公表している。パートタイム労働者比率が高いことがそのままシフト制で働く人の比率を意味するわけではない。ただ、パートタイムの働き方の多くは、あらかじめ決まった勤務パターンではなく、一定期間ごとに作成される勤務シフトで労働日や時間を確定させる。比率が高い業種ほど、シフト表を日常的に作る現場が多いと見てよい。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">シフトが組まれる現場は、パートが8割の宿泊業・飲食サービス業に集中している</p>
+<svg viewBox="0 0 1200 666" width="100%" style="min-width:640px" role="img" aria-label="シフトが組まれる現場は、パートが8割の宿泊業・飲食サービス業に集中している"><text x="379" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">宿泊業，飲食サービス業</text><rect x="397" y="50" width="603" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">78.26%</text><text x="379" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">生活関連サービス業，娯楽業</text><rect x="397" y="102" width="379" height="34" rx="2" fill="#a63a24"/><text x="788" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">49.23%</text><text x="379" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">卸売業，小売業</text><rect x="397" y="154" width="342" height="34" rx="2" fill="#a63a24"/><text x="751" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">44.48%</text><text x="379" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">医療，福祉</text><rect x="397" y="206" width="261" height="34" rx="2" fill="#cfc5b4"/><text x="670" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">33.88%</text><text x="379" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">教育，学習支援業</text><rect x="397" y="258" width="259" height="34" rx="2" fill="#cfc5b4"/><text x="668" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">33.67%</text><text x="379" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">調査産業計</text><rect x="397" y="310" width="241" height="34" rx="2" fill="#cfc5b4"/><text x="650" y="336" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">31.35%</text><text x="379" y="387" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">サービス業（他に分類されないもの）</text><rect x="397" y="362" width="231" height="34" rx="2" fill="#cfc5b4"/><text x="640" y="388" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">30.00%</text><text x="379" y="439" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">製造業</text><rect x="397" y="414" width="98" height="34" rx="2" fill="#cfc5b4"/><text x="507" y="440" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">12.77%</text><text x="379" y="491" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">建設業</text><rect x="397" y="466" width="41" height="34" rx="2" fill="#cfc5b4"/><text x="450" y="492" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">5.34%</text><text x="379" y="543" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">情報通信業</text><rect x="397" y="518" width="35" height="34" rx="2" fill="#cfc5b4"/><text x="444" y="544" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">4.63%</text><text x="600.0" y="608.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">宿泊業，飲食サービス業のパートタイム労働者比率は78.26%で、調査産業計31.35%の2倍を超える</text><text x="8" y="650" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：厚生労働省 毎月勤労統計調査 全国調査 2026年（令和8年）6月分確報（事業所規模5人以上）</text></svg>
+</div>
+<p>宿泊業，飲食サービス業のパートタイム労働者比率は78.26%で、調査産業計31.35%を47ポイント近く上回る。生活関連サービス業，娯楽業は49.23%、卸売業，小売業は44.48%と4割を超え、医療，福祉は33.88%、教育，学習支援業は33.67%と続く。製造業は12.77%、建設業は5.34%、情報通信業は4.63%と1割に届かず、シフトが組まれる現場は業種によって大きな差がある。</p>
+<p>宿泊業，飲食サービス業の常用雇用は4,645千人で、その内訳を見ると事業の作りがさらにはっきりする。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">宿泊業，飲食サービス業の常用雇用は、8割弱がパートタイム労働者</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="宿泊業，飲食サービス業の常用雇用は、8割弱がパートタイム労働者"><rect x="130.0" y="229" width="735.6" height="92" fill="#a63a24"/><text x="497.80409041980624" y="285.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#f6f2e9" font-weight="900" text-anchor="middle">3635千人</text><text x="497.80409041980624" y="363" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">パートタイム労働者</text><line x1="497.8" y1="327" x2="497.8" y2="345" stroke="#8a8172" stroke-width="1"/><rect x="865.6" y="229" width="204.4" height="92" fill="#cfc5b4"/><text x="967.8040904198062" y="285.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#2b2620" font-weight="900" text-anchor="middle">1010千人</text><text x="967.8040904198062" y="397" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">一般労働者</text><line x1="967.8" y1="327" x2="967.8" y2="379" stroke="#8a8172" stroke-width="1"/><rect x="130" y="229" width="940" height="92" fill="none" stroke="#2b2620" stroke-width="1.2"/><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">就業形態計4,645千人のうち、パートタイム労働者は3,635千人</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：厚生労働省 毎月勤労統計調査 全国調査 2026年（令和8年）6月分確報（宿泊業，飲食サービス業）</text></svg>
+</div>
+<p>就業形態計4,645千人のうち、パートタイム労働者は3,635千人、一般労働者は1,010千人である。シフトを組む対象は、一般労働者を含めた現場全体であり、パートタイム労働者だけの話ではない。</p>
+
+<h2>「シフト制で働く人が何人か」を数えた統計は無い</h2>
+<p>シフト制という言葉には、厚生労働省の定義がある。「いわゆる『シフト制』により就業する労働者の適切な雇用管理を行うための留意事項」（令和4年1月7日公表）は、シフト制を「労働契約の締結時点では労働日や労働時間を確定的に定めず、一定期間（１週間、１か月など）ごとに作成される勤務シフトなどで、初めて具体的な労働日や労働時間が確定するような勤務形態」と定義した。三交替勤務のように、年や月などの一定期間における労働日数や労働時間数が決まっていて、就業規則等に定められた勤務時間のパターンを組み合わせて勤務する形態は、この定義から除かれる。</p>
+<p>一方で、この定義に当てはまる労働者が全国に何人いるかを数えた統計は無い。毎月勤労統計調査が産業ごとに公表しているのはパートタイム労働者比率であって、その労働者がシフト制で働いているかどうかまでは調べていない。定義を持っているのは留意事項で、人数を数えているのは毎月勤労統計という、別々の資料が別々のことを指している。だから「シフト制で働く人は◯%」という数字は、どちらの統計からも作れない。</p>
+<p>自社がこの留意事項の言う「シフト制」に当たるかどうかは、次の1問で見分けられる。労働契約を結ぶ時点で、労働日と労働時間があらかじめ確定しているか。確定しておらず、月ごとや週ごとに作るシフト表で初めて決まるなら、留意事項の対象になる。早番・遅番・夜勤のようにあらかじめ決まったパターンを組み合わせているだけなら、留意事項の対象からは外れる。</p>
+
+<h2>AIにシフトを組ませても止まる理由3つ</h2>
+<p>シフトの候補作りをAIに任せる、とは、希望や必要人数を読み込んで組み合わせを計算する処理に、労働者の希望表を通すことだ。導入すると聞けば担当者の仕事が減るように聞こえるが、実際に増えるのは担当者の説明と確認と責任である。理由を3つに分けて見る。</p>
+<h3>覚えさせても——確定後の変更には、本人の同意が要る</h3>
+<p>留意事項は「一旦確定した労働日や労働時間等の変更は、基本的に労働条件の変更に該当し、使用者と労働者双方の合意が必要である点に留意してください」と書く。AIが出したシフト案は、確定するまでは案でしかない。確定した後にAIが自動で人員を差し替えても、本人の同意を取っていなければ、その変更は労働条件の変更という原則の外に出てしまう。同意を取る、断られたら組み直す、組み直した結果をまた説明する——この一連の仕事は、AIには渡っていない。</p>
+<h3>希望の集め方を変えないと、前段が担当者の新しい仕事になる</h3>
+<p>留意事項は、シフトの「作成」にあたって決めておくことが考えられるルールとして、「シフトの作成時に、事前に労働者の意見を聞くこと」「シフトの通知期限」「シフトの通知方法」を挙げた。AIに候補を作らせるとしても、その前提として労働者の希望を集める作業がまず要る。これまで口頭や紙で本人から直接担当者へ伝わっていた希望を、AIが読み込める形式にまとめ直す仕事は、希望の集め方そのものを変えない限り、担当者の新しい仕事として積み上がってしまう。前段を変えずにAIだけ入れると、転記が増えて前より遅くなる。</p>
+<h3>予定と実績がつながっていないので、担当者が二重に入力する</h3>
+<p>厚生労働省「労働時間の適正な把握のために使用者が講ずべき措置に関するガイドライン」は、始業・終業時刻の確認及び記録の原則的な方法として、「使用者が、自ら現認することにより確認し、適正に記録すること」と「タイムカード、ＩＣカード、パソコンの使用時間の記録等の客観的な記録を基礎として確認し、適正に記録すること」の2つを挙げている。AIが作ったシフト表はあくまで予定であり、この原則が求める実績の記録の代わりにはならない。予定表と勤怠の記録がつながっていなければ、担当者は同じ内容を2か所に入力し、ずれがないかを毎回突き合わせる仕事を負う。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>記録の方法</th><th>内容</th><th>位置づけ</th></tr>
+<tr><td>現認</td><td>使用者が自ら確認して記録する</td><td>原則的な方法の1つ</td></tr>
+<tr><td>客観的な記録</td><td>タイムカード・ICカード・パソコンの使用時間の記録等</td><td>原則的な方法の1つ</td></tr>
+<tr><td>自己申告制</td><td>労働者本人が申告する。実態との乖離があれば実態調査・補正等の措置を講じる</td><td>原則によれない場合に限る方法</td></tr>
+</table></div>
+<p style="font-size:.85rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">担当者の仕事を増やさないシフト運用を、無料相談で一緒に考えられます →</a></p>
+
+<h2>止めない設計——現場に入って先に決める3つ</h2>
+<p>担当者の仕事を増やさない。これが止めない設計の一行目である。留意事項は、決めておくことが考えられるルールを「作成」「変更」「設定」の3区分で示しており、この3区分がそのまま設計図になる。現場に入った外の人間が、この3区分のルールを先に決め、担当者の頭の中に置かれていたものを表や仕組みに移す。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>区分</th><th>決めておくルールの例</th></tr>
+<tr><td>作成</td><td>シフトの作成時に事前に労働者の意見を聞くこと／シフトの通知期限（例：毎月〇日）／シフトの通知方法（例：電子メール等で通知）</td></tr>
+<tr><td>変更</td><td>確定前に変更する場合の申出の期限・手続／確定後にキャンセル・変更する場合の期限・手続</td></tr>
+<tr><td>設定</td><td>一定期間中に労働日を設定する最大の日数・時間数・時間帯／目安となる労働日数・時間数／最低限労働する日数・時間数</td></tr>
+</table></div>
+<p>この3区分のうち、AIに渡せるのはどこまでで、人が決めることはどこからかを線引きする。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">AIに渡せるのは作成前の下書きと確定後の集計、人が決めるのは通知と合意</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="AIに渡せるのは作成前の下書きと確定後の集計、人が決めるのは通知と合意"><rect x="300" y="50" width="620" height="424" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="147.91500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">候補シフトの下書き作成</text><text x="455.0" y="178.365" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">AIに渡せる</text><rect x="610.0" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="147.91500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">意見の聞き方と通知期限</text><text x="765.0" y="178.365" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">人が決める</text><rect x="300" y="262.0" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="359.91499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">勤怠データの集計・突合</text><text x="455.0" y="390.36499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">AIに渡せる</text><rect x="610.0" y="262.0" width="310.0" height="212.0" fill="rgba(166,58,36,.08)"/><text x="765.0" y="359.91499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">変更の申出への合意</text><text x="765.0" y="390.36499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">人が決める</text><line x1="610.0" y1="50" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="262.0" x2="920" y2="262.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">作成前 → 確定後</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">AIに渡せるのは、確定前の下書きと確定後の集計の2か所だけ</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：厚生労働省「いわゆる『シフト制』により就業する労働者の適切な雇用管理を行うための留意事項」（令和4年1月7日公表）</text></svg>
+</div>
+<p>AIに渡せるのは、希望をもとにした候補シフトの下書き作成と、確定後の勤怠データの集計・突合という、計算量の多い作業である。作成時に誰の意見をいつまでにどう聞くかという通知のルールと、確定後の変更を申し出られたときに合意を取る手続きは、外の人間が設計し、人が担う場所として残す。</p>
+
+<h2>3か月後に何が残っているか</h2>
+<p>止めない設計が機能したとき、3か月後に現場に残っているのは、担当者が新しく覚えた操作ではない。担当者が触らなくても回っている仕組みそのものである。</p>
+<div class="a-note"><strong>同じ形は、シフト以外の場所でも見たことがある。</strong>福井県の飲食業グループ本部（12店舗）で、原価計算に使っていた表計算ソフトが、担当者に運用を渡した直後から更新されなくなり、約2年止まっていたのを見た。作った側は「入れれば楽になる」と考えて渡したが、担当者にとっては新しい入力の手間と、間違えたときに聞かれる責任が増えただけだったと見ている。シフト作成のAI化は、私たちではまだ手がけていない。ただ、担当者に渡した瞬間に止まるという形は同じで、シフトは労働条件そのものに触れる分、原価計算より条件が厳しい場所だと見ている。</div>
+<p>同じ形は、受発注の転記にもそのまま当てはまる形で、シフトにも当てはまる。担当者が最後まで持つのは、AIが出した候補シフトを確認して労働者に提示する判断だけにし、希望の集め方や通知のルール、合意を取る手続きは、外の人間が作った仕組みの側に残す。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>決めること</th><th>誰が決めるか</th><th>残るもの</th></tr>
+<tr><td>作成のルール</td><td>現場に入った外の人間</td><td>意見の聞き方・通知期限・通知方法を1枚にした基準</td></tr>
+<tr><td>変更の申出手続き</td><td>外の人間が設計</td><td>申出の期限・申出先を明記した表</td></tr>
+<tr><td>予定と実績の突合</td><td>外の人間が設計</td><td>客観的な記録との自動突合の仕組み</td></tr>
+<tr><td>希望の集め方</td><td>外の人間が設計</td><td>担当者が転記し直さなくていい収集の窓</td></tr>
+</table></div>
+
+<h2>費用の考え方と、業務改善助成金の対象になる形</h2>
+<p>止めない設計を作るには費用がかかる。中小企業・小規模事業者が事業場内最低賃金を令和8年度の地域別最低賃金未満から50円以上1回で引き上げるなど交付要件を満たし、生産性向上・労働能率の増進に資する設備投資等を行った場合、厚生労働省の業務改善助成金を使える場合がある。申請を行う事業場の引上げ前の事業場内最低賃金によって助成率が変わり、引上げ額・引き上げる労働者数によって助成上限額が変わる仕組みだ。10人以上の上限額区分は、特例事業者が10人以上の労働者の賃金を引き上げる場合に対象になる。パートタイム労働者の時間当たり所定内給与は調査産業計で1,446円（前年比4.4%増）まで上がっていて、人件費が上がる局面ほど、シフトの作成・変更・設定のルールを先に決めておく設計の価値は増す。申請受付期間は令和8年9月1日からで、締切は申請事業場の都道府県において適用される地域別最低賃金の発効日の前日または同年11月30日のいずれか早い日だ。自社の場合の締切と対象になる経費の目安は、<a href="/tools/gyomu-kaizen/" style="color:var(--accent);border-bottom:1px solid var(--accent)">業務改善助成金の計算機</a>で確認できる。</p>
+
+<h2>よくある失敗——止める側に回りやすいNGパターン</h2>
+<p>AIを入れたシフト作成の現場で、実際に起きやすい間違いを4つ挙げる。</p>
+<ul>
+<li><strong>①三交替勤務のパターン組み合わせと、シフト制を混同する。</strong>年や月の労働日数・時間数が決まっていて、あらかじめ定めた勤務時間のパターンを組み合わせる形態は、留意事項のいうシフト制から除かれる。対象が違えばルール整備の要否も変わるため、まず自社の勤務形態がどちらに当たるかを見分ける。</li>
+<li><strong>②変更のルールを決めずに、確定後の変更をAI任せにする。</strong>留意事項が求める合意の手続きを飛ばすと、変更そのものが労働条件の変更という原則の外に出てしまう。誰がいつまでにどう合意を取るかを、AIを入れる前に決めておく。</li>
+<li><strong>③AIが作ったシフト表を、勤怠の記録として扱う。</strong>始業・終業時刻の確認・記録は客観的な記録を基礎に行うのが原則であり、シフトは予定でしかない。賃金台帳に労働日数・労働時間数を適正に記入していない場合や、故意に虚偽の労働時間数を記入した場合は、労働基準法第120条に基づき30万円以下の罰金の対象になる。</li>
+<li><strong>④就業規則の届出を後回しにする。</strong>常時10人以上の労働者を使用する使用者は、始業及び終業の時刻、休日等について就業規則を作成し、労働基準監督署に届け出る義務がある。シフト運用を整える過程でこの人数を超えた場合、届出を忘れていないか確認する。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社がどのNGパターンに近いか気になる方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からご相談ください。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>AIが組んだシフトを、確定した後に店長の判断だけで変更できますか</summary><p>いいえ。厚生労働省の留意事項は、一旦確定した労働日や労働時間等の変更は基本的に労働条件の変更に該当し、使用者と労働者双方の合意が必要だとしています。AIが出した変更案も、本人の同意を得るまでは確定しません。</p></details>
+<details><summary>自社がシフト制に当たるかどうかは何で見分けますか</summary><p>労働契約の締結時点で労働日・労働時間が確定しているかで見分けます。確定しておらず、一定期間ごとに作るシフト表で初めて決まる働き方が留意事項の言うシフト制で、三交替勤務のようにあらかじめ決まったパターンを組み合わせるだけの働き方は除かれます。</p></details>
+<details><summary>パートタイム労働者比率が高い業種は、シフト制で働く人が多いと言えますか</summary><p>比率とシフト制の有無は別の統計です。毎月勤労統計調査はパートタイム労働者比率を数えていますが、シフト制で働いているかどうかは調べていません。比率が高い業種ほど、シフト表を作る現場が多いと考えられます。</p></details>
+<details><summary>AIにシフトの希望収集からやらせれば、担当者の仕事は減りますか</summary><p>希望を集める前段の仕組みを変えないままAIを入れると、担当者がAI用に希望を転記する仕事が新しく増え、前より遅くなることがあります。希望の集め方自体を設計し直す必要があります。</p></details>
+<details><summary>AIが作ったシフト表を、勤怠の記録として使ってもいいですか</summary><p>いいえ。労働時間の適正な把握のためのガイドラインは、始業・終業時刻の確認と記録を、タイムカードなど客観的な記録を基礎に行うことを原則としています。シフトは予定であり、実績の記録の代わりにはなりません。</p></details>
+<details><summary>業務改善助成金はシフト作成のAIシステムに使えますか</summary><p>事業場内最低賃金の引上げなど交付要件を満たし、労働局の交付決定を受けた後に導入すれば、対象経費として使える場合があります。助成率や上限額は引上げ前の賃金水準や引き上げる人数によって変わるため、自社の場合は<a href="/tools/gyomu-kaizen/">計算機</a>で確認してください。</p></details>
+<details><summary>3か月で成果が出なかったら、どうすればいいですか</summary><p>まず担当者の仕事が実際に減っているかを確認します。確認・差し戻し・二重入力の手間が担当者側に残ったままなら、シフトの作成・変更・設定のルール整備からやり直します。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>AIにシフトの候補作りを任せても、希望を集め直し、変更のたびに同意を取り、勤怠と突き合わせるのが担当者のままなら、現場は止まる。止めない設計の一行目は、担当者の仕事を増やさないことだ。現場に入った外の人間が、シフトの作成・変更・設定のルールを先に決め、担当者の頭の中にあったものを表や仕組みへ移す。今日からできることは3つある。1つ目は、自社の勤務形態が留意事項の言うシフト制に当たるかを、労働契約の内容で確認すること。2つ目は、作成・変更・設定の3区分のルールを1枚の表にして就業規則等に落とすこと。3つ目は、<a href="/tools/gyomu-kaizen/" style="color:var(--accent);border-bottom:1px solid var(--accent)">業務改善助成金の計算機</a>で自社の締切と対象になる経費の目安を見ることである。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">担当者の仕事を増やさない形で、シフト作成を止めない設計にします。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry?type=%E6%A5%AD%E5%8B%99%E6%94%B9%E5%96%84%E5%8A%A9%E6%88%90%E9%87%91" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・厚生労働省「<a href="https://www.mhlw.go.jp/stf/newpage_22954.html" target="_blank" rel="noopener">いわゆる「シフト制」について</a>」内「いわゆる『シフト制』により就業する労働者の適切な雇用管理を行うための留意事項」（令和4年1月7日公表）<br>
+・厚生労働省「<a href="https://www.mhlw.go.jp/toukei/itiran/roudou/monthly/r08/2606r/2606r.html" target="_blank" rel="noopener">毎月勤労統計調査　2026（令和8）年６月分結果確報</a>」<br>
+・厚生労働省「<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/roudouzikan/070614-2.html" target="_blank" rel="noopener">労働時間の適正な把握のために使用者が講ずべき措置に関するガイドライン</a>」<br>
+・厚生労働省「<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/roudoukijun/zigyonushi/shienjigyou/03.html" target="_blank" rel="noopener">業務改善助成金</a>」<br>
+・あわせて読む：<a href="/blog/20260904-juhachu-tenki-ai">受発注の転記をAIに任せても、社員に渡した瞬間に止まる——3か月後も現場で回っている状態にするまでの設計</a>（当ブログ・2026年9月4日夕）<br>
+・あわせて読む：<a href="/blog/20260902-part-yuki-2026-10">パート・有期労働者の労働条件明示、2026年10月から何が変わるか</a>（当ブログ・2026年9月2日夕）<br>
+・あわせて読む：<a href="/blog/20260903-chusho-genai-doritsu">中小企業の生成AI導入率は20.4%か34.5%か——調査3本が割れる理由と、自社が入る数字の見分け方</a>（当ブログ・2026年9月3日夕）<br>
+・あわせて読む：<a href="/blog/20260824-gyomu-kaizen-joseikin">業務改善助成金は9月1日開始——締切は県ごとに最短30日、AIの月額料金が対象になる条件</a>（当ブログ・2026年8月24日夕）</div>
+
+<!-- recheck: 2026-12-01 | 業務改善助成金 令和8年度の申請受付期間・対象の記述が本文と一致するか（次年度公募の有無も） | python scripts/freshness_check.py -->
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

@@ -309,10 +309,10 @@
  },
  "20260904-claude-code-codex-one-setup": {
   "article_h1": "Claude CodeとCodexを自由に切り替えられる置き方。原本は「1つ」、仕事もルールもスキルも引き継ぐ",
-  "title": "Claude Code × Codex",
-  "sub": "Gemini nano-banana-2 生成（公式ロゴを参照画像で指定）・2026-09-04 髙橋さん指示で差し替え",
+  "fs": 0,
   "pattern": "visual-gen",
-  "fs": 0
+  "sub": "Gemini nano-banana-2 生成（公式ロゴを参照画像で指定）・2026-09-04 髙橋さん指示で差し替え",
+  "title": "Claude Code × Codex"
  },
  "20260904-juhachu-tenki-ai": {
   "article_h1": "受発注の転記をAIに任せても、社員に渡した瞬間に止まる——3か月後も現場で回っている状態にするまでの設計",
@@ -320,6 +320,13 @@
   "pattern": "cards",
   "sub": "2026-09-04時点・中小企業白書2026／東京商工会議所2024年調査",
   "title": "社員にAIを渡しても、止まる"
+ },
+ "20260905-shift-kintai-ai": {
+  "article_h1": "AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計",
+  "fs": 56,
+  "pattern": "doodle",
+  "sub": "業務別の入口 #02",
+  "title": "AIが組んだシフトは、確定の後で止まる"
  },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",

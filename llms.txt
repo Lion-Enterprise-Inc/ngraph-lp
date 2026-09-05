@@ -17,6 +17,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計](https://ngraph.jp/blog/20260905-shift-kintai-ai)
 - [Claude CodeとCodexを自由に切り替えられる置き方。原本は「1つ」、仕事もルールもスキルも引き継ぐ](https://ngraph.jp/blog/20260904-claude-code-codex-one-setup)
 - [受発注の転記をAIに任せても、社員に渡した瞬間に止まる——3か月後も現場で回っている状態にするまでの設計](https://ngraph.jp/blog/20260904-juhachu-tenki-ai)
 - [中小企業の生成AI導入率は20.4%か34.5%か——調査3本が割れる理由と、自社が入る数字の見分け方](https://ngraph.jp/blog/20260903-chusho-genai-doritsu)
