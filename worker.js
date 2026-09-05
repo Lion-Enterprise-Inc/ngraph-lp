@@ -28,7 +28,7 @@ const injectJpWrap = (res) => {
   const ct = res.headers.get('content-type') || '';
   if (!ct.includes('text/html')) return res;
   return new HTMLRewriter()
-    .on('head', { element(el) { el.append('<script defer src="/js/jp-wrap.js?v=1"></script>', { html: true }); } })
+    .on('head', { element(el) { el.append('<script defer src="/js/jp-wrap.js?v=2"></script>', { html: true }); } })
     .transform(res);
 };
 
