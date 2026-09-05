@@ -45,7 +45,9 @@
   .hero .hero-h1{order:2;margin-bottom:8px}
   .hero .lp-badge~.hero-tagline{order:2;margin-bottom:8px}
   .hero .hero-visual{order:3;max-width:none;width:100%;margin:0 auto 12px}
-  .hero .hero-visual img{max-height:min(56vw,270px);object-position:center}
+  .hero .hero-visual img{max-height:min(56vw,270px);object-position:center;filter:contrast(1.12)}
+  .hero .hero-visual:has(.hero-brain){background:radial-gradient(ellipse 46% 46% at 50% 50%,#fff 0%,rgba(255,255,255,.8) 45%,rgba(255,255,255,0) 72%)}
+  .hero .cta-micro a{display:inline-block}
   .hero .hero-tagline{order:4;font-size:.95rem;line-height:1.85;margin:0 auto 18px;max-width:34em}
   .hero .lp-badge~.hero-tagline{font-size:clamp(1.55rem,7vw,1.9rem);line-height:1.45;max-width:none}
   .hero p.lead{order:4;font-size:.92rem;line-height:1.85;margin:0 auto 18px;max-width:34em}
@@ -53,6 +55,8 @@
   .hero .cta-micro{order:6;margin-top:10px;font-size:.76rem}
   .hero .hero-trust{order:7;margin-top:14px;gap:6px 14px;justify-content:center}
   .hero .hero-trust>span,.hero .hero-trust span{font-size:.72rem}
+  .hero .hero-trust>span{display:inline-block;gap:0}
+  .hero .hero-trust>span svg{vertical-align:-2px;margin-right:4px}
   .hero .hero-trust svg{width:13px;height:13px}
 }
 @media(max-width:640px){
@@ -70,6 +74,9 @@
   .fg-problem .pb-lead{font-size:1.15rem;margin-top:12px}
   .fg-problem .pb-sym{margin-top:10px}
   .fg-problem .fg-rule{margin-top:18px}
+  /* 吹き出しは語塊を1行ずつ積み、箱は一番長い行の幅に縮める（右上に空白が残らない） */
+  .fg-problem .pb-list li,.fg-problem .pb-list li.ai{width:max-content;text-align:left;padding:6px 10px}
+  .fg-problem .pb-list li .nb{display:block}
 }
 
 /* ── 3. 所有（自分のAI → 会社の脳） ── */
@@ -78,6 +85,11 @@
   .fg-own .own-tag{font-size:.92rem;margin-bottom:6px}
   .fg-own .own-cap{font-size:.88rem;margin-top:8px}
   .fg-own .own-ais{font-size:.8rem;margin-top:8px;padding-top:8px}
+  .fg-own .own-ov{width:max-content}
+  .fg-own .own-ov .nb{display:block}
+  /* 脳の線画が和紙と粒子に溶け込むので、脳の後ろだけ白く抜いて線を締める */
+  .fg-own .own-scene.after .own-svg{background:radial-gradient(ellipse 36% 32% at 50% 17%,#fff 0%,rgba(255,255,255,.85) 40%,rgba(255,255,255,0) 72%)}
+  .fg-own .own-scene.after .own-svg image{filter:contrast(1.18)}
 }
 
 /* ── 4. 全体構図：縦1列 → 「入口2列 ↓ 会社の脳 ↓ 出口2列」に組み替え ── */
@@ -88,11 +100,12 @@
   .fg-structure .st-body::before,.fg-structure .st-body::after{display:none}
   .fg-structure .st-side{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch}
   .fg-structure .st-write::before,.fg-structure .st-read::before{grid-column:1/-1;font-size:.8rem;letter-spacing:.22em;color:var(--sub);padding-bottom:4px;margin-bottom:0}
-  .fg-structure .st-item{width:auto;align-items:flex-start;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 12px 10px;line-height:1.45}
-  .fg-structure .st-no{font-size:.76rem;letter-spacing:.16em}
-  .fg-structure .st-item strong{font-size:1rem;letter-spacing:.04em;margin-bottom:5px}
-  .fg-structure .st-d,.fg-structure .st-r{font-size:.78rem;line-height:1.55}
-  .fg-structure .st-r{margin-top:4px}
+  .fg-structure .st-item{width:auto;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:6px;text-align:center;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 8px 10px;line-height:1.45}
+  .fg-structure .st-no{font-size:.76rem;letter-spacing:.1em}
+  .fg-structure .st-item strong{font-size:.95rem;letter-spacing:.02em;margin-bottom:0}
+  .fg-structure .st-d,.fg-structure .st-r{flex-basis:100%;font-size:.78rem;line-height:1.55}
+  .fg-structure .st-d{margin-top:5px}
+  .fg-structure .st-r{margin-top:3px}
   .fg-structure .st-lbl{font-size:.8rem;padding:0}
   .fg-structure .st-lbl::before{font-size:1rem;margin-bottom:2px}
   .fg-structure .st-hub{width:min(56vw,210px)}
@@ -149,12 +162,13 @@
   .fg-deliver .dl-sheet{padding:16px 14px 14px}
   .fg-deliver .dl-head{margin-bottom:12px;font-size:1rem;gap:12px}
   .fg-deliver .dl-cards{row-gap:10px}
-  .fg-deliver .dl-card{display:grid;grid-template-columns:auto 56px 1fr;column-gap:12px;row-gap:1px;align-items:center;text-align:left;padding:12px 40px 12px 12px}
+  .fg-deliver .dl-card{display:grid;grid-template-columns:auto 56px 1fr;column-gap:12px;row-gap:1px;align-items:center;text-align:left;padding:12px 28px 12px 12px}
   .fg-deliver .dl-no{grid-column:1;grid-row:1/4;font-size:1.05rem;border-bottom:none;margin:0;padding:0;line-height:1}
   .fg-deliver .dl-ic,.fg-deliver .dl-ic-shield,.fg-deliver .dl-ic-plug{grid-column:2;grid-row:1/4;width:56px;height:44px;margin:0;display:flex;align-items:center;justify-content:center}
   .fg-deliver .dl-ic svg{width:100%;height:100%}
   .fg-deliver .dl-card strong{grid-column:3;font-size:1.05rem;letter-spacing:.08em;margin-bottom:2px}
-  .fg-deliver .dl-d{grid-column:3;font-size:.8rem;line-height:1.5}
+  .fg-deliver .dl-d{grid-column:3;font-size:.78rem;line-height:1.5}
+  .fg-deliver .dl-d .nb{display:inline}
   .fg-deliver .dl-fold{width:26px;height:26px}
   .fg-deliver .dl-band{padding:10px 14px;gap:10px}
   .fg-deliver .dl-ribbon{width:28px;height:40px}
@@ -252,6 +266,7 @@
   .trio .card,.engage .card{padding:14px 16px;border-left:3px solid var(--accent);border-radius:0 4px 4px 0}
   .proc-trio h3,.engage .card h3{font-size:.98rem !important;margin-bottom:5px !important}
   .proc-trio p,.engage .card p{font-size:.82rem !important;line-height:1.75 !important}
+  .trio .card p .nb,.engage .card p .nb{display:inline;word-break:normal}
   .vs-note{font-size:.8rem;margin-top:16px;text-align:left}
   .mid-cta{margin-top:30px}
   .mid-cta p{font-size:.88rem;text-align:left}
