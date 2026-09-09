@@ -36,6 +36,62 @@ TABLE = re.compile(r"^\|")
 SKIP_WORDS = ("消化済み", "書いたら行を消して", "| 題材 |", "|---")
 
 
+def committed_k_slugs():
+    """**commit 済み**の blog/k-*.html の slug。取れなければ None（＝この検査は黙って見送る）。
+
+    published_set.py は git ls-files（インデックス込み）を見るが、ここでは HEAD だけを見る。
+    公開の手順は「git add → gate → commit → push」なので、インデックスを見ると
+    **いま公開しようとしている記事**が対象に入り、台帳へ書く前にゲートが落ちて公開できなくなる。
+    台帳は commit の後（同じ作業の中）で動かすので、見るのは commit 済みのものだけでよい。
+    """
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["git", "ls-tree", "-r", "--name-only", "HEAD", "--", "blog"],
+            cwd=ROOT, capture_output=True, text=True, timeout=20,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if out.returncode != 0:
+        return None
+    slugs = []
+    for line in out.stdout.splitlines():
+        line = line.strip()
+        name = os.path.basename(line)
+        if name.startswith("k-") and name.endswith(".html"):
+            slugs.append(name[:-5])
+    return slugs
+
+
+def check_ledger(text):
+    """公開済みのナレッジ記事が、台帳の「消化済み」に載っているか。
+
+    なぜ入れたか（2026-09-10）:
+      「補助金書類のAI下書き運用」の行は 2026-09-02 に k-subsidy-draft として公開されたのに、
+      台帳の行が残ったままだった。BLOG-OPS §4 の台帳が 2026-08-09 に踏んだのと同じ穴で、
+      **次のセッションが消化済みの題材を先頭として拾う**状態になる（実際 8/9 はそうなった）。
+      「書いたらその日のうちに動かす」という書き置きは2回とも守られなかったので、機械で見る。
+
+      判定は slug の文字列が**消化済みの行に**あるかだけ＝誤検知ゼロ。中身の是非は見ない。
+
+      ⚠ 最初の実装はファイル全体を検索していて、負テストが通らなかった（2026-09-10）。
+      経緯を書いた注意書きの中に slug が出てくるので、台帳から消しても検査が緑のままだった。
+      **見る範囲は「消化済み」の行だけ**に絞る。ずっと緑の検査は、無い検査より悪い。
+    """
+    slugs = committed_k_slugs()
+    if slugs is None:
+        return [], "参考 gitが読めないので台帳の消化済み検査は見送り"
+    done = "\n".join(l for l in text.splitlines() if l.lstrip().startswith("消化済み"))
+    missing = [s for s in slugs if s not in done]
+    if missing:
+        return ([
+            "台帳の「消化済み」に無い公開済みのナレッジ記事: %s\n"
+            "        公開したら同じ作業の中で §4 の台帳を動かす"
+            "（行を消して、消化済みへ公開URLと日付を移す）" % "／".join(missing)
+        ], "")
+    return [], "OK: 公開済みのナレッジ記事 %d本すべてが台帳の消化済みにある" % len(slugs)
+
+
 def main():
     if not os.path.exists(DOC):
         print("参考 KNOWLEDGE-OPS.md が無い（このリポジトリでは対象外）")
@@ -75,13 +131,24 @@ def main():
             fails.append("%d行目: 出所の印が無い（〔確定 YYYY-MM-DD〕か〔起案 YYYY-MM-DD〕を付ける）\n"
                          "        %s" % (i, line[:76]))
 
+    ledger_fails, ledger_note = check_ledger("\n".join(lines))
+
     for f in fails:
         print("NG " + f)
-    if fails:
-        print("KNOWLEDGE-OPS の出所: NG %d件 / %d行。"
-              "**印の無い行は、次のセッションが「決まり」として読む**" % (len(fails), checked))
+    for f in ledger_fails:
+        print("NG " + f)
+    if fails or ledger_fails:
+        if fails:
+            print("KNOWLEDGE-OPS の出所: NG %d件 / %d行。"
+                  "**印の無い行は、次のセッションが「決まり」として読む**" % (len(fails), checked))
+        if ledger_fails:
+            print("KNOWLEDGE-OPS の台帳: NG %d件。"
+                  "**動かし忘れた台帳は、次のセッションが消化済みの題材を先頭として拾う**"
+                  % len(ledger_fails))
         return 1
     print("OK: KNOWLEDGE-OPS の出所 全通過（規則 %d行すべてに 確定／起案 の印あり）" % checked)
+    if ledger_note:
+        print("       " + ledger_note)
     return 0
 
 

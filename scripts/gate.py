@@ -44,7 +44,7 @@ CHECKS = [
     ("型（朝A/夕B/ガイドG・字数・H2・ラベル・枠の重複）", "format_lint.py", [], False),
     ("図のブロックの二重包み", "fig_lint.py", [], False),
     ("一覧カードのカテゴリ（タブ）", "blog_categories.py", [], False),
-    ("正本の出所（誰が決めた行かの印）", "knowledge_ops_lint.py", [], False),
+    ("ナレッジ正本の出所と台帳（誰が決めた行か・公開済みが台帳に載っているか）", "knowledge_ops_lint.py", [], False),
     ("ナレッジ型のCTA3要素とサービス呼称", "cta_service_check.py", [], True),
     ("書いたのにpushされていない記事・表紙（report-only）", "unpushed_check.py", [], False),
     ("一覧/llms.txt と記事h1のタイトル不一致（report-only）", "title_sync_check.py", [], False),
