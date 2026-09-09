@@ -114,6 +114,7 @@
 - [AIに同じ修正を3回出している会社は、4回目も同じ結果になる](https://ngraph.jp/blog/k-writing-standard)
 - [飲食店の英語ページは、日本語の5倍書く——多言語サイトを「情報密度」から設計する](https://ngraph.jp/blog/k-multilingual-density)
 - [AIに補助金の申請書を下書きさせる前に、人が決める4つの前提](https://ngraph.jp/blog/k-subsidy-draft)
+- [AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方](https://ngraph.jp/blog/k-doc-handoff)
 
 ## 会社情報
 

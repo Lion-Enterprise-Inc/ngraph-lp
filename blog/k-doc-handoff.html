@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方 | NGraphブログ</title>
+<meta name="description" content="AIに社内規程や見積の根拠、仕様書、過去の申請書を読ませると、書かれていない条件まで断定して答えることがあります。渡す前に決める3つと、答えを受け取ってから確かめる3つを、自社の検査記録から整理しました。">
+<meta property="og:title" content="AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方 | NGraphブログ">
+<meta property="og:description" content="AIに社内規程や見積の根拠、仕様書、過去の申請書を読ませると、書かれていない条件まで断定して答えることがあります。渡す前に決める3つと、答えを受け取ってから確かめる3つを、自社の検査記録から整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-doc-handoff">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-doc-handoff.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-doc-handoff">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方",
+  "image": "https://ngraph.jp/assets/blog/k-doc-handoff.jpg",
+  "description": "AIに社内規程や見積の根拠、仕様書、過去の申請書を読ませると、書かれていない条件まで断定して答えることがあります。渡す前に決める3つと、答えを受け取ってから確かめる3つを、自社の検査記録から整理しました。",
+  "datePublished": "2026-09-10",
+  "dateModified": "2026-09-10",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-doc-handoff",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "AIに社内資料を読ませて答えさせても大丈夫ですか？", "acceptedAnswer": {"@type": "Answer", "text": "版と日付を資料の本文に書き、決まっていないことを明記し、渡す範囲と問いの幅を揃えたうえで使えば、下書きとして活用できます。ただし答えを受け取ったら、断定の語を探し、無いと書かれた箇所は元の資料を開いて確かめてから使ってください。"}},
+  {"@type": "Question", "name": "断定する言葉を言い換えるだけで安全になりますか？", "acceptedAnswer": {"@type": "Answer", "text": "断定の語だけを和らげても、資料の側に空欄や決まっていないことが残っていれば、AIは別の言い方で同じ空欄を埋めます。対策は語の言い換えではなく、資料を渡す前に空欄を作らないことです。"}},
+  {"@type": "Question", "name": "版と日付を書き込む以外に、渡す資料はどう整えればいいですか？", "acceptedAnswer": {"@type": "Answer", "text": "まだ決まっていないことを本文中に明記すること、渡す範囲と答えさせる問いの幅を揃えることの2つを合わせて行います。この3つは資料を渡す前に決める設計として、まとめて運用してください。"}},
+  {"@type": "Question", "name": "答えの確認をAIにやらせることはできませんか？", "acceptedAnswer": {"@type": "Answer", "text": "断定の語を探す作業は機械に任せられますが、資料に無いと書いてあるかどうかを元の資料まで開いて確かめる判断は、人が引き受ける必要があります。ここを放置すると確認は結局動きません。"}},
+  {"@type": "Question", "name": "確認の担当は誰が引き受けるべきですか？", "acceptedAnswer": {"@type": "Answer", "text": "資料の担当者に確認業務だけを追加すると、仕事と責任が増える一方で見合う対価が無いため、確認は続きにくくなります。機械に落とせる部分を機械に任せたうえで、残る判断は業務の外側から入る人間が引き受ける体制をおすすめします。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方</h1>
+  <span class="a-date">2026.09.10 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-doc-handoff.jpg" alt="AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方">
+<p>社内規程や見積の根拠、仕様書、過去の申請書をAIに読ませて答えさせる場面が、多くの職場で増えました。読ませた資料に書いていない条件まで、AIが断定の形で書き加えて返すことは珍しくありません。しかもその一文は文章として最も自然な場所に差し込まれるため、読み直しても見つけにくいのが厄介なところです。この記事では、AIに社内資料を読ませる前に決めておく3つと、答えを受け取ったあとに確かめる3つを、自社の検査記録から見つかった4つの型を根拠に整理します。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・AIが資料の「余白」を埋めて返すときに起きること<br>
+・埋まり方の4つの型（不在の断定・分類の推測・条件の脱落・出所の合成）<br>
+・資料を渡す前に決める3つと、答えを受け取ってから確かめる3つ<br>
+・確認という工程を誰が引き受けるかという、もう1つの設計課題<br>
+・今日から始められる3段階の実践パス</div>
+
+<h2>AIは、資料の「余白」をもっともらしく埋めて返す</h2>
+<p>社内規程で休暇制度を尋ねるときも、見積の根拠で金額の内訳を尋ねるときも、仕様書で納期の条件を確かめるときも、過去の申請書から似た書類の下書きを頼むときも、起きることは同じです。</p>
+<p>AIは受け取った資料の範囲でしか答えられません。それでも資料に書かれていないことがあると、空欄のまま返すことはほとんど無く、文章として最も自然に読める形でその空欄を埋めてくるのです。</p>
+<p>埋められた条件は、たいてい断定の形をとります。「対象外です」「その区分はありません」「唯一〜です」というように、言い切りの一文になって現れるのが特徴です。断定は読みやすく説得力もあるため、読み手はそこで確認の手を止めてしまいます。文章全体の流れに沿って挿入されるので、読み直しても違和感の無い一文として残ります。見つかりにくいのは、AIの言葉遣いが下手だからではありません。むしろ上手だからです。</p>
+
+<h2>余白の埋まり方は4つに分かれる</h2>
+<p>この余白の埋め方は、大きく4つの型に分かれます。原因が型ごとに違うので、対策も型ごとに変える必要があります。</p>
+<p><strong>①不在の断定</strong>　手元の資料のリストに載っていないことを、世の中に存在しないことと同じ扱いで書く型です。たとえば経費の区分を尋ねたとき、AIが「その区分は対象外です」と言い切ることがあります。実際には渡した資料が区分の全体を網羅していなかっただけで、区分自体は別の箇所に存在していることも珍しくありません。社内規程の一部だけを渡して制度の有無を尋ねたときに、この型が出やすくなるのです。</p>
+<p><strong>②分類の推測</strong>　数字自体は資料のとおりに引用しながら、その数字が何を意味するかを推測で埋める型です。ある金額の基準を、実際とは別の制度の基準として説明したり、ある調査の設問を実際より単純な形に言い換えたりすることがあります。数字は合っているので、見積の内訳や過去の統計を確認する場面ではとりわけ見つけにくいのが特徴です。見積の根拠資料を読ませて「この単価は何の基準か」を尋ねたとき、資料に書かれていない前提を補って答える場面がこれに当たります。</p>
+<p><strong>③条件の脱落</strong>　引用そのものは資料の文言どおりで正確なのに、その文に付いていた括弧書きやただし書きを落として答える型です。期限や条件を尋ねたとき、条件が外れた形で答えが返ると、意味そのものが変わってしまいます。仕様書から納期を引用させたときに、「在庫がある場合に限る」のような限定の一文が答えから消えている場面が当てはまります。</p>
+<p><strong>④出所の合成</strong>　「どこに書いてあるか」という出所そのものを、それらしい形で作る型です。ファイル名やリンクの文字列から、実際には無い題名やページ番号を組み立てて答えます。過去の申請書のどのページに根拠が書いてあるかを尋ねたとき、資料の実物には無い項目名が出所として添えられる場面がこれに当たります。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">自社の検査記録では『分類の推測』が最多だった</p>
+<svg viewBox="0 0 1200 328" width="100%" style="min-width:640px" role="img" aria-label="自社の検査記録では『分類の推測』が最多だった"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">AIが文書を書くときに資料の余白を埋める、4つの型の内訳</text><text x="162" y="101" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">分類の推測</text><rect x="180" y="76" width="820" height="34" rx="2" fill="#a63a24"/><text x="1012" y="102" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">4件</text><text x="162" y="153" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">不在の断定</text><rect x="180" y="128" width="410" height="34" rx="2" fill="#cfc5b4"/><text x="602" y="154" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">2件</text><text x="162" y="205" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">条件の脱落</text><rect x="180" y="180" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="397" y="206" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">1件</text><text x="600.0" y="270.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">自社7件の内訳。母数が小さいので、まず自社の直近文書を同じ4分類で数えることに使う</text><text x="8" y="312" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社の公開前検査の記録（2026年8月19日〜9月3日・7件）</text></svg>
+<p class="a-fig-cap">自社が2026年8月19日から9月3日にかけて公開前の検査で見つけた7件の内訳です。分類の推測が4件で最も多く、不在の断定が2件、条件の脱落が1件でした。これは自社の記録であり、一般的な発生率を示すものではありません。母数はわずか7件にとどまります。読者が持ち帰れるのは数値そのものではなく数え方です。自社の直近の文書を同じ4分類で数えれば、自社がどの型で埋められやすいかが見えてきます。</p>
+</div>
+
+<h2>資料を渡す前に決める3つ</h2>
+<p>4つの型に共通する対策は、AIに答えさせたあとではなく、資料を渡す前にあります。渡す前に決めておくことは3つです。</p>
+<p><strong>1・版と日付を、資料の本文の中に書く</strong>　版と日付をファイル名だけに持たせず、資料の本文の中に書きます。ファイル名は資料をAIに渡す途中で失われることがあり、AIが読むのは中身の文字だけです。本文の冒頭に「第◯版・◯年◯月◯日時点」と一行入れておけば、AIはその資料がいつの時点のものかを踏まえて答えられます。</p>
+<p><strong>2・「まだ決まっていないこと」を資料に明記する</strong>　空欄を残さず、決まっていないことは決まっていないと資料に書きます。空欄はAIにとって埋めるべき場所であり、書かれていない箇所と決まっていない箇所を区別できません。「この項目は未確定」と一行添えるだけで、AIはその箇所を埋めずに済みます。</p>
+<p><strong>3・渡す範囲と、答えさせる問いの幅を揃える</strong>　資料の一部だけを渡して、全体についての問いには答えさせません。渡した範囲が制度や仕様の一部分なら、答えさせる問いもその範囲に絞ります。範囲より広い問いを投げると、渡されていない部分を推測で埋めて答えることになるので注意してください。</p>
+
+<h2>答えを受け取ってから確かめる3つ</h2>
+<p>資料の側を整えても、答えを確かめる工程は別に要ります。確かめることも3つに絞れます。</p>
+<p><strong>1・断定の語を先に探す</strong>　「対象外」「〜のみ」「唯一」「〜しかない」「規定がない」という言葉を、答えの中から先に探します。これらはAIが最も安く強い文を作れる場所で、資料に無い条件を埋めるときにまず選ばれます。この言葉が出てきた箇所は、他の部分より先に確かめてください。</p>
+<p><strong>2・「無い」と書いてある箇所は、必ず元の資料を1つ開く</strong>　「無い」「対象外」と書かれている箇所は、必ず元の資料を1つ自分の目で開いて確かめます。開けない場合は、その行ごと答えから落としてください。開かずにそのまま使うと、資料のリストに無かっただけのことを、世の中に無いこととして扱うことになります。</p>
+<p><strong>3・引いた文の括弧書き・ただし書きを一緒に読む</strong>　AIが資料の文をそのまま引用している箇所は、その文の前後にある括弧書きやただし書きも一緒に読みます。引用自体が正確でも、条件だけが答えから抜け落ちていることがあります。</p>
+
+<h2>誰が確認を引き受けるのかを決めないと、設計は動かない</h2>
+<p>ここまでの6つは、どれも手順としては単純です。ところが手順を書いただけでは、実際には動きません。動かない理由は担当者の注意力ではなく、確認という仕事の置き方にあります。</p>
+<p>担当者に「AIの答えを確かめる」という工程を足すと、その人にとっては仕事と責任が増えるだけになります。確認のやり方を覚えるのも自分、間違いを見つけたら直すのも自分、見逃して外に出れば注意を受けるのも自分です。それでいて、確認を丁寧にやってもやらなくても、受け取る給与は変わりません。この条件のもとで確認が徹底されないのは、担当者が怠けているからではなく、割に合わない仕事を割に合わない条件のまま置いている設計の問題です。</p>
+<p>したがって解決の方向は、社員に気をつけさせることではありません。確認できる部分は、断定の語を探す作業のように機械へ落とします。機械に落とせない部分、つまり元の資料を開いて条件を確かめる判断が要る部分は、その業務の外側から入った人間が引き受ける形にします。研修や注意喚起で個人の意識だけを変えようとする設計は、この構造の前では長く続きません。</p>
+
+<h2>明日からの最小実践は3段階</h2>
+<p>読者が今日から始められる実践パスは3段階です。一度に全部を整える必要はありません。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>時期</th><th>やること</th></tr>
+<tr><td>段階1</td><td>今週</td><td>直近にAIに書かせた文書を1本開いて、断定の語の数を数える</td></tr>
+<tr><td>段階2</td><td>今月</td><td>よく渡す資料3本に、版と日付・決まっていないことを書き足す</td></tr>
+<tr><td>段階3</td><td>3か月</td><td>出す前の確認を手順にして、誰がやるかを決める</td></tr>
+</table></div>
+<p>段階1は、いま自社にどれだけ断定が紛れているかを、数字で把握するための最初の一歩です。段階2は、資料の側から余白を減らす作業になります。段階3で、確認の手順と担当という、これまで曖昧だった部分を固定します。この順番を逆にしないでください。</p>
+
+<h2>よくある失敗</h2>
+<p>比較表の片方だけを詳しく調べて、もう片方の欠けている情報をAIに埋めさせてしまう失敗があります。比較表は両方の欄を必ず埋めたくなる形式なので、片方が薄いまま渡すと不在の断定が起きやすくなります。</p>
+<p>決まっていない項目を、あとで自分が埋めるつもりで空欄のまま渡す失敗もあります。渡した時点で、AIはその空欄を埋めてよい場所として扱います。</p>
+<p>AIが書いた断定の一文を確かめずに、次の資料や別の説明にそのままコピーする失敗も見られます。一度確認を通り抜けた文は、使い回されるたびに検証済みの事実のように扱われていきます。</p>
+<p>誰が確認するかを決めずに「各自確認」とだけ決めて運用を始める失敗もあります。全員の仕事にすると、実際には誰の仕事にもなりません。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>AIに社内資料を読ませて答えさせても大丈夫ですか？</summary><p>版と日付を資料の本文に書き、決まっていないことを明記し、渡す範囲と問いの幅を揃えたうえで使えば、下書きとして活用できます。ただし答えを受け取ったら、断定の語を探し、無いと書かれた箇所は元の資料を開いて確かめてから使ってください。</p></details>
+<details><summary>断定する言葉を言い換えるだけで安全になりますか？</summary><p>断定の語だけを和らげても、資料の側に空欄や決まっていないことが残っていれば、AIは別の言い方で同じ空欄を埋めます。対策は語の言い換えではなく、資料を渡す前に空欄を作らないことです。</p></details>
+<details><summary>版と日付を書き込む以外に、渡す資料はどう整えればいいですか？</summary><p>まだ決まっていないことを本文中に明記すること、渡す範囲と答えさせる問いの幅を揃えることの2つを合わせて行います。この3つは資料を渡す前に決める設計として、まとめて運用してください。</p></details>
+<details><summary>答えの確認をAIにやらせることはできませんか？</summary><p>断定の語を探す作業は機械に任せられますが、資料に無いと書いてあるかどうかを元の資料まで開いて確かめる判断は、人が引き受ける必要があります。ここを放置すると確認は結局動きません。</p></details>
+<details><summary>確認の担当は誰が引き受けるべきですか？</summary><p>資料の担当者に確認業務だけを追加すると、仕事と責任が増える一方で見合う対価が無いため、確認は続きにくくなります。機械に落とせる部分を機械に任せたうえで、残る判断は業務の外側から入る人間が引き受ける体制をおすすめします。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<ul>
+<li>AIは、渡した資料に書いていない条件があっても空欄のまま返さず、文章として自然な場所に断定の形で埋めて返す</li>
+<li>埋まり方は4つ。不在の断定・分類の推測・条件の脱落・出所の合成。原因が違うので対策も型ごとに変える</li>
+<li>渡す前に決める3つ。版と日付を本文に書く、決まっていないことを明記する、渡す範囲と問いの幅を揃える</li>
+<li>受け取ってから確かめる3つ。断定の語を先に探す、無いと書かれた箇所は元の資料を1つ開く、括弧書き・ただし書きを一緒に読む</li>
+<li>確認という工程を担当者に足すだけでは動かない。機械に落とせる部分は機械に、残りは業務の外側から入る人間が引き受ける</li>
+<li>実践は3段階。今週は数える、今月は資料を整える、3か月で確認の手順と担当を決める</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、FDE型AI導入伴走支援を承っております。</p>
+  <p>社内規程や仕様書、過去の申請書といった資料をAIに読ませて使える形にする設計と、確認をどこまで機械に任せ、どこから人が引き受けるかの体制づくりまで、あわせて構築します。ご依頼は随時募集しておりますので、お気軽にご相談ください。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・4つの型の内訳のグラフは、自社が2026年8月19日から9月3日にかけて公開前の検査で見つけた7件の記録によるものです。自社の記録であり、一般的な発生率を示すものではありません<br>
+・比較表の失敗例、確認業務の負担についての記述は、いずれも自社の運用で実際に起きたことをもとにしています。個別の制度名・金額・取引先名はこの記事では扱っていません</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
