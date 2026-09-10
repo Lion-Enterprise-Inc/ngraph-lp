@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://ngraph.jp/blog/20260910-ai-hojokin-gyomu-process</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260908-shanai-toiawase-ai</loc><lastmod>2026-09-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260905-shift-kintai-ai</loc><lastmod>2026-09-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260904-claude-code-codex-one-setup</loc><lastmod>2026-09-04</lastmod></url>
@@ -51,7 +52,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
-  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-09-08</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-openai-sol-price</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260824-gyomu-kaizen-joseikin</loc><lastmod>2026-08-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260822-deepseek-gazou-token</loc><lastmod>2026-08-22</lastmod></url>
@@ -121,11 +122,11 @@
   <url><loc>https://ngraph.jp/blog/20260808-openai-astra-kengen</loc><lastmod>2026-08-08</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260809-webmcp-toha</loc><lastmod>2026-08-09</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260808-mcp-toha</loc><lastmod>2026-08-09</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/ai-hojokin</loc><lastmod>2026-09-01</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/ai-hojokin</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260726-claude-opus5-smb</loc><lastmod>2026-07-26</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260725-gbizid</loc><lastmod>2026-07-25</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260725-shoryokuka-subsidy</loc><lastmod>2026-07-25</lastmod></url>
-  <url><loc>https://ngraph.jp/blog/20260724-ai-subsidy-2026</loc><lastmod>2026-07-24</lastmod></url>
+  <url><loc>https://ngraph.jp/blog/20260724-ai-subsidy-2026</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260724-openai-presence-fde</loc><lastmod>2026-07-24</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260723-openai-small-business</loc><lastmod>2026-07-23</lastmod></url>
   <url><loc>https://ngraph.jp/blog/20260722-sme-ai-adoption</loc><lastmod>2026-07-22</lastmod></url>
