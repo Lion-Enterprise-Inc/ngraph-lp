@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計 | NGraphブログ</title>
+<meta name="description" content="料金表や社内マニュアル、助成金の案内が、改定や値上げのあとも古い数字のまま社外に出続けることがあります。古くなる4つの型と、文書に確かめる日を持たせる3つの設計を、自社の記録から整理しました。">
+<meta property="og:title" content="AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計 | NGraphブログ">
+<meta property="og:description" content="料金表や社内マニュアル、助成金の案内が、改定や値上げのあとも古い数字のまま社外に出続けることがあります。古くなる4つの型と、文書に確かめる日を持たせる3つの設計を、自社の記録から整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-doc-freshness">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-doc-freshness.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-doc-freshness">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計",
+  "image": "https://ngraph.jp/assets/blog/k-doc-freshness.jpg",
+  "description": "料金表や社内マニュアル、助成金の案内が、改定や値上げのあとも古い数字のまま社外に出続けることがあります。古くなる4つの型と、文書に確かめる日を持たせる3つの設計を、自社の記録から整理しました。",
+  "datePublished": "2026-09-16",
+  "dateModified": "2026-09-16",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-doc-freshness",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計</h1>
+  <span class="a-date">2026.09.16 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-doc-freshness.jpg" alt="AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計">
+<p>料金表、社内マニュアル、助成金や制度の案内、求人票、店頭の価格表示。これらの多くは、いまAIに下書きさせて作られています。ところがAIが書いた文書は、出した日の中身のまま止まり続けます。制度が変わっても、値段を上げても、AI自身がそれに気づいて教えてくれることはありません。古い数字は誤りとしてエラーを出さないため、気づかれないまま社外に出続け、たいてい気づくのは客か、指摘を受けた瞬間です。この記事では、文書が古くなる型と、AIに聞き直しても直らない理由、そして文書そのものに「確かめる日」を持たせる3つの設計を書きます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・古い数字が社外に出続ける理由<br>
+・古くなり方の4つの型<br>
+・AIに聞き直しても直らない理由<br>
+・文書に「確かめる日」を持たせる3つの設計<br>
+・今日から始められる実践パス</div>
+
+<h2>AIが書いた文書は、出した日のまま止まる</h2>
+<p>料金表、社内マニュアル、助成金や制度の案内、求人票、店頭の価格表示。これらはどれも、社外の誰かの目に触れる文書です。AIに下書きさせて作った瞬間の中身は正しくても、その後に制度が改定されたり、値段が変わったりしても、文書の側は何も変わりません。</p>
+<p>厄介なのは、古い数字がエラーとして表に出ないことです。システムは止まらず、印刷も送信もいつもどおり通ります。誰も気づかないまま、古い料金表や古い案内が社外に出続けます。気づくのはたいてい客か、間違いを指摘されたときで、そのときにはもう文書が何か月も外に出ていた、ということが珍しくありません。</p>
+
+<h2>古くなり方には型がある</h2>
+<p>文書が古くなる経路は1つではありません。自社の観察では、次の4つの型に分けられます。読者が自分の文書を仕分けるときも、この4つを当ててみると整理しやすくなります。</p>
+<p><strong>①制度・料率・上限額が改定される</strong>　根拠にしている制度そのものが変わる型です。文書は変わっていないのに、書いてある内容が実態と食い違っていきます。</p>
+<p><strong>②自社の値段や条件を1か所だけ直して他に残る</strong>　価格や電話番号、営業時間を直したつもりが、別の言語のページや採用のページ、検索エンジン向けの記述には古い値が残ります。短い期間に2回、実際に起きました。店頭に貼った価格表示が、予約サイトに載せている正しい価格と食い違っていたこともあります。紙や画像に焼き込んだ数字は、元の値を直しても一緒には直りません。</p>
+<p><strong>③根拠にした調査や公表資料が新しい版に差し替わる</strong>　文書内の数字は書いた時点では正しくても、参照した資料そのものが更新された瞬間に古くなります。</p>
+<p><strong>④「現時点では」と書いた文の現時点が動く</strong>　その現時点は、書いた日で止まったままです。読む側は今日のこととして読むため、書いた日と読む日が離れるほど意味がずれていきます。</p>
+
+<h2>なぜAIに聞き直しても解決しないか</h2>
+<p>型が分かっても、もう一度AIに確認すれば直るわけではありません。理由はAIの性質そのものにあります。</p>
+<p><strong>学習した時点で止まっている</strong>　AIは学習した時点までの情報しか持たず、今日の制度改定を知りません。</p>
+<p><strong>自分が書いた文書を見に行かない</strong>　AIは、前に自分が書いた文書があとから更新されたかどうかを、自分から確かめに行く仕組みを持ちません。</p>
+<p><strong>聞けば、もっともらしく整った文を返す</strong>　それでも聞けば答えは返ります。しかもその答えは文章として整っていて、更新したように見える文が返ってくることこそ、一番危ないところです。</p>
+<p>文書が古くなったことは、AIの側から自発的に上がってくることが構造として無いのです。人が覚えているか、機械が見張るかのどちらかを選ばない限り、古さは放置されます。</p>
+
+<h2>設計①：文書に「確かめる日」を1行持たせる</h2>
+<p>最初の設計は単純です。文書そのものに「確かめる日」を1行持たせます。決めるのは4つで、<strong>いつ</strong>＝確かめる期日、<strong>何を</strong>＝どの数字やどの記述か、<strong>どこで</strong>＝一次情報のありか、<strong>誰が</strong>＝確かめる担当者、の4点です。</p>
+<p>この4つは、文書の外にある台帳やカレンダーに書いてはいけません。文書と離れた場所に置いた期限は、文書を移したりコピーしたりした瞬間に静かに置き去りになります。確かめる日は、文書の中に書いてこそ、文書と一緒に動きます。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">確かめる日は、書いて終わりではなく4段階で回す</p>
+<svg viewBox="0 0 1200 614" width="100%" style="min-width:640px" role="img" aria-label="確かめる日は、書いて終わりではなく4段階で回す"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">文書に置く1行から、出せる/出せないの判定まで</text><line x1="190" y1="156" x2="190" y2="208" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="126" r="27" fill="none" stroke="#a63a24" stroke-width="2.5"/><text x="190" y="138" font-family="'Zen Old Mincho',serif" font-size="30" fill="#a63a24" font-weight="900" text-anchor="middle">1</text><text x="246" y="137" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">確かめる日を文書に書く</text><line x1="190" y1="268" x2="190" y2="320" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="238" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="250" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">2</text><text x="246" y="249" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">期限が来たら止まる</text><line x1="190" y1="380" x2="190" y2="432" stroke="#8a8172" stroke-width="1.5"/><circle cx="190" cy="350" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="362" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">3</text><text x="246" y="361" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">一次情報で確かめる</text><circle cx="190" cy="462" r="27" fill="none" stroke="#cfc5b4" stroke-width="2.5"/><text x="190" y="474" font-family="'Zen Old Mincho',serif" font-size="30" fill="#cfc5b4" font-weight="900" text-anchor="middle">4</text><text x="246" y="473" font-family="'Zen Kaku Gothic New',sans-serif" font-size="27" fill="#2b2620" font-weight="700" text-anchor="start">直すか、期限を動かす</text><text x="600.0" y="556.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">この4段階のどこかを飛ばすと、確かめる日は形だけの飾りになる</text></svg>
+<p class="a-fig-cap">確かめる日は、文書に1行置いて終わりではありません。期限が来たら公開や送信を止め、一次情報で中身を確かめてから、直すか期限を動かすかを選びます。</p>
+</div>
+
+<h2>設計②：期限が切れたら、その文書を出せない状態にする</h2>
+<p>確かめる日を書くだけでは、結局は人の記憶に頼ることになり、いずれ抜けます。2つ目の設計は、期限が切れたらその文書を公開や送付、印刷の直前に機械が止める仕組みです。人が思い出す前に、機械が見ます。</p>
+<p>ここで一番やられやすいのが、確かめずに期限の日付だけを先に動かすことです。期限を延ばす作業は一瞬で終わりますが、中身を一つひとつ確かめるのは手間がかかります。手間を避けて日付だけ書き換えると、確かめる日という仕組みそのものが形だけのものになります。確かめずに日付だけ動かす行為は、禁じるべきものです。</p>
+<p>あわせて、何を確かめたかを記録に残す運用にします。確かめた日、確かめた人、確かめた結果を残しておけば、あとから本当に確かめたのかを検証できます。</p>
+
+<h2>設計③：確かめ方を、言葉に依存させない</h2>
+<p>3つ目の設計は、確かめ方そのものの作り方です。確かめる相手である役所や取引先の見出しの言い回しは、こちらの都合とは関係なく変わります。だから探し方を言葉だけに頼らず、変わりにくい手がかり、たとえば金額や様式番号、掲載場所も併せて使います。そして見つからなかったときに「無い」と書かないことも、同じくらい大事です。「見つからなかった」と出すのが正しい扱いです。</p>
+<div class="a-note"><strong>実際にあったこと</strong>　2026年9月16日、うちが公開している全国の最低賃金の一覧で、3つの県の額が古いまま残っていました。表には「まだ確定していない見込み額」と書いてありましたが、実際にはその県ではすでに新しい額が発表されていました。毎日どこかの県で発表が出る種類の情報のため、人の記憶では追いきれず、機械で見張る仕組みにしていました。それでも漏れた理由は、役所の発表の見出しに「答申」という言葉が入っていなかったからです。「県の最低賃金を時間額◯◯円に」「◯月◯日から◯◯円に」としか書かない県があり、こちらの探し方は「答申」という言葉に依存していました。言葉が無いだけで、機械には発表がまだ無いように見えていたのです。さらに別の1県は、発表そのものが局のトップページには載らず、手続き用の掲示にPDFで置かれていて、しかもそのPDFは画像で文字が取り出せませんでした。人が実際に開いて読み、確かめました。直し方は、その3県を直すことではなく、探し方を直すことでした。金額が書かれた見出しはまず候補として拾い、本文に発表の事実が書いてあるときだけ採る形に変え、実物の見出しで「この見出しは拾う、この見出しは拾わない」を検査に固定しました。</div>
+<p>言葉に頼った探し方は、相手が言葉を変えた瞬間に外れます。金額や様式番号のような、相手の都合で変わりにくい手がかりを併せ持つこと、そして見つからない状態を確認済みの「無い」に変換しないこと。この2つが、確かめ方の設計を長持ちさせます。</p>
+
+<h2>明日からの最小実践パス</h2>
+<p>ここまでの設計は、一度に全部を整える必要はありません。実践は3段階に分けられます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>時期</th><th>やること</th></tr>
+<tr><td>段階1</td><td>今週</td><td>社外に出る文書を10本選び、数字が入っている文に印を付け、確かめる日を1行足す</td></tr>
+<tr><td>段階2</td><td>今月</td><td>期限切れを見る場所を、人ではなく公開・送付の手順の中に埋める</td></tr>
+<tr><td>段階3</td><td>3か月</td><td>確かめ方と、見つからなかったときの扱いを文書に書く</td></tr>
+</table></div>
+<p>段階1は、いま自社の文書にどれだけ古い数字が紛れているかを、数の形で把握するための最初の一歩です。段階2は、期限切れを人まかせにしない置き場所を作る作業になります。段階3で、確かめ方そのものと、見つからなかったときにどう書くかを固定します。この順番を逆にしないでください。</p>
+
+<h2>よくある失敗</h2>
+<p>同じ失敗が繰り返し起きています。</p>
+<p><strong>①期限だけ動かす</strong>　中身を確かめずに、期限の日付だけを先に延ばしてしまう失敗です。</p>
+<p><strong>②「最新版に更新して」とAIに頼む</strong>　AIは古い方の記述を正しいものとして扱い、言い回しだけを整えて返してきます。中身が更新されたわけではありません。</p>
+<p><strong>③期限を文書ではなく人に持たせる</strong>　確かめる日を人の記憶や引き継ぎメモに置くと、担当が変わった瞬間に消えます。</p>
+
+<h2>まとめ</h2>
+<ul>
+<li>AIが書いた文書は、出した日のまま止まり、古くなってもエラーを出さない</li>
+<li>古くなり方には4つの型がある。制度の改定、一か所だけ直して他に残る、根拠資料の版替わり、「現時点では」の現時点が動く</li>
+<li>AIに聞き直しても解決しない。学習が止まっている、自分の文書を見に行かない、聞けばもっともらしく整った文を返すため</li>
+<li>設計①：文書に確かめる日を1行持たせる。いつ・何を・どこで・誰が、を文書の中に書く</li>
+<li>設計②：期限が切れたら出せない状態にする。確かめずに日付だけ動かすのは禁止し、確かめた記録を残す</li>
+<li>設計③：確かめ方を言葉に依存させない。変わりにくい手がかりを併用し、見つからなかったら「無い」ではなく「見つからなかった」と書く</li>
+<li>実践は3段階。今週は印を付ける、今月は仕組みに埋める、3か月で確かめ方を固定する</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、文書に確かめる日を持たせる設計から、期限が来たら止める仕組み、確かめ方の検査までを現場に入って一緒に作り、担当者が変わっても回り続ける形にして残しています。</p>
+  <p>NGraphでは、FDE型AI導入伴走支援を承っております。ご依頼は随時募集しています。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">お気軽にDMください。XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+  <p style="margin-top:10px;font-size:.82rem">くわしくは<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援</a>のページへ。あわせて読みたい記事：<a href="/blog/k-doc-handoff" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIは、資料に書いていない条件まで断定する</a>／<a href="/blog/20260803-saitei-chingin-2026" style="color:var(--accent);border-bottom:1px solid var(--accent)">最低賃金2026年度はいつから・いくら？</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・最低賃金の一覧の事例は、自社が2026年9月16日に確認した記録によるものです<br>
+・価格表示や1か所修正の事例は、いずれも自社の運用で実際に起きたことをもとにしています。個別の店名・取引先名はこの記事では扱っていません</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
