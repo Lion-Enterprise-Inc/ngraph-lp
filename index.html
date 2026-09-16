@@ -261,6 +261,85 @@
   .header:not(.scrolled) .nav.active a:not(.nav-cta){color:var(--text)}
 }
 @media(prefers-reduced-motion:reduce){.tz-cue i{animation:none}}
+
+/* ── 2026-09-16 設計図スタイル（会社の脳の全体構図・ABC×状態） ── */
+.ar{position:relative;background:#0b0b0d;color:#f3efe6;border:1px solid rgba(246,242,233,.12);border-radius:3px;padding:34px 34px 30px;overflow:hidden;
+  background-image:radial-gradient(rgba(246,242,233,.10) .7px,transparent .8px);background-size:22px 22px}
+.ar::before,.ar::after{content:"";position:absolute;width:14px;height:14px;border:1px solid rgba(246,242,233,.5);pointer-events:none}
+.ar::before{left:10px;top:10px;border-right:0;border-bottom:0}
+.ar::after{right:10px;bottom:10px;border-left:0;border-top:0}
+.ar-kick{display:flex;justify-content:space-between;align-items:baseline;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.66rem;letter-spacing:.22em;color:rgba(243,239,230,.5);margin-bottom:18px}
+.ar-kick b{font-weight:400;color:#c94a2e}
+.ar svg{display:block;width:100%;height:auto}
+.ar .ln{stroke:rgba(246,242,233,.42);stroke-width:1;fill:none}
+.ar .ln2{stroke:rgba(246,242,233,.2);stroke-width:1;fill:none;stroke-dasharray:3 5}
+.ar .flow{stroke:#c94a2e;stroke-width:1.2;fill:none;stroke-dasharray:4 10;animation:arflow 2.4s linear infinite;opacity:.9}
+@keyframes arflow{to{stroke-dashoffset:-28}}
+@media(prefers-reduced-motion:reduce){.ar .flow{animation:none}}
+.ar .box{fill:rgba(20,20,23,.92);stroke:rgba(246,242,233,.42);stroke-width:1}
+.ar .box.gate{stroke:#c94a2e;stroke-width:1.2}
+.ar .box.core{fill:#0b0b0d;stroke:#f3efe6;stroke-width:1.2}
+.ar .core2{fill:none;stroke:#c94a2e;stroke-width:1}
+.ar .hd{fill:#c94a2e}
+.ar .no{font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:11px;letter-spacing:.2em;fill:rgba(243,239,230,.55)}
+.ar .tt{font-family:var(--serif);font-size:20px;font-weight:600;fill:#f3efe6;letter-spacing:.04em}
+.ar .tt.big{font-size:30px}
+.ar .sm{font-family:var(--sans);font-size:11.5px;fill:rgba(243,239,230,.72)}
+.ar .sm.red{fill:#e8664a;font-weight:700}
+.ar .lb{font-family:var(--sans);font-size:11px;letter-spacing:.24em;fill:rgba(243,239,230,.55)}
+.ar .lb.red{fill:#c94a2e}
+.ar .dot{fill:#c94a2e}
+.ar-m{display:none}
+/* ABC×状態：設計図の表 */
+.ar-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid rgba(246,242,233,.35)}
+.ar-grid>div{padding:16px 18px;border-right:1px solid rgba(246,242,233,.18);border-bottom:1px solid rgba(246,242,233,.18);min-height:72px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.ar-grid>div:nth-child(3n){border-right:0}
+.ar-grid>div:nth-last-child(-n+3){border-bottom:0}
+.ar-grid .h{background:rgba(246,242,233,.05);min-height:56px}
+.ar-grid .h .lb{display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.62rem;letter-spacing:.22em;color:rgba(243,239,230,.5)}
+.ar-grid .h .t{font-family:var(--serif);font-size:.98rem;font-weight:600;color:#f3efe6}
+.ar-grid .h .t.red{color:#e8664a}
+.ar-grid .rh{background:rgba(246,242,233,.03)}
+.ar-grid .rh .code{font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.66rem;letter-spacing:.2em;color:#c94a2e}
+.ar-grid .rh .t{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:#f3efe6}
+.ar-grid .rh .d{font-size:.72rem;color:rgba(243,239,230,.5)}
+.ar-grid .v{font-family:var(--sans);font-size:.9rem;font-weight:500;color:#f3efe6;line-height:1.7}
+.ar-grid .v.red{color:#e8664a}
+.ar-grid .v small{display:block;font-size:.7rem;color:rgba(243,239,230,.5);font-weight:400}
+.ar-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.ar-rule{border:1px solid rgba(246,242,233,.2);padding:14px 16px;position:relative}
+.ar-rule .no{display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.62rem;letter-spacing:.22em;color:#c94a2e;margin-bottom:6px}
+.ar-rule b{display:block;font-family:var(--serif);font-size:.98rem;font-weight:600;color:#f3efe6}
+.ar-rule span{display:block;font-size:.78rem;line-height:1.8;color:rgba(243,239,230,.7);margin-top:4px}
+.ar-axes{display:flex;justify-content:space-between;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;color:rgba(243,239,230,.55);margin-bottom:10px}
+.ar-axes b{font-weight:400;color:#f3efe6}
+@media(max-width:768px){
+  .ar{padding:22px 16px 20px}
+  .ar-d{display:none}.ar-m{display:block}
+  .ar-m .st{border:1px solid rgba(246,242,233,.35);padding:14px 16px;position:relative}
+  .ar-m .st.gate{border-color:#c94a2e}
+  .ar-m .st.core{border-color:#f3efe6;box-shadow:inset 0 0 0 3px #0b0b0d,inset 0 0 0 4px #c94a2e;text-align:center;padding:22px 16px}
+  .ar-m .st .no{display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.62rem;letter-spacing:.22em;color:rgba(243,239,230,.55);margin-bottom:4px}
+  .ar-m .st b{display:block;font-family:var(--serif);font-size:1.05rem;font-weight:600;color:#f3efe6}
+  .ar-m .st.core b{font-size:1.5rem}
+  .ar-m .st span{display:block;font-size:.78rem;line-height:1.7;color:rgba(243,239,230,.72);margin-top:4px}
+  .ar-m .st span.red{color:#e8664a;font-weight:700}
+  .ar-m .ar-arrow{height:26px;position:relative}
+  .ar-m .ar-arrow::before{content:"";position:absolute;left:50%;top:0;bottom:6px;border-left:1px dashed rgba(246,242,233,.45)}
+  .ar-m .ar-arrow::after{content:"";position:absolute;left:calc(50% - 4px);bottom:2px;border:4px solid transparent;border-top:6px solid rgba(246,242,233,.6)}
+  .ar-m .ar-side{font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;color:rgba(243,239,230,.5);margin:14px 0 8px}
+  .ar-m .ar-loop{margin-top:14px;font-size:.76rem;color:#e8664a;text-align:center;border-top:1px dashed rgba(246,242,233,.3);padding-top:10px}
+  .ar-grid{grid-template-columns:1fr}
+  .ar-grid>div{border-right:0;min-height:0;padding:12px 14px}
+  .ar-grid>div:nth-last-child(-n+3){border-bottom:1px solid rgba(246,242,233,.18)}
+  .ar-grid>div:last-child{border-bottom:0}
+  .ar-grid .h.blank{display:none}
+  .ar-grid .h{min-height:0}
+  .ar-grid .rh{border-top:2px solid rgba(246,242,233,.35)}
+  .ar-grid .v::before{content:attr(data-k);display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(243,239,230,.5);margin-bottom:2px}
+  .ar-rules{grid-template-columns:1fr}
+  .ar-axes{display:none}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -499,78 +578,88 @@
       <h2 class="section-title" id="s08_structure-t">「会社の脳」の全体構図</h2>
       <p class="section-sub">正しい情報だけを記録に残し、どのAIも同じ入口から読みます。</p>
     </div>
-    <!-- fig:structure -->
-    <div class="fg fg-structure reveal">
-      <div class="st-head">
-        <div class="st-hw"><span class="st-side-lbl">書き込む側</span><i></i></div>
-        <div class="st-hc"><span class="nb">共通基準｜</span><em><span class="nb">ABC整理</span> × <span class="nb">状態整理</span></em></div>
-        <div class="st-hr"><i></i><span class="st-side-lbl">読み出す側</span></div>
-      </div>
-      <div class="st-body">
-        <svg class="st-arrows" viewBox="0 0 1000 313" preserveAspectRatio="none" aria-hidden="true">
-          <path class="st-cv" d="M40 46 C-2 82 -2 152 44 186"/>
-          <path class="st-ah" d="M46 194 L30 190 L41 178 Z"/>
-          <circle class="st-dot" cx="40" cy="46" r="4.6"/>
-          <path class="st-cv" d="M244 248 C285 245 322 228 340 200"/>
-          <path class="st-ah" d="M345 192 L344 209 L330 202 Z"/>
-          <circle class="st-dot" cx="244" cy="248" r="4.6"/>
-          <path class="st-cv" d="M666 137 C672 100 712 60 745 42"/>
-          <path class="st-ah" d="M752 36 L743 49 L736 37 Z"/>
-          <circle class="st-dot" cx="666" cy="137" r="4.6"/>
-          <path class="st-cv" d="M970 142 C1000 164 998 208 974 232"/>
-          <path class="st-ah" d="M970 238 L974 222 L986 232 Z"/>
-          <circle class="st-dot" cx="970" cy="142" r="4.6"/>
+    <!-- fig:structure（2026-09-16 設計図スタイル） -->
+      <div class="ar reveal" role="img" aria-label="会社の脳の全体構図。書き込む側は、入れる、入れる前の検査。中央に一つの記録＝会社の脳。読み出す側は、読む、出す前の検査。訂正や新しい決定は、また入口へ戻る。">
+        <div class="ar-kick"><span>ARCH ／ 会社の脳 ― 記録の流れ</span><span><b>●</b> 検査（ゲート）　<span style="color:rgba(243,239,230,.7)">―</span> 記録の流れ</span></div>
+        <div class="ar-d">
+        <svg viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
+          <!-- 共通基準バス -->
+          <path class="ln2" d="M60 70 H470"/><path class="ln2" d="M730 70 H1140"/>
+          <text class="lb" x="600" y="74" text-anchor="middle">共通基準 ｜ <tspan class="lb red">ABC整理 × 状態整理</tspan></text>
+          <path class="ln2" d="M385 70 V232"/><path class="ln2" d="M1045 70 V232"/>
+          <!-- 側の見出し -->
+          <text class="lb" x="60" y="178">書き込む側 ／ WRITE</text>
+          <text class="lb" x="1140" y="178" text-anchor="end">読み出す側 ／ READ</text>
+          <path class="ln" d="M60 190 H470"/><path class="ln" d="M730 190 H1140"/>
+          <!-- 01 入れる -->
+          <rect class="box" x="60" y="232" width="190" height="118"/>
+          <text class="no" x="76" y="256">01</text>
+          <text class="tt" x="76" y="286">入れる</text>
+          <text class="sm" x="76" y="311">現場の決定・変更・教訓</text>
+          <text class="sm red" x="76" y="332">「提案」は承認まで入れない</text>
+          <!-- 02 入れる前の検査 -->
+          <rect class="box gate" x="300" y="232" width="170" height="118"/>
+          <circle class="dot" cx="300" cy="232" r="3.5"/>
+          <text class="no" x="316" y="256">02 ／ GATE</text>
+          <text class="tt" x="316" y="286">入れる前の検査</text>
+          <text class="sm" x="316" y="311">ABCと状態を判定する</text>
+          <text class="sm red" x="316" y="332">不明なら「要確認」</text>
+          <!-- 会社の脳 -->
+          <rect class="box core" x="520" y="186" width="160" height="210"/>
+          <rect class="core2" x="527" y="193" width="146" height="196"/>
+          <text class="lb" x="600" y="222" text-anchor="middle">一つの記録</text>
+          <text class="tt big" x="600" y="300" text-anchor="middle">会社の脳</text>
+          <text class="sm" x="600" y="334" text-anchor="middle">決定・経緯・</text>
+          <text class="sm" x="600" y="352" text-anchor="middle">案件の現在地</text>
+          <path class="ln2" d="M540 368 H660"/>
+          <text class="no" x="600" y="384" text-anchor="middle">出典・日付・確度つき</text>
+          <!-- 03 読む -->
+          <rect class="box" x="730" y="232" width="170" height="118"/>
+          <text class="no" x="746" y="256">03</text>
+          <text class="tt" x="746" y="286">読む</text>
+          <text class="sm" x="746" y="311">どのAIも、同じ入口</text>
+          <text class="sm red" x="746" y="332">非公開ファイルは自動遮断</text>
+          <!-- 04 出す前の検査 -->
+          <rect class="box gate" x="950" y="232" width="190" height="118"/>
+          <circle class="dot" cx="950" cy="232" r="3.5"/>
+          <text class="no" x="966" y="256">04 ／ GATE</text>
+          <text class="tt" x="966" y="286">出す前の検査</text>
+          <text class="sm" x="966" y="311">同じ基準で現在地を確認</text>
+          <text class="sm red" x="966" y="332">読んでいなければ、答えさせない</text>
+          <!-- 流れ -->
+          <path class="ln" d="M250 291 H300"/><path class="flow" d="M250 291 H300"/>
+          <path class="ln" d="M470 291 H520"/><path class="flow" d="M470 291 H520"/>
+          <path class="ln" d="M680 291 H730"/><path class="flow" d="M680 291 H730"/>
+          <path class="ln" d="M900 291 H950"/><path class="flow" d="M900 291 H950"/>
+          <path class="hd" d="M294 286 l8 5 -8 5z"/><path class="hd" d="M514 286 l8 5 -8 5z"/><path class="hd" d="M724 286 l8 5 -8 5z"/><path class="hd" d="M944 286 l8 5 -8 5z"/>
+          <!-- 出力 -->
+          <path class="ln" d="M1140 291 H1176"/><path class="hd" d="M1170 286 l8 5 -8 5z"/>
+          <text class="lb red" x="1140" y="220" text-anchor="end">根拠付きで答える →</text>
+          <!-- 戻り -->
+          <path class="ln2" d="M1045 350 V456 H155 V350"/>
+          <path class="hd" d="M150 356 l5 -8 5 8z"/>
+          <text class="sm" x="600" y="448" text-anchor="middle">訂正・新しい決定は、また入口へ</text>
+          <!-- 読む側の目印 -->
+          <text class="no" x="60" y="530">WRITE → GATE → RECORD → READ → GATE → ANSWER</text>
+          <text class="no" x="1140" y="530" text-anchor="end">NGraph ／ 会社の脳</text>
         </svg>
-        <div class="st-side st-write" data-side="書き込む側">
-          <div class="st-item">
-            <span class="st-no">01</span>
-            <strong>入れる</strong>
-            <span class="st-d">現場の決定・変更・教訓</span>
-            <span class="st-r"><span class="nb">「提案」は</span><span class="nb">承認まで入れない</span></span>
-          </div>
-          <div class="st-item">
-            <span class="st-no">02</span>
-            <strong>入れる前の検査</strong>
-            <span class="st-d">ABCと状態を判定する</span>
-            <span class="st-r">不明なら「要確認」</span>
-          </div>
         </div>
-        <span class="st-lbl st-lw">書き込む</span>
-        <div class="st-hub">
-          <div class="fg-ic red st-hub-ic"><svg viewBox="0 0 41 34"><circle cx="20.5" cy="7" r="6"/><path d="M20.5 13V19M20.5 19H8M20.5 19H33M8 19V22M20.5 19V22M33 19V22"/><circle cx="8" cy="27" r="5.5"/><circle cx="20.5" cy="27" r="5.5"/><circle cx="33" cy="27" r="5.5"/></svg></div>
-          <span class="st-hub-cap">一つの記録</span>
-          <strong>会社の脳</strong>
-          <span class="st-hub-sub"><span class="nb">決定・経緯・</span><span class="nb">案件の現在地</span></span>
-        </div>
-        <span class="st-lbl st-lr">読み出す</span>
-        <div class="st-side st-read" data-side="読み出す側">
-          <div class="st-item">
-            <span class="st-no">03</span>
-            <strong>読む</strong>
-            <span class="st-d">どのAIも、同じ入口</span>
-            <span class="st-r"><span class="nb">非公開ファイルは</span><span class="nb">自動遮断</span></span>
-          </div>
-          <div class="fg-ic red st-eye"><svg viewBox="0 0 45 28"><path d="M2 14C10 3 35 3 43 14C35 25 10 25 2 14Z"/><circle cx="22.5" cy="14" r="6"/></svg></div>
-          <div class="st-item">
-            <span class="st-no">04</span>
-            <strong>出す前の検査</strong>
-            <span class="st-d"><span class="nb">同じ基準で</span><span class="nb">現在地を確認</span></span>
-            <span class="st-r"><span class="nb">読んでいなければ、</span><span class="nb">答えさせない</span></span>
-          </div>
-        </div>
-        <div class="st-foot">
-          <svg class="st-back" viewBox="0 0 1000 44" preserveAspectRatio="none" aria-hidden="true">
-            <path class="st-cv" d="M810 38 C640 52 330 52 150 20"/>
-            <path class="st-ah" d="M140 17 L157 15 L151 30 Z"/>
-          </svg>
-          <div class="fg-ic red st-shield st-shield-l"><svg viewBox="0 0 38 45"><path d="M19 3L33 9V21C33 31 27 39 19 42C11 39 5 31 5 21V9Z"/><path d="M13 22L18 27L27 16"/></svg></div>
-          <div class="fg-ic red st-shield st-shield-r"><svg viewBox="0 0 38 45"><path d="M19 3L33 9V21C33 31 27 39 19 42C11 39 5 31 5 21V9Z"/><path d="M13 22L18 27L27 16"/></svg></div>
-          <p class="st-loop"><span class="nb">訂正・新しい決定は、</span><span class="nb">また入口へ</span></p>
+        <div class="ar-m">
+          <div class="ar-side">書き込む側 ／ WRITE</div>
+          <div class="st"><span class="no">01</span><b>入れる</b><span>現場の決定・変更・教訓</span><span class="red">「提案」は承認まで入れない</span></div>
+          <div class="ar-arrow"></div>
+          <div class="st gate"><span class="no">02 ／ GATE</span><b>入れる前の検査</b><span>ABCと状態を判定する</span><span class="red">不明なら「要確認」</span></div>
+          <div class="ar-arrow"></div>
+          <div class="st core"><span class="no">一つの記録</span><b>会社の脳</b><span>決定・経緯・案件の現在地</span><span>出典・日付・確度つき</span></div>
+          <div class="ar-arrow"></div>
+          <div class="ar-side">読み出す側 ／ READ</div>
+          <div class="st"><span class="no">03</span><b>読む</b><span>どのAIも、同じ入口</span><span class="red">非公開ファイルは自動遮断</span></div>
+          <div class="ar-arrow"></div>
+          <div class="st gate"><span class="no">04 ／ GATE</span><b>出す前の検査</b><span>同じ基準で現在地を確認</span><span class="red">読んでいなければ、答えさせない</span></div>
+          <div class="ar-loop">→ 根拠付きで答える。訂正・新しい決定は、また入口へ。</div>
         </div>
       </div>
-      <hr class="fg-rule">
-    </div>
-    <p class="fg-statement reveal"><span class="nb"><em>正しい情報</em>だけが入り、</span><span class="nb"><em>許されたAI</em>だけが読み、</span><span class="nb"><em>根拠付き</em>で答える。</span></p>
+      <p class="fg-statement reveal"><span class="nb"><em>正しい情報</em>だけが入り、</span><span class="nb"><em>許されたAI</em>だけが読み、</span><span class="nb"><em>根拠付き</em>で答える。</span></p>
     <!-- /fig -->
   </div>
 </section>
@@ -581,52 +670,31 @@
       <h2 class="section-title" id="s07_definition-t">情報を、会社の記録にする。</h2>
       <p class="section-sub">整理は目的ではない。会社の事実と判断を、<span class="hl">次の意思決定に使える状態</span>にする。</p>
     </div>
-    <!-- fig:definition -->
-    <div class="fg fg-definition reveal">
-      <p class="def-lead"><span class="nb">「誰の情報か」×「状態は何か」。</span><span class="nb">二つの軸で、AIも人も同じ基準に揃える。</span></p>
-      <p class="def-title"><span class="nb">ABC整理</span><span class="x">×</span><span class="nb">状態整理</span></p>
-      <div class="def-scroll">
-        <table class="def-table">
-          <thead>
-            <tr class="axes">
-              <th scope="colgroup">ABC整理｜誰の情報か</th>
-              <th scope="colgroup" colspan="2">状態整理｜状態は何か</th>
-            </tr>
-            <tr class="cols">
-              <td></td>
-              <th scope="col">決まっていること</th>
-              <th scope="col">動いていること</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_jisha.png" alt="" loading="lazy"></span><span class="nb">A. 自社</span></span></th>
-              <td data-label="決まっていること"><span class="nb">規則・商品・役割・決定</span></td>
-              <td data-label="動いていること"><span class="nb">売上・原価・案件の現在地</span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_aite.png" alt="" loading="lazy"></span><span class="nb">B. 相手</span></span></th>
-              <td data-label="決まっていること"><span class="nb">顧客情報・担当者・契約</span></td>
-              <td data-label="動いていること"><span class="nb">商談・依頼・関係の現在地</span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_gaibu.png" alt="" loading="lazy"></span><span class="nb">C. 外部環境</span></span></th>
-              <td data-label="決まっていること"><span class="nb">制度・法令・競合の存在</span></td>
-              <td data-label="動いていること"><span class="nb">改正予定・競合動向・期限</span></td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- fig:definition（2026-09-16 設計図スタイル） -->
+      <div class="ar reveal">
+        <div class="ar-kick"><span>SPEC ／ 記録の型 ― ABC整理 × 状態整理</span><span>「誰の情報か」×「状態は何か」</span></div>
+        <div class="ar-axes"><span><b>ABC整理</b>｜誰の情報か（行）</span><span><b>状態整理</b>｜状態は何か（列）</span></div>
+        <div class="ar-grid" role="table" aria-label="ABC整理と状態整理の表">
+          <div class="h blank" role="columnheader"><span class="lb">ROW ／ COL</span></div>
+          <div class="h" role="columnheader"><span class="lb">STATE ／ FIXED</span><span class="t">決まっていること</span></div>
+          <div class="h" role="columnheader"><span class="lb">STATE ／ MOVING</span><span class="t red">動いていること</span></div>
+          <div class="rh" role="rowheader"><span class="code">A</span><span class="t">自社</span><span class="d">自分たちのこと</span></div>
+          <div class="v" data-k="決まっていること" role="cell">規則・商品・役割・決定</div>
+          <div class="v red" data-k="動いていること" role="cell">売上・原価・案件の現在地</div>
+          <div class="rh" role="rowheader"><span class="code">B</span><span class="t">相手</span><span class="d">顧客・取引先</span></div>
+          <div class="v" data-k="決まっていること" role="cell">顧客情報・担当者・契約</div>
+          <div class="v red" data-k="動いていること" role="cell">商談・依頼・関係の現在地</div>
+          <div class="rh" role="rowheader"><span class="code">C</span><span class="t">外部環境</span><span class="d">制度・市場</span></div>
+          <div class="v" data-k="決まっていること" role="cell">制度・法令・競合の存在</div>
+          <div class="v red" data-k="動いていること" role="cell">改正予定・競合動向・期限</div>
+        </div>
+        <div class="ar-rules">
+          <div class="ar-rule"><span class="no">RULE 01</span><b>出どころを残す</b><span>根拠・確認日・更新者。未確定は「要確認」。</span></div>
+          <div class="ar-rule"><span class="no">RULE 02</span><b>現在地は1つ</b><span>最新を現行に置き、古い情報は履歴へ。</span></div>
+          <div class="ar-rule"><span class="no">RULE 03</span><b>機密は場所だけ</b><span>個人情報・認証情報は、保管場所と権限だけを示す。</span></div>
+        </div>
       </div>
-      <div class="def-rules">
-        <p class="cap"><span>記録に保存する3原則</span></p>
-        <ol>
-          <li><strong>出どころを残す</strong><span><span class="nb">根拠・確認日・更新者。</span><span class="nb">未確定は「要確認」。</span></span></li>
-          <li><strong>現在地は1つ</strong><span><span class="nb">最新を現行に置き、</span><span class="nb">古い情報は履歴へ。</span></span></li>
-          <li><strong>機密は場所だけ</strong><span><span class="nb">個人情報・認証情報は、</span><span class="nb">保管場所と権限だけを示す。</span></span></li>
-        </ol>
-      </div>
-    </div>
-    <p class="fg-statement reveal"><span class="nb">担当者が変わっても、</span><span class="nb">AIが変わっても、</span><span class="nb">判断の基準は残る。</span><em class="tail">これが、会社の記録。</em></p>
+      <p class="fg-statement reveal"><span class="nb">担当者が変わっても、</span><span class="nb">AIが変わっても、</span><span class="nb">判断の基準は残る。</span><em class="tail">これが、会社の記録。</em></p>
     <!-- /fig -->
   </div>
 </section>

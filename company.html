@@ -50,6 +50,34 @@
 }
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
+<style>
+/* ── 2026-09-16 会社情報：墨地の第1画面（光条の格子） ── */
+.cp-sky{position:relative;min-height:88svh;overflow:hidden;isolation:isolate;background:#0b0b0d;color:#f3efe6}
+.cp-sky canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.cp-sky::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(11,11,13,.2) 0,rgba(11,11,13,0) 30%,rgba(11,11,13,0) 70%,rgba(11,11,13,.85) 100%),linear-gradient(90deg,rgba(11,11,13,.7) 0,rgba(11,11,13,.25) 40%,rgba(11,11,13,0) 65%)}
+.cp-frame{position:relative;z-index:2;min-height:88svh;display:grid;grid-template-rows:1fr auto;padding:110px clamp(20px,5vw,72px) 30px;max-width:1440px;margin:0 auto}
+.cp-copy{align-self:center;max-width:760px}
+.cp-eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:.68rem;letter-spacing:.34em;color:rgba(243,239,230,.46);margin-bottom:30px}
+.cp-eyebrow i{display:block;width:34px;height:1px;background:rgba(246,242,233,.32)}
+.cp-h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,4.4vw,3.8rem);line-height:1.45;letter-spacing:.06em;color:#f3efe6;margin:0}
+.cp-h1 em{font-style:normal;color:#c94a2e}
+.cp-lede{margin-top:28px;font-size:.92rem;line-height:2.2;letter-spacing:.06em;color:rgba(243,239,230,.72);max-width:40em;font-weight:300}
+.cp-foot{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;color:rgba(243,239,230,.46)}
+.cp-foot .r{text-align:right;line-height:2}
+.cp-idx{display:flex;gap:26px}
+.cp-idx a{color:rgba(243,239,230,.6);position:relative;padding-bottom:4px}
+.cp-idx a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:#c94a2e;transition:right .4s}
+.cp-idx a:hover{color:#f3efe6}.cp-idx a:hover::after{right:0}
+.header:not(.scrolled) .brand span{color:#f3efe6}
+.header:not(.scrolled) .brand img{filter:invert(1)}
+.header:not(.scrolled) .header-inner .nav-cta{color:#f3efe6;background:transparent;border:1px solid rgba(246,242,233,.35)}
+@media(max-width:900px){
+  .cp-frame{padding:90px 20px 24px}
+  .cp-h1{font-size:2rem;line-height:1.5}
+  .cp-lede{font-size:.86rem;line-height:2}
+  .cp-idx{display:none}
+}
+</style>
 </head>
 <body>
 
@@ -66,11 +94,18 @@
   </div>
 </header>
 
-<section class="page-hero">
-  <div class="container">
-    <div class="section-label">Company</div>
-    <h1><span class="nb">現実世界の「意味」を、</span><span class="nb">AIが理解できる形に。</span></h1>
-    <p class="page-sub">株式会社NGraphの会社情報</p>
+<section class="cp-sky" id="top">
+  <canvas id="cpBeams" aria-hidden="true"></canvas>
+  <div class="cp-frame">
+    <div class="cp-copy">
+      <div class="cp-eyebrow"><i></i>会社情報 ― 株式会社NGraph</div>
+      <h1 class="cp-h1">現実世界の<em>意味</em>を、<br>AIが読める形に。</h1>
+      <p class="cp-lede">AIが誤解し、推測し、作り話をする領域に、「正解データが生まれる仕組み」を実装する。<br>人が確かめた一次情報だけを、AIが読める形にして残す。</p>
+    </div>
+    <div class="cp-foot">
+      <nav class="cp-idx" aria-label="ページ内"><a href="#tech">構造化技術</a><a href="#team">チーム</a><a href="#company">会社概要</a></nav>
+      <div class="r">FUKUI ― JAPAN<br>EST. 2025</div>
+    </div>
   </div>
 </section>
 
@@ -256,6 +291,36 @@
 <script>
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+<script>
+// 光条の格子：中心から伸びる細線の束が、ゆっくり回りながら層を成す。自前計算（既存作品の画像・構図は使わない）
+(function(){
+  var c=document.getElementById('cpBeams');if(!c)return;var ctx=c.getContext('2d');if(!ctx)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var W,H,dpr=Math.min(window.devicePixelRatio||1,2),B=[];
+  function mobile(){return innerWidth<900}
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function seed(){B=[];var n=mobile()?9:14;
+    for(var i=0;i<n;i++){var ang=i/n*Math.PI*2+rnd(-.12,.12),cnt=Math.round(rnd(12,34)),lines=[];
+      for(var k=0;k<cnt;k++){var r=Math.random();lines.push({off:rnd(-1,1),len:rnd(.4,1.2),start:rnd(0,.3),w:r<.06?5:r<.16?2.2:r<.4?1.1:.6,red:Math.random()<.06});}
+      B.push({ang:ang,spread:rnd(.07,.2),lines:lines,speed:rnd(-1,1)*0.00004,len:rnd(.6,1.05)});}}
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);seed()}
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    var T=reduce?0:t,m=mobile(),cx=m?W*0.6:W*0.68,cy=m?H*0.2:H*0.5,R=Math.max(W,H)*(m?0.6:0.66);
+    for(var i=0;i<B.length;i++){var b=B[i],a=b.ang+T*b.speed,ux=Math.cos(a),uy=Math.sin(a),px=-uy,py=ux;
+      for(var k=0;k<b.lines.length;k++){var L=b.lines[k],o=L.off*b.spread*R*0.35,x0=cx+px*o+ux*L.start*R*b.len,y0=cy+py*o+uy*L.start*R*b.len,x1=cx+px*o+ux*L.len*R*b.len,y1=cy+py*o+uy*L.len*R*b.len;
+        var g=ctx.createLinearGradient(x0,y0,x1,y1);
+        if(L.red){g.addColorStop(0,'rgba(201,74,46,.85)');g.addColorStop(1,'rgba(201,74,46,0)')}
+        else{var al=L.w>4?.14:L.w>2?.3:L.w>1?.5:.34;g.addColorStop(0,'rgba(246,242,233,'+al+')');g.addColorStop(1,'rgba(246,242,233,0)')}
+        ctx.strokeStyle=g;ctx.lineWidth=L.w;ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();}}
+    // 中心の小さな枠＝観測者の部屋
+    ctx.strokeStyle='rgba(246,242,233,.55)';ctx.lineWidth=1;var s=m?22:34;ctx.strokeRect(cx-s/2,cy-s/2,s,s);
+    ctx.fillStyle='rgba(201,74,46,.9)';ctx.beginPath();ctx.arc(cx,cy,2.2,0,6.28);ctx.fill();
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',size,{passive:true});size();requestAnimationFrame(draw);
+})();
 </script>
 </body>
 </html>
