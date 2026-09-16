@@ -18,6 +18,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [社員は会社より先にAIを使い始める——シャドーAI関与の侵害が20%から43%へ、禁止と研修が効かない理由](https://ngraph.jp/blog/20260916-shadow-ai)
 - [名前はAI導入補助金、線引きは業務プロセスのまま——汎用AIが単独で通らない理由と、登録済み生成AI27件](https://ngraph.jp/blog/20260910-ai-hojokin-gyomu-process)
 - [社内の問い合わせにAIを入れた会社は5割、効果実感4割強——議事録と違い、誰かが答えを書かないと始まらない](https://ngraph.jp/blog/20260908-shanai-toiawase-ai)
 - [AIが組んだシフトは、確定した後は本人の同意なしに直せない——止まる理由3つと、現場で回り続ける設計](https://ngraph.jp/blog/20260905-shift-kintai-ai)
