@@ -68,6 +68,30 @@ YEAR_WEST = ("2026年", "2026/")
 # 答申が出ていない県を「出ている」と報告するのは、記事に嘘の数字を書かせる事故そのもの。
 NEED = ("答申", "改正決定")
 DENY = ("諮問", "公示", "意見聴取", "推薦", "候補者", "専門部会委員")
+# ⚠**見出しに「答申」と書かない局がある**（2026-09-16に実測）。秋田「秋田県最低賃金を時間額
+# 1,090円に」（8/18・本文は答申）・佐賀「佐賀県最低賃金が令和8年11月15日から1,095円に」（9/1・
+# PDF本文は答申）はどちらも答申済みなのに、NEED を**見出しだけ**に当てていたため落ちていた。
+# 落ちた県は「答申の見出しは無い（未答申の可能性）」に混ざる＝また未答申と区別が付かない。
+# よって、金額が書かれた見出しは「かもしれない」として拾い、**本文に答申/改正決定があるときだけ**
+# 採用する（諮問の安全弁は本文側にも掛ける＝本文が諮問なら採らない）。
+# 金額そのものは従来どおり extract/checksum で拾い、現行額以下は plausible() が弾く。
+AMOUNT_HINT = re.compile(r"(?:時間額)?[0-9０-９][,，]?[0-9０-９]{3}\s*円")
+
+
+def label_kind(label):
+    """局トップの見出し1本を、答申ページの候補として見るかどうか判定する。
+
+    'sure'  … 見出しに答申/改正決定がある（従来どおり）
+    'maybe' … 答申とは書いていないが金額がある（本文に答申があるときだけ採る）
+    None    … 候補にしない
+    """
+    if any(d in label for d in DENY):
+        return None
+    if any(k in label for k in NEED):
+        return "sure"
+    if AMOUNT_HINT.search(label):
+        return "maybe"
+    return None
 
 
 def fetch(url, binary=False):
@@ -220,11 +244,10 @@ def probe(pref, tmpdir, now_yen=None):
         if not any(y in label for y in YEAR_HINT + YEAR_WEST):
             continue
         seen_year += 1
-        if any(d in label for d in DENY):
+        kind = label_kind(label)
+        if not kind:
             continue
-        if not any(k in label for k in NEED):
-            continue
-        cands.append((urllib.parse.urljoin(top, href), label))
+        cands.append((urllib.parse.urljoin(top, href), label, kind))
     if not cands:
         # ⚠**「見つからない」を1つの文言にまとめない**（2026-08-25）。取得経路が壊れていても
         # 本当に未答申でも同じ「未答申の可能性」が出ていたため、22県が同じ理由で並んでも
@@ -234,7 +257,7 @@ def probe(pref, tmpdir, now_yen=None):
         if seen_year == 0:
             return None, ("最低賃金の見出しは%d件あるが今年度の表記が無い"
                           "（**年の判定が効いていない可能性**・要確認）" % seen_mw)
-        return None, "最低賃金の見出し%d件のうち答申の見出しは無い（未答申の可能性）" % seen_year
+        return None, "最低賃金の見出し%d件のうち答申・金額の見出しは無い（未答申の可能性）" % seen_year
 
     def plausible(got):
         """抽出した額が現行額以下なら、答申額ではなく現行額を拾っている。"""
@@ -254,18 +277,36 @@ def probe(pref, tmpdir, now_yen=None):
         return None
 
     saw_pdf = False
-    for url, label in cands[:2]:
-        # 見出し自体に金額が書かれている型（例: 奈良「時間額56円引上げ1,107円へ」）
-        got = read(label)
-        if got:
-            return got, label
+    # 「答申」と書いた見出しを先に見る（従来の経路を変えない）。金額だけの見出しはその後。
+    cands.sort(key=lambda c: 0 if c[2] == "sure" else 1)
+
+    def body_says_toshin(text):
+        """本文が答申/改正決定を名乗っているか。諮問の本文は採らない。"""
+        head = text[:4000]
+        if "諮問" in head and not any(k in head for k in NEED):
+            return False
+        return any(k in text for k in NEED)
+
+    for url, label, kind in cands[:3]:
+        # 見出し自体に金額が書かれている型（例: 奈良「時間額56円引上げ1,107円へ」）。
+        # ただし「答申」と書いていない見出しは、本文を読むまで採らない。
+        if kind == "sure":
+            got = read(label)
+            if got:
+                return got, label
         try:
             page = fetch(url)
         except Exception:
             continue
-        got = read(page)
-        if got:
-            return got, label
+        if kind == "maybe" and not body_says_toshin(norm(page)):
+            # PDFに本文がある型（佐賀）もあるので、ここでは捨てずにPDFへ進む
+            page_ok = False
+        else:
+            page_ok = True
+        if page_ok:
+            got = read(page)
+            if got:
+                return got, label
         for pm in list(re.finditer(r'href="([^"]+\.pdf)"', page, re.I))[:3]:
             purl = urllib.parse.urljoin(url, pm.group(1))
             try:
@@ -276,6 +317,8 @@ def probe(pref, tmpdir, now_yen=None):
             if not t:
                 # PDFを開けたのに文字が取れていない＝読めない経路。緑に紛れさせない
                 saw_pdf = True
+                continue
+            if kind == "maybe" and not body_says_toshin(t):
                 continue
             got = read(t)
             if got:
@@ -303,15 +346,50 @@ def article_state():
         # 巡回対象でもないのに「試算のまま」が1件多く出続ける（2026-09-01に実測）
         if cells[0] not in BUREAU:
             continue
-        out[cells[0]] = (cells[-1], "答申" in cells[-1], cells[1] if len(cells) > 2 else "")
+        # 「決定」は答申より先の段階なので、反映済みとして数える（2026-09-16）。
+        # 「答申」だけを見ていたため、決定まで進んだ東京・愛知が毎回「試算のまま」に
+        # 数えられ、出力の県数が実際と食い違っていた。
+        out[cells[0]] = (cells[-1], ("答申" in cells[-1] or "決定" in cells[-1]),
+                         cells[1] if len(cells) > 2 else "")
     return out
+
+
+SELFTEST_LABELS = [
+    # 実物の見出し（2026-09-16に局トップから採取）。検査を緩めたら、ここが落ちる。
+    ("2026年08月18日 秋田県最低賃金を時間額1,090円に【報道発表】", "maybe"),
+    ("2026年09月01日 佐賀県最低賃金が令和8年11月15日から1,095円に", "maybe"),
+    ("2026年08月24日 京都府最低賃金時間額1,180円へ ～58円引上げの答申～", "sure"),
+    ("2026年08月20日 広島県最低賃金56円引き上げて「時間額1,141円」へ ―答申―", "sure"),
+    # 諮問は答申の前段階。拾ったら記事に現行額を書く事故になる（2026-08-11に実際に起きかけた）
+    ("2026年07月06日 福井県最低賃金の改正を審議会へ諮問しました", None),
+    ("2026年06月30日 静岡県最低賃金の改正決定に係る諮問について", None),
+    ("2026年08月26日 鹿児島地方最低賃金審議会の意見に関する公示", None),
+    ("2026年05月01日 最低賃金の履行確保に向けた取組について", None),
+]
+
+
+def selftest():
+    """見出しの判定だけを、実物の文字列で検査する（ネットワークに出ない）。"""
+    bad = 0
+    for label, exp in SELFTEST_LABELS:
+        got = label_kind(label)
+        if got != exp:
+            bad += 1
+            print("  NG %-6s（期待 %s）: %s" % (got, exp, label))
+    print("見出し判定の自己テスト: %s（%d件）"
+          % ("全通過" if not bad else "NG %d件" % bad, len(SELFTEST_LABELS)))
+    return 1 if bad else 0
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true", help="答申済みの県も巡回して検算する")
     ap.add_argument("--pref", help="1県だけ")
+    ap.add_argument("--selftest", action="store_true",
+                    help="見出し判定だけを実物の文字列で検査する（ネットワークに出ない）")
     a = ap.parse_args()
+    if a.selftest:
+        sys.exit(selftest())
 
     state = article_state()
     if a.pref:

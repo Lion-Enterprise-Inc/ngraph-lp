@@ -1,5 +1,5 @@
 {
- "as_of": "2026-09-04",
+ "as_of": "2026-09-16",
  "source": "blog/20260803-saitei-chingin-2026.html の47県表（各労働局一次資料で突合済み）",
  "prefectures": [
   {
@@ -37,9 +37,9 @@
   {
    "pref": "秋田",
    "now": 1031,
-   "new": 1087,
-   "kind": "試算",
-   "effective": null,
+   "new": 1090,
+   "kind": "答申",
+   "effective": "2026-10-14",
    "prev_effective": "2026-03-31"
   },
   {
@@ -325,9 +325,9 @@
   {
    "pref": "佐賀",
    "now": 1030,
-   "new": 1086,
-   "kind": "試算",
-   "effective": null,
+   "new": 1095,
+   "kind": "答申",
+   "effective": "2026-11-15",
    "prev_effective": "2025-11-21"
   },
   {
@@ -365,8 +365,8 @@
   {
    "pref": "鹿児島",
    "now": 1026,
-   "new": 1082,
-   "kind": "試算",
+   "new": 1090,
+   "kind": "答申",
    "effective": null,
    "prev_effective": "2025-11-01"
   },
