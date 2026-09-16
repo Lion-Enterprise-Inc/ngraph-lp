@@ -45,7 +45,7 @@ BANNED_RE = {
 }
 
 TARGETS = ["index.html", "company.html", "recruit.html", "entry.html", "page.html",
-           "fde/index.html", "en/index.html", "en/fde/index.html"]
+           "fde/index.html", "starter/index.html", "en/index.html", "en/fde/index.html"]
 
 
 def visible_text(src: str) -> str:
