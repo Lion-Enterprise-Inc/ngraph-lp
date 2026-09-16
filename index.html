@@ -14,9 +14,9 @@
   gtag('config', 'G-L96HMXRK1D');
 </script>
 
-<title>株式会社NGraph — 会社の仕事を、AIに任せられる形にする</title>
+<title>株式会社NGraph — 現実世界の意味を、AIが読める形に。</title>
 <meta name="description" content="人・資料・会話に散らばる目的、役割、決定、手順、進捗を、人間とAIが共有できる「会社の脳」へ。現実世界の意味をAIが読める形に構造化する技術の会社。エンジニアが現場に入り、AIを「使われる形」にして残します。">
-<meta property="og:title" content="株式会社NGraph — 会社の仕事を、AIに任せられる形にする">
+<meta property="og:title" content="株式会社NGraph — 現実世界の意味を、AIが読める形に。">
 <meta property="og:description" content="人・資料・会話に散らばる目的、役割、決定、手順、進捗を、人間とAIが共有できる「会社の脳」へ。現実世界の意味をAIが読める形に構造化する技術の会社。エンジニアが現場に入り、AIを「使われる形」にして残します。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ngraph.jp/">
@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="株式会社NGraph — 会社の仕事を、AIに任せられる形にする">
+<meta property="og:image:alt" content="株式会社NGraph — 現実世界の意味を、AIが読める形に。">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://ngraph.jp/assets/ogp.jpg?v=3">
 <link rel="canonical" href="https://ngraph.jp/">
@@ -212,6 +212,55 @@
   .hero .hero-visual{max-width:460px;margin:0 auto}
   .hero .hero-visual img{max-height:380px}
 }
+
+/* ── 2026-09-16 トップ改修 Phase1：墨地の第1画面（テッセラクト）→ 和紙へ降りる ── */
+:root{--tz-ink:#0b0b0d;--tz-ink2:#141417;--tz-txt:#f3efe6;--tz-txt2:rgba(243,239,230,.72);--tz-txt3:rgba(243,239,230,.46);--tz-line:rgba(246,242,233,.14);--tz-line2:rgba(246,242,233,.32);--tz-shu:#c94a2e}
+.tz-sky{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;background:var(--tz-ink);color:var(--tz-txt)}
+.tz-sky canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.tz-sky::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(11,11,13,.82) 0,rgba(11,11,13,.55) 38%,rgba(11,11,13,0) 62%),radial-gradient(90% 70% at 66% 50%,transparent 45%,rgba(11,11,13,.7) 100%)}
+.tz-frame{position:relative;z-index:2;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:96px clamp(20px,5vw,72px) 28px;max-width:1440px;margin:0 auto}
+.tz-stage{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;padding:4vh 0}
+.tz-copy{max-width:780px}
+.tz-eyebrow{display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:.68rem;letter-spacing:.34em;color:var(--tz-txt3);margin-bottom:34px;font-weight:400}
+.tz-eyebrow i{display:block;width:34px;height:1px;background:var(--tz-line2)}
+.tz-h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,4.8vw,4.1rem);line-height:1.42;letter-spacing:.06em;white-space:nowrap;color:var(--tz-txt);margin:0}
+.tz-h1 em{font-style:normal;color:var(--tz-shu)}
+.tz-lede{margin-top:34px;font-size:.92rem;line-height:2.2;letter-spacing:.06em;color:var(--tz-txt2);max-width:40em;font-weight:300}
+.tz-lede b{font-weight:400;color:var(--tz-txt)}
+.tz-tate{writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--serif);font-size:.86rem;letter-spacing:.42em;color:var(--tz-txt3);height:min(46vh,420px);border-left:1px solid var(--tz-line);padding-left:18px;align-self:start;margin-top:2vh}
+.tz-foot{display:flex;justify-content:space-between;align-items:flex-end;font-family:var(--sans);font-size:.68rem;letter-spacing:.24em;color:var(--tz-txt3)}
+.tz-cue{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--tz-txt3)}
+.tz-cue i{display:block;width:1px;height:44px;background:linear-gradient(var(--tz-shu),transparent);animation:tzdrop 2.6s ease-in-out infinite}
+@keyframes tzdrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.tz-place{text-align:right;line-height:2}
+.tz-descent{position:relative;background:linear-gradient(var(--tz-ink) 0,var(--tz-ink2) 14%,#efe9dd 52%,var(--bg) 100%);padding:26vh clamp(20px,5vw,72px) 10vh}
+.tz-descent .tz-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
+.tz-descent .k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
+.tz-descent h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:18px 0 0;color:var(--text)}
+.tz-descent p{font-size:.9rem;line-height:2.1;letter-spacing:.04em;color:var(--text-2);margin:0}
+.tz-doors{padding:0 clamp(20px,5vw,72px) 12vh}
+.tz-doors .tz-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tz-door{display:block;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:26px 24px;color:var(--text);transition:border-color .3s,transform .3s}
+.tz-door:hover{border-color:var(--accent);transform:translateY(-2px)}
+.tz-door .n{font-family:var(--serif);font-size:.7rem;letter-spacing:.24em;color:var(--accent);font-weight:600}
+.tz-door h3{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin:10px 0 0;line-height:1.6}
+.tz-door p{font-size:.84rem;line-height:1.9;color:var(--text-2);margin:8px 0 0}
+.tz-door .go{display:inline-block;margin-top:12px;font-size:.76rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
+/* 固定ヘッダーは墨地の上では和紙色に */
+.header:not(.scrolled) .brand span,.header:not(.scrolled) .nav a:not(.nav-cta),.header:not(.scrolled) .lang-switch,.header:not(.scrolled) .lang-switch a,.header:not(.scrolled) .nav-toggle{color:var(--tz-txt)}
+.header:not(.scrolled) .brand img{filter:invert(1)}
+@media(max-width:900px){
+  .tz-frame{padding:84px 20px 24px}
+  .tz-stage{grid-template-columns:1fr;gap:28px;padding:4vh 0 3vh;align-items:end}
+  .tz-tate{display:none}
+  .tz-h1{font-size:2.05rem;line-height:1.5;white-space:normal}
+  .tz-lede{font-size:.86rem;line-height:2}
+  .tz-eyebrow{margin-bottom:22px}
+  .tz-descent{padding-top:18vh}
+  .tz-descent .tz-in,.tz-doors .tz-in{grid-template-columns:1fr}
+  .header:not(.scrolled) .nav.active a:not(.nav-cta){color:var(--text)}
+}
+@media(prefers-reduced-motion:reduce){.tz-cue i{animation:none}}
 </style>
 <script type="application/ld+json">
 {
@@ -305,25 +354,39 @@
   </div>
 </header>
 
-<!-- ── Hero ── -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>STRUCTURING MEANING FOR AI</span>
-      <h1 class="hero-h1"><span class="nb">会社の仕事を、</span><br><span class="nb"><span class="hl">AIに任せられる形にする。</span></span></h1>
-      <p class="hero-tagline"><span class="nb">人・資料・会話に散らばる</span><span class="nb">目的、役割、決定、手順、進捗を、</span><span class="nb">人間とAIが共有できる</span><span class="nb">「会社の脳」へ。</span></p>
-      <div class="hero-cta">
-        <a href="/fde/#shindan" class="btn btn-primary">1分で無料AI診断を試す <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+<!-- ── Hero（2026-09-16 Phase1：墨地・テッセラクト） ── -->
+<section class="tz-sky" id="top">
+  <canvas id="tzSky" aria-hidden="true"></canvas>
+  <div class="tz-frame">
+    <div class="tz-stage">
+      <div class="tz-copy">
+        <div class="tz-eyebrow"><i></i>株式会社NGraph ― 福井</div>
+        <h1 class="tz-h1">現実世界の<em>意味</em>を、<br>AIが読める形に。</h1>
+        <p class="tz-lede"><b>NFG・NCG・NHG</b>。独自の三つの意味構造で、現実を読める形にする。<br>理論は重く、現場には軽く。AIと人の分担を、会社ごとに設計する。</p>
       </div>
-      <p class="cta-micro">相談無料 ／ オンライン対応・全国から相談可</p>
-      <div class="hero-trust">
-        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg><span class="nb">売る前に、</span><span class="nb">自分たちで</span><span class="nb">毎日使っています</span></span>
-        <span><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg>全国オンライン対応</span>
-      </div>
+      <div class="tz-tate" aria-hidden="true">意味は、人が確かめたものだけを残す。</div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <img src="/assets/brain/ill/brain-hero.png" alt="" class="hero-brain">
+    <div class="tz-foot">
+      <a class="tz-cue" href="#genba"><i></i><span>現場へ</span></a>
+      <div class="tz-place">FUKUI ― HOKURIKU<br>2026</div>
     </div>
+  </div>
+</section>
+
+<section class="tz-descent" id="genba">
+  <div class="tz-in">
+    <div>
+      <div class="k">現場に入る</div>
+      <h2>理論を、パソコン1台から<br>使える形に降ろす。</h2>
+    </div>
+    <p>エンジニアが会社に入り、AIが使われる形にして残す。書いてある数字は、実測したものだけ。</p>
+  </div>
+</section>
+<section class="tz-doors">
+  <div class="tz-in">
+    <a class="tz-door reveal" href="/starter/"><div class="n">01</div><h3>生成AI導入 初期セット</h3><p>訪問してパソコンを設定。5〜7営業日で、翌日からふだんの言葉で頼める。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="/fde/"><div class="n">02</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="#brain"><div class="n">03</div><h3>会社の脳</h3><p>会社の知識を、どのAIからも同じ事実・同じ出典で読める形に。</p><span class="go">全体構図へ ↓</span></a>
   </div>
 </section>
 
@@ -1069,6 +1132,41 @@ setInterval(function(){
   }
   f.addEventListener('submit',function(e){e.preventDefault();ask(inp.value);});
   document.querySelectorAll('.ask-chips button').forEach(function(b){b.addEventListener('click',function(){inp.value=b.getAttribute('data-q');ask(inp.value);});});
+})();
+</script>
+<script>
+// 4次元立方体（テッセラクト）の回廊。格子の一つ一つ＝ある時点の記録。自前の投影計算（既存作品の画像・構図は使わない）
+(function(){
+  var c=document.getElementById('tzSky');if(!c)return;var ctx=c.getContext('2d');if(!ctx)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var W,H,dpr=Math.min(window.devicePixelRatio||1,2);
+  function mobile(){return innerWidth<900}
+  var V=[];for(var i=0;i<16;i++)V.push([(i&1?1:-1),(i&2?1:-1),(i&4?1:-1),(i&8?1:-1)]);
+  var E=[];for(var a=0;a<16;a++)for(var b=a+1;b<16;b++){var d=0;for(var k=0;k<4;k++)if(V[a][k]!==V[b][k])d++;if(d===1)E.push([a,b]);}
+  function rot(v,p,q,t){var cs=Math.cos(t),sn=Math.sin(t),x=v[p],y=v[q];v[p]=x*cs-y*sn;v[q]=x*sn+y*cs}
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  var prev=[];
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    var T=reduce?4000:t,m=mobile();
+    var layers=m?7:11,cx=m?W*0.56:W*0.66,cy=m?H*0.26:H*0.5,base=Math.min(W,H)*(m?0.30:0.34);
+    prev.length=0;
+    for(var L=0;L<layers;L++){
+      var z=L*0.9,persp=1/(1+z*0.42),pts=[];
+      for(var n=0;n<16;n++){var v=V[n].slice();
+        rot(v,0,3,T*0.00011+L*0.06);rot(v,1,2,T*0.00007);rot(v,0,2,0.5);
+        var w=1/(2.6-v[3]*0.7),x=v[0]*w,y=v[1]*w,zz=v[2]*w,dd=1/(3.2+zz);
+        pts.push([cx+x*dd*base*3.2*persp,cy+y*dd*base*3.2*persp]);}
+      var kk=1-L/layers;
+      ctx.lineWidth=L===0?0.9:0.6;ctx.strokeStyle='rgba(246,242,233,'+(0.06+0.26*kk*kk)+')';
+      ctx.beginPath();for(var e=0;e<E.length;e++){var ea=pts[E[e][0]],eb=pts[E[e][1]];ctx.moveTo(ea[0],ea[1]);ctx.lineTo(eb[0],eb[1])}ctx.stroke();
+      if(prev.length){ctx.strokeStyle='rgba(246,242,233,'+(0.04+0.10*kk)+')';ctx.beginPath();for(var q=0;q<16;q++){ctx.moveTo(prev[q][0],prev[q][1]);ctx.lineTo(pts[q][0],pts[q][1])}ctx.stroke()}
+      for(var r=0;r<16;r++){if(((r*7+L*3)%16)<2){var tw=.5+.5*Math.sin(T*.0009+r+L);ctx.fillStyle='rgba(201,74,46,'+((0.25+0.65*tw)*(0.35+0.65*kk))+')';ctx.beginPath();ctx.arc(pts[r][0],pts[r][1],L===0?2.2:1.4,0,6.28);ctx.fill()}}
+      prev=pts;
+    }
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',size,{passive:true});size();requestAnimationFrame(draw);
 })();
 </script>
 </body>
