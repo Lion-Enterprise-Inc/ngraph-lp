@@ -149,6 +149,15 @@
 .bub .row svg{width:26px;height:16px;stroke:var(--border-strong);stroke-width:2;fill:none}
 .bub p{font-size:.84rem;color:var(--text-2);line-height:1.9;margin-top:14px}
 @media(max-width:900px){.bubbles{grid-template-columns:1fr}}
+.auto{margin-top:26px;border:1px solid var(--border);border-radius:4px;padding:22px 24px;background:rgba(255,255,255,.7)}
+.auto-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.auto-label{font-size:.78rem;font-weight:700;color:var(--accent);letter-spacing:.12em}
+.auto-head p{font-family:var(--serif);font-size:1.02rem;font-weight:700}
+.auto-note{font-size:.8rem;color:var(--text-2);margin-left:auto}
+.auto ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.auto li{background:var(--bg-2);border-radius:10px;padding:14px 16px;font-size:.92rem;line-height:1.8}
+.auto li b{display:block;font-size:.8rem;color:var(--accent);margin-bottom:4px}
+@media(max-width:900px){.auto ul{grid-template-columns:1fr}.auto{padding:14px}.auto-note{margin-left:0}}
 /* モデルスケジュール */
 .sched{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;max-width:1100px;margin:0 auto}
 .sday{text-align:center}
@@ -531,6 +540,14 @@
         <div class="row"><img src="/assets/starter/icon17_ai.png" alt=""><svg viewBox="0 0 26 16" aria-hidden="true"><path d="M2 8h20m-5-5l5 5-5 5"/></svg><img src="/assets/starter/icon11_keizoku.png" alt=""></div>
         <p>うまくいったやり方が型として残っているから、一言で同じ手順を呼び出せる。</p>
       </div>
+    </div>
+    <div class="auto reveal">
+      <div class="auto-head"><span class="auto-label">決めておく</span><p>決めておけば、頼まなくても動きます。</p><span class="auto-note">パソコンが起動している時間に動きます</span></div>
+      <ul>
+        <li><b>毎週月曜の朝</b>先週の売上表を集計して、1枚にまとめておいて。</li>
+        <li><b>毎月1日</b>先月の請求書PDFを、支払い一覧に足しておいて。</li>
+        <li><b>フォルダに届いたら</b>見積依頼が入ったら、返事の下書きを作っておいて。</li>
+      </ul>
     </div>
     <p class="snote">例であり、成果を保証するものではありません。できることは、御社のファイルとパソコンの状況で変わります。</p>
     <div class="close-line reveal"><p><span class="nb">人が頼み方を覚えるのではなく、</span><span class="nb"><span class="hl">仕事の仕方をAIに教える。</span></span></p></div>
