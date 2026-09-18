@@ -349,6 +349,13 @@
   "sub": "AI導入の現場 2026",
   "title": "社員は、会社より先にAIを使う"
  },
+ "20260918-jev-typesafe-handan": {
+  "article_h1": "AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件",
+  "fs": 54,
+  "pattern": "cards",
+  "sub": "2026-09-17時点・docs.typesafe.ai と非公式図解ガイドの実測",
+  "title": "Jevは、文章を書かず判定だけ返す"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,

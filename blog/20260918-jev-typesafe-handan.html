@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件 | NGraphブログ</title>
+<meta name="description" content="Jevは、文章を書かずに「どれか」「どの程度か」「YesかNoか」を確率と確信度で返すAIです。LLMの判定と何が違うか、確信度で自動・確認・人へ分ける設計、公式が認める苦手9つ、手書き205語の判定ルールをどう仕分けるかをまとめます。">
+<meta property="og:title" content="AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件 | NGraphブログ">
+<meta property="og:description" content="Jevは、文章を書かずに「どれか」「どの程度か」「YesかNoか」を確率と確信度で返すAIです。LLMの判定と何が違うか、確信度で自動・確認・人へ分ける設計、公式が認める苦手9つ、手書き205語の判定ルールをどう仕分けるかをまとめます。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260918-jev-typesafe-handan">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260918-jev-typesafe-handan.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260918-jev-typesafe-handan">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件",
+  "image": "https://ngraph.jp/assets/blog/20260918-jev-typesafe-handan.jpg",
+  "description": "Jevは、文章を書かずに「どれか」「どの程度か」「YesかNoか」を確率と確信度で返すAIです。LLMの判定と何が違うか、確信度で自動・確認・人へ分ける設計、公式が認める苦手9つ、手書き205語の判定ルールをどう仕分けるかをまとめます。",
+  "datePublished": "2026-09-18",
+  "dateModified": "2026-09-18",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260918-jev-typesafe-handan",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {"@type": "Question", "name": "Jevとは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "TypeSafe社が提供するAIモデルで、文章を生成する代わりに「どれか」「どの程度か」「YesかNoか」を確率と確信度つきの値で返します。現行モデルはjev-1.13.0です。"}},
+  {"@type": "Question", "name": "ChatGPTやClaudeの代わりになりますか？", "acceptedAnswer": {"@type": "Answer", "text": "なりません。Jevは文章を生成する訓練を受けておらず、公式ドキュメントも文章生成を苦手の1つに挙げています。返答文の作成は、これまでどおり生成用のAIが担います。"}},
+  {"@type": "Question", "name": "料金はいくらですか？", "acceptedAnswer": {"@type": "Answer", "text": "入力トークン100万あたり0.042ドルで、出力トークンは無料です。2026年9月17日時点の公式ドキュメントの価格です。"}},
+  {"@type": "Question", "name": "日本語は使えますか？", "acceptedAnswer": {"@type": "Answer", "text": "使えますが、公式は英語が主で精度も英語が最良だと明記しており、日中韓を含む言語は英語と同等ではないとしています。自分のデータで試し、確信度を見ながら使うことが求められます。"}},
+  {"@type": "Question", "name": "確信度とは何ですか？", "acceptedAnswer": {"@type": "Answer", "text": "ChoiceとScoreの答えに付く0から1の値で、全選択肢の確率がどれだけ1つに偏っているかを表します。高ければ自動で実行、中程度なら確認、低ければ人へ回すという使い方が公式の出発点です。Noulには確信度が付きません。"}},
+  {"@type": "Question", "name": "うちのような小さな会社で使い道はありますか？", "acceptedAnswer": {"@type": "Answer", "text": "答えの選択肢が閉じた意味の判断であれば使い道はあります。客の質問を8種類に振り分ける判定や、食事制限が含まれるかどうかの判定がこれにあたります。文字数のような計算はコードのまま、返答文の作成は生成AIのままにしておくのが安全です。"}},
+  {"@type": "Question", "name": "セキュリティは大丈夫ですか？", "acceptedAnswer": {"@type": "Answer", "text": "公式ドキュメントは、顧客のやり取りでJevを学習し直すことはなく、顧客データでの個別調整も行わないと説明しています。全アカウントが同じ重みを共有する形です。"}}
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件</h1>
+  <span class="a-date">2026.09.18 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260918-jev-typesafe-handan.jpg" alt="AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件">
+
+<p>TypeSafe社のAIモデル「Jev（ジェヴ）」は、文章を書きません。渡した状況に対し、どれを選ぶか・どの程度か・YesかNoかという型のある値だけを、確率と確信度つきで返します。公式ドキュメントは価格を入力トークン100万あたり0.042ドル・出力は無料と定め、多くの応答は「約100ms」で終わるとも書いています（2026年9月17日時点）。私たちはいま、自社の飲食店向けAIコンシェルジュ「OMISEAI」で、客の質問の意図を8種類に振り分ける判定を、AIではなく手書きのキーワード205語で行っています。判定をAIに任せると型が崩れたり、自信ありげな誤答が返ったりして困った経緯があるからです。この記事でわかることは次の3つです。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・Jevが「どれか・どの程度か・YesかNoか」をどう返す仕組みか<br>
+・確信度で「自動・確認・人へ」を分ける設計の考え方<br>
+・うちの手書き205語の判定ルールを仕分けるとどうなるか</div>
+
+<h2>Jevとは——文章を生成せず「どれか・どの程度・YesかNoか」を確率で返す</h2>
+<p>Jevは、TypeSafe社が提供するAIモデルです。現行モデルは「jev-1.13.0」で、「jev-latest」「jev-preview」という別名も、どちらも今はこのjev-1.13.0を指しています。Jevが答えられる問いの形は3種類だけです。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>型</th><th>問い</th><th>返るもの</th><th>上限</th></tr>
+<tr><td>Choice</td><td>一覧から1つ選ぶ</td><td>choice・probabilities（全選択肢の確率）・confidence（確信度）</td><td>最大255択</td></tr>
+<tr><td>Score</td><td>定義した段階の上で採点する</td><td>score・probabilities・confidence</td><td>2〜10段階</td></tr>
+<tr><td>Noul</td><td>ある命題が真かどうか</td><td>noul（0〜1の値）のみ</td><td>確信度は付かない</td></tr>
+</table></div>
+<p>3つとも、AIが文章を書く代わりに、あらかじめ決めた形の値だけを返します。1回のリクエストには複数の質問を混ぜてよく、質問はすべて同じ状況に対して並列・独立に判定される仕組みです。公式ドキュメントも、質問を足しても応答時間はほとんど変わらないと説明しています。仕様の要点は、価格を含めて次の表のとおりです。価格は、AIが文章の分量を数える単位「トークン」で決まり、日本語はおおむね1文字1トークン前後が目安です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td>価格</td><td>入力トークン100万あたり0.042ドル。出力トークンは無料</td></tr>
+<tr><td>レート上限</td><td>毎秒25万トークン・毎分1,200リクエスト。公式が「予告なく変わる」と明記</td></tr>
+<tr><td>文脈の長さ</td><td>1リクエスト64kトークン（状況＋全質問の合計）。状況と最長の質問だけなら32kトークン</td></tr>
+<tr><td>入力</td><td>テキストのみ。画像・音声・動画は不可</td></tr>
+<tr><td>言語</td><td>英語が主で精度も最良。日本語などは使えるが、自分のデータで試すよう公式が求めている</td></tr>
+</table></div>
+<p>顧客が送ったやり取りでJevが学習し直すことはなく、顧客データでの個別調整もしていません。全アカウントが同じ重みを共有しています。</p>
+
+<h2>LLMに判定させると何が起きるか——うちは205語の手書きルールに逃げていた</h2>
+<p>私たちが運営する飲食店向けAIコンシェルジュ「OMISEAI」は、客からの最初の質問を、雑談・SNS投稿などの作成依頼・観光・店舗情報・名物・おすすめ・食事制限・その他の8種類に振り分けています。店舗情報には営業時間や予約、設備の質問が含まれます。この振り分けは、AIではなく手書きのキーワード照合で行っている作業です。</p>
+<div class="a-note"><strong>現場の話：</strong>この振り分けにAIを使わなかったのは、方針ではなく事故がきっかけでした。軽量なモデルに任せたところ、食事制限の質問に宗教上の選択肢しか返さなかったり、「乳製品が食べられない」を宗教上の制約と取り違えたりする実例が出ました。「必ず」「絶対に」とプロンプトに書いても直りきらず、宗教の可否を答えるやり取りだけ上位モデルに切り替えて凌いでいます。判定そのものは、いまも手書きのキーワード205語のままです。</div>
+<p>その内訳がこちらです。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">手書きルールは、語を足すほど衝突が増える</p>
+<svg viewBox="0 0 1200 380" width="100%" style="min-width:640px" role="img" aria-label="手書きルールは、語を足すほど衝突が増える"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">OMISEAIの意図判定に使うキーワード205語の内訳</text><text x="190" y="101" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">店舗情報</text><rect x="208" y="76" width="792" height="34" rx="2" fill="#a63a24"/><text x="1012" y="102" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">83語</text><text x="190" y="153" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">判定関数に直書き</text><rect x="208" y="128" width="629" height="34" rx="2" fill="#cfc5b4"/><text x="849" y="154" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">66語</text><text x="190" y="205" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">雑談</text><rect x="208" y="180" width="381" height="34" rx="2" fill="#cfc5b4"/><text x="601" y="206" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">40語</text><text x="190" y="257" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">観光</text><rect x="208" y="232" width="152" height="34" rx="2" fill="#cfc5b4"/><text x="372" y="258" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">16語</text><text x="600.0" y="322.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">205語のうち「店舗情報」だけで83語を占め、語を足すたびに他カテゴリとの衝突を直してきた</text><text x="8" y="364" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：OMISEAI公開チャットの判定コード（2026年9月18日に集計）</text></svg>
+</div>
+<p>キーワードは一覧の定数が店舗情報83語・雑談40語・観光16語で計139語、判定関数に直接書き込んだ分が66語で、合わせて205語です。このほかに「どこで買える」を住所案内と取り違えないための購入系の語が17語、別枠であります。手書きの代償は衝突です。「場所」が店舗情報と観光の両方に含まれていたため観光を先に判定する順番に直したり、相談の質問に住所が返る誤分類を直したりと、修正が履歴に少なくとも3件残っています。このファイルは2026年1月から7月で138回変更が記録され、語を足すたびにどこかで衝突が起きるという構図です。</p>
+<p style="font-size:.85rem;color:var(--text-3)">自社の判定ルールを整理したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談</a>で一緒に確認できます。</p>
+
+<h2>「型を守る」と「判定が正しい」は別——OpenAIのStructured Outputsとの違い</h2>
+<p>AIに判定させたいとき、多くの人がまず思い浮かべるのは、出力の形式を固定する機能でしょう。ChatGPTを提供するOpenAIは、AIの応答があらかじめ決めたJSONスキーマ、つまりソフト同士が値をやり取りするときの書式どおりになることを保証する「Structured Outputs」という機能を公式に用意しています。必須の項目が抜けたり、決めた選択肢に無い値を作ってしまったりする心配が要らなくなると説明されています。</p>
+<p>形式に従うことと、選んだ値が正しいことは別の話です。形式をJSONに固定すれば、書式が崩れて読み込みに失敗するような事故は消えますが、それは値の入れ物が正しいという保証であって、中身の判定が当たっているという保証ではありません。Jevが返すのは、選んだ値だけではなく、全選択肢の確率と、それを1つの数に潰した確信度です。確信度があるかどうかが、判定結果を自動で使ってよいか人に確認してもらうかを分けられるかどうかの違いになります。ここでの比較はStructured Outputsという機能が保証している範囲についての話であり、OpenAIが確率を返す機能を持たないと述べているわけではありません。</p>
+
+<h2>確信度で「自動／確認／人へ」を分ける——しきい値は行動のリスクで変える</h2>
+<p>ChoiceとScoreの答えには、選んだ値のほかに確信度が付きます。全選択肢の確率がどれだけ1つに偏っているかを、0から1の1つの数に潰した値です。分布が平らなほど確信度は低くなります。Noulにはこの確信度が付かず、真か偽かの値だけが返ります。</p>
+<p>公式ドキュメントが示す使い方の出発点は、確信度が高ければ自動で実行し、中程度なら人の確認を挟み、低ければ人に判断を回すという3段階です。公式の例示コードでは、確信度0.5未満の答えは人へ回し、残高照会のようなやり直しのきく操作はそのまま実行し、送金の承認のようなやり直しのきかない操作は確信度0.9超のときだけ実行してそれ未満は本人確認に回します。これは推奨値ではなく例示で、しきい値は外れたときにどれだけ困るかという行動のリスクの大きさで変えるべきだと公式は説明しています。</p>
+<p>確率は、多数の予測をまとめて見たときに結果と噛み合うよう学習されています。ただしこれは集団で測ったときの話で、1つ1つの答えが正しいことまでは保証しません。Jevという名前の由来である「System One」は、心理学者ダニエル・カーネマンが呼んだ速く直感的な思考のことです。</p>
+<p>この考え方は、確信度が低いときの対処にも表れています。米国証券取引委員会（SEC）の年次報告書を75業種に分類するクックブックでは、確信度が低ければ1段階上の広い区分に報告するという逃がし方をしています。無理に細かい区分へ押し込まず、答えられる粒度まで自分から下げる設計です。</p>
+
+<h2>公式が認める苦手9つ——数える・日付・計算はコード、日本語は自分で試す</h2>
+<h3>そのまま任せると崩れる9つ</h3>
+<p>公式ドキュメントのjaggednessページは、得意と苦手が凸凹していることを指す言葉で、jev-1.13が苦手とする9つの挙動を公式自身が並べて説明しています。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>苦手</th><th>何が起きるか</th><th>代わりにどうするか</th></tr>
+<tr><td>文字どおりに読む</td><td>書いた質問にしか答えず、意図を汲まない</td><td>条件を全部書き出す</td></tr>
+<tr><td>計算・数字</td><td>電卓ではない。文字数や件数を数えるのが不得意</td><td>コードで数える</td></tr>
+<tr><td>日付・時刻の比較</td><td>日付を文字として読んでしまう</td><td>日付の部品を取り出させ、比較はコードで行う</td></tr>
+<tr><td>間接参照</td><td>二重否定や多段の推論に弱い</td><td>1段の問いに分解する</td></tr>
+<tr><td>無関係な情報が多い状況</td><td>状況が大きくなるほど精度が落ちる</td><td>先にコードで絞り込む</td></tr>
+<tr><td>敵対的な入力</td><td>指示を埋め込んだ文で答えが動くことがある</td><td>条件を明示し、配備前に試験する</td></tr>
+<tr><td>指示と基準の矛盾</td><td>与えた指示と判定基準が食い違うと崩れる</td><td>指示と基準を揃えてから渡す</td></tr>
+<tr><td>構造的な整合性</td><td>同じ質問をNoulとChoiceで聞くと答えが揃わないことがある</td><td>型をまたいでしきい値を使い回さない</td></tr>
+<tr><td>文章生成</td><td>生成の訓練を受けておらず、遅く品質も低い</td><td>生成は生成用のAIに任せる</td></tr>
+</table></div>
+<p>状況が大きいほど答えが崩れやすいという現象を、公式は「無関係な情報が多い状況」の項目で説明しました。敵対的な入力については、公式は状況をデータとして扱っており、jev-1.13は既定でそれを敵対的だとは見なさない、と明記しています。つまり、状況の中に紛れ込んだ指示文に従ってしまう可能性があるということです。</p>
+<h3>足しても1にならない——恒等式が壊れる実例</h3>
+<p>構造的な整合性が崩れる例を、公式は実際の数字で示しています。同じ内容をNoulで聞くとnoul 0.22という答えが返るのに、Choiceの2択で聞くとyes 0.01・no 0.99・確信度0.97というまったく違う答えになった例があります。別の例では「返金を求めているか」が0.72、「返金以外を求めているか」が0.47で、足すと1.19になり1になりません。ある質問で調整したしきい値を、別の聞き方にそのまま使い回さないことが重要です。</p>
+<p>公式は、避けたほうがよい使い方も4つにまとめています。コードで正確に計算できることを聞くこと、1つの質問に複数の判断を隠すこと、多段の間接参照が必要な複雑な推論、質問に要らない文脈を状況に詰め込むことです。どれも、上の9つの苦手と表裏の関係にあります。</p>
+
+<h2>速さと費用はどこまで再現するか——公式「約100ms」と日本からの実測482ms</h2>
+<h3>公式の「約100ms」は短い入力の目安</h3>
+<p>公式ドキュメントは、多くのクエリは約100msで完了すると書いています。TypeSafe社とは無関係な第三者が2026年9月17日に公開した非公式の「Jev図解ガイド」は、自身の9ページを実際にJevで判定させ、遅延を実測しました。ページの役割判定9回と記述の裏付け確認1回、合わせて10リクエスト・121問を投げ、入力42,390トークン・出力3,095トークンを消費し、1リクエストの遅延は中央値482ms（最小447・最大715、日本からの往復込み）でした。1リクエストに12〜13問をまとめていたので、1問あたりに均すとおよそ40msです。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">公式の目安「約100ms」は、短い入力の話だった</p>
+<svg viewBox="0 0 1200 486" width="100%" style="min-width:640px" role="img" aria-label="公式の目安「約100ms」は、短い入力の話だった"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">日本から長い日本語stateで叩くと中央値482ms</text><rect x="220" y="292" width="220" height="43" rx="3" fill="#a63a24"/><text x="330" y="274" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#a63a24" font-weight="900" text-anchor="middle">100ms</text><text x="330" y="369" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">公式の目安</text><rect x="700" y="125" width="220" height="210" rx="3" fill="#cfc5b4"/><text x="810" y="107" font-family="'Zen Kaku Gothic New',sans-serif" font-size="46" fill="#5c544a" font-weight="900" text-anchor="middle">482ms</text><text x="810" y="369" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">日本からの実測（中央値）</text><line x1="570" y1="76" x2="570" y2="384" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="600.0" y="428.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">母集団が違うので差は出さない。条件が変われば速さも変わる、という事実だけを読む</text><text x="8" y="470" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：docs.typesafe.ai／Jev図解ガイド（非公式・2026年9月17日実測）</text></svg>
+</div>
+<p>公式の「約100ms」と、この482msという中央値は、比べる母集団が違います。公式の目安は短い入力を想定したもので、長い日本語の状況と日本からの往復という条件では、その目安どおりにはならなかったと、ガイドの作者自身が記しています。差そのものを主張にせず、条件が変わると速さも変わるという事実だけを受け取るのが安全です。</p>
+<h3>質問をまとめるほど安くなる——並列とやり直しの効果</h3>
+<p>公式のクックブックには、質問を1回にまとめる効果を測った例があります。EUの個人情報保護規則GDPRを説明するWikipedia記事について13問を一度に投げたところ、1問ずつ呼び出すより12.2倍安く10.0倍速く済み、答えは変わりませんでした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">質問を1問ずつ束ねて並べ替えると、正解率が上がる</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="質問を1問ずつ束ねて並べ替えると、正解率が上がる"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">法律文書検索CLERC・40クエリの再ランク</text><line x1="430" y1="90" x2="430" y2="536" stroke="#8a8172" stroke-width="1.2"/><line x1="890" y1="90" x2="890" y2="536" stroke="#8a8172" stroke-width="1.2"/><text x="430" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">並べ替え前</text><text x="890" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">並べ替え後</text><line x1="430" y1="463.1" x2="890" y2="396.0" stroke="#cfc5b4" stroke-width="2.6" stroke-linecap="round"/><circle cx="430" cy="463.1" r="7" fill="#cfc5b4"/><circle cx="890" cy="396.0" r="7" fill="#cfc5b4"/><line x1="430" y1="292.8" x2="890" y2="168.9" stroke="#a63a24" stroke-width="3.6" stroke-linecap="round"/><circle cx="430" cy="292.8" r="7" fill="#a63a24"/><circle cx="890" cy="168.9" r="7" fill="#a63a24"/><text x="326.4" y="470.05882352941177" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#5c544a" font-weight="500" text-anchor="end">top-1正解率</text><text x="376" y="470.05882352941177" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="end">5%</text><text x="944" y="402.9793601651187" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="start">18%</text><text x="326.4" y="299.780185758514" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">top-10正解率</text><text x="376" y="299.780185758514" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="end">38%</text><text x="944" y="175.94117647058823" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="start">62%</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">BM25の順位をJevで問い直すだけで、上位の当たり方が変わった</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：docs.typesafe.ai クックブック「Re-ranking」（CLERC 40クエリ）</text></svg>
+</div>
+<p>法律文書検索CLERCの課題では、40件のクエリについてキーワード検索の上位30件を1組ずつJevで並べ直したところ、最初に正解が来る割合が5%から18%へ、上位10件に正解が入る割合が38%から62%へ上がりました。まとめて安くする使い方と、問い直して並べ替える使い方は、どちらも「並列に判定できる」という同じ性質の応用です。</p>
+<p>費用の感覚をつかむために、実測ではなく前提を置いた計算を1つだけ示します。例えば、1件の状況が500トークン、質問が12問で1リクエストあたり1,000トークンかかると置くと、月1万件の判定で1,000万トークンとなり、価格は0.42ドルです。前提を変えれば数字も変わる、あくまで一例の計算です。</p>
+
+<h2>うちの205語をJevで置き換えるなら——仕分けの表と、置き換えない部分</h2>
+<p>ここまでの内容を、OMISEAIの205語に当てはめてみます。判定の種類ごとに、今の方式とJev向きかどうかを並べました。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>判定の種類</th><th>今の方式</th><th>Jev向きか</th><th>理由</th></tr>
+<tr><td>8種類への意図分類</td><td>手書きキーワード139語</td><td>向く</td><td>選択肢が8つに閉じた意味の判断</td></tr>
+<tr><td>食事制限が含まれるか</td><td>手書きキーワード（直書き66語の一部）</td><td>向く</td><td>YesかNoかに閉じた判断</td></tr>
+<tr><td>強い不満・緊急性の検知</td><td>未実装</td><td>向く</td><td>段階のある判断で答えの空間が閉じている</td></tr>
+<tr><td>雑談の判定（40字以下）</td><td>文字数のコード判定</td><td>向かない</td><td>数えるのはコードの仕事</td></tr>
+<tr><td>価格・日付の計算</td><td>コード</td><td>向かない</td><td>計算はコードの仕事</td></tr>
+<tr><td>返答文の生成</td><td>LLM</td><td>向かない</td><td>Jevは生成の訓練を受けていない</td></tr>
+</table></div>
+<div class="a-fig-wrap">
+<p class="a-fig-title">Jevが効くのは、意味の判断で答えの空間が閉じている所だけ</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="Jevが効くのは、意味の判断で答えの空間が閉じている所だけ"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">判定をどこに割り振るかの地図</text><rect x="300" y="76" width="620" height="398" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="76" width="310.0" height="199.0" fill="rgba(166,58,36,.08)"/><text x="455.0" y="167.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">Jev</text><text x="455.0" y="197.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">型のある意味の判断</text><rect x="610.0" y="76" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="167.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">コード</text><text x="765.0" y="197.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">数える・比較・日付</text><rect x="300" y="275.0" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="366.41499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">LLM（生成）</text><text x="455.0" y="396.86499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">自由な文章づくり</text><rect x="610.0" y="275.0" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="366.41499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">人</text><text x="765.0" y="396.86499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">前例のない判断</text><line x1="610.0" y1="76" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="275.0" x2="920" y2="275.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">意味の判断　←→　計算・照合</text><text x="278" y="275.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">閉　←→　開</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">同じ「意味の判断」でも、答えの選択肢が閉じていなければJevは向かない</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：docs.typesafe.ai Introduction／jaggednessページをもとに作成</text></svg>
+</div>
+<p>宗教上の制約と取り違えた実例がある「食事制限が含まれるか」の判定こそ、選択肢を閉じた形で渡し確信度が低ければ人に回すという、Jevの設計が効く場所です。反対に40字以下かどうかの文字数判定は、公式が苦手だと認める「数える」作業そのもので、Jevに聞く理由は乏しいところです。</p>
+<p>断っておくと、私たちはJevをまだ試していません。ここまでの仕分けは、公式ドキュメントと自社の判定コードを突き合わせて考えた設計であり、実測ではなく、効くと言い切れるものでもありません。実際にどこまで置き換えられるかの検証は、次回に回します。</p>
+
+<h2>よくある失敗</h2>
+<ul>
+<li><strong>1つの質問に2つの判断を詰める。</strong>非公式ガイドは「コストも速度も10倍以上改善した」という主張を1回の判定にかけ、裏付けあり0.85という答えを得ました。公式の抜粋は「11.5倍安く9.6倍速い」で、速度は10倍に届いていません。確信度は0.77で、他の裏付けあり項目（どれも0.99以上）より低い値でした。しきい値を0.9に置けばこの1件だけ人の確認に回せたはずです。9.6が10以上かは算数なので、コードの仕事です。</li>
+<li><strong>Noulの0.5を「中程度」と読む。</strong>非公式ガイドの実測では、ある項目がNoul 0.45で返り、ゲートの0.5をわずかに下回ったために読まれない扱いになりました。0.4〜0.6あたりはYesともNoとも扱わず、質問を見直すか人に回す帯にしておくほうが安全です。</li>
+<li><strong>Noulで決めたしきい値を、Choiceにそのまま使い回す。</strong>前の章で見たとおり、同じ内容でもNoulとChoiceでは答えの出方が違い、確率を足しても1になりません。型が変わればしきい値も引き直します。</li>
+<li><strong>状況に関係のない情報まで入れる。</strong>公式が苦手の1つに挙げているとおり、状況が大きくなるほど精度は落ちます。先にコードで絞り込んでから渡します。</li>
+<li><strong>英語での例をそのまま信じて、日本語で試さない。</strong>公式は、日中韓を含む言語の扱いは英語と同等ではないと明記しており、自分のデータで試して確信度を見るよう求めています。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">判定まわりの設計を相談したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談・無料AI診断</a>からどうぞ。</p>
+
+<h2>まとめ</h2>
+<p>Jevは、文章を書く代わりに、どれか・どの程度か・YesかNoかという型のある値を確率と確信度つきで返すAIです。使い方の出発点は、確信度が高ければ自動、中程度なら確認、低ければ人へという3段階で、しきい値は行動のリスクに応じて変えます。公式自身が9つの苦手を認めており、数える・日付を比べる・文章を作るといった作業はコードや別のAIに任せたほうが安全です。速さと費用の目安も、条件次第で公式の数字どおりにはならないことを非公式の実測が示しています。私たちはOMISEAIで、判定をAIに任せず手書きの205語に頼ってきました。Jevはまだ試していませんが、判定を手書きルールで抱えている会社は、まず自社の判定を意味の判断・計算・生成に仕分けるところから始められます。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちの判定ルールは、どこまでAIに任せられるか」から、一緒に整理します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>Jevとは何ですか？</summary><p>TypeSafe社が提供するAIモデルで、文章を生成する代わりに「どれか」「どの程度か」「YesかNoか」を確率と確信度つきの値で返します。現行モデルはjev-1.13.0です。</p></details>
+<details><summary>ChatGPTやClaudeの代わりになりますか？</summary><p>なりません。Jevは文章を生成する訓練を受けておらず、公式ドキュメントも文章生成を苦手の1つに挙げています。返答文の作成は、これまでどおり生成用のAIが担います。</p></details>
+<details><summary>料金はいくらですか？</summary><p>入力トークン100万あたり0.042ドルで、出力トークンは無料です。2026年9月17日時点の公式ドキュメントの価格です。</p></details>
+<details><summary>日本語は使えますか？</summary><p>使えますが、公式は英語が主で精度も英語が最良だと明記しており、日中韓を含む言語は英語と同等ではないとしています。自分のデータで試し、確信度を見ながら使うことが求められます。</p></details>
+<details><summary>確信度とは何ですか？</summary><p>ChoiceとScoreの答えに付く0から1の値で、全選択肢の確率がどれだけ1つに偏っているかを表します。高ければ自動で実行、中程度なら確認、低ければ人へ回すという使い方が公式の出発点です。Noulには確信度が付きません。</p></details>
+<details><summary>うちのような小さな会社で使い道はありますか？</summary><p>答えの選択肢が閉じた意味の判断であれば使い道はあります。客の質問を8種類に振り分ける判定や、食事制限が含まれるかどうかの判定がこれにあたります。文字数のような計算はコードのまま、返答文の作成は生成AIのままにしておくのが安全です。</p></details>
+<details><summary>セキュリティは大丈夫ですか？</summary><p>公式ドキュメントは、顧客のやり取りでJevを学習し直すことはなく、顧客データでの個別調整も行わないと説明しています。全アカウントが同じ重みを共有する形です。</p></details>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/models" target="_blank" rel="noopener">Models</a>」（docs.typesafe.ai・2026年9月17日時点）<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/model-jaggedness/jev-1.13" target="_blank" rel="noopener">Jev 1.13 jaggedness</a>」（docs.typesafe.ai）<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/confidence" target="_blank" rel="noopener">Confidence</a>」（docs.typesafe.ai）<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener">Introduction</a>」（docs.typesafe.ai）<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/cookbooks/parallel_questions" target="_blank" rel="noopener">Parallel questions</a>」（docs.typesafe.ai クックブック）<br>
+・TypeSafe AI「<a href="https://docs.typesafe.ai/cookbooks/rerank_typesafe" target="_blank" rel="noopener">Re-ranking</a>」（docs.typesafe.ai クックブック）<br>
+・「<a href="https://jev-guide.take-otani.workers.dev/" target="_blank" rel="noopener">Jev 図解ガイド</a>」（非公式・TypeSafe社とは無関係の第三者による実測。2026年9月17日実施）<br>
+・OpenAI「<a href="https://platform.openai.com/docs/guides/structured-outputs" target="_blank" rel="noopener">Structured model outputs</a>」（platform.openai.com）<br>
+・あわせて読む：<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する——「プロンプトを増やす」が対策にならない理由と、仕組みで塞ぐ方法</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/20260812-ai-model-routing">一番強いAIに全部やらせるのが一番高い——NVIDIAが示したコスト3分の1と、中小企業での振り分け方</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/20260916-shadow-ai">社員は会社より先にAIを使い始める——シャドーAI関与の侵害が20%から43%へ、禁止と研修が効かない理由</a>（当ブログ）</div>
+
+<!-- recheck: 2026-12-18 | TypeSafeの価格・レート上限・現行モデル名（公式が「予告なく変わる」と明記）とjaggednessページの改訂 | 手動: https://docs.typesafe.ai/models と /model-jaggedness/jev-1.13 を開く -->
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
