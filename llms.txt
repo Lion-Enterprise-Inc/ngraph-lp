@@ -18,6 +18,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [国のAI基本計画に「伴走」が入った——補助金の次は地域AXネットワーク、中小企業が待たずに決める3つ](https://ngraph.jp/blog/20260922-ai-kihon-keikaku-bansou)
 - [AIは文章を書かず、判定だけを返せる——Jevの確信度が、手書き205語の判定ルールを置き換える条件](https://ngraph.jp/blog/20260918-jev-typesafe-handan)
 - [社員は会社より先にAIを使い始める——シャドーAI関与の侵害が20%から43%へ、禁止と研修が効かない理由](https://ngraph.jp/blog/20260916-shadow-ai)
 - [名前はAI導入補助金、線引きは業務プロセスのまま——汎用AIが単独で通らない理由と、登録済み生成AI27件](https://ngraph.jp/blog/20260910-ai-hojokin-gyomu-process)

@@ -356,6 +356,13 @@
   "sub": "2026-09-17時点・docs.typesafe.ai と非公式図解ガイドの実測",
   "title": "Jevは、文章を書かず判定だけ返す"
  },
+ "20260922-ai-kihon-keikaku-bansou": {
+  "article_h1": null,
+  "fs": 54,
+  "pattern": "cards",
+  "sub": "2026-09-22時点・内閣府/中小企業庁/中小機構",
+  "title": "国のAI基本計画に「伴走」が入った"
+ },
  "ai-and-humans": {
   "article_h1": "AIは仕事を奪わない、時間を返す——現場で決めた「AIに任せる仕事・人が握る仕事」の線引き",
   "fs": null,
