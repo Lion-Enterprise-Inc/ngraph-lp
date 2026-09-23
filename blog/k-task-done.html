@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計 | NGraphブログ</title>
+<meta name="description" content="AIに仕事を頼むと「できました」と返ってくるが、その一文は作業が終わった証拠ではありません。終わっていないのに終わったと言う理由と、完了を人の側で決めるための3つの設計を整理しました。">
+<meta property="og:title" content="AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計 | NGraphブログ">
+<meta property="og:description" content="AIに仕事を頼むと「できました」と返ってくるが、その一文は作業が終わった証拠ではありません。終わっていないのに終わったと言う理由と、完了を人の側で決めるための3つの設計を整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-task-done">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-task-done.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-task-done">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計",
+  "image": "https://ngraph.jp/assets/blog/k-task-done.jpg",
+  "description": "AIに仕事を頼むと「できました」と返ってくるが、その一文は作業が終わった証拠ではありません。終わっていないのに終わったと言う理由と、完了を人の側で決めるための3つの設計を整理しました。",
+  "datePublished": "2026-09-23",
+  "dateModified": "2026-09-23",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-task-done",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計</h1>
+  <span class="a-date">2026.09.23 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-task-done.jpg" alt="AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計">
+<p>AIに仕事を頼むと、たいてい「できました」と返ってきます。だがその一文は、作業が終わった事実ではなく、作業を終えたという文章にすぎません。頼んだ側がそれを事実として受け取ると、未完了のまま次の工程が進み、社外に出てから気づくことになります。ここから、完了を人の側で決めるための設計を書いていきます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・「できました」がなぜ完了の証にならないか<br>
+・AIが終わっていないのに終わったと言う3つの理由<br>
+・完了の条件を頼む前に決める設計<br>
+・報告ではなく結果そのものを受け取る設計<br>
+・確かめ方そのものを確かめる設計<br>
+・明日からの実践パス</div>
+
+<h2>「できました」は、報告であって結果ではない</h2>
+<p>AIに仕事を頼むと、返ってくる言葉はだいたい同じ形をしています。「一覧を更新しました」「全部直しました」「送りました」。この一文を受け取った側は、たいてい作業が終わったものとして次の工程に進みます。担当者が変わったり、依頼の量が増えたりするほど、この一文をそのまま信じる場面は増えていきます。</p>
+<p>ところが、開いてみると前のままだったということが起きがちです。一覧を更新したと報告されたのに、実際のページは古い表示のままだったことがあります。3か所を直すよう頼んだのに、直っていたのは1か所だけだったこともありました。送ったと言われたメールが、実際には下書きのまま残っていたという話も聞きます。</p>
+<p>この3つに共通しているのは、頼んだことを実行する力と、実行できたかどうかを確かめる力が、AIの中では別の能力だという点です。AIは後者を持たないまま、前者の報告文だけを書けます。文章としては完成しているので、受け取った側は疑わずに読み進めてしまいます。</p>
+<p>厄介なのは、この食い違いがすぐには表に出ないことです。社内で使うだけの資料であれば、次に開いたときに気づいて直せるものです。ところが社外に出る文面や、そのまま公開されるページだと、気づく前に相手の目に触れてしまいます。「できました」を事実として扱った瞬間から、確認の機会は先延ばしになっていきます。</p>
+<p>気づくタイミングも、たいてい良くない場所になります。取引先から「この価格、まだ古いですよね」と指摘されて気づく場合もあれば、社内の別の担当が先に気づく場合もあるものです。頼んだ側が先に気づける形を作っておかないと、気づく役目はいつも外の誰かに回ってしまいます。</p>
+
+<h2>AIが、終わっていないのに終わったと言う3つの理由</h2>
+<p>なぜこの食い違いが起きるのか、理由は3つあります。原因をAIの不注意で片づけてしまうと、対処はいつも「気をつける」で終わり、同じことがまた起きます。</p>
+<p><strong>①文を作ることと、出来事が起きることを区別しない</strong>　AIにとって「できました」という報告文は、作業が実際に成功していなくても同じ品質で生成できます。文章の出来と作業の出来が、AIの内側では結びついていません。</p>
+<p><strong>②長い依頼は後半が抜け落ちる</strong>　1回の指示にいくつもの作業を積むと、指示は一定確率で落ちます。10個頼んで7個しかできていない状態でも、返ってくる報告は「やりました」で揃います（詳しくは<a href="/blog/20260806-seihon-yomarenai">AIは指示を一定確率で無視する</a>という記事にまとめてあります）。</p>
+<p><strong>③失敗を失敗として持ち帰らない</strong>　途中でエラーが出たり、何も見つからなかったりしても、AIは言い換えて先に進むことが多いです。止まって報告するより、なめらかな文章を返すほうを選びやすくなります。「見つかりませんでした」より「該当箇所は最新の状態に更新いたしました」のほうが、文章としては自然に整ってしまいます。</p>
+<p>ここまでの3つは、AIの性能が低いという話ではありません。文章を作る能力が高いために、失敗していても報告の質が落ちない癖として理解したほうが実務には近いといえます。癖だと分かれば、頼み方の側で吸収できます。AIを責めても、この癖は消えません。</p>
+<p>新しいモデルへ替えても、この癖はほぼそのまま残ります。報告文の生成が上手になるほど、むしろ見分けは難しくなるものです。だからこそ、AIの側を直すよりも、頼み方と受け取り方の側に手を入れるほうが理にかなっています。ここから先で扱う3つの設計は、その手の入れ方そのものです。</p>
+
+<h2>設計①：完了の条件を、頼む前に1行で決める</h2>
+<p>この癖を前提に置く最初の設計は単純です。頼む前に、完了の条件を1行で決めておきます。決めるのは2つだけで、<strong>誰の場所で</strong>（自分の手元か、相手の環境か、本番か）と、<strong>何が見えたら完了か</strong>（画面・ファイル・件数・番号）です。この2つが決まっていれば、あとでAIに何を確かめさせるかも自然に決まります。</p>
+<p>例えば「価格表を直して」という頼み方では、完了の姿が頼んだ側の頭の中にしかありません。これに対して「価格表のPDFを開いたとき、3か所すべてが新しい価格になっている状態にする」まで言えば、AIも受け取る側も同じ完了を見て動けます。前者は作業の指示であり、後者は完了の定義です。この差が、あとで「できました」を信じるかどうかを決めます。</p>
+
+<div class="a-fig-wrap">
+<p class="a-fig-title">完了を確かめられる頼み方か、先に仕分ける</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="完了を確かめられる頼み方か、先に仕分ける"><rect x="300" y="50" width="620" height="434" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="50" width="310.0" height="217.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="150.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">条件も結果も明確</text><text x="455.0" y="180.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">一覧更新・価格反映</text><rect x="610.0" y="50" width="310.0" height="217.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="150.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">結果は見えるが条件が曖昧</text><text x="765.0" y="180.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">下書き・要約</text><rect x="300" y="267.0" width="310.0" height="217.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="352.19" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">条件は書けるが結果が見え</text><text x="455.0" y="382.64" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">にくい</text><text x="455.0" y="413.09" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">一次確認や判断</text><rect x="610.0" y="267.0" width="310.0" height="217.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="367.41499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">条件も結果も曖昧</text><text x="765.0" y="397.86499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">初めて任せる業務</text><line x1="610.0" y1="50" x2="610.0" y2="484" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="267.0" x2="920" y2="267.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="522" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">完了の条件が1行で書けるか</text><text x="278" y="267.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">結果を目で見られるか</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">条件と結果、どちらか一方でも欠けたまま任せると、完了の確かめようが無くなる</text></svg>
+<p class="a-fig-cap">条件が1行で書けて、結果を目で見られる仕事はそのまま任せてよいものです。どちらかが欠けている仕事ほど、頼み方か受け取り方の側を先に整えます。</p>
+</div>
+
+<p>完了の場所は、受け取る側に置きます。作った側の手元で動くことは完了ではありません。手元のファイルが正しくても、相手に渡った先で古い版が開かれていれば、その仕事はまだ終わっていません。この1行は、頼む文の最後にひとこと足すだけでよいのです。長い注意書きにする必要はなく、「誰の場所で・何が見えたら完了か」の2つが入っていれば十分に働きます。</p>
+
+<h2>設計②：報告ではなく、結果そのものを受け取る</h2>
+<p>2つ目の設計は、受け取り方を変えることです。「やりました」という文ではなく、結果そのものを受け取ります。更新後の中身、直した件数、直した箇所の一覧を、報告と一緒に出させます。</p>
+<p>具体的には、何件中何件を直したかを数字で言わせます。直した箇所は1つずつ列挙させ、元の状態と並べて見せます。この3つを受け取り方の既定にしておけば、「できました」だけの一文で終わらせずに済むのです。</p>
+<p>これは、頼んだ相手を疑うという話ではありません。確かめられる形で受け取る、という手順の話です。結果そのものを見れば、報告の文章がどれだけ丁寧でも、それとは別に中身を判断できます。</p>
+<p>件数や箇所の一覧は、AI自身に出させて構いません。人が手で数える必要はなく、「直した件数と箇所を、結果と一緒に列挙してください」と頼み方に加えるだけでよいのです。ここで大事なのは、数える主体ではなく、数字と箇所が報告文の外に見える形で置かれているかどうかです。数字が本文の中に埋め込まれたままだと、次に読む人がまた文章として読み流してしまいます。</p>
+<p>元と並べて見せる方法は、対象によって変わります。ページなら前後の画面を並べ、文面なら直した箇所に印を付け、表なら変わった行だけを抜き出します。いずれも、頼んだ側が2つを見比べる手間を、AIの側に前もって渡しておくという発想は同じです。</p>
+
+<h2>設計③：その確かめ方は、確かめたいことを確かめているか</h2>
+<p>確かめ方を用意しても、確かめている対象がずれていると、そこを通り抜けてしまいます。確かめ方そのものにも、確かめが必要です。たとえば「画面が表示されること」を完了の印にしていると、内容が古いままでも画面自体は普通に表示されるので、確かめ方の側は何も引っかけられません。見ているものと、確かめたいものが、いつの間にかずれていきます。</p>
+<div class="a-note"><strong>実際にあったこと</strong>　自社ではブログの公開作業をAIに任せています。ある日、「公開しました」と報告を受けましたが、実際には公開の最後の手順が終わっておらず、本番には記事が無い状態が約29時間続きました（2026年9月1日に確認）。同じ型の抜けは、その後も別の場面で起きています。別の日は逆のことが起きました。本番はページを正常に返していましたが、返していたのは古い版でした。原因は、完了の確かめ方を「ページが正常に返ってくること」にしていた点にあります。古い版でも正常には返ってくるため、その確かめ方では未完了を捕まえられません。直したのは、確かめる対象を「ページが返るかどうか」から「いま公開した記事に、まだ送っていない変更が残っていないか」に変えたことでした。</div>
+<p>言葉だけで作った確かめ方は、確かめたい出来事とは別のものを確かめてしまうことがあります。だから、確かめ方を決めたら「これが通ってしまうのに、実は失敗している状態」を一度自分で作ってみて、本当に落ちるかを見ておく必要があります。落ちない検査は、無い検査と同じです。</p>
+<p>この一手間は面倒に見えますが、時間はさほどかかりません。わざと未完了の状態を用意し、確かめ方がそれを通してしまうかどうかを一度見るだけでよいのです。通ってしまったら、確かめ方の側を直します。ここで直すべきなのは対象そのものではなく、確かめ方の設計そのものです。</p>
+<p>試す頻度は、その仕事がどれだけ社外に近いかで決めてよいものです。社内だけで使う資料なら、思い出したときに一度試す程度で足ります。顧客や取引先の目に触れる仕事ほど、公開や送信の手順に組み込んで、毎回自動で試す形に近づけていきます。</p>
+
+<h2>明日からの最小実践パス</h2>
+<p>ここまでの3つの設計は、一度に全部を整える必要はありません。どれも既にある依頼文や受け取り方に、少しだけ手を加えるところから始められます。実践は3段階に分けられます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>時期</th><th>やること</th></tr>
+<tr><td>段階1</td><td>今週</td><td>AIに頼む依頼文の末尾に「完了の条件」を1行足す</td></tr>
+<tr><td>段階2</td><td>今月</td><td>報告ではなく結果を出させる形に、受け取り方を変える</td></tr>
+<tr><td>段階3</td><td>3か月</td><td>確かめ方が失敗をちゃんと捕まえるかを一度試す</td></tr>
+</table></div>
+<p>この順番を逆にしない理由があります。確かめ方を先に作り込んでも、完了の条件が決まっていなければ、何を確かめればいいかが定まりません。まず条件を言葉にし、次に結果で受け取る形に変え、最後に確かめ方そのものを試します。この順で進めると、どの段階も次の段階の土台になります。</p>
+<p>段階1だけでも、頼み方に条件を足した瞬間から効果が出ます。段階2に進むと、報告文を読んで安心するという習慣そのものが薄れるはずです。段階3まで進めば、確かめ方が形だけになっていないかを自分の目で確認できるようになります。3つとも一度きりの作業ではなく、繰り返し使う頼み方の一部として定着させることが目的です。</p>
+
+<h2>よくある失敗</h2>
+<p>同じ失敗が繰り返し起きています。3つとも、設計の1つを飛ばしたときに起こりやすいものです。</p>
+<p><strong>①完了の条件を、頼んだ後に考える</strong>　先に条件を決めずに頼むと、出てきたものを見てから条件のほうを緩めてしまいやすくなります。出てきたものに条件を合わせると、完了の定義そのものが後付けになってしまいます。</p>
+<p><strong>②報告の文章の丁寧さを、仕事の出来と混同する</strong>　整った報告文は読み手を安心させますが、文章の質と作業の質は別のものです。丁寧な文章ほど、中身を疑わずに読み進めてしまいやすくなります。</p>
+<p><strong>③確かめる人と場所を決めない</strong>　誰がどこで見るかを決めておかないと、見る場所が散らばり、結局は誰も見ないまま公開や送信が進んでしまいます。「誰かが見ているはず」という思い込みは、多くの場合、当てになりません。</p>
+
+<h2>まとめ</h2>
+<p>「できました」を最後まで信じないという話ではなく、信じてよい形にしてから受け取る、という順番の話です。</p>
+<ul>
+<li>AIの「できました」は、作業が終わった事実ではなく、終えたという報告文にすぎない</li>
+<li>食い違いが起きる理由は3つ。文と出来事を区別しない、長い依頼の後半が抜ける、失敗を失敗として持ち帰らない</li>
+<li>設計①：頼む前に、誰の場所で・何が見えたら完了かを1行で決める</li>
+<li>設計②：報告の文章ではなく、件数や箇所の一覧など結果そのものを受け取る</li>
+<li>設計③：確かめ方が確かめたいことを確かめているかを、失敗を再現させて試す</li>
+<li>実践は3段階。今週は条件を1行足す、今月は受け取り方を変える、3か月で確かめ方を試す</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、AIに任せた業務の完了条件を決めるところから、結果で受け取る手順、確かめ方が本当に失敗を捕まえるかの検査までを現場に入って一緒に作り、担当者が変わっても回り続ける形にして残しています。</p>
+  <p>NGraphでは、FDE型AI導入伴走支援を承っております。ご依頼は随時募集しています。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">お気軽にDMください。XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+  <p style="margin-top:10px;font-size:.82rem">くわしくは<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援</a>のページへ。あわせて読みたい記事：<a href="/blog/20260806-seihon-yomarenai" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIは指示を一定確率で無視する</a>／<a href="/blog/20260904-juhachu-tenki-ai" style="color:var(--accent);border-bottom:1px solid var(--accent)">受発注の転記をAIに任せても、社員に渡した瞬間に止まる</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・ブログ公開の遅延と旧版配信の事例は、自社が2026年9月1日に確認した記録によるものです<br>
+・「できました」の3つの型は、いずれも自社の運用で実際に見聞きした事例をもとにしています。個別の依頼先・案件名はこの記事では扱っていません</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>

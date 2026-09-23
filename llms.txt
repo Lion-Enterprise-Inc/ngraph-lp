@@ -121,6 +121,7 @@
 - [AIに補助金の申請書を下書きさせる前に、人が決める4つの前提](https://ngraph.jp/blog/k-subsidy-draft)
 - [AIは、資料に書いていない条件まで断定する——社内資料を読ませる前に決める3つと、答えの確かめ方](https://ngraph.jp/blog/k-doc-handoff)
 - [AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計](https://ngraph.jp/blog/k-doc-freshness)
+- [AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計](https://ngraph.jp/blog/k-task-done)
 
 ## 会社情報
 
