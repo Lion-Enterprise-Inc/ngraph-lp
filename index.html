@@ -450,7 +450,7 @@
   </div>
 </header>
 
-<!-- ── Hero（2026-09-28：墨地・脳の網） ── -->
+<!-- ── Hero（2026-09-28：墨地・脳の線画＋信号の波） ── -->
 <section class="tz-sky" id="top">
   <canvas id="tzSky" aria-hidden="true"></canvas>
   <div class="tz-frame">
@@ -1170,117 +1170,56 @@ setInterval(function(){
 })();
 </script>
 <script>
-// 脳（Brain）の網。大脳・小脳・脳幹の表面に点を置き、近い点どうしを細い線で結ぶ。脳幹から大脳へ朱の信号が走る。自前の投影計算（既存作品の画像・構図は使わない）
+// 脳（Brain）の線画を墨地に置き、脳幹から朱の信号が波のように大脳へ広がる。線画は自社イラスト（assets/brain/ill/brain-hero.png）を白線と朱線に分けたもの
 (function(){
   var c=document.getElementById('tzSky');if(!c)return;var ctx=c.getContext('2d');if(!ctx)return;
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
   var W,H,dpr=Math.min(window.devicePixelRatio||1,2);
   function mobile(){return innerWidth<900}
-  var seed=7;function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646}
-  var P=[],part=[];
-  // 大脳の形：楕円体に、しわ（脳回）・左右の溝・側頭葉・後頭部のすぼまりを付ける
-  function shape(xx,yy,zz){
-    var fold=1+0.09*Math.sin(xx*11+yy*5)*Math.cos(zz*9-yy*6);
-    var x=xx*1.08*fold,y=yy*0.64*fold+0.12,z=zz*0.78*fold;
-    if(y<-0.18)y=-0.18+(y+0.18)*0.4;
-    if(y>0.22&&Math.abs(z)<0.14)z+=(z<0?-0.08:0.08);
-    if(Math.abs(z)>0.45&&y<0.05&&x>-0.35&&x<0.7)y-=0.16*(1-Math.abs(x-0.18)/0.55);
-    if(x<-0.7)y*=0.88;
-    return [x,y,z];
-  }
-  var NC=380;
-  for(var i=0;i<NC;i++){
-    var u0=rnd()*Math.PI*2,v0=Math.acos(2*rnd()-1);
-    P.push(shape(Math.sin(v0)*Math.cos(u0),Math.cos(v0),Math.sin(v0)*Math.sin(u0)));part.push(0);
-  }
-  // しわの線：大脳の表面をうねりながら一周する線＋左右を分ける縦の溝
-  var SULCI=[];
-  for(var sk=0;sk<8;sk++){
-    var line=[],vb=0.42+sk*0.27;
-    for(var su=0;su<=120;su++){
-      var uu=su/120*Math.PI*2,vv=vb+0.11*Math.sin(uu*9+sk*1.7)+0.05*Math.sin(uu*23+sk);
-      line.push(shape(Math.sin(vv)*Math.cos(uu),Math.cos(vv),Math.sin(vv)*Math.sin(uu)));
-    }
-    SULCI.push(line);
-  }
-  var fis=[];for(var fu=0;fu<=60;fu++){var ang=0.25+fu/60*(Math.PI-0.5);var q0=shape(Math.cos(ang),Math.sin(ang),0);fis.push([q0[0],q0[1]+0.01,0]);}
-  SULCI.push(fis);
-  // 小脳：後ろ下の小さな楕円体（横じま）
-  for(var j=0;j<70;j++){
-    var u=rnd()*Math.PI*2,v=Math.acos(2*rnd()-1);
-    P.push([-0.66+0.30*Math.sin(v)*Math.cos(u),-0.48+0.17*Math.cos(v),0.46*Math.sin(v)*Math.sin(u)]);part.push(1);
-  }
-  // 脳幹：下へ伸びる細い柱
-  var STEM0=P.length;
-  for(var k=0;k<16;k++){
-    var s=k/15,sx=-0.24-0.10*s,sy=-0.40-0.62*s,a=(k%4)/4*Math.PI*2;
-    P.push([sx+0.07*Math.cos(a),sy,0.09*Math.sin(a)]);part.push(2);
-  }
-  // 近い点どうしを結ぶ（同じ部位の中で3本まで）
-  var E=[],seen={};
-  for(var a1=0;a1<P.length;a1++){
-    var near=[];
-    for(var b1=0;b1<P.length;b1++){if(a1===b1||part[a1]!==part[b1])continue;
-      var dx=P[a1][0]-P[b1][0],dy=P[a1][1]-P[b1][1],dz=P[a1][2]-P[b1][2];near.push([dx*dx+dy*dy+dz*dz,b1]);}
-    near.sort(function(p,q){return p[0]-q[0]});
-    for(var n=0;n<3&&n<near.length;n++){if(near[n][0]>0.07)break;var lo=Math.min(a1,near[n][1]),hi=Math.max(a1,near[n][1]),key=lo+'_'+hi;if(!seen[key]){seen[key]=1;E.push([lo,hi]);}}
-  }
-  // 脳幹から大脳への経路（朱）
-  var PATHS=[];
-  for(var q2=0;q2<18;q2++){var tgt=Math.floor(rnd()*NC);PATHS.push({t:tgt,ph:rnd(),sp:0.00018+rnd()*0.00014});}
-  var ROOT=[-0.26,-0.40,0];
-  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function proj(p,cy_,sy_,cp,sp,cx0,cy0,base){
-    var x=p[0]*cy_-p[2]*sy_,z=p[0]*sy_+p[2]*cy_,y=p[1];
-    var y2=y*cp-z*sp,z2=y*sp+z*cp,d=1/(3.0+z2);
-    return [cx0+x*d*base*3.1,cy0-y2*d*base*3.1,z2];
-  }
+  var imL=new Image(),imR=new Image(),ready=0,SP=[];
+  imL.onload=imR.onload=function(){if(++ready===2){size();requestAnimationFrame(draw);}};
+  imL.src='/assets/brain/ill/brain-line-light.png';imR.src='/assets/brain/ill/brain-line-red.png';
+  fetch('/assets/brain/ill/brain-line-sparks.json').then(function(r){return r.json()}).then(function(a){SP=a}).catch(function(){});
+  var tmp=document.createElement('canvas'),tc=tmp.getContext('2d');
+  var STEM=[0.61,0.99];  // 脳幹の付け根（画像内の比率）
+  function size(){W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);tmp.width=c.width;tmp.height=c.height;}
   function draw(t){
+    var T=reduce?9000:t,m=mobile();
     ctx.clearRect(0,0,W,H);
-    var T=reduce?6000:t,m=mobile();
-    var cx0=m?W*0.58:W*0.70,cy0=m?H*0.25:H*0.47,base=Math.min(W,H)*(m?0.27:0.33);
-    var yaw=-0.22+0.34*Math.sin(T*0.00011),pitch=0.10+0.04*Math.sin(T*0.00007);
-    var cy_=Math.cos(yaw),sy_=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
-    var S=new Array(P.length);
-    for(var i=0;i<P.length;i++)S[i]=proj(P[i],cy_,sy_,cp,sp,cx0,cy0,base);
-    // 網
-    ctx.lineWidth=0.6;
-    for(var e=0;e<E.length;e++){
-      var A=S[E[e][0]],B=S[E[e][1]],dep=(A[2]+B[2])/2,k=Math.max(0,Math.min(1,(0.9-dep)/1.8));
-      ctx.strokeStyle='rgba(246,242,233,'+(0.05+0.30*k*k)+')';
-      ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.stroke();
+    var ih=m?Math.min(H*0.40,W*0.78):Math.min(H*0.64,W*0.42),iw=ih*imL.width/imL.height;
+    var fl=Math.sin(T*0.0006)*6;
+    var x0=(m?W*0.55:W*0.68)-iw/2,y0=(m?H*0.25:H*0.49)-ih/2+fl;
+    // 白い線（ゆっくり呼吸）
+    ctx.globalAlpha=0.34+0.05*Math.sin(T*0.0009);ctx.drawImage(imL,x0,y0,iw,ih);
+    // 朱の線（下地）
+    ctx.globalAlpha=0.24;ctx.drawImage(imR,x0,y0,iw,ih);
+    ctx.globalAlpha=1;
+    // 脳幹から広がる信号の波
+    var sx=x0+iw*STEM[0],sy=y0+ih*STEM[1],maxR=Math.hypot(iw,ih)*1.05;
+    tc.setTransform(dpr,0,0,dpr,0,0);tc.globalCompositeOperation='source-over';tc.clearRect(0,0,W,H);
+    tc.drawImage(imR,x0,y0,iw,ih);tc.drawImage(imL,x0,y0,iw,ih);
+    tc.globalCompositeOperation='destination-in';
+    var g=tc.createRadialGradient(sx,sy,0,sx,sy,maxR);
+    for(var w=0;w<3;w++){
+      var ph=((T*0.00012)+w/3)%1,r=ph,bw=0.07;
+      var a0=Math.max(0,r-bw),a1=Math.min(1,r+bw),amp=(1-ph)*0.95;
+      if(a0>0)g.addColorStop(a0,'rgba(0,0,0,0)');
+      g.addColorStop(r,'rgba(0,0,0,'+amp.toFixed(3)+')');
+      if(a1<1)g.addColorStop(a1,'rgba(0,0,0,0)');
     }
-    // しわの線
-    ctx.lineWidth=0.8;
-    for(var sl=0;sl<SULCI.length;sl++){
-      var L=SULCI[sl],prevP=null;
-      for(var li=0;li<L.length;li++){
-        var Q=proj(L[li],cy_,sy_,cp,sp,cx0,cy0,base);
-        if(prevP&&L[li][1]>-0.2){var kd=Math.max(0,Math.min(1,(0.9-(Q[2]+prevP[2])/2)/1.8));
-          ctx.strokeStyle='rgba(246,242,233,'+(0.04+0.42*kd*kd)+')';ctx.beginPath();ctx.moveTo(prevP[0],prevP[1]);ctx.lineTo(Q[0],Q[1]);ctx.stroke();}
-        prevP=Q;
-      }
-    }
-    // 経路と信号
-    var R=proj(ROOT,cy_,sy_,cp,sp,cx0,cy0,base);
-    for(var p=0;p<PATHS.length;p++){
-      var tg=S[PATHS[p].t],mid=proj([ (P[PATHS[p].t][0]+ROOT[0])*0.35,(P[PATHS[p].t][1]+ROOT[1])*0.5-0.05,P[PATHS[p].t][2]*0.4 ],cy_,sy_,cp,sp,cx0,cy0,base);
-      ctx.strokeStyle='rgba(201,74,46,0.16)';ctx.lineWidth=0.7;
-      ctx.beginPath();ctx.moveTo(R[0],R[1]);ctx.quadraticCurveTo(mid[0],mid[1],tg[0],tg[1]);ctx.stroke();
-      var u=((T*PATHS[p].sp)+PATHS[p].ph)%1,iu=1-u;
-      var px=iu*iu*R[0]+2*iu*u*mid[0]+u*u*tg[0],py=iu*iu*R[1]+2*iu*u*mid[1]+u*u*tg[1];
-      ctx.fillStyle='rgba(201,74,46,'+(0.35+0.55*Math.sin(u*Math.PI))+')';
-      ctx.beginPath();ctx.arc(px,py,1.6,0,6.28);ctx.fill();
-    }
-    // 点（ところどころ朱が明滅）
-    for(var r=0;r<P.length;r++){
-      var s=S[r],kk=Math.max(0,Math.min(1,(0.9-s[2])/1.8));
-      if((r*7)%13<1){var tw=.5+.5*Math.sin(T*.0011+r);ctx.fillStyle='rgba(201,74,46,'+((0.25+0.7*tw)*(0.3+0.7*kk))+')';ctx.beginPath();ctx.arc(s[0],s[1],1.8,0,6.28);ctx.fill();}
-      else if(r%3===0){ctx.fillStyle='rgba(246,242,233,'+(0.08+0.3*kk)+')';ctx.fillRect(s[0]-0.6,s[1]-0.6,1.2,1.2);}
+    tc.fillStyle=g;tc.fillRect(0,0,W,H);
+    ctx.globalCompositeOperation='lighter';ctx.drawImage(tmp,0,0,W,H);
+    ctx.globalCompositeOperation='source-over';
+    // 朱の点の明滅
+    for(var i=0;i<SP.length;i++){
+      var tw=0.5+0.5*Math.sin(T*0.0014+i*2.3);if(tw<0.72)continue;
+      var px=x0+SP[i][0]*iw,py=y0+SP[i][1]*ih;
+      ctx.fillStyle='rgba(222,96,62,'+((tw-0.72)/0.28*0.9).toFixed(3)+')';
+      ctx.beginPath();ctx.arc(px,py,1.8,0,6.28);ctx.fill();
     }
     if(!reduce)requestAnimationFrame(draw);
   }
-  window.addEventListener('resize',size,{passive:true});size();requestAnimationFrame(draw);
+  window.addEventListener('resize',size,{passive:true});
 })();
 </script>
 </body>
