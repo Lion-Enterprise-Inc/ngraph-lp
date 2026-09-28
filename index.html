@@ -346,13 +346,14 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": "https://ngraph.jp/#organization",
       "name": "株式会社NGraph",
       "url": "https://ngraph.jp/",
       "logo": "https://ngraph.jp/assets/ngraph-logo-circle.png",
       "founder": { "@type": "Person", "name": "髙橋 真吾" },
-      "foundingDate": "2025-12",
+      "foundingDate": "2025-12-11",
+      "telephone": "+81-90-2831-9668",
       "description": "人・資料・会話に散らばる目的、役割、決定、手順、進捗を、人間とAIが共有できる「会社の脳」へ。現実世界の意味をAIが読める形に構造化する技術の会社。エンジニアが現場に入り、AIを「使われる形」にして残します。",
       "address": {
         "@type": "PostalAddress",
@@ -361,6 +362,21 @@
         "addressLocality": "福井市",
         "streetAddress": "問屋町1丁目124番地ラフォーレ北野201"
       },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "福井県" },
+        { "@type": "AdministrativeArea", "name": "石川県" },
+        { "@type": "AdministrativeArea", "name": "富山県" },
+        { "@type": "City", "name": "大阪市" },
+        { "@type": "AdministrativeArea", "name": "京都府" },
+        { "@type": "AdministrativeArea", "name": "滋賀県" },
+        { "@type": "Country", "name": "日本" }
+      ],
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer support",
