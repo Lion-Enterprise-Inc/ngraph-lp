@@ -164,27 +164,28 @@
     
 
     <div class="schema-flow reveal" style="margin-bottom:44px">
-      <div class="sf-cap">構造化データ — AIに「引用される」ための共通言語</div>
+      <div class="sf-cap">構造化データ — AIが根拠付きで答えるための共通言語</div>
       <div class="sf-row">
         <div class="sf-node">
           <div class="sf-t">人が読む情報</div>
-          <pre class="sf-code"><span class="c-mut">&lt;h2&gt;</span>海老天そば<span class="c-mut">&lt;/h2&gt;</span>
-<span class="c-mut">&lt;p&gt;</span>980円<span class="c-mut">&lt;/p&gt;</span></pre>
-          <div class="sf-s">AIはアレルゲンを<br>推測するしかない</div>
+          <pre class="sf-code"><span class="c-mut">チャット：</span>
+来月から締めは25日で</pre>
+          <div class="sf-s">いつ・誰が決めたかが<br>AIには分からない</div>
         </div>
         <div class="sf-arrow"><span>構造化</span></div>
         <div class="sf-node sf-core">
-          <div class="sf-t">意味データ（NGraph）</div>
-          <pre class="sf-code"><span class="c-key">"name"</span>:<span class="c-str">"海老天そば"</span>,
-<span class="c-key">"allergens"</span>:
-  [<span class="c-str">"えび"</span>,<span class="c-str">"小麦"</span>,<span class="c-str">"そば"</span>]</pre>
-          <div class="sf-s">意味を機械が<br>読める形に</div>
+          <div class="sf-t">会社の記録（NGraph）</div>
+          <pre class="sf-code"><span class="c-key">"決定"</span>:<span class="c-str">"経費精算の締め日＝25日"</span>,
+<span class="c-key">"日付"</span>:<span class="c-str">"2026-09-01"</span>,
+<span class="c-key">"根拠"</span>:<span class="c-str">"経営会議の議事録"</span>,
+<span class="c-key">"確認"</span>:<span class="c-str">"確認済み"</span></pre>
+          <div class="sf-s">日付と根拠のついた<br>AIが読める記録に</div>
         </div>
         <div class="sf-arrow"><span>参照</span></div>
         <div class="sf-node">
           <div class="sf-t">AI</div>
-          <div class="sf-logos">ChatGPT・Claude・Perplexity</div>
-          <div class="sf-s">「えび・小麦・そばを含みます」と<br>推測せず正確に回答</div>
+          <div class="sf-logos">ChatGPT・Claude・Gemini</div>
+          <div class="sf-s">「締め日は25日です（9/1の<br>経営会議で決定）」と根拠付きで回答</div>
         </div>
       </div>
     </div>
