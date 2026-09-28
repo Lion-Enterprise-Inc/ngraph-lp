@@ -233,7 +233,8 @@
 .tz-cue i{display:block;width:1px;height:44px;background:linear-gradient(var(--tz-shu),transparent);animation:tzdrop 2.6s ease-in-out infinite}
 @keyframes tzdrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .tz-place{text-align:right;line-height:2}
-.tz-descent{position:relative;background:linear-gradient(var(--tz-ink) 0,var(--tz-ink2) 14%,#efe9dd 52%,var(--bg) 100%);padding:26vh clamp(20px,5vw,72px) 10vh}
+.tz-fade{height:26vh;background:linear-gradient(var(--tz-ink) 0,var(--tz-ink2) 30%,#efe9dd 80%,var(--bg) 100%)}
+.tz-descent{position:relative;padding:12vh clamp(20px,5vw,72px) 8vh}
 .tz-descent .tz-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
 .tz-descent .k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
 .tz-descent h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:18px 0 0;color:var(--text)}
@@ -256,7 +257,8 @@
   .tz-h1{font-size:2.05rem;line-height:1.5;white-space:normal}
   .tz-lede{font-size:.86rem;line-height:2}
   .tz-eyebrow{margin-bottom:22px}
-  .tz-descent{padding-top:18vh}
+  .tz-fade{height:16vh}
+  .tz-descent{padding-top:9vh}
   .tz-descent .tz-in,.tz-doors .tz-in{grid-template-columns:1fr}
   .header:not(.scrolled) .nav.active a:not(.nav-cta){color:var(--text)}
 }
@@ -462,28 +464,13 @@
       <div class="tz-tate" aria-hidden="true">意味は、人が確かめたものだけを残す。</div>
     </div>
     <div class="tz-foot">
-      <a class="tz-cue" href="#genba"><i></i><span>現場へ</span></a>
+      <a class="tz-cue" href="#problem"><i></i><span>現場へ</span></a>
       <div class="tz-place">FUKUI ― HOKURIKU<br>2026</div>
     </div>
   </div>
 </section>
 
-<section class="tz-descent" id="genba">
-  <div class="tz-in">
-    <div>
-      <div class="k">現場に入る</div>
-      <h2>理論を、パソコン1台から<br>使える形に降ろす。</h2>
-    </div>
-    <p>エンジニアが会社に入り、AIが使われる形にして残す。書いてある数字は、実測したものだけ。</p>
-  </div>
-</section>
-<section class="tz-doors">
-  <div class="tz-in">
-    <a class="tz-door reveal" href="/starter/"><div class="n">01</div><h3>生成AI導入 初期セット</h3><p>訪問してパソコンを設定。5〜7営業日で、翌日からふだんの言葉で頼める。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="/security/"><div class="n">02</div><h3>セキュリティPack</h3><p>社内だけで動くAI（ローカルLLM）を設置。会社の情報は社外に出さない。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="/fde/"><div class="n">03</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
-  </div>
-</section>
+<div class="tz-fade" aria-hidden="true"></div>
 
 <section class="section dks" id="problem">
   <div class="container">
@@ -587,6 +574,23 @@
     <!-- /fig -->
   </div>
 </section>
+<section class="tz-descent" id="genba">
+  <div class="tz-in">
+    <div>
+      <div class="k">現場に入る</div>
+      <h2>理論を、パソコン1台から<br>使える形に降ろす。</h2>
+    </div>
+    <p>エンジニアが会社に入り、AIが使われる形にして残す。書いてある数字は、実測したものだけ。</p>
+  </div>
+</section>
+<section class="tz-doors">
+  <div class="tz-in">
+    <a class="tz-door reveal" href="/starter/"><div class="n">01</div><h3>生成AI導入 初期セット</h3><p>訪問してパソコンを設定。5〜7営業日で、翌日からふだんの言葉で頼める。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="/security/"><div class="n">02</div><h3>セキュリティPack</h3><p>社内だけで動くAI（ローカルLLM）を設置。会社の情報は社外に出さない。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="/fde/"><div class="n">03</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
+  </div>
+</section>
+
 <section class="section dks" id="brain">
   <div class="container">
     <div class="section-head reveal">
