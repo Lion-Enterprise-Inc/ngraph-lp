@@ -19,6 +19,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [福井でAI導入に使える補助金と無料の相談先——止まる理由は「どの業務に使うか」（2026年9月）](https://ngraph.jp/blog/20260928-fukui-ai-hojokin)
 - [FDEは一人のスーパーエンジニアではない——世界と日本の「チームで入る」体制と、発注前に確かめる5つのこと](https://ngraph.jp/blog/20260928-fde-team)
 - [AIへの機密情報入力は「禁止」では止まらない——不安87.7%と対策11.4%の差、ルールで半分になる理由](https://ngraph.jp/blog/20260927-kimitsu-jouhou-fuan)
 - [AIのモデルには終了日がある——3社の予告期間は60日・3か月・6か月、自社コードに引退済みが10箇所](https://ngraph.jp/blog/20260924-ai-model-deprecation)
