@@ -18,6 +18,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [FDEは一人のスーパーエンジニアではない——OpenAIの「チームで現場に入る」体制と発注前に確かめる5つのこと](https://ngraph.jp/blog/20260928-fde-team)
 - [AIへの機密情報入力は「禁止」では止まらない——不安87.7%と対策11.4%の差、ルールで半分になる理由](https://ngraph.jp/blog/20260927-kimitsu-jouhou-fuan)
 - [AIのモデルには終了日がある——3社の予告期間は60日・3か月・6か月、自社コードに引退済みが10箇所](https://ngraph.jp/blog/20260924-ai-model-deprecation)
 - [国のAI基本計画に「伴走」が入った——補助金の次は地域AXネットワーク、中小企業が待たずに決める3つ](https://ngraph.jp/blog/20260922-ai-kihon-keikaku-bansou)
