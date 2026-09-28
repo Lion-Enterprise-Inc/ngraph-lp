@@ -239,7 +239,8 @@
 .tz-descent h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:18px 0 0;color:var(--text)}
 .tz-descent p{font-size:.9rem;line-height:2.1;letter-spacing:.04em;color:var(--text-2);margin:0}
 .tz-doors{padding:0 clamp(20px,5vw,72px) 12vh}
-.tz-doors .tz-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tz-doors .tz-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1100px){.tz-doors .tz-in{grid-template-columns:repeat(2,1fr)}}
 .tz-door{display:block;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:26px 24px;color:var(--text);transition:border-color .3s,transform .3s}
 .tz-door:hover{border-color:var(--accent);transform:translateY(-2px)}
 .tz-door .n{font-family:var(--serif);font-size:.7rem;letter-spacing:.24em;color:var(--accent);font-weight:600}
@@ -480,8 +481,9 @@
 <section class="tz-doors">
   <div class="tz-in">
     <a class="tz-door reveal" href="/starter/"><div class="n">01</div><h3>生成AI導入 初期セット</h3><p>訪問してパソコンを設定。5〜7営業日で、翌日からふだんの言葉で頼める。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="/fde/"><div class="n">02</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="#brain"><div class="n">03</div><h3>会社の脳</h3><p>会社の知識を、どのAIからも同じ事実・同じ出典で読める形に。</p><span class="go">全体構図へ ↓</span></a>
+    <a class="tz-door reveal" href="/security/"><div class="n">02</div><h3>セキュリティPack</h3><p>社内だけで動くAI（ローカルLLM）を設置。会社の情報は社外に出さない。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="/fde/"><div class="n">03</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
+    <a class="tz-door reveal" href="#brain"><div class="n">04</div><h3>会社の脳</h3><p>会社の知識を、どのAIからも同じ事実・同じ出典で読める形に。</p><span class="go">全体構図へ ↓</span></a>
   </div>
 </section>
 
