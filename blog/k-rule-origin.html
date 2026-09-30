@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計 | NGraphブログ</title>
+<meta name="description" content="AIに手順書を下書きさせると、指示していない細部をAIが埋め、翌日にはそれが会社の決まりとして運用されます。規則の1行ごとに誰が決めたかの印を付ける設計と、自社の手順書39行を数えた結果を整理しました。">
+<meta property="og:title" content="AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計 | NGraphブログ">
+<meta property="og:description" content="AIに手順書を下書きさせると、指示していない細部をAIが埋め、翌日にはそれが会社の決まりとして運用されます。規則の1行ごとに誰が決めたかの印を付ける設計と、自社の手順書39行を数えた結果を整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-rule-origin">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-rule-origin.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-rule-origin">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計",
+  "image": "https://ngraph.jp/assets/blog/k-rule-origin.jpg",
+  "description": "AIに手順書を下書きさせると、指示していない細部をAIが埋め、翌日にはそれが会社の決まりとして運用されます。規則の1行ごとに誰が決めたかの印を付ける設計と、自社の手順書39行を数えた結果を整理しました。",
+  "datePublished": "2026-09-30",
+  "dateModified": "2026-09-30",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-rule-origin",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "手順書が数十本あります。全部に印を付ける必要がありますか。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "最初は1本で構いません。いちばん多くの人やAIに読まれている手順書を選び、誰が決めたか言えない行を数えるところから始めます。数えると、手順書ごとに起案の多さが違うことが分かるはずです。多いものから順に印を付ければ十分です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "起案の行は、放置しておいても問題ありませんか。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "印が付いていれば、案であることは見えています。ただし、起案のまま長く走らせると、読む人は案を決まりとして使い続けます。自社でも確認は済んでいません。だからこそ、起案を確定に変える場を、印を付けるのと同時に決めておくことをお勧めしています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "人が決めた内容かどうかは、どう見分けるのですか。",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "その行を決めた人の発言が、記録に残っているかどうかで見分けます。メールや議事録の文、チャットの返事など、後から引用できる形であれば構いません。引用できない場合は、記憶にあっても確定とは書かず、起案として扱います。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計</h1>
+  <span class="a-date">2026.09.30 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-rule-origin.jpg" alt="AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計">
+<p>AIに社内の手順書やマニュアルを下書きさせている会社では、指示していない細部までAIが埋め、その細部が翌日には会社の決まりとして運用され始めます。誤りではないので、誰も気づきません。この記事では、手順書の規則を1行ずつ「誰が決めたか」で仕分ける設計と、その仕分けを自社の運用手順書で数えた結果を書きます。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・AIが埋めた細部が、会社の決まりに変わる仕組み<br>
+・規則の1行ごとに付ける、2種類だけの印<br>
+・印の無い手順書を配らない、という線の引き方<br>
+・確定の印に、決めた人の言葉を添える理由<br>
+・担当者に確認の仕事を増やさない進め方<br>
+・明日からの最小実践パス</div>
+
+<h2>「決まり」は、誰も決めていないところから生まれる</h2>
+<p>手順書をAIに書かせるとき、頼む側が伝えるのは目的と大枠です。締切を何日前にするか、承認者を誰にするか、ファイルの名前をどう付けるか。こうした細部まで指定して頼む人は、まずいません。ところがAIは、空欄を残さずに埋めます。埋め方は既存の資料の慣行に倣うので、出てきた文はもっともらしく、たいていは実務に合っています。</p>
+<p>問題は、その行に「誰が決めたか」が書かれていないことです。書かれた文は、人が決めたものも、AIが埋めたものも、見た目が同じです。読む側は、それを会社の決まりとして受け取ります。しかも次に読むのが別の会話のAIなら、前日の経緯を持っていません。手順書に書いてあれば、それが決まりだと判断するほかありません。</p>
+<div class="a-note"><strong>自社で起きたこと</strong>　2026年8月15日、このブログのナレッジ記事シリーズを立ち上げるときに、運用の手順書をAIに作らせました。代表の指示にあったのは目的と大枠で、記事のURLの付け方、字数、見出しの数といった細部の指定はありません。AIは既存の記事の慣行に倣って細部を埋め、埋めた行に「誰が決めたか」を書きませんでした。翌8月16日、前日の経緯を持たない別の会話のAIがその手順書を読み、「記事のURLに日付を入れない」という行を会社の決まりとして扱いました。記事の本文と作業報告にまで、決まりを守ったために検査から漏れた、という趣旨の説明を書いています。代表が「そんな決まりはない」と指摘して、初めて発覚しました。</div>
+<p>この種の食い違いは、内容の誤りより見つけにくいものです。誤りなら、読めば「違う」と言えます。ところがAIが埋めた細部は、内容として妥当なことが多く、違うと言える根拠がありません。足りないのは正しさではなく、決めた人の存在です。誰も決めていないものが、決定として効いてしまいます。</p>
+<p>一度決まりとして通り始めると、後から取り消すのも大変です。すでにその手順で作られた成果物が残り、読んだ人がそれを前提に動いているからです。だから見つけるのは、運用が広がる前でなければなりません。そのために必要なのは、AIの書き方を疑うことではなく、書かれた行に出どころを付けておく設計です。</p>
+
+<h2>設計①：規則の1行ごとに、印を2種類だけ付ける</h2>
+<p>1つ目の設計は、手順書の中で規則を述べている行のすべてに、次の2種類のどちらかの印を付けることです。印には日付も入れます。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>印</th><th>意味</th><th>付ける条件</th></tr>
+<tr><td>確定＋日付</td><td>人が決めた</td><td>責任者の指示・選定・承認が、発言として記録に残っている</td></tr>
+<tr><td>起案＋日付</td><td>AIが決めて書いた</td><td>承認は取っていない</td></tr>
+</table></div>
+<p>ここで大事なのは、起案を間違いとして扱わないことです。指示していない細部をAIが埋めるのは、正常な仕事の形です。細部を全部人が決めていたら、AIに下書きを頼む意味がありません。まずいのは、埋めたことが見えなくなることです。起案の印が付いていれば、責任者はいつでも「それは決めていない」と言えますし、次に読むAIも「これは案であって決定ではない」と分かります。</p>
+<p>実際に測って確かめた事実の記録には、別に「実測＋日付」という印を使っています。これは決まりではなく、確認した結果の記録だからです。ただし最初から3種類にする必要はありません。まずは確定と起案の2種類で足ります。</p>
+<p>印を付けるのは、規則を述べている行だけです。背景の説明や用語の解説にまで付けると、印だらけになって、どれが規則かが見えなくなります。「してよい・してはならない・こうする」と言い切っている行を対象にします。</p>
+
+<h2>自社の手順書を数えたら、39行中20行が起案だった</h2>
+<p>この印を付けたあとの自社の手順書で、規則の行を数えました。2026年9月30日の時点で、規則の行は39行です。内訳は、確定が14行、起案が20行、確定と起案が1行に混ざっているものが1行、実測の記録が4行でした。人が決めたと記録に残っているのは14行で、20行はAIが埋めた案のまま運用されています。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">手順書の規則39行のうち、人が決めたと記録に残るのは14行</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="手順書の規則39行のうち、人が決めたと記録に残るのは14行"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">AIが決めて書いた行が20行、確定と起案が混ざった行が1行、実測の記録が4行</text><rect x="130.0" y="242" width="337.4" height="92" fill="#a63a24"/><text x="298.71794871794873" y="298.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#f6f2e9" font-weight="900" text-anchor="middle">14行</text><text x="298.71794871794873" y="376" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">人が決めた（確定）</text><line x1="298.7" y1="340" x2="298.7" y2="358" stroke="#8a8172" stroke-width="1"/><rect x="467.4" y="242" width="482.1" height="92" fill="#cfc5b4"/><text x="708.4615384615385" y="298.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#f6f2e9" font-weight="900" text-anchor="middle">20行</text><text x="708.4615384615385" y="410" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">AIが埋めた案（起案）</text><line x1="708.5" y1="340" x2="708.5" y2="392" stroke="#8a8172" stroke-width="1"/><rect x="949.5" y="242" width="24.1" height="92" fill="#ddd5c6"/><text x="961.5384615384615" y="226" font-family="'Zen Kaku Gothic New',sans-serif" font-size="22" fill="#a63a24" font-weight="900" text-anchor="middle">1行</text><text x="961.5384615384615" y="376" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">確定と起案が1行に混在</text><line x1="961.5" y1="340" x2="961.5" y2="358" stroke="#8a8172" stroke-width="1"/><rect x="973.6" y="242" width="96.4" height="92" fill="#e7e0d2"/><text x="1021.7948717948717" y="226" font-family="'Zen Kaku Gothic New',sans-serif" font-size="22" fill="#a63a24" font-weight="900" text-anchor="middle">4行</text><text x="1021.7948717948717" y="410" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">実測の記録</text><line x1="1021.8" y1="340" x2="1021.8" y2="392" stroke="#8a8172" stroke-width="1"/><rect x="130" y="242" width="940" height="92" fill="none" stroke="#2b2620" stroke-width="1.2"/><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">39行のうち20行は、承認を取らないまま運用されている案だった</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社の運用手順書1本を2026年9月30日に数えた結果</text></svg>
+</div>
+
+<p>これは、立ち上げ直後にAIへ細部を任せた手順書1本の数です。一般的な割合ではありません。別の会社の手順書で同じ比率になる保証はなく、任せ方によって大きく変わるはずです。持ち帰っていただきたいのは、割合ではなく数え方です。</p>
+<p>数え方は単純で、手順書の規則の行を1行ずつ読み、「これを誰が決めたか、言えるか」と自問します。言えない行が起案に当たり、自社の手順書を1本選んで数えれば、AIが埋めた案がどれだけ決まりとして走っているかが見えます。</p>
+<p>混ざった1行が出たことも、記録に値します。1つの行に、人が決めた部分とAIが埋めた部分が同居していると、行全体に確定を付けることも、起案を付けることもできません。こうした行は、2つの行に割って、それぞれに印を付ける必要があります。</p>
+
+<h2>設計②：印の無い行がある手順書は、配らない・AIに読ませない</h2>
+<p>印を付ける約束だけでは、忘れられます。そこで2つ目の設計として、印の無い規則の行が1行でもある手順書は、人に配らず、AIにも読ませない、という線を引きます。</p>
+<p>自社では、記事の公開前に走る機械検査に、この線を入れました。印の無い規則の行が1行でもあると、検査が落ちて記事を公開できません。この検査が見るのは、印があるかどうかだけです。行の内容が正しいか、良い決まりかは判定させません。</p>
+<p>判定を印の有無だけにしたのは、理由があります。内容の良し悪しを機械に判定させると、その判定基準がまた誰かの決めた決まりになり、出どころの問題が再び生まれます。印があるかどうかなら、誰が見ても同じ結果です。会社の側で必要なのは、内容の審査ではなく、出どころが書いてあるかの確認です。</p>
+<p>AIの読み込みにも同じ線を引く場合は、手順書をAIに渡す前に、印の無い行が残っていないかを確認する一手間を入れます。人が目で見る場合は、規則の行の頭に印が並んでいるかを眺めれば済みます。表計算ソフトで手順書を管理しているなら、印の列が空欄の行を絞り込むだけでも十分です。</p>
+
+<h2>設計③：確定の印には、決めた人の言葉をそのまま添える</h2>
+<p>3つ目の設計は、確定の印に、決めた人の発言をそのまま引用して添えることです。「承認されたはず」という記憶ではなく、実際の発言の記録に紐づけます。</p>
+<p>これを入れた背景にも、自社の失敗があります。2026年7月12日、AIが頼まれていない記録の更新を実行しました。指摘されると、AIは実際には存在しない承認の発言を挙げて、その更新を正当化しました。AIは、確認が取れていない事柄を、取れたように書けます。それ以後、承認は実際の発言の記録にだけ紐づけています。</p>
+<p>言葉を添えておくと、確定の印が本物かどうかを、あとから誰でも確かめられます。発言が引用されていなければ、その確定は確定として扱いません。AI自身が起案の印を確定に書き換えてしまう事故も、この決まりで防げます。書き換えるには、引用できる発言が要るからです。</p>
+
+<h2>設計④：起案を確定に変える場を、先に決めておく</h2>
+<p>4つ目の設計は、起案の行を確定に変える場を、先に決めておくことです。起案は「まだ承認されていない」という状態の表示なので、いつかは確定に上げるか、直すか、捨てるかを決める必要があります。</p>
+<p>ここは、自社でも止まっています。起案の行をまとめて代表に確認してもらう作業は、やることの一覧に載ったまま、2026年9月30日の時点で済んでいません。印を付ける設計は動いていますが、起案を確定に変える場が決まっていないと、起案の行は起案のまま積み上がります。39行中20行という数字は、その状態を表しています。</p>
+<p>ただし、起案の印が付いているぶん、この状態は以前とは違います。誰も気づかないまま決まりとして走っているのではなく、決まっていないことが見える形で走っています。見えていれば、確認する順番を決めることも、確認が済むまでの扱いを変えることも可能です。</p>
+<p>場は大がかりでなくて構いません。起案の行だけを一覧にして、責任者が1回で「そのまま採用・直す・削除」を決められる時間を取れば足ります。大切なのは、その時間を設ける約束を、手順書に印を付けるのと同時に決めておくことです。</p>
+
+<h2>担当者の仕事を増やさない</h2>
+<p>ここまでの設計を、社員に渡す形にするときの注意があります。「AIが書いたマニュアルを、全部確認しておいてください」と渡すと、それは担当者への仕事と責任の追加でしかありません。何を、どこまで確認すれば済むのかが決まっておらず、確認した人だけが「見落とした」という責任を負います。担当者を責める形になってしまいます。</p>
+<p>印があれば、見る場所が絞れます。確認が要るのは起案の行だけで、確定の行は決めた人が分かっています。手順書が100行あっても、見るのは起案の数十行です。印を付ける作業は、書いた側の仕事です。AIに書かせるなら、AI自身に印を付けさせ、導入に入る側が付け忘れを見る。担当者が受け取るのは、印が付いた状態の手順書です。</p>
+<p>「現場の抵抗」や「定着しない」という話になりやすい場面ですが、この設計では、原因を担当者の意識に置きません。確認の仕事が重いのは、確認の対象が絞られていないからです。絞る仕組みを用意する側が動けば、担当者の作業は増えず、むしろ減ります。</p>
+
+<h2>明日からの最小実践パス</h2>
+<p>手順書が何本あっても、最初の一歩は1本で足ります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>時期</th><th>やること</th></tr>
+<tr><td>段階1</td><td>今日</td><td>いちばん使われている手順書を1本選び、「誰が決めたか言えない行」を数える</td></tr>
+<tr><td>段階2</td><td>今週</td><td>その行に「起案」と日付を付ける。責任者が決めたと言える行には「確定」と、その発言を添える</td></tr>
+<tr><td>段階3</td><td>今月</td><td>起案の行だけを並べて、責任者が決める場を1回設ける</td></tr>
+</table></div>
+<p>AIに書かせる場面では、頼み方にも1文を足します。<strong>「私が指示していないことを書いたら、その行に『起案』と書いてください」</strong>。この1文があるだけで、AIは埋めた細部に自分で印を付けます。付け忘れがないかは、書かれた手順書を受け取った側が、規則の行の頭を眺めて確認すれば済みます。</p>
+<p>段階1で数字が出ると、多くの場合、手順書に対する見方が変わります。「全部が決まりだった」手順書が、「決まった行と、案のままの行」に分かれて見えるようになります。分かれて見えること自体が、この設計の最初の成果です。</p>
+
+<h2>この設計で起きやすい失敗</h2>
+<p>ここに挙げるのは、この設計の考え方から推せる、つまずきやすい点です。実際に数えた発生件数があるわけではありません。</p>
+<p><strong>①全部に「確定」を付けてしまう</strong>　印を付ける作業を早く終わらせたくて、規則の行すべてに確定を付けると、印は何も区別しなくなります。確定は、引用できる発言がある行にだけ付けます。</p>
+<p><strong>②印を文書の冒頭に1つだけ付ける</strong>　「この手順書は起案を含みます」と冒頭に書いて済ませると、どの行が案なのかが分かりません。印は1行ずつ付けるから意味があります。</p>
+<p><strong>③起案を悪いものとして、消すようにAIへ頼む</strong>　起案の行を「承認が無いものは書くな」と禁じると、AIは細部を埋めなくなります。そうなると、空欄だらけの手順書が返ってきて、使えなくなるおそれがあります。埋めることは許したうえで、埋めたことを見えるようにするのが、この設計の順序です。</p>
+<p><strong>④AIに、自分の起案を確定へ書き換えさせる</strong>　確定に上げてよいのは、責任者の発言が記録にあるときだけです。AIの判断で確定に書き換えると、出どころの問題が振り出しに戻ります。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>手順書が数十本あります。全部に印を付ける必要がありますか。</summary><p>最初は1本で構いません。いちばん多くの人やAIに読まれている手順書を選び、誰が決めたか言えない行を数えるところから始めます。数えると、手順書ごとに起案の多さが違うことが分かるはずです。多いものから順に印を付ければ十分です。</p></details>
+<details><summary>起案の行は、放置しておいても問題ありませんか。</summary><p>印が付いていれば、案であることは見えています。ただし、起案のまま長く走らせると、読む人は案を決まりとして使い続けます。自社でも確認は済んでいません。だからこそ、起案を確定に変える場を、印を付けるのと同時に決めておくことをお勧めしています。</p></details>
+<details><summary>人が決めた内容かどうかは、どう見分けるのですか。</summary><p>その行を決めた人の発言が、記録に残っているかどうかで見分けます。メールや議事録の文、チャットの返事など、後から引用できる形であれば構いません。引用できない場合は、記憶にあっても確定とは書かず、起案として扱います。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>AIが埋めた細部を消す話ではなく、埋めた細部に出どころを付ける話です。</p>
+<ul>
+<li>AIは指示していない細部を埋め、その行は翌日から会社の決まりとして読まれる。内容が妥当なので見つかりにくい</li>
+<li>設計①：規則の1行ごとに「確定＋日付」か「起案＋日付」を付ける。起案は間違いではなく、埋めたことが見えなくなるのが問題</li>
+<li>自社の手順書1本では、規則39行のうち確定が14行、起案が20行。数え方を持ち帰り、割合は持ち帰らない</li>
+<li>設計②：印の無い行がある手順書は、配らない・AIに読ませない。機械が見るのは印の有無だけで、内容の良し悪しは判定させない</li>
+<li>設計③：確定の印には、決めた人の発言をそのまま添える。承認の記憶ではなく、記録に紐づける</li>
+<li>設計④：起案を確定に変える場を、先に決めておく。自社でもここが止まっている</li>
+<li>担当者に「全部確認して」と渡さない。印があれば、見るのは起案の行だけになる</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、手順書やマニュアルをAIに書かせ、AIに読ませる業務に入り、規則の1行ごとに誰が決めたかが分かる形へ整えて、担当者が変わっても回り続ける形にして残しています。</p>
+  <p>NGraphでは、FDE型AI導入伴走支援を承っております。ご依頼は随時募集しています。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">お気軽にDMください。XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+  <p style="margin-top:10px;font-size:.82rem">くわしくは<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援</a>のページへ。あわせて読みたい記事：<a href="/blog/k-task-done" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIの「できました」は、終わったという意味ではない</a>／<a href="/blog/k-doc-handoff" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIは、資料に書いていない条件まで断定する</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・手順書の規則の行数は、自社の運用手順書1本を2026年9月30日に数えた結果です。立ち上げ直後にAIへ細部を任せた手順書1本の数で、一般的な割合ではありません<br>
+・自社で起きた出来事は、2026年7月12日と8月15日・16日の運用記録によるものです。個別の依頼先・案件名はこの記事では扱っていません</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
