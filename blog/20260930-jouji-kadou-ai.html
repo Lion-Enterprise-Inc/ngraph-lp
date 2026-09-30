@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>常時稼働のAIは、止まっても知らせない——56日で11日動かず、「成功」表示の2回は7秒と8秒で終わっていた | NGraphブログ</title>
+<meta name="description" content="常時稼働のAIは、止まったことを自分では知らせません。自社の定時タスク直近50回では、定時に始まったのは39回、56日のうち11日は開始なし。「成功」表示の2回は約7秒と約8秒で終わっていました。">
+<meta property="og:title" content="常時稼働のAIは、止まっても知らせない——56日で11日動かず、「成功」表示の2回は7秒と8秒で終わっていた | NGraphブログ">
+<meta property="og:description" content="OpenAIのdots、Claude Codeの定時タスクとルーティン、Gemini Sparkの公式文書と、自社の定時タスク実行履歴50回を突き合わせ、常時稼働のAIの止まり方と備えを整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20260930-jouji-kadou-ai">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20260930-jouji-kadou-ai.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20260930-jouji-kadou-ai">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "常時稼働のAIは、止まっても知らせない——56日で11日動かず、「成功」表示の2回は7秒と8秒で終わっていた",
+  "image": "https://ngraph.jp/assets/blog/20260930-jouji-kadou-ai.jpg",
+  "description": "常時稼働のAIは、止まったことを自分では知らせません。自社の定時タスク直近50回では、定時に始まったのは39回、56日のうち11日は開始なし。「成功」表示の2回は約7秒と約8秒で終わっていました。",
+  "datePublished": "2026-09-30",
+  "dateModified": "2026-09-30",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20260930-jouji-kadou-ai",
+  "author": {
+    "@type": "Person",
+    "name": "髙橋 真吾",
+    "jobTitle": "代表取締役",
+    "url": "https://ngraph.jp/company#team",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "株式会社NGraph",
+      "url": "https://ngraph.jp/"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "株式会社NGraph",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ngraph.jp/assets/ngraph-logo-circle.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "常時稼働のAIエージェントとは何ですか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "人が話しかけていない間も、決めた役割や予定に沿って自分で作業を始めるAIです。OpenAIのdotsが、その例です。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "OpenAIのdotsは、どの契約で使えますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "対象地域のProとBusiness Premiumのユーザー向けに、順次提供が始まっています。Enterpriseは、管理者が有効にするとベータ版を試せます。対象地域は公式ページで確かめてください。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "パソコンを閉じても動きますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "製品で違います。dotsは専用のクラウドコンピューターで動作するとされ、ルーティンはAnthropicのクラウドで動き続けます。デスクトップの定時タスクの場合、スリープ中に過ぎた回はスキップです。Gemini Sparkはヘルプの2ページで書き方が分かれていて、どちらがいまの挙動かは確かめていません。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "「成功」と表示されていれば、仕事は終わっていますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "終わっているとは限りません。Anthropicはクラウド側のルーティンの文書で、緑の表示は仕事の成功を意味しないと注記しています。自社のデスクトップの定時タスクでも、直近50回で成功と表示された48回のうち、2回は、開始から約8秒と約7秒で最後の動きが止まり、記事は出ていませんでした。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "AIが止まったことに、どうすれば気づけますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "AIの自己申告とは別に、成果物を外から確かめる仕組みを持ち、その警告を、止まったAI自身が片づける場所には置かないことです。自社では、警告8件が止まったジョブの受信箱に積まれ、人が気づいたのは4日目でした。"
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "毎日決まった時刻に必ず動かしたい仕事に向いていますか？",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "遅れても困らない仕事から始めるのが安全です。Anthropicの文書は、午前9時の予定が午後11時に動くことがあると書いています。自社でも、定時から外れて始まった回が50回のうち11回ありました。"
+   }
+  }
+ ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>常時稼働のAIは、止まっても知らせない——56日で11日動かず、「成功」表示の2回は7秒と8秒で終わっていた</h1>
+  <span class="a-date">2026.09.30 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20260930-jouji-kadou-ai.jpg" alt="常時稼働のAIは、止まっても知らせない。56日のうち11日は開始なし、「成功」表示の2回は約7秒と約8秒で終了、PCを閉じるとその回はスキップ、止まった知らせはジョブの外に置く">
+
+<p>OpenAIが2026年9月29日、24時間働けると説明するAI「dots」を発表しました。人が話しかけなくても、決めた役割で自分から動く「常時稼働のAI」を会社に置く話が、現実になります。先に結論を書くと、常時稼働のAIは、止まったことを自分では知らせません。止まった仕事は「止まりました」と言えないからです。自社の定時タスク1本の実行履歴で、直近50回を数えたところ、定時に始まったのは39回でした。別に、56日のうち開始が1回もない日が11日あり、状態の欄が「成功」の2回は、約7秒と約8秒で終わっていました。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・3社の「常時稼働」は、動く場所と止まり方が違うこと<br>
+・自社の実行記録50回で、実際に起きた止まり方<br>
+・常時稼働のAIを入れる前に決める5つのこと</div>
+
+<h2>常時稼働のAIとは——OpenAIが9月29日に出した「dots」</h2>
+<p>常時稼働のAIとは、人が話しかけていない間も、決めた役割や予定に沿って自分で作業を始めるAIです。OpenAIは9月29日、開発者向けイベントのDevDay 2026でdotsを発表し、「常時稼働のエージェント」と説明しています。</p>
+<h3>dotsが何をするか</h3>
+<p>OpenAIの説明では、dotsはGPT-6 Astraを搭載し、専用のクラウドコンピューターを持ち、フィードバックから学びながら24時間働けます。プラグイン経由で4,000以上のアプリに接続でき、連絡の経路は、ChatGPT、テキストメッセージ、Slack、Teamsと音声通話です。dotの側からも、進捗、質問、判断が必要な事柄が届きます。人とやり取りしていない間に役立つことを探すプロアクティブリサーチは、読み取り専用に制限されたツールを使うので、メッセージの送信はできません。</p>
+<p>提供は、対象地域のProとBusiness Premiumのユーザー向けに順次で、最初のdotは追加料金がかかりません。Enterpriseは、管理者が有効にするとベータ版を試せます。対象地域は、公式ページで確かめてください。</p>
+<h3>承認の設計と、組織向けの始まり方</h3>
+<p>dotsには、自律的に動く場合と承認を求める場合を定めたルールが組み込まれています。カスタムルールで操作ごとに選べるのは、許可、承認必須、ブロックの3つです。紹介ページには、「dot は間違えることもあるため、重要な影響を伴う作業は必ず確認してください。」とあります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>項目</th><th>OpenAI dots</th><th>Claude Code 定時タスク</th><th>Claude Code ルーティン</th><th>Google Gemini Spark</th></tr>
+<tr><td>動く場所</td><td>専用のクラウドコンピューター</td><td>利用者のPC</td><td>Anthropic管理のクラウド</td><td>クラウド。PCのブラウザを使う設定もある</td></tr>
+<tr><td>PCを閉じたとき</td><td>24時間働けると説明</td><td>スリープ中に過ぎた回はスキップ</td><td>閉じても動き続ける</td><td>ヘルプ2ページで書き方が分かれる</td></tr>
+<tr><td>使える契約</td><td>ProとBusiness Premiumに順次。Enterpriseは管理者が有効にするとベータ版</td><td>—</td><td>Pro、Max、Team、Enterprise</td><td>個人アカウントのGoogle AI ProかUltra。仕事用は現時点で不可</td></tr>
+<tr><td>承認</td><td>許可、承認必須、ブロックのルールと自動レビュー</td><td>許可のない操作で承認待ちのまま止まる</td><td>承認のために止まらず自律実行</td><td>送信、購入などの前に確認</td></tr>
+<tr><td>段階</td><td>順次提供、Enterpriseはベータ版</td><td>—</td><td>研究プレビュー</td><td>試験運用版</td></tr>
+</table></div>
+
+<h2>「常時稼働」の中身は3社で違う——動く場所と、動かなかったときの扱い</h2>
+<p>動く場所が自分のPCかクラウドかで、止まり方は変わります。Claude Codeのデスクトップアプリの定時タスクは、決めた時刻になるとAIが新しい作業を自動で始める設定で、利用者のPCの上で動きます。動くのは、アプリが開いていてPCが起きている間だけです。ノートPCのふたを閉じるとスリープするので、スリープしたまま予定時刻を過ぎた回は、スキップされます。スキップとは、その回を実行せずに飛ばすことです。</p>
+<p>もう1つのルーティンは、Anthropicが管理するクラウド上で動き、ノートPCを閉じても動き続けます。一部の操作を除いて、承認のために止まりません。GoogleのGemini Sparkは、Geminiアプリの中で動く個人向けのエージェントです。</p>
+<p>dotsは公開の翌日で、私たちが読んだのは紹介ページまでです。動かなかったときの扱いは、次の表に入れていません。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>仕組み</th><th>予定どおり動かなかったとき、公式の文書が書いていること</th><th>出どころ</th></tr>
+<tr><td>定時タスク</td><td>スリープ中の回はスキップ。復帰時は、直近に取りこぼした1回だけ追いかけ実行する。午前9時の予定が午後11時に動くことがある。スキップの理由は、PCのスリープ、前の回が実行中、他の定時タスクが動いていた、の3つ</td><td>Anthropic デスクトップの文書</td></tr>
+<tr><td>ルーティン</td><td>実行一覧の緑の表示は、仕事の成功を意味しない。GitHubとの接続が切れているか期限切れのときは、最大72時間その回をスキップする。その間に再接続すれば自動で再開し、過ぎるとオフになる。ちょうどの時刻は数分遅れることがある</td><td>Anthropic ルーティンの文書</td></tr>
+<tr><td>Gemini Spark</td><td>実行されない理由は、使用量の上限、同時タスクの上限、実行時間が大まかな場合のずれ、混雑時の遅延の4つ。同時に実行できるのは最大15個。緊急を要するタスクには、まだ最適化されていない</td><td>Google ヘルプ2ページ</td></tr>
+</table></div>
+<h3>Gemini Sparkのヘルプは、電源が切れたときの書き方が2通りある</h3>
+<p>デバイスの電源が切れているときの扱いは、2つのページで食い違って読めます。スケジュールの作成と管理のページの、よくある質問のタイムゾーンの項は、次のとおりです。「Gemini Spark は、スマートフォンやパソコンではなくクラウドで動作します。つまり、デバイスの電源がオフになっていても動作し続けます。」</p>
+<p>一方、タスクとワークフローを管理するページの、Gemini Sparkをオフにする項の重要事項は、次のとおりです。「Spark がオフになっている場合や、デバイスがオフになっている場合は、スケジュールは実行されません。」</p>
+<p>どちらがいまの挙動なのかは、2つの文が同じ状況を指しているのかも含めて、私たちは確かめていません。</p>
+<p style="font-size:.85rem;color:var(--text-3)">どの仕組みが自社の仕事に合うかを整理したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a>からご相談ください。</p>
+
+<h2>自社の実行記録50回を数えた——定時に始まったのは39回、開始のない日が11日</h2>
+<p>ここからは自社の記録です。対象は、毎日16時40分台に始まる設定の定時タスク1本で、記事を1本書いて公開する仕事を、Claudeのデスクトップアプリで動かしています。期間は2026年8月5日から9月29日の56日間で、履歴は全62回のうち取得できた直近50回、時刻は日本時間です。状態の欄、つまり履歴に出る「成功」「失敗」「実行中」の表示は、成功48回、失敗1回、実行中1回で、実行中の1回は、この記事を書いている回です。</p>
+<h3>定時に始まった回</h3>
+<p>定時の16時41分から16時51分に始まったのは、50回のうち39回でした。残る11回は、定時から外れた時刻に始まっています。例は、9月1日の6時55分、9月9日の23時53分、9月25日の22時15分です。文書は、各タスクが予定時刻から数分の遅れで始まると書いていて、この3回は数分の範囲に収まりません。午前9時の予定が午後11時に動くことがあるという文書の例とは並びが合いますが、11回それぞれの理由は、切り分けていません。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">定時に始まったのは、50回のうち39回</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="定時に始まったのは、50回のうち39回"><rect x="130.0" y="229" width="733.2" height="92" fill="#a63a24"/><text x="496.6" y="285.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#f6f2e9" font-weight="900" text-anchor="middle">39回</text><text x="496.6" y="363" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">定時の16時41分〜51分に開始</text><line x1="496.6" y1="327" x2="496.6" y2="345" stroke="#8a8172" stroke-width="1"/><rect x="863.2" y="229" width="206.8" height="92" fill="#cfc5b4"/><text x="966.6" y="285.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="30" fill="#2b2620" font-weight="900" text-anchor="middle">11回</text><text x="966.6" y="397" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">定時から外れて開始</text><line x1="966.6" y1="327" x2="966.6" y2="379" stroke="#8a8172" stroke-width="1"/><rect x="130" y="229" width="940" height="92" fill="none" stroke="#2b2620" stroke-width="1.2"/><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">11回は、翌朝や深夜など定時と違う時刻に始まっていた</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社の定時タスク1本の実行履歴・直近50回（2026年8月5日〜9月29日）</text></svg>
+</div>
+<h3>開始のなかった日</h3>
+<p>56日のうち、開始が1回もない日が11日ありました。9月19日から21日は、3日続けて開始がありません。文書によれば、アプリの起動時やPCの復帰時には、過去7日間の取りこぼしのうち直近の1回だけを追いかけ実行し、古い分は捨てます。追いかけ実行とは、取りこぼした回を、あとから1回だけ実行することです。開始のない日があることは、この説明と並びが合います。ただし、11日それぞれがPCを閉じていた日だったのかは、確かめていません。</p>
+<p>同じ56日を、開始があったかどうかと、その日の日付で夕方の記事が出たかどうかで分けたのが、次の図です。開始があった日は45日、記事が出た日は33日でした。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">56日のうち、開始があって記事も出た日は30日</p>
+<svg viewBox="0 0 1200 354" width="100%" style="min-width:640px" role="img" aria-label="56日のうち、開始があって記事も出た日は30日"><text x="211" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">開始あり・記事あり</text><rect x="229" y="50" width="771" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">30日</text><text x="211" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">開始あり・記事なし</text><rect x="229" y="102" width="385" height="34" rx="2" fill="#cfc5b4"/><text x="626" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">15日</text><text x="211" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">開始なし・記事なし</text><rect x="229" y="154" width="205" height="34" rx="2" fill="#cfc5b4"/><text x="446" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">8日</text><text x="211" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">開始なし・記事あり</text><rect x="229" y="206" width="77" height="34" rx="2" fill="#cfc5b4"/><text x="318" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">3日</text><text x="600.0" y="296.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">開始が1回もなかった日は11日。開始あり・記事なしの15日は、理由を1日ずつは切り分けていない</text><text x="8" y="338" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社の定時タスク1本の実行履歴・直近50回と記事の公開日（2026年8月5日〜9月29日の56日間）</text></svg>
+</div>
+<p>開始があったのに記事が出なかった15日には、遅れて始まった回が翌日の日付で記事を出した日、別の経路ですでに記事が出ていて確認だけに切り替えた日、この記事を書いている回が始まった9月29日が含まれます。15日すべてが失敗だったとは言えず、1日ずつの理由は切り分けていません。</p>
+<h3>前の回が終わった直後に始まる回</h3>
+<p>前の回の最後の動きの時刻から、4秒後、11秒後、23秒後に次の回が始まった例が、3回あります。始まったのは、9月9日の23時53分、9月22日の8時11分、9月27日の17時19分です。最後の動きの時刻とは、その回の会話で最後に何かが記録された時刻のことで、作業時間ではありません。人があとからその会話を開いて続きを書いた時刻も含みます。文書がスキップの理由に挙げる、前の回がまだ実行中だった、とは並びが合います。ただし、各回の理由は1件ずつ確かめていないので、原因とは断定しません。</p>
+
+<h2>「成功」の表示は、仕事が終わったという意味ではない——48回のうち2回は約7秒と約8秒</h2>
+<p>Anthropicは、クラウド側のルーティンの文書で、実行一覧の緑の表示は、会話が始まり、基盤側のエラーなしに終了したことを意味し、指示した仕事が成功したことは意味しない、と注記しています。私たちが動かしているのはデスクトップの定時タスクで、この注記があるのはクラウド側の文書です。対象は違いますが、同じことが手元の記録でも起きていました。</p>
+<p>成功と表示された48回のうち2回は、9月10日の16時43分と9月11日の16時42分に始まった回で、開始から最後の動きまでが、約8秒と約7秒でした。会話の記録は2件だけで、中身は指示文と、コマンドを1回呼んだことです。どちらの回からも記事は出ず、状態の欄は「成功」のままです。止まった理由は、記録からは分かりません。失敗と表示された1回は、9月7日の16時42分に始まり、執筆を別のAIに任せるところまで進んだあと、AIのプロセスが異常終了した記録が残っていて、理由が読めました。任せた仕事の<a href="/blog/k-task-done" style="color:var(--accent);border-bottom:1px solid var(--accent)">完了を人の側で決める設計</a>は、別の記事で書いています。</p>
+<p>同じ型は、別の定時ジョブでも起きていました。定時ジョブとは、決めた時刻に自動で動く仕事のことです。自社では、ジョブの自己申告とは別に、外から結果を確かめる監視を、8月13日から1日2回回しています。週1回の計測ジョブは、8月20日、8月27日、9月3日の3週続けて、最後まで動いたのに、計測データが1件も取れていませんでした。原因は、アクセス解析への認証の期限切れです。認証の期限切れとは、AIが外部のサービスに入る許可証の有効期限が切れることです。動いているのに何も測れていない状態を見る検査を8月21日に足すと、8月27日に初めて鳴り、8月29日から9月2日の5日間に同じ警告が10回出ました。週1回のジョブなので、中身は同じ状態の数え直しでした。</p>
+
+<h2>止まった知らせは、止まったジョブの外に置く</h2>
+<p>監視が警告を出しても、その警告が読まれなければ、止まっていることは誰にも伝わりません。8月30日から9月2日に起きたことが、その例です。</p>
+<div class="a-note"><strong>自社の記録（2026年8月30日〜9月2日）：</strong>毎朝6時8分に動く、届いた書類を整理して記録に入れるAIのジョブが、8月30日から9月2日まで4日連続で異常終了しました。ログに残っていた原因は認証の期限切れで、前日の8月29日の回は正常に終わっています。監視は4日間、毎回これを検知して、警告を8件書きました。ところが警告の置き場所が、止まっているそのジョブが整理するはずの受信箱でした。読む役が止まっていたので、警告は誰にも読まれないまま積まれ、未整理のファイルは26件まで増えました。人が気づいて手で回したのは4日目です。期限切れの起きない認証の方式に切り替えて、9月2日に復旧しました。</div>
+<p>壊れていたのは、検知ではなく、知らせの出口でした。検知は毎回できていたのに、出口が止まったジョブ自身の手元にありました。</p>
+<p>別の例もあります。社内の記録を巡回するジョブは、8月17日、20日、24日、25日の4回「失敗」と記録されましたが、巡回自体は4回とも成功し、落ちたのは、結果を外部へ同期する最後の1手でした。通信の一時的な失敗です。「失敗」の表示も、開いて読むまで中身は分かりません。検査の側が古くなる例もあります。朝の定時の仕事を9月1日にやめると決めたあとも、監視は「今日の朝の記事が無い」と鳴らし続けました。検査の側が、やめるという決定を知らなかったからです。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">表示だけでは分からない止まり方が、2種類ある</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="表示だけでは分からない止まり方が、2種類ある"><rect x="300" y="50" width="620" height="424" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="147.91500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">動いた・表示で分かる</text><text x="455.0" y="178.365" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">成果物が出た回</text><rect x="610.0" y="50" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="132.69" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">動かなかった・表示で分か</text><text x="765.0" y="163.14" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">る</text><text x="765.0" y="193.59" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">履歴にスキップと残る回</text><rect x="300" y="262.0" width="310.0" height="212.0" fill="rgba(166,58,36,.08)"/><text x="455.0" y="314.24" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">動いた・表示では分からな</text><text x="455.0" y="344.69" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">い</text><text x="455.0" y="375.14" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">成功表示のまま約7秒で</text><text x="455.0" y="405.59000000000003" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">終わった回、何も測れて</text><text x="455.0" y="436.04" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#a63a24" font-weight="700" text-anchor="middle">いなかった回</text><rect x="610.0" y="262.0" width="310.0" height="212.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="329.465" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">動かなかった</text><text x="765.0" y="359.91499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">表示では分からない</text><text x="765.0" y="390.36499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">警告が読まれない場所に</text><text x="765.0" y="420.81499999999994" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">積まれた4日間</text><line x1="610.0" y1="50" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="262.0" x2="920" y2="262.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">左：予定どおり動いた　右：動かなかった</text><text x="278" y="262.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">上：表示で分かる</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">確かめる仕組みを足すのは、分からない側の2つ</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社の定時ジョブの実行履歴と監視記録（2026年8月〜9月）</text></svg>
+</div>
+<p>表示や履歴で分かる止まり方は、図の上の段です。確かめる仕組みを足す先は、下の段の、表示では分からない2つです。</p>
+
+<h2>常時稼働のAIを入れる前に決める5つ</h2>
+<p>私たちの立場は、毎朝AIが動いたかを確かめる係を、社員に足さないことです。係を足すと、その人の仕事と責任が増えるだけで、続かないと考えています。確かめる仕事も仕組みに持たせ、止まった知らせは、責任を持つ人が毎日見る場所に届けます。人に残すのは、確かめる作業ではなく、知らせを受け取って判断することです。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>決めること</th><th>確かめ方</th><th>根拠</th></tr>
+<tr><td>1. どこで動くか</td><td>PCを閉じる時間帯に、予定時刻が入っていないかを見る</td><td>定時タスクは、PCが起きている間だけ動く。自社は開始のない日が11日</td></tr>
+<tr><td>2. 遅れても困らないか</td><td>「午前9時の仕事が午後11時に動いたら困るか」で仕分ける</td><td>文書に午後11時の例。自社は定時外の開始が11回</td></tr>
+<tr><td>3. 承認待ちで止まる操作</td><td>作った直後に手動で1回走らせ、出た確認を洗い出す。クラウド側は、含めた接続先の道具が確認なしに使えるので、つなぐ先を絞る</td><td>手動承認のモードでは、許可のない道具が要ると、人が承認するまで止まる</td></tr>
+<tr><td>4. 終わったことの確かめ方</td><td>成果物そのものを、表示とは別の仕組みで外から見る</td><td>「成功」の2回は約7秒と約8秒。計測ジョブは3週続けて何も測れなかった</td></tr>
+<tr><td>5. 知らせの届け先</td><td>そのAIが片づける場所には置かず、責任を持つ人が毎日見る場所へ</td><td>警告8件が止まったジョブの受信箱に積まれた</td></tr>
+</table></div>
+<p><a href="/blog/20260807-ai-approval-fatigue" style="color:var(--accent);border-bottom:1px solid var(--accent)">承認ボタンに頼らない設計</a>と、<a href="/blog/20260801-ai-agent-permission" style="color:var(--accent);border-bottom:1px solid var(--accent)">つないでいい範囲の決め方</a>は、それぞれ別の記事で整理しています。止まる原因は、予定や承認だけではありません。AIのモデルにも終了日があり、<a href="/blog/20260924-ai-model-deprecation" style="color:var(--accent);border-bottom:1px solid var(--accent)">3社の予告の違い</a>は、別の記事で突き合わせました。</p>
+
+<h2>よくある失敗・NGパターン4つ</h2>
+<ul>
+<li><strong>PCを閉じて帰る運用のまま、ローカルの定時タスクに毎日の仕事を任せる。</strong>自社の記録では、開始のない日が56日のうち11日ありました。</li>
+<li><strong>「成功」の表示を見て終わりにする。</strong>成功の2回は、開始から約8秒と約7秒で最後の動きが止まり、記事は出ていませんでした。</li>
+<li><strong>警告を、そのAIが片づける場所に置く。</strong>警告8件が積まれ、未整理のファイルは26件に増えました。</li>
+<li><strong>鳴りっぱなしの警告を放置する。決めたことを、検査に伝えない。</strong>同じ警告が5日間で10回出ました。仕事をやめたあとも、監視は鳴り続けました。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社の常時稼働のAIが、止まっても気づける形になっているか確認したい方は、<a href="/entry" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談</a>でも確認可能です。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>常時稼働のAIエージェントとは何ですか？</summary><p>人が話しかけていない間も、決めた役割や予定に沿って自分で作業を始めるAIです。OpenAIのdotsが、その例です。</p></details>
+<details><summary>OpenAIのdotsは、どの契約で使えますか？</summary><p>対象地域のProとBusiness Premiumのユーザー向けに、順次提供が始まっています。Enterpriseは、管理者が有効にするとベータ版を試せます。対象地域は公式ページで確かめてください。</p></details>
+<details><summary>パソコンを閉じても動きますか？</summary><p>製品で違います。dotsは専用のクラウドコンピューターで動作するとされ、ルーティンはAnthropicのクラウドで動き続けます。デスクトップの定時タスクの場合、スリープ中に過ぎた回はスキップです。Gemini Sparkはヘルプの2ページで書き方が分かれていて、どちらがいまの挙動かは確かめていません。</p></details>
+<details><summary>「成功」と表示されていれば、仕事は終わっていますか？</summary><p>終わっているとは限りません。Anthropicはクラウド側のルーティンの文書で、緑の表示は仕事の成功を意味しないと注記しています。自社のデスクトップの定時タスクでも、直近50回で成功と表示された48回のうち、2回は、開始から約8秒と約7秒で最後の動きが止まり、記事は出ていませんでした。</p></details>
+<details><summary>AIが止まったことに、どうすれば気づけますか？</summary><p>AIの自己申告とは別に、成果物を外から確かめる仕組みを持ち、その警告を、止まったAI自身が片づける場所には置かないことです。自社では、警告8件が止まったジョブの受信箱に積まれ、人が気づいたのは4日目でした。</p></details>
+<details><summary>毎日決まった時刻に必ず動かしたい仕事に向いていますか？</summary><p>遅れても困らない仕事から始めるのが安全です。Anthropicの文書は、午前9時の予定が午後11時に動くことがあると書いています。自社でも、定時から外れて始まった回が50回のうち11回ありました。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>常時稼働のAIは、動く場所で止まり方が変わります。自社の直近50回の履歴では、定時に始まったのは39回で、56日のうち開始のない日が11日ありました。「成功」の表示は、仕事が終わった印とは限らず、約7秒と約8秒で終わった回もありました。止まったことは、止まったAIの外から確かめ、その知らせは、責任を持つ人が毎日見る場所に置きます。確かめる仕事も、仕組みに持たせてください。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのAIは、止まったら気づけるか」から、一緒に確認します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・OpenAI「<a href="https://openai.com/ja-JP/index/introducing-dots/" target="_blank" rel="noopener">dots のご紹介</a>」（2026年9月29日）<br>
+・OpenAI「<a href="https://openai.com/ja-JP/index/devday-2026-recap/" target="_blank" rel="noopener">DevDay 2026 の振り返り</a>」（2026年9月29日）<br>
+・Anthropic「<a href="https://code.claude.com/docs/en/desktop-scheduled-tasks" target="_blank" rel="noopener">Schedule recurring tasks in Claude Code Desktop</a>」（2026年9月30日閲覧）<br>
+・Anthropic「<a href="https://code.claude.com/docs/en/routines" target="_blank" rel="noopener">Automate work with routines</a>」（2026年9月30日閲覧）<br>
+・Google「<a href="https://support.google.com/gemini/answer/17094507?hl=ja" target="_blank" rel="noopener">Gemini Spark を使用して Gemini アプリ内でタスクとワークフローを管理する</a>」「<a href="https://support.google.com/gemini/answer/17094710?hl=ja" target="_blank" rel="noopener">Gemini Spark でタスクのスケジュールを作成、管理する</a>」（Gemini アプリ ヘルプ・2026年9月30日閲覧）<br>
+・自社の実測は、Claude デスクトップアプリの定時タスクの実行履歴（直近50回・2026年9月30日取得）と、社内の定時ジョブ監視の記録による。</div>
+
+<!-- recheck: 2026-12-25 | OpenAI dots の提供範囲と、Claude Code・Gemini Spark の「動かなかったとき」の記述が変わっていないか | 参考枠の公式ページ5本を開く -->
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
