@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIの値下げは、モデル名を書き換えるまで届かない——Opus 5.5「単価20%減・費用40%減」の内訳 | NGraphブログ</title>
+<meta name="description" content="AnthropicのOpus 5.5の「20%」「40%」とOpenAIの「半分」は別のものを数えています。月額プランとAPIでは届き方も違い、APIではモデル名を書き換えるまで値下げは届きません。自社コードで数えた結果とともに整理しました。">
+<meta property="og:title" content="AIの値下げは、モデル名を書き換えるまで届かない——Opus 5.5「単価20%減・費用40%減」の内訳 | NGraphブログ">
+<meta property="og:description" content="Opus 5.5の単価20%減と費用40%減、GPT-6 Solの半額は何を数えた数字か。月額プラン・API・業者経由の届き方の違いと、モデル名を書き換える前に自社の仕事10件で測る手順を、自社コードの実測つきでまとめました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/20261002-ai-nesage-model-mei">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/20261002-ai-nesage-model-mei.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/20261002-ai-nesage-model-mei">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIの値下げは、モデル名を書き換えるまで届かない——Opus 5.5「単価20%減・費用40%減」の内訳",
+  "image": "https://ngraph.jp/assets/blog/20261002-ai-nesage-model-mei.jpg",
+  "description": "AnthropicのOpus 5.5の「20%」「40%」とOpenAIの「半分」は別のものを数えています。月額プランとAPIでは届き方も違い、APIではモデル名を書き換えるまで値下げは届きません。自社コードで数えた結果とともに整理しました。",
+  "datePublished": "2026-10-02",
+  "dateModified": "2026-10-02",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/20261002-ai-nesage-model-mei",
+  "author": {
+    "@type": "Person",
+    "name": "髙橋 真吾",
+    "jobTitle": "代表取締役",
+    "url": "https://ngraph.jp/company#team",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "株式会社NGraph",
+      "url": "https://ngraph.jp/"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "株式会社NGraph",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ngraph.jp/assets/ngraph-logo-circle.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "月額のChatGPTやClaudeの料金は下がりましたか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anthropicの9月22日の発表に書かれているのは、Pro・Max・Team・席単位のEnterpriseでの5時間あたりの利用上限の引き上げと、利用上限のリセットを保存していつでも使えることで、料金の変更は書かれていません。ChatGPTの月額プランは今回読んでいないので、契約中のプランの案内を確かめてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Opus 5.5に変えれば、費用は必ず40%下がりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "下がるとは限りません。40%は、Anthropicが既定の設定で典型的な使い方を試算した値です。単価の下げ（キャッシュ読み出しは60%）と、使う量の減少の両方を含む試算です。自社の仕事10件で費用を測ってから決めてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GPT-6 SolとGPT-6.1 Solは、どちらを使えばよいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "10月2日の料金ページの主力モデルの表に載っているのはgpt-6.1-solで、gpt-6-solは載っていません。標準価格は、入力2ドル・出力10ドルで同じで、キャッシュ入力はGPT-6 Solが0.20ドル、GPT-6.1 Solが0.10ドルです。どちらにするかは、自社の仕事で測ってから決めてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "モデル名は、どこに書いてありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "コードの中か、設定ファイル、環境変数、提供元の管理画面です。自社のコードを探すときは、gpt- や claude- を検索するのが近道です。外部の開発会社が作ったシステムなら、その会社に聞いてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "業者のサービス経由で使っている場合は、どうなりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "どのモデルを呼ぶかも、値下げを価格に反映するかも、業者が決めます。業者に、いま呼んでいるモデルの名前と、値下げを価格に反映する考え方を聞いてください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "乗り換えの検証には、どれくらいかかりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "仕事の種類と件数で変わるので、時間は断定できません。手順は、いつもの仕事を10件選び、旧モデルと新モデルで同じ10件を流して、費用とやり直しと人が直した箇所を並べるだけです。"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">Evening Deep Dive</div>
+  <h1>AIの値下げは、モデル名を書き換えるまで届かない——Opus 5.5「単価20%減・費用40%減」の内訳</h1>
+  <span class="a-date">2026.10.02 夕 ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/20261002-ai-nesage-model-mei.jpg" alt="AIの値下げは、名前を直すまで届かない。Opus 5.5は単価20%減で費用40%減は同社の試算、GPT-6 Solは単価が旧価格の半分で7日後に6.1が出た、月額プランは発表が上限の引き上げで料金の変更は書かれず、自社コードは新モデルの名前が0箇所">
+
+<p>2026年9月22日、AnthropicとOpenAIが同じ日に新しいAIモデルを出し、どちらも以前のモデルより低い単価を付けました。Anthropicは、新モデルのClaude Opus 5.5がOpus 5より40%安く動くと説明しています（同社の発表、2026年9月22日）。ただし、この40%をそのまま自社の請求書に当てはめるのは危険です。月額プランの発表が書いているのは利用上限の引き上げで、料金の変更は書かれていません。自社のシステムからAIを呼び出す窓口である「API」で使った分だけ払っている会社には、コードに書かれたモデル名を書き換えるまで、値下げが1円も届かないからです。</p>
+<p>先に結論を書きます。中小企業の判断は、「どのモデルが安いか」から、「自社の仕事1件がいくらかかるか、そしてモデル名を誰が書き換えるか」に変わりました。公開から3日後にOpenAIが不具合を直し、7日後に次の版を出したことを見ると、書き換える前に、自社の仕事で費用と出来を測る必要もあります。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・「20%」「40%」「50%」が、それぞれ別のものを数えていること<br>
+・払い方で、値下げの届き方が3通りに分かれること<br>
+・自社の本番コードで数えた、モデル名の直書き137箇所と、書き換え前に測る手順</div>
+
+<h2>9月22日から10日間に起きたこと——2社の新モデルと、10月2日時点の単価表</h2>
+<p>AIの料金は、文章を読み書きするときの数え方の単位である「トークン」で決まります。単価は100万トークンあたりのドルで示され、AIに読ませた量の「入力」と、AIが書いた量の「出力」で別々です。同じ資料を2回目以降に読ませるとき、前回の処理を再利用して安く読ませる仕組みが「キャッシュ」で、その読み出しにも別の単価が付きます。</p>
+<p>9月22日から10月2日までの動きを、時系列で並べます。</p>
+<ul>
+<li><strong>9月22日：</strong>AnthropicがClaude Opus 5.5を公開しました。Claude 5.5ファミリーの最初のモデルです。同じ日に、OpenAIがGPT-6 SolとGPT-6 Lunaを公開しました。</li>
+<li><strong>9月25日：</strong>OpenAIが、GPT-6 SolとGPT-6 Lunaで、画像を読み取る処理の不具合を直しました。画像の理解を劣化させていた不具合です。</li>
+<li><strong>9月29日：</strong>OpenAIがGPT-6.1 Solを公開しました。GPT-6 Astraより低コストで、複雑なコーディングと業務に向けたモデルと説明されています。</li>
+<li><strong>10月2日：</strong>OpenAIの料金ページで、主力モデルの表に載っているのは、gpt-6-astra、gpt-6.1-sol、gpt-6-lunaの3つです。</li>
+</ul>
+<p>9月22日に出たgpt-6-solは、10月2日の主力モデルの表に載っていません。載っていない理由は、私たちは確かめていません。次の表は、各社の料金ページと更新履歴から、単価を並べたものです。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>会社</th><th>モデル名</th><th>入力</th><th>出力</th><th>キャッシュ読み出し</th><th>備考</th></tr>
+<tr><td>Anthropic</td><td>Claude Opus 5.5</td><td>4ドル</td><td>20ドル</td><td>0.20ドル</td><td>9月22日公開。Opus 5より入力・出力が20%、キャッシュ読み出しが60%安い</td></tr>
+<tr><td>Anthropic</td><td>Claude Opus 5</td><td>5ドル</td><td>25ドル</td><td>0.50ドル</td><td>Anthropicが比べた相手</td></tr>
+<tr><td>Anthropic</td><td>Claude Sonnet 5.5</td><td>2ドル</td><td>10ドル</td><td>0.20ドル</td><td>9月22日の発表は「今後数週間で続く」と書いている</td></tr>
+<tr><td>Anthropic</td><td>Claude Fable 5.1</td><td>10ドル</td><td>50ドル</td><td>0.25ドル</td><td>Opus 5.5が多くの仕事で同等の水準と説明された相手</td></tr>
+<tr><td>OpenAI</td><td>GPT-6 Sol</td><td>2ドル</td><td>10ドル</td><td>0.20ドル</td><td>9月22日公開。入力27万2千トークンまでのプロンプトの標準価格</td></tr>
+<tr><td>OpenAI</td><td>GPT-6.1 Sol</td><td>2ドル</td><td>10ドル</td><td>0.10ドル</td><td>9月29日公開。キャッシュ書き込みは2.50ドル</td></tr>
+<tr><td>OpenAI</td><td>GPT-6 Luna</td><td>0.10ドル</td><td>0.50ドル</td><td>0.01ドル</td><td>OpenAIの小型で安いモデル</td></tr>
+<tr><td>OpenAI</td><td>GPT-6 Astra</td><td>10ドル</td><td>50ドル</td><td>1.00ドル</td><td>OpenAIの上位モデル</td></tr>
+<tr><td>OpenAI</td><td>GPT-5.6 Sol</td><td>4ドル</td><td>20ドル</td><td>0.40ドル</td><td>キャンペーン価格。料金ページに「少なくとも2026年11月21日まで」とある</td></tr>
+</table></div>
+<p class="a-fig-cap">単位は100万トークンあたり。Anthropicは料金ページ、OpenAIのGPT-6 SolとGPT-6 Lunaは更新履歴、そのほかは料金ページの2026年10月2日の表示です。Claude Sonnet 5.5の行は料金ページの表の値で、使える状態かどうかは確かめていません。</p>
+<p>Anthropicの3つの単価を、Opus 5とOpus 5.5で並べたのが、次の図です。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">Opus 5→Opus 5.5、単価は3つとも下がった</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="Opus 5→Opus 5.5、単価は3つとも下がった"><line x1="430" y1="64" x2="430" y2="546" stroke="#8a8172" stroke-width="1.2"/><line x1="890" y1="64" x2="890" y2="546" stroke="#8a8172" stroke-width="1.2"/><text x="430" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">Opus 5</text><text x="890" y="50" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="700" text-anchor="middle">Opus 5.5</text><line x1="430" y1="406.2" x2="890" y2="419.2" stroke="#cfc5b4" stroke-width="2.6" stroke-linecap="round"/><circle cx="430" cy="406.2" r="7" fill="#cfc5b4"/><circle cx="890" cy="419.2" r="7" fill="#cfc5b4"/><line x1="430" y1="147.7" x2="890" y2="212.3" stroke="#a63a24" stroke-width="3.6" stroke-linecap="round"/><circle cx="430" cy="147.7" r="7" fill="#a63a24"/><circle cx="890" cy="212.3" r="7" fill="#a63a24"/><line x1="430" y1="464.4" x2="890" y2="468.3" stroke="#cfc5b4" stroke-width="2.6" stroke-linecap="round"/><circle cx="430" cy="464.4" r="7" fill="#cfc5b4"/><circle cx="890" cy="468.3" r="7" fill="#cfc5b4"/><text x="286.4" y="413.2447817836812" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#5c544a" font-weight="500" text-anchor="end">入力</text><text x="376" y="413.2447817836812" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="end">5ドル</text><text x="944" y="426.1717267552182" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="start">4ドル</text><text x="286.4" y="154.70588235294116" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">出力</text><text x="376" y="154.70588235294116" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="end">25ドル</text><text x="944" y="219.34060721062616" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#a63a24" font-weight="900" text-anchor="start">20ドル</text><text x="286.4" y="471.41603415559774" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#5c544a" font-weight="500" text-anchor="end">キャッシュ読み出し</text><text x="376" y="471.41603415559774" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="end">0.5ドル</text><text x="944" y="475.29411764705884" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="900" text-anchor="start">0.2ドル</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">下げ幅は入力・出力が20%、キャッシュ読み出しが60%</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Anthropic Pricing（2026年10月2日確認）。単位は100万トークンあたりのドル</text></svg>
+</div>
+
+<h2>「20%」「40%」「50%」は、別のものを数えている</h2>
+<p>ニュースで目にする値下げ率は、何を数えた率なのかが、3つとも違います。読み分けないと、自社の請求がどう変わるかを見誤ります。</p>
+<h3>20%は、100万トークンあたりの単価の下げ幅</h3>
+<p>Anthropicの発表にある20%は、料金表の単価の話です。入力はOpus 5の5ドルからOpus 5.5の4ドルへ、出力は25ドルから20ドルへ下がり、どちらも20%の値下げになります。キャッシュ読み出しは0.50ドルから0.20ドルへで、60%の値下げです。同社は、AIが自分で手順を進める作業やコーディングでは、このキャッシュ読み出しの費用が全体の大半を占めると書いています。</p>
+<h3>40%は、仕事1件あたりの費用。同社が典型的な使い方で試算した値</h3>
+<p>40%は、単価ではなく、仕事1件あたりの費用の話です。Anthropicは、既定の設定で典型的な使い方をしたとき、Opus 5より40%安くなると、同社のテスト結果として書いています。単価の20%より下げ幅が大きい理由は、単価が下がることに加えて、仕事1件に使うトークンも少ないからだと、同社は説明しています。</p>
+<p>ここから先は、記事側の計算です。キャッシュを使わず、入力と出力だけでできた仕事なら、単価が0.8倍で費用が0.6倍のとき、仕事1件に使う量は0.6を0.8で割った0.75倍で、4分の1少ない計算になります。キャッシュ読み出しが多い仕事では、単価だけで20%より大きく下がるので、使う量の減り方がもっと小さくても40%に届きえます。40%は、仕事の中身である入力、出力、キャッシュ読み出しの比率と、使う量の両方で決まる数字で、自社の仕事でどうなるかは、測るまで分かりません。</p>
+<p>次の図は、例えば、キャッシュを使わない仕事で、Opus 5で1件1.00ドルかかるものが、Anthropicの試算どおりに使う量も減った場合に、どう変わるかを描いた例です。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">例えば、キャッシュを使わない仕事で、Opus 5で1件1.00ドルなら、Anthropicの試算どおりで0.60ドル</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="例えば、キャッシュを使わない仕事で、Opus 5で1件1.00ドルなら、Anthropicの試算どおりで0.60ドル"><line x1="80" y1="500.0" x2="1120" y2="500.0" stroke="#2b2620" stroke-width="1.6"/><rect x="169.5" y="96.1" width="126.0" height="403.9" rx="2" fill="#2b2620"/><line x1="295.5" y1="96.1" x2="414.5" y2="96.1" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="232.5" y="82.078431372549" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">1.00ドル</text><text x="232.5" y="534" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">Opus 5</text><rect x="414.5" y="96.1" width="126.0" height="80.8" rx="2" fill="#a63a24"/><line x1="540.5" y1="176.9" x2="659.5" y2="176.9" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="477.5" y="82.078431372549" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="middle">-0.20ドル</text><text x="477.5" y="534" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">単価の値下げ</text><rect x="659.5" y="176.9" width="126.0" height="80.8" rx="2" fill="#cfc5b4"/><line x1="785.5" y1="257.6" x2="904.5" y2="257.6" stroke="#8a8172" stroke-width="1" stroke-dasharray="4 4"/><text x="722.5" y="162.86274509803923" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#5c544a" font-weight="900" text-anchor="middle">-0.20ドル</text><text x="722.5" y="534" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">使う量の減少</text><rect x="904.5" y="257.6" width="126.0" height="242.4" rx="2" fill="#2b2620"/><text x="967.5" y="243.6470588235294" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">0.60ドル</text><text x="967.5" y="534" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#2b2620" font-weight="700" text-anchor="middle">Opus 5.5</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">キャッシュを使わない仕事なら、40%のうち半分は使う量の減少から</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：Anthropic発表（2026年9月22日）の20%・40%から記事側で計算</text></svg>
+</div>
+<p>使う量が仕事で大きく変わりうることは、同社が発表で紹介した早期テスターの事例からも読めます。20万行のコードの監査と修正を、Opus 5.5は3時間未満で終え、Opus 5は20時間超かかって、使ったトークンは2.5倍でした。発表が紹介した1件の話で、典型値の40%とは別のものです。同じ差が自社の仕事で出るとは言えませんが、使う量が仕事で変わることは読み取れます。</p>
+<h3>OpenAIの「半分」は、キャンペーン価格との比較</h3>
+<p>OpenAIの数字は、事情が別です。GPT-6 Solの入力2ドル・出力10ドルは、GPT-5.6 Solのキャンペーン価格である入力4ドル・出力20ドルの、ちょうど半分です。この「半分」は、料金ページの価格を並べて出した記事側の比較で、比べている相手が、常設の価格ではなくキャンペーン価格であることが、読むときの条件になります。料金ページには、GPT-5.6 Solのキャンペーン価格は少なくとも2026年11月21日まで、と書かれています。GPT-5.6 Solの値下げは、<a href="/blog/20260824-openai-sol-price" style="color:var(--accent);border-bottom:1px solid var(--accent)">8月の記事</a>で別に扱いました。</p>
+<p>3つの数字を、物差しで並べ直します。</p>
+<ul>
+<li><strong>20%：</strong>100万トークンあたりの単価。Opus 5とOpus 5.5の料金表の差です。</li>
+<li><strong>40%：</strong>仕事1件あたりの費用。Anthropicが典型的な使い方で試算した値で、単価の下げ（キャッシュ読み出しは60%）と、使う量の減少の両方を含みます。</li>
+<li><strong>50%：</strong>キャンペーン価格との比較。期限のある価格を相手にした、記事側の計算です。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社の請求がどう変わるかを整理したい方は、<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援（無料相談・無料AI診断）</a>からご相談ください。</p>
+
+<h2>払い方で、届く値下げが違う</h2>
+<p>同じ新モデルの発表でも、月額プランで使う会社と、APIで使う会社と、業者のサービスを経由する会社では、値下げの届き方が変わります。APIは、自社のシステムからAIを呼び出す窓口のことで、使った分だけ払う従量課金です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>払い方</th><th>今回、何が変わったか</th><th>請求はどうなるか</th><th>社内で確かめること</th></tr>
+<tr><td>月額プラン</td><td>Claudeは、Pro・Max・Team・席単位のEnterpriseで、5時間あたりの利用上限が上がり、利用上限のリセットを保存していつでも使えるようになった</td><td>発表に書かれているのは上限の引き上げで、料金の変更は書かれていない。増えたのは使える量</td><td>利用上限に当たって止まっていた人がいたか</td></tr>
+<tr><td>APIの従量課金</td><td>新しいモデル名を指定した呼び出しに、新しい単価が付く</td><td>古いモデル名を書いたままなら、古い単価の請求が続く</td><td>コードと設定に、どのモデル名が書かれているか</td></tr>
+<tr><td>業者のサービス経由</td><td>どのモデルを呼ぶかは、業者が決める</td><td>値下げを価格に反映するかも、業者が決める</td><td>呼んでいるモデルと、値下げの反映の考え方を業者に聞く</td></tr>
+</table></div>
+<p>Claudeの料金ページでは、Proが年払いで月17ドル（200ドルの前払い）、月払いなら20ドル、Maxは月100ドルからと表示されています。ChatGPTの月額プランは今回読んでいないので、この表の対象外です。</p>
+<p>業者のサービスは、一般論として、使うモデルも値下げの反映も業者の判断です。先方に聞くまでは、請求が下がるとも下がらないとも言えません。</p>
+
+<h2>値下げは、モデル名を書き換えるまで届かない</h2>
+<p>APIでは、どのAIを使うかを、モデル名という文字列で指定します。claude-opus-5-5やgpt-6.1-solのような名前で、コードか設定ファイルに書かれています。請求は呼び出しに書かれた名前の単価で計算されるので、古いモデル名を書いたままなら、新しいモデルの単価は適用されません。</p>
+<h3>自社の本番コードに、新モデルの名前は0箇所だった</h3>
+<div class="a-note"><strong>自社の記録（2026年10月2日）：</strong>本番稼働している自社の2つのサービス、書類作成のSaaSと飲食店向けのプラットフォームのコードで、文字列として出てくるモデル名を数えました。対象は拡張子が .py .ts .tsx .js .mjs のファイルで、node_modulesなどの外部部品は除き、コメントの中の例示は含めています。結果は、合計137箇所・15種類です。多い順に、gpt-4oが73箇所、gpt-4o-miniが28箇所、claude-sonnet-4-20250514が10箇所、claude-sonnet-4-6が6箇所、gpt-5が4箇所でした。9月22日以降に出た値下げ対象のモデル、claude-opus-5-5、claude-sonnet-5-5、gpt-6-sol、gpt-6.1-sol、gpt-6-lunaの名前は、0箇所です。claude-sonnet-4-20250514の10箇所は、<a href="/blog/20260924-ai-model-deprecation" style="color:var(--accent);border-bottom:1px solid var(--accent)">9月24日の記事</a>で、引退済みのモデル名が残っている箇所として書いた10箇所で、8日後の今日もそのまま残っていました。</div>
+<div class="a-fig-wrap">
+<p class="a-fig-title">自社の本番2サービスに書かれたモデル名、新モデルは0箇所</p>
+<svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="自社の本番2サービスに書かれたモデル名、新モデルは0箇所"><text x="462" y="75" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">gpt-4o</text><rect x="480" y="50" width="520" height="34" rx="2" fill="#a63a24"/><text x="1012" y="76" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">73箇所</text><text x="462" y="127" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">gpt-4o-mini</text><rect x="480" y="102" width="199" height="34" rx="2" fill="#cfc5b4"/><text x="691" y="128" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">28箇所</text><text x="462" y="179" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">claude-sonnet-4-20250514</text><rect x="480" y="154" width="71" height="34" rx="2" fill="#cfc5b4"/><text x="563" y="180" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">10箇所</text><text x="462" y="231" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">claude-sonnet-4-6</text><rect x="480" y="206" width="42" height="34" rx="2" fill="#cfc5b4"/><text x="534" y="232" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">6箇所</text><text x="462" y="283" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">gpt-5</text><rect x="480" y="258" width="28" height="34" rx="2" fill="#cfc5b4"/><text x="520" y="284" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">4箇所</text><text x="462" y="335" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">9月22日以降の新モデル</text><rect x="480" y="310" width="6" height="34" rx="2" fill="#cfc5b4"/><text x="498" y="336" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">0箇所</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">値下げは、この名前を書き換えるまで届かない</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：自社リポジトリ2件を2026-10-02に実測。モデル名の出現は計137箇所・15種類</text></svg>
+</div>
+<p>数え方には限りがあります。コメントの中の例示も数えているので、137箇所は、実際に呼び出している数ではありません。環境変数や管理画面で指定している分は、コードの文字列として出てこないので、この数え方には入りません。書類作成のSaaSの対話機能のうち1つは、使うモデルを環境変数1つで切り替える作りで、その機能だけは書き換えが1か所で済みます。ほかの箇所は、呼び出しごとにモデル名が直接書かれています。値下げ前と後の請求額の比較、実際に乗り換えた結果、エラーが出ていたかは、測っていません。</p>
+<p>新モデルの名前が0箇所ということは、この2サービスのコードの上では、新しい単価で請求される呼び出しが、いまはないということです。</p>
+<h3>書き換えを、担当者の仕事にしない設計</h3>
+<p>設計の要点は3つあります。</p>
+<ul>
+<li><strong>モデル名を1か所にまとめる。</strong>設定ファイルか環境変数に1回だけ書き、各機能はそこを読む形にします。自社の対話機能が、この形でした。</li>
+<li><strong>書き換える担当を決める。</strong>「誰かが気づいて直す」にしておくと、8日たっても10箇所が残っていた自社のように、そのまま残ります。</li>
+<li><strong>書き換えた日を記録する。</strong>どの日から、どのモデルで動いているかが分かれば、請求の変化の原因を探せます。</li>
+</ul>
+<p>私たちの立場は、新モデルが出るたびに調べて書き換える役を、AI担当の社員に足さないことです。その人にとっては、覚えることと責任が増えるだけで、続かないと考えています。モデル名を1か所に集め、測る手順を用意し、人に残すのは、測った結果を見て書き換えるかどうかを決めることだけにします。</p>
+
+<h2>乗り換える前に、自社の仕事1件で測る</h2>
+<p>公開日に全部を新しいモデルへ切り替えない理由は、9月25日の出来事にあります。OpenAIは、画像を読み取る処理の不具合を公開の3日後に直し、画像入力を使っている場合は、評価をやり直して、影響を受けた処理を再実行するよう勧めています。公開の7日後にはGPT-6.1 Solが出て、10月2日の主力モデルの表にGPT-6 Solは載っていません。9月22日にGPT-6 Solへ切り替えた会社は、10日後に、その名前が主力の表から消えた状態を見ることになります。</p>
+<p>測るのに、新しいシステムは要りません。次の5つの手順で足ります。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>手順</th><th>やること</th><th>残すもの</th></tr>
+<tr><td>1. 10件を選ぶ</td><td>いつもAIに頼んでいる仕事から、易しいものと難しいものを混ぜて10件選ぶ</td><td>10件のリスト</td></tr>
+<tr><td>2. 同じ10件を流す</td><td>旧モデルと新モデルで、同じ入力を動かす。変えるのはモデル名だけ</td><td>両方の出力</td></tr>
+<tr><td>3. 3つを並べる</td><td>1件あたりの費用、やり直しの回数、人が直した箇所</td><td>比べた表</td></tr>
+<tr><td>4. 合格なら1か所を書き換える</td><td>設定にあるモデル名を新しいものにする</td><td>書き換えた設定</td></tr>
+<tr><td>5. 日と理由を残す</td><td>書き換えた日、旧と新のモデル名、比べた結果を記録する</td><td>記録</td></tr>
+</table></div>
+<p>10件は推奨の目安で、統計の裏づけのある件数ではありません。手順の3つ目にある「人が直した箇所」は、費用の表に出ない費用です。1件あたりの費用が下がっても、人が直す時間が増えれば、会社にとっての費用は下がっていないことになります。</p>
+
+<h2>1件の費用は、3つの単価で決まる</h2>
+<p>仕事1件の費用は、入力の量に入力の単価を掛けたもの、出力の量に出力の単価を掛けたもの、キャッシュ読み出しの量にその単価を掛けたもの、の合計です。どの単価が効くかは、仕事の形で変わります。</p>
+<p>同じ資料を毎回読ませる仕事では、2回目以降の読み出しが、キャッシュ読み出しの単価で計算されます。Opus 5.5のキャッシュ読み出しは100万トークンあたり0.20ドルで、入力の4ドルとは別の単価です。Opus 5は0.50ドルだったので、60%下がっています。GPT-6.1 Solのキャッシュ入力は0.10ドルで、入力の2ドルとは別です。自社の仕事で資料を毎回読ませているかどうかが、費用の読み方を変えます。</p>
+<p>急がない処理には、バッチという仕組みがあります。急がない処理をまとめて頼むと半額になる仕組みで、AnthropicのBatch APIは入力・出力とも50%引きです。OpenAIも、gpt-6.1-solのバッチは入力1ドル・出力5ドルで、標準価格の半額です。</p>
+<p>逆に、速さを買う方向の区分が高速モードで、同じモデルを速く動かす代わりに単価が上がります。Opus 5.5の高速モードは入力8ドル・出力40ドルで、最大2.5倍の速さです。通常の入力4ドル・出力20ドルと取り違えると、見積もりが大きくずれます。なお、Opus 5.5は出力の生成がOpus 5より30%以上速いとも書かれています。</p>
+
+<h2>よくある失敗・NGパターン4つ</h2>
+<ul>
+<li><strong>ニュースの値下げ率で、来期の予算を組む。</strong>20%、40%、50%は、単価、仕事1件あたりの費用、キャンペーン価格との比較と、別のものを数えています。40%は、単価の下げと、使う量の減少の両方を含んだ、Anthropicの試算です。</li>
+<li><strong>月額プランを「安くなったから」と見直す。</strong>Claudeの月額プランで発表に書かれていたのは、5時間あたりの利用上限の引き上げです。料金の変更は書かれていません。</li>
+<li><strong>公開日に全部を新しいモデルに切り替える。</strong>OpenAIは、公開の3日後に画像を読み取る処理の不具合を直し、7日後に次の版を出しました。</li>
+<li><strong>キャンペーン価格を、常設の前提にする。</strong>GPT-5.6 Solのキャンペーン価格は、料金ページに少なくとも2026年11月21日までと書かれています。OpenAIの「半分」は、その期限つきの価格を相手にした比較です。</li>
+</ul>
+<p style="font-size:.85rem;color:var(--text-3)">自社のAIが、どのモデル名で動いているかを確かめたい方は、<a href="/entry" style="color:var(--accent);border-bottom:1px solid var(--accent)">無料相談</a>でも確認可能です。</p>
+
+<h2>よくある質問</h2>
+<div class="a-faq">
+<details><summary>月額のChatGPTやClaudeの料金は下がりましたか？</summary><p>Anthropicの9月22日の発表に書かれているのは、Pro・Max・Team・席単位のEnterpriseでの5時間あたりの利用上限の引き上げと、利用上限のリセットを保存していつでも使えることで、料金の変更は書かれていません。ChatGPTの月額プランは今回読んでいないので、契約中のプランの案内を確かめてください。</p></details>
+<details><summary>Opus 5.5に変えれば、費用は必ず40%下がりますか？</summary><p>下がるとは限りません。40%は、Anthropicが既定の設定で典型的な使い方を試算した値です。単価の下げ（キャッシュ読み出しは60%）と、使う量の減少の両方を含む試算です。自社の仕事10件で費用を測ってから決めてください。</p></details>
+<details><summary>GPT-6 SolとGPT-6.1 Solは、どちらを使えばよいですか？</summary><p>10月2日の料金ページの主力モデルの表に載っているのはgpt-6.1-solで、gpt-6-solは載っていません。標準価格は、入力2ドル・出力10ドルで同じで、キャッシュ入力はGPT-6 Solが0.20ドル、GPT-6.1 Solが0.10ドルです。どちらにするかは、自社の仕事で測ってから決めてください。</p></details>
+<details><summary>モデル名は、どこに書いてありますか？</summary><p>コードの中か、設定ファイル、環境変数、提供元の管理画面です。自社のコードを探すときは、gpt- や claude- を検索するのが近道です。外部の開発会社が作ったシステムなら、その会社に聞いてください。</p></details>
+<details><summary>業者のサービス経由で使っている場合は、どうなりますか？</summary><p>どのモデルを呼ぶかも、値下げを価格に反映するかも、業者が決めます。業者に、いま呼んでいるモデルの名前と、値下げを価格に反映する考え方を聞いてください。</p></details>
+<details><summary>乗り換えの検証には、どれくらいかかりますか？</summary><p>仕事の種類と件数で変わるので、時間は断定できません。手順は、いつもの仕事を10件選び、旧モデルと新モデルで同じ10件を流して、費用とやり直しと人が直した箇所を並べるだけです。</p></details>
+</div>
+
+<h2>まとめ</h2>
+<p>9月22日の値下げは、数え方の違う3つの率で伝わりました。20%は単価、40%はAnthropicが試算した仕事1件あたりの費用で、OpenAIの半分は期限つきのキャンペーン価格との比較です。APIで使う会社の値下げは、コードのモデル名を書き換えるまで届かず、自社の2サービスでは、新モデルの名前が0箇所でした。書き換える前に、いつもの仕事10件で費用と出来を測り、モデル名を1か所にまとめ、書き換える担当と日を決めてください。</p>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">「うちのAIは、どのモデル名で動いているか」から、一緒に確認します。</p>
+  <p>エンジニアが御社の現場に入るFDE型伴走支援を提供しています。8問の無料AI診断で現在地もわかります。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem"><a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入支援のサービス詳細・無料AI診断はこちら →</a></p>
+</div>
+
+<div class="a-src">参考（一次情報）：<br>
+・Anthropic「<a href="https://www.anthropic.com/news/claude-opus-5-5" target="_blank" rel="noopener">Introducing Claude Opus 5.5 \ Anthropic</a>」（2026年9月22日）<br>
+・Anthropic「<a href="https://platform.claude.com/docs/en/about-claude/pricing" target="_blank" rel="noopener">Pricing - Claude Platform Docs</a>」（2026年10月2日確認）<br>
+・Anthropic「<a href="https://claude.com/pricing" target="_blank" rel="noopener">Plans &amp; Pricing | Claude by Anthropic</a>」（2026年10月2日閲覧）<br>
+・OpenAI「<a href="https://developers.openai.com/api/docs/changelog" target="_blank" rel="noopener">Changelog | OpenAI API</a>」（2026年10月2日確認）<br>
+・OpenAI「<a href="https://developers.openai.com/api/docs/pricing" target="_blank" rel="noopener">Pricing | OpenAI API</a>」（2026年10月2日確認）<br>
+・自社の実測は、本番稼働している自社の2サービスのコードに出てくるモデル名の数え上げ（2026年10月2日）による。<br>
+・あわせて読む：<a href="/blog/20260924-ai-model-deprecation">AIモデルの終了日、3社の予告の違い</a>（当ブログ）<br>
+・あわせて読む：<a href="/blog/20260824-openai-sol-price">OpenAIがGPT-5.6 Solを20%値下げ</a>（当ブログ）</div>
+
+<!-- recheck: 2026-11-21 | GPT-5.6 Solのキャンペーン価格の期限、Opus 5.5・GPT-6.1 Solの単価、gpt-6-solが料金ページの主力表に戻っていないか | 参考枠の公式ページ5本を開く -->
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
