@@ -109,7 +109,13 @@ def pdf_titles(raw):
             out.append(str(r.metadata.title))
     except Exception:
         pass
-    for pg in r.pages[:3]:
+    # 取得上限（limit）で途中までしか読めなかった大きなPDFは、pages の取得そのものが
+    # 例外を出す（2026-10-03・警察庁の30.7MBのPDFで検査ごと落ちた）。取れない＝未確認に落とす
+    try:
+        pages = r.pages[:3]
+    except Exception:
+        pages = []
+    for pg in pages:
         try:
             out.append(pg.extract_text() or "")
         except Exception:

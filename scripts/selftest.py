@@ -380,6 +380,30 @@ def run():
         return (got == "unknown"), f"got={got}"
     case("サイトが空応答を返しても止めない（未確認）", t_pdf_blocked, expect_ok=True)
 
+    def t_pdf_truncated():
+        # 2026-10-03: 取得上限で途中までしか読めない大きなPDF（警察庁30.7MB）は、
+        # PdfReader の生成は通るのに pages の取得で例外を出し、検査ごと落ちていた
+        import pypdf
+
+        class _Truncated:
+            metadata = None
+
+            def __init__(self, *_a, **_k):
+                pass
+
+            @property
+            def pages(self):
+                raise pypdf.errors.PdfReadError("Cannot find Root object in pdf")
+
+        orig = pypdf.PdfReader
+        pypdf.PdfReader = _Truncated
+        try:
+            got = stc.pdf_titles(b"%PDF-1.7")
+        finally:
+            pypdf.PdfReader = orig
+        return (got == []), f"got={got}"
+    case("途中で切れたPDFでも落ちない（題名なし＝未確認へ）", t_pdf_truncated, expect_ok=True)
+
     # ---- class_check: CSSの名札とHTML/JSの食い違い（2026-10-03の実事故） ------
     import io as _io, contextlib
     import class_check
