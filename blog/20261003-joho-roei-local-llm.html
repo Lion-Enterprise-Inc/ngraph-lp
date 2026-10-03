@@ -84,26 +84,10 @@
     },
     {
       "@type": "Question",
-      "name": "今回の漏えいに、AIは関係していましたか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "確認した12件の公表文に、AIや生成AIが原因や経路として書かれた事案はありませんでした。ただし、関係がなかったと確認されたわけではありません。原因を詳しく書いていない会社も多くあります。"
-      }
-    },
-    {
-      "@type": "Question",
       "name": "中小企業でも、社内にAIを置けますか？",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "使う人が1〜2人の「まず試す」プランから始められます。料金は当社のページで公開中です。買う前に御社のデータで試します。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "自社では、何から始めればよいですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "情報の仕分けからです。扱っている情報を、社外のAIに入れてよいもの、社外に出せないもの、AIに入れないものの3つの箱に書き出します。"
       }
     },
     {
@@ -138,15 +122,15 @@
   <span class="a-date">2026.10.03 夜 ｜ 株式会社NGraph</span>
   <img class="a-eyecatch" src="/assets/blog/20261003-joho-roei-local-llm.jpg" alt="漏えいの原因に、AIはいなかった。2026年9月1日〜10月2日の公表12件を確認、AIと書かれた事案は0件、原因は脆弱性・資格情報・委託先、上場企業は不正アクセス64.4%、社内AIは送り先を1つ減らす">
 
-<p>2026年9月1日から10月2日に情報漏えいや不正アクセスを公表した12件の公表文を開いて、原因を確かめました。AIや生成AIが原因や経路として書かれた事案は、12件のうち1件もありません。原因が書かれていた事案で挙がっていたのは、システムの弱点である脆弱性を突かれたこと、IDやパスワードの不正利用、委託先で起きたことでした。</p>
-<p>それでも、会社の情報をAIに入れ始めると、情報の送り先は1つ増えます。この記事は、その送り先と、社内に置くAIの効果の範囲を整理しました。社内に置くAIは、会社の中の機械だけで動くAIで、ローカルLLMと呼ばれます。当社は社内に置くAIを販売している立場なので、その点を差し引いて読んでください。</p>
+<p>2026年9月1日から10月2日に公表された情報漏えい12件の公表文を開き、原因を確かめました。AIや生成AIが原因や経路として書かれた事案は、12件のうち1件もありません。原因が書かれていた事案で挙がっていたのは、システムの弱点である脆弱性を突かれたこと、IDやパスワードの不正利用、委託先で起きたことでした。一方で、攻撃そのものは増えています。警察庁の統計では、2026年上半期のランサムウェア被害の報告が123件で、半期として過去最多でした。</p>
+<p>それでも、会社の情報をAIに入れ始めると、情報の送り先は1つ増えます。社内に置くAIは、会社の中の機械だけで動くAIで、ローカルLLMと呼ばれます。当社は社内に置くAIを販売している立場なので、その点を差し引いて読んでください。</p>
 <div class="a-toc"><strong>この記事でわかること</strong><br>
 ・12件の公表文にAIの記載がなく、原因は脆弱性・資格情報・委託先に分かれること<br>
-・上場企業と全事業者の統計で、原因の見え方が違う理由<br>
+・攻撃は増えているのに、報告の件数は増えていないという統計の読み方<br>
 ・社内に置くAIで減らせる出口、減らせない出口、増える更新の仕事</div>
 
 <h2>9月1日〜10月2日の公表を一次情報で確かめた——12件、AIが原因と書かれた事案は0件</h2>
-<p>この一連の漏えいはSNS上のまとめで話題になりましたが、数字はすべて各社の公表文と2つの統計から取りました。対象は、2026年9月1日から10月2日に、その会社自身が公表文を出した、または更新した事案のうち、公表文を開いて確認できた12件です。</p>
+<p>SNS上のまとめで話題になった事案も含め、数字はすべて各社の公表文と統計から取りました。対象は、2026年9月1日から10月2日に、その会社自身が公表文を出した、または更新した事案のうち、公表文を開いて確認できた12件です。</p>
 <div class="a-table-wrap"><table class="a-table">
 <tr><th>会社・サービス</th><th>公表日</th><th>件数（原文の単位と限定語）</th><th>原因（原文の言葉）</th><th>AI</th></tr>
 <tr><td>Gyazo（Helpfeel）</td><td>9/16</td><td>データ約2,362万件、流出対象の人数は調査中</td><td>画像アップロードサーバーの脆弱性を悪用</td><td>記載なし</td></tr>
@@ -163,7 +147,7 @@
 <tr><td>吉野家・はなまる</td><td>9/30</td><td>応募者 吉野家4,998件・はなまる368件、採用担当者アカウント418件</td><td>委託先の採用管理プラットフォームで、データ分析ツールの脆弱性を悪用</td><td>記載なし</td></tr>
 </table></div>
 <p class="a-fig-cap">表1　公表日は2026年。「AI」の列は、AIの記載の有無。</p>
-<p>「記載なし」は、公表文に書かれていないという意味で、AIが無関係だったと確認されたという意味ではありません。単位が件・アカウント・人・名と混ざり、吉野家・はなまるの公表文も件数が重複を含み人数と一致しないと書いているので、12件は合計しません。「最大」「可能性」「約」は各社の表現です。</p>
+<p>「記載なし」は、公表文に書かれていないという意味で、AIが無関係だったと確認されたという意味ではありません。単位が件・アカウント・人・名と混ざるので、12件は合計しません。「最大」「可能性」「約」は各社の表現です。</p>
 
 <h2>原因は3つの型——更新されなかった脆弱性、盗まれた資格情報、委託先</h2>
 <p>12件の原因を公表文の言葉のまま分けると、3つの型が見えます。全件が当てはまるわけではありません。</p>
@@ -172,36 +156,37 @@
 <h3>②盗まれた資格情報——三井不動産</h3>
 <p>資格情報とは、システムに入るためのIDやパスワードなどです。三井不動産は9月1日、「当社が利用する一部のシステムに係る資格情報が不正に利用され、第三者から情報の一部を閲覧された可能性」があると公表しました。件数は最大の数字で、全てが閲覧・取得されたと確認したものではありません。システムに入る情報が使われれば、弱点が無くても中へ入れてしまいます。</p>
 <h3>③委託先——吉野家・はなまる</h3>
-<p>委託先とは、仕事の一部を任せた外部の会社です。吉野家とはなまるは9月30日、アルバイト採用業務を一部委託していたApplyNowの採用管理プラットフォームで、データ分析ツールの脆弱性を悪用した不正アクセスがあったと公表しました。吉野家は、契約終了に伴い応募者の情報が消去されると認識していたと書き、続けて「実際の運用は当社の認識と異なっていた」と述べています。このデータ分析ツールがMetabaseと同じ製品かどうかは、公表文から分かりません。</p>
-<p style="font-size:.85rem;color:var(--text-3)">社外に出さずにAIを使う形は、<a href="/security/" style="color:var(--accent);border-bottom:1px solid var(--accent)">社内に置くAIの無料オンライン説明</a>で紹介しています。料金は公開しています。</p>
+<p>委託先とは、仕事の一部を任せた外部の会社です。吉野家とはなまるは9月30日、アルバイト採用業務を一部委託していたApplyNowの採用管理プラットフォームで、データ分析ツールの脆弱性を悪用した不正アクセスがあったと公表しました。吉野家は、契約終了に伴い応募者の情報が消去されると認識していたと書き、続けて「実際の運用は当社の認識と異なっていた」と述べています。</p>
+<p style="font-size:.85rem;color:var(--text-3)">社外に出さずにAIを使う形は、<a href="/security/" style="color:var(--accent);border-bottom:1px solid var(--accent)">社内に置くAIの無料オンライン説明</a>で紹介しています。料金も公開中です。</p>
 
 <h2>数字がズレる理由——上場企業では不正アクセスが64.4%、全事業者の報告では渡し間違い・送り間違いが中心</h2>
+<h3>攻撃は増えている——ランサムウェア被害は半期で過去最多の123件</h3>
+<p>警察庁が2026年9月に公表した<a href="https://www.npa.go.jp/publications/statistics/cybersecurity/data/R8kami/R08_kami_cyber_jousei.pdf" target="_blank" rel="noopener">統計</a>では、2026年上半期のランサムウェア被害の報告が123件で、半期として過去最多でした。ランサムウェアは、データを暗号化して使えなくし、元に戻す代わりに金銭を要求する不正なプログラムです。被害企業の約6割は中小企業で、被害組織へのアンケートでは侵入経路の約5割がVPN機器でした。VPNは、社外から社内のネットワークにつなぐ仕組みです。弱点を探る不審なアクセスも、前年同期比で51%増えています。</p>
+<p>報告の件数は増えておらず、増えたのは1件あたりの大きさです。東京商工リサーチでは、2025年の上場企業の事故は180件で前年の189件より少ない一方、漏えい・紛失した人数は前年比93.1%増で、100万人以上の事故は前年の2件から6件になりました。個人情報保護委員会への報告も、令和7年度は17,139件で前年度の19,056件を下回っています。</p>
 <h3>上場企業の統計</h3>
-<p>東京商工リサーチは、2025年に上場企業とその子会社が自主的に開示した個人情報の漏えい・紛失事故を数えました。事故は180件、158社で、原因はウイルス感染・不正アクセスが116件で64.4%、誤表示・誤送信が37件で20.5%でした。</p>
+<p>東京商工リサーチが数えた2025年の上場企業と子会社の自主開示では、原因はウイルス感染・不正アクセスが116件で64.4%、誤表示・誤送信が37件で20.5%でした。</p>
 <div class="a-fig-wrap">
 <p class="a-fig-title">上場企業の個人情報事故、原因の最多は不正アクセス・ウイルス感染の116件</p>
 <svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="上場企業の個人情報事故、原因の最多は不正アクセス・ウイルス感染の116件"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">2025年・上場企業と子会社の自主開示・原因別の件数（事故は全体で180件）</text><text x="295" y="101" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">ウイルス感染・不正アクセス</text><rect x="313" y="76" width="687" height="34" rx="2" fill="#a63a24"/><text x="1012" y="102" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">116件</text><text x="295" y="153" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">誤表示・誤送信</text><rect x="313" y="128" width="219" height="34" rx="2" fill="#cfc5b4"/><text x="544" y="154" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">37件</text><text x="295" y="205" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">紛失・誤廃棄</text><rect x="313" y="180" width="106" height="34" rx="2" fill="#cfc5b4"/><text x="431" y="206" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">18件</text><text x="295" y="257" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">不正持ち出し・盗難</text><rect x="313" y="232" width="41" height="34" rx="2" fill="#cfc5b4"/><text x="366" y="258" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">7件</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">上場企業の開示では、外からの侵入が最多</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：東京商工リサーチ『上場企業の個人情報漏えい・紛失事故』調査（2025年・2026年1月30日公表）</text></svg>
 </div>
 <h3>全事業者の統計</h3>
-<p>個人情報保護委員会の令和7年度年次報告は、2025年4月から2026年3月までに全事業者が法律に基づいて報告した漏えい等を数えています。処理した報告は17,139件で、うち委員会が直接受け付けた13,345件の漏えい元は、報告者自身が11,040件で82.7%、委託先が1,292件で9.7%、不明が1,013件でした。報告者自身の分の原因は、誤交付が6,072件、誤送付が2,889件で、不正アクセスは533件です。誤交付は本来と違う相手に書類などを渡すこと、誤送付は違う相手に送ることです。</p>
+<p>個人情報保護委員会の令和7年度年次報告は、全事業者が法律に基づいて報告した漏えい等の集計です。委員会が直接受け付けた13,345件の漏えい元は、報告者自身が11,040件で82.7%、委託先が1,292件で9.7%、不明が1,013件でした。報告者自身の分の原因は、誤交付が6,072件、誤送付が2,889件で、不正アクセスは533件です。誤交付は本来と違う相手に書類などを渡すこと、誤送付は違う相手に送ることです。</p>
 <div class="a-fig-wrap">
 <p class="a-fig-title">全事業者の報告では、誤交付と誤送付が上位2つで、不正アクセスは533件</p>
 <svg viewBox="0 0 1200 640" width="100%" style="min-width:640px" role="img" aria-label="全事業者の報告では、誤交付と誤送付が上位2つで、不正アクセスは533件"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">令和7年度・報告者自身が漏えい元の11,040件の原因別（件）</text><text x="162" y="101" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">誤交付</text><rect x="180" y="76" width="820" height="34" rx="2" fill="#a63a24"/><text x="1012" y="102" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">6072件</text><text x="162" y="153" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">誤送付</text><rect x="180" y="128" width="390" height="34" rx="2" fill="#a63a24"/><text x="582" y="154" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#a63a24" font-weight="900" text-anchor="start">2889件</text><text x="162" y="205" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">その他</text><rect x="180" y="180" width="93" height="34" rx="2" fill="#cfc5b4"/><text x="285" y="206" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">691件</text><text x="162" y="257" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">紛失</text><rect x="180" y="232" width="88" height="34" rx="2" fill="#cfc5b4"/><text x="280" y="258" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">654件</text><text x="162" y="309" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">不正アクセス</text><rect x="180" y="284" width="71" height="34" rx="2" fill="#cfc5b4"/><text x="263" y="310" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">533件</text><text x="162" y="361" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">誤廃棄</text><rect x="180" y="336" width="10" height="34" rx="2" fill="#cfc5b4"/><text x="202" y="362" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">78件</text><text x="162" y="413" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">内部不正</text><rect x="180" y="388" width="10" height="34" rx="2" fill="#cfc5b4"/><text x="202" y="414" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">75件</text><text x="162" y="465" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="end">盗難</text><rect x="180" y="440" width="6" height="34" rx="2" fill="#cfc5b4"/><text x="198" y="466" font-family="'Zen Kaku Gothic New',sans-serif" font-size="24" fill="#8a8172" font-weight="900" text-anchor="start">48件</text><text x="600.0" y="582.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">渡し間違い・送り間違いが、原因の上位を占める</text><text x="8" y="624" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：個人情報保護委員会『令和7年度年次報告』（2026年7月7日公表）</text></svg>
 </div>
-<p>委託先1,292件のうち328件が不正アクセスで、不正アクセスは3つの区分の合計で1,256件、13,345件の約9.4%でした。</p>
 <h3>2つの数字の比べ方</h3>
 <div class="a-table-wrap"><table class="a-table">
 <tr><th>項目</th><th>東京商工リサーチ</th><th>個人情報保護委員会</th></tr>
 <tr><td>対象</td><td>上場企業とその子会社の自主開示</td><td>全事業者の法律に基づく報告</td></tr>
 <tr><td>期間</td><td>2025年（暦年）</td><td>令和7年度（2025年4月〜2026年3月）</td></tr>
-<tr><td>原因の最多</td><td>ウイルス感染・不正アクセス116件</td><td>誤交付6,072件</td></tr>
 </table></div>
 <p>対象も期間も数え方も違うので、大小は比べられません。中小企業の実感に近いのは、全事業者が対象の個人情報保護委員会の側だと私たちは考えます。ただし、この原因の内訳は直接受付13,345件の一部で、17,139件の全部ではありません。表1の12件は話題になった事案の集まりで、全体の傾向を表しません。</p>
 
 <h2>AIは今回出てこない。それでも「送り先」は増える</h2>
-<p>12件の公表文に、AIや生成AIが原因や経路として書かれた事案はありませんでした。ただし、書かれていないことと、関わっていないことは別です。手口を書かない公表も多く、セイコーマートは開示を差し控え、東京メトロは調査中でした。言えるのは、AIが原因や経路と書かれた事案がなかった、までです。</p>
+<p>公表文にAIが書かれていないことと、AIが関わっていないことは別です。手口を書かない公表も多く、セイコーマートは開示を差し控え、東京メトロは調査中でした。警察庁は同じ資料で、高性能なAIが攻撃者に悪用され、攻撃がより速く大規模になるリスクにも触れています。こちらは攻める側のAIで、社内にAIを置いても減りません。</p>
 <p>それでもAIは、別の形で情報の送り先を1つ増やします。ChatGPT、Claude、GeminiなどのクラウドのAIに会社の情報を入れると、情報はネットを通ってAI会社のサーバーへ送られます。吉野家の件が、この送り先を考える材料です。契約が終われば消えると思っていた情報が、渡した先では違う運用になっていました。渡した側は、それを自社だけでは確かめきれません。</p>
-<p>この構造はクラウドのAIにも当てはまります。AI会社が不適切にデータを残していると言いたいのではなく、送った情報がどこに保管され、いつ消えるのかを、自社の側では確かめきれない、という構造の話です。社員が機密情報をAIに入れてしまう実態は、当ブログの<a href="/blog/20260927-kimitsu-jouhou-fuan" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIへの機密情報入力は「禁止」では止まらない</a>で読み解きました。</p>
+<p>AI会社が不適切にデータを残していると言いたいのではなく、送った情報がどこに保管され、いつ消えるのかを、自社の側では確かめきれない、という構造の話です。社員が機密情報をAIに入れてしまう実態は、当ブログの<a href="/blog/20260927-kimitsu-jouhou-fuan" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIへの機密情報入力は「禁止」では止まらない</a>で読み解きました。</p>
 
 <h2>社内に置くAIで減らせること、減らせないこと、増えること</h2>
 <p>セキュリティPackは、机に置ける小さな機械でAIを動かし、社員が社内のチャット画面から日本語で聞く形です。会社の情報は会社の中から出ず、ネットから切り離しても動き、誰が何を聞いたかが社内に残ります。最新のクラウドAIには劣りますが、決まった仕事には十分です。</p>
@@ -215,7 +200,7 @@
 <tr><td>増える</td><td>機械の更新</td><td>OSとモデルの更新が必要。しなければ入口になりうる</td></tr>
 </table></div>
 <p class="a-fig-cap">表3　右列は当社の整理です。</p>
-<p>LEAN BODYの件は、社内のツールの更新が行き届かなかった可能性が高い、という話でした。社内に置いた機械も、更新しなければ入口になりえます。そのためセキュリティPackは保守を必須にし、OSとモデルの更新と故障時の手配を含めています。構築には、外とつながない設定と、ログインと操作の記録を含めています。ただし、これは出口と仕事の整理で、漏えいが起きない保証ではありません。料金は<a href="/security/" style="color:var(--accent);border-bottom:1px solid var(--accent)">セキュリティPackのページ</a>で公開中です。</p>
+<p>LEAN BODYの件と同じく、社内に置いた機械も、更新しなければ入口になりえます。そのためセキュリティPackは保守を必須にしてOSとモデルの更新と故障時の手配を含め、構築には外とつながない設定と、ログインと操作の記録を入れました。ただし、これは出口と仕事の整理で、漏えいが起きない保証ではありません。料金は<a href="/security/" style="color:var(--accent);border-bottom:1px solid var(--accent)">セキュリティPackのページ</a>で公開中です。</p>
 <div class="a-note"><strong>私たちの一次体験：</strong>当社は新人の入社手続きをAIで案内する仕組みを作ったとき、AIに読ませる情報と読ませない情報を、最初に分けました。口座番号や住所などは本部の担当者だけが読める欄に分け、一定期間で自動的に消える設計にしています。「消えるはず」を相手の運用に任せず、消える仕組みを自分たちの側に持つ、という判断でした。吉野家の「消えると思っていた」の、逆の置き方です。</div>
 
 <h2>先に決める3つと、よくある失敗</h2>
@@ -237,14 +222,12 @@
 <div class="a-faq">
 <details><summary>社内に置くAI（ローカルLLM）なら、漏えいしませんか？</summary><p>漏えいしない、とは言えません。減るのは、AI会社のサーバーへ情報を送る出口の1つです。他のシステムへの不正アクセス、誤送信・誤表示、委託先、社内のPCの乗っ取りは、AIを社内に置いても残ります。機械の更新が滞れば、新しい入口にもなります。</p></details>
 <details><summary>クラウドのAIは、使わない方がよいですか？</summary><p>使い分けです。社外に出せない情報を扱う仕事を社内のAIに置き、ほかはクラウドのAIで足ります。クラウドで足りるなら、そうお伝えします。</p></details>
-<details><summary>今回の漏えいに、AIは関係していましたか？</summary><p>確認した12件の公表文に、AIや生成AIが原因や経路として書かれた事案はありませんでした。ただし、関係がなかったと確認されたわけではありません。原因を詳しく書いていない会社も多くあります。</p></details>
 <details><summary>中小企業でも、社内にAIを置けますか？</summary><p>使う人が1〜2人の「まず試す」プランから始められます。料金は当社のページで公開中です。買う前に御社のデータで試します。</p></details>
-<details><summary>自社では、何から始めればよいですか？</summary><p>情報の仕分けからです。扱っている情報を、社外のAIに入れてよいもの、社外に出せないもの、AIに入れないものの3つの箱に書き出します。</p></details>
 <details><summary>ネットにつながない機械は、どう更新しますか？</summary><p>OSやモデルの更新は、私たちが確認してから入れます。ネットにつながない構成では、訪問して入れます。更新は保守の範囲です。</p></details>
 </div>
 
 <h2>まとめ</h2>
-<p>12件の公表文に、AIが原因や経路と書かれた事案はなく、原因は脆弱性の悪用、資格情報の不正利用、委託先でした。それでも、AIに会社の情報を入れれば、送り先は1つ増えます。社内に置くAIで減らせるのは、AI会社のサーバーへ送る出口の1つです。不正アクセス、誤送信、委託先は減らせず、機械の更新という仕事が増えます。</p>
+<p>攻撃は増えていますが、12件の公表文にAIが原因と書かれた事案はなく、原因は脆弱性、資格情報、委託先でした。それでも、AIに会社の情報を入れれば、送り先は1つ増えます。社内に置くAIで減らせるのは、AI会社のサーバーへ送る出口の1つです。不正アクセス、誤送信、委託先は減らせず、機械の更新という仕事が増えます。</p>
 <p>判断は、「AIは危ないから使わない」でも「全部クラウドに入れる」でもありません。情報を仕分け、社外に出せない仕事だけを社内のAIに置き、置くなら更新を誰がやるかを先に決めます。明日は、扱っている情報を3つの箱に書き出してください。</p>
 
 <div class="a-cta">
@@ -269,6 +252,7 @@
 ・吉野家「<a href="https://www.yoshinoya.com/wp-content/uploads/2026/09/30185541/news_2026093004.pdf" target="_blank" rel="noopener">ApplyNow採用管理プラットフォームへの不正アクセスによる個人情報漏えいに関するお知らせとお詫び</a>」（2026年9月30日）<br>
 ・東京商工リサーチ「<a href="https://www.tsr-net.co.jp/data/detail/1202348_1527.html" target="_blank" rel="noopener">上場企業の「個人情報漏えい・紛失」事故　2番目の180件発生、漏えい人数は約2倍増の3,063万人分 | TSRデータインサイト | 東京商工リサーチ</a>」（2026年1月30日公表）<br>
 ・個人情報保護委員会「<a href="https://www.ppc.go.jp/news/press/2026/260707/" target="_blank" rel="noopener">令和７年度年次報告の公表について（令和８年７月７日）</a>」、<a href="https://www.ppc.go.jp/files/pdf/080707_annual_report.pdf" target="_blank" rel="noopener">令和７年度個人情報保護委員会年次報告</a>（本体PDF）<br>
+・警察庁「<a href="https://www.npa.go.jp/publications/statistics/cybersecurity/data/R8kami/R08_kami_cyber_jousei.pdf" target="_blank" rel="noopener">令和８年上半期におけるサイバー空間をめぐる脅威の情勢等について</a>」（2026年9月）<br>
 ・あわせて読む：<a href="/blog/20261003-anthropic-fde-academy">AnthropicのFDE研修は、持ち帰る案件を決めてから始まる——1万人育成の設計から読む、AI研修が効かない理由</a></div>
 
 <!-- recheck: 2027-01-04 | 12件の続報（原因・件数の更新）、PPC・TSRの次回公表 | 参考枠の公式ページを開く -->
