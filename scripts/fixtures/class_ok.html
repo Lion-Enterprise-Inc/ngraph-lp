@@ -1,0 +1,10 @@
+<!doctype html>
+<!-- 検査の自己テスト用（正しい側）。CSSとJSで名札が一致している。 -->
+<html lang="ja"><head><style>
+.header:not(.scrolled) .nav a{color:#f3efe6}
+.header:not(.scrolled) .nav.open a{color:#2b2620}
+</style></head>
+<body>
+<header class="header"><nav class="nav" id="nav"><a href="/">AI導入支援</a></nav></header>
+<script>document.getElementById('nav').classList.toggle('open');</script>
+</body></html>

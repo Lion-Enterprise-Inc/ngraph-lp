@@ -29,6 +29,8 @@ CHECKS = [
     ("検査の自己テスト（既知NGが通ったら検査が壊れている）", "selftest.py", [], False),
     ("URL形式（拡張子なしに揃っているか）", "url_canon.py", ["--check"], False),
     ("対外ページの禁止語（正本・検問・司書・読み口・稼働中 等）", "vocab_check.py", [], False),
+    ("インラインJSの構文（壊れたscriptは無言で止まる）", "js_check.py", [], False),
+    ("CSSの名札とHTML/JSの食い違い（規則が一度も当たらない）", "class_check.py", [], False),
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),
     ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),

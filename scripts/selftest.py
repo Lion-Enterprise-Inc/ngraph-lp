@@ -380,6 +380,21 @@ def run():
         return (got == "unknown"), f"got={got}"
     case("サイトが空応答を返しても止めない（未確認）", t_pdf_blocked, expect_ok=True)
 
+    # ---- class_check: CSSの名札とHTML/JSの食い違い（2026-10-03の実事故） ------
+    import io as _io, contextlib
+    import class_check
+
+    def _run_cc(name):
+        buf = _io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = class_check.main([os.path.join("scripts", "fixtures", name)])
+        return (code == 0), buf.getvalue().strip()
+
+    case("CSSが .nav.active・JSが open の取り違えはNG",
+         lambda: _run_cc("class_mislabel.html"), expect_ok=False, expect_sub="名札の取り違え")
+    case("CSSとJSの名札が一致していればOK",
+         lambda: _run_cc("class_ok.html"), expect_ok=True)
+
     # ---- 報告 --------------------------------------------------------------------
     for name, why in NOT_COVERED:
         print(f"  対象外 {name}: {why}")

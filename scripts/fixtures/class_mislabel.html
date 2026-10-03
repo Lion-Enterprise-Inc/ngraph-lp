@@ -1,0 +1,11 @@
+<!doctype html>
+<!-- 検査の自己テスト用（2026-10-03の実事故の再現）。
+     CSSは .nav.active を見ているが、JSが付けるのは open ＝ 規則が一度も当たらない。 -->
+<html lang="ja"><head><style>
+.header:not(.scrolled) .nav a{color:#f3efe6}
+.header:not(.scrolled) .nav.active a{color:#2b2620}
+</style></head>
+<body>
+<header class="header"><nav class="nav" id="nav"><a href="/">AI導入支援</a></nav></header>
+<script>document.getElementById('nav').classList.toggle('open');</script>
+</body></html>
