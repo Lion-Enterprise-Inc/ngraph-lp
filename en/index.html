@@ -326,7 +326,8 @@
   .tz-fade{height:16vh}
   .tz-descent{padding-top:9vh}
   .tz-descent .tz-in,.tz-doors .tz-in{grid-template-columns:1fr}
-  .header:not(.scrolled) .nav.active a:not(.nav-cta){color:var(--text)}
+  .header:not(.scrolled) .nav.open a:not(.nav-cta),.header:not(.scrolled) .nav.open .lang-switch,.header:not(.scrolled) .nav.open .lang-switch a{color:var(--text)}
+  .header:not(.scrolled) .nav.open .lang-switch .on{color:var(--accent)}
 }
 @media(prefers-reduced-motion:reduce){.tz-cue i{animation:none}}
 </style>
