@@ -19,6 +19,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [金沢市のAI補助金は、計画づくりの1年に3分の2を出す——石川で使える制度と無料の相談先（2026年10月）](https://ngraph.jp/blog/20261005-ishikawa-ai-hojokin)
 - [9〜10月の情報漏えい12件、公表文にAIが原因の事案は0件——社内に置くAIで減らせる出口と、減らせない出口](https://ngraph.jp/blog/20261003-joho-roei-local-llm)
 - [AnthropicのFDE研修は、持ち帰る案件を決めてから始まる——1万人育成の設計から読む、AI研修が効かない理由](https://ngraph.jp/blog/20261003-anthropic-fde-academy)
 - [AIの値下げは、モデル名を書き換えるまで届かない——Opus 5.5「単価20%減・費用40%減」の内訳](https://ngraph.jp/blog/20261002-ai-nesage-model-mei)
