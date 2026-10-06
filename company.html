@@ -45,6 +45,13 @@
 .concept-overlay .concept-more p{font-size:.86rem;color:rgba(253,250,244,.86);line-height:2.05;margin-bottom:12px}
 .concept-overlay .concept-more p:last-child{margin-bottom:0}
 @media(max-width:768px){.concept-overlay{padding:48px 22px}.concept-overlay .concept-more p{text-align:left}}
+.concept-overlay p+p{margin-top:6px}
+.concept-creed{list-style:none;margin:30px auto 0;padding:24px 0 0;max-width:640px;width:100%;border-top:1px solid rgba(253,250,244,.22);display:grid;gap:14px;text-align:left}
+.concept-creed li{display:grid;grid-template-columns:2.6em 5.2em 1fr;align-items:baseline;gap:10px;color:rgba(253,250,244,.9)}
+.concept-creed span{font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.72rem;letter-spacing:.18em;color:#e8664a}
+.concept-creed b{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:#fff;letter-spacing:.08em}
+.concept-creed em{font-style:normal;font-size:.88rem;line-height:1.8}
+@media(max-width:768px){.concept-overlay p{text-align:left}.concept-creed li{grid-template-columns:2.4em 1fr}.concept-creed em{grid-column:2}}
 .message-grid{display:grid;grid-template-columns:200px 1fr;gap:44px;align-items:start;margin-top:8px}
 .message-portrait img{width:100%;border-radius:18px;border:1px solid var(--border-strong)}
 .message-caption{font-size:.74rem;color:var(--text-3);margin-top:12px;text-align:center;font-weight:500}
@@ -101,12 +108,14 @@
     <div class="concept-img-wrap reveal">
       <img src="/assets/concept-visual.png" alt="">
       <div class="concept-overlay">
-        <h2>AIの未来と Nicomachos の哲学</h2>
-        <p>AIに欠けているのは、判断のための「価値の基準」。NGraphは、人間が意味をどう捉え判断するかという普遍的な型を、データとして構造化した基盤です。</p>
-        <div class="concept-more">
-          <p>Nicomachosは、人間が「意味をどう捉え、どう判断するか」を導く〈中庸・目的・徳〉という普遍的な型を示しました。</p>
-          <p>NGraphは、この「意味の型」を世界で新たにデータとして構造化した基盤です。AIエージェント時代、意図・文脈・意味を扱うための基準は Nicomachos に回帰し、そのデジタル実装が NGraph です。</p>
-        </div>
+        <h2>世界を分ける。判断を残す。</h2>
+        <p>二千四百年前、アリストテレスは、世界をどう分けて記述するかを問い（『カテゴリー論』）、人がどう判断するかを型にした（『ニコマコス倫理学』）。</p>
+        <p>AIが仕事に入った今、同じ二つの問いが戻ってきています。NGraphは、それを現場で実装します。</p>
+        <ol class="concept-creed">
+          <li><span>01</span><b>分ける</b><em>会社の言葉の意味を定義し、AIが読める形で記録する。</em></li>
+          <li><span>02</span><b>中庸</b><em>作り話と空白のあいだに、人が確かめたデータを置く。</em></li>
+          <li><span>03</span><b>実践知</b><em>仕様書より先に、動くものを現場で試す。</em></li>
+        </ol>
       </div>
     </div>
   </div>
