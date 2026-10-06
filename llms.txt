@@ -133,6 +133,7 @@
 - [AIは、書いた数字が古くなっても何も言わない——社外に出る文書に「確かめる日」を持たせる設計](https://ngraph.jp/blog/k-doc-freshness)
 - [AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計](https://ngraph.jp/blog/k-task-done)
 - [AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計](https://ngraph.jp/blog/k-rule-origin)
+- [AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方](https://ngraph.jp/blog/k-page-reading)
 
 ## 会社情報
 

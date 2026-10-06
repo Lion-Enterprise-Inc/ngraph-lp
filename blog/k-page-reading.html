@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方 | NGraphブログ</title>
+<meta name="description" content="AIにWebページの文字だけを取り出して読ませると、取消線や折りたたみの中身が落ちて、AIが「判別できない」「載っていない」と答えることがあります。落ちる場所の地図と、別の経路で確かめる方法を、自社の4件の実例とあわせて整理しました。">
+<meta property="og:title" content="AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方 | NGraphブログ">
+<meta property="og:description" content="AIにWebページの文字だけを取り出して読ませると、取消線や折りたたみの中身が落ちて、AIが「判別できない」「載っていない」と答えることがあります。落ちる場所の地図と、別の経路で確かめる方法を、自社の4件の実例とあわせて整理しました。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ngraph.jp/blog/k-page-reading">
+<meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://ngraph.jp/assets/blog/k-page-reading.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/blog/k-page-reading">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<style>.a-faq details{border:1px solid var(--border);border-radius:3px;background:var(--bg-card);margin-bottom:10px;padding:0 18px}.a-faq summary{font-family:var(--serif);font-size:.92rem;font-weight:700;line-height:1.7;padding:14px 0;cursor:pointer;list-style:none;position:relative;padding-right:26px}.a-faq summary::after{content:"＋";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent)}.a-faq details[open] summary::after{content:"−"}.a-faq details p{font-size:.86rem;color:var(--text-2);line-height:2;padding:0 0 16px}.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-table-wrap{overflow-x:auto;margin:18px 0}.a-table{width:100%;border-collapse:collapse;font-size:.84rem}.a-table th,.a-table td{border:1px solid var(--border);padding:9px 12px;text-align:left;line-height:1.8;color:var(--text-2)}.a-table th{background:rgba(166,58,36,.05);color:var(--text);font-weight:700;white-space:nowrap}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-fig-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px 18px 14px;margin:26px 0;overflow-x:auto}.a-fig-title{font-family:var(--serif);font-size:.95rem;font-weight:700;text-align:center;margin-bottom:10px;color:var(--text)}.a-fig-cap{font-size:.8rem;color:var(--text-3);line-height:1.95;margin-top:10px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-toc{background:var(--bg-card);border:1px solid var(--border);border-radius:3px;padding:16px 20px;margin:20px 0;font-size:.86rem;color:var(--text-2);line-height:2}.a-toc strong{color:var(--text)}</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方",
+  "image": "https://ngraph.jp/assets/blog/k-page-reading.jpg",
+  "description": "AIにWebページの文字だけを取り出して読ませると、取消線や折りたたみの中身が落ちて、AIが「判別できない」「載っていない」と答えることがあります。落ちる場所の地図と、別の経路で確かめる方法を、自社の4件の実例とあわせて整理しました。",
+  "datePublished": "2026-10-07",
+  "dateModified": "2026-10-07",
+  "inLanguage": "ja",
+  "mainEntityOfPage": "https://ngraph.jp/blog/k-page-reading",
+  "author": { "@type": "Person", "name": "髙橋 真吾", "jobTitle": "代表取締役", "url": "https://ngraph.jp/company#team", "worksFor": { "@type": "Organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" } },
+  "publisher": { "@type": "Organization", "name": "株式会社NGraph", "logo": { "@type": "ImageObject", "url": "https://ngraph.jp/assets/ngraph-logo-circle.png" } }
+}
+</script>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true"></div>
+
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
+      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
+    </div>
+  </div>
+</header>
+
+<article class="article-wrap">
+  <div class="a-label">N-KNOWLEDGE</div>
+  <h1>AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方</h1>
+  <span class="a-date">2026.10.07 ナレッジ ｜ 株式会社NGraph</span>
+  <img class="a-eyecatch" src="/assets/blog/k-page-reading.jpg" alt="AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方">
+<p>AIに公式サイトのページやお客様とのメールを読ませて調べさせると、人が画面で見ている情報の一部がAIに届かず、AIが「判別できない」「載っていない」と答えることがあります。この記事では、画面には出ているのにAIが受け取る文字からは落ちる場所の地図と、落ちたことに気づくための確かめ方を、自社で2か月のあいだに起きた4件の実例とあわせて書きます。厄介なのは、文字そのものは取れているため、答えを読んだ人が「確認できた」と受け取ってしまうことです。</p>
+<div class="a-toc"><strong>この記事でわかること</strong><br>
+・画面とAIが受け取る文字が食い違う場所と、自社で起きた4件<br>
+・AIが「無い」と答えたときの、別の経路での探し方<br>
+・日付・金額・条件を原本で確定する理由<br>
+・AIへの指示文に足せる3つの文<br>
+・明日やる1歩から1か月後までの最小実践パス</div>
+
+<h2>画面と、AIが受け取る文字の差を埋める</h2>
+<p>補助金の締切、取引先の料金表、お客様とのメールのやりとり。AIに「これを調べて」「まとめて」と頼む場面の元資料は、どれも人が画面で見る形で作られています。取消線で消した古い日付、クリックすると開く説明、途中を畳んだメールの一覧といった具合です。</p>
+<p>AIがページを読むとき、画面そのものを見ているとは限りません。ページから文字だけを取り出して渡す仕組みを通した場合、文字として残らなかった装飾や、開くまで読み込まれない部分はAIに届きません。この記事で扱うのは、そのようにページの文字だけを取り出して読ませたときの話です。どのAI製品がどこまで読めるかという仕様の話は扱いません。</p>
+<p>自社では2026年8月から10月までの間に、この差が原因の誤りが4件ありました。4件とも、日付や文字そのものは取れていました。落ちたのは、取消線、開閉、見出しと中身の対応といった構造です。この4件から、確かめ方を4つの原則にまとめ、「画面とAIの受け取りの差を埋める確かめ方」と呼ぶことにしました。</p>
+<ul>
+<li>原則1：文字だけにすると落ちる場所は決まっている。その地図を持つ</li>
+<li>原則2：「無い」は「ある」より強い主張。別の経路で探してから受け取る</li>
+<li>原則3：日付・金額・条件は、まとめのページではなく原本で確定する</li>
+<li>原則4：頼み方を変える</li>
+</ul>
+
+<h2>原則1：文字だけにすると落ちる場所の地図</h2>
+<p>自社で実際に起きたのは、次の4か所です。</p>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>落ちる場所</th><th>落ちるもの</th><th>自社の実例</th></tr>
+<tr><td>取消線</td><td>新旧の区別</td><td>補助金の締切</td></tr>
+<tr><td>折りたたみ・タブ</td><td>閉じた中身、見出しと中身の対応</td><td>補助金の締切</td></tr>
+<tr><td>メールスレッドの折りたたみ</td><td>途中のメッセージ</td><td>送迎手配のメール</td></tr>
+<tr><td>表の折りたたみ行</td><td>最初の数行の下に隠れた行</td><td>AI会社の料金表</td></tr>
+</table></div>
+<p>画像の中の文字、PDF、ログインが必要なページなど、ほかにも落ちる場所はあり得ます。ただし自社では起きていないので、この地図には載せません。</p>
+<p><strong>実録A　取消線は、新旧の日付を平たく並べる</strong>　2026年8月、ある補助金の公式サイトの公募スケジュールで、申請受付の締切が、取消線のついた旧日程と新日程の2つで書かれていました。旧が令和8年8月31日、新が令和8年9月30日です。ページの文字だけを受け取ったAIには取消線が届かず、2つの日付が同じ重さで並びました。AIは「新旧2つが併記されていて、どちらが確定か判別できない」と書き、その文が自社ブログの補助金記事に入りました。公募要領のPDFには新しい日付だけがはっきり書かれていたため、月次の見直しで見つけて訂正しています。</p>
+<p><strong>実録B　折りたたみは、見出しと中身を引き離す</strong>　同じ見直しで、別の補助金の締切ページでも起きました。1次から6次までの締切が1つずつ折りたたみのパネルになっていて、開いていたのは4次だけです。文字として取れたのは4次の日付だけでした。しかも「第何次」という見出しは、パネルの外にある開閉のボタン側に書かれていました。AIは4次の締切を「1次締切」として書きました。1次は5月12日で、すでに終わっています。閉じたパネルの中身は、開くまでページに読み込まれない作りで、ページの文字を全部取っても出てきません。</p>
+<p><strong>実録C　メールの折りたたみは、途中の1通を1行にする</strong>　2026年8月、送迎手配の案件で、お客様とのメールのスレッドをAIに読ませました。スレッド表示は、最初と最後以外のメッセージを1行の抜粋に折りたたみます。AIはその抜粋を全文だと思って読み、お客様が途中のメールに書いていた便名を読み落としました。そのうえ別の案件の例から推測して、「お客様は便名を書いていない、誤記の疑いがある」と社内に報告しています。人がメールの原文の画面を見せて、初めて分かりました。</p>
+<p><strong>実録D　表の折りたたみ行は、最初の3行の下に隠れる</strong>　2026年10月、AI会社の料金ページで起きました。表の最初の3行の下に、残りの行が折りたたまれていたのです。自社はページの文字を根拠に「このモデルは料金表に載っていない」とブログに書いて公開し、公開後の最終確認で、ページの元データにそのモデルの行があることを見つけて訂正しました。</p>
+<p>4件とも、AIの答えは整った文で返ってきました。文字が取れているので、読む側に「何かが欠けている」という感触が残りません。地図の役目は、この感触の代わりに、疑う場所をあらかじめ決めておくことです。</p>
+
+<h2>原則2：「無い」は「ある」より強い主張</h2>
+<p>AIが「載っていない」「書かれていない」「判別できない」と答えたとき、実際に起きているのは「受け取った文字の中には見つからなかった」という報告です。ところが読む側は、それを「存在しない」という事実として受け取りがちです。実録CとDは、この形でした。</p>
+<p>「無い」と言われたら、別の経路で探してから受け取ります。経路は3つあります。</p>
+<ul>
+<li>ページ内検索で、その語が何件出るかを数える</li>
+<li>折りたたみを全部開いた画面を、人が見る</li>
+<li>原本のPDFや、メールの原文を開く</li>
+</ul>
+<p>もう1つ、要約と抽出のどちらも単独では信用しません。実録Dでは、ページの文字を根拠にした抽出は「載っていない」と答え、同じページをAIの要約機能に読ませた結果は「載っている」で、こちらが正しい答えでした。要約が常に正しいわけではないので、片方を正解役にせず、食い違ったら原本で決めます。</p>
+<p>資料に書かれていないことをAIに断定させない型は、<a href="/blog/k-doc-handoff">社内資料を読ませる前に決めること</a>で書きました。AIの報告をそのまま完了と受け取らない線の引き方は、<a href="/blog/k-task-done">「できました」を終わりと受け取らない設計</a>と同じ線上にあります。</p>
+<div class="a-fig-wrap">
+<p class="a-fig-title">画面に見えていた情報も、開かないと出ない情報も、AIは正しい答えを返せなかった</p>
+<svg viewBox="0 0 1200 630" width="100%" style="min-width:640px" role="img" aria-label="画面に見えていた情報も、開かないと出ない情報も、AIは正しい答えを返せなかった"><text x="600.0" y="44" font-family="'Zen Kaku Gothic New',sans-serif" font-size="19" fill="#5c544a" font-weight="500" text-anchor="middle">自社の4件を、画面での見え方とAIの答えの形で分けた</text><rect x="300" y="76" width="620" height="398" fill="none" stroke="#8a8172" stroke-width="1"/><rect x="300" y="76" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="167.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">該当なし</text><text x="455.0" y="197.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">4件のうち0件</text><rect x="610.0" y="76" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="167.41500000000002" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">実録A　取消線の日付</text><text x="765.0" y="197.865" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">「判別できない」と返した</text><rect x="300" y="275.0" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="455.0" y="366.41499999999996" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">実録B　折りたたみの締切</text><text x="455.0" y="396.86499999999995" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">4次の日付を1次と答えた</text><rect x="610.0" y="275.0" width="310.0" height="199.0" fill="rgba(92,84,74,.05)"/><text x="765.0" y="351.19" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">実録C・D　メールの便名</text><text x="765.0" y="381.64" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">料金表の行</text><text x="765.0" y="412.09" font-family="'Zen Kaku Gothic New',sans-serif" font-size="21" fill="#2b2620" font-weight="700" text-anchor="middle">「無い」と返した</text><line x1="610.0" y1="76" x2="610.0" y2="474" stroke="#2b2620" stroke-width="1.4"/><line x1="300" y1="275.0" x2="920" y2="275.0" stroke="#2b2620" stroke-width="1.4"/><text x="610.0" y="512" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="middle">AIの答え（左＝値を返した　右＝返せなかった）</text><text x="278" y="275.0" font-family="'Zen Kaku Gothic New',sans-serif" font-size="20" fill="#5c544a" font-weight="500" text-anchor="end">見え方</text><text x="600.0" y="572.0" font-family="'Zen Old Mincho',serif" font-size="24" fill="#2b2620" font-weight="900" text-anchor="middle">AIが「無い」と言ったときほど、開いてから受け取る</text><text x="8" y="614" font-family="'Zen Kaku Gothic New',sans-serif" font-size="13" fill="#8a8172" font-weight="400" text-anchor="start">出所：NGraph社内の記録（2026年8月〜10月の4件）</text></svg>
+</div>
+
+<p class="a-fig-cap">縦軸の上は「画面に出ている」、下は「開かないと出ない」です。AIの答えが「無い」「判別できない」の側に寄った3件では、原本や元の画面を見るまで誤りに気づけませんでした。</p>
+
+<h2>原則3：日付・金額・条件は、まとめのページではなく原本で確定する</h2>
+<p>実録Aで答えを決めたのは、公募要領のPDFでした。実録AとBの2件は、どちらも公式サイトのまとめのWebページ側で起きています。原本とは、公募要領のPDF、契約書、請求書そのものを指します。</p>
+<p>日付、金額、条件の3つは、間違えると申請や支払いの判断が変わります。この3つが入った答えは、原本の該当ページを開いて確定するものです。確定したあとは、どの文書の何ページかを書き添えておきます。次に読む人が、同じ確認を最初からやり直さずに済みます。</p>
+
+<h2>原則4：頼み方を変える</h2>
+<p>落ちる場所が分かっていれば、AIへの指示文に1〜3文を足せます。そのまま使える形で挙げます。</p>
+<ul>
+<li>「取消線・折りたたみ・タブがあれば開いて、見出しと値を対で返してください」</li>
+<li>「見つからなかったものは『見つからなかった』と書き、『無い』とは書かないでください」</li>
+<li>「日付と金額には、どの文書の何ページかを添えてください」</li>
+</ul>
+<p>この指示でAIの誤りが防げるかどうかは、自社ではまだ確かめていません。狙いは、人が確かめる手間が減る場所を作ることです。3文目の添え書きがあれば、原本を開く人は見るページが分かります。2文目があれば、「無い」と「見つからなかった」が答えの中で区別され、原則2の経路に進む合図になります。</p>
+
+<h2>明日からの最小実践パス</h2>
+<div class="a-table-wrap"><table class="a-table">
+<tr><th>段階</th><th>時期</th><th>やること</th></tr>
+<tr><td>段階1</td><td>明日</td><td>AIが「判別できない」「載っていない」と答えた箇所を1つ選び、元のページを人の目で開いて、取消線・折りたたみ・タブが無いかを見る</td></tr>
+<tr><td>段階2</td><td>1週間</td><td>上の3つの指示文を、AIに調べ物を頼むときの定型文に足す。日付と金額が入った答えには、文書名とページを添えてもらう</td></tr>
+<tr><td>段階3</td><td>1か月</td><td>公式情報を引いている資料があれば、その日付・金額・条件の行を、原本と1回突き合わせる</td></tr>
+</table></div>
+<p>段階3は、自社で実録AとBを見つけた方法と同じです。2026年8月の月次の見直しで、記事の日付を原本に当てたときに、見つかりました。</p>
+
+<h2>どこでつまずくか</h2>
+<p>この確かめ方にも、弱いところがあります。</p>
+<p><strong>①文字が取れているので、「確認できた」と錯覚する</strong>　日付も金額も出ているため、何かが欠けているとは思えません。実録A〜Dは4件とも、そう思える状態で答えが返ってきました。</p>
+<p><strong>②落ちたものは、落ちたことが見えない</strong>　AIの答えに「ここに取消線がありました」とは出ません。自社の4件で気づく手がかりになったのは、「無い」「判別できない」という答え、原本との食い違い、人が元の画面を見たこと、のどれかでした。</p>
+<p><strong>③要約と抽出の答えが割れたとき、どちらを信じるか迷う</strong>　実録Dでは要約が正しかったのですが、いつもそうとは言えません。迷ったら、原本で決めます。</p>
+<p>原本まで当たるのは手間がかかります。だから、確定を求めるものを日付・金額・条件の3つに絞っています。</p>
+
+<h2>まとめ</h2>
+<p>AIに調べさせるのをやめる必要はありません。AIの答えが画面の何を受け取っていないかを、確かめる側が知っておけば足ります。</p>
+<ul>
+<li>ページの文字だけを取り出して読ませると、取消線、折りたたみ・タブ、メールスレッドの折りたたみ、表の折りたたみ行が落ちる。自社では2か月で4件起きた</li>
+<li>数字や文字は取れているので、答えは整った文で返り、欠けたことに気づきにくい</li>
+<li>AIが「無い」「判別できない」と答えたら、ページ内検索、全部開いた画面、原本のいずれかで探してから受け取る</li>
+<li>要約と抽出のどちらも単独では信用しない。食い違ったら原本で決める</li>
+<li>日付・金額・条件は、まとめのページではなく原本で確定し、文書名とページを添える</li>
+<li>指示文に3文を足して、確かめる手間が減る場所を作る。ただし、誤りが防げるとは確かめていない</li>
+</ul>
+
+<div class="a-cta">
+  <p style="font-family:var(--serif);font-size:1.02rem;font-weight:700;color:var(--text)">NGraphでは、公式サイトや取引先の資料をAIに調べさせる業務に入り、画面とAIが受け取る文字の差を確かめる手順まで整えて、担当者が変わっても回り続ける形にして残します。</p>
+  <p>NGraphでは、FDE型AI導入伴走支援を承っております。ご依頼は随時募集しています。</p>
+  <a href="/entry" class="btn btn-primary">無料で相談する</a>
+  <p style="margin-top:14px;font-size:.78rem">お気軽にDMください。XのDMでも受け付けています：<a href="https://x.com/japan19840824" target="_blank" rel="noopener" style="color:var(--accent);border-bottom:1px solid var(--accent)">@japan19840824</a></p>
+  <p style="margin-top:10px;font-size:.82rem">くわしくは<a href="/fde/" style="color:var(--accent);border-bottom:1px solid var(--accent)">FDE型AI導入伴走支援</a>のページへ。あわせて読みたい記事：<a href="/blog/k-task-done" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIの「できました」は、終わったという意味ではない</a>／<a href="/blog/k-doc-handoff" style="color:var(--accent);border-bottom:1px solid var(--accent)">AIは、資料に書いていない条件まで断定する</a></p>
+</div>
+
+<div class="a-src">補足：<br>
+・自社の4件は、2026年8月から10月の社内の記録によるものです。ページの文字だけを取り出して読ませたときの話で、特定のAI製品の仕様を述べるものではありません<br>
+・依頼先・案件名・個別の補助金名は、この記事では扱っていません</div>
+
+  <a href="/blog/" class="a-back">← ブログ一覧に戻る</a>
+</article>
+
+<div class="float-cta" id="floatCta"><a href="/entry">無料で相談する →</a></div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
+      <p>エンジニアが現場に入り、AIが業務で使われるまで伴走する会社です。</p>
+    </div>
+    <div class="footer-links">
+      <a href="/fde/">FDE型AI導入支援</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry">お問い合わせ</a>
+      <a href="/privacy">プライバシーポリシー</a>
+    </div>
+  </div>
+  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+</footer>
+<script>
+(function(){var f=document.getElementById('floatCta');if(!f)return;
+function t(){if(window.scrollY>420)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',t,{passive:true});t();})();
+</script>
+</body>
+</html>
