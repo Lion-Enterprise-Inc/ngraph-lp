@@ -19,6 +19,7 @@
 
 ## ブログ（AI導入の実践知）
 
+- [攻撃者は外から見える入口を探す——不審なアクセスは前年比50.7%増、ランサム侵入経路の約5割はVPN機器](https://ngraph.jp/blog/20261009-cyber-kougeki-iriguchi-tenken)
 - [AIの電力不足は、中小企業には託送料金で届く——データセンター需要は10倍、2027年度から空押さえの精算](https://ngraph.jp/blog/20261007-ai-denryoku-busoku)
 - [金沢市のAI補助金は、計画づくりの1年に3分の2を出す——石川で使える制度と無料の相談先（2026年10月）](https://ngraph.jp/blog/20261005-ishikawa-ai-hojokin)
 - [9〜10月の情報漏えい12件、公表文にAIが原因の事案は0件——社内に置くAIで減らせる出口と、減らせない出口](https://ngraph.jp/blog/20261003-joho-roei-local-llm)
