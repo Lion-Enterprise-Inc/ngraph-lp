@@ -14,9 +14,9 @@
 </script>
 
 <title>Contact — NGraph Inc.</title>
-<meta name="description" content="Contact form for NGraph Inc. Talk to us about embedded AI adoption support (FDE), multilingual support for restaurants, structured data / AEO, and joint development / PoC.">
+<meta name="description" content="Contact form for NGraph Inc. Talk to us about embedded AI adoption support (FDE), security (Cyber Drill), and joint development / PoC.">
 <meta property="og:title" content="Contact — NGraph Inc.">
-<meta property="og:description" content="Talk to us about AI adoption support, multilingual sites, and AEO. Consultation is free.">
+<meta property="og:description" content="Talk to us about AI adoption support and security. Consultation is free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ngraph.jp/en/entry">
 <meta property="og:site_name" content="NGraph Inc.">
@@ -88,7 +88,7 @@
     <div class="contact-head">
       <div class="section-label">Contact</div>
       <h1>Contact us</h1>
-      <p>From embedded AI adoption support (FDE) to multilingual restaurant sites, AEO, and joint development / PoC.<br>Feel free to reach out using the form below — the consultation is free.</p>
+      <p>From embedded AI adoption support (FDE) to security (Cyber Drill) and joint development / PoC.<br>Feel free to reach out using the form below — the consultation is free.</p>
     </div>
 
     <div class="form-card">
@@ -103,8 +103,7 @@
           <select name="Type of inquiry" class="form-select">
             <option value="">Please select (optional)</option>
             <option value="Embedded AI adoption (FDE)">Embedded AI adoption support (FDE)</option>
-            <option value="Multilingual menu for restaurants">Multilingual menu support for restaurants</option>
-            <option value="Structured data / AEO">Structured-data embedding / AEO for your site</option>
+            <option value="Security (Cyber Drill)">Security check (Cyber Drill)</option>
             <option value="Joint development / PoC">Joint development / PoC</option>
             <option value="Other">Careers / press / other</option>
           </select>
@@ -159,6 +158,9 @@ form.addEventListener('submit',function(e){
   .then(()=>{form.style.display='none';success.style.display='block';window.scrollTo({top:0,behavior:'smooth'});if(window.gtag)gtag('event','generate_lead');})
   .catch(()=>{alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Send';});
 });
+</script>
+<script>
+(function(){var t=new URLSearchParams(location.search).get('type');var A={drill:'Security (Cyber Drill)'};if(t&&A[t])t=A[t];var f=document.getElementById('contact-form');if(!t||!f)return;var s=f.querySelector('[name="Type of inquiry"]');for(var i=0;i<s.options.length;i++){if(s.options[i].value===t){s.selectedIndex=i;break;}}})();
 </script>
 </body>
 </html>

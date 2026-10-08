@@ -14,9 +14,9 @@
 </script>
 
 <title>お問い合わせ — 株式会社NGraph</title>
-<meta name="description" content="株式会社NGraphへのお問い合わせフォーム。エンジニアが現場に入るFDE型AI導入伴走支援、飲食店の多言語対応、AEO対策、共同開発・PoCのご相談を承ります。">
+<meta name="description" content="株式会社NGraphへのお問い合わせフォーム。エンジニアが現場に入るFDE型AI導入伴走支援、セキュリティ対策（Cyber Drill）、共同開発・PoCのご相談を承ります。">
 <meta property="og:title" content="お問い合わせ — 株式会社NGraph">
-<meta property="og:description" content="AI導入の伴走支援・多言語対応・AEOのご相談はこちらから。相談は無料です。">
+<meta property="og:description" content="AI導入の伴走支援・セキュリティ対策のご相談はこちらから。相談は無料です。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ngraph.jp/entry">
 <meta property="og:site_name" content="株式会社NGraph">
@@ -89,7 +89,7 @@
     <div class="contact-head">
       <div class="section-label">Contact</div>
       <h1><span class="nb">お問い合わせ</span></h1>
-      <p>AI導入の伴走支援（現場常駐・FDE型）から、飲食店の多言語対応・AEO対策、共同開発・PoCまで。<br>下記フォームよりお気軽にご相談ください。相談は無料です。</p>
+      <p>AI導入の伴走支援（現場常駐・FDE型）から、セキュリティ対策（Cyber Drill）、共同開発・PoCまで。<br>下記フォームよりお気軽にご相談ください。相談は無料です。</p>
     </div>
 
     <div class="form-card">
@@ -104,8 +104,7 @@
           <select name="お問い合わせ種別" class="form-select">
             <option value="">選択してください（任意）</option>
             <option value="AI導入伴走支援（FDE型）">AI導入の伴走支援（現場常駐・FDE型）</option>
-            <option value="飲食店の多言語対応">飲食店の多言語メニュー対応</option>
-            <option value="構造化データ・AEO">サイトへの構造化データ埋め込み・AEO対策</option>
+            <option value="セキュリティ対策（Cyber Drill）">セキュリティ対策（Cyber Drill）</option>
             <option value="共同開発・PoC">共同開発・PoC</option>
             <option value="業務改善助成金">賃上げ・業務改善助成金を使った設備投資の相談</option>
             <option value="その他">採用・取材・その他</option>
@@ -165,6 +164,7 @@ form.addEventListener('submit',function(e){
 <script>
 (function(){var q=new URLSearchParams(location.search);var f=document.getElementById('contact-form');if(!f)return;
 var t=q.get('type'),m=q.get('memo');
+var ALIAS={drill:'セキュリティ対策（Cyber Drill）'};if(t&&ALIAS[t])t=ALIAS[t];
 if(t){var s=f.querySelector('[name="お問い合わせ種別"]');for(var i=0;i<s.options.length;i++){if(s.options[i].value===t){s.selectedIndex=i;break;}}}
 if(m){var ta=f.querySelector('[name="お問い合わせ内容"]');if(ta&&!ta.value)ta.value=m+'\n\n（上の試算を見ながら、対象になる設備投資の形を相談したい）';}
 })();
