@@ -2,8 +2,25 @@
 # 公開前ゲートをpushの直前に強制する（2026-08-16新設）。
 # 起点: gate.py の出力をパイプに通して exit code を潰し、NGのまま push した実事故
 # （AIの呼び出しミス）。人もAIも、gateが赤ならこのリポジトリからpushできない。
+# 2026-10-08: 今回 push するファイル一覧を GATE_CHANGED で渡す。鮮度検査（記事の再確認期限）は
+# 期限切れの記事そのものを push するときだけ止め、それ以外の push は警告で通す。
 # 再インストール: python scripts/install_hooks.py
 echo "[pre-push] 公開前ゲートを実行..."
+ZERO=0000000000000000000000000000000000000000
+CHANGED=""
+while read local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$ZERO" ] && continue
+  if [ "$remote_sha" = "$ZERO" ]; then
+    base=$(git merge-base "$local_sha" origin/main 2>/dev/null)
+  else
+    base="$remote_sha"
+  fi
+  if [ -n "$base" ]; then
+    CHANGED="$CHANGED
+$(git diff --name-only "$base" "$local_sha")"
+  fi
+done
+export GATE_CHANGED="$CHANGED"
 python "$(git rev-parse --show-toplevel)/scripts/gate.py"
 rc=$?
 if [ $rc -ne 0 ]; then

@@ -69,6 +69,10 @@ def run(script, args):
 
 def main():
     article = sys.argv[1] if len(sys.argv) > 1 else None
+    # 鮮度検査は「今回公開するファイル」に期限切れの記事が含まれるときだけ止める（2026-10-08）。
+    # pre-push フックが GATE_CHANGED を設定する。手で記事を渡したときはその記事を対象に含める。
+    if article:
+        os.environ["GATE_CHANGED"] = os.environ.get("GATE_CHANGED", "") + "\n" + article
     failed = []
 
     for label, script, args, needs_article in CHECKS:

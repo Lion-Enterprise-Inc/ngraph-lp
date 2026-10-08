@@ -19,8 +19,17 @@
 期限を動かすだけで中身を確認しないのは、検査を殺す行為なので禁止（`--bump` は
 確認したうえで打つ。何を確認したかはcommitに書く）。
 
+★2026-10-08 改修（髙橋さん判断「たかがブログの記事でサイトが止まる？」）:
+期限切れで公開を止めるのは、**期限切れの記事そのものを今回公開するとき（pushに含まれるとき）だけ**。
+それ以外の push（トップ・フォーム・他の記事）は警告を出して通す。対象の判定は環境変数
+GATE_CHANGED（改行区切りのパス。pre-push フックと gate.py が設定する）。
+期限の見張りは毎朝の司書ジョブ（shingo-brain/scripts/inbox-job.ps1）が `--alert` で行い、
+期限切れ・3日以内の記事を shingo-brain/inbox/ に通知として置く。
+テスト用に FRESHNESS_TODAY=YYYY-MM-DD で「今日」を差し替えられる。
+
 使い方:
     python scripts/freshness_check.py
+    python scripts/freshness_check.py --alert          # 朝ジョブ用：期限切れ・3日以内を inbox に通知
     python scripts/freshness_check.py --bump 20260803-saitei-chingin-2026 2026-08-13
 """
 import datetime
@@ -80,7 +89,9 @@ def main():
             return 2
         return bump(sys.argv[2], sys.argv[3])
 
-    today = datetime.date.today()
+    today = datetime.date.fromisoformat(os.environ["FRESHNESS_TODAY"]) if os.environ.get("FRESHNESS_TODAY") else datetime.date.today()
+    if len(sys.argv) > 1 and sys.argv[1] == "--alert":
+        return alert(today)
     rows = entries()
     if not rows:
         print("OK: 再確認期限を設定した記事なし")
@@ -90,9 +101,18 @@ def main():
         d = datetime.date.fromisoformat(r["due"])
         mark = "期限切れ" if d < today else ("本日" if d == today else "あと%d日" % (d - today).days)
         print("  %s %s（%s）" % (r["slug"], mark, r["due"]))
-    if over:
+    changed = {os.path.basename(x.strip()).replace(".html", "") for x in os.environ.get("GATE_CHANGED", "").splitlines() if x.strip()}
+    blocking = [r for r in over if r["slug"] in changed]
+    if over and not blocking:
         print()
-        print("NG: 再確認期限が切れている記事 %d件" % len(over))
+        print("WARN: 再確認期限が切れている記事 %d件（今回の公開には含まれないので止めない）" % len(over))
+        for r in over:
+            print("  - %s（期限 %s）確認すること: %s ／ %s" % (r["slug"], r["due"], r["what"], r["how"]))
+        return 0
+    if over:
+        over = blocking
+        print()
+        print("NG: 今回公開する記事の再確認期限が切れている %d件" % len(over))
         for r in over:
             print("  - %s（期限 %s）" % (r["slug"], r["due"]))
             print("      確認すること: %s" % r["what"])
@@ -104,6 +124,25 @@ def main():
     print("OK: 再確認期限 %d件、切れているものなし" % len(rows))
     return 0
 
+
+
+def alert(today):
+    """朝ジョブ用：期限切れ・3日以内の記事を shingo-brain/inbox/ に1枚の通知として置く（同日は上書き）。"""
+    rows = [r for r in entries() if (datetime.date.fromisoformat(r["due"]) - today).days <= 3]
+    if not rows:
+        print("freshness alert: 対象なし")
+        return 0
+    inbox = os.environ.get("FRESHNESS_ALERT_DIR", r"C:\dev\shingo-brain\inbox")
+    path = os.path.join(inbox, "_ngraph-lp-recheck_%s.md" % today.isoformat())
+    lines = ["# ngraph.jp ブログの再確認期限（%s 時点・freshness_check.py --alert）" % today.isoformat(), "",
+             "期限を過ぎてもサイトの公開は止まらないが、その記事自体は更新するまで公開できない。", ""]
+    for r in sorted(rows, key=lambda x: x["due"]):
+        d = (datetime.date.fromisoformat(r["due"]) - today).days
+        mark = "期限切れ" if d < 0 else ("本日" if d == 0 else "あと%d日" % d)
+        lines += ["- **%s**（期限 %s・%s）" % (r["slug"], r["due"], mark), "  - 確認すること: " + r["what"], "  - コマンド: " + r["how"]]
+    io.open(path, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+    print("freshness alert: %d件 -> %s" % (len(rows), path))
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())
