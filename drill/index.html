@@ -39,6 +39,7 @@
       "@type": "Service",
       "@id": "https://ngraph.jp/drill/#service",
       "name": "NGraph Cyber Drill（攻撃者目線のセキュリティ点検）",
+      "alternateName": "エヌグラフ サイバードリル",
       "serviceType": "セキュリティ点検（偵察・疑似攻撃・訓練メール）と、現場での対策・再検証",
       "provider": { "@type": "Organization", "@id": "https://ngraph.jp/#organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
       "areaServed": [{ "@type": "AdministrativeArea", "name": "福井県" }],
@@ -71,6 +72,9 @@
 /* ── /drill/ 専用スタイル（/starter/・/security/ と共通の型） ── */
 .lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.75rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge img{width:26px;height:19px;object-fit:contain}
+.lp-badge .kana{font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;color:var(--text-3);font-weight:500;padding-left:10px;margin-left:2px;border-left:1px solid var(--border-strong)}
+.lp-badge .nm{white-space:nowrap}
+@media(max-width:768px){.hero .lp-badge{flex-wrap:wrap;justify-content:center;row-gap:3px;border-radius:16px;padding:8px 18px}.lp-badge .kana{flex-basis:100%;text-align:center;border-left:none;padding-left:0;margin-left:0;font-size:.64rem}}
 .hero{padding:150px 0 100px}
 .hero .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
 .hero .hero-copy{max-width:640px}
@@ -239,7 +243,7 @@
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt="">NGraph Cyber Drill</span>
+      <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span><small class="kana">エヌグラフ サイバードリル</small></span>
       <p class="hero-sub">AI時代の、攻撃者目線のセキュリティ点検</p>
       <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">本物に攻撃される前に、</span><br><span class="nb"><span class="hl">味方に攻撃させる。</span></span></p>
       <p class="lead"><span class="nb">外から見える入口と、</span><span class="nb">社員のメール対応を確かめ、</span><span class="nb">自社の弱点を知る。</span><span class="nb">報告書で終わらせず、</span><span class="nb">現場で一緒に直して、</span><span class="nb">もう一度試します。</span></p>
