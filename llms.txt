@@ -138,6 +138,7 @@
 - [AIの「できました」は、終わったという意味ではない——任せた仕事の完了を、人の側で決める設計](https://ngraph.jp/blog/k-task-done)
 - [AIが埋めた細部は、翌日には会社の決まりになっている——手順書の1行ずつに「誰が決めたか」を書く設計](https://ngraph.jp/blog/k-rule-origin)
 - [AIにWebページを読ませると、取消線と折りたたみが消える——公式情報をAIに調べさせるときの4つの確かめ方](https://ngraph.jp/blog/k-page-reading)
+- [AIに作らせた請求書の金額は、「計算式」を見ずに出さない——計算は機械に、AIには文面だけを書かせる](https://ngraph.jp/blog/k-invoice-numbers)
 
 ## 会社情報
 
