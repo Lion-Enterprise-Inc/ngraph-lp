@@ -32,6 +32,8 @@ CHECKS = [
     ("インラインJSの構文（壊れたscriptは無言で止まる）", "js_check.py", [], False),
     ("CSSの名札とHTML/JSの食い違い（規則が一度も当たらない）", "class_check.py", [], False),
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
+    ("共通フッターのズレ（正本 scripts/chrome/・直すのは sync_chrome.py）", "sync_chrome.py", ["--check"], False),
+    ("サイト内リンクの飛び先（ページと #アンカーが実在するか）", "link_check.py", [], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),
     ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),

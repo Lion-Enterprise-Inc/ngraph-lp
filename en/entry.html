@@ -29,7 +29,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=10">
 <style>
 .contact-wrap{max-width:640px;margin:0 auto;padding:160px 0 100px}
 .contact-head{text-align:center;margin-bottom:44px}
@@ -124,20 +124,23 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-col">
-      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
-      <p>Engineers embedded in your workplace, staying until AI is truly used in daily work.</p>
+    <div class="footer-top">
+      <a href="/en/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+      <p class="footer-tag">Making the meaning of the real world readable by AI.</p>
+      <p class="footer-addr">NGraph Inc.<br>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
+      <a href="/en/entry" class="footer-cta">Free consultation →</a>
     </div>
-    <div class="footer-links">
-      <a href="/en/#fde">What is FDE</a>
-      <a href="/en/#service">Service</a>
-      <a href="/en/#cases">Our Work</a>
-      <a href="/en/#company">Company</a>
-      <a href="/en/entry">Contact</a>
-      <a href="/privacy">Privacy Policy</a>
-    </div>
+    <nav class="footer-nav" aria-label="Sitemap">
+      <div><h4>Services</h4><a href="/en/fde/">AI Adoption Support (FDE)</a><a href="/drill/">NGraph Cyber Drill (JA)</a><a href="/security/">Local AI Pack (JA)</a></div>
+      <div><h4>Products</h4><a href="https://omiseai.com/" target="_blank" rel="noopener">OMISEAI</a><a href="https://nicomachos.com/" target="_blank" rel="noopener">Teles</a><a href="https://autowrite.jp/" target="_blank" rel="noopener">AutoWrite</a><a href="/company#tech">Structuring technology (JA)</a></div>
+      <div><h4>Articles</h4><a href="/blog/">Blog (JA)</a></div>
+      <div><h4>Company</h4><a href="/company">Company profile (JA)</a><a href="/recruit">Careers (JA)</a><a href="/en/entry">Contact</a></div>
+    </nav>
   </div>
-  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 NGraph Inc.</span>
+    <nav aria-label="Legal"><a href="/privacy">Privacy Policy (JA)</a><a href="/">日本語</a></nav>
+  </div>
 </footer>
 
 <script>

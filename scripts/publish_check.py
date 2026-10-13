@@ -193,6 +193,9 @@ def check_css_version():
     for p in sorted(ROOT.rglob("*.html")):
         if p.name in {"index-old.html", "ngraph-lp-v3.html"} or "__pycache__" in p.parts:
             continue
+        # .claude/worktrees 等の作業用コピーは配信されない（.assetsignore）。数えると本体と食い違う（2026-10-14）
+        if any(part.startswith(".") for part in p.relative_to(ROOT).parts):
+            continue
         for m in CSS_REF.finditer(p.read_text(encoding="utf-8")):
             versions.setdefault(m.group(1), []).append(p.relative_to(ROOT).as_posix())
     if len(versions) <= 1:

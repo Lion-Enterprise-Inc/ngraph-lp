@@ -36,7 +36,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=9">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=10">
 <link rel="stylesheet" href="/css/figures.css?v=33">
 <style>
 /* 構造化パターンのこだま演出: 時々1つが首をかしげ、朱に灯る */
@@ -236,15 +236,48 @@
 .tz-descent .k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
 .tz-descent h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:18px 0 0;color:var(--text)}
 .tz-descent p{font-size:.9rem;line-height:2.1;letter-spacing:.04em;color:var(--text-2);margin:0}
-.tz-doors{padding:0 clamp(20px,5vw,72px) 12vh}
-.tz-doors .tz-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-@media(max-width:1180px){.tz-doors .tz-in{grid-template-columns:repeat(2,1fr)}}
-.tz-door{display:block;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:26px 24px;color:var(--text);transition:border-color .3s,transform .3s}
-.tz-door:hover{border-color:var(--accent);transform:translateY(-2px)}
-.tz-door .n{font-family:var(--serif);font-size:.7rem;letter-spacing:.24em;color:var(--accent);font-weight:600}
-.tz-door h3{font-family:var(--serif);font-weight:600;font-size:1.05rem;margin:10px 0 0;line-height:1.6}
-.tz-door p{font-size:.84rem;line-height:1.9;color:var(--text-2);margin:8px 0 0}
-.tz-door .go{display:inline-block;margin-top:12px;font-size:.76rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
+/* ── 2026-10-14 サービス一覧（入口カード4枚を置き換え：FDE大・セキュリティ中・初期セット小） ── */
+.svc{padding:2vh clamp(20px,5vw,72px) 12vh}
+.svc-in{max-width:1080px;margin:0 auto}
+.svc-head{margin-bottom:28px}
+.svc-head .k,.svc-sub-k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
+.svc-head h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,2.6vw,1.9rem);line-height:1.6;margin:12px 0 0}
+.svc a{color:var(--text);display:block}
+.svc .go{display:inline-block;margin-top:14px;font-size:.78rem;letter-spacing:.12em;color:var(--accent);font-weight:600}
+.svc-tag{font-family:var(--sans);font-size:.74rem;letter-spacing:.14em;color:var(--accent);font-weight:600}
+.svc-tag em{font-style:normal;display:inline-block;margin-left:10px;padding:2px 10px;border:1px solid var(--accent);border-radius:999px;font-size:.68rem;letter-spacing:.06em}
+.svc-main{position:relative;background:var(--tz-ink);border-radius:4px;padding:44px 48px;overflow:hidden;transition:transform .3s}
+.svc-main:hover{transform:translateY(-2px)}
+.svc .svc-main{color:var(--tz-txt)}
+.svc-main .svc-tag{color:#e0694c}
+.svc-main h3{font-family:var(--serif);font-weight:600;font-size:clamp(1.35rem,2.6vw,1.95rem);line-height:1.6;margin:14px 0 0;color:#fff}
+.svc-main p{font-size:.92rem;line-height:2.05;color:var(--tz-txt2);max-width:44em;margin:14px 0 0}
+.svc-pts{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0}
+.svc-pts li{font-size:.8rem;letter-spacing:.06em;border:1px solid var(--tz-line2);border-radius:2px;padding:6px 14px;color:var(--tz-txt)}
+.svc .svc-main .go{color:#e0694c}
+.svc-sub-k{margin:44px 0 14px}
+.svc-pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.svc-card{background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:30px 30px 26px;transition:border-color .3s,transform .3s}
+.svc-card:hover,.svc .svc-mini:hover{border-color:var(--accent);transform:translateY(-2px)}
+.svc-card h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;line-height:1.6;margin:12px 0 0}
+.svc-card p{font-size:.86rem;line-height:1.95;color:var(--text-2);margin:10px 0 0}
+.svc .svc-mini{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:6px 18px;margin-top:20px;padding:16px 22px;border:1px solid var(--border);border-radius:4px;transition:border-color .3s,transform .3s}
+.svc-mini-k{font-size:.72rem;color:var(--text-3);letter-spacing:.06em}
+.svc-mini b{font-family:var(--serif);font-size:1rem;font-weight:600}
+.svc-mini-d{font-size:.84rem;color:var(--text-2)}
+.svc .svc-mini .go{margin:0}
+.sp-br{display:none}
+@media(max-width:900px){
+  .svc-main{padding:30px 22px}
+  .svc-pair{grid-template-columns:1fr}
+  .svc-card{padding:24px 20px 20px}
+  .svc .svc-mini{grid-template-columns:1fr auto;padding:14px 16px}
+  .svc-mini-k{grid-column:1/-1}
+  .svc-mini-d{grid-column:1/2}
+  .svc .svc-mini .go{grid-row:2/4;grid-column:2}
+  .sp-br{display:inline}
+  .svc-tag em{display:table;margin:8px 0 0}
+}
 /* 固定ヘッダーは墨地の上では和紙色に */
 .header:not(.scrolled) .brand span,.header:not(.scrolled) .nav a:not(.nav-cta),.header:not(.scrolled) .lang-switch,.header:not(.scrolled) .lang-switch a,.header:not(.scrolled) .nav-toggle{color:var(--tz-txt)}
 .header:not(.scrolled) .brand img{filter:invert(1)}
@@ -257,7 +290,7 @@
   .tz-eyebrow{margin-bottom:22px}
   .tz-fade{height:16vh}
   .tz-descent{padding-top:9vh}
-  .tz-descent .tz-in,.tz-doors .tz-in{grid-template-columns:1fr}
+  .tz-descent .tz-in{grid-template-columns:1fr}
   .header:not(.scrolled) .nav.open a:not(.nav-cta),.header:not(.scrolled) .nav.open .lang-switch,.header:not(.scrolled) .nav.open .lang-switch a{color:var(--text)}
   .header:not(.scrolled) .nav.open .lang-switch .on{color:var(--accent)}
 }
@@ -436,10 +469,9 @@
     <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
     <nav class="nav" id="nav">
       <a href="/fde/">AI導入支援</a>
-      <a href="#products">プロダクト</a>
-      <a href="/check/">取引先チェック</a>
+      <a href="#services">サービス一覧</a>
       <a href="/blog/">ブログ</a>
-      <a href="/company" target="_blank" rel="noopener">会社概要</a>
+      <a href="/company">会社概要</a>
       <a href="/entry" class="nav-cta">無料相談</a>
       <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/">EN</a></span>
     </nav>
@@ -578,12 +610,32 @@
     <p>エンジニアが会社に入り、AIが使われる形にして残す。書いてある数字は、実測したものだけ。</p>
   </div>
 </section>
-<section class="tz-doors">
-  <div class="tz-in">
-    <a class="tz-door reveal" href="/starter/"><div class="n">01</div><h3>生成AI導入 初期セット</h3><p>訪問してパソコンを設定。5〜7営業日で、翌日からふだんの言葉で頼める。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="/drill/"><div class="n">02</div><h3>NGraph Cyber Drill</h3><p>攻撃者の目線で弱点を探し、直して、もう一度試す。福井県内で実証パートナー募集中。</p><span class="go">くわしく見る →</span></a>
-    <a class="tz-door reveal" href="/security/"><div class="n">03</div><h3>ローカルAI Pack</h3><p>社内だけで動くAI（ローカルLLM）を設置。会社の情報は社外に出さない。</p><span class="go">くわしく →</span></a>
-    <a class="tz-door reveal" href="/fde/"><div class="n">04</div><h3>AI導入支援（FDE）</h3><p>業務に入り、AIを「使われる形」にして残す。土台＋Project、固定価格。</p><span class="go">くわしく →</span></a>
+<section class="svc" id="services">
+  <div class="svc-in">
+    <div class="svc-head reveal"><div class="k">サービス</div><h2>何を頼めるか。</h2></div>
+    <a class="svc-main reveal" href="/fde/">
+      <div class="svc-tag">主軸 ／ AI導入支援（FDE）</div>
+      <h3>業務に入り、AIを<br class="sp-br">「使われる形」にして残す。</h3>
+      <p>対象の業務を1つ決め、エンジニアが現場に入って、AIが使われ続ける仕組みをつくります。最後は、御社の中で直せる形にして渡します。</p>
+      <ul class="svc-pts"><li>現場に入る</li><li>動くものから試す</li><li>御社が直せる形で渡す</li></ul>
+      <span class="go">AI導入支援をくわしく見る →</span>
+    </a>
+    <div class="svc-sub-k reveal">セキュリティ</div>
+    <div class="svc-pair reveal">
+      <a class="svc-card" href="/drill/">
+        <div class="svc-tag">NGraph Cyber Drill <em>福井県内・実証パートナー募集</em></div>
+        <h3>攻撃者の目線で、点検する。</h3>
+        <p>外から見える入口と社員のメール対応を確かめ、弱点を知る。現場で一緒に直して、もう一度試します。</p>
+        <span class="go">くわしく見る →</span>
+      </a>
+      <a class="svc-card" href="/security/">
+        <div class="svc-tag">ローカルAI Pack</div>
+        <h3>社外に出せない情報を、<br class="sp-br">社内のAIで扱う。</h3>
+        <p>社内だけで動くAI（ローカルLLM）を御社に置きます。クラウドのAIに渡せない文書を扱うときの選択肢です。</p>
+        <span class="go">くわしく見る →</span>
+      </a>
+    </div>
+    <a class="svc-mini reveal" href="/starter/"><span class="svc-mini-k">従業員20名ほどまでの事業者さま</span><b>生成AI導入 初期セット</b><span class="svc-mini-d">訪問してパソコンを設定し、使い方をお伝えします。</span><span class="go">→</span></a>
   </div>
 </section>
 
@@ -901,23 +953,23 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-col">
-      <div class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></div>
-      <p>現実世界の意味を、AIが読める形に構造化する会社です。自社AIプロダクトの開発・運用と、FDE型のAI導入伴走支援を行っています。</p>
+    <div class="footer-top">
+      <a href="/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+      <p class="footer-tag">現実世界の意味を、AIが読める形に。</p>
+      <p class="footer-addr">株式会社NGraph<br>〒918-8231 福井県福井市問屋町1丁目124番地 <span class="nb">ラフォーレ北野201</span></p>
+      <a href="/entry" class="footer-cta">無料で相談する →</a>
     </div>
-    <div class="footer-links">
-      <a href="/company#tech">構造化技術</a>
-      <a href="/#products">プロダクト</a>
-      <a href="/#process">進め方</a>
-      <a href="/fde/">AI導入支援</a>
-      <a href="/recruit" target="_blank" rel="noopener">採用</a>
-      <a href="/company" target="_blank" rel="noopener">会社概要</a>
-      <a href="/blog/">ブログ</a>
-      <a href="/entry">お問い合わせ</a>
-      <a href="/privacy">プライバシーポリシー</a>
-    </div>
+    <nav class="footer-nav" aria-label="サイトマップ">
+      <div><h4>サービス</h4><a href="/fde/">AI導入支援（FDE）</a><a href="/drill/">NGraph Cyber Drill</a><a href="/security/">ローカルAI Pack</a><a href="/starter/">生成AI導入 初期セット</a></div>
+      <div><h4>プロダクト</h4><a href="https://omiseai.com/" target="_blank" rel="noopener">OMISEAI</a><a href="https://nicomachos.com/" target="_blank" rel="noopener">Teles</a><a href="https://autowrite.jp/" target="_blank" rel="noopener">AutoWrite</a><a href="/company#tech">構造化技術</a></div>
+      <div><h4>記事・無料ツール</h4><a href="/blog/">ブログ</a><a href="/check/">取引先チェック</a><a href="/tools/gyomu-kaizen/">業務改善助成金の計算機</a></div>
+      <div><h4>会社</h4><a href="/company">会社概要</a><a href="/recruit">採用</a><a href="/entry">お問い合わせ</a></div>
+    </nav>
   </div>
-  <div class="footer-copy">&copy; 2026 NGraph Inc.</div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 NGraph Inc.</span>
+    <nav aria-label="規約"><a href="/privacy">プライバシーポリシー</a><a href="/legal">特定商取引法に基づく表記（多言語メニュー）</a><a href="/en/">English</a></nav>
+  </div>
 </footer>
 
 <script>
