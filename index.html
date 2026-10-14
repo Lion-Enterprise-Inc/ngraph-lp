@@ -231,11 +231,6 @@
 @keyframes tzdrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .tz-place{text-align:right;line-height:2}
 .tz-fade{height:26vh;background:linear-gradient(var(--tz-ink) 0,var(--tz-ink2) 30%,#efe9dd 80%,var(--bg) 100%)}
-.tz-descent{position:relative;padding:12vh clamp(20px,5vw,72px) 8vh}
-.tz-descent .tz-in{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:end}
-.tz-descent .k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600}
-.tz-descent h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.3rem);line-height:1.6;margin:18px 0 0;color:var(--text)}
-.tz-descent p{font-size:.9rem;line-height:2.1;letter-spacing:.04em;color:var(--text-2);margin:0}
 /* ── 2026-10-14 サービス一覧：お品書き型（細い罫線の目次。飾りの札・色の板は使わない） ── */
 .svc{padding:4vh clamp(20px,5vw,72px) 14vh}
 .svc-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}
@@ -282,8 +277,6 @@
   .tz-lede{font-size:.86rem;line-height:2}
   .tz-eyebrow{margin-bottom:22px}
   .tz-fade{height:16vh}
-  .tz-descent{padding-top:9vh}
-  .tz-descent .tz-in{grid-template-columns:1fr}
   .header:not(.scrolled) .nav.open a:not(.nav-cta),.header:not(.scrolled) .nav.open .lang-switch,.header:not(.scrolled) .nav.open .lang-switch a{color:var(--text)}
   .header:not(.scrolled) .nav.open .lang-switch .on{color:var(--accent)}
 }
@@ -592,15 +585,6 @@
     </div>
     <p class="fg-statement reveal"><span class="nb">AIのメモリが進化しても、</span><span class="nb"><em>会社の記録</em>にはならない。</span></p>
     <!-- /fig -->
-  </div>
-</section>
-<section class="tz-descent" id="genba">
-  <div class="tz-in">
-    <div>
-      <div class="k">現場で</div>
-      <h2>説明より先に、<br>御社のパソコンで動かす。</h2>
-    </div>
-    <p>エンジニアが会社に入り、AIが使われる形にして残す。書いてある数字は、実測したものだけ。</p>
   </div>
 </section>
 <section class="svc" id="services">

@@ -51,6 +51,9 @@ def norm(s):
 def pages():
     out = subprocess.run(["git", "ls-files", "*.html"], cwd=ROOT, capture_output=True,
                          encoding="utf-8").stdout.split()
+    # 書きかけ（未追跡）の記事も揃える。publish_check の CSS版検査は未追跡も数えるため（2026-10-14）
+    out += subprocess.run(["git", "ls-files", "--others", "--exclude-standard", "*.html"], cwd=ROOT,
+                          capture_output=True, encoding="utf-8").stdout.split()
     for p in out:
         if p.startswith(SKIP_PREFIX) or p in SKIP_FILES:
             continue
