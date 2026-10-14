@@ -241,6 +241,22 @@ img{max-width:100%;display:block}
 .contact h2{font-family:var(--serif);font-size:clamp(1.4rem,3.2vw,2rem);font-weight:700;line-height:1.6;margin-bottom:18px;word-break:auto-phrase;letter-spacing:.03em}
 .contact p{font-size:.95rem;color:var(--text-2);line-height:2.1;margin-bottom:32px}
 
+/* ── 見出しの折り返し（2026-10-14）：句の途中で折らない。HTML側は sync_chrome.py が nb で包む ── */
+.section-title{word-break:auto-phrase;text-wrap:balance}
+/* ── ほかのサービス（2026-10-14 サービスページ共通。HTMLの正本は scripts/chrome/related_ja.html） ── */
+.rel{padding:72px 0 88px;border-top:1px solid var(--border)}
+.rel-in{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.rel-k{font-family:var(--serif);font-size:.72rem;letter-spacing:.34em;color:var(--accent);font-weight:600;margin-bottom:20px}
+.rel-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--text)}
+.rel-list li+li{border-left:1px solid var(--border-strong)}
+.rel-list a{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:22px 22px 24px;color:var(--text);transition:background .3s}
+.rel-list li:first-child a{padding-left:0}
+.rel-kind{grid-column:1/-1;font-size:.72rem;letter-spacing:.14em;color:var(--text-3)}
+.rel-list b{font-family:var(--serif);font-weight:600;font-size:1.08rem;line-height:1.5}
+.rel-go{color:var(--text-3);align-self:end;transition:transform .3s,color .3s}
+.rel-list a:hover b,.rel-list a:hover .rel-go{color:var(--accent)}
+.rel-list a:hover .rel-go{transform:translateX(4px)}
+@media(max-width:768px){.rel{padding:48px 0 56px}.rel-list{grid-template-columns:1fr}.rel-list li+li{border-left:none;border-top:1px solid var(--border-strong)}.rel-list a,.rel-list li:first-child a{padding:18px 0}}
 /* ── footer（2026-10-14 全ページ共通・墨地。HTMLの正本は scripts/chrome/footer_*.html） ── */
 .footer{background:#0b0b0d;color:rgba(243,239,230,.74);padding:72px 0 36px;margin-top:0;border-top:none}
 .footer a{color:rgba(243,239,230,.74);transition:color .2s}
