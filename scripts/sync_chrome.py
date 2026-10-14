@@ -26,7 +26,7 @@ ROOT = os.path.dirname(HERE)
 CHROME = os.path.join(HERE, "chrome")
 
 # ngraph-zen.css を変えたら上げる（ブラウザ・CDNの古いCSSと新しいHTMLの組み合わせを防ぐ）
-ZEN_VERSION = "11"
+ZEN_VERSION = "12"
 
 FOOTER_RE = re.compile(r'<footer class="footer">.*?</footer>', re.S)
 ZEN_RE = re.compile(r'(/css/ngraph-zen\.css\?v=)(\d+)')
@@ -66,6 +66,52 @@ TITLE_RE = re.compile(r'(<h2 class="section-title"[^>]*>)([^<]+)(</h2>)')
 PHRASE_RE = re.compile(r"[^、。]+[、。]?")
 
 
+# ---- ヘッダー（2026-10-14 全ページ共通。正本 scripts/chrome/header_*.html） ----
+HEADER_RE = re.compile(r'<header class="(header[^"]*)">.*?</header>', re.S)
+NAVJS_RE = re.compile(r'\s*<script data-chrome="navjs">.*?</script>', re.S)
+NAVJS = ('<script data-chrome="navjs">(function(){var h=document.querySelector(".header"),t=document.getElementById("navToggle"),n=document.getElementById("nav");'
+         'if(t&&n){t.addEventListener("click",function(){n.classList.toggle("open")});n.addEventListener("click",function(e){if(e.target.tagName==="A")n.classList.remove("open")})}'
+         'if(h&&!h.classList.contains("scrolled")){var f=function(){h.classList.toggle("scrolled",window.scrollY>20)};window.addEventListener("scroll",f,{passive:true});f()}})();</script>')
+# 申込フォームがページ内にあるLPは、ヘッダーのボタンをそのフォームへ
+CTA = {
+    "starter/index.html": ("#apply", "無料オンライン説明"),
+    "security/index.html": ("#apply", "無料オンライン説明"),
+    "drill/index.html": ("#apply", "無料で相談する"),
+    "fde/index.html": ("#contact", "無料相談"),
+    "en/fde/index.html": ("#contact", "Free Consultation"),
+}
+ALT = {"index.html": "/en/", "fde/index.html": "/en/fde/", "entry.html": "/en/entry",
+       "en/index.html": "/", "en/fde/index.html": "/fde/", "en/entry.html": "/entry"}
+
+
+def page_url(path):
+    p = path.replace("\\", "/")
+    if p == "index.html":
+        return "/"
+    if p.endswith("/index.html"):
+        return "/" + p[:-len("index.html")]
+    return "/" + p[:-len(".html")]
+
+
+def header(path, cls):
+    path = path.replace("\\", "/")
+    lang = lang_of(path)
+    with open(os.path.join(CHROME, f"header_{lang}.html"), encoding="utf-8") as f:
+        h = f.read().strip()
+    href, label = CTA.get(path, ("/en/entry", "Free Consultation") if lang == "en" else ("/entry", "無料相談"))
+    alt = ALT.get(path, "/" if lang == "en" else "/en/")
+    h = h.replace("{{CLASS}}", cls).replace("{{CTA_HREF}}", href).replace("{{CTA_LABEL}}", label).replace("{{ALT}}", alt)
+    url = page_url(path)
+    key = "/blog/" if url.startswith("/blog/") else url
+    return h.replace('<a href="%s">' % key, '<a href="%s" aria-current="page">' % key, 1)
+
+
+def own_nav_js(html):
+    """ページ自身がメニューの開閉を持っているか（共通スクリプトと二重に付けると開かなくなる）"""
+    body = NAVJS_RE.sub("", html)
+    return bool(re.search(r"getElementById\(\s*['\"]navToggle", body))
+
+
 def related(path):
     own = RELATED.get(path.replace("\\", "/"))
     if not own:
@@ -96,6 +142,12 @@ def check_html(html, lang, path=""):
     for v in ZEN_RE.findall(html):
         if v[1] != ZEN_VERSION:
             return False, f"ngraph-zen.css の版が古い（v={v[1]}・正は v={ZEN_VERSION}）"
+    hm = HEADER_RE.search(html)
+    if hm and path:
+        if norm(hm.group(0)) != norm(header(path, hm.group(1))):
+            return False, "ヘッダーが共通部品と違う"
+        if not own_nav_js(html) and not NAVJS_RE.search(html):
+            return False, "メニューの開閉スクリプトが無い"
     rel = related(path)
     if rel is not None:
         m2 = REL_RE.search(html)
@@ -113,6 +165,12 @@ def apply_html(html, lang, path=""):
     nl = "\r\n" if "\r\n" in html else "\n"
     foot = partial(lang).replace("\n", nl)
     html = FOOTER_RE.sub(lambda m: foot, html, count=1)
+    hm = HEADER_RE.search(html)
+    if hm and path:
+        html = HEADER_RE.sub(lambda m: header(path, m.group(1)).replace("\n", nl), html, count=1)
+        html = NAVJS_RE.sub("", html)
+        if not own_nav_js(html):
+            html = html.replace("</header>", "</header>" + nl + NAVJS, 1)
     rel = related(path)
     if rel is not None:
         html = REL_RE.sub("", html)

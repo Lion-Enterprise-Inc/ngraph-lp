@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=11">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=12">
 <style>.a-note{background:rgba(166,58,36,.05);border-left:2.5px solid var(--accent);padding:16px 20px;border-radius:0 3px 3px 0;font-size:.88rem;color:var(--text-2);line-height:2.1;margin:26px 0}.a-note strong{color:var(--text)}.a-eyecatch{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:4px;margin:24px 0 8px}.a-src{border-top:1px solid var(--border);margin-top:34px;padding-top:16px;font-size:.78rem;color:var(--text-3);line-height:2}.a-src a{color:var(--text-3);text-decoration:underline}.a-fig-wrap{overflow-x:auto;margin:26px 0}.a-fig-title{font-size:.92rem;font-weight:700;color:var(--text);margin:0 0 10px}</style>
 <script type="application/ld+json">
 {
@@ -51,13 +51,19 @@
 
 <header class="header scrolled">
   <div class="header-inner">
-    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
-    <div style="display:flex;align-items:center;gap:18px">
-      <a href="/blog/" style="font-size:.82rem;color:var(--text-2)">ブログ一覧</a>
-      <a href="/entry" class="nav-cta" style="padding:9px 20px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.8rem">無料相談</a>
-    </div>
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span><small class="brand-kana">エヌグラフ</small></a>
+    <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
+    <nav class="nav" id="nav" aria-label="メイン">
+      <a href="/fde/">AI導入支援</a>
+      <a href="/#services">サービス一覧</a>
+      <a href="/blog/" aria-current="page">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry" class="nav-cta">無料相談</a>
+      <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/">EN</a></span>
+    </nav>
   </div>
 </header>
+<script data-chrome="navjs">(function(){var h=document.querySelector(".header"),t=document.getElementById("navToggle"),n=document.getElementById("nav");if(t&&n){t.addEventListener("click",function(){n.classList.toggle("open")});n.addEventListener("click",function(e){if(e.target.tagName==="A")n.classList.remove("open")})}if(h&&!h.classList.contains("scrolled")){var f=function(){h.classList.toggle("scrolled",window.scrollY>20)};window.addEventListener("scroll",f,{passive:true});f()}})();</script>
 
 <article class="article-wrap">
   <div class="a-label">Morning News</div>

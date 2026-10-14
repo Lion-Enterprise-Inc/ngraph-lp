@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=11">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=12">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -125,6 +125,10 @@
 .farrow .n{width:34px;height:34px;border-radius:50%;background:var(--text);color:#fdfaf4;font-family:var(--sans);font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .farrow .n.acc{background:var(--accent)}
 .farrow svg{width:36px;height:20px;stroke:var(--text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.fdown{display:flex;align-items:center;justify-content:center;gap:10px;margin:-4px 0 8px}
+.fdown .n{width:30px;height:30px;border-radius:50%;background:var(--text);color:#fdfaf4;font-family:var(--sans);font-size:.74rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fdown .n.acc{background:var(--accent)}
+.fdown svg{width:16px;height:26px;stroke:var(--text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .floop{max-width:1100px;margin:22px auto 0;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;background:rgba(166,58,36,.06);border:1px dashed var(--accent);border-radius:4px;padding:14px 20px}
 .floop img{width:40px;height:40px;object-fit:contain}
 .floop b{font-family:var(--serif);color:var(--accent);font-weight:700}
@@ -336,15 +340,15 @@
 
 <header class="header">
   <div class="header-inner">
-    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span><small style="font-size:.62rem;color:var(--text-3);margin-left:8px;letter-spacing:.06em">エヌグラフ</small></a>
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span><small class="brand-kana">エヌグラフ</small></a>
     <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
-    <nav class="nav" id="nav">
-      <a href="#what">やること</a>
-      <a href="#how">仕組み</a>
-      <a href="#price">費用</a>
-      <a href="#faq">よくある質問</a>
-      <a href="/fde/">AI導入支援（FDE）</a>
+    <nav class="nav" id="nav" aria-label="メイン">
+      <a href="/fde/">AI導入支援</a>
+      <a href="/#services">サービス一覧</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
       <a href="#apply" class="nav-cta">無料オンライン説明</a>
+      <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/">EN</a></span>
     </nav>
   </div>
 </header>
@@ -467,9 +471,10 @@
       <div>
         <div class="col-h">仕事</div>
         <div class="fbox"><img src="/assets/starter/icon11_mitsumori.png" alt=""><div><b>仕事</b><small>Excel・Word・PowerPoint・PDF を読み書き</small></div></div>
-        <div class="farrow" style="margin:0 0 12px" aria-hidden="true"><span class="n">02</span></div>
+        <div class="fdown" aria-hidden="true"><span class="n">02</span><svg viewBox="0 0 20 30"><path d="M10 2v24m-6-6l6 6 6-6"/></svg></div>
         <div class="fbox"><img src="/assets/starter/icon11_hacchu.png" alt=""><div><b>成果物</b><small>表・文書・集計（下書き）</small></div></div>
-        <div class="fbox" style="border-color:var(--accent);margin-bottom:0"><span class="n" style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fdfaf4;font-family:var(--sans);font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">03</span><img src="/assets/starter/icon11_kakunin.png" alt=""><div><b>人が確認</b><small>数字と日付は必ず</small></div></div>
+        <div class="fdown" aria-hidden="true"><span class="n acc">03</span><svg viewBox="0 0 20 30"><path d="M10 2v24m-6-6l6 6 6-6"/></svg></div>
+        <div class="fbox" style="border-color:var(--accent);margin-bottom:0"><img src="/assets/starter/icon11_kakunin.png" alt=""><div><b>人が確認</b><small>数字と日付は必ず</small></div></div>
       </div>
     </div>
     <div class="floop reveal"><span class="n" style="width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fdfaf4;font-family:var(--sans);font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center">04</span><img src="/assets/starter/icon11_keizoku.png" alt=""><b>うまくいった手順を、「仕事の型」に戻す。</b><span>次からは一言で頼める。</span></div>
