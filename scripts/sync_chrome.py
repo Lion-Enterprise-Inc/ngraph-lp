@@ -26,7 +26,7 @@ ROOT = os.path.dirname(HERE)
 CHROME = os.path.join(HERE, "chrome")
 
 # ngraph-zen.css を変えたら上げる（ブラウザ・CDNの古いCSSと新しいHTMLの組み合わせを防ぐ）
-ZEN_VERSION = "12"
+ZEN_VERSION = "13"
 
 FOOTER_RE = re.compile(r'<footer class="footer">.*?</footer>', re.S)
 ZEN_RE = re.compile(r'(/css/ngraph-zen\.css\?v=)(\d+)')
@@ -105,7 +105,8 @@ def header(path, cls):
     alt = ALT.get(path, "/" if lang == "en" else "/en/")
     h = h.replace("{{CLASS}}", cls).replace("{{CTA_HREF}}", href).replace("{{CTA_LABEL}}", label).replace("{{ALT}}", alt)
     url = page_url(path)
-    key = "/blog/" if url.startswith("/blog/") else url
+    # 記事や各社ページの中でも、上の階層のメニュー（ブログ／企業分析）を今いる場所として示す
+    key = "/blog/" if url.startswith("/blog/") else "/cases/" if url.startswith("/cases/") else url
     return h.replace('<a href="%s">' % key, '<a href="%s" aria-current="page">' % key, 1)
 
 
