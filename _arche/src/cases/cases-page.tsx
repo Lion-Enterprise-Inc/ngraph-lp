@@ -1300,6 +1300,20 @@ function CasesScatterMap({
   );
 }
 
+
+/* 一覧カードの社名：カタカナ語の途中で折らない（2026-10-18 本人「この一覧見にくくなったな」）。
+   漢字とカタカナの境目に折り返し位置を入れ、長いカタカナ語を含む名前は1語が1行に収まる大きさにする */
+const KATA = /[ァ-ヺー]+/g;
+function breakName(name: string): string {
+  return name
+    .replace(/([ァ-ヺー])([一-鿿])/g, "$1​$2")
+    .replace(/([一-鿿])([ァ-ヺー])/g, "$1​$2");
+}
+function nameSize(name: string): string {
+  const longest = Math.max(0, ...(name.match(KATA) ?? []).map((w) => w.length));
+  return longest >= 11 ? "text-sm" : longest >= 10 ? "text-[15px]" : "text-base";
+}
+
 /* ── メインページ ── */
 export default function CasesPage() {
   const { data: session } = useSession();
@@ -1412,37 +1426,40 @@ export default function CasesPage() {
                 <button
                   key={`${c.name}-${c.year}`}
                   onClick={() => setSelectedIdx(idx)}
-                  className={`group text-left rounded-xl overflow-hidden border hover:border-primary hover:shadow-md transition-all bg-card ${TIER_BORDER[c.tier]} ${TIER_ACCENT[c.tier]}`}
+                  className={`group h-full text-left rounded-xl overflow-hidden border hover:border-primary hover:shadow-md transition-all bg-card ${TIER_BORDER[c.tier]} ${TIER_ACCENT[c.tier]}`}
                 >
-                  <div className="flex gap-3 p-4">
-                    {/* ジャケット */}
-                    <div
-                      className="w-12 h-12 shrink-0 rounded-lg flex items-center justify-center relative shadow-sm"
-                      style={{ backgroundColor: c.color }}
-                    >
-                      <span className="text-lg font-black text-white drop-shadow-md">{c.initial}</span>
-                    </div>
-                    {/* 情報 */}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-base font-bold leading-snug truncate text-foreground">{locale === "en" && c.nameEn ? c.nameEn : c.name}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5">{[countryName(c.flag), `${c.year}年`, tierInfo.ja].filter(Boolean).join("・")}</p>
-                      <p className="text-sm text-foreground mt-1.5 leading-[1.7] line-clamp-2">{pickLocalized(c.insight, c.insightEn, locale)}</p>
-                      {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="inline-block mt-2 text-xs font-bold text-primary bg-primary/8 px-2 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
-                    </div>
-                    {/* スコア + 三方よしチャート（頂点ラベル付き・点数重ね、100点満点） */}
-                    <div className="shrink-0 relative w-[72px] h-[72px] flex items-center justify-center self-center">
-                      <div className="absolute inset-0 flex items-center justify-center opacity-45">
-                        <TriangleChart
-                          axes={c.axes}
-                          size={72}
-                          locale={locale}
-                          color={isFail ? "#a63a24" : getCombinedScore(c) >= EXCELLENT_LINE ? "#2e6e4e" : getCombinedScore(c) >= SURVIVAL_LINE ? "#30557e" : "#8a6212"}
-                        />
+                  <div className="flex h-full flex-col gap-2.5 p-4">
+                    <div className="flex items-start gap-3">
+                      {/* ジャケット */}
+                      <div
+                        className="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center shadow-sm"
+                        style={{ backgroundColor: c.color }}
+                      >
+                        <span className="text-lg font-black text-white drop-shadow-md">{c.initial}</span>
                       </div>
-                      <span className={`text-2xl font-bold tabular-nums relative z-10 ${
-                        isFail ? "text-(--c-fail)" : getCombinedScore(c) >= EXCELLENT_LINE ? "text-(--c-ex)" : getCombinedScore(c) >= SURVIVAL_LINE ? "text-(--c-mean)" : "text-(--c-weak)"
-                      }`}>{getCombinedScore(c)}</span>
+                      {/* 社名・国と年（区分名は絞り込みで分かるので出さない） */}
+                      <div className="flex-1 min-w-0 pt-0.5">
+                        <p className={`${nameSize(c.name)} font-bold leading-snug line-clamp-2 text-foreground`}>{breakName(locale === "en" && c.nameEn ? c.nameEn : c.name)}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 whitespace-nowrap">{[countryName(c.flag), `${c.year}年`].filter(Boolean).join("・")}</p>
+                      </div>
+                      {/* 点数＋三方の三角 */}
+                      <div className="shrink-0 relative w-14 h-14 flex items-center justify-center">
+                        <div className="absolute inset-0 flex items-center justify-center opacity-40">
+                          <TriangleChart
+                            axes={c.axes}
+                            size={56}
+                            locale={locale}
+                            color={isFail ? "#a63a24" : getCombinedScore(c) >= EXCELLENT_LINE ? "#2e6e4e" : getCombinedScore(c) >= SURVIVAL_LINE ? "#30557e" : "#8a6212"}
+                          />
+                        </div>
+                        <span className={`text-xl font-bold tabular-nums relative z-10 ${
+                          isFail ? "text-(--c-fail)" : getCombinedScore(c) >= EXCELLENT_LINE ? "text-(--c-ex)" : getCombinedScore(c) >= SURVIVAL_LINE ? "text-(--c-mean)" : "text-(--c-weak)"
+                        }`}>{getCombinedScore(c)}</span>
+                      </div>
                     </div>
+                    {/* 一言はカードの幅いっぱいで読む */}
+                    <p className="text-sm text-foreground leading-[1.75] line-clamp-3">{pickLocalized(c.insight, c.insightEn, locale)}</p>
+                    {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="mt-auto self-start whitespace-nowrap text-xs font-bold text-primary bg-primary/8 px-2 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
                   </div>
                 </button>
               );
