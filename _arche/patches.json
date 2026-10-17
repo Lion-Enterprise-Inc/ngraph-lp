@@ -1,0 +1,23 @@
+[
+  {
+    "file": "cases-page.tsx",
+    "why": "2026-10-17 髙橋さん「クラフトとマップと表はいらないかなー」: 絞り込みからクラフトを外す",
+    "start": "const tiers = [\"all\", \"god\", \"earth\", \"craft\", \"startup\",",
+    "end": "const tiers = [\"all\", \"god\", \"earth\", \"craft\", \"startup\",",
+    "replace": "const tiers = [\"all\", \"god\", \"earth\", \"startup\","
+  },
+  {
+    "file": "cases-page.tsx",
+    "why": "同上: 表・マップの切り替えを外す（カード表示だけにする）",
+    "start": "            <div className=\"shrink-0 inline-flex rounded-md bg-muted/50 p-0.5 border border-border/40\">",
+    "end": "<span className=\"hidden sm:inline\">{locale === \"ja\" ? \"マップ\" : \"Map\"}</span>\n              </button>\n            </div>\n",
+    "replace": ""
+  },
+  {
+    "file": "cases-page.tsx",
+    "why": "同上: ?view=table / ?view=map のURLで開かれても表・マップにしない",
+    "start": "if (v === \"table\" || v === \"card\" || v === \"map\") setViewMode(v);",
+    "end": "if (v === \"table\" || v === \"card\" || v === \"map\") setViewMode(v);",
+    "replace": "if (v === \"card\") setViewMode(v);"
+  }
+]

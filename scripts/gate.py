@@ -34,6 +34,7 @@ CHECKS = [
     ("配線漏れ（sitemap / llms.txt / alt）", "publish_check.py", ["--check"], False),
     ("共通フッターのズレ（正本 scripts/chrome/・直すのは sync_chrome.py）", "sync_chrome.py", ["--check"], False),
     ("サイト内リンクの飛び先（ページと #アンカーが実在するか）", "link_check.py", [], False),
+    ("アルケー（cases/）と元ソース・sitemap のズレ（直すのは _arche で npm run build）", "arche_check.py", [], False),
     ("タイトルの弱い定型", "title_lint.py", [], False),
     ("同日記事の相互リンク（朝↔夕）", "crosslink_check.py", [], False),
     ("一次体験の使い回し", "anecdote_lint.py", [], True),

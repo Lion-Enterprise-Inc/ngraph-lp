@@ -21,3 +21,6 @@
 # 公開すると決めた日に、この2行を消す。
 /blog/20260813-torihikisaki-check.html
 /assets/blog/20260813-torihikisaki-check.jpg
+
+# アルケーの元ソースとビルド道具（出力は cases/ に出る）
+/_arche/
