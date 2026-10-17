@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+<title>Airbnb（2008年）の構造分析 — NCG 61点 | 株式会社NGraph</title>
+<meta name="description" content="Airbnb（スタートアップ・NCG 61/100点）シリアル売って$30K。timing 5が全てを救った">
+<meta property="og:title" content="Airbnb（2008年）の構造分析 — NCG 61点 | 株式会社NGraph">
+<meta property="og:description" content="Airbnb（スタートアップ・NCG 61/100点）シリアル売って$30K。timing 5が全てを救った">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ngraph.jp/cases/airbnb-2008/">
+<meta property="og:site_name" content="株式会社NGraph">
+<link rel="canonical" href="https://ngraph.jp/cases/airbnb-2008/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=12">
+<style>
+.k-wrap{max-width:860px;margin:0 auto;padding:130px 20px 80px}
+.k-h1{font-family:var(--serif);font-size:1.75rem;font-weight:900;line-height:1.6;margin:8px 0 14px}
+.k-lead{font-size:.92rem;color:var(--text-2);line-height:2}
+.k-sec{margin-top:40px}
+.k-sec h2{font-family:var(--serif);font-size:1.08rem;font-weight:700;border-left:3px solid var(--accent);padding-left:12px;margin-bottom:14px}
+.k-note{font-size:.8rem;color:var(--text-3);line-height:2;border-top:1px solid var(--border);margin-top:48px;padding-top:18px}
+.k-note a{text-decoration:underline}
+.bd{display:inline-block;font-size:.78rem;font-weight:700;padding:1px 8px;border-radius:3px;white-space:nowrap}
+.bd-ex{background:#e3efe6;color:#2e6e4e}
+.bd-mean{background:#e4ebf3;color:#30557e}
+.bd-weak{background:#f5ecd2;color:#7a5a0e}
+.bd-fail{background:#f6e1db;color:#a63a24}
+.k-back{font-size:.8rem;color:var(--text-3)}
+.k-back:hover{color:var(--accent)}
+.k-hero{border:1px solid var(--border);border-top:5px solid var(--c);background:var(--bg-card);border-radius:4px;padding:22px 24px;margin-top:14px;display:grid;grid-template-columns:1fr auto;gap:6px 20px;align-items:start}
+.k-hero .meta{font-size:.78rem;color:var(--text-3);display:flex;flex-wrap:wrap;gap:4px 12px}
+.k-hero h1{font-family:var(--serif);font-size:1.8rem;font-weight:900;line-height:1.4;margin:4px 0 2px}
+.k-hero .en{font-size:.8rem;color:var(--text-3);letter-spacing:.04em}
+.k-hero .sc{text-align:right;grid-row:1 / span 2;grid-column:2}
+.k-hero .sc .l{font-size:.78rem;letter-spacing:.2em;color:var(--text-3)}
+.k-hero .sc .v{font-family:var(--serif);font-size:3rem;font-weight:900;line-height:1}
+.k-hero .sc .u{font-size:.78rem;color:var(--text-3);margin-bottom:4px}
+.k-hero .ins{grid-column:1 / -1;margin-top:12px;padding:12px 14px;background:rgba(43,38,32,.04);border-radius:3px;font-size:.92rem;line-height:1.9}
+.k-p{font-size:.9rem;color:var(--text-2);line-height:2.05;white-space:pre-wrap}
+.k-score{width:100%;border-collapse:collapse;font-size:.85rem}
+.k-score td{border-bottom:1px solid var(--border);padding:9px 6px;vertical-align:top;line-height:1.8}
+.k-score td.k{width:9.5em;font-weight:700;color:var(--text);white-space:nowrap}
+.k-score td.v{width:6.5em;white-space:nowrap}
+.k-score td.r{color:var(--text-2)}
+.k-bar{display:inline-block;width:46px;height:6px;background:rgba(60,52,42,.1);border-radius:3px;vertical-align:middle;margin-right:6px;position:relative;overflow:hidden}
+.k-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--text-2)}
+.k-axes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.k-axes div{border:1px solid var(--border);background:var(--bg-card);border-radius:4px;padding:12px;text-align:center;font-size:.8rem;color:var(--text-3)}
+.k-axes strong{display:block;font-family:var(--serif);font-size:1.6rem;color:var(--text);line-height:1.3}
+.k-axes strong small{font-size:.78rem;color:var(--text-3);font-weight:400}
+.k-box{border:1px solid var(--border);background:var(--bg-card);border-radius:4px;padding:16px 18px}
+.k-virtue{margin-top:12px;border-left:3px solid var(--accent);padding-left:12px;font-family:var(--serif);font-weight:700;font-size:.92rem}
+.k-bonus{display:flex;gap:14px;align-items:baseline}
+.k-bonus b{font-family:var(--serif);font-size:1.8rem;color:var(--accent);line-height:1}
+.k-key{border-left:3px solid #2e6e4e;padding:12px 16px;background:rgba(46,110,78,.05);font-size:.88rem;line-height:2;color:var(--text-2)}
+.k-key.f{border-left-color:var(--accent);background:rgba(166,58,36,.05)}
+.k-era a{display:block;padding:10px 0;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text-2)}
+.k-era a:hover{color:var(--accent)}
+.k-era span{color:var(--text-3);font-size:.78rem;margin-left:8px}
+@media(max-width:640px){.k-hero{grid-template-columns:1fr;padding:18px}.k-hero .sc{grid-row:auto;grid-column:auto;text-align:left;display:flex;gap:10px;align-items:baseline}.k-hero h1{font-size:1.45rem}.k-hero .sc .v{font-size:2.3rem}.k-score tr{display:grid;grid-template-columns:1fr auto;border-bottom:1px solid var(--border)}.k-score td{border-bottom:0;padding:8px 4px 0}.k-score td.k{width:auto}.k-score td.v{width:auto}.k-score td.r{grid-column:1 / -1;padding:2px 4px 10px}}
+</style>
+<link rel="stylesheet" href="/css/sp.css?v=3">
+</head>
+<body>
+<div class="bg-fx" aria-hidden="true"></div>
+<header class="header scrolled">
+  <div class="header-inner">
+    <a href="/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span><small class="brand-kana">エヌグラフ</small></a>
+    <button class="nav-toggle" aria-label="メニュー" id="navToggle">☰</button>
+    <nav class="nav" id="nav" aria-label="メイン">
+      <a href="/fde/">AI導入支援</a>
+      <a href="/#services">サービス一覧</a>
+      <a href="/blog/">ブログ</a>
+      <a href="/company">会社概要</a>
+      <a href="/entry" class="nav-cta">無料相談</a>
+      <span class="lang-switch"><span class="on">JA</span><span class="sep">/</span><a href="/en/">EN</a></span>
+    </nav>
+  </div>
+</header>
+<script data-chrome="navjs">(function(){var h=document.querySelector(".header"),t=document.getElementById("navToggle"),n=document.getElementById("nav");if(t&&n){t.addEventListener("click",function(){n.classList.toggle("open")});n.addEventListener("click",function(e){if(e.target.tagName==="A")n.classList.remove("open")})}if(h&&!h.classList.contains("scrolled")){var f=function(){h.classList.toggle("scrolled",window.scrollY>20)};window.addEventListener("scroll",f,{passive:true});f()}})();</script>
+
+<main class="k-wrap">
+<a class="k-back" href="/cases/">← 企業の構造分析の一覧へ</a>
+<div class="k-hero" style="--c:#FF5A5F"><div><div class="meta"><span>2008年</span><span>米国</span><span>スタートアップ</span></div><h1>Airbnb</h1></div><div class="sc"><div class="l">NCG</div><div class="v">61</div><div class="u">/100点</div><span class="bd bd-mean">中庸</span></div><p class="ins">シリアル売って$30K。timing 5が全てを救った</p></div>
+<section class="k-sec"><h2>当時の状況</h2><p class="k-p">金融危機の真っ只中。3人のRISD/Harvardの若者が「見知らぬ人の家に泊まるサービス」を提案。VCの大半が門前払い。シリアルを売って$30,000を稼いだ。</p></section>
+<section class="k-sec"><h2>12項目の採点（36/60）</h2><table class="k-score"><tr><td class="k">ターゲット市場</td><td class="v"><span class="k-bar"><i style="width:60%"></i></span>3/5</td><td class="r">短期宿泊市場は巨大だが、「他人の家に泊まる」市場は未定義</td></tr><tr><td class="k">課題の実在性</td><td class="v"><span class="k-bar"><i style="width:80%"></i></span>4/5</td><td class="r">カンファレンス時に宿が取れない痛みは実在。ただし日常的な痛みかは疑問</td></tr><tr><td class="k">ソリューション</td><td class="v"><span class="k-bar"><i style="width:60%"></i></span>3/5</td><td class="r">Craigslistに決済と信頼を足した形。革新的だが10倍改善とまでは言えない</td></tr><tr><td class="k">チーム</td><td class="v"><span class="k-bar"><i style="width:60%"></i></span>3/5</td><td class="r">デザイン×CSの組み合わせは良い。ただし宿泊業の経験ゼロ</td></tr><tr><td class="k">トラクション</td><td class="v"><span class="k-bar"><i style="width:40%"></i></span>2/5</td><td class="r">YC後3週で$1,428/週の手数料。成長してるが絶対値は小さい</td></tr><tr><td class="k">参入障壁</td><td class="v"><span class="k-bar"><i style="width:40%"></i></span>2/5</td><td class="r">レビューとホストネットワークが将来のモートだが、この時点では存在しない</td></tr><tr><td class="k">収益モデル</td><td class="v"><span class="k-bar"><i style="width:60%"></i></span>3/5</td><td class="r">手数料6-12%は明快。ただしユニットエコノミクスは未証明</td></tr><tr><td class="k">財務計画</td><td class="v"><span class="k-bar"><i style="width:20%"></i></span>1/5</td><td class="r">財務計画なし。シリアルを売って$30Kという状況</td></tr><tr><td class="k">資本効率</td><td class="v"><span class="k-bar"><i style="width:60%"></i></span>3/5</td><td class="r">3人チーム+$600Kで最小限運営。固定費極小</td></tr><tr><td class="k">出口戦略</td><td class="v"><span class="k-bar"><i style="width:40%"></i></span>2/5</td><td class="r">市場が未定義のためIPOの道筋が見えない</td></tr><tr><td class="k">タイミング</td><td class="v"><span class="k-bar"><i style="width:100%"></i></span>5/5</td><td class="r">金融危機で家賃補填ニーズ急増。デジカメ普及でリスティング写真の質が向上</td></tr><tr><td class="k">独自の洞察</td><td class="v"><span class="k-bar"><i style="width:100%"></i></span>5/5</td><td class="r">「信頼の仕組みがあれば、見知らぬ人の家に泊まる」。VCの99%が同意しなかった真実</td></tr></table></section>
+<section class="k-sec"><h2>三軸の評価（18/30）</h2><div class="k-axes"><div>世間<strong>8<small>/10</small></strong></div><div>相手<strong>6<small>/10</small></strong></div><div>自己<strong>4<small>/10</small></strong></div></div></section>
+<section class="k-sec"><h2>加点</h2><div class="k-box k-bonus"><b>+7</b><p class="k-p">[戦略+影響+資本] シリアル資金繋ぎ+宿泊業界変革+$100B</p></div></section>
+<section class="k-sec"><h2>テレスの所感</h2><div class="k-box"><p class="k-p">Airbnbは「VC全員に断られた」会社。オバマ・マケインのシリアル箱を$40で売って$30Kを稼いだ逸話は、ただの苦労話じゃない。2008年金融危機で家賃補填ニーズが爆発した瞬間と、デジカメ普及でリスティング写真の質が上がった瞬間が重なった timing 5 が全てを救った。「市場の未定義」がリスクではなく、タイミングが合えば最大の武器になる証拠。</p><p class="k-virtue">ヘクシス（習慣的卓越性）</p></div></section>
+<p class="k-note">各社の点数は、NGraph が NCG（Nicomachos Company Graph）の採点基準 v1.0 で、公開されている沿革・報道をもとに採点したものです（2026年4月時点・以後は更新していません）。各社の公式見解ではなく、投資や取引の判断材料として作ったものでもありません。記載に誤りがあれば<a href="/entry">お問い合わせ</a>からお知らせください。NCG の考え方は<a href="/company#tech">会社概要の構造化技術</a>にあります。</p>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+      <p class="footer-tag">現実世界の意味を、AIが読める形に。</p>
+      <p class="footer-addr">株式会社NGraph<br>〒918-8231 福井県福井市問屋町1丁目124番地 <span class="nb">ラフォーレ北野201</span></p>
+      <a href="/entry" class="footer-cta">無料で相談する →</a>
+    </div>
+    <nav class="footer-nav" aria-label="サイトマップ">
+      <div><h4>サービス</h4><a href="/fde/">AI導入支援（FDE）</a><a href="/drill/">NGraph Cyber Drill</a><a href="/security/">ローカルAI Pack</a><a href="/starter/">生成AI導入 初期セット</a></div>
+      <div><h4>プロダクト</h4><a href="https://omiseai.com/" target="_blank" rel="noopener">OMISEAI</a><a href="https://nicomachos.com/" target="_blank" rel="noopener">Teles</a><a href="https://autowrite.jp/" target="_blank" rel="noopener">AutoWrite</a><a href="/company#tech">構造化技術</a></div>
+      <div><h4>記事・無料ツール</h4><a href="/blog/">ブログ</a><a href="/check/">取引先チェック</a><a href="/tools/gyomu-kaizen/">業務改善助成金の計算機</a></div>
+      <div><h4>会社</h4><a href="/company">会社概要</a><a href="/recruit">採用</a><a href="/entry">お問い合わせ</a></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 NGraph Inc.</span>
+    <nav aria-label="規約"><a href="/privacy">プライバシーポリシー</a><a href="/legal">特定商取引法に基づく表記</a><a href="/en/">English</a></nav>
+  </div>
+</footer>
+
+</body>
+</html>
