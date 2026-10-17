@@ -1459,7 +1459,13 @@ export default function CasesPage() {
                     </div>
                     {/* 一言はカードの幅いっぱいで読む */}
                     <p className="text-sm text-foreground leading-[1.75] line-clamp-3">{pickLocalized(c.insight, c.insightEn, locale)}</p>
-                    {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="mt-auto self-start whitespace-nowrap text-xs font-bold text-primary bg-primary/8 px-2 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
+                    {/* 三方（世間・相手・自己、各10点）と徳。2026-10-18 本人「世間相手自己は一覧では入れられない？」 */}
+                    <div className="mt-auto flex flex-col items-start gap-1.5">
+                      <span className="whitespace-nowrap text-xs text-muted-foreground tabular-nums">
+                        世間 <b className="text-sm text-foreground">{c.axes.society * 2}</b>・相手 <b className="text-sm text-foreground">{c.axes.customer * 2}</b>・自己 <b className="text-sm text-foreground">{c.axes.self * 2}</b>
+                      </span>
+                      {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="whitespace-nowrap text-xs font-bold text-primary bg-primary/8 px-2 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
+                    </div>
                   </div>
                 </button>
               );
