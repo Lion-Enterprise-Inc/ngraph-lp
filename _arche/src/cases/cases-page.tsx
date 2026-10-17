@@ -366,12 +366,29 @@ function MethodologySection({ locale }: { locale: string }) {
 }
 
 const TIER_BORDER: Record<string, string> = {
-  startup: "border-border", fail: "border-(--c-fail)/40", japan: "border-border", bronze: "border-border",
-  silver: "border-border", gold: "border-border", god: "border-(--c-weak)/50", earth: "border-border", craft: "border-border", social: "border-border",
+  startup: "border-border/40",
+  fail: "border-(--c-fail)/30",
+  japan: "border-border/40",
+  bronze: "border-(--c-weak)/40",
+  silver: "border-border",
+  gold: "border-(--c-weak)/50",
+  god: "border-(--c-weak)/60",
+  earth: "border-(--c-mean)/40",
+  craft: "border-(--c-weak)/50",
+  social: "border-border/40",
 };
 
 const TIER_ACCENT: Record<string, string> = {
-  startup: "", fail: "", japan: "", bronze: "", silver: "", gold: "", god: "", earth: "", craft: "", social: "",
+  startup: "",
+  fail: "ring-1 ring-(--c-fail)/20",
+  japan: "",
+  bronze: "ring-1 ring-(--c-weak)/20",
+  silver: "ring-1 ring-border",
+  gold: "ring-1 ring-(--c-weak)/30",
+  god: "ring-1 ring-(--c-weak)/30",
+  earth: "ring-1 ring-(--c-mean)/20",
+  craft: "ring-1 ring-(--c-weak)/30",
+  social: "",
 };
 
 /* ── テレス対話パネル ── */
@@ -1301,19 +1318,6 @@ function CasesScatterMap({
 }
 
 
-/* 一覧カードの社名：カタカナ語の途中で折らない（2026-10-18 本人「この一覧見にくくなったな」）。
-   漢字とカタカナの境目に折り返し位置を入れ、長いカタカナ語を含む名前は1語が1行に収まる大きさにする */
-const KATA = /[ァ-ヺー]+/g;
-function breakName(name: string): string {
-  return name
-    .replace(/([ァ-ヺー])([一-鿿])/g, "$1​$2")
-    .replace(/([一-鿿])([ァ-ヺー])/g, "$1​$2");
-}
-function nameSize(name: string): string {
-  const longest = Math.max(0, ...(name.match(KATA) ?? []).map((w) => w.length));
-  return longest >= 11 ? "text-sm" : longest >= 10 ? "text-[15px]" : "text-base";
-}
-
 /* ── メインページ ── */
 export default function CasesPage() {
   const { data: session } = useSession();
@@ -1426,45 +1430,36 @@ export default function CasesPage() {
                 <button
                   key={`${c.name}-${c.year}`}
                   onClick={() => setSelectedIdx(idx)}
-                  className={`group h-full text-left rounded-xl overflow-hidden border hover:border-primary hover:shadow-md transition-all bg-card ${TIER_BORDER[c.tier]} ${TIER_ACCENT[c.tier]}`}
+                  className={`group text-left rounded-xl overflow-hidden border hover:shadow-md transition-all bg-card ${TIER_BORDER[c.tier]} ${TIER_ACCENT[c.tier]}`}
                 >
-                  <div className="flex h-full flex-col gap-2.5 p-4">
-                    <div className="flex items-start gap-3">
-                      {/* ジャケット */}
-                      <div
-                        className="w-11 h-11 shrink-0 rounded-lg flex items-center justify-center shadow-sm"
-                        style={{ backgroundColor: c.color }}
-                      >
-                        <span className="text-lg font-black text-white drop-shadow-md">{c.initial}</span>
-                      </div>
-                      {/* 社名・国と年（区分名は絞り込みで分かるので出さない） */}
-                      <div className="flex-1 min-w-0 pt-0.5">
-                        <p className={`${nameSize(c.name)} font-bold leading-snug line-clamp-2 text-foreground`}>{breakName(locale === "en" && c.nameEn ? c.nameEn : c.name)}</p>
-                        <p className="text-xs text-muted-foreground mt-0.5 whitespace-nowrap">{[countryName(c.flag), `${c.year}年`].filter(Boolean).join("・")}</p>
-                      </div>
-                      {/* 点数＋三方の三角 */}
-                      <div className="shrink-0 relative w-14 h-14 flex items-center justify-center">
-                        <div className="absolute inset-0 flex items-center justify-center opacity-40">
-                          <TriangleChart
-                            axes={c.axes}
-                            size={56}
-                            locale={locale}
-                            color={isFail ? "#a63a24" : getCombinedScore(c) >= EXCELLENT_LINE ? "#2e6e4e" : getCombinedScore(c) >= SURVIVAL_LINE ? "#30557e" : "#8a6212"}
-                          />
-                        </div>
-                        <span className={`text-xl font-bold tabular-nums relative z-10 ${
-                          isFail ? "text-(--c-fail)" : getCombinedScore(c) >= EXCELLENT_LINE ? "text-(--c-ex)" : getCombinedScore(c) >= SURVIVAL_LINE ? "text-(--c-mean)" : "text-(--c-weak)"
-                        }`}>{getCombinedScore(c)}</span>
-                      </div>
+                  <div className="flex gap-3 p-3">
+                    {/* ジャケット */}
+                    <div
+                      className="w-12 h-12 shrink-0 rounded-lg flex items-center justify-center relative"
+                      style={{ backgroundColor: c.color }}
+                    >
+                      <span className="text-lg font-black text-white drop-shadow-md">{c.initial}</span>
                     </div>
-                    {/* 一言はカードの幅いっぱいで読む */}
-                    <p className="text-sm text-foreground leading-[1.75] line-clamp-3">{pickLocalized(c.insight, c.insightEn, locale)}</p>
-                    {/* 三方（世間・相手・自己、各10点）と徳。2026-10-18 本人「世間相手自己は一覧では入れられない？」 */}
-                    <div className="mt-auto flex flex-col items-start gap-1.5">
-                      <span className="whitespace-nowrap text-xs text-muted-foreground tabular-nums">
-                        世間 <b className="text-sm text-foreground">{c.axes.society * 2}</b>・相手 <b className="text-sm text-foreground">{c.axes.customer * 2}</b>・自己 <b className="text-sm text-foreground">{c.axes.self * 2}</b>
-                      </span>
-                      {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="whitespace-nowrap text-xs font-bold text-primary bg-primary/8 px-2 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
+                    {/* 情報 */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-base sm:text-sm font-semibold truncate">{locale === "en" && c.nameEn ? c.nameEn : c.name}</p>
+                      <p className="text-sm sm:text-xs text-foreground/75 mt-0.5 leading-snug line-clamp-1">{pickLocalized(c.insight, c.insightEn, locale)}</p>
+                      {(pickLocalized(c.virtue, c.virtueEn, locale)) && <span className="inline-block mt-1 text-xs sm:text-[11px] tracking-[-0.02em] text-primary bg-primary/10 px-1 py-0.5 rounded">{pickLocalized(c.virtue, c.virtueEn, locale)}</span>}
+                    </div>
+                    {/* スコア + 三方よしチャート（頂点ラベル付き・点数重ね、100点満点） */}
+                    <div className="shrink-0 relative w-20 h-20 flex items-center justify-center">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-50">
+                        <TriangleChart
+                          axes={c.axes}
+                          size={80}
+                          showLabels
+                          locale={locale}
+                          color={isFail ? "#a63a24" : getCombinedScore(c) >= EXCELLENT_LINE ? "#2e6e4e" : "#30557e"}
+                        />
+                      </div>
+                      <span className={`text-xl font-black relative z-10 ${
+                        isFail ? "text-(--c-fail)" : getCombinedScore(c) >= EXCELLENT_LINE ? "text-(--c-ex)" : "text-foreground"
+                      }`}>{getCombinedScore(c)}</span>
                     </div>
                   </div>
                 </button>

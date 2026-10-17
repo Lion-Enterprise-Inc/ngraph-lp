@@ -98,7 +98,7 @@
 
 /* ngraph.jp の中での置き方 */
 .arche-page {
-  --font-sans: "Zen Kaku Gothic New", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
   --font-geist-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-family: var(--font-sans);
   line-height: 1.6;
