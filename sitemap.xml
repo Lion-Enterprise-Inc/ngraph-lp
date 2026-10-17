@@ -19,50 +19,92 @@
   <url><loc>https://ngraph.jp/blog/20260904-claude-code-codex-one-setup</loc><lastmod>2026-09-04</lastmod></url>
   <url>
     <loc>https://ngraph.jp/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
-  <url><loc>https://ngraph.jp/starter/</loc><lastmod>2026-09-16</lastmod></url>
-  <url><loc>https://ngraph.jp/security/</loc><lastmod>2026-09-28</lastmod></url>
-  <url><loc>https://ngraph.jp/drill/</loc><lastmod>2026-10-14</lastmod></url>
+  <url>
+    <loc>https://ngraph.jp/starter/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/starter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/starter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/starter/"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/security/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/security/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/security/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/security/"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/drill/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/drill/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/drill/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/drill/"/>
+  </url>
   <url><loc>https://ngraph.jp/tools/gyomu-kaizen/</loc><lastmod>2026-10-08</lastmod></url>
   <url>
     <loc>https://ngraph.jp/en/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/entry</loc>
-    <lastmod>2026-08-07</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/entry</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/entry"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/entry"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/entry"/>
   </url>
-  <url><loc>https://ngraph.jp/company</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://ngraph.jp/recruit</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://ngraph.jp/privacy</loc><lastmod>2026-08-07</lastmod></url>
-  <url><loc>https://ngraph.jp/legal</loc><lastmod>2026-08-07</lastmod></url>
+  <url>
+    <loc>https://ngraph.jp/company</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/company"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/company"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/company"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/recruit</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/recruit"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/recruit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/recruit"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/privacy</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/privacy"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/legal</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/legal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/legal"/>
+  </url>
   <url>
     <loc>https://ngraph.jp/fde/</loc>
-    <lastmod>2026-09-03</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/fde/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
   </url>
   <url>
     <loc>https://ngraph.jp/en/fde/</loc>
-    <lastmod>2026-07-24</lastmod>
+    <lastmod>2026-10-18</lastmod>
     <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/fde/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/fde/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/fde/"/>
@@ -297,4 +339,53 @@
   <url><loc>https://ngraph.jp/cases/toshiba/</loc><lastmod>2026-10-17</lastmod></url>
   <url><loc>https://ngraph.jp/cases/lehman-brothers/</loc><lastmod>2026-10-17</lastmod></url>
   <!-- cases:end -->
+  <url>
+    <loc>https://ngraph.jp/en/company</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/company"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/company"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/company"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/drill/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/drill/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/drill/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/drill/"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/security/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/security/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/security/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/security/"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/starter/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/starter/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/starter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/starter/"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/recruit</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/recruit"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/recruit"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/recruit"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/privacy</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/privacy"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/privacy"/>
+  </url>
+  <url>
+    <loc>https://ngraph.jp/en/legal</loc>
+    <lastmod>2026-10-18</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://ngraph.jp/legal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ngraph.jp/en/legal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ngraph.jp/legal"/>
+  </url>
 </urlset>

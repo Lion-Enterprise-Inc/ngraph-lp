@@ -26,7 +26,7 @@ ROOT = os.path.dirname(HERE)
 CHROME = os.path.join(HERE, "chrome")
 
 # ngraph-zen.css を変えたら上げる（ブラウザ・CDNの古いCSSと新しいHTMLの組み合わせを防ぐ）
-ZEN_VERSION = "13"
+ZEN_VERSION = "14"
 
 FOOTER_RE = re.compile(r'<footer class="footer">.*?</footer>', re.S)
 ZEN_RE = re.compile(r'(/css/ngraph-zen\.css\?v=)(\d+)')
@@ -62,7 +62,9 @@ def pages():
 
 # サービスページの末尾に置く「ほかのサービス」（自分のページは除く・2026-10-14）
 RELATED = {"fde/index.html": "/fde/", "drill/index.html": "/drill/",
-           "security/index.html": "/security/", "starter/index.html": "/starter/"}
+           "security/index.html": "/security/", "starter/index.html": "/starter/",
+           "en/fde/index.html": "/en/fde/", "en/drill/index.html": "/en/drill/",
+           "en/security/index.html": "/en/security/", "en/starter/index.html": "/en/starter/"}
 REL_RE = re.compile(r'<section class="rel"[^>]*>.*?</section>\s*', re.S)
 # 見出しの改行位置（2026-10-14）：「、」「。」の途中で折れないよう句ごとに nb で包む
 TITLE_RE = re.compile(r'(<h2 class="section-title"[^>]*>)([^<]+)(</h2>)')
@@ -82,9 +84,17 @@ CTA = {
     "drill/index.html": ("#apply", "無料で相談する"),
     "fde/index.html": ("#contact", "無料相談"),
     "en/fde/index.html": ("#contact", "Free Consultation"),
+    "en/starter/index.html": ("#apply", "Free Online Briefing"),
+    "en/security/index.html": ("#apply", "Free Online Briefing"),
+    "en/drill/index.html": ("#apply", "Talk to us free"),
 }
-ALT = {"index.html": "/en/", "fde/index.html": "/en/fde/", "entry.html": "/en/entry",
-       "en/index.html": "/", "en/fde/index.html": "/fde/", "en/entry.html": "/entry"}
+# 日英の対になるページ（2026-10-18 英語版を主要10ページに広げた）。en_check.py もこれを使う
+EN_PAIRS = {"index.html": "en/index.html", "fde/index.html": "en/fde/index.html", "entry.html": "en/entry.html",
+            "company.html": "en/company.html", "drill/index.html": "en/drill/index.html",
+            "security/index.html": "en/security/index.html", "starter/index.html": "en/starter/index.html",
+            "recruit.html": "en/recruit.html", "privacy.html": "en/privacy.html", "legal.html": "en/legal.html"}
+ALT = {}  # 言語切替の行き先。page_url の定義後に EN_PAIRS から埋める
+
 
 
 def page_url(path):
@@ -94,6 +104,10 @@ def page_url(path):
     if p.endswith("/index.html"):
         return "/" + p[:-len("index.html")]
     return "/" + p[:-len(".html")]
+
+
+for _ja, _en in EN_PAIRS.items():
+    ALT[_ja], ALT[_en] = page_url(_en), page_url(_ja)
 
 
 def header(path, cls):
@@ -120,7 +134,7 @@ def related(path):
     own = RELATED.get(path.replace("\\", "/"))
     if not own:
         return None
-    with open(os.path.join(CHROME, "related_ja.html"), encoding="utf-8") as f:
+    with open(os.path.join(CHROME, f"related_{lang_of(path)}.html"), encoding="utf-8") as f:
         block = f.read().strip()
     return re.sub(r'\s*<li><a href="%s">.*?</li>' % re.escape(own), "", block, flags=re.S)
 

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L96HMXRK1D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L96HMXRK1D');
+</script>
+
+<title>NGraph Cyber Drill: Let an Ally Attack You Before a Real Attacker Does (Fukui Pilot Partners Wanted) | NGraph Inc.</title>
+<meta name="description" content="A security check from the attacker's point of view, for the AI era. We test the entry points visible from outside and how your staff handle email, then give you a prioritized improvement plan. We don't stop at a report: we fix things on site with you and test again. Now seeking pilot partners, limited to companies in Fukui Prefecture.">
+<meta property="og:title" content="NGraph Cyber Drill: Let an Ally Attack You Before a Real Attacker Does | NGraph">
+<meta property="og:description" content="A security check from the attacker's point of view. Find your weak spots, fix them on site, and test again. Pilot partners wanted, limited to companies in Fukui Prefecture.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ngraph.jp/en/drill/">
+<meta property="og:site_name" content="NGraph Inc.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://ngraph.jp/en/drill/">
+<link rel="alternate" hreflang="ja" href="https://ngraph.jp/drill/">
+<link rel="alternate" hreflang="en" href="https://ngraph.jp/en/drill/">
+<link rel="alternate" hreflang="x-default" href="https://ngraph.jp/drill/">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=14">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://ngraph.jp/drill/#service",
+      "name": "NGraph Cyber Drill (security check from the attacker's point of view)",
+      "alternateName": "NGraph Cyber Drill",
+      "serviceType": "Security check (reconnaissance, simulated attack, training emails), followed by on-site fixes and retesting",
+      "provider": { "@type": "Organization", "@id": "https://ngraph.jp/#organization", "name": "NGraph Inc.", "url": "https://ngraph.jp/en/" },
+      "areaServed": [{ "@type": "AdministrativeArea", "name": "Fukui Prefecture" }],
+      "audience": { "@type": "BusinessAudience", "name": "Companies in Fukui Prefecture (pilot partners)" },
+      "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/en/drill/#apply", "availableLanguage": ["ja"] },
+      "description": "We map the entry points and settings visible from outside (reconnaissance), then test the systems you authorize in writing and send training emails to staff (simulated attack). We report what we confirmed and what we did not check, the impact on your business, and a prioritized improvement plan. After that, we fix settings, permissions, backups and procedures with you on site (on-site fixes) and test again the same way (retest). Now seeking pilot partners, limited to companies in Fukui Prefecture."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "NGraph Inc.", "item": "https://ngraph.jp/en/" },
+        { "@type": "ListItem", "position": 2, "name": "NGraph Cyber Drill", "item": "https://ngraph.jp/en/drill/" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can we stop after STEP 1?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company." } },
+        { "@type": "Question", "name": "Will this disrupt our work?", "acceptedAnswer": { "@type": "Answer", "text": "We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back." } },
+        { "@type": "Question", "name": "Do you have a track record?", "acceptedAnswer": { "@type": "Answer", "text": "We are just starting the pilot, so we have no results we can publish yet. That is why we are seeking pilot partners, limited to companies in Fukui Prefecture." } },
+        { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
+        { "@type": "Question", "name": "Can companies outside Fukui Prefecture apply?", "acceptedAnswer": { "@type": "Answer", "text": "During the pilot period, we are limiting this to companies in Fukui Prefecture." } },
+        { "@type": "Question", "name": "We are under attack right now. Can you help?", "acceptedAnswer": { "@type": "Answer", "text": "We do not offer emergency recovery after an incident or 24-hour monitoring. Please contact the police or the IPA (Information-technology Promotion Agency, Japan) help desk first." } }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+/* ── /en/drill/ page styles (same pattern as /starter/ and /security/) ── */
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.75rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge img{width:26px;height:19px;object-fit:contain}
+.lp-badge .kana{font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;color:var(--text-3);font-weight:500;padding-left:10px;margin-left:2px;border-left:1px solid var(--border-strong)}
+.lp-badge .nm{white-space:nowrap}
+@media(max-width:768px){.hero .lp-badge{flex-wrap:wrap;justify-content:center;row-gap:3px;border-radius:16px;padding:8px 18px}.lp-badge .kana{flex-basis:100%;text-align:center;border-left:none;padding-left:0;margin-left:0;font-size:.64rem}}
+.hero{padding:150px 0 100px}
+.hero .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero .hero-copy{max-width:640px}
+.hero .hero-visual{position:relative;top:auto;right:auto;left:auto;width:100%;height:auto;margin:0;opacity:1;display:flex;justify-content:center;align-items:center;transform:none}
+.hero .hero-visual img{-webkit-mask-image:none;mask-image:none;width:100%;height:auto;max-height:520px;object-fit:contain;object-position:center}
+.hero-sub{font-family:var(--serif);font-size:.9rem;letter-spacing:.12em;color:var(--text-2);margin-bottom:10px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-chips span{font-family:var(--serif);font-size:.86rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--text);border-radius:3px;padding:9px 16px;background:rgba(255,255,255,.5)}
+.hero-chips span.acc{border-color:var(--accent);color:var(--accent)}
+.hero-note{font-size:.8rem;color:var(--text-3);margin-top:14px}
+@media(max-width:900px){
+  .hero{padding:130px 0 70px}
+  .hero .hero-grid{grid-template-columns:1fr;gap:20px}
+  .hero .hero-visual{max-width:460px;margin:0 auto}
+  .hero .hero-visual img{max-height:320px}
+}
+/* sp.css sets hero-copy to display:contents and reorders with order; give added elements an order too */
+@media(max-width:768px){
+  .hero .hero-sub{order:1;text-align:center}
+  .hero .hero-chips{order:5;justify-content:center;margin:0 auto 14px;gap:8px}
+  .hero .hero-chips span{font-size:.8rem;padding:8px 12px}
+  .hero .hero-cta{order:6}
+  .hero .hero-note{order:7;text-align:center;margin:12px auto 0;max-width:34em}
+}
+/* If tomorrow */
+.ifq{max-width:880px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ifq li{list-style:none;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:22px 16px;text-align:center;font-family:var(--serif);font-size:.98rem;font-weight:700;line-height:1.7}
+.ifq li span{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;color:var(--accent);margin-bottom:8px}
+@media(max-width:900px){.ifq{grid-template-columns:1fr 1fr}}
+/* Three cards */
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.tcard{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:34px 28px;text-align:center}
+.tcard img{width:96px;height:90px;object-fit:contain;margin:0 auto 18px;display:block}
+.tcard h3{font-family:var(--serif);font-size:1.12rem;font-weight:700;line-height:1.6;margin-bottom:12px}
+.tcard p{font-size:.88rem;color:var(--text-2);line-height:2}
+@media(max-width:900px){.trio{grid-template-columns:1fr}}
+/* Closing line */
+.close-line{text-align:center;margin-top:48px;padding-top:26px;border-top:1px solid var(--accent)}
+.close-line p{font-family:var(--serif);font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:700;line-height:1.7}
+.close-line .hl{color:var(--accent)}
+/* How it works (STEP 1 / STEP 2) */
+.stages{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;max-width:1100px;margin:0 auto}
+.stage{background:rgba(255,255,255,.75);border:1px solid var(--border-strong);border-radius:4px;padding:26px 24px}
+.stage.s1{border:2px solid var(--accent)}
+.stage .st{font-family:var(--serif);font-size:.72rem;letter-spacing:.22em;color:var(--accent);font-weight:700}
+.stage h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin:6px 0 16px}
+.stage ol{list-style:none;display:grid;gap:12px}
+.stage li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+.stage li .n{font-family:var(--sans);font-size:.74rem;font-weight:700;color:#fdfaf4;background:var(--text);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.stage.s1 li .n{background:var(--accent)}
+.stage li b{font-family:var(--serif);font-size:1rem;font-weight:700;display:block;line-height:1.5}
+.stage li small{display:block;font-size:.84rem;color:var(--text-2);line-height:1.8;margin-top:2px}
+.stage .rep{margin-top:16px;padding:14px 16px;background:var(--bg-2);border-radius:4px;font-size:.84rem;line-height:1.85;color:var(--text-2)}
+.stage .rep b{font-family:var(--serif);color:var(--text);display:block;margin-bottom:4px}
+.stage .after{margin-top:16px;font-size:.84rem;color:var(--text-2);line-height:1.8}
+.stage-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:.78rem;color:var(--text-2);text-align:center;line-height:1.6}
+.stage-mid svg{width:36px;height:20px;stroke:var(--text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.stage-note{text-align:center;font-size:.86rem;color:var(--text-2);margin-top:20px;line-height:1.9}
+@media(max-width:900px){.stages{grid-template-columns:1fr}.stage-mid{flex-direction:row}.stage-mid svg{transform:rotate(90deg)}}
+/* Approach (countermeasure options) */
+.pols{max-width:960px;margin:0 auto;border-top:1px solid var(--border-strong)}
+.pol{display:grid;grid-template-columns:64px 13em 1fr;gap:18px;align-items:center;padding:18px 6px;border-bottom:1px solid var(--border)}
+.pol img{width:54px;height:54px;object-fit:contain}
+.pol b{font-family:var(--serif);font-size:1.05rem;font-weight:700;line-height:1.5}
+.pol p{font-size:.88rem;color:var(--text-2);line-height:1.9}
+.pol.acc b{color:var(--accent)}
+@media(max-width:768px){.pol{grid-template-columns:44px 1fr;gap:4px 12px;padding:14px 2px}.pol img{width:40px;height:40px;grid-row:span 2}.pol p{grid-column:2;font-size:.82rem;line-height:1.75}}
+/* Safety commitments */
+.rules{max-width:820px;margin:0 auto;list-style:none;display:grid;gap:10px}
+.rules li{font-size:.92rem;line-height:1.8;padding:14px 18px 14px 50px;position:relative;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:4px}
+.rules li::before{content:"";position:absolute;left:20px;top:21px;width:13px;height:7px;border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+.scope{max-width:820px;margin:22px auto 0;font-size:.84rem;color:var(--text-3);line-height:1.9;text-align:center}
+/* Team */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:820px;margin:0 auto}
+.duo .p{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:4px;padding:18px}
+.duo img{width:84px;height:100px;object-fit:cover;object-position:50% 25%;border-radius:6px;flex-shrink:0}
+.duo b{font-family:var(--serif);font-size:1.08rem;display:block}
+.duo small{display:block;font-size:.78rem;color:var(--text-3);margin:2px 0 6px}
+.duo p{font-size:.86rem;color:var(--text-2);line-height:1.7}
+@media(max-width:768px){.duo{grid-template-columns:1fr;gap:10px}}
+/* FAQ */
+.faq-list{max-width:820px;margin:0 auto}
+.faq-list details{border-bottom:1px solid var(--border);padding:18px 0}
+.faq-list summary{font-family:var(--serif);font-size:1rem;font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:30px;line-height:1.7}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";position:absolute;right:2px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:400}
+.faq-list details[open] summary::after{content:"\2212"}
+.faq-list details p{font-size:.88rem;color:var(--text-2);line-height:2;margin-top:12px}
+/* Form */
+.lp-form{max-width:640px;margin:0 auto;background:var(--bg-card);border:1px solid var(--border-strong);border-radius:4px;padding:40px 36px}
+.lp-form label{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+.lp-form label .req{color:var(--accent);font-size:.75rem;margin-left:5px}
+.lp-form label .opt{color:var(--text-3);font-size:.72rem;margin-left:5px;font-weight:400}
+.lp-form input,.lp-form textarea,.lp-form select{width:100%;padding:13px 16px;border:1px solid var(--border-strong);border-radius:3px;font-size:.9rem;font-family:inherit;background:rgba(255,255,255,.7);color:var(--text);margin-bottom:16px;outline:none}
+.lp-form input:focus,.lp-form textarea:focus,.lp-form select:focus{border-color:var(--accent)}
+.lp-form textarea{min-height:90px;resize:vertical}
+.lp-form .btn{width:100%;justify-content:center;border:none;cursor:pointer;font-family:inherit}
+.lead-note{font-size:.75rem;color:var(--text-3);text-align:center;margin-top:10px}
+.lead-done{text-align:center;padding:18px 0 6px}
+.lead-done h4{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:8px}
+.lead-done p{font-size:.85rem;color:var(--text-2);line-height:1.9}
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+#apply{scroll-margin-top:84px}
+/* Floating CTA */
+.float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
+.float-cta.show{opacity:1;pointer-events:auto;transform:none}
+.float-cta a{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.86rem;box-shadow:0 8px 24px rgba(60,52,42,.2)}
+/* ── SP ── */
+@media(max-width:768px){
+  .float-cta{right:0;left:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(246,242,233,.94);backdrop-filter:blur(10px);border-top:1px solid var(--border);transform:translateY(100%)}
+  .float-cta.show{transform:none}
+  .float-cta a{width:100%;justify-content:center;padding:15px}
+  .section{padding:52px 0}
+  .section-head{margin:0 auto 26px}
+  .section-title{font-size:1.42rem;line-height:1.5;margin-bottom:12px}
+  .section-title::after{margin:14px auto 0}
+  .section-sub{font-size:.88rem;line-height:1.9}
+  .close-line{margin-top:26px;padding-top:16px}
+  .close-line p{font-size:1.02rem}
+  .hero{padding:96px 0 44px}
+  .hero .hero-visual img{max-height:210px}
+  .hero .lp-badge{margin-bottom:10px;padding:6px 14px;font-size:.66rem}
+  .hero p.lead{font-size:.9rem;line-height:1.8;margin-bottom:12px}
+  .hero .hero-chips{gap:6px;margin-bottom:10px}
+  .hero .hero-chips span{font-size:.74rem;padding:7px 10px}
+  .hero .hero-cta .btn{width:100%;justify-content:center}
+  .hero .hero-note{font-size:.74rem;margin-top:10px}
+  .ifq{gap:8px}
+  .ifq li{padding:14px 10px;font-size:.88rem}
+  .trio{gap:10px}
+  .tcard{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;text-align:left;padding:14px 16px}
+  .tcard img{width:56px;height:52px;margin:0;grid-row:span 2;align-self:center}
+  .tcard h3,.tcard p{grid-column:2}
+  .tcard h3{font-size:1rem;line-height:1.5;margin-bottom:4px;align-self:end}
+  .tcard p{font-size:.82rem;line-height:1.7;align-self:start}
+  .tcard p .nb{display:inline}
+  .stage{padding:20px 16px}
+  .rules li{font-size:.86rem;padding:12px 14px 12px 44px}
+  .rules li::before{left:17px;top:19px}
+  .lp-form{padding:28px 20px}
+  .faq-list summary{font-size:.92rem}
+  .faq-list details p{font-size:.84rem;line-height:1.8}
+  .float-cta a{font-size:.82rem}
+}
+</style>
+<link rel="stylesheet" href="/css/sp.css?v=3">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="/en/" class="brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+    <button class="nav-toggle" aria-label="Menu" id="navToggle">☰</button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/en/fde/">AI Adoption Support</a>
+      <a href="/en/#services">Services</a>
+      <a href="/blog/">Blog (JA)</a>
+      <a href="/en/company">Company</a>
+      <a href="#apply" class="nav-cta">Talk to us free</a>
+      <span class="lang-switch"><a href="/drill/">JA</a><span class="sep">/</span><span class="on">EN</span></span>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span></span>
+      <p class="hero-sub">A security check from the attacker's side, for the AI era</p>
+      <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">Before a real attacker strikes,</span><br><span class="nb"><span class="hl">let an ally attack you.</span></span></p>
+      <p class="lead">Check the entry points visible from outside and how your staff handle email, and learn where your company is weak. We don't stop at a report: we fix things on site with you, then test again.</p>
+      <div class="hero-chips">
+        <span class="acc">Fukui Prefecture companies only</span>
+        <span>Pilot partners wanted</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#apply" class="btn btn-primary">Free Consultation <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
+      </div>
+      <p class="hero-note">A 30-minute online conversation. We will not ask you to sign anything on the spot.</p>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img src="/assets/drill/dome.webp" alt="" width="1200" height="800">
+    </div>
+  </div>
+</section>
+
+<!-- ── If tomorrow ── -->
+<section class="section section-alt" id="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Common worries</div>
+      <h2 class="section-title"><span class="nb">What if your computers</span> <span class="nb">stopped working tomorrow?</span></h2>
+      <p class="section-sub">Attackers use AI too. Let's look together at what could stop your business and how ready you are today.</p>
+    </div>
+    <ul class="ifq reveal">
+      <li><span>01</span>Can you keep taking<br>and shipping orders?</li>
+      <li><span>02</span>Do you have contacts<br>on paper too?</li>
+      <li><span>03</span>Can you restore<br>from backups?</li>
+      <li><span>04</span>Can you explain your<br>security to partners?</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── Features ── -->
+<section class="section" id="feature">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Features</div>
+      <h2 class="section-title"><span class="nb">From testing attacks</span> <span class="nb">to fixing things on site.</span></h2>
+    </div>
+    <div class="trio reveal">
+      <div class="tcard">
+        <img src="/assets/starter/icon17_ai.png" alt="">
+        <h3>Use AI to see like an attacker</h3>
+        <p>Attackers use AI. So do we: with AI and testing tools, we map your entry points and test them.</p>
+      </div>
+      <div class="tcard">
+        <img src="/assets/drill/icon13_face2face.png" alt="">
+        <h3>Fix things together, on site</h3>
+        <p>We don't just hand over a report. Watching how you work, we fix settings, permissions and procedures with you.</p>
+      </div>
+      <div class="tcard">
+        <img src="/assets/drill/icon16_shield.png" alt="">
+        <h3>No product-first selling</h3>
+        <p>Protect yourself with settings, permissions, backups and paper procedures, and use products only where those fall short.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ── -->
+<section class="section section-alt" id="steps">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title"><span class="nb">We don't stop at a diagnosis.</span> <span class="nb">We fix, then test again.</span></h2>
+      <p class="section-sub">You can also stop after STEP 1.</p>
+    </div>
+    <div class="stages reveal">
+      <div class="stage s1">
+        <div class="st">STEP 1</div>
+        <h3>First, find your weak spots</h3>
+        <ol>
+          <li><span class="n">01</span><div><b>Reconnaissance</b><small>Map the VPN devices and web and email settings visible from outside</small></div></li>
+          <li><span class="n">02</span><div><b>Simulated attack</b><small>Test the systems you authorize in writing, and send training emails to staff</small></div></li>
+        </ol>
+        <div class="rep"><b>Report</b>What we confirmed and what we did not check. The impact on your business and a prioritized improvement plan. A quote for STEP 2.</div>
+      </div>
+      <div class="stage-mid"><svg viewBox="0 0 36 20"><path d="M2 10h30m-7-7l7 7-7 7"/></svg>Decide after<br>the report</div>
+      <div class="stage">
+        <div class="st">STEP 2</div>
+        <h3>Fix, then test again</h3>
+        <ol>
+          <li><span class="n">03</span><div><b>On-site fixes</b><small>Watching how you work, we carry out the agreed measures (settings, permissions, backups and so on) with you</small></div></li>
+          <li><span class="n">04</span><div><b>Retest</b><small>Test again the same way and record any remaining issues</small></div></li>
+        </ol>
+        <p class="after">Regular checkups and ongoing improvement support afterward are also available on request.</p>
+      </div>
+    </div>
+    <p class="stage-note reveal">What needs fixing depends on what 01 and 02 turn up, so we quote it when we deliver the report.</p>
+  </div>
+</section>
+
+<!-- ── Approach ── -->
+<section class="section" id="policy">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Approach</div>
+      <h2 class="section-title"><span class="nb">The goal is to keep</span> <span class="nb">your company running.</span></h2>
+      <p class="section-sub">An expensive product is not always the answer. In STEP 2, we look at how you work and choose a combination of measures like these.</p>
+    </div>
+    <div class="pols reveal">
+      <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>Keep less, limit access</b><p>After checking legal retention duties and business needs, clear out data you don't need to keep. Limit who can view and operate things to only those who need to.</p></div>
+      <div class="pol"><img src="/assets/starter/icon09_data.png" alt=""><b>Keep offline backups</b><p>Backups kept off the network, and a check, using data we agree on, that you can actually restore from them.</p></div>
+      <div class="pol"><img src="/assets/drill/icon_law_folder.png" alt=""><b>Work on paper if needed</b><p>Keep emergency contacts and fallback procedures for orders and shipping on paper too, and decide where the paper is kept and how it is updated.</p></div>
+      <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>Prepare your people</b><p>Based on the training email results, share with staff how to spot suspicious emails and how to report them.</p></div>
+      <div class="pol acc"><img src="/assets/drill/icon16_shield.png" alt=""><b>Only the products you need, only where needed</b><p>We start by improving operations and reviewing the settings of your existing systems. Any additional products are chosen by comparing effect, cost and operating burden (our own products are judged by the same standard).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Safety ── -->
+<section class="section section-alt" id="safety">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Safety</div>
+      <h2 class="section-title"><span class="nb">We agree in writing</span> <span class="nb">before we start.</span></h2>
+    </div>
+    <ul class="rules reveal">
+      <li>We confirm admin rights and permission, and work only within the scope agreed in writing</li>
+      <li>We decide in advance when to stop and how to roll back</li>
+      <li>Training emails never ask staff to enter real passwords or similar information</li>
+      <li>The results also state what we could not do and what we did not check</li>
+    </ul>
+    <p class="scope reveal">Not included: the cost of equipment or products, large-scale system overhauls, 24-hour monitoring, and emergency recovery after an incident.</p>
+  </div>
+</section>
+
+<!-- ── Team ── -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Team</div>
+      <h2 class="section-title"><span class="nb">These two people</span> <span class="nb">will work with you.</span></h2>
+    </div>
+    <div class="duo reveal">
+      <div class="p"><img src="/assets/brain/deck/b11e463075.jpg" alt="Shingo Takahashi" loading="lazy"><div><b>Shingo Takahashi</b><small>CEO / AI Planner</small><p>Listens to your team and decides what to fix first.</p></div></div>
+      <div class="p"><img src="/assets/brain/deck/516913d0d3.jpg" alt="Matt Chana" loading="lazy"><div><b>Matt Chana</b><small>CTO / AI Engineer</small><p>Builds the AI and the testing tools.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section section-alt" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <details><summary>Can we stop after STEP 1?</summary><p>Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company.</p></details>
+      <details><summary>Will this disrupt our work?</summary><p>We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back.</p></details>
+      <details><summary>Do you have a track record?</summary><p>We are just starting the pilot, so we have no results we can publish yet. That is why we are seeking pilot partners, limited to companies in Fukui Prefecture.</p></details>
+      <details><summary>How much does it cost?</summary><p>For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
+      <details><summary>Can companies outside Fukui Prefecture apply?</summary><p>During the pilot period, we are limiting this to companies in Fukui Prefecture.</p></details>
+      <details><summary>We are under attack right now. Can you help?</summary><p>We do not offer emergency recovery after an incident or 24-hour monitoring. Please contact the police or the IPA (Information-technology Promotion Agency, Japan) help desk first.</p></details>
+      <details><summary>Can we also ask about how we use AI internally?</summary><p>Yes. If you want to use AI without sending company information to outside AI services, see the <a href="/en/security/" style="text-decoration:underline">Local AI Pack</a>. If you want to build AI into your work, see <a href="/en/fde/" style="text-decoration:underline">AI Adoption Support (FDE)</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ── Application form ── -->
+<section class="section" id="apply">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Consultation</div>
+      <h2 class="section-title">Talk to us as a pilot partner</h2>
+      <p class="section-sub">In a 30-minute online session, we hear about what could stop your business and how ready you are today. We will not ask you to sign anything on the spot. We usually reply within 2 to 3 business days.</p>
+    </div>
+    <div class="lp-form reveal">
+      <form id="lpForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
+        <div class="hp-field" aria-hidden="true"><label>Please leave this field empty<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <input type="hidden" name="お問い合わせ種別" value="セキュリティ対策（Cyber Drill）（/en/drill/ 相談の申込）（英語版）">
+        <input type="hidden" name="お問い合わせ内容" id="lpMsg" value="">
+        <label>Company name<span class="req">Required</span></label>
+        <input type="text" name="会社名・店舗名" required>
+        <label>Your name<span class="req">Required</span></label>
+        <input type="text" name="お名前" required>
+        <label>Email<span class="req">Required</span></label>
+        <input type="email" name="メールアドレス" required>
+        <label>Phone<span class="opt">Optional</span></label>
+        <input type="tel" name="_tel" id="lpTel">
+        <label>Number of sites or offices<span class="opt">Optional</span></label>
+        <select name="_sites" id="lpSites">
+          <option value="">Please select</option>
+          <option>1 site</option><option>2 to 3 sites</option><option>4 or more sites</option><option>Not sure yet</option>
+        </select>
+        <label>Preferred time for the online session<span class="opt">Optional</span></label>
+        <input type="text" name="_when" id="lpWhen" placeholder="e.g. Weekday mornings, or Tuesday or Thursday after 3 p.m.">
+        <label>What concerns you<span class="opt">Optional</span></label>
+        <textarea name="_note" id="lpNote" placeholder="e.g. We worry our VPN device is outdated. A business partner asked about our security measures."></textarea>
+        <button type="submit" class="btn btn-primary" id="lpSubmit">Free Consultation</button>
+        <p class="lead-note">By submitting, you agree to our <a href="/en/privacy" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</p>
+      </form>
+      <div class="lead-done" id="lpDone" style="display:none">
+        <h4>We have received your request</h4>
+        <p>Thank you.<br>We will email you proposed dates based on your preferred times.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="float-cta" id="floatCta"><a href="#apply">Free Consultation →</a></div>
+
+<section class="rel" aria-label="Other services">
+  <div class="rel-in">
+    <div class="rel-k">Other services</div>
+    <ul class="rel-list">
+      <li><a href="/en/fde/"><span class="rel-kind">Put AI into your work</span><b>AI Adoption Support (FDE)</b><span class="rel-go" aria-hidden="true">→</span></a></li>
+      <li><a href="/en/security/"><span class="rel-kind">Keep data in-house</span><b>Local AI Pack</b><span class="rel-go" aria-hidden="true">→</span></a></li>
+      <li><a href="/en/starter/"><span class="rel-kind">For first-time adopters</span><b>Generative AI Starter Set</b><span class="rel-go" aria-hidden="true">→</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="/en/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
+      <p class="footer-tag">Making the meaning of the real world readable by AI.</p>
+      <p class="footer-addr">NGraph Inc.<br>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
+      <a href="/en/entry" class="footer-cta">Free consultation →</a>
+    </div>
+    <nav class="footer-nav" aria-label="Sitemap">
+      <div><h4>Services</h4><a href="/en/fde/">AI Adoption Support (FDE)</a><a href="/en/drill/">NGraph Cyber Drill</a><a href="/en/security/">Local AI Pack</a><a href="/en/starter/">Generative AI Starter Set</a></div>
+      <div><h4>Products</h4><a href="https://omiseai.com/" target="_blank" rel="noopener">OMISEAI</a><a href="https://nicomachos.com/" target="_blank" rel="noopener">Teles</a><a href="https://autowrite.jp/" target="_blank" rel="noopener">AutoWrite</a><a href="/en/company#tech">Structuring technology</a></div>
+      <div><h4>Articles &amp; free tools</h4><a href="/blog/">Blog (JA)</a><a href="/check/">Business partner check (JA)</a><a href="/tools/gyomu-kaizen/">Work Improvement Subsidy calculator (JA)</a><a href="/cases/">Company Analysis: Arche (JA)</a></div>
+      <div><h4>Company</h4><a href="/en/company">Company profile</a><a href="/en/recruit">Careers</a><a href="/en/entry">Contact</a></div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 NGraph Inc.</span>
+    <nav aria-label="Legal"><a href="/en/privacy">Privacy Policy</a><a href="/en/legal">Specified Commercial Transactions Act notice</a><a href="/">日本語</a></nav>
+  </div>
+</footer>
+
+<script>
+// ── Nav, floating CTA, reveal ──
+var hd=document.querySelector('.header');
+function onScroll(){if(window.scrollY>20)hd.classList.add('scrolled');else hd.classList.remove('scrolled');}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+var t=document.getElementById('navToggle'),n=document.getElementById('nav');
+t.addEventListener('click',function(){n.classList.toggle('open')});
+n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open')});
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){if(location.search.indexOf('noreveal')>-1){el.classList.add('in');return}io.observe(el)});
+(function(){var f=document.getElementById('floatCta');
+function tg(){var ap=document.getElementById('apply').getBoundingClientRect().top;if(window.scrollY>560&&ap>window.innerHeight*0.6)f.classList.add('show');else f.classList.remove('show');}
+window.addEventListener('scroll',tg,{passive:true});tg();})();
+
+// ── Consultation form (GAS) ──
+// GAS only uses the inquiry-content field as the body, so optional fields and the source (?src=) are combined into one body
+(function(){
+var form=document.getElementById('lpForm'),done=document.getElementById('lpDone');
+var SPAM=/(bitcoin|btc|crypto|казино|casino|viagra|cialis|loan|порно|seo\s*service|backlink|telegram|whatsapp\s*\+)/i;
+var src=(new URLSearchParams(location.search).get('src')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,40);
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  if(form.querySelector('[name="_honey"]').value){form.style.display='none';done.style.display='block';return;}
+  var note=document.getElementById('lpNote').value;
+  if((note.match(/https?:\/\//gi)||[]).length>=3||SPAM.test(note)){alert('Please review your message.');return;}
+  var lines=['[NGraph Cyber Drill] Pilot partner inquiry (English page)',
+    'Phone: '+(document.getElementById('lpTel').value||'(not provided)'),
+    'Number of sites: '+(document.getElementById('lpSites').value||'(not selected)'),
+    'Preferred time: '+(document.getElementById('lpWhen').value||'(not provided)'),
+    'Source: '+(src||'(direct)'),
+    '','Concerns:',note||'(none)'];
+  document.getElementById('lpMsg').value=lines.join('\n');
+  var btn=document.getElementById('lpSubmit');btn.disabled=true;btn.textContent='Sending...';
+  fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
+  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'drill_lp',src:src||'direct'});})
+  .catch(function(){alert('Failed to send. Please try again later.');btn.disabled=false;btn.textContent='Free Consultation';});
+});
+if(window.gtag&&src)gtag('event','drill_src',{src:src});
+})();
+</script>
+</body>
+</html>

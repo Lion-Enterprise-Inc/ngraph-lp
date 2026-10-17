@@ -51,7 +51,7 @@ function page({ title, desc, path, body, slug }) {
    Tailwind の初期化（base）より強い。層に入れないと共通CSSの *{margin:0;padding:0} が
    元の画面の余白を全部消す（2026-10-17 実測）。 */
 @layer theme, base, ngraph, components, utilities;
-@import url("/css/ngraph-zen.css?v=13") layer(ngraph);
+@import url("/css/ngraph-zen.css?v=14") layer(ngraph);
 @import url("/css/sp.css?v=3") layer(ngraph);
 </style>
 <link rel="stylesheet" href="/cases/_assets/${css}">
