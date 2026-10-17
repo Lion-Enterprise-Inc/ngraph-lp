@@ -52,6 +52,13 @@
 .price-tag .yen{font-size:1rem;font-weight:700}
 .price-tag .num{font-size:2.6rem;font-weight:900;color:var(--accent);line-height:1}
 .price-tag .unit{font-size:.9rem;color:var(--text-2)}
+.promo{max-width:900px;margin:0 auto;border:2px solid var(--accent);border-radius:6px;padding:24px 30px;background:rgba(255,255,255,.72);text-align:center}
+.promo .k{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;color:var(--accent);font-weight:700;margin-bottom:8px}
+.promo h3{font-family:var(--serif);font-size:1.32rem;font-weight:700;line-height:1.5;margin:0}
+.promo h3 .big{color:var(--accent);font-size:1.7rem;font-weight:900}
+.promo h3 .was{font-size:.86rem;color:var(--text-3);font-weight:400;text-decoration:line-through;margin-left:6px}
+.promo p{font-size:.86rem;color:var(--text-2);line-height:1.9;margin-top:10px}
+@media(max-width:768px){.promo{padding:20px 18px}.promo h3{font-size:1.1rem}.promo h3 .big{font-size:1.4rem}}
 @media(max-width:900px){
   .hero{padding:124px 0 60px}
   .hero .hero-grid{grid-template-columns:1fr;gap:20px}
@@ -190,7 +197,8 @@
       <p class="lead"><span class="nb">攻撃者が最初に見るのは、</span><span class="nb">御社の公開情報です。</span><span class="nb">そこに弱点が無いか、</span><span class="nb">公開情報の範囲だけで確かめ、</span><span class="nb">1本のレポートにしてお渡しします。</span></p>
       <div class="price-tag"><span class="yen">¥</span><span class="num">30,000</span><span class="unit">〜（税抜）／ 診断・訓練・セット</span></div>
       <div class="hero-chips">
-        <span class="acc">福井県内の企業向け</span>
+        <span class="acc">先行10社：1万円</span>
+        <span>福井県内の企業向け</span>
         <span>能動的な攻撃なし</span>
       </div>
       <div class="hero-cta" style="margin-top:22px">
@@ -200,6 +208,17 @@
     </div>
     <div class="hero-visual" aria-hidden="true">
       <img src="/assets/drill/dome.webp" alt="" width="1200" height="800">
+    </div>
+  </div>
+</section>
+
+<!-- ── 先行オファー ── -->
+<section class="section" style="padding:44px 0 0">
+  <div class="container">
+    <div class="promo reveal">
+      <div class="k">実証パートナー募集 ・ 先行10社さま限定</div>
+      <h3>公開情報診断を、<span class="big">1万円</span><span class="was">通常30,000円</span></h3>
+      <p>NGraph の実証パートナーとして、事例づくりにご協力いただく代わりの特別価格です。<br>先行10社さまに達し次第、通常価格に戻します。（フィッシング訓練・セットのご相談も承ります）</p>
     </div>
   </div>
 </section>
@@ -407,6 +426,7 @@
         <label>希望コース<span class="opt2">任意・あとで相談でもOK</span></label>
         <select name="_course" id="lpCourse">
           <option value="">選んでください</option>
+          <option>先行10社・実証パートナー：公開情報診断（1万円）</option>
           <option>A：公開情報診断（3万円）</option>
           <option>B：フィッシング訓練（3万円）</option>
           <option>A＋Bセット（5万円）</option>
