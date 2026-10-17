@@ -45,7 +45,7 @@ function page({ title, desc, path, body, slug }) {
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Geist+Mono&family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* ngraph.jp 共通CSSは「ngraph」層に入れる。元のアルケーの部品（utilities）より弱く、
    Tailwind の初期化（base）より強い。層に入れないと共通CSSの *{margin:0;padding:0} が
@@ -94,7 +94,7 @@ for (const slug of slugs) {
 // 元ソースの指紋を残す（scripts/arche_check.py が「複写を直したのに作り直していない」を止める）
 const h = createHash("sha256");
 // 改行は LF に揃えてから数える（git の autocrlf で CRLF に戻っても指紋が変わらないように）
-for (const f of readdirSync("src/orig").sort()) h.update(f).update(readFileSync(`src/orig/${f}`, "utf-8").replace(/\r\n/g, "\n"));
+for (const f of readdirSync("src/cases").sort()) h.update(f).update(readFileSync(`src/cases/${f}`, "utf-8").replace(/\r\n/g, "\n"));
 writeFileSync(`${OUT}/_assets/build.json`, JSON.stringify({ orig_sha256: h.digest("hex"), pages: slugs.length }, null, 1));
 
 // sitemap.xml の cases 区画を作り直す

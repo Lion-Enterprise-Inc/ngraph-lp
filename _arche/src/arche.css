@@ -3,7 +3,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -49,73 +48,36 @@
 }
 
 .arche-page {
-  --background: #e8e9ed;
-  --foreground: #1a1a2e;
-  --card: #f0f1f4;
-  --card-foreground: #1a1a2e;
-  --popover: #f7f7f9;
-  --popover-foreground: #1a1a2e;
-  --primary: #4f46e5;
-  --primary-foreground: #ffffff;
-  --secondary: #eef0f2;
-  --secondary-foreground: #2d2d3d;
-  --muted: #eaebef;
-  --muted-foreground: #5a5a6a;
-  --accent: #eceef5;
-  --accent-foreground: #2d2d4a;
-  --destructive: #e11d48;
-  --border: #d5d7de;
-  --input: #d5d7de;
-  --ring: #4f46e5;
-  --chart-1: #4f46e5;
-  --chart-2: #7c3aed;
-  --chart-3: #06b6d4;
-  --chart-4: #f59e0b;
-  --chart-5: #ec4899;
-  --radius: 0.75rem;
-  --sidebar: #eff0f3;
-  --sidebar-foreground: #1a1a2e;
-  --sidebar-primary: #4f46e5;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eceef5;
-  --sidebar-accent-foreground: #2d2d4a;
-  --sidebar-border: #d5d7de;
-  --sidebar-ring: #4f46e5;
+  /* ngraph.jp の色（和紙・墨・朱）に合わせる。2026-10-17 本人「カラーも含めてブラッシュアップ」 */
+  --background: #f6f2e9;
+  --foreground: #2b2620;
+  --card: #fffdf8;
+  --card-foreground: #2b2620;
+  --popover: #fffdf8;
+  --popover-foreground: #2b2620;
+  --primary: #a63a24;
+  --primary-foreground: #fdfaf4;
+  --secondary: #efe9dc;
+  --secondary-foreground: #2b2620;
+  --muted: #efe9dc;
+  --muted-foreground: #5d564b;
+  --accent: #efe9dc;
+  --accent-foreground: #2b2620;
+  --destructive: #a63a24;
+  --border: #ddd5c7;
+  --input: #ddd5c7;
+  --ring: #a63a24;
+  --radius: 0.625rem;
+  /* 点数の色（卓越・中庸・脆弱・逸脱）。WCAG AA を和紙の上で満たす濃さ */
+  --c-ex: #2e6e4e;
+  --c-mean: #30557e;
+  --c-weak: #8a6212;
+  --c-fail: #a63a24;
+  --c-society: #5b4a7a;
+  --c-customer: #2f6f7a;
 }
 
-.dark {
-  --background: oklch(0.185 0.005 260);
-  --foreground: oklch(0.93 0 0);
-  --card: oklch(0.22 0.005 260);
-  --card-foreground: oklch(0.93 0 0);
-  --popover: oklch(0.22 0.005 260);
-  --popover-foreground: oklch(0.93 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+
 
 @layer base {
   .arche-page * {
@@ -136,13 +98,14 @@
 
 /* ngraph.jp の中での置き方 */
 .arche-page {
-  --font-sans: "Noto Sans JP", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
+  --font-sans: "Zen Kaku Gothic New", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Yu Gothic UI", Meiryo, sans-serif;
   --font-geist-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   font-family: var(--font-sans);
-  line-height: 1.5;
+  line-height: 1.6;
+  --font-serif: "Zen Old Mincho", "Noto Serif JP", serif;
   /* ngraph.jp の body（auto-phrase・anywhere・pretty）を元の画面の既定に戻す。
      anywhere のままだと表の年・点数が1文字ずつ縦に割れる（2026-10-17 実測） */
-  word-break: normal;
+  word-break: auto-phrase;
   overflow-wrap: normal;
   text-wrap: wrap;
   padding-top: 64px;           /* ngraph.jp の固定ヘッダー */
@@ -152,3 +115,20 @@
 .arche-page .sticky.top-14 { top: 64px; }
 /* 企業の詳細（スライダー）は ngraph.jp のヘッダー（z-index:100）より上に出す。元の画面でもヘッダーの上に重なる */
 .arche-page .fixed.inset-0 { z-index: 200; }
+
+/* 見出しと本文（ngraph.jp の紙面に合わせる・2026-10-17） */
+.arche-page .k-h {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  border-left: 3px solid var(--primary);
+  padding-left: 10px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+.arche-page .k-body { font-size: 15px; line-height: 1.9; }
+@media (min-width: 640px) { .arche-page .k-body { font-size: 15.5px; } }

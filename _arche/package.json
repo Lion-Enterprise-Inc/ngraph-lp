@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sync": "node sync.mjs",
+    
     "build": "node build.mjs"
   },
   "dependencies": {

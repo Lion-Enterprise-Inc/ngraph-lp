@@ -1,6 +1,6 @@
-import CasesPage from "./orig/cases-page";
-import { CaseDetailView } from "./orig/case-detail-view";
-import { findCaseBySlug } from "./orig/case-studies-data";
+import CasesPage from "./cases/cases-page";
+import { CaseDetailView } from "./cases/case-detail-view";
+import { findCaseBySlug } from "./cases/case-studies-data";
 
 export type PageProps = { kind: "list" } | { kind: "detail"; slug: string };
 

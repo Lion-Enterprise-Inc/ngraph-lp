@@ -98,7 +98,7 @@ export function JudgmentFoundation({ locale = "ja", defaultOpen = false }: Judgm
         aria-expanded={open}
       >
         <div className="min-w-0">
-          <p className="text-[11px] font-bold text-primary uppercase tracking-widest">{title}</p>
+          <p className="text-xs font-bold text-primary uppercase tracking-widest">{title}</p>
           <p className="text-xs text-muted-foreground mt-0.5 truncate">{hint}</p>
         </div>
         <ChevronDown
@@ -121,7 +121,7 @@ export function JudgmentFoundation({ locale = "ja", defaultOpen = false }: Judgm
                   <span className="text-sm font-bold">
                     {locale === "en" ? p.term_en : p.term_ja}
                   </span>
-                  <span className="text-[11px] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     {locale === "en" ? p.short_en : p.short_ja}
                   </span>
                 </div>

@@ -1,6 +1,6 @@
 import { renderToString } from "react-dom/server";
 import { App, type PageProps } from "./app";
-import { CASE_STUDIES, slugifyCase, findCaseBySlug, getCombinedScore } from "./orig/case-studies-data";
+import { CASE_STUDIES, slugifyCase, findCaseBySlug, getCombinedScore } from "./cases/case-studies-data";
 
 export function render(props: PageProps): string {
   return renderToString(<App {...props} />);
