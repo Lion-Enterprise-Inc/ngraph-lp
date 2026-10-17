@@ -19,7 +19,7 @@
 <meta property="og:title" content="公開情報セキュリティ診断 3万円 — まず入口だけ点検します | NGraph">
 <meta property="og:description" content="外から見える入口だけを公開情報の範囲で点検し、1本のレポートに。3万円・約1週間・能動的な攻撃なし。福井県内の企業向け。">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ngraph.jp/drill/bbr/">
+<meta property="og:url" content="https://ngraph.jp/drill/partner/">
 <meta property="og:site_name" content="株式会社NGraph">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:image" content="https://ngraph.jp/assets/ogp.jpg">
@@ -32,7 +32,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=14">
 <style>
-/* ── /drill/bbr/ 入口版（/drill/ と共通の型を流用） ── */
+/* ── /drill/partner/ 入口版（/drill/ と共通の型を流用） ── */
 .lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.75rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge img{width:26px;height:19px;object-fit:contain}
 .lp-badge .kana{font-family:var(--sans);font-size:.68rem;letter-spacing:.08em;color:var(--text-3);font-weight:500;padding-left:10px;margin-left:2px;border-left:1px solid var(--border-strong)}
@@ -369,7 +369,7 @@
       <p class="section-sub">入口版だけで終えてもかまいません。</p>
     </div>
     <div class="opts reveal">
-      <div class="opt"><b>本格調査（STEP2）</b><p>書面で許可をいただいたうえで、システムへの疑似攻撃まで含めて検証します。内容はレポートを見てお見積りします。</p></div>
+      <div class="opt"><b>より深い検証（本格調査）</b><p>公開情報だけでなく、攻撃者が使う最新のAI（ローカルLLMを含む）と検証ツールを使い、書面で許可をいただいた範囲で「実際にどこまで侵入できるか」を試します。内容はレポートを見てお見積りします。</p></div>
       <div class="opt"><b>継続の見守り・改善支援</b><p>定期的な点検と、見つかった点を一緒に直していく支援。ご希望の方に。</p></div>
     </div>
   </div>
@@ -418,7 +418,7 @@
     <div class="lp-form reveal">
       <form id="lpForm" action="https://script.google.com/macros/s/AKfycbwapQO_yL3jQ4CmxaaLsZwiXsI3GR-dbgDiGmYEs_HGsbWeuZ7okov9jxGSS5J9bfit/exec" method="POST">
         <div class="hp-field" aria-hidden="true"><label>こちらは記入しないでください<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
-        <input type="hidden" name="お問い合わせ種別" value="Cyber Drill 入口版（/drill/bbr/ 申込）">
+        <input type="hidden" name="お問い合わせ種別" value="Cyber Drill 入口版（/drill/partner/ 申込）">
         <input type="hidden" name="お問い合わせ内容" id="lpMsg" value="">
         <label>会社名<span class="req">必須</span></label>
         <input type="text" name="会社名・店舗名" required>
@@ -493,7 +493,7 @@ window.addEventListener('scroll',tg,{passive:true});tg();})();
 (function(){
 var form=document.getElementById('lpForm'),done=document.getElementById('lpDone');
 var SPAM=/(bitcoin|btc|crypto|казино|casino|viagra|cialis|loan|порно|seo\s*service|backlink|telegram|whatsapp\s*\+)/i;
-var src=(new URLSearchParams(location.search).get('src')||'bbr').replace(/[^a-z0-9_-]/gi,'').slice(0,40);
+var src=(new URLSearchParams(location.search).get('src')||'partner').replace(/[^a-z0-9_-]/gi,'').slice(0,40);
 form.addEventListener('submit',function(e){
   e.preventDefault();
   if(form.querySelector('[name="_honey"]').value){form.style.display='none';done.style.display='block';return;}
@@ -508,7 +508,7 @@ form.addEventListener('submit',function(e){
   document.getElementById('lpMsg').value=lines.join('\n');
   var btn=document.getElementById('lpSubmit');btn.disabled=true;btn.textContent='送信中...';
   fetch(form.action,{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(form))})
-  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'drill_bbr',src:src||'bbr'});})
+  .then(function(){form.style.display='none';done.style.display='block';if(window.gtag)gtag('event','generate_lead',{form:'drill_partner',src:src||'partner'});})
   .catch(function(){alert('送信に失敗しました。時間をおいて再度お試しください。');btn.disabled=false;btn.textContent='この内容で申し込む';});
 });
 })();
