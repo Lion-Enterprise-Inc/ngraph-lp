@@ -288,6 +288,11 @@
   .hero .hero-visual{max-width:460px;margin:0 auto}
   .hero .hero-visual img{max-height:380px}
 }
+/* STEP 01 から企業の構造分析（/cases/）へ（2026-10-18 本人「1・2・5を入れて」） */
+.fde-step-link{margin-top:6px;font-size:.8rem;font-weight:700;color:var(--accent);border-bottom:1px solid rgba(166,58,36,.35);line-height:1.6}
+.fde-step-link:hover{border-bottom-color:var(--accent)}
+/* スマホではSTEPがアイコン｜文字の2列になる（sp.css 640px）。リンクは文字の列の下に置く */
+@media(max-width:640px){.fg-fde .fde-steps li .fde-step-link{grid-column:2;justify-self:start;margin-top:4px}}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -363,6 +368,7 @@
           <span class="step">STEP 01</span>
           <strong>現場に入る</strong>
           <p><span class="nb">業務・判断・例外・</span><span class="nb">使っているデータを見る</span></p>
+          <a class="fde-step-link" href="/cases/"><span class="nb">企業を構造で見る例：</span><span class="nb">アルケー →</span></a>
         </li>
         <li>
           <div class="fg-ic fd-ill"><img src="/assets/brain/ill/icons/icon03_seihon.png" alt="" loading="lazy"></div>
@@ -837,7 +843,7 @@
     <nav class="footer-nav" aria-label="サイトマップ">
       <div><h4>サービス</h4><a href="/fde/">AI導入支援（FDE）</a><a href="/drill/">NGraph Cyber Drill</a><a href="/security/">ローカルAI Pack</a><a href="/starter/">生成AI導入 初期セット</a></div>
       <div><h4>プロダクト</h4><a href="https://omiseai.com/" target="_blank" rel="noopener">OMISEAI</a><a href="https://nicomachos.com/" target="_blank" rel="noopener">Teles</a><a href="https://autowrite.jp/" target="_blank" rel="noopener">AutoWrite</a><a href="/company#tech">構造化技術</a></div>
-      <div><h4>記事・無料ツール</h4><a href="/blog/">ブログ</a><a href="/check/">取引先チェック</a><a href="/tools/gyomu-kaizen/">業務改善助成金の計算機</a></div>
+      <div><h4>記事・無料ツール</h4><a href="/blog/">ブログ</a><a href="/check/">取引先チェック</a><a href="/tools/gyomu-kaizen/">業務改善助成金の計算機</a><a href="/cases/">企業の構造分析（アルケー）</a></div>
       <div><h4>会社</h4><a href="/company">会社概要</a><a href="/recruit">採用</a><a href="/entry">お問い合わせ</a></div>
     </nav>
   </div>

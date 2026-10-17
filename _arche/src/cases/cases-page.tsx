@@ -12,6 +12,7 @@ import { useLocale } from "@/lib/i18n/context";
 import { CASE_STUDIES, SURVIVAL_LINE, EXCELLENT_LINE, getCombinedScore, getBonus, matchesFilter, getAgeBadge, getCanonicalCases, getEraGroupCases } from "@/lib/case-studies-data";
 import type { CaseStudy, CaseScore, CaseReasons } from "@/lib/case-studies-data";
 import { countryName } from "./country";
+import { NgraphCta } from "./ngraph-cta";
 
 /** Select English text when available and locale is 'en', otherwise fall back to Japanese. */
 function pickLocalized(ja: string | undefined, en: string | undefined, locale: string): string {
@@ -1476,7 +1477,7 @@ export default function CasesPage() {
 
         <JudgmentFoundation locale={locale} />
 
-        <CrossNav current="/cases" />
+        <div className="mt-10"><NgraphCta /></div>
       </div>
 
       {/* スライダーモーダル */}

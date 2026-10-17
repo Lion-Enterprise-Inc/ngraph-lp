@@ -8,6 +8,7 @@ import { EXCELLENT_LINE, SURVIVAL_LINE, getAgeBadge, getBonus, getCombinedScore 
 import type { CaseStudy } from "@/lib/case-studies-data";
 import { useLocale } from "@/lib/i18n/context";
 import { countryName } from "./country";
+import { NgraphCta } from "./ngraph-cta";
 
 const TIER_LABEL_I18N: Record<string, { ja: string; en: string }> = {
   startup: { ja: "スタートアップ", en: "Startup" },
@@ -285,7 +286,7 @@ export function CaseDetailView({ c }: { c: CaseStudy }) {
         </Link>
       </section>
 
-      <CrossNav current="/cases" />
+      <div className="mt-10"><NgraphCta /></div>
     </div>
   );
 }
