@@ -168,6 +168,7 @@ const SCORE_SHORT: Record<string, { ja: string; en: string }> = {
   insight: { ja: "洞察", en: "Insight" },
 };
 
+// 12項目の色はテレス（nicomachos.com）と同じ明るい色に合わせる（2026-10-19 本人「テレスの方のカラーの方が可愛い」）
 function ScoreGrid({ scores, reasons, locale }: {
   scores: CaseScore;
   reasons: CaseStudy["reasons"];
@@ -183,28 +184,28 @@ function ScoreGrid({ scores, reasons, locale }: {
       {(strong.length > 0 || weak.length > 0) && (
         <div className="mb-4 grid gap-1 text-sm sm:grid-cols-2">
           {strong.length > 0 && (
-            <p><span className="mr-2 font-bold text-(--c-ex)">{ja ? "強み" : "Strengths"}</span>{strong.map(name).join(ja ? "・" : ", ")}</p>
+            <p><span className="mr-2 font-bold text-emerald-700">{ja ? "強み" : "Strengths"}</span>{strong.map(name).join(ja ? "・" : ", ")}</p>
           )}
           {weak.length > 0 && (
-            <p><span className="mr-2 font-bold text-(--c-weak)">{ja ? "弱み" : "Weaknesses"}</span>{weak.map(name).join(ja ? "・" : ", ")}</p>
+            <p><span className="mr-2 font-bold text-amber-700">{ja ? "弱み" : "Weaknesses"}</span>{weak.map(name).join(ja ? "・" : ", ")}</p>
           )}
         </div>
       )}
       <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
         {RADAR_KEYS.map((key, i) => {
           const val = scores[key];
-          const edge = val >= 5 ? "border-(--c-ex)" : val <= 2 ? "border-(--c-weak)" : "border-border";
+          const edge = val >= 5 ? "border-emerald-500" : val <= 2 ? "border-amber-500" : "border-border";
           return (
             <div key={key} className={`border-l-2 pl-3 ${edge}`}>
               <div className="flex items-baseline gap-1.5">
-                <span className="w-3.5 shrink-0 text-xs font-bold text-primary">{RADAR_LETTERS[i]}</span>
+                <span className="w-3.5 shrink-0 text-xs font-bold text-indigo-600/70">{RADAR_LETTERS[i]}</span>
                 <span className="text-sm font-bold text-foreground">{L(key)}</span>
                 <span className="ml-auto text-sm font-bold tabular-nums text-foreground">
                   {val}<span className="text-xs font-normal text-foreground/40">/5</span>
                 </span>
               </div>
-              <div className="mt-1 h-2 rounded-full bg-muted">
-                <div className={`h-2 rounded-full ${val >= 4 ? "bg-(--c-ex)" : val >= 3 ? "bg-(--c-mean)" : val >= 2 ? "bg-(--c-weak)" : "bg-(--c-fail)"}`} style={{ width: `${(val / 5) * 100}%` }} />
+              <div className="mt-1 h-2 rounded-full bg-slate-200/70">
+                <div className={`h-2 rounded-full ${val >= 4 ? "bg-emerald-500" : val >= 3 ? "bg-blue-500" : val >= 2 ? "bg-amber-500" : "bg-red-500"}`} style={{ width: `${(val / 5) * 100}%` }} />
               </div>
               <p className="mt-1.5 text-sm leading-[1.75] text-muted-foreground">{reasons[key]}</p>
             </div>
