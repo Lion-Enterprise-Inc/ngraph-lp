@@ -298,6 +298,19 @@
 .flow4-note{text-align:center;font-size:.9rem;color:var(--text-2);margin-top:26px}
 @media(max-width:900px){.flow4{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.flow4{grid-template-columns:1fr}}
+/* 型として戻す（2026-10-18） */
+.loop{max-width:980px;margin:0 auto}
+.loop-row{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:14px}
+.loop-row li{background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:22px 20px;text-align:center}
+.loop-row li.hi{border:2px solid var(--accent);background:#fff}
+.loop-row li.arr{background:none;border:none;padding:0;display:flex;align-items:center;color:var(--accent);font-size:1.3rem}
+.loop-n{display:block;font-family:var(--serif);font-size:.7rem;letter-spacing:.22em;color:var(--accent);font-weight:700}
+.loop-row b{display:block;font-family:var(--serif);font-size:1.08rem;font-weight:700;margin:8px 0 8px;line-height:1.5}
+.loop-row small{display:block;font-size:.8rem;color:var(--text-2);line-height:1.8}
+.loop-back{position:relative;margin:18px 16% 0;border:1.5px dashed var(--accent);border-top:none;height:34px;border-radius:0 0 10px 10px}
+.loop-back::before{content:"";position:absolute;left:-6px;top:-2px;border:6px solid transparent;border-bottom:9px solid var(--accent);border-top:none}
+.loop-back span{position:absolute;left:50%;bottom:-11px;transform:translateX(-50%);background:var(--bg);padding:0 12px;font-size:.78rem;color:var(--accent);font-weight:700;white-space:nowrap}
+@media(max-width:820px){.loop-row{grid-template-columns:1fr}.loop-row li.arr{justify-content:center;transform:rotate(90deg);height:22px}.loop-back{margin:16px 0 0;border:none;height:auto;text-align:center}.loop-back::before{display:none}.loop-back span{position:static;transform:none;background:none;padding:0}.loop-back span::before{content:"↺ "}}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -382,6 +395,27 @@
       <div class="fde-return"><span><span class="nb">決定・手順・教訓を記録に戻し、</span><span class="nb">次の業務へ広げる</span></span></div>
     </div>
     <!-- /fig -->
+  </div>
+</section>
+
+<!-- ── 型として戻す（2026-10-18） ── -->
+<section class="section loop-sec" id="loop">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-label">Our Loop</div>
+      <h2 class="section-title"><span class="nb">現場で作ったものは、</span><span class="nb">型として戻す。</span></h2>
+      <p class="section-sub">1社で整えた記録の構造と手順は、NGraphの型になり、次の会社ではより速く始められます。</p>
+    </div>
+    <div class="loop reveal">
+      <ol class="loop-row">
+        <li><span class="loop-n">01</span><b>御社の現場で作る</b><small>業務に合わせて、AIと記録を組む</small></li>
+        <li class="arr" aria-hidden="true">→</li>
+        <li class="hi"><span class="loop-n">02</span><b>型に戻す</b><small>ABC整理×状態整理・会社の脳の構造・手順</small></li>
+        <li class="arr" aria-hidden="true">→</li>
+        <li><span class="loop-n">03</span><b>次の会社で速く始める</b><small>同じ型の上に、その会社の業務を足す</small></li>
+      </ol>
+      <div class="loop-back"><span>使うほど、型が育つ</span></div>
+    </div>
   </div>
 </section>
 
