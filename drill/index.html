@@ -32,7 +32,7 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/ngraph-zen.css?v=14">
 <script type="application/ld+json">
 {
@@ -78,10 +78,11 @@
 .lp-badge .nm{white-space:nowrap}
 @media(max-width:768px){.hero .lp-badge{flex-wrap:wrap;justify-content:center;row-gap:3px;border-radius:16px;padding:8px 18px}.lp-badge .kana{flex-basis:100%;text-align:center;border-left:none;padding-left:0;margin-left:0;font-size:.64rem}}
 .hero{padding:150px 0 100px}
-.hero .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
-.hero .hero-copy{max-width:640px}
-.hero .hero-visual{position:relative;top:auto;right:auto;left:auto;width:100%;height:auto;margin:0;opacity:1;display:flex;justify-content:center;align-items:center;transform:none}
-.hero .hero-visual img{-webkit-mask-image:none;mask-image:none;width:100%;height:auto;max-height:520px;object-fit:contain;object-position:center}
+.hero .hero-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:24px;align-items:center;position:relative}
+.hero .hero-copy{max-width:640px;position:relative;z-index:2}
+.hero .hero-tagline{white-space:nowrap}
+.hero .hero-visual{position:relative;top:auto;right:auto;left:auto;width:100%;height:auto;margin:0 -7% 0 -4%;opacity:1;display:flex;justify-content:center;align-items:center;transform:none;overflow:visible;z-index:1}
+.hero .hero-visual img{-webkit-mask-image:none;mask-image:none;width:100%;height:auto;max-height:720px;object-fit:contain;object-position:center}
 .hero-sub{font-family:var(--serif);font-size:.9rem;letter-spacing:.12em;color:var(--text-2);margin-bottom:10px}
 .hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .hero-chips span{font-family:var(--serif);font-size:.86rem;font-weight:700;letter-spacing:.06em;border:1px solid var(--text);border-radius:3px;padding:9px 16px;background:rgba(255,255,255,.5)}
@@ -221,6 +222,34 @@
   .faq-list details p{font-size:.84rem;line-height:1.8}
   .float-cta a{font-size:.82rem}
 }
+
+/* ==== Cyber Drill ダークヒーロー（A: dark hero + light body・2026-10-18）==== */
+.header:not(.scrolled){background:#f4efe6;box-shadow:0 1px 0 rgba(20,40,70,.05)}
+.hero{position:relative;overflow:hidden;color:#eaf6ff;
+ background:radial-gradient(1200px 700px at 80% 45%,rgba(54,230,255,.14),transparent 60%),radial-gradient(900px 560px at 12% 16%,rgba(120,60,255,.18),transparent 60%),linear-gradient(160deg,#070b16 0%,#0b1226 46%,#140b2a 100%)}
+.hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background-image:linear-gradient(rgba(54,230,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(54,230,255,.06) 1px,transparent 1px);background-size:46px 46px;
+ -webkit-mask-image:radial-gradient(900px 600px at 72% 52%,#000,transparent 75%);mask-image:radial-gradient(900px 600px at 72% 52%,#000,transparent 75%)}
+.hero .container{position:relative;z-index:3}
+.hero .hud{position:absolute;top:94px;left:0;right:0;z-index:4;display:flex;justify-content:space-between;padding:0 clamp(20px,5vw,52px);
+ font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.12em;color:#7f9bb5}
+.hero .hud b{color:#36e6ff;font-weight:700}
+.hero .lp-badge{font-family:"JetBrains Mono",ui-monospace,monospace;color:#7af1ff;border-color:rgba(54,230,255,.4);background:rgba(54,230,255,.06);box-shadow:inset 0 0 18px rgba(54,230,255,.14),0 0 12px rgba(54,230,255,.08)}
+.hero .lp-badge img{filter:brightness(0) invert(1);opacity:.85}
+.hero .lp-badge .kana{color:#8aa6c0;border-left-color:rgba(54,230,255,.3)}
+.hero .hero-sub{font-family:"JetBrains Mono",ui-monospace,monospace;color:#7af1ff;opacity:.9}
+.hero .hero-sub::before{content:"> ";color:#36e6ff}
+.hero .hero-tagline{color:#fff;text-shadow:0 0 22px rgba(54,230,255,.4),0 0 2px rgba(54,230,255,.7)}
+.hero .hero-tagline .hl{color:#ff5566;text-shadow:0 0 26px rgba(255,77,94,.6),0 0 2px rgba(255,77,94,.9)}
+.hero .hero-chips span{border-color:rgba(138,166,192,.45);color:#eaf6ff;background:rgba(255,255,255,.03)}
+.hero .hero-chips span.acc{border-color:#36e6ff;color:#7af1ff;box-shadow:0 0 16px rgba(54,230,255,.2)}
+.hero .hero-cta .btn{background:linear-gradient(180deg,#ff5b6b,#d6293c);border:1px solid rgba(255,150,160,.5);color:#fff;box-shadow:0 0 28px rgba(255,77,94,.4),0 8px 26px rgba(214,41,60,.3)}
+.hero .hero-note{font-family:"JetBrains Mono",ui-monospace,monospace;color:#8aa6c0}
+.hero .hero-note::before{content:"// "}
+.hero .hero-visual img{filter:invert(1) hue-rotate(160deg) saturate(1.45) brightness(1.12) drop-shadow(0 0 30px rgba(54,230,255,.32))}
+@media(max-width:768px){.hero .hud{top:70px;font-size:.6rem}}
+@media(max-width:768px){.hero .hero-tagline{white-space:normal}}
+
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -244,6 +273,7 @@
 
 <!-- ── Hero ── -->
 <section class="hero">
+  <div class="hud"><span><b>NGraph</b> // Cyber Drill</span><span>SEC.RECON — v1</span></div>
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span><small class="kana">エヌグラフ サイバードリル</small></span>
@@ -313,8 +343,8 @@
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">進め方</div>
-      <h2 class="section-title"><span class="nb">診断で終わらせない。</span><span class="nb">直して、もう一度試す。</span></h2>
-      <p class="section-sub">STEP1だけで終えることもできます。</p>
+      <h2 class="section-title"><span class="nb">まず、外から</span><span class="nb">御社の弱点を知る。</span></h2>
+      <p class="section-sub"><span class="nb">見つけて終わりにはしません。</span><span class="nb">必要なら直して、もう一度試します。</span><span class="nb">STEP1だけで終えることもできます。</span></p>
     </div>
     <div class="stages reveal">
       <div class="stage s1">
