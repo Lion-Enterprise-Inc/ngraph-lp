@@ -706,70 +706,62 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  var DOOR={p:[[337,387],[354,396],[354,439],[337,430]],o:0,goal:0};
  var COPY={p:[[487.5,462.5],[498.75,458.75],[509.4,464.4],[498.75,469.4]],f:0};
  var SH={bl:[652,381],br:[732,422],h:0,goal:0};
- var K=1.6; /* 人の大きさ（絵の人物は身長およそ60px） */
+ /* 人物の絵：/assets/drill/people.webp（1コマ64x140・足元 y=133・腰 y=86）。行＝人ごとに [歩く手前向き, 歩く奥向き, その他]、最後の2行は箱を運ぶ人
+    その他の列：0 立つ手前 1 立つ奥 2 座る手前 3 座る奥 4 座って話す 5 手を伸ばす。手前向き＝右下、奥向き＝左上へ向く（反対は左右反転） */
+ var SPR=new Image();SPR.src='/assets/drill/people.webp';
+ var FW=64,FH=140,U=60/124; /* 絵の人物は身長およそ60px（画像座標） */
  /* 人。seat があれば会議の席。face: f=手前向き b=後ろ向き l=左向き */
- function P(o){o.x=o.x||(o.seat?o.seat[0]:o.path[0][0]);o.y=o.y||(o.seat?o.seat[1]:o.path[0][1]);o.ph=R(0,6);o.a=1;o.mode=o.seat?'sit':'walk';o.i=0;o.w=0;o.dir=1;o.back=false;return o;}
- var M1=P({seat:[371,489],face:'f',col:'#262b33',shirt:'#e9edf2',hair:'#1c1712',room:OFFICE,
+ function P(o){o.x=o.x||(o.seat?o.seat[0]:o.path[0][0]);o.y=o.y||(o.seat?o.seat[1]:o.path[0][1]);o.ph=R(0,6);o.a=1;o.mode=o.seat?'sit':'walk';o.i=0;o.w=0;o.dir=1;o.back=false;o.mv=0;return o;}
+ var M1=P({ci:0,seat:[371,489],sit:[2,0],room:OFFICE,
    trip:[[380,473],[372,458],[367,451]],act:'door'});
- var M2=P({seat:[441,509],face:'l',col:'#eef0f3',shirt:'#eef0f3',hair:'#2a1d16',long:1,room:OFFICE,
+ var M2=P({ci:1,seat:[441,509],sit:[2,1],room:OFFICE,
    trip:[[449,500],[467,497]],act:'copy'});
- var M3=P({seat:[361,514],face:'b',col:'#2f3540',shirt:'#2f3540',hair:'#3b3631',room:OFFICE,
+ var M3=P({ci:2,seat:[361,514],sit:[3,1],room:OFFICE,
    trip:[[348,521],[331,503],[318,489]],act:'desk',desk:[300,477]});
- var W1=P({path:[[630,477,35],[603,510,0],[667,500,30],[650,470,0],[650,450,0],[664,420,0],[672,397,-1],[664,420,0],[650,450,0],[630,477,0]],col:'#3d6b8f',shirt:'#3d6b8f',hair:'#3a2a1c',room:WARE});
- var W2=P({path:[[620,446,25,'pick'],[606,466,0],[590,488,30,'drop'],[606,466,0]],col:'#5b7a3a',shirt:'#5b7a3a',hair:'#20180f',room:WARE});
+ var W1=P({ci:3,path:[[630,477,35],[603,510,0],[667,500,30],[650,470,0],[650,450,0],[664,420,0],[672,397,-1],[664,420,0],[650,450,0],[630,477,0]],room:WARE});
+ var W2=P({ci:4,path:[[620,446,25,'pick'],[606,466,0],[590,488,30,'drop'],[606,466,0]],room:WARE});
  var DBG=/[?&]pdebug/.test(location.search),MEET=[M1,M2,M3],ALL=[M1,M2,M3,W1,W2],away=null,nextTrip=DBG?20:R(150,260);
  /* 会議の人：sit → up → go（trip を進む）→ act → back（trip を戻る）→ down → sit */
  function moveTo(o,t,sp){var dx=t[0]-o.x,dy=t[1]-o.y,d=Math.hypot(dx,dy);if(d<=sp){o.x=t[0];o.y=t[1];return true;}
-  o.x+=dx/d*sp;o.y+=dy/d*sp;o.ph+=0.3;if(Math.abs(dx)>0.05)o.dir=dx>0?1:-1;o.back=dy<-0.15*Math.abs(dx)-0.05;return false;}
+  o.x+=dx/d*sp;o.y+=dy/d*sp;o.ph+=0.21;o.mv=2;if(Math.abs(dx)>0.05)o.dir=dx>0?1:-1;if(Math.abs(dy)>0.05)o.back=dy<0;return false;}
  function stepMeet(o){
   if(o.mode==='sit')return;
   if(o.mode==='up'){if(--o.w<=0){o.mode='go';o.i=1;}return;}
-  if(o.mode==='go'){if(moveTo(o,o.trip[o.i],0.62)){if(++o.i>=o.trip.length){o.mode='act';o.w=0;}}return;}
+  if(o.mode==='go'){if(moveTo(o,o.trip[o.i],1.0)){if(++o.i>=o.trip.length){o.mode='act';o.w=0;}}return;}
   if(o.mode==='act'){o.w++;
-   if(o.act==='door'){if(o.w===1)DOOR.goal=1;if(o.w>14&&o.w<26)o.a=Math.max(0,o.a-0.09);if(o.w===26)DOOR.goal=0;if(o.w===120){DOOR.goal=1;}if(o.w>132&&o.w<146)o.a=Math.min(1,o.a+0.09);if(o.w===150)DOOR.goal=0;if(o.w>=158){o.a=1;o.mode='back';o.i=o.trip.length-2;}}
-   else if(o.act==='copy'){o.back=false;o.dir=1;if(o.w%40===10)COPY.f=1;if(o.w>=130){o.mode='back';o.i=o.trip.length-2;}}
+   if(o.act==='door'){o.back=true;o.dir=-1;if(o.w===1)DOOR.goal=1;if(o.w>14&&o.w<26)o.a=Math.max(0,o.a-0.09);if(o.w===26)DOOR.goal=0;if(o.w===120){DOOR.goal=1;}if(o.w>132&&o.w<146)o.a=Math.min(1,o.a+0.09);if(o.w===150)DOOR.goal=0;if(o.w>=158){o.a=1;o.mode='back';o.i=o.trip.length-2;}}
+   else if(o.act==='copy'){o.back=true;o.dir=1;if(o.w%40===10)COPY.f=1;if(o.w>=130){o.mode='back';o.i=o.trip.length-2;}}
    else if(o.act==='desk'){if(o.w>=210){o.mode='back';o.i=o.trip.length-2;}}
    return;}
-  if(o.mode==='back'){if(moveTo(o,o.trip[Math.max(0,o.i)],0.62)){if(o.i<=0){o.mode='down';o.w=8;}else o.i--;}return;}
+  if(o.mode==='back'){if(moveTo(o,o.trip[Math.max(0,o.i)],1.0)){if(o.i<=0){o.mode='down';o.w=8;}else o.i--;}return;}
   if(o.mode==='down'){if(--o.w<=0){o.mode='sit';o.x=o.seat[0];o.y=o.seat[1];away=null;}}}
  function stepWalker(o){var t=o.path[o.i];
   if(o.w>0){o.w--;if(o.w===1&&t[3]==='pick')o.box=1;if(o.w===1&&t[3]==='drop')o.box=0;return;}
-  if(!moveTo(o,t,0.55))return;
+  if(!moveTo(o,t,0.95))return;
   if(t[2]===-1){if(o.a>0){o.a=Math.max(0,o.a-0.08);return;}if(!o.out){o.out=90;return;}if(--o.out>0)return;o.out=0;o.a=1;}
   else o.w=t[2];
   o.i=(o.i+1)%o.path.length;}
- /* 人の絵（k＝縮尺）。立ち：歩くと脚と腕が振れる。座り：胴と頭、腿だけ */
- function head(x,y,k,o,back){ctx.fillStyle='#f1d3bd';ctx.strokeStyle='#151a22';ctx.lineWidth=1*k;ctx.beginPath();ctx.arc(x,y,4.4*k,0,6.2832);ctx.fill();ctx.stroke();
-  ctx.fillStyle=o.hair;ctx.beginPath();if(back){ctx.arc(x,y,4.5*k,0,6.2832);ctx.fill();if(o.long){ctx.fillRect(x-4.2*k,y,8.4*k,6*k);}}
-  else{ctx.arc(x-o.dir*0.4*k,y-1.2*k,4.5*k,3.35,6.05);ctx.fill();if(o.long){ctx.fillRect(x+(o.dir>0?-4.6:2.4)*k,y-1*k,2.2*k,7*k);}}}
- function torso(x,y,k,o,h){ctx.fillStyle=o.col;ctx.strokeStyle='#151a22';ctx.lineWidth=1*k;ctx.beginPath();
-  if(ctx.roundRect)ctx.roundRect(x-4.8*k,y-h*k,9.6*k,h*k,3*k);else ctx.rect(x-4.8*k,y-h*k,9.6*k,h*k);ctx.fill();ctx.stroke();
-  if(o.shirt!==o.col){ctx.fillStyle=o.shirt;ctx.beginPath();ctx.moveTo(x-1.4*k,y-h*k+0.6*k);ctx.lineTo(x+1.4*k,y-h*k+0.6*k);ctx.lineTo(x,y-h*k+5*k);ctx.closePath();ctx.fill();}}
- function drawStand(o){var x=X(o.x),y=Y(o.y),k=gs*K,mv=(o.mode==='go'||o.mode==='back'||(o.path&&o.w===0&&!o.out))?1:0,sw=Math.sin(o.ph)*mv;
-  ctx.fillStyle='rgba(20,28,40,.22)';ctx.beginPath();ctx.ellipse(x,y,6.5*k,2.6*k,0,0,6.2832);ctx.fill();
-  ctx.lineCap='round';ctx.strokeStyle='#1d232c';ctx.lineWidth=3*k;
-  ctx.beginPath();ctx.moveTo(x-1.6*k,y-13*k);ctx.lineTo(x-1.6*k+sw*3*k,y);ctx.moveTo(x+1.6*k,y-13*k);ctx.lineTo(x+1.6*k-sw*3*k,y);ctx.stroke();
-  torso(x,y-12*k,k,o,15);
-  ctx.strokeStyle=o.col===o.shirt?o.col:o.col;ctx.lineWidth=2.4*k;ctx.beginPath();
-  if(o.box){ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-3*k,y-18*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+3*k,y-18*k);}
-  else if(o.mode==='act'&&o.act==='copy'){ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-4.6*k,y-15*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+6.5*k*o.dir,y-26*k);}
-  else{ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-4.6*k-sw*1.6*k,y-15*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+4.6*k+sw*1.6*k,y-15*k);}ctx.stroke();
-  if(o.box){ctx.fillStyle='#d9a35f';ctx.strokeStyle='#5a3d1c';ctx.lineWidth=1*k;ctx.fillRect(x-5.5*k,y-24*k,11*k,8*k);ctx.strokeRect(x-5.5*k,y-24*k,11*k,8*k);ctx.beginPath();ctx.moveTo(x-5.5*k,y-20*k);ctx.lineTo(x+5.5*k,y-20*k);ctx.stroke();}
-  head(x,y-31*k,k,o,o.back);}
- function drawSit(o,st,face,cb){var x=X(st[0]),y=Y(st[1]),k=gs*K,hy=y-3*k,bob=(o===speaker&&talkT%16<8)?-0.4*k:0;
-  ctx.lineCap='round';ctx.strokeStyle='#1d232c';ctx.lineWidth=3.2*k;ctx.beginPath();
-  if(face==='f'){ctx.moveTo(x,hy);ctx.lineTo(x+4.5*k,hy+2.5*k);}else if(face==='l'){ctx.moveTo(x,hy);ctx.lineTo(x-5.5*k,hy+1*k);}ctx.stroke();
-  torso(x,hy,k,o,13);
-  ctx.strokeStyle=o.col;ctx.lineWidth=2.4*k;ctx.beginPath();
-  var ax=face==='l'?-1:1;ctx.moveTo(x+3*ax*k,hy-10*k);ctx.lineTo(x+7*ax*k,hy-4*k);ctx.stroke();
-  o.dir=face==='l'?-1:1;head(x,hy-17.5*k+bob,k,o,face==='b');
-  if(cb){/* 背もたれが手前を向く椅子：人の手前に背もたれを描く */
-   ctx.fillStyle='#181a1e';ctx.strokeStyle='#5c626c';ctx.lineWidth=1*gs;ctx.beginPath();
-   if(ctx.roundRect)ctx.roundRect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs,4*gs);else ctx.rect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs);ctx.fill();ctx.stroke();}}
+ /* 1コマ描く。row/col＝スプライトの位置、(x,y)＝足元（座りは腰）の画像座標、ay＝コマ内の基準の高さ、flip＝左右反転 */
+ function spr(row,col,x,y,ay,flip){if(!SPR.complete||!SPR.naturalWidth)return;var k=gs*U;
+  ctx.save();ctx.translate(X(x),Y(y));if(flip)ctx.scale(-1,1);
+  ctx.drawImage(SPR,col*FW,row*FH,FW,FH,-32*k,-ay*k,FW*k,FH*k);ctx.restore();}
+ function chairBack(cb){ctx.fillStyle='#181a1e';ctx.strokeStyle='#5c626c';ctx.lineWidth=1*gs;ctx.beginPath();
+  if(ctx.roundRect)ctx.roundRect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs,4*gs);else ctx.rect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs);ctx.fill();ctx.stroke();}
  function drawPerson(o){if(o.a<=0)return;ctx.save();poly(o.room);ctx.clip();ctx.globalAlpha=o.a;
-  if(o.seat&&o.mode==='sit')drawSit(o,o.seat,o.face,o===M3?[353.5,497.5,11,17]:null);
-  else if(o.mode==='act'&&o.act==='desk')drawSit(o,o.desk,'b',[294,461,14,16]);
-  else drawStand(o);ctx.restore();}
+  var base=o.ci*3;
+  if(o.seat&&o.mode==='sit'){/* 座る：sit=[列, 反転] */
+   var col=o.sit[0];if(o===speaker&&col===2&&talkT%24<12)col=4;
+   spr(base+2,col,o.seat[0],o.seat[1]-1,86,o.sit[1]);if(o===M3)chairBack([353.5,497.5,11,17]);}
+  else if(o.mode==='act'&&o.act==='desk'){spr(base+2,3,o.desk[0],o.desk[1]-1,86,0);chairBack([294,461,14,16]);}
+  else{
+   /* 地面の影 */
+   ctx.fillStyle='rgba(20,28,40,.18)';ctx.beginPath();ctx.ellipse(X(o.x),Y(o.y),9*gs,3.4*gs,0,0,6.2832);ctx.fill();
+   var walking=o.mv>0,fr=((o.ph/6.2832*8)|0)%8,flip=o.back?o.dir>0:o.dir<0;
+   if(o.box)spr(o.back?16:15,walking?fr:0,o.x,o.y,133,flip);
+   else if(walking)spr(base+(o.back?1:0),fr,o.x,o.y,133,flip);
+   else spr(base+2,o.back?1:0,o.x,o.y,133,flip);}
+  if(o.mv>0)o.mv--;
+  ctx.restore();}
  function drawProps(){
   if(DOOR.o>0.02){var d=DOOR.p,f=DOOR.o;ctx.fillStyle='rgba(18,26,40,'+(0.9*f)+')';poly([d[0],[d[0][0]+(d[1][0]-d[0][0])*f,d[0][1]+(d[1][1]-d[0][1])*f],[d[3][0]+(d[2][0]-d[3][0])*f,d[3][1]+(d[2][1]-d[3][1])*f],d[3]]);ctx.fill();
    ctx.fillStyle='#f4f6f8';ctx.strokeStyle='#2a2f38';ctx.lineWidth=1*gs;poly([[d[0][0],d[0][1]],[d[0][0]-9*f,d[0][1]+6*f],[d[3][0]-9*f,d[3][1]+6*f],[d[3][0],d[3][1]]]);ctx.fill();ctx.stroke();}
@@ -782,7 +774,7 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
   if(seated.length<2){speaker=null;return;}
   if(!speaker||speaker.mode!=='sit'||talkT>100){talkT=0;var c=seated.filter(function(o){return o!==speaker;});speaker=c[(Math.random()*c.length)|0];}
   talkT++;var a=Math.min(1,talkT/10,(100-talkT)/10);if(a<=0)return;
-  var x=X(speaker.seat[0]+(speaker.face==='l'?-6:6)),y=Y(speaker.seat[1]-36),k=gs;ctx.globalAlpha=a;
+  var x=X(speaker.seat[0]+(speaker.sit[1]?-6:6)),y=Y(speaker.seat[1]-34),k=gs;ctx.globalAlpha=a;
   ctx.fillStyle='#ffffff';ctx.strokeStyle='#1b2430';ctx.lineWidth=1.2*k;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x-12*k,y-14*k,24*k,13*k,6*k);else ctx.rect(x-12*k,y-14*k,24*k,13*k);ctx.fill();ctx.stroke();
   ctx.beginPath();ctx.moveTo(x-2*k,y-1.5*k);ctx.lineTo(x+1*k,y+4*k);ctx.lineTo(x+3*k,y-1.5*k);ctx.fill();
   ctx.fillStyle='#1b2430';for(var d=0;d<3;d++){ctx.globalAlpha=a*(((talkT/8|0)%3)>=d?1:0.3);ctx.beginPath();ctx.arc(x+(d-1)*5*k,y-7.5*k,1.5*k,0,6.2832);ctx.fill();}
