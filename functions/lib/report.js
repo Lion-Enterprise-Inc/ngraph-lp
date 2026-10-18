@@ -68,6 +68,9 @@ export function sectionsOf(facts) {
   }).filter(section => section.rows.length);
 }
 
+// 403・429 などはサイトはあるが機械の取得を断った状態。「サイトが無い」と混同しない。
+const refused = context => /^http_(?:401|403|429|503)$/.test(String(context.siteFailReason || ''));
+
 export function buildSummary(facts, context = {}) {
   const now = context.now || new Date();
   const corp = context.corporation || null;
@@ -81,7 +84,9 @@ export function buildSummary(facts, context = {}) {
     if (match?.status === '確認済') got.push('サイトの住所と登記の住所は番地まで一致');
     if (match?.status === '食い違い') missing.push('サイトの住所と登記の住所が一致しない');
   } else if (context.mode === 'site' && context.siteFailed) {
-    missing.push('サイトを開けなかったため、登記の会社と照らし合わせていない');
+    missing.push(refused(context)
+      ? `サイトが自動の取得を断った（${context.siteFailReason}）ため、登記の会社と照らし合わせていない`
+      : 'サイトを開けなかったため、登記の会社と照らし合わせていない');
   } else if (context.mode === 'site') {
     missing.push(context.candidateCount === 1
       ? `サイトの社名と同じ名前の法人は1社あるが、サイトから住所・法人番号が取れず、同じ会社だとは確かめられていない`
@@ -122,7 +127,9 @@ export function buildSummary(facts, context = {}) {
 
   // 契約前にすること（最大3つ。上ほど優先）
   if (context.mode === 'site' && context.siteFailed) {
-    actions.push('URLが正しいかを相手に確かめる。サイトが無いなら、法人番号でもう一度調べる');
+    actions.push(refused(context)
+      ? 'ブラウザでサイトの会社概要を開き、載っている法人番号か社名でもう一度調べる'
+      : 'URLが正しいかを相手に確かめる。サイトが無いなら、法人番号でもう一度調べる');
   } else if (context.mode === 'site' && !context.resolved) {
     actions.push(context.candidateCount === 1
       ? '下の候補が相手の会社か、相手に法人番号を出してもらって確かめる'

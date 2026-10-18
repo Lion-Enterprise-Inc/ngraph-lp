@@ -145,7 +145,7 @@ export async function siteChecks(rawUrl, options = {}) {
     }
   } catch { facts.push(fail('ドメイン登録日', 'RDAP')); }
   // Wayback（サイト履歴）はブラウザ側でCORS取得する（WorkersのIPはarchive.orgに遮断されるため）
-  return { facts, host, nameGuess, identity, siteCoverage, phones: discovery.phones || [], siteFailed: !discovery.ok };
+  return { facts, host, nameGuess, identity, siteCoverage, phones: discovery.phones || [], siteFailed: !discovery.ok, siteFailReason: discovery.rootFailure || null };
 }
 
 async function gbizByNumber(no, token) {
@@ -346,7 +346,7 @@ export async function onRequestPost(context) {
       nameGuess: site.nameGuess, siteCoverage: site.siteCoverage,
       resolutionCoverage: { status: search.status, stop_reason: search.stop_reason, reason: search.reason || null },
       candidates: shown }, { mode: 'site', resolved: false, candidateCount: shown.length,
-      siteFailed: Boolean(site.siteFailed || !site.host), nameGuess: site.nameGuess, phones: site.phones }));
+      siteFailed: Boolean(site.siteFailed || !site.host), siteFailReason: site.siteFailReason, nameGuess: site.nameGuess, phones: site.phones }));
   }
   const search = await gbizByName(q, token);
   if (search.status === 'blocked') {
