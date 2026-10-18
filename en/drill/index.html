@@ -250,6 +250,14 @@
 @media(max-width:768px){.hero .hud{top:70px;font-size:.6rem}}
 @media(max-width:768px){.hero .hero-tagline{white-space:normal}}
 
+
+/* ==== ギミック（控えめ・prefers-reduced-motion対応）==== */
+@keyframes ngGlow{0%,100%{filter:invert(1) hue-rotate(160deg) saturate(1.45) brightness(1.12) drop-shadow(0 0 24px rgba(54,230,255,.26))}50%{filter:invert(1) hue-rotate(160deg) saturate(1.52) brightness(1.2) drop-shadow(0 0 44px rgba(54,230,255,.52))}}
+.hero .hero-visual{transition:transform .25s ease-out;will-change:transform}
+.hero .hero-visual img{animation:ngGlow 5s ease-in-out infinite}
+@keyframes ngGrid{to{background-position:46px 46px,46px 46px}}
+.hero::before{animation:ngGrid 7s linear infinite}
+@media (prefers-reduced-motion: reduce){.hero .hero-visual img,.hero::before{animation:none}.hero .hero-visual{transition:none}}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -557,6 +565,20 @@ form.addEventListener('submit',function(e){
 });
 if(window.gtag&&src)gtag('event','drill_src',{src:src});
 })();
+</script>
+<script>
+/* ヒーロー：カーソル連動の微視差（reduced-motion尊重・タッチ無効） */
+(function(){try{
+ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ var hero=document.querySelector('.hero');if(!hero)return;
+ var v=hero.querySelector('.hero-visual');if(!v)return;
+ hero.addEventListener('mousemove',function(e){
+   var r=hero.getBoundingClientRect();
+   var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+   v.style.transform='translate('+(x*16).toFixed(1)+'px,'+(y*11).toFixed(1)+'px)';
+ },{passive:true});
+ hero.addEventListener('mouseleave',function(){v.style.transform='';});
+}catch(e){}})();
 </script>
 </body>
 </html>
