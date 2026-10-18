@@ -12,7 +12,6 @@
 
 ## プロダクト（自社開発・運用）
 
-- OMISEAI (https://omiseai.com/): 飲食店向けAI接客。メニューを送るだけでAIがテーブルに常駐し、130ヶ国の言語で質問に回答。福井・金沢の実店舗で稼働中。
 - AutoWrite (https://autowrite.jp/): 補助金計画書をAIが自動生成するSaaS。
 - Teles (https://nicomachos.com/): 偉人の思考を構造化したAIアドバイザー。
 - アルケー (https://ngraph.jp/cases/): 企業の構造分析。世界を変えた企業を12項目×3軸（世間・相手・自己）で採点したNCG（Nicomachos Company Graph）の事例集。100点満点、存続ライン47点。
