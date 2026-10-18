@@ -81,7 +81,7 @@
 .hero .hero-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:24px;align-items:center;position:relative}
 .hero .hero-copy{max-width:640px;position:relative;z-index:2}
 .hero .hero-tagline{white-space:nowrap}
-.hero .hero-visual{position:relative;top:auto;right:auto;left:auto;width:100%;height:auto;margin:0 -7% 0 -4%;opacity:1;display:flex;justify-content:center;align-items:center;transform:none;overflow:visible;z-index:1}
+.hero .hero-visual{position:relative;top:auto;right:auto;left:auto;width:auto;height:auto;margin:0 -8% 0 -4%;opacity:1;display:flex;justify-content:center;align-items:center;transform:none;overflow:visible;z-index:1}
 .hero .hero-visual img{-webkit-mask-image:none;mask-image:none;width:100%;height:auto;max-height:720px;object-fit:contain;object-position:center}
 .hero-sub{font-family:var(--serif);font-size:.9rem;letter-spacing:.12em;color:var(--text-2);margin-bottom:10px}
 .hero-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
@@ -91,8 +91,8 @@
 @media(max-width:900px){
   .hero{padding:130px 0 70px}
   .hero .hero-grid{grid-template-columns:1fr;gap:20px}
-  .hero .hero-visual{max-width:460px;margin:0 auto}
-  .hero .hero-visual img{max-height:320px}
+  .hero .hero-visual{max-width:600px;margin:0 auto}
+  .hero .hero-visual img{max-height:400px}
 }
 /* sp.css sets hero-copy to display:contents and reorders with order; give added elements an order too */
 @media(max-width:768px){
@@ -103,10 +103,25 @@
   .hero .hero-note{order:7;text-align:center;margin:12px auto 0;max-width:34em}
 }
 /* If tomorrow */
-.ifq{max-width:880px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ifq{max-width:880px;margin:0 auto;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .ifq li{list-style:none;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:4px;padding:22px 16px;text-align:center;font-family:var(--serif);font-size:.98rem;font-weight:700;line-height:1.7}
 .ifq li span{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;color:var(--accent);margin-bottom:8px}
 @media(max-width:900px){.ifq{grid-template-columns:1fr 1fr}}
+/* 点検メニュー（STEP1で見るところ） */
+.menu,.ifq,.menu-list li,.ifq li{word-break:keep-all;overflow-wrap:anywhere}
+.menu{max-width:960px;margin:34px auto 0;padding:26px 26px 10px;background:rgba(255,255,255,.7);border:1px solid var(--border);border-radius:8px}
+.menu-h{font-family:var(--serif);font-size:1.12rem;font-weight:700;text-align:center;margin:0 0 6px}
+.menu-g{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:16px 0 10px}
+.menu-g .n{font-size:.72rem;letter-spacing:.16em;color:#fff;background:var(--accent);border-radius:999px;padding:2px 9px}
+.menu-g b{font-family:var(--serif);font-size:1rem}.menu-g small{font-size:.8rem;color:var(--text-3)}
+.menu-list{list-style:none;padding:0;margin:0 0 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.menu-list li{display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:6px;background:#fff}
+.menu-list svg{grid-row:span 2;width:28px;height:28px;padding:8px;box-sizing:content-box;border-radius:50%;background:rgba(166,58,36,.08);fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.menu-list b{font-size:.9rem;font-weight:700;line-height:1.45}.menu-list small{font-size:.76rem;color:var(--text-3);line-height:1.55}
+@media(max-width:900px){.menu-list{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.menu{padding:18px 14px 6px}.menu-list{grid-template-columns:1fr}}
+.ifq-ic{display:block;width:46px;height:46px;margin:0 auto 10px;padding:10px;box-sizing:content-box;border-radius:50%;background:rgba(184,64,42,.08);fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:768px){.ifq-ic{width:36px;height:36px;padding:8px;margin-bottom:6px}}
 /* Three cards */
 .trio{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .tcard{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:34px 28px;text-align:center}
@@ -198,7 +213,8 @@
   .close-line{margin-top:26px;padding-top:16px}
   .close-line p{font-size:1.02rem}
   .hero{padding:96px 0 44px}
-  .hero .hero-visual img{max-height:210px}
+  .hero .hero-grid .hero-visual{width:auto;margin:0 -20px 12px}
+  .hero .hero-grid .hero-visual img{max-height:min(72vw,300px)}
   .hero .lp-badge{margin-bottom:10px;padding:6px 14px;font-size:.66rem}
   .hero p.lead{font-size:.9rem;line-height:1.8;margin-bottom:12px}
   .hero .hero-chips{gap:6px;margin-bottom:10px}
@@ -248,16 +264,16 @@
 .hero .hero-note::before{content:"// "}
 .hero .hero-visual img{filter:invert(1) hue-rotate(160deg) saturate(1.45) brightness(1.12) drop-shadow(0 0 30px rgba(54,230,255,.32))}
 @media(max-width:768px){.hero .hud{top:70px;font-size:.6rem}}
+@media(max-width:380px){.hero .hero-tagline{font-size:1.5rem!important}}
 @media(max-width:768px){.hero .hero-tagline{white-space:normal}}
 
 
-/* ==== WebGLシェーダー背景（Stripe系・2026）＋微視差 ==== */
+/* ==== WebGLシェーダー背景（Stripe系・2026） ==== */
 .hero-shader{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%}
 .hero::before{z-index:1}
 .hero .container{position:relative;z-index:3}
 .hero .hero-copy{z-index:3}
-.hero .hero-visual{transition:transform .3s cubic-bezier(.2,.8,.2,1);will-change:transform;z-index:2}
-@media (prefers-reduced-motion: reduce){.hero .hero-visual{transition:none}}
+.hero .hero-visual{z-index:2}
 
 /* ==== 脅威動向セクション ==== */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
@@ -269,6 +285,9 @@
 .bridge{text-align:center;font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:700;margin-top:28px;line-height:1.7;color:var(--text)}
 @media(max-width:768px){.stats{grid-template-columns:1fr;gap:12px}.stat{padding:20px 16px}}
 .hero-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+/* ドームの中のオフィスだけ元の色で重ねる（ドームは反転で光らせたまま） */
+.hero .hero-visual img.hero-office{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:contain;z-index:2;pointer-events:none;filter:brightness(.97) drop-shadow(0 0 18px rgba(54,230,255,.25))}
+.hero-people{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -292,10 +311,10 @@
 <!-- ── Hero ── -->
 <section class="hero">
   <canvas id="heroShader" class="hero-shader" aria-hidden="true"></canvas>
-  <div class="hud"><span><b>NGraph</b> // Cyber Drill</span><span id="reconLine">SEC.RECON — v1</span></div>
+  <div class="hud"><span><b>NGraph</b> // Cyber Drill</span></div>
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span></span>
+      <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">Cyber Drill</span></span>
       <p class="hero-sub">A security check from the attacker's side, for the AI era</p>
       <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">Before a real attacker strikes,</span><br><span class="nb"><span class="hl">let an ally attack you.</span></span></p>
       <div class="hero-chips">
@@ -308,7 +327,9 @@
       <p class="hero-note">A 30-minute online conversation. We will not ask you to sign anything on the spot.</p>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <img src="/assets/drill/dome.webp" alt="" width="1200" height="800">
+      <img src="/assets/drill/dome-shield.webp" alt="" width="954" height="800">
+      <img class="hero-office" src="/assets/drill/dome-office.webp" alt="" width="954" height="800">
+      <canvas class="hero-people" id="heroPeople" aria-hidden="true"></canvas>
       <canvas class="hero-fx" id="heroFx" aria-hidden="true"></canvas>
     </div>
   </div>
@@ -320,14 +341,14 @@
     <div class="section-head reveal">
       <div class="section-label">What's happening now</div>
       <h2 class="section-title">Attacks are clearly rising.</h2>
-      <p class="section-sub">These are official 2025 (calendar-year) figures — facts, not fear.</p>
+      <p class="section-sub">These are National Police Agency figures for the first half of 2026 (January–June) — facts, not fear.</p>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="num" data-to="2454297">0</div><div class="lb">Phishing reports (2025)</div><div class="meta">About 44x since 2019 / +43% year on year</div></div>
-      <div class="stat"><div class="num" data-to="10.4" data-prefix="¥" data-suffix="bn">0</div><div class="lb">Online-banking fraud losses (2025)</div><div class="meta">A record high. Corporate losses rose <b>about 4x</b></div></div>
-      <div class="stat"><div class="num" data-to="60" data-suffix="%">0</div><div class="lb">Share of ransomware victims that are SMEs</div><div class="meta">2025 — 143 of 226 reported cases</div></div>
+      <div class="stat"><div class="num" data-to="123">0</div><div class="lb">Ransomware cases reported (Jan–Jun 2026)</div><div class="meta"><b>The most for any half-year on record</b>. 79 were SMEs</div></div>
+      <div class="stat"><div class="num" data-to="51" data-prefix="+" data-suffix="%">+0%</div><div class="lb">Suspicious access (Jan–Jun 2026, year on year)</div><div class="meta">About 13,700 per IP address per day (about 9,100 a year earlier)</div></div>
+      <div class="stat"><div class="num" data-to="60" data-suffix="%">0%</div><div class="lb">Ransomware victims whose investigation and recovery cost ¥10 million or more</div><div class="meta">Jan–Jun 2026 — 21 of 35 responses</div></div>
     </div>
-    <p class="src-note reveal">Source: National Police Agency, "Threats in Cyberspace FY2025" / Council of Anti-Phishing Japan (2025 calendar-year figures)</p>
+    <p class="src-note reveal">Source: National Police Agency, "Threats in Cyberspace in the First Half of 2026" (published September 2026). Growth rate calculated from the figures in that report</p>
     <p class="bridge reveal">This could be you. That is why we first check the entry points visible from outside.</p>
     <div style="text-align:center;margin-top:18px"><a href="#apply" class="btn btn-primary">Free Consultation →</a></div>
   </div>
@@ -342,10 +363,10 @@
       <p class="section-sub">Attackers use AI too. Let's look together at what could stop your business and how ready you are today.</p>
     </div>
     <ul class="ifq reveal">
-      <li><span>01</span>Can you keep taking<br>and shipping orders?</li>
-      <li><span>02</span>Do you have contacts<br>on paper too?</li>
-      <li><span>03</span>Can you restore<br>from backups?</li>
-      <li><span>04</span>Can you explain your<br>security to partners?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 13h22v19H5z"/><path d="M27 19h8l6 7v6H27z"/><circle cx="13" cy="34" r="3.5"/><circle cx="34" cy="34" r="3.5"/><path d="M10 19h10M10 24h7"/></svg><span>01</span>Can you keep taking<br>and shipping orders?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h24a2 2 0 0 1 2 2v32a2 2 0 0 1-2 2H12z"/><path d="M8 13h6M8 21h6M8 29h6M8 37h6"/><circle cx="25" cy="18" r="4"/><path d="M18 30c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/><path d="M19 35h12"/></svg><span>02</span>Do you have contacts<br>on paper too?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="11" rx="12" ry="4.5"/><path d="M10 11v20c0 2.5 5.4 4.5 12 4.5"/><path d="M34 11v9"/><path d="M10 21c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5"/><path d="M42 33a8 8 0 1 1-2.6-5.9"/><path d="M40 22.5v5h-5"/></svg><span>03</span>Can you restore<br>from backups?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h28a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H18l-8 7v-7H6a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3z"/><path d="M20 15l7 2.5v4.5c0 4-3 6.5-7 7.5-4-1-7-3.5-7-7.5v-4.5z"/><path d="M17 22l2.2 2.2 4-4"/></svg><span>04</span>Can you explain your<br>security to partners?</li>
     </ul>
   </div>
 </section>
@@ -405,6 +426,24 @@
         </ol>
         <p class="after">Regular checkups and ongoing improvement support afterward are also available on request.</p>
       </div>
+    </div>
+    <div class="menu reveal">
+      <h3 class="menu-h">What we check in STEP 1</h3>
+      <div class="menu-g"><span class="n">01</span><b>Reconnaissance</b><small>Look from outside (we do not enter your systems)</small></div>
+      <ul class="menu-list">
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"/><path d="M8 24h32M24 8c5 5 7 10 7 16s-2 11-7 16M24 8c-5 5-7 10-7 16s2 11 7 16"/></svg><b>Inventory of public sites</b><small>Old, forgotten sites still online</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="12" width="36" height="24" rx="2"/><path d="M6 14l18 13 18-13"/></svg><b>Email spoofing protection</b><small>SPF, DKIM and DMARC settings</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="28" rx="2"/><path d="M6 16h36"/><rect x="17" y="24" width="14" height="9" rx="1.5"/><path d="M20 24v-3a4 4 0 0 1 8 0v3"/></svg><b>Admin and login pages</b><small>Entry points visible from outside</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="18" width="36" height="14" rx="2"/><path d="M12 25h2M18 25h2"/><path d="M30 18l-4-8M36 18l4-8"/><path d="M33 38v-2"/><circle cx="33" cy="25" r="0.6"/></svg><b>Outdated VPN devices and software</b><small>Versions with known weaknesses</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="11" y="21" width="26" height="19" rx="2"/><path d="M16 21v-5a8 8 0 0 1 16 0v5"/><path d="M24 28v5"/></svg><b>Basic web settings</b><small>Encryption (TLS) and security headers</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l12 12"/><path d="M15 20h10"/></svg><b>Look-alike domains</b><small>Names that could be used to impersonate you</small></li>
+      </ul>
+      <div class="menu-g"><span class="n">02</span><b>Simulated attack</b><small>Only within the scope agreed in writing</small></div>
+      <ul class="menu-list">
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="1.5"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6"/></svg><b>Simulated attack on systems</b><small>Tested within the agreed scope and period</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="26" height="18" rx="2"/><path d="M5 10l13 9 13-9"/><path d="M38 14v18a6 6 0 0 1-12 0v-2l3 3"/></svg><b>Training emails to staff</b><small>Can staff spot a fake email?</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 5h17l8 8v30H12z"/><path d="M29 5v8h8"/><path d="M17 22h14M17 28h14M17 34h9"/></svg><b>Report</b><small>Facts, impact, and a prioritized plan</small></li>
+      </ul>
     </div>
     <p class="stage-note reveal">What needs fixing depends on what 01 and 02 turn up, so we quote it when we deliver the report.</p>
     <div style="text-align:center;margin-top:22px"><a href="/assets/drill/cyber-drill-sample.pdf" target="_blank" rel="noopener" class="btn btn-primary">See a sample report (PDF)</a><p style="font-size:.78rem;color:var(--text-3);margin-top:8px">A sample based on a fictional company, for illustration.</p></div>
@@ -493,22 +532,15 @@
         <input type="hidden" name="お問い合わせ内容" id="lpMsg" value="">
         <label>Company name<span class="req">Required</span></label>
         <input type="text" name="会社名・店舗名" required>
-        <label>Your name<span class="req">Required</span></label>
+        <label>Contact person<span class="req">Required</span></label>
         <input type="text" name="お名前" required>
         <label>Email<span class="req">Required</span></label>
         <input type="email" name="メールアドレス" required>
         <label>Website URL<span class="req">Required</span></label>
         <input type="url" name="_hp" id="lpHp" required placeholder="e.g. https://example.co.jp">
-        <p class="lead-note" style="text-align:left;margin:-6px 0 14px;color:var(--text-2)">So we don't investigate a different company with a similar name. We don't only look at this site — we use it as a starting point to find related sites (recruiting, online shop) and forgotten public assets. Companies without a website are out of scope.</p>
+        <p class="lead-note" style="text-align:left;margin:-6px 0 14px;color:var(--text-2)">So we don't investigate a different company with a similar name. We don't only look at this site — we use it as a starting point to find related sites (recruiting, online shop) and forgotten public assets.</p>
         <label>Phone<span class="opt">Optional</span></label>
         <input type="tel" name="_tel" id="lpTel">
-        <label>Number of sites or offices<span class="opt">Optional</span></label>
-        <select name="_sites" id="lpSites">
-          <option value="">Please select</option>
-          <option>1 site</option><option>2 to 3 sites</option><option>4 or more sites</option><option>Not sure yet</option>
-        </select>
-        <label>Preferred time for the online session<span class="opt">Optional</span></label>
-        <input type="text" name="_when" id="lpWhen" placeholder="e.g. Weekday mornings, or Tuesday or Thursday after 3 p.m.">
         <label>What concerns you<span class="opt">Optional</span></label>
         <textarea name="_note" id="lpNote" placeholder="e.g. We worry our VPN device is outdated. A business partner asked about our security measures."></textarea>
         <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:.82rem;margin:6px 0 14px"><input type="checkbox" name="_agree" id="lpAgree" required style="width:auto;margin:3px 0 0;flex:none"><span>I agree to an assessment of our public information and public-facing sites (within the scope of public information and ordinary access; no active attacks or intrusion; starting from one main site and extending to related public assets).</span></label>
@@ -517,7 +549,7 @@
       </form>
       <div class="lead-done" id="lpDone" style="display:none">
         <h4>We have received your request</h4>
-        <p>Thank you.<br>We will email you proposed dates based on your preferred times.</p>
+        <p>Thank you.<br>We will email you some proposed dates.</p>
       </div>
     </div>
   </div>
@@ -585,8 +617,6 @@ form.addEventListener('submit',function(e){
   var lines=['[NGraph Cyber Drill] Pilot partner inquiry (English page)',
     'Website: '+(document.getElementById('lpHp').value||'(not provided)'),
     'Phone: '+(document.getElementById('lpTel').value||'(not provided)'),
-    'Number of sites: '+(document.getElementById('lpSites').value||'(not selected)'),
-    'Preferred time: '+(document.getElementById('lpWhen').value||'(not provided)'),
     'Source: '+(src||'(direct)'),
     '','Concerns:',note||'(none)'];
   document.getElementById('lpMsg').value=lines.join('\n');
@@ -597,20 +627,6 @@ form.addEventListener('submit',function(e){
 });
 if(window.gtag&&src)gtag('event','drill_src',{src:src});
 })();
-</script>
-<script>
-/* ヒーロー：カーソル連動の微視差（reduced-motion尊重・タッチ無効） */
-(function(){try{
- if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
- var hero=document.querySelector('.hero');if(!hero)return;
- var v=hero.querySelector('.hero-visual');if(!v)return;
- hero.addEventListener('mousemove',function(e){
-   var r=hero.getBoundingClientRect();
-   var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-   v.style.transform='translate('+(x*16).toFixed(1)+'px,'+(y*11).toFixed(1)+'px)';
- },{passive:true});
- hero.addEventListener('mouseleave',function(){v.style.transform='';});
-}catch(e){}})();
 </script>
 <script>
 /* 脅威の数字：スクロールで到達したらカウントアップ（reduced-motion尊重） */
@@ -670,44 +686,241 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
 }catch(e){}})();
 </script>
 <script>
-/* ヒーロー上部：偵察ステータスのタイプライター（reduced-motion対応） */
+/* ヒーロー：ドームの中のオフィスで人が動く。会議の3人は座って話し、ときどき1人ずつ立って用事（扉の出入り・コピー・自席でPC作業）を済ませて戻る。倉庫は箱運びとシャッターの出入り。30fpsに間引き・タブ非表示で停止・reduced-motion対応 */
 (function(){try{
- var el=document.getElementById('reconLine');if(!el)return;
- var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
- var L=['SEC.RECON // scanning public surface…','SEC.RECON // domains: 3 found (1 forgotten)','SEC.RECON // mail auth (DMARC): missing','SEC.RECON // admin panel: exposed','SEC.RECON // verdict: 2 items to check'];
- if(reduce){el.textContent=L[L.length-1];return;}
- var li=0,ci=0,del=false;
- function tick(){var c=L[li];
-  if(!del){ci++;if(ci>=c.length){del=true;el.textContent=c;setTimeout(tick,1700);return;}}
-  else{ci--;if(ci<=0){del=false;li=(li+1)%L.length;}}
-  el.textContent=c.slice(0,ci)+(ci<c.length?'█':'');
-  setTimeout(tick,del?22:48);}
- tick();
+ var cv=document.getElementById('heroPeople');if(!cv)return;var ctx=cv.getContext('2d');if(!ctx)return;
+ if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ var img=cv.parentNode.querySelector('img'),IW=954,IH=800,dpr=Math.min(window.devicePixelRatio||1,2),W,H,gx,gy,gs;
+ function size(){var r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*dpr);H=cv.height=Math.max(1,r.height*dpr);
+  var ir=img?img.getBoundingClientRect():r,s=Math.min(ir.width/IW,ir.height/IH);
+  gx=(ir.left-r.left+(ir.width-IW*s)/2)*dpr;gy=(ir.top-r.top+(ir.height-IH*s)/2)*dpr;gs=s*dpr;}
+ window.addEventListener('resize',size);if(img&&!img.complete)img.addEventListener('load',size);size();
+ function X(x){return gx+x*gs;}function Y(y){return gy+y*gs;}
+ function R(a,b){return a+Math.random()*(b-a);}
+ function poly(p){ctx.beginPath();ctx.moveTo(X(p[0][0]),Y(p[0][1]));for(var i=1;i<p.length;i++)ctx.lineTo(X(p[i][0]),Y(p[i][1]));ctx.closePath();}
+ /* 座標はすべて dome-office.webp(954x800)上の実測。部屋ごとの切り抜き（手前の壁の上端より下は壁に隠れる） */
+ var OFFICE=[[150,250],[427,250],[427,400],[578,479],[390,554],[330,516],[200,443],[150,418]];
+ var WARE=[[427,250],[800,250],[800,495],[750,500],[583,557],[578,479],[427,400]];
+ /* 小物：扉（奥の白い扉）・コピー機の読み取り面・倉庫のシャッター */
+ var DOOR={p:[[337,387],[354,396],[354,439],[337,430]],o:0,goal:0};
+ var COPY={p:[[487.5,462.5],[498.75,458.75],[509.4,464.4],[498.75,469.4]],f:0};
+ var SH={bl:[652,381],br:[732,422],h:0,goal:0};
+ var K=1.6; /* 人の大きさ（絵の人物は身長およそ60px） */
+ /* 人。seat があれば会議の席。face: f=手前向き b=後ろ向き l=左向き */
+ function P(o){o.x=o.x||(o.seat?o.seat[0]:o.path[0][0]);o.y=o.y||(o.seat?o.seat[1]:o.path[0][1]);o.ph=R(0,6);o.a=1;o.mode=o.seat?'sit':'walk';o.i=0;o.w=0;o.dir=1;o.back=false;return o;}
+ var M1=P({seat:[371,489],face:'f',col:'#262b33',shirt:'#e9edf2',hair:'#1c1712',room:OFFICE,
+   trip:[[380,473],[372,458],[367,451]],act:'door'});
+ var M2=P({seat:[441,509],face:'l',col:'#eef0f3',shirt:'#eef0f3',hair:'#2a1d16',long:1,room:OFFICE,
+   trip:[[449,500],[467,497]],act:'copy'});
+ var M3=P({seat:[361,514],face:'b',col:'#2f3540',shirt:'#2f3540',hair:'#3b3631',room:OFFICE,
+   trip:[[348,521],[331,503],[318,489]],act:'desk',desk:[300,477]});
+ var W1=P({path:[[630,477,35],[603,510,0],[667,500,30],[650,470,0],[650,450,0],[664,420,0],[672,397,-1],[664,420,0],[650,450,0],[630,477,0]],col:'#3d6b8f',shirt:'#3d6b8f',hair:'#3a2a1c',room:WARE});
+ var W2=P({path:[[620,446,25,'pick'],[606,466,0],[590,488,30,'drop'],[606,466,0]],col:'#5b7a3a',shirt:'#5b7a3a',hair:'#20180f',room:WARE});
+ var DBG=/[?&]pdebug/.test(location.search),MEET=[M1,M2,M3],ALL=[M1,M2,M3,W1,W2],away=null,nextTrip=DBG?20:R(150,260);
+ /* 会議の人：sit → up → go（trip を進む）→ act → back（trip を戻る）→ down → sit */
+ function moveTo(o,t,sp){var dx=t[0]-o.x,dy=t[1]-o.y,d=Math.hypot(dx,dy);if(d<=sp){o.x=t[0];o.y=t[1];return true;}
+  o.x+=dx/d*sp;o.y+=dy/d*sp;o.ph+=0.3;if(Math.abs(dx)>0.05)o.dir=dx>0?1:-1;o.back=dy<-0.15*Math.abs(dx)-0.05;return false;}
+ function stepMeet(o){
+  if(o.mode==='sit')return;
+  if(o.mode==='up'){if(--o.w<=0){o.mode='go';o.i=1;}return;}
+  if(o.mode==='go'){if(moveTo(o,o.trip[o.i],0.62)){if(++o.i>=o.trip.length){o.mode='act';o.w=0;}}return;}
+  if(o.mode==='act'){o.w++;
+   if(o.act==='door'){if(o.w===1)DOOR.goal=1;if(o.w>14&&o.w<26)o.a=Math.max(0,o.a-0.09);if(o.w===26)DOOR.goal=0;if(o.w===120){DOOR.goal=1;}if(o.w>132&&o.w<146)o.a=Math.min(1,o.a+0.09);if(o.w===150)DOOR.goal=0;if(o.w>=158){o.a=1;o.mode='back';o.i=o.trip.length-2;}}
+   else if(o.act==='copy'){o.back=false;o.dir=1;if(o.w%40===10)COPY.f=1;if(o.w>=130){o.mode='back';o.i=o.trip.length-2;}}
+   else if(o.act==='desk'){if(o.w>=210){o.mode='back';o.i=o.trip.length-2;}}
+   return;}
+  if(o.mode==='back'){if(moveTo(o,o.trip[Math.max(0,o.i)],0.62)){if(o.i<=0){o.mode='down';o.w=8;}else o.i--;}return;}
+  if(o.mode==='down'){if(--o.w<=0){o.mode='sit';o.x=o.seat[0];o.y=o.seat[1];away=null;}}}
+ function stepWalker(o){var t=o.path[o.i];
+  if(o.w>0){o.w--;if(o.w===1&&t[3]==='pick')o.box=1;if(o.w===1&&t[3]==='drop')o.box=0;return;}
+  if(!moveTo(o,t,0.55))return;
+  if(t[2]===-1){if(o.a>0){o.a=Math.max(0,o.a-0.08);return;}if(!o.out){o.out=90;return;}if(--o.out>0)return;o.out=0;o.a=1;}
+  else o.w=t[2];
+  o.i=(o.i+1)%o.path.length;}
+ /* 人の絵（k＝縮尺）。立ち：歩くと脚と腕が振れる。座り：胴と頭、腿だけ */
+ function head(x,y,k,o,back){ctx.fillStyle='#f1d3bd';ctx.strokeStyle='#151a22';ctx.lineWidth=1*k;ctx.beginPath();ctx.arc(x,y,4.4*k,0,6.2832);ctx.fill();ctx.stroke();
+  ctx.fillStyle=o.hair;ctx.beginPath();if(back){ctx.arc(x,y,4.5*k,0,6.2832);ctx.fill();if(o.long){ctx.fillRect(x-4.2*k,y,8.4*k,6*k);}}
+  else{ctx.arc(x-o.dir*0.4*k,y-1.2*k,4.5*k,3.35,6.05);ctx.fill();if(o.long){ctx.fillRect(x+(o.dir>0?-4.6:2.4)*k,y-1*k,2.2*k,7*k);}}}
+ function torso(x,y,k,o,h){ctx.fillStyle=o.col;ctx.strokeStyle='#151a22';ctx.lineWidth=1*k;ctx.beginPath();
+  if(ctx.roundRect)ctx.roundRect(x-4.8*k,y-h*k,9.6*k,h*k,3*k);else ctx.rect(x-4.8*k,y-h*k,9.6*k,h*k);ctx.fill();ctx.stroke();
+  if(o.shirt!==o.col){ctx.fillStyle=o.shirt;ctx.beginPath();ctx.moveTo(x-1.4*k,y-h*k+0.6*k);ctx.lineTo(x+1.4*k,y-h*k+0.6*k);ctx.lineTo(x,y-h*k+5*k);ctx.closePath();ctx.fill();}}
+ function drawStand(o){var x=X(o.x),y=Y(o.y),k=gs*K,mv=(o.mode==='go'||o.mode==='back'||(o.path&&o.w===0&&!o.out))?1:0,sw=Math.sin(o.ph)*mv;
+  ctx.fillStyle='rgba(20,28,40,.22)';ctx.beginPath();ctx.ellipse(x,y,6.5*k,2.6*k,0,0,6.2832);ctx.fill();
+  ctx.lineCap='round';ctx.strokeStyle='#1d232c';ctx.lineWidth=3*k;
+  ctx.beginPath();ctx.moveTo(x-1.6*k,y-13*k);ctx.lineTo(x-1.6*k+sw*3*k,y);ctx.moveTo(x+1.6*k,y-13*k);ctx.lineTo(x+1.6*k-sw*3*k,y);ctx.stroke();
+  torso(x,y-12*k,k,o,15);
+  ctx.strokeStyle=o.col===o.shirt?o.col:o.col;ctx.lineWidth=2.4*k;ctx.beginPath();
+  if(o.box){ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-3*k,y-18*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+3*k,y-18*k);}
+  else if(o.mode==='act'&&o.act==='copy'){ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-4.6*k,y-15*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+6.5*k*o.dir,y-26*k);}
+  else{ctx.moveTo(x-4*k,y-24*k);ctx.lineTo(x-4.6*k-sw*1.6*k,y-15*k);ctx.moveTo(x+4*k,y-24*k);ctx.lineTo(x+4.6*k+sw*1.6*k,y-15*k);}ctx.stroke();
+  if(o.box){ctx.fillStyle='#d9a35f';ctx.strokeStyle='#5a3d1c';ctx.lineWidth=1*k;ctx.fillRect(x-5.5*k,y-24*k,11*k,8*k);ctx.strokeRect(x-5.5*k,y-24*k,11*k,8*k);ctx.beginPath();ctx.moveTo(x-5.5*k,y-20*k);ctx.lineTo(x+5.5*k,y-20*k);ctx.stroke();}
+  head(x,y-31*k,k,o,o.back);}
+ function drawSit(o,st,face,cb){var x=X(st[0]),y=Y(st[1]),k=gs*K,hy=y-3*k,bob=(o===speaker&&talkT%16<8)?-0.4*k:0;
+  ctx.lineCap='round';ctx.strokeStyle='#1d232c';ctx.lineWidth=3.2*k;ctx.beginPath();
+  if(face==='f'){ctx.moveTo(x,hy);ctx.lineTo(x+4.5*k,hy+2.5*k);}else if(face==='l'){ctx.moveTo(x,hy);ctx.lineTo(x-5.5*k,hy+1*k);}ctx.stroke();
+  torso(x,hy,k,o,13);
+  ctx.strokeStyle=o.col;ctx.lineWidth=2.4*k;ctx.beginPath();
+  var ax=face==='l'?-1:1;ctx.moveTo(x+3*ax*k,hy-10*k);ctx.lineTo(x+7*ax*k,hy-4*k);ctx.stroke();
+  o.dir=face==='l'?-1:1;head(x,hy-17.5*k+bob,k,o,face==='b');
+  if(cb){/* 背もたれが手前を向く椅子：人の手前に背もたれを描く */
+   ctx.fillStyle='#181a1e';ctx.strokeStyle='#5c626c';ctx.lineWidth=1*gs;ctx.beginPath();
+   if(ctx.roundRect)ctx.roundRect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs,4*gs);else ctx.rect(X(cb[0]),Y(cb[1]),cb[2]*gs,cb[3]*gs);ctx.fill();ctx.stroke();}}
+ function drawPerson(o){if(o.a<=0)return;ctx.save();poly(o.room);ctx.clip();ctx.globalAlpha=o.a;
+  if(o.seat&&o.mode==='sit')drawSit(o,o.seat,o.face,o===M3?[353.5,497.5,11,17]:null);
+  else if(o.mode==='act'&&o.act==='desk')drawSit(o,o.desk,'b',[294,461,14,16]);
+  else drawStand(o);ctx.restore();}
+ function drawProps(){
+  if(DOOR.o>0.02){var d=DOOR.p,f=DOOR.o;ctx.fillStyle='rgba(18,26,40,'+(0.9*f)+')';poly([d[0],[d[0][0]+(d[1][0]-d[0][0])*f,d[0][1]+(d[1][1]-d[0][1])*f],[d[3][0]+(d[2][0]-d[3][0])*f,d[3][1]+(d[2][1]-d[3][1])*f],d[3]]);ctx.fill();
+   ctx.fillStyle='#f4f6f8';ctx.strokeStyle='#2a2f38';ctx.lineWidth=1*gs;poly([[d[0][0],d[0][1]],[d[0][0]-9*f,d[0][1]+6*f],[d[3][0]-9*f,d[3][1]+6*f],[d[3][0],d[3][1]]]);ctx.fill();ctx.stroke();}
+  if(COPY.f>0.02){ctx.fillStyle='rgba(170,240,255,'+(0.85*COPY.f)+')';poly(COPY.p);ctx.fill();COPY.f*=0.86;}
+  var h=SH.h;if(h>0.3){var bl=SH.bl,br=SH.br,gg=ctx.createLinearGradient(0,Y(bl[1]-h),0,Y(bl[1]));gg.addColorStop(0,'#0c1424');gg.addColorStop(1,'#26405a');
+   ctx.fillStyle=gg;poly([bl,br,[br[0],br[1]-h],[bl[0],bl[1]-h]]);ctx.fill();ctx.strokeStyle='#3b4a5c';ctx.lineWidth=2*gs;ctx.beginPath();ctx.moveTo(X(bl[0]),Y(bl[1]-h));ctx.lineTo(X(br[0]),Y(br[1]-h));ctx.stroke();}}
+ /* 会議の吹き出し：座っている2人以上のうち1人が話す */
+ var speaker=null,talkT=0;
+ function drawTalk(){var seated=MEET.filter(function(o){return o.mode==='sit';});
+  if(seated.length<2){speaker=null;return;}
+  if(!speaker||speaker.mode!=='sit'||talkT>100){talkT=0;var c=seated.filter(function(o){return o!==speaker;});speaker=c[(Math.random()*c.length)|0];}
+  talkT++;var a=Math.min(1,talkT/10,(100-talkT)/10);if(a<=0)return;
+  var x=X(speaker.seat[0]+(speaker.face==='l'?-6:6)),y=Y(speaker.seat[1]-36),k=gs;ctx.globalAlpha=a;
+  ctx.fillStyle='#ffffff';ctx.strokeStyle='#1b2430';ctx.lineWidth=1.2*k;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x-12*k,y-14*k,24*k,13*k,6*k);else ctx.rect(x-12*k,y-14*k,24*k,13*k);ctx.fill();ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x-2*k,y-1.5*k);ctx.lineTo(x+1*k,y+4*k);ctx.lineTo(x+3*k,y-1.5*k);ctx.fill();
+  ctx.fillStyle='#1b2430';for(var d=0;d<3;d++){ctx.globalAlpha=a*(((talkT/8|0)%3)>=d?1:0.3);ctx.beginPath();ctx.arc(x+(d-1)*5*k,y-7.5*k,1.5*k,0,6.2832);ctx.fill();}
+  ctx.globalAlpha=1;}
+ function zy(o){return o.mode==='sit'?o.seat[1]:(o.mode==='act'&&o.act==='desk')?o.desk[1]:o.y;}
+ var last=0;
+ function loop(ti){if(ti-last>=32){last=ti;
+   /* 一度に席を立つのは1人だけ */
+   if(!away&&--nextTrip<=0){away=MEET[(Math.random()*3)|0];away.mode='up';away.w=10;away.x=away.trip[0][0];away.y=away.trip[0][1];nextTrip=DBG?30:R(240,420);}
+   MEET.forEach(stepMeet);stepWalker(W1);stepWalker(W2);
+   DOOR.o+=(DOOR.goal-DOOR.o)*0.18;
+   var near=Math.hypot(W1.x-672,W1.y-397)<34||W1.out;SH.goal=near?46:0;SH.h+=(SH.goal-SH.h)*0.08;
+   ctx.clearRect(0,0,W,H);drawProps();
+   ALL.slice().sort(function(a,b){return zy(a)-zy(b);}).forEach(drawPerson);drawTalk();}
+  if(!document.hidden)requestAnimationFrame(loop);else setTimeout(function(){requestAnimationFrame(loop);},400);}
+ requestAnimationFrame(loop);
 }catch(e){}})();
 </script>
 <script>
-/* ヒーロー：赤い攻撃→シールドが弾く（軽量canvas・最大9発・タブ非表示で停止・reduced-motion対応） */
+/* ヒーロー：赤い攻撃→ドームのシールドがハニカムで弾く。攻撃は7種（一斉射撃・掃射・散弾・誘導弾・重い一撃・レーザー・全方位）をランダムに切替、角度も着弾点もランダム。画像のドーム楕円に合わせる・上限あり・タブ非表示で停止・reduced-motion対応 */
 (function(){try{
  var cv=document.getElementById('heroFx');if(!cv)return;var ctx=cv.getContext('2d');if(!ctx)return;
  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;
- var dpr=Math.min(window.devicePixelRatio||1,2),W,H,cx,cy,R;
- function size(){var r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*dpr);H=cv.height=Math.max(1,r.height*dpr);cx=W*0.5;cy=H*0.44;R=Math.min(W,H)*0.30;}
- window.addEventListener('resize',size);size();
- var shots=[],rip=[],last=0;
- function spawn(){var a=Math.random()*6.2832;var d=Math.max(W,H)*0.72;shots.push({x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,a:a,sp:(2.2+Math.random()*1.5)*dpr,st:1,life:1});}
+ var img=cv.parentNode.querySelector('img');
+ /* dome-shield.webp(954x800・ドームが左右中央に来るよう切り抜き済み)上のドーム外殻＝中心(477,500)・半径(455,435) */
+ var IW=954,IH=800,DX=477,DY=500,DRX=455,DRY=435;
+ var dpr=Math.min(window.devicePixelRatio||1,2),W,H,cx,cy,rx,ry,u;
+ function size(){var r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*dpr);H=cv.height=Math.max(1,r.height*dpr);
+  var ir=img?img.getBoundingClientRect():r,s=Math.min(ir.width/IW,ir.height/IH);
+  var ox=ir.left-r.left+(ir.width-IW*s)/2,oy=ir.top-r.top+(ir.height-IH*s)/2;
+  cx=(ox+DX*s)*dpr;cy=(oy+DY*s)*dpr;rx=DRX*s*dpr;ry=DRY*s*dpr;u=s*dpr*1.6;}
+ window.addEventListener('resize',size);if(img&&!img.complete)img.addEventListener('load',size);size();
+ var shots=[],hits=[],sparks=[],lasers=[],pulses=[],glow=0,nextAt=0,lastP=-1;
+ function R(a,b){return a+Math.random()*(b-a);}
+ function later(ms,f){setTimeout(f,ms);}
+ function pt(t){var nx=Math.cos(t)/rx,ny=Math.sin(t)/ry,nl=Math.hypot(nx,ny);return {x:cx+rx*Math.cos(t),y:cy+ry*Math.sin(t),nx:nx/nl,ny:ny/nl};}
+ function nrm(t){var p=pt(t);return Math.atan2(p.ny,p.nx);}
+ /* 着弾点：ドーム上半分のどこでも／飛来角：外向きの法線から最大±60度 */
+ function rndT(){return R(-2.95,-0.2);}
+ function rndA(t){return nrm(t)+R(-1.05,1.05);}
+ /* kind: b=ビーム p=散弾 h=重い一撃 m=誘導弾。sz=着弾の大きさ */
+ function fire(t,a,d,sp,kind,sz){if(shots.length>=60)return;var p=pt(t);
+  var s={x:p.x+Math.cos(a)*d,y:p.y+Math.sin(a)*d,vx:-Math.cos(a),vy:-Math.sin(a),sp:sp,t:t,px:p.x,py:p.y,nx:p.nx,ny:p.ny,st:1,life:1,k:kind||'b',sz:sz||1,tr:[],age:0};
+  if(s.k==='m'){var h=a+Math.PI+(Math.random()<0.5?1:-1)*R(0.8,1.3);s.vx=Math.cos(h);s.vy=Math.sin(h);}
+  shots.push(s);}
+ /* 1) 一斉射撃：同じ方向から n 本が同じ所へ */
+ function volley(t,n,big){var base=rndA(t);
+  for(var k=0;k<n;k++)(function(k){later(k*(big?35:45),function(){fire(t+R(-0.025,0.025),base+R(-0.11,0.11),R(260,350)*u,(big?28:R(20,27))*u,'b',big?1.5:1);});})(k);}
+ /* 2) 掃射：連射しながら着弾点が殻の上を流れる */
+ function sweep(){var a=rndT(),b=Math.max(-2.95,Math.min(-0.2,a+R(0.8,1.6)*(Math.random()<0.5?1:-1))),n=14,off=R(-0.9,0.9);
+  for(var k=0;k<n;k++)(function(k){later(k*42,function(){var t=a+(b-a)*k/(n-1);fire(t,nrm(t)+off+R(-0.08,0.08),R(280,330)*u,24*u,'b',0.8);});})(k);}
+ /* 3) 散弾：あちこちから短い弾が一度に */
+ function scatter(){for(var k=0;k<12;k++)later(R(0,160),function(){var t=rndT();fire(t,rndA(t),R(150,230)*u,R(17,23)*u,'p',0.6);});}
+ /* 4) 誘導弾：曲がりながら飛んで、煙の尾を引いて当たる */
+ function missiles(){for(var k=0;k<3;k++)later(k*170,function(){var t=rndT();fire(t,rndA(t),R(300,380)*u,13*u,'m',1.1);});}
+ /* 5) 重い一撃：太い一発→ドーム全体に衝撃波 */
+ function heavy(){var t=rndT();fire(t,rndA(t),R(380,440)*u,19*u,'h',2.2);}
+ /* 6) レーザー：殻をなぞりながら焼く */
+ function laser(){var a=rndT(),b=Math.max(-2.95,Math.min(-0.2,a+R(0.6,1.3)*(Math.random()<0.5?1:-1))),m=(a+b)/2,mid=pt(m),ang=rndA(m),d=Math.max(W,H)*0.9;
+  lasers.push({sx:mid.x+Math.cos(ang)*d,sy:mid.y+Math.sin(ang)*d,a:a,b:b,t0:performance.now(),dur:1100,f:0});}
+ /* 7) 全方位：3方向から同時に一斉射撃 */
+ function wave(){for(var q=0;q<3;q++)volley(rndT(),4,0);}
+ function volleyAuto(){volley(rndT(),3+((Math.random()*3)|0),0);}
+ /* [関数, 次の攻撃までのms, 出やすさ]。同じ種類は続けない */
+ var PAT=[[volleyAuto,700,26],[sweep,1050,16],[scatter,850,14],[missiles,1350,14],[heavy,1250,10],[laser,1400,10],[wave,1300,10]];
+ function pick(){var tot=0,i;for(i=0;i<PAT.length;i++)if(i!==lastP)tot+=PAT[i][2];var r=Math.random()*tot;
+  for(i=0;i<PAT.length;i++){if(i===lastP)continue;r-=PAT[i][2];if(r<=0)break;}
+  if(i>=PAT.length)i=lastP===0?1:0;lastP=i;PAT[i][0]();return PAT[i][1];}
+ cv.parentNode.style.cursor='crosshair';
+ /* クリック（タップ）した所を狙って一斉射撃→ドームの殻で弾く。ドームの下半分は上半分へ折り返す */
+ cv.parentNode.addEventListener('pointerdown',function(e){var r=cv.getBoundingClientRect();
+  var x=(e.clientX-r.left)*dpr,y=(e.clientY-r.top)*dpr,t=Math.atan2((y-cy)/ry,(x-cx)/rx);
+  if(t>0)t=-t;t=Math.max(-3.0,Math.min(-0.14,t));volley(t,6,1);});
+ function hex(x,y,s){ctx.beginPath();for(var i=0;i<6;i++){var a=i*1.0472+0.5236;ctx[i?'lineTo':'moveTo'](x+Math.cos(a)*s,y+Math.sin(a)*s);}ctx.closePath();}
+ function hitAt(t,sz){if(hits.length>=40)return;var p=pt(t);glow=Math.min(1,glow+0.15*sz);
+  hits.push({t:t,x:p.x,y:p.y,life:1,sz:sz});
+  for(var k=0;k<Math.round(4*sz)&&sparks.length<180;k++){var a=Math.atan2(p.ny,p.nx)+R(-1.2,1.2),v=R(2,6)*u*Math.min(sz,1.6);
+   sparks.push({x:p.x,y:p.y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:1});}
+  if(sz>=2){glow=1;pulses.push({life:1});}}
+ function beam(x,y,dx,dy,L,al,w,core){var ex=x-dx*L,ey=y-dy*L;
+  var g=ctx.createLinearGradient(x,y,ex,ey);g.addColorStop(0,'rgba(255,60,80,'+(0.55*al)+')');g.addColorStop(1,'rgba(255,40,70,0)');
+  ctx.strokeStyle=g;ctx.lineWidth=w*dpr;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(ex,ey);ctx.stroke();
+  var g2=ctx.createLinearGradient(x,y,ex,ey);g2.addColorStop(0,'rgba(255,235,240,'+al+')');g2.addColorStop(0.35,'rgba(255,90,110,'+(0.8*al)+')');g2.addColorStop(1,'rgba(255,60,80,0)');
+  ctx.strokeStyle=g2;ctx.lineWidth=core*dpr;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(ex,ey);ctx.stroke();}
+ function drawShot(s){
+  if(s.k==='m'){/* 誘導弾：煙の尾＋弾頭 */
+   for(var j=2;j<s.tr.length;j+=2){var fa=j/s.tr.length;ctx.strokeStyle='rgba(255,'+((90+fa*80)|0)+',90,'+(fa*0.7)+')';ctx.lineWidth=(1+fa*4)*dpr;ctx.beginPath();ctx.moveTo(s.tr[j-2],s.tr[j-1]);ctx.lineTo(s.tr[j],s.tr[j+1]);ctx.stroke();}
+   if(s.st===1){ctx.fillStyle='rgba(255,230,235,1)';ctx.beginPath();ctx.arc(s.x,s.y,3*dpr,0,6.2832);ctx.fill();}
+   return;}
+  var L=(s.st===1?(s.k==='h'?260:s.k==='p'?70:170):40)*u;
+  beam(s.x,s.y,s.vx,s.vy,L,Math.max(0,s.life),s.k==='h'?18:s.k==='p'?4:6,s.k==='h'?5:s.k==='p'?1.4:1.8);}
+ function stepShot(s){
+  if(s.k==='m'){
+   if(s.st===1){s.age++;var dx=s.px-s.x,dy=s.py-s.y,dl=Math.hypot(dx,dy)||1,kk=Math.min(0.35,0.05+s.age*0.006);
+    s.vx=s.vx*(1-kk)+dx/dl*kk;s.vy=s.vy*(1-kk)+dy/dl*kk;var vl=Math.hypot(s.vx,s.vy)||1;s.vx/=vl;s.vy/=vl;
+    s.tr.push(s.x,s.y);if(s.tr.length>36)s.tr.splice(0,2);
+    if(dl<=s.sp*1.2){s.x=s.px;s.y=s.py;s.st=0;hitAt(s.t,s.sz);}else{s.x+=s.vx*s.sp;s.y+=s.vy*s.sp;}}
+   else s.tr.splice(0,4);
+   return s.st===1||s.tr.length>2;}
+  s.x+=s.vx*s.sp;s.y+=s.vy*s.sp;
+  if(s.st===1&&(s.x-s.px)*s.nx+(s.y-s.py)*s.ny<=0){
+   s.x=s.px;s.y=s.py;var dt=s.vx*s.nx+s.vy*s.ny;s.vx-=2*dt*s.nx;s.vy-=2*dt*s.ny;s.st=0;s.sp*=0.5;hitAt(s.t,s.sz);}
+  if(s.st===0)s.life-=0.05;
+  return s.life>0&&s.x>-200&&s.x<W+200&&s.y>-200&&s.y<H+200;}
  function loop(ti){ctx.clearRect(0,0,W,H);
-  if(ti-last>520){last=ti;if(shots.length<9)spawn();}
-  for(var i=shots.length-1;i>=0;i--){var s=shots[i];
-   if(s.st===1){s.x-=Math.cos(s.a)*s.sp;s.y-=Math.sin(s.a)*s.sp;var dx=s.x-cx,dy=s.y-cy,di=Math.hypot(dx,dy);
-    if(di<=R){rip.push({x:cx+dx/di*R,y:cy+dy/di*R,r:2*dpr,life:1});s.st=0;s.a=Math.atan2(dy,dx)+(Math.random()-0.5);s.sp*=0.75;}}
-   else{s.x+=Math.cos(s.a)*s.sp;s.y+=Math.sin(s.a)*s.sp;s.life-=0.03;}
-   var k=s.st===1?10:-10;var tx=s.x+Math.cos(s.a)*k*dpr,ty=s.y+Math.sin(s.a)*k*dpr;
-   ctx.strokeStyle='rgba(255,77,94,'+(s.st===1?0.9:0.9*s.life)+')';ctx.lineWidth=1.6*dpr;ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(tx,ty);ctx.stroke();
-   ctx.fillStyle='rgba(255,130,140,'+(s.st===1?1:s.life)+')';ctx.beginPath();ctx.arc(s.x,s.y,1.8*dpr,0,6.2832);ctx.fill();
-   if(s.life<=0||s.x<-60||s.x>W+60||s.y<-60||s.y>H+60)shots.splice(i,1);}
-  for(var j=rip.length-1;j>=0;j--){var p=rip[j];p.r+=1.9*dpr;p.life-=0.045;
-   ctx.strokeStyle='rgba(54,230,255,'+(p.life*0.85)+')';ctx.lineWidth=2*dpr;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);ctx.stroke();
-   if(p.life<=0)rip.splice(j,1);}
+  if(ti>=nextAt)nextAt=ti+pick();
+  ctx.globalCompositeOperation='lighter';ctx.lineCap='round';ctx.lineJoin='round';
+  /* ドーム全体のうっすら発光（着弾が重なるほど強く） */
+  if(glow>0.01){ctx.strokeStyle='rgba(54,230,255,'+(glow*0.35)+')';ctx.lineWidth=(3+glow*6)*dpr;ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,Math.PI,6.2832);ctx.stroke();glow*=0.95;}
+  /* 重い一撃の衝撃波：殻全体が外へ広がる */
+  for(var q=pulses.length-1;q>=0;q--){var pu=pulses[q];pu.life-=0.03;if(pu.life<=0){pulses.splice(q,1);continue;}var e0=1-pu.life;
+   ctx.strokeStyle='rgba(120,240,255,'+(pu.life*0.8)+')';ctx.lineWidth=(2+5*pu.life)*dpr;ctx.beginPath();ctx.ellipse(cx,cy,rx*(1+e0*0.14),ry*(1+e0*0.14),0,Math.PI,6.2832);ctx.stroke();}
+  /* レーザー */
+  var now=performance.now();
+  for(var z=lasers.length-1;z>=0;z--){var lz=lasers[z],pr=(now-lz.t0)/lz.dur;if(pr>=1){lasers.splice(z,1);continue;}
+   var tt=lz.a+(lz.b-lz.a)*pr,pp=pt(tt),fa=Math.min(1,Math.min(pr,1-pr)*6);
+   ctx.strokeStyle='rgba(255,50,75,'+(0.35*fa)+')';ctx.lineWidth=14*dpr;ctx.beginPath();ctx.moveTo(lz.sx,lz.sy);ctx.lineTo(pp.x,pp.y);ctx.stroke();
+   ctx.strokeStyle='rgba(255,220,228,'+fa+')';ctx.lineWidth=2.6*dpr;ctx.beginPath();ctx.moveTo(lz.sx,lz.sy);ctx.lineTo(pp.x,pp.y);ctx.stroke();
+   if((lz.f++)%4===0)hitAt(tt,0.55);
+   else if(sparks.length<180){var sa=Math.atan2(pp.ny,pp.nx)+R(-1.3,1.3),sv=R(2,5)*u;sparks.push({x:pp.x,y:pp.y,vx:Math.cos(sa)*sv,vy:Math.sin(sa)*sv,life:1});}}
+  for(var i=shots.length-1;i>=0;i--){if(!stepShot(shots[i])){shots.splice(i,1);continue;}drawShot(shots[i]);}
+  for(var j=hits.length-1;j>=0;j--){var p=hits[j];p.life-=p.sz>=2?0.014:p.sz<0.7?0.045:0.024;if(p.life<=0){hits.splice(j,1);continue;}
+   var k=p.life,e=1-k,sz=p.sz,sp=0.07*sz+e*0.45*Math.min(sz,1.8);
+   /* 殻に沿って広がる波紋 */
+   ctx.strokeStyle='rgba(54,230,255,'+(k*0.85)+')';ctx.lineWidth=(1.5+4*Math.min(sz,1.8)*k)*dpr;
+   ctx.beginPath();ctx.ellipse(cx,cy,rx,ry,0,p.t-sp,p.t+sp);ctx.stroke();
+   /* ハニカムのシールド片（中心＋周り6枚。小さい着弾は1枚） */
+   var hs=9*u*Math.min(sz,1.8),cnt=sz<0.7?1:7;
+   for(var m=0;m<cnt;m++){var ox=0,oy=0;if(m){var a=(m-1)*1.0472;ox=Math.cos(a)*hs*1.75;oy=Math.sin(a)*hs*1.75;}
+    var al=k*(m?0.55:0.95);
+    ctx.fillStyle='rgba(54,230,255,'+(al*0.18)+')';ctx.strokeStyle='rgba(150,245,255,'+al+')';ctx.lineWidth=1.3*dpr;
+    hex(p.x+ox,p.y+oy*0.85,hs*(0.9+e*0.15));ctx.fill();ctx.stroke();}
+   /* 中心の白い閃光 */
+   var fr=30*u*Math.min(sz,2.2),rg=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,fr);rg.addColorStop(0,'rgba(255,255,255,'+(k*k)+')');rg.addColorStop(0.3,'rgba(120,240,255,'+(0.5*k*k)+')');rg.addColorStop(1,'rgba(54,230,255,0)');
+   ctx.fillStyle=rg;ctx.beginPath();ctx.arc(p.x,p.y,fr,0,6.2832);ctx.fill();}
+  for(var n=sparks.length-1;n>=0;n--){var f=sparks[n];f.x+=f.vx;f.y+=f.vy;f.vx*=0.94;f.vy=f.vy*0.94+0.06*u;f.life-=0.035;
+   if(f.life<=0){sparks.splice(n,1);continue;}
+   ctx.strokeStyle='rgba(180,250,255,'+f.life+')';ctx.lineWidth=1.4*dpr;ctx.beginPath();ctx.moveTo(f.x,f.y);ctx.lineTo(f.x-f.vx*2.2,f.y-f.vy*2.2);ctx.stroke();}
+  ctx.globalCompositeOperation='source-over';
   if(!document.hidden)requestAnimationFrame(loop);else setTimeout(function(){requestAnimationFrame(loop);},400);}
  requestAnimationFrame(loop);
 }catch(e){}})();

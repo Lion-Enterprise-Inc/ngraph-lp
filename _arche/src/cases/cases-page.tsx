@@ -1430,8 +1430,18 @@ export default function CasesPage() {
             企業の構造分析<span className="ml-3 text-base sm:text-lg font-bold text-muted-foreground">アルケー</span>
           </h1>
           <p className="text-[15px] leading-[1.9] text-foreground max-w-3xl">
-            世界を変えた企業{canonicalCases.length}社を、同じ物差しで並べました。市場・課題・チームなど12項目（各5点）と、世間・相手・自己の三軸（各10点）で採点し、100点満点で表しています。長く続いた会社と消えた会社の差が、どこに出るかを見るための一覧です。
+            世界を変えた企業{canonicalCases.length}社を、同じ物差しで並べました。
           </p>
+          {/* 採点の説明は折りたたむ（冒頭の文字が多すぎた・2026-10-18） */}
+          <details className="group max-w-3xl text-[14px] leading-[1.9] text-muted-foreground">
+            <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-[13px] font-bold text-primary [&::-webkit-details-marker]:hidden">
+              採点のしかた
+              <span className="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+            </summary>
+            <p className="mt-2">
+              市場・課題・チームなど12項目（各5点）と、世間・相手・自己の三軸（各10点）で採点し、100点満点で表しています。長く続いた会社と消えた会社の差が、どこに出るかを見るための一覧です。
+            </p>
+          </details>
           <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground">
             <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-(--c-ex)" />卓越 {EXCELLENT_LINE}点以上</li>
             <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-(--c-mean)" />中庸 {SURVIVAL_LINE}点以上</li>
@@ -1444,7 +1454,8 @@ export default function CasesPage() {
         <div className="sm:sticky sm:top-16 z-10 bg-background/95 backdrop-blur-sm -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 border-y border-border">
           <div className="flex items-start gap-3">
             <div className="flex-1 min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-nowrap sm:flex-wrap items-center gap-2 overflow-x-auto sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
                 {tiers.map((t) => (
                   <button
                     key={t}

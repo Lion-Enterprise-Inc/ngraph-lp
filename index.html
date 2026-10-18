@@ -214,8 +214,11 @@
 :root{--tz-ink:#0b0b0d;--tz-ink2:#141417;--tz-txt:#f3efe6;--tz-txt2:rgba(243,239,230,.72);--tz-txt3:rgba(243,239,230,.46);--tz-line:rgba(246,242,233,.14);--tz-line2:rgba(246,242,233,.32);--tz-shu:#c94a2e}
 .tz-sky{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;background:var(--tz-ink);color:var(--tz-txt)}
 .tz-sky .tz-flame{position:absolute;top:0;bottom:0;left:30%;right:-6%;z-index:0;background:url(/assets/concept-visual.png) 50% 50%/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
-@media(max-width:900px){.tz-sky .tz-flame{left:-35%;right:-35%;top:9%;bottom:auto;height:46%}}
+@media(max-width:900px){.tz-sky .tz-flame{left:-35%;right:-35%;top:9%;bottom:auto;height:46%;background-image:url(/assets/concept-visual-center.webp)}}
 .tz-sky::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(11,11,13,.82) 0,rgba(11,11,13,.55) 38%,rgba(11,11,13,0) 62%),radial-gradient(90% 70% at 66% 50%,transparent 45%,rgba(11,11,13,.7) 100%)}
+/* スマホは見出しが炎の下に来るので、左だけ暗くする帯をやめて左右対称にし、下側を暗くする（炎が右に寄って見えた・2026-10-18） */
+@media(max-width:900px){.tz-sky::after{background:linear-gradient(180deg,rgba(11,11,13,0) 0,rgba(11,11,13,0) 46%,rgba(11,11,13,.7) 66%),radial-gradient(90% 60% at 50% 32%,transparent 50%,rgba(11,11,13,.6) 100%)}}
+@media(max-width:360px){.tz-copy .tz-h1{font-size:1.72rem;letter-spacing:.04em}} /* 320pxで見出しが語の途中で折れていた */
 .tz-frame{position:relative;z-index:2;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:96px clamp(20px,5vw,72px) 28px;max-width:1440px;margin:0 auto}
 .tz-stage{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;padding:4vh 0}
 .tz-copy{max-width:780px}
@@ -272,7 +275,7 @@
 .header:not(.scrolled) .brand img{filter:invert(1)}
 @media(max-width:900px){
   .tz-frame{padding:84px 20px 24px}
-  .tz-stage{grid-template-columns:1fr;gap:28px;padding:4vh 0 3vh;align-items:end}
+  .tz-stage{grid-template-columns:1fr;gap:28px;padding:calc(44svh - 84px) 0 3vh;align-items:start} /* 見出しを炎の下側に重ねる（下に寄りすぎていた・2026-10-18） */
   .tz-tate{display:none}
   .tz-h1{font-size:2.05rem;line-height:1.5;white-space:normal}
   .tz-lede{font-size:.86rem;line-height:2}

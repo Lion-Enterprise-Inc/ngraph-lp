@@ -133,7 +133,10 @@
 .q-inds button{text-align:left;padding:13px 14px;border:1px solid var(--border-strong);border-radius:3px;background:rgba(255,255,255,.6);font-size:.86rem;line-height:1.55;color:var(--text);cursor:pointer;font-family:inherit;word-break:keep-all;overflow-wrap:normal;transition:border-color .15s,background .15s}
 /* 2列グリッドで幅が足りず「ビルメンテ／ナンス」「ハウスクリー／ニング」が割れていた（320〜375px）。
    語の内側では折らず、「・」で折らせる。狭い実機では1列に落として語を保つ */
-@media(max-width:380px){.q-inds{grid-template-columns:1fr}}
+/* sp.css の .q-inds{1fr 1fr} は長い業種名で右の列がはみ出す（minmax(0,…) でないと縮まない）。詳細度を上げて上書き */
+.quiz-wrap .q-inds{grid-template-columns:repeat(2,minmax(0,1fr))}
+.quiz-wrap .q-inds button{min-width:0;overflow-wrap:anywhere}
+@media(max-width:380px){.quiz-wrap .q-inds{grid-template-columns:1fr}}
 .q-inds button:hover{border-color:var(--accent);background:rgba(166,58,36,.05)}
 .result-mirror{font-size:.86rem;color:var(--text-2);line-height:1.95;margin-top:18px;padding:14px 16px;background:rgba(166,58,36,.05);border-left:2px solid var(--accent);border-radius:0 3px 3px 0}
 .result-tips{margin-top:22px}
