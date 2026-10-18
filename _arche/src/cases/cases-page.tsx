@@ -100,7 +100,7 @@ function RadarChart({
   const toXY = (i: number, val: number) => {
     const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
     const dist = (val / 5) * r;
-    return { x: cx + dist * Math.cos(angle), y: cy + dist * Math.sin(angle) };
+    return { x: Math.round((cx + dist * Math.cos(angle)) * 100) / 100, y: Math.round((cy + dist * Math.sin(angle)) * 100) / 100 };
   };
 
   // グリッド線
@@ -168,41 +168,142 @@ const SCORE_SHORT: Record<string, { ja: string; en: string }> = {
   insight: { ja: "洞察", en: "Insight" },
 };
 
-function ScoreGrid({ scores, reasons, locale, selected, onSelect }: {
+function ScoreGrid({ scores, reasons, locale }: {
   scores: CaseScore;
   reasons: CaseStudy["reasons"];
   locale: string;
-  selected: string | null;
-  onSelect: (key: string | null) => void;
 }) {
+  const ja = locale === "ja";
   const L = (key: string) => SCORE_LABELS_I18N[key]?.[locale as "ja" | "en"] || key;
-  const keyToIdx: Record<string, number> = {};
-  RADAR_KEYS.forEach((k, i) => { keyToIdx[k] = i; });
+  const name = (k: (typeof RADAR_KEYS)[number]) => `${RADAR_LETTERS[RADAR_KEYS.indexOf(k)]} ${L(k)}`;
+  const strong = RADAR_KEYS.filter((k) => scores[k] >= 5);
+  const weak = RADAR_KEYS.filter((k) => scores[k] <= 2);
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-1">
-      {Object.entries(scores).map(([key, val]) => {
-        const isActive = selected === key;
-        const letter = RADAR_LETTERS[keyToIdx[key] ?? 0];
-        return (
-          <div
-            key={key}
-            className="w-full text-left py-2 border-b border-border/70"
-          >
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-xs font-bold text-primary w-3.5 shrink-0">{letter}</span>
-              <span className="text-sm font-bold text-foreground">{L(key)}</span>
-            </div>
-            <div className="flex items-center gap-1.5 mt-0.5">
-              <div className="flex-1 h-2 bg-muted rounded-full">
+    <div>
+      {(strong.length > 0 || weak.length > 0) && (
+        <div className="mb-4 grid gap-1 text-sm sm:grid-cols-2">
+          {strong.length > 0 && (
+            <p><span className="mr-2 font-bold text-(--c-ex)">{ja ? "強み" : "Strengths"}</span>{strong.map(name).join(ja ? "・" : ", ")}</p>
+          )}
+          {weak.length > 0 && (
+            <p><span className="mr-2 font-bold text-(--c-weak)">{ja ? "弱み" : "Weaknesses"}</span>{weak.map(name).join(ja ? "・" : ", ")}</p>
+          )}
+        </div>
+      )}
+      <div className="grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+        {RADAR_KEYS.map((key, i) => {
+          const val = scores[key];
+          const edge = val >= 5 ? "border-(--c-ex)" : val <= 2 ? "border-(--c-weak)" : "border-border";
+          return (
+            <div key={key} className={`border-l-2 pl-3 ${edge}`}>
+              <div className="flex items-baseline gap-1.5">
+                <span className="w-3.5 shrink-0 text-xs font-bold text-primary">{RADAR_LETTERS[i]}</span>
+                <span className="text-sm font-bold text-foreground">{L(key)}</span>
+                <span className="ml-auto text-sm font-bold tabular-nums text-foreground">
+                  {val}<span className="text-xs font-normal text-foreground/40">/5</span>
+                </span>
+              </div>
+              <div className="mt-1 h-2 rounded-full bg-muted">
                 <div className={`h-2 rounded-full ${val >= 4 ? "bg-(--c-ex)" : val >= 3 ? "bg-(--c-mean)" : val >= 2 ? "bg-(--c-weak)" : "bg-(--c-fail)"}`} style={{ width: `${(val / 5) * 100}%` }} />
               </div>
-              <span className="text-sm font-bold tabular-nums text-foreground w-4 text-right">{val}</span>
+              <p className="mt-1.5 text-sm leading-[1.75] text-muted-foreground">{reasons[key]}</p>
             </div>
-            <p className="text-sm text-muted-foreground mt-1 leading-[1.75]">{reasons[key as keyof typeof reasons]}</p>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
+  );
+}
+
+/* ── ヒーロー中央：3軸・存続/卓越ラインに対する位置・徳目 ── */
+function HeroSummary({ axes, score, virtue, ja }: {
+  axes: CaseStudy["axes"];
+  score: number;
+  virtue: string;
+  ja: boolean;
+}) {
+  const pos = Math.max(0, Math.min(100, score));
+  const verdict = score >= EXCELLENT_LINE
+    ? (ja ? `卓越ライン（${EXCELLENT_LINE}）を ${score - EXCELLENT_LINE} 点上回る` : `${score - EXCELLENT_LINE} above the excellence line`)
+    : score >= SURVIVAL_LINE
+      ? (ja ? `存続ライン（${SURVIVAL_LINE}）を ${score - SURVIVAL_LINE} 点上回る` : `${score - SURVIVAL_LINE} above the survival line`)
+      : (ja ? `存続ライン（${SURVIVAL_LINE}）まで ${SURVIVAL_LINE - score} 点足りない` : `${SURVIVAL_LINE - score} below the survival line`);
+  const items = [
+    { label: ja ? "世間" : "Society", value: axes.society * 2 },
+    { label: ja ? "相手" : "Customer", value: axes.customer * 2 },
+    { label: ja ? "自己" : "Self", value: axes.self * 2 },
+  ];
+  return (
+    <div className="space-y-3">
+      <div className="flex gap-6">
+        {items.map((a) => (
+          <div key={a.label}>
+            <p className="text-xs text-white/75">{a.label}</p>
+            <p className="text-xl font-black leading-tight">
+              {a.value}<span className="text-xs font-normal text-white/65">/10</span>
+            </p>
+          </div>
+        ))}
+      </div>
+      <div>
+        <p className="mb-1.5 text-xs text-white/90">{verdict}</p>
+        <div className="relative h-1.5 rounded-full bg-white/25">
+          <div className="absolute inset-y-0 left-0 rounded-full bg-white/85" style={{ width: `${pos}%` }} />
+          {[SURVIVAL_LINE, EXCELLENT_LINE].map((v) => (
+            <span key={v} className="absolute -top-1 h-3.5 w-px bg-white" style={{ left: `${v}%` }} />
+          ))}
+        </div>
+        <div className="relative mt-1 h-4 text-xs text-white/75">
+          <span className="absolute -translate-x-1/2 whitespace-nowrap" style={{ left: `${SURVIVAL_LINE}%` }}>{ja ? "存続" : "Survival"} {SURVIVAL_LINE}</span>
+          <span className="absolute -translate-x-1/2 whitespace-nowrap" style={{ left: `${EXCELLENT_LINE}%` }}>{ja ? "卓越" : "Excellence"} {EXCELLENT_LINE}</span>
+        </div>
+      </div>
+      {virtue && (
+        <span className="inline-block rounded-md bg-white/15 px-2 py-0.5 text-xs font-bold">{virtue}</span>
+      )}
+    </div>
+  );
+}
+
+/* ── NCG の内訳（12項目＋3軸＋加点） ── */
+function ScoreBreakdown({ total, axesTotal, bonus, score, ja }: {
+  total: number;
+  axesTotal: number;
+  bonus: { value: number; reason: string };
+  score: number;
+  ja: boolean;
+}) {
+  const parts = [
+    { label: ja ? "12項目" : "12 criteria", value: `${total}`, max: "/60" },
+    { label: ja ? "3軸" : "3 axes", value: `${axesTotal}`, max: "/30" },
+    ...(bonus.value > 0 ? [{ label: ja ? "加点" : "Bonus", value: `+${bonus.value}`, max: "" }] : []),
+  ];
+  return (
+    <section className="rounded-xl border border-border/60 bg-muted/40 px-4 py-3">
+      <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
+        {parts.map((p, i) => (
+          <div key={p.label} className="flex items-end gap-3">
+            {i > 0 && <span className="pb-1 text-foreground/40">＋</span>}
+            <div>
+              <p className="text-xs font-bold text-muted-foreground">{p.label}</p>
+              <p className="text-xl font-black leading-tight text-foreground">
+                {p.value}<span className="text-xs font-normal text-foreground/40">{p.max}</span>
+              </p>
+            </div>
+          </div>
+        ))}
+        <span className="pb-1 text-foreground/40">＝</span>
+        <div>
+          <p className="text-xs font-bold text-muted-foreground">NCG</p>
+          <p className="text-xl font-black leading-tight text-foreground">
+            {score}<span className="text-xs font-normal text-foreground/40">/100</span>
+          </p>
+        </div>
+      </div>
+      {bonus.value > 0 && bonus.reason && (
+        <p className="mt-2 text-sm leading-[1.75] text-muted-foreground">{ja ? "加点の理由：" : "Bonus: "}{bonus.reason}</p>
+      )}
+    </section>
   );
 }
 
@@ -221,7 +322,7 @@ function TriangleChart({ axes, size = 64, color = "#2e6e4e", showLabels = false,
   const toXY = (i: number, val: number) => {
     const angle = (Math.PI * 2 * i) / 3 - Math.PI / 2;
     const dist = (val / 5) * r;
-    return { x: cx + dist * Math.cos(angle), y: cy + dist * Math.sin(angle) };
+    return { x: Math.round((cx + dist * Math.cos(angle)) * 100) / 100, y: Math.round((cy + dist * Math.sin(angle)) * 100) / 100 };
   };
   const grid = [1, 2, 3, 4, 5].map((level) => {
     const pts = [0, 1, 2].map((i) => toXY(i, level));
@@ -490,14 +591,12 @@ function OtoraChat({ caseName, context, onClose, locale, isFail }: { caseName: s
 }
 
 /* ── カード内容（スライダー内で使う） ── */
-function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLoggedIn: boolean; onChat: () => void; locale: string }) {
+export function CardContent({ c, isLoggedIn, onChat, locale, rounded = "rounded-t-2xl" }: { c: CaseStudy; isLoggedIn: boolean; onChat?: () => void; locale: string; rounded?: string }) {
   const tierInfo = TIER_CONFIG_I18N[c.tier];
   const ageBadgeTier = getAgeBadge(c);
   const ageBadge = ageBadgeTier ? TIER_CONFIG_I18N[ageBadgeTier] : null;
   const isFail = c.tier === "fail";
   const ja = locale === "ja";
-  const [selectedScore, setSelectedScore] = useState<string | null>(null);
-  const selectedLabel = selectedScore ? (SCORE_LABELS_I18N[selectedScore]?.[locale as "ja" | "en"] || selectedScore) : null;
   const localizedSituation = pickLocalized(c.situation, c.situationEn, locale);
   const localizedInsight = pickLocalized(c.insight, c.insightEn, locale);
   const localizedOtoraComment = pickLocalized(c.otoraComment, c.otoraCommentEn, locale);
@@ -519,7 +618,7 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
     <>
       {/* ヒーロー（NHGと同等のヘッダー密度） */}
       <div
-        className="relative overflow-hidden rounded-t-2xl"
+        className={`relative overflow-hidden ${rounded}`}
         style={{
           backgroundImage: `linear-gradient(135deg, ${c.color} 0%, ${c.color}cc 65%, rgba(0,0,0,0.25) 100%)`,
           backgroundColor: c.color,
@@ -581,25 +680,37 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
           </div>
 
           {/* PC */}
-          <div className="hidden sm:grid sm:grid-cols-[auto_1fr_auto] sm:gap-x-4 sm:gap-y-1 sm:items-start">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/20 backdrop-blur text-2xl font-black text-white drop-shadow">
-              {c.initial}
-            </div>
-            <div className="min-w-0 self-center">
-              <div className="flex items-center gap-1 flex-wrap text-xs text-white/85 font-medium leading-tight">
-                {tierInfo.emoji && <span>{tierInfo.emoji}</span>}
-                <span className="whitespace-nowrap">{tierInfo[locale as "ja" | "en"]}</span>
-                {ageBadge && (
-                  <span className="whitespace-nowrap">
-                    <span className="opacity-70">｜</span>
-                    {ageBadge.emoji}{" "}
-                    {ageBadge[locale as "ja" | "en"]}
-                  </span>
-                )}
-                {localizedTierLabel && <span className="opacity-70 whitespace-nowrap">｜{localizedTierLabel}</span>}
+          <div className="hidden sm:flex sm:items-center sm:gap-6">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-3">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20 backdrop-blur text-2xl font-black text-white drop-shadow">
+                  {c.initial}
+                </div>
+                <div className="flex min-w-0 flex-wrap items-center gap-1 text-xs font-medium leading-tight text-white/85">
+                  {tierInfo.emoji && <span>{tierInfo.emoji}</span>}
+                  <span className="whitespace-nowrap">{tierInfo[locale as "ja" | "en"]}</span>
+                  {ageBadge && (
+                    <span className="whitespace-nowrap">
+                      <span className="opacity-70">｜</span>
+                      {ageBadge.emoji}{" "}
+                      {ageBadge[locale as "ja" | "en"]}
+                    </span>
+                  )}
+                  {localizedTierLabel && <span className="opacity-70 whitespace-nowrap">｜{localizedTierLabel}</span>}
+                </div>
               </div>
+              <h2 className="mt-3 text-2xl font-black tracking-tight leading-tight break-words">
+                {locale === "en" && c.nameEn ? c.nameEn : c.name}
+              </h2>
+              {locale !== "en" && c.nameEn && c.nameEn !== c.name && (
+                <p className="text-xs text-white/70 mt-0.5 font-mono tracking-wide break-words">{c.nameEn}</p>
+              )}
+              <p className="text-sm text-white/85 mt-1">{countryName(c.flag)}{countryName(c.flag) ? "・" : ""}{ja ? `創業 ${c.year}年` : `Founded ${c.year}`}</p>
             </div>
-            <div className="relative shrink-0 w-32 h-32 self-center row-span-2">
+            <div className="hidden md:block w-[300px] shrink-0">
+              <HeroSummary axes={c.axes} score={score} virtue={localizedVirtue} ja={ja} />
+            </div>
+            <div className="relative shrink-0 w-32 h-32">
               <div className="absolute inset-0 flex items-center justify-center">
                 <RadarChart
                   scores={c.scores}
@@ -617,15 +728,11 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
                 <div className="text-xs text-white/70 leading-none mt-0.5">/100</div>
               </div>
             </div>
-            <div className="col-span-2 min-w-0">
-              <h2 className="text-2xl font-black tracking-tight leading-tight break-words">
-                                {locale === "en" && c.nameEn ? c.nameEn : c.name}
-              </h2>
-              {locale !== "en" && c.nameEn && (
-                <p className="text-xs text-white/70 mt-0.5 font-mono tracking-wide break-words">{c.nameEn}</p>
-              )}
-              <p className="text-sm text-white/85 mt-1">{countryName(c.flag)}{countryName(c.flag) ? "・" : ""}{ja ? `創業 ${c.year}年` : `Founded ${c.year}`}</p>
-            </div>
+          </div>
+
+          {/* md 未満：要約は名前の下に */}
+          <div className="md:hidden mt-4">
+            <HeroSummary axes={c.axes} score={score} virtue={localizedVirtue} ja={ja} />
           </div>
 
           {/* 洞察バナー（ヒーロー下に浮かせる） */}
@@ -637,77 +744,25 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
         </div>
       </div>
 
-      {/* 本文（lg以上で2カラム） */}
-      <div className="px-4 sm:px-6 py-5 sm:py-6 text-[15px] leading-[1.9] lg:columns-2 lg:gap-10 lg:[&>section]:break-inside-avoid lg:[&>section]:mb-7 space-y-7 lg:space-y-0">
-        {/* 当時の状況 */}
-        <section>
-          <h3 className="k-h text-foreground">
-            {ja ? "当時の状況" : "Context"}
-          </h3>
-          <p className="text-foreground whitespace-pre-wrap">{localizedSituation}</p>
-        </section>
-
-        {/* 12項目スコア（A〜L） */}
-        <section>
-          <h3 className="k-h text-foreground">
-            <TrendingUp className="h-3.5 w-3.5" />
-            {ja ? `12項目スコア（${c.total}/60）` : `12 Criteria (${c.total}/60)`}
-          </h3>
-          <ScoreGrid scores={c.scores} reasons={localizedReasons} locale={locale} selected={selectedScore} onSelect={setSelectedScore} />
-        </section>
-
-        {/* 3軸評価 */}
-        <section>
-          <h3 className="k-h text-foreground">
-            {ja ? `3軸評価（${axesTotal}/30）` : `3-Axis (${axesTotal}/30)`}
-          </h3>
-          <div className="rounded-xl bg-muted/40 border border-border/60 p-3">
-            <div className="grid grid-cols-3 gap-3 text-center">
-              {[
-                { label: ja ? "世間" : "Society", value: c.axes.society * 2 },
-                { label: ja ? "相手" : "Customer", value: c.axes.customer * 2 },
-                { label: ja ? "自己" : "Self", value: c.axes.self * 2 },
-              ].map((a) => (
-                <div key={a.label}>
-                  <p className="text-sm font-bold text-muted-foreground">{a.label}</p>
-                  <p className="text-2xl font-black mt-0.5 text-foreground">
-                    {a.value}<span className="text-xs text-foreground/40 font-normal">/10</span>
-                  </p>
-                </div>
-              ))}
-            </div>
+      {/* 本文 */}
+      <div className="px-4 sm:px-6 py-5 sm:py-6 text-[15px] leading-[1.9] space-y-7">
+        <div className="grid gap-7 lg:grid-cols-2 lg:gap-10">
+          <div className="space-y-7">
+            <ScoreBreakdown total={c.total} axesTotal={axesTotal} bonus={bonus} score={score} ja={ja} />
+            <section>
+              <h3 className="k-h text-foreground">
+                {ja ? "当時の状況" : "Context"}
+              </h3>
+              <p className="text-foreground whitespace-pre-wrap">{localizedSituation}</p>
+            </section>
           </div>
-        </section>
-
-        {/* ボーナス加点 */}
-        {bonus.value > 0 && (
           <section>
-            <h3 className="k-h text-(--c-weak)">
-              {ja ? "ボーナス加点" : "Bonus"}
-            </h3>
-            <div className="rounded-xl bg-(--c-weak)/5 border border-(--c-weak)/30 p-3 flex items-baseline gap-3">
-              <div className="text-3xl font-black text-(--c-weak) shrink-0 leading-none">+{bonus.value}</div>
-              <p className="text-sm text-foreground leading-[1.8]">{bonus.reason}</p>
-            </div>
-          </section>
-        )}
-
-        {/* テレスの所感（12項目の各点を選ぶと理由に切り替わる） */}
-        <section>
-          <h3 className="k-h text-foreground justify-between">
-            <span className="flex items-center gap-1.5">
-              <Image src="/teles.png" alt="Teles" width={12} height={12} />
-              {selectedScore
-                ? `${selectedLabel}${ja ? " — テレスの視点" : " — Teles' Lens"}`
-                : (ja ? "テレスの所感" : "Teles' Insight")}
-            </span>
-            <span className="flex items-center gap-2 normal-case tracking-normal">
-              {selectedScore && (
-                <button onClick={() => setSelectedScore(null)} className="text-xs font-normal text-muted-foreground hover:text-foreground/70">
-                  {ja ? "全体に戻す" : "Back"}
-                </button>
-              )}
-              {isLoggedIn ? (
+            <h3 className="k-h text-foreground justify-between">
+              <span className="flex items-center gap-1.5">
+                <Image src="/teles.png" alt="Teles" width={12} height={12} />
+                {ja ? "テレスの所感" : "Teles' Insight"}
+              </span>
+              {!onChat ? null : isLoggedIn ? (
                 <button onClick={onChat} className="flex items-center gap-1 text-xs font-normal text-primary hover:underline">
                   <MessageCircle className="h-3 w-3" />{ja ? "対話" : "Chat"}
                 </button>
@@ -716,25 +771,10 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
                   <MessageCircle className="h-3 w-3" />{ja ? "対話" : "Chat"}
                 </Link>
               )}
-            </span>
-          </h3>
-          <div className="rounded-xl bg-muted/40 border border-border/60 p-3">
-            {selectedScore ? (
-              <p className="text-foreground">
-                {localizedReasons[selectedScore as keyof typeof localizedReasons]}
-              </p>
-            ) : (
-              <>
-                <p className="text-foreground whitespace-pre-wrap">{localizedOtoraComment}</p>
-                {localizedVirtue && (
-                  <blockquote className="mt-3 border-l-[3px] border-primary/60 pl-3 py-0.5 text-foreground font-bold text-[15px] [font-family:var(--font-serif)]">
-                    {localizedVirtue}
-                  </blockquote>
-                )}
-              </>
-            )}
-          </div>
-        </section>
+            </h3>
+            <p className="text-foreground whitespace-pre-wrap">{localizedOtoraComment}</p>
+          </section>
+        </div>
 
         {/* 存続の鍵 / 失敗の核心 */}
         {(showSurvival || showFail) && (
@@ -747,6 +787,15 @@ function CardContent({ c, isLoggedIn, onChat, locale }: { c: CaseStudy; isLogged
             </div>
           </section>
         )}
+
+        {/* 12項目スコア（A〜L） */}
+        <section>
+          <h3 className="k-h text-foreground">
+            <TrendingUp className="h-3.5 w-3.5" />
+            {ja ? `12項目スコア（${c.total}/60）` : `12 Criteria (${c.total}/60)`}
+          </h3>
+          <ScoreGrid scores={c.scores} reasons={localizedReasons} locale={locale} />
+        </section>
       </div>
     </>
   );
