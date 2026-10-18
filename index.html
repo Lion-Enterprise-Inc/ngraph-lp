@@ -213,7 +213,8 @@
 /* ── 2026-09-16 トップ改修 Phase1：墨地の第1画面（テッセラクト）→ 和紙へ降りる ── */
 :root{--tz-ink:#0b0b0d;--tz-ink2:#141417;--tz-txt:#f3efe6;--tz-txt2:rgba(243,239,230,.72);--tz-txt3:rgba(243,239,230,.46);--tz-line:rgba(246,242,233,.14);--tz-line2:rgba(246,242,233,.32);--tz-shu:#c94a2e}
 .tz-sky{position:relative;min-height:100svh;overflow:hidden;isolation:isolate;background:var(--tz-ink);color:var(--tz-txt)}
-.tz-sky canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.tz-sky .tz-flame{position:absolute;top:0;bottom:0;left:30%;right:-6%;z-index:0;background:url(/assets/concept-visual.png) 50% 50%/cover no-repeat;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
+@media(max-width:900px){.tz-sky .tz-flame{left:-35%;right:-35%;top:9%;bottom:auto;height:46%}}
 .tz-sky::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(11,11,13,.82) 0,rgba(11,11,13,.55) 38%,rgba(11,11,13,0) 62%),radial-gradient(90% 70% at 66% 50%,transparent 45%,rgba(11,11,13,.7) 100%)}
 .tz-frame{position:relative;z-index:2;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:96px clamp(20px,5vw,72px) 28px;max-width:1440px;margin:0 auto}
 .tz-stage{display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;padding:4vh 0}
@@ -467,15 +468,13 @@
 
 <!-- ── Hero（2026-09-28：墨地・脳の線画＋信号の波） ── -->
 <section class="tz-sky" id="top">
-  <canvas id="tzSky" aria-hidden="true"></canvas>
+  <div class="tz-flame" aria-hidden="true"></div>
   <div class="tz-frame">
     <div class="tz-stage">
       <div class="tz-copy">
         <div class="tz-eyebrow"><i></i>株式会社NGraph ― 福井</div>
         <h1 class="tz-h1">現実世界の<em>意味</em>を、<br>AIが読める形に。</h1>
-        <p class="tz-lede"><b>NFG・NCG・NHG</b>。独自の三つの意味構造で、現実を読める形にする。<br>理論は重く、現場には軽く。AIと人の分担を、会社ごとに設計する。</p>
       </div>
-      <div class="tz-tate" aria-hidden="true">意味は、人が確かめたものだけを残す。</div>
     </div>
     <div class="tz-foot">
       <a class="tz-cue" href="#problem"><i></i><span>現場へ</span></a>
