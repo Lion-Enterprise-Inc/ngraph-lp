@@ -46,7 +46,7 @@ CHECKS = [
     ("アイキャッチの本文と図案の重なり", "eyecatch_check.py", [], False),
     ("表紙の文言と記事タイトルのズレ", "eyecatch_text_check.py", [], True),
     ("表紙の文言記録の追随漏れ（記事だけpushしていないか）", "eyecatch_record_push_check.py", [], False),
-    ("記事の再確認期限（鮮度）", "freshness_check.py", [], False),
+    ("記事の再確認期限（報告のみ・止めない）", "freshness_check.py", [], False),
     ("型（朝A/夕B/ガイドG・字数・H2・ラベル・枠の重複）", "format_lint.py", [], False),
     ("図のブロックの二重包み", "fig_lint.py", [], False),
     ("一覧カードのカテゴリ（タブ）", "blog_categories.py", [], False),
