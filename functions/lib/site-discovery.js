@@ -4,14 +4,22 @@
 import { extractSiteIdentity, identityValues } from './identity.js';
 
 const BLOG_SEGMENTS = new Set(['blog', 'news', 'column', 'topics', 'journal', 'press', 'media']);
+// この下の個別ページ（記事・事例）は第三者の社名・人数・電話が多く、会社自身の情報ではない。読む枠も使わない。
+const LANGUAGE_DIRS = new Set(['en', 'eng', 'english', 'zh', 'zh-cn', 'zh-tw', 'cn', 'tw', 'ko', 'kr', 'fr', 'de', 'es', 'global']);
+const ARTICLE_PARENTS = new Set([...BLOG_SEGMENTS, 'cases', 'case', 'works', 'interview', 'voice', 'story', 'stories',
+  'report', 'reports', 'event', 'events', 'seminar', 'tag', 'tags', 'category', 'archives', 'page']);
+// 英字の語はパスの区切り（/ . _ -）で切った1語と完全一致したときだけ点を付ける。
+// 部分一致だと /blog/company-brain や /cases/the-coca-cola-company が会社概要より上に来る。
 const PAGE_TERMS = Object.freeze([
-  ['company', 100], ['corporate', 100], ['profile', 100], ['about', 95],
-  ['会社概要', 100], ['企業情報', 100], ['会社案内', 100],
+  ['company', 100], ['corporate', 100], ['profile', 100], ['outline', 100], ['gaiyo', 100], ['gaiyou', 100],
+  ['about', 95], ['aboutus', 95], ['overview', 90],
+  ['会社概要', 100], ['企業情報', 100], ['会社案内', 100], ['会社情報', 100],
   ['contact', 95], ['inquiry', 95], ['access', 90], ['お問い合わせ', 95], ['アクセス', 90],
-  ['legal', 90], ['tokushoho', 90], ['privacy', 75], ['terms', 75], ['特定商取引', 90],
-  ['blog', 80], ['news', 80], ['column', 75], ['topics', 75], ['press', 75],
-  ['ブログ', 80], ['お知らせ', 80], ['新着', 75],
-  ['recruit', 60], ['career', 60], ['jobs', 60], ['採用', 60],
+  ['legal', 90], ['tokushoho', 90], ['tokutei', 90], ['law', 85], ['特定商取引', 90],
+  ['privacy', 75], ['policy', 70], ['terms', 70],
+  ['recruit', 60], ['career', 60], ['careers', 60], ['jobs', 60], ['採用', 60],
+  ['blog', 40], ['news', 40], ['column', 35], ['topics', 35], ['press', 35],
+  ['ブログ', 40], ['お知らせ', 40], ['新着', 35],
 ]);
 const SOCIALS = Object.freeze([
   { name: 'X', hosts: ['x.com', 'twitter.com'], blocked: /\/(?:intent|share|search|hashtag|i)(?:\/|$)/i },
@@ -154,7 +162,6 @@ export function inspectHtml(html, pageUrl) {
     const phone = normalizePhone(value);
     if (phone && !phones.includes(phone)) phones.push(phone);
   }
-  const staff = source.match(/(従業員数?|社員数)[^0-9０-９]{0,12}([0-9０-９]{1,4})\s*名/);
   return {
     pageUrl,
     internalLinks,
@@ -163,7 +170,7 @@ export function inspectHtml(html, pageUrl) {
     socialLinks,
     phones,
     identity,
-    staff: staff ? staff[0].replace(/\s+/g, '') : null,
+    staff: identity.staff || null,
     placeholder: /example\.(?:jp|com|net|org)/i.test(source),
   };
 }
@@ -236,13 +243,40 @@ export function robotsAllows(text, url, userAgent = 'NGraphCheck') {
   return best ? best.allow : true;
 }
 
-function pageScore(url) {
-  const haystack = safeDecode(`${url.pathname} ${url.search}`).toLowerCase();
-  return PAGE_TERMS.reduce((best, [term, score]) => haystack.includes(term.toLowerCase()) ? Math.max(best, score) : best, 0);
+function pathSegments(url) {
+  return safeDecode(url.pathname).toLowerCase().split('/').filter(Boolean)
+    .map(segment => segment.replace(/\.(?:html?|xhtml|php|aspx?)$/, ''));
+}
+
+export function pageScore(url) {
+  const segments = pathSegments(url);
+  // 2語までの区切り（about-us・company_profile）だけ語に分ける。3語以上は記事の題名とみなす。
+  const words = segments.flatMap(segment => {
+    const parts = segment.split(/[._-]+/).filter(Boolean);
+    return parts.length <= 2 ? parts : [];
+  });
+  const joined = segments.map(segment => segment.replace(/[._-]+/g, ''));
+  const decoded = safeDecode(`${url.pathname} ${url.search}`);
+  const score = PAGE_TERMS.reduce((best, [term, value]) => {
+    const hit = /^[a-z]+$/.test(term)
+      ? words.includes(term) || joined.includes(term)
+      : decoded.includes(term);
+    return hit ? Math.max(best, value) : best;
+  }, 0);
+  // 深い階層ほど個別ページ（記事・商品）である見込みが高い。英語版などの言語別ページは日本語版と中身が重なる。
+  const language = LANGUAGE_DIRS.has(segments[0]) ? 60 : 0;
+  return score - Math.max(0, segments.length - 2) * 15 - language;
+}
+
+export function isArticlePage(url) {
+  const segments = pathSegments(url);
+  return segments.some((segment, index) => ARTICLE_PARENTS.has(segment) && index < segments.length - 1)
+    || segments.some(segment => /^\d{6,8}(?:[-_].*)?$/.test(segment));
 }
 
 function isPageCandidate(url) {
   const path = url.pathname.toLowerCase();
+  if (isArticlePage(url)) return false;
   return path.endsWith('/') || !/\.[a-z0-9]{1,8}$/.test(path) || /\.(?:html?|xhtml)$/.test(path);
 }
 
@@ -355,12 +389,14 @@ export async function discoverSite(options) {
     const url = normalizedUrl(raw, origin);
     if (!url || !isSameSite(url.toString(), origin) || url.toString() === rootUrl || !isPageCandidate(url)) return;
     if (!robotsAllows(robotsText, url)) return;
-    const key = url.toString();
+    // /company と /company/ は同じページ。末尾の / を揃えて二重に読まない。
+    const key = url.toString().replace(/\/(?=$|\?)/, '');
+    if (key === rootUrl.replace(/\/$/, '')) return;
     if (!discovered.has(key)) discovered.set(key, { url, source });
   };
   inspections[0].internalLinks.forEach(url => addCandidate(url, 'homepage'));
   sitemapUrls.forEach(url => addCandidate(url.toString(), 'sitemap'));
-  ['/company/', '/about/', '/contact/', '/blog/', '/news/'].forEach(url => addCandidate(url, 'fallback'));
+  ['/company/', '/about/', '/contact/', '/legal/', '/blog/'].forEach(url => addCandidate(url, 'fallback'));
 
   const candidates = [...discovered.values()].sort((a, b) => {
     const score = item => pageScore(item.url) + (item.source === 'homepage' ? 15 : item.source === 'sitemap' ? 5 : -20);
@@ -396,7 +432,9 @@ export async function discoverSite(options) {
   const trustedInspections = inspections.filter(item => isIdentityPage(item.pageUrl));
   const phoneSources = new Map();
   for (const inspection of inspections) {
-    for (const phone of inspection.phones) {
+    for (const raw of inspection.phones) {
+      // +81-90-… と 090-… は同じ番号。国内表記に揃えて1つにする。
+      const phone = String(raw).replace(/^\+81[-\s(]*0?/, '0').replace(/[()]/g, '').replace(/\s+/g, '-');
       const sources = phoneSources.get(phone) || [];
       if (!sources.includes(inspection.pageUrl)) sources.push(inspection.pageUrl);
       phoneSources.set(phone, sources);

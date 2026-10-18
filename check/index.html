@@ -54,6 +54,21 @@
   #printHead{display:block!important;border-bottom:2px solid #a63a24;padding-bottom:10px;margin-bottom:16px}
 }
 #printHead{display:none;font-size:.8rem;color:var(--text-2)}
+.c-sum{border:1px solid var(--border);border-radius:4px;background:var(--bg-card);padding:6px 20px;margin-top:30px}
+.c-sum dl{display:grid;grid-template-columns:8.5em 1fr;gap:0;margin:0}
+.c-sum dt,.c-sum dd{padding:12px 0;border-bottom:1px solid var(--border);font-size:.9rem;line-height:1.9;margin:0}
+.c-sum dt{font-weight:700;color:var(--text)}
+.c-sum dd{color:var(--text-2)}
+.c-sum dl>*:nth-last-child(-n+2){border-bottom:none}
+.c-sum ul{margin:0;padding-left:1.2em}
+.c-sum dt.got{color:#2e6e4e}.c-sum dt.miss{color:#8a5a00}.c-sum dt.act{color:var(--accent)}
+.c-sec h2 small{font-family:var(--sans,inherit);font-weight:400;font-size:.78rem;color:var(--text-3);margin-left:8px}
+.c-st{display:inline-block;font-size:.75rem;font-weight:700;padding:1px 8px;border-radius:3px;margin-bottom:2px;white-space:nowrap}
+.st-ok{background:#e6f2ea;color:#245a3f}.st-ng{background:#fbe9e4;color:#8f2f1b}.st-self{background:#eef1f6;color:#3c4a5e}
+.st-none{background:#f3efe6;color:#6b5a2e}.st-todo{background:#f1f1f1;color:#555}
+.c-table td:first-child,.c-sec h2,.c-sum dt,.c-sum li,.c-links a{word-break:keep-all;overflow-wrap:anywhere}
+.c-scope{font-size:.78rem;color:var(--text-3);line-height:1.9;margin-top:10px}
+@media (max-width:560px){.c-sec h2 small{display:block;margin:4px 0 0}.c-sum{padding:4px 14px}.c-sum dl{grid-template-columns:1fr}.c-sum dt{padding-bottom:0;border-bottom:none}.c-sum dd{padding-top:4px}.c-table,.c-table tbody,.c-table tr{display:block}.c-table tr{border:1px solid var(--border);margin-bottom:-1px}.c-table td{display:block;width:auto!important;border:none}.c-table td:first-child{padding-bottom:4px}}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -79,7 +94,7 @@
 <div class="c-wrap">
   <div class="section-label">Company Research</div>
   <h1 style="font-family:var(--serif);font-size:1.7rem;font-weight:900;line-height:1.6;margin:10px 0 14px">取引先チェック<span style="font-size:.9rem;color:var(--accent);vertical-align:super">β</span></h1>
-  <p style="font-size:.92rem;color:var(--text-2);line-height:2">契約前に、3分の裏取りを。取引先のWebサイトURL・企業名・法人番号のどれかを入れると、公的データベースとドメインの実測で<strong>確認できた事実だけ</strong>を出典つきで一覧にします。<strong>判定はしません。</strong>結論を出すのは、あなたです。</p>
+  <p style="font-size:.92rem;color:var(--text-2);line-height:2">契約前に、3分の裏取りを。取引先のWebサイトURL・企業名・法人番号のどれかを入れると、<strong>「名乗っているとおりの会社か」</strong>——登記の会社とサイトの会社が同じか、連絡がつくか——を公的データベースとサイトの実測で確かめ、裏が取れたこと・取れなかったこと・契約前にすることを出典つきで返します。会社の良し悪しは<strong>判定しません。</strong></p>
 
   <div class="c-input">
     <input id="q" type="text" placeholder="https://example.co.jp" autocomplete="off">
@@ -88,14 +103,14 @@
   <p class="c-hint">調査したい会社のWebサイトURLを貼ってください（法人番号13桁・企業名でも調査できます）。個人情報は収集しません。調査対象は法人のみです。</p>
   <details style="margin-top:14px"><summary style="cursor:pointer;font-size:.85rem;color:var(--text-2);font-weight:700">調査でわかる項目一覧</summary>
     <div style="font-size:.82rem;color:var(--text-2);line-height:2.1;padding:10px 4px 0">
-    ・<strong>登記系</strong>（gBizINFO＝経産省）：商号・本店所在地・資本金・従業員数・設立年月日（届出ベース）<br>
-    ・<strong>公的な活動の足跡</strong>：届出・認定／補助金交付／公共調達／表彰の件数<br>
-    ・<strong>ドメインの実測</strong>：登録日・メール受信設定（MX）・送信ドメイン認証（SPF/DMARC）<br>
-    ・<strong>サイトの実測</strong>：トップページ・会社情報・連絡先・ブログ等の複数ページとサイトマップから、電話番号・SNSリンク・ブログ導線・テンプレート置換漏れ・自称従業員数を確認<br>
-    ・<strong>次にやることの案内</strong>：インボイス登録・厚生年金適用事業所・求人掲載の確認リンク＋面談で聞くべき質問<br>
-    すべて出典つき。確認できない項目は「未確認／情報なし／取得失敗／対象外」を区別し、未検出を不存在とは表示しません。</div>
+    ・<strong>実在と同一性</strong>：登記の商号・本店所在地・代表者（gBizINFO＝経産省）、サイト記載との照合、インボイス登録（国税庁）<br>
+    ・<strong>連絡先</strong>：会社概要・特定商取引法・お問い合わせ等のページから電話番号・SNSリンク、メール受信設定（MX）・送信ドメイン認証（SPF/DMARC）<br>
+    ・<strong>会社の年齢と規模</strong>：設立日・資本金・従業員数（届出）、ドメイン登録日、インボイス登録日、会社概要に書かれた従業員数（自己申告）<br>
+    ・<strong>公的な活動</strong>：届出・認定／補助金交付／公共調達／表彰の件数<br>
+    ・<strong>自分で確かめるリンク</strong>：社名・ふりがな・代表者・電話番号での検索、インボイス原本・厚生年金・登記情報・過去のサイト<br>
+    サイトの外（SNS・評判・求人など）は自動では調べません。そのぶんを、押すだけで済む検索リンクにしています。確認できない項目は「届出なし／調べきれていない／取得できず」を区別し、未検出を不存在とは表示しません。</div>
   </details>
-  <p id="loading">公的データベース・ドメイン・サイト内の主要ページを照会しています…（20秒ほど）</p>
+  <p id="loading">公的データベース・ドメイン・サイトの会社概要などを照会しています…（20秒ほど）</p>
   <p id="err" class="c-err"></p>
 
   <div id="printHead"><strong style="font-family:var(--serif);font-size:1rem;color:var(--text)">取引先チェック — NGraph</strong><br>調査日: <span id="pDate"></span> ／ 対象: <span id="pTarget"></span> ／ ngraph.jp/check/<br>本レポートは公開情報の確認結果であり、実在の証明・否定ではありません。</div>
@@ -111,7 +126,7 @@
     <p id="leadErr" class="c-err"></p>
   </div>
 
-  <div class="c-note" id="baseNote" style="display:none"><strong>この結果の読み方：</strong>ここに並ぶのは「確認できた事実」と「確認できなかった項目」だけです。実在の証明でも否定でもありません。<strong>どの1点でも会社の良し悪しは断定できません。</strong>複数の事実が同じ方向を向いているか、逆方向の事実があるか——束で見てください。「情報なし」は新しい会社では普通のことです。</div>
+  <div class="c-note" id="baseNote" style="display:none"><strong>この結果の読み方：</strong>ここに並ぶのは「確認できた事実」と「確認できなかった項目」だけです。「サイトの記載」は相手の自己申告で、裏は取れていません。実在の証明でも否定でもありません。<strong>どの1点でも会社の良し悪しは断定できません。</strong>複数の事実が同じ方向を向いているか、逆方向の事実があるか——束で見てください。「情報なし」は新しい会社では普通のことです。</div>
 
   <div class="a-cta" id="cta" style="display:none;margin-top:40px">
     <p style="font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--text)">この調査の考え方は、実際に受けた営業を実測した経験から作りました。</p>
@@ -154,48 +169,58 @@ async function run(q){
   }catch(e){$('err').textContent='通信に失敗しました。時間をおいて再度お試しください。';}
   finally{$('go').disabled=false;$('loading').style.display='none';}
 }
-function factsTable(facts){
-  const okRows=facts.filter(f=>f.status==='確認済');
-  const ngRows=facts.filter(f=>f.status!=='確認済');
+const ST_CLASS={'確認できた':'st-ok','食い違い':'st-ng','サイトの記載（自己申告）':'st-self','届出なし':'st-none'};
+function summaryBox(sm){
+  if(!sm)return '';
+  const li=a=>a&&a.length?'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<span style="color:var(--text-3)">—</span>';
+  return '<div class="c-sum"><dl><dt class="got">裏が取れたこと</dt><dd>'+li(sm.got)+'</dd><dt class="miss">取れなかったこと</dt><dd>'+li(sm.missing)+'</dd><dt class="act">契約前にすること</dt><dd>'+li(sm.actions)+'</dd></dl></div>';
+}
+function sectionTables(sections){
   let h='';
-  if(okRows.length){h+='<div class="c-sec"><h2>確認できた事実（'+okRows.length+'件）</h2><table class="c-table">';
-    for(const f of okRows)h+='<tr><td>'+esc(f.label)+'</td><td>'+esc(f.value)+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';
-    h+='</table></div>';}
-  if(ngRows.length){h+='<div class="c-sec"><h2>未確認・取得できなかった項目（'+ngRows.length+'件）</h2><table class="c-table">';
-    for(const f of ngRows){const msg=f.value|| (f.status==='情報なし'?'公開データに情報なし':(f.status==='対象外'?f.source:'照会に失敗（時間をおいて再試行）'));h+='<tr><td>'+esc(f.label)+'</td><td><strong>'+esc(f.status)+'</strong><br>'+esc(msg)+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';}
-    h+='</table></div>';}
+  for(const sec of sections||[]){
+    h+='<div class="c-sec"><h2>'+esc(sec.title)+'<small>'+esc(sec.note)+'</small></h2><table class="c-table">';
+    for(const f of sec.rows){
+      const msg=f.value??(f.status==='情報なし'?'公的DBに届出なし':f.status==='対象外'?f.source:'照会できませんでした（時間をおいて再試行）');
+      h+='<tr><td>'+esc(f.label)+'</td><td><span class="c-st '+(ST_CLASS[f.state]||'st-todo')+'">'+esc(f.state)+'</span><br>'+esc(msg)+'<span class="c-src">出典: '+esc(f.source)+'</span></td></tr>';
+    }
+    h+='</table></div>';
+  }
   return h;
 }
-function nextSteps(corpNo,name){
-  let h='<div class="c-sec"><h2>次にやること（人の目で確かめる項目）</h2><div class="c-links">';
+function candidateList(d){
+  if(!d.candidates||!d.candidates.length)return '';
+  const one=d.candidates.length===1;
+  let h='<div class="c-sec"><h2>登記の候補'+(one?'':'（'+d.candidates.length+'社）')+'</h2><p style="font-size:.82rem;color:var(--text-3);margin-bottom:10px">'+(one?'サイトの社名と同じ名前の法人です。同じ会社だと確かめられたら、押すとその法人の登記・インボイスを調べます。':'同じ名前の会社が複数あります。相手から聞いた所在地か法人番号で選んでください。')+'</p>';
+  for(const c of d.candidates)h+='<div class="c-cand" data-no="'+esc(c.corporate_number)+'"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'　<span class="c-src">法人番号 '+esc(c.corporate_number)+'</span></div>';
+  return h+'</div>';
+}
+function checkLinks(d,corpNo){
+  let h='<div class="c-sec"><h2>自分で確かめるリンク<small>押すと検索や原本が開きます</small></h2><div class="c-links">';
+  for(const l of d.searchLinks||[])h+='<a href="'+esc(l.url)+'" target="_blank" rel="noopener">'+esc(l.label)+' →</a>';
   if(corpNo)h+='<a href="https://www.invoice-kohyo.nta.go.jp/" target="_blank" rel="noopener">インボイス登録の原本を国税庁の公表サイトで確認する（登録番号 T'+esc(corpNo)+'）→</a>';
-  if(name||corpNo)h+='<a href="https://web.archive.org/web/*/'+encodeURIComponent(document.getElementById('q').value.trim())+'" target="_blank" rel="noopener">サイトの過去の姿・採用ページの痕跡を確認する（Wayback Machine）→</a>';
   h+='<a href="https://www2.nenkin.go.jp/do/search_section/" target="_blank" rel="noopener">厚生年金の適用事業所か確認する（日本年金機構'+(corpNo?'・法人番号で検索':'')+'）→</a>';
-  if(name)h+='<a href="https://www.google.com/search?q='+encodeURIComponent('"'+name+'" 求人')+'" target="_blank" rel="noopener">求人が出ているか確認する（従業員数を名乗るのに求人ゼロなら要確認）→</a>';
+  h+='<a href="https://www1.touki.or.jp/" target="_blank" rel="noopener">登記の役員・移転の履歴を見る（登記情報提供サービス・有料）→</a>';
+  if(d.host)h+='<a href="https://web.archive.org/web/*/'+encodeURIComponent(d.host)+'" target="_blank" rel="noopener">サイトの過去の姿を見る（Wayback Machine）→</a>';
   h+='</div><p style="font-size:.84rem;color:var(--text-2);line-height:2;margin-top:14px">面談で聞けること：「成果報酬の金額を今この場で」「成果の定義は何か」「中途解約はできるか・持ち出しの上限はいくらか」——答えが返ってこないこと自体が情報です。</p></div>';
   return h;
 }
-function render(d,q){
+function scopeNote(d){
+  const f=(d.facts||[]).find(x=>x.label==='サイト内の確認範囲');
+  const t=(d.facts||[]).find(x=>x.label==='テンプレートの置換漏れ');
   let h='';
-  if(d.mode==='corp'){h=factsTable(d.facts)+nextSteps(d.corporate_number,null);}
-  else if(d.mode==='site'){
-    h=factsTable(d.facts);
-    if(d.resolvedCorporate){
-      const c=d.resolvedCorporate;
-      h+='<div class="c-sec"><h2>登記上の法人を自動特定</h2><div class="c-note" style="margin:0"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'<span class="c-src">法人番号 '+esc(c.corporate_number)+' ／ サイト記載の商号とgBizINFO候補を自動照合</span></div></div>';
-    }else if(d.candidates&&d.candidates.length){
-      h+='<div class="c-sec"><h2>登記上の法人と紐づける（サイト記載名からの候補）</h2><p style="font-size:.82rem;color:var(--text-3);margin-bottom:10px">該当する法人をクリックすると、登記系情報を照会します。同名の別法人に注意してください。</p>';
-      for(const c of d.candidates)h+='<div class="c-cand" data-no="'+esc(c.corporate_number)+'"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'　<span class="c-src">法人番号 '+esc(c.corporate_number)+'</span></div>';
-      h+='</div>';
-    }
-    h+=nextSteps(d.resolvedCorporate&&d.resolvedCorporate.corporate_number,d.nameGuess);
-  }
-  else{
+  if(t)h+='<p class="c-scope"><strong style="color:var(--accent)">サイトに例示用のドメイン（example.jp 等）が残っています。</strong>テンプレートを直さずに公開した跡です。</p>';
+  if(f)h+='<p class="c-scope">調べた範囲：'+esc(f.source)+'</p>';
+  return h;
+}
+function render(d,q){
+  if(d.mode==='name'){
     if(!d.candidates||!d.candidates.length){$('err').textContent='該当する法人が見つかりませんでした。Webサイトのある会社はURLでの調査をお試しください。';return;}
-    h='<div class="c-sec"><h2>該当する法人の候補</h2><p style="font-size:.82rem;color:var(--text-3);margin-bottom:10px">同名の会社が複数ある場合があります。所在地で選んでください。</p>';
-    for(const c of d.candidates)h+='<div class="c-cand" data-no="'+esc(c.corporate_number)+'"><strong>'+esc(c.name)+'</strong><br>'+esc(c.location)+'　<span class="c-src">法人番号 '+esc(c.corporate_number)+'</span></div>';
-    h+='</div>';
+    $('out').innerHTML=candidateList(d);
+    document.querySelectorAll('.c-cand').forEach(el=>el.addEventListener('click',()=>run(el.dataset.no)));
+    return;
   }
+  const corpNo=d.corporate_number||(d.resolvedCorporate&&d.resolvedCorporate.corporate_number);
+  let h=summaryBox(d.summary)+candidateList(d)+sectionTables(d.sections)+scopeNote(d)+checkLinks(d,corpNo);
   h+=shokan(d);
   $('out').innerHTML=h;$('baseNote').style.display='block';$('cta').style.display='block';
   const hasFacts=(d.facts&&d.facts.length);
@@ -215,7 +240,7 @@ function shokan(d){
   if(v('置換漏れ'))sig.push('サイトにテンプレート未修正の痕跡が残っている');
   const mx=v('メール受信設定');if(mx&&mx.startsWith('なし'))sig.push('自社ドメインでメールを受信できない設定になっている');
   const inv=v('インボイス登録（');if(inv&&/登録取消|登録失効/.test(inv))sig.push('インボイス（適格請求書発行事業者）の登録が取消・失効の状態で公表されている');
-  const incomplete=F.filter(x=>x.status!=='確認済');
+  const incomplete=F.filter(x=>['未確認','取得失敗'].includes(x.status));
   let lvl,body;
   const list=sig.map((s,i)=>(i+1)+'. '+s).join('<br>');
   if(sig.length>=3){lvl=['#a63a24','危険信号'];

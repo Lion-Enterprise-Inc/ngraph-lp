@@ -58,8 +58,19 @@ function signalValue(signal) {
   return typeof signal === 'string' ? signal : String(signal?.value || '');
 }
 
+// og:site_name・title は「〇〇株式会社 公式企業サイト」のようにサイトの呼び名が付く。
+// そのまま gBizINFO に投げると0件になるため、末尾の呼び名だけを落とす。
+const SITE_SUFFIX = /[\s　]*(?:[-－:：・]\s*)?(?:の)?(?:公式(?:企業|コーポレート|ウェブ|web|Web)?(?:サイト|ホームページ|HP)|オフィシャル(?:ウェブ)?サイト|(?:企業|コーポレート)(?:サイト|情報サイト)|ホームページ|トップページ|ホーム|official\s*(?:web\s*)?site|corporate\s*site|home|top)$/i;
+
+export function cleanSiteName(value) {
+  let name = String(value || '').replace(/\s+/g, ' ').trim();
+  for (let i = 0; i < 3 && SITE_SUFFIX.test(name); i++) name = name.replace(SITE_SUFFIX, '').trim();
+  return name;
+}
+
 function addSignal(list, value, origin, weight = ORIGIN_WEIGHT[origin] || 0) {
-  const clean = decodeHtml(value).replace(/\s+/g, ' ').trim();
+  const decoded = decodeHtml(value).replace(/\s+/g, ' ').trim();
+  const clean = origin === 'og' || origin === 'title' || origin === 'jsonld' ? cleanSiteName(decoded) : decoded;
   if (!clean) return;
   const normalized = clean.normalize('NFKC');
   const existing = list.find(item => item.value.normalize('NFKC') === normalized);
@@ -182,6 +193,7 @@ export function extractSiteIdentity(html, options = {}) {
     if (numberLabel) addCorporateNumber(result.corporateNumbers, numberLabel[1] || lines[i + 1], 'definition_list');
     const phoneLabel = lines[i].match(/^(?:電話番号|電話|TEL)\s*[:：]?\s*(.*)$/i);
     if (phoneLabel) addSignal(result.phones, phoneLabel[1] || lines[i + 1], 'definition_list');
+    if (!result.staff) result.staff = staffFromLabel(lines[i], lines[i + 1]);
   }
 
   // 本文の社名は導入事例・顧客名等を含む。弱シグナルとして記録するが、検索名や確定アンカーに使わない。
@@ -191,6 +203,20 @@ export function extractSiteIdentity(html, options = {}) {
 
   result.primaryName = selectPrimarySiteName(result);
   return result;
+}
+
+// 自称の従業員数は、会社概要の表の「従業員数」欄からだけ取る。
+// 本文の「対象 従業員20名ほどまで」「従業員100名以上の企業に」は対象顧客の話で、会社の人数ではない。
+const STAFF_LABEL = /^(?:従業員数|社員数|従業員|スタッフ数|職員数)\s*[:：]?\s*(.*)$/;
+const STAFF_VALUE = /^(?:約|およそ)?\s*([0-9０-９,，]{1,7})\s*(?:名|人)(?:\s*[（(][^）)]{0,30}[）)])?(?:\s*[（(]?\s*\d{4}年[^）)]{0,20}[）)]?)?$/;
+const STAFF_SCOPE = /まで|以上|以下|未満|規模|ほど|程度の|の企業|の会社|向け/;
+
+function staffFromLabel(line, next) {
+  const label = String(line || '').match(STAFF_LABEL);
+  if (!label) return null;
+  const value = (label[1] || String(next || '')).normalize('NFKC').trim();
+  if (!value || STAFF_SCOPE.test(value) || !STAFF_VALUE.test(value)) return null;
+  return value;
 }
 
 function normalizeAddress(value) {
