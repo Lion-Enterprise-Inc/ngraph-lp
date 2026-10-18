@@ -62,7 +62,6 @@
       "mainEntity": [
         { "@type": "Question", "name": "Can we stop after STEP 1?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company." } },
         { "@type": "Question", "name": "Will this disrupt our work?", "acceptedAnswer": { "@type": "Answer", "text": "We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back." } },
-        { "@type": "Question", "name": "Do you have a track record?", "acceptedAnswer": { "@type": "Answer", "text": "We are just starting the pilot, so we have no results we can publish yet. That is why we are seeking pilot partners, limited to companies in Fukui Prefecture." } },
         { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
         { "@type": "Question", "name": "Can companies outside Fukui Prefecture apply?", "acceptedAnswer": { "@type": "Answer", "text": "During the pilot period, we are limiting this to companies in Fukui Prefecture." } },
         { "@type": "Question", "name": "We are under attack right now. Can you help?", "acceptedAnswer": { "@type": "Answer", "text": "Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well." } }
@@ -249,7 +248,6 @@
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span></span>
       <p class="hero-sub">A security check from the attacker's side, for the AI era</p>
       <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">Before a real attacker strikes,</span><br><span class="nb"><span class="hl">let an ally attack you.</span></span></p>
-      <p class="lead">Check the entry points visible from outside and how your staff handle email, and learn where your company is weak. We don't stop at a report: we fix things on site with you, then test again.</p>
       <div class="hero-chips">
         <span class="acc">Fukui Prefecture companies only</span>
         <span>Pilot partners wanted</span>
@@ -402,7 +400,6 @@
     <div class="faq-list reveal">
       <details><summary>Can we stop after STEP 1?</summary><p>Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company.</p></details>
       <details><summary>Will this disrupt our work?</summary><p>We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back.</p></details>
-      <details><summary>Do you have a track record?</summary><p>We are just starting the pilot, so we have no results we can publish yet. That is why we are seeking pilot partners, limited to companies in Fukui Prefecture.</p></details>
       <details><summary>How much does it cost?</summary><p>For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
       <details><summary>Can companies outside Fukui Prefecture apply?</summary><p>During the pilot period, we are limiting this to companies in Fukui Prefecture.</p></details>
       <details><summary>We are under attack right now. Can you help?</summary><p>Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well.</p></details>
@@ -430,6 +427,9 @@
         <input type="text" name="お名前" required>
         <label>Email<span class="req">Required</span></label>
         <input type="email" name="メールアドレス" required>
+        <label>Website URL<span class="req">Required</span></label>
+        <input type="url" name="_hp" id="lpHp" required placeholder="e.g. https://example.co.jp">
+        <p class="lead-note" style="text-align:left;margin:-6px 0 14px;color:var(--text-2)">So we don't investigate a different company with a similar name. We don't only look at this site — we use it as a starting point to find related sites (recruiting, online shop) and forgotten public assets. Companies without a website are out of scope.</p>
         <label>Phone<span class="opt">Optional</span></label>
         <input type="tel" name="_tel" id="lpTel">
         <label>Number of sites or offices<span class="opt">Optional</span></label>
@@ -441,6 +441,7 @@
         <input type="text" name="_when" id="lpWhen" placeholder="e.g. Weekday mornings, or Tuesday or Thursday after 3 p.m.">
         <label>What concerns you<span class="opt">Optional</span></label>
         <textarea name="_note" id="lpNote" placeholder="e.g. We worry our VPN device is outdated. A business partner asked about our security measures."></textarea>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:.82rem;margin:6px 0 14px"><input type="checkbox" name="_agree" id="lpAgree" required style="width:auto;margin:3px 0 0;flex:none"><span>I agree to an assessment of our public information and public-facing sites (within the scope of public information and ordinary access; no active attacks or intrusion; starting from one main site and extending to related public assets).</span></label>
         <button type="submit" class="btn btn-primary" id="lpSubmit">Free Consultation</button>
         <p class="lead-note">By submitting, you agree to our <a href="/en/privacy" target="_blank" rel="noopener" style="text-decoration:underline">Privacy Policy</a>.</p>
       </form>
@@ -512,6 +513,7 @@ form.addEventListener('submit',function(e){
   var note=document.getElementById('lpNote').value;
   if((note.match(/https?:\/\//gi)||[]).length>=3||SPAM.test(note)){alert('Please review your message.');return;}
   var lines=['[NGraph Cyber Drill] Pilot partner inquiry (English page)',
+    'Website: '+(document.getElementById('lpHp').value||'(not provided)'),
     'Phone: '+(document.getElementById('lpTel').value||'(not provided)'),
     'Number of sites: '+(document.getElementById('lpSites').value||'(not selected)'),
     'Preferred time: '+(document.getElementById('lpWhen').value||'(not provided)'),

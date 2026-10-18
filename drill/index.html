@@ -62,7 +62,6 @@
       "mainEntity": [
         { "@type": "Question", "name": "STEP1だけで終えてもいいですか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。報告と改善計画は、自社で直すときにも、他社に頼むときにも使える形でお渡しします。" } },
         { "@type": "Question", "name": "仕事は止まりませんか？", "acceptedAnswer": { "@type": "Answer", "text": "影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。" } },
-        { "@type": "Question", "name": "実績はありますか？", "acceptedAnswer": { "@type": "Answer", "text": "これから実証を始める段階で、まだ公開できる実績はありません。そのため、福井県内の企業限定で実証パートナーを募集しています。" } },
         { "@type": "Question", "name": "費用はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。" } },
         { "@type": "Question", "name": "福井県外の会社でも頼めますか？", "acceptedAnswer": { "@type": "Answer", "text": "実証の期間中は、福井県内の企業に限らせていただいています。" } },
         { "@type": "Question", "name": "いま被害が出ています。対応してもらえますか？", "acceptedAnswer": { "@type": "Answer", "text": "緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。" } }
@@ -248,9 +247,8 @@
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span><small class="kana">エヌグラフ サイバードリル</small></span>
-      <p class="hero-sub">AI時代の、攻撃者目線のセキュリティ点検</p>
+      <p class="hero-sub">AI時代、攻撃者の目線でセキュリティ点検</p>
       <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">本物に攻撃される前に、</span><br><span class="nb"><span class="hl">味方に攻撃させる。</span></span></p>
-      <p class="lead"><span class="nb">外から見える入口と、</span><span class="nb">社員のメール対応を確かめ、</span><span class="nb">自社の弱点を知る。</span><span class="nb">報告書で終わらせず、</span><span class="nb">現場で一緒に直して、</span><span class="nb">もう一度試します。</span></p>
       <div class="hero-chips">
         <span class="acc">福井県内の企業限定</span>
         <span>実証パートナー募集</span>
@@ -258,7 +256,7 @@
       <div class="hero-cta">
         <a href="#apply" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
-      <p class="hero-note">オンラインで30分、お話を伺います。その場で契約を求めることはありません。</p>
+      <p class="hero-note"><span class="nb">オンラインで30分、お話を伺います。</span><span class="nb">その場で契約を求めることはありません。</span></p>
     </div>
     <div class="hero-visual" aria-hidden="true">
       <img src="/assets/drill/dome.webp" alt="" width="1200" height="800">
@@ -403,7 +401,6 @@
     <div class="faq-list reveal">
       <details><summary>STEP1だけで終えてもいいですか？</summary><p>はい。報告と改善計画は、自社で直すときにも、他社に頼むときにも使える形でお渡しします。</p></details>
       <details><summary>仕事は止まりませんか？</summary><p>影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。</p></details>
-      <details><summary>実績はありますか？</summary><p>これから実証を始める段階で、まだ公開できる実績はありません。そのため、福井県内の企業限定で実証パートナーを募集しています。</p></details>
       <details><summary>費用はいくらですか？</summary><p>STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。</p></details>
       <details><summary>福井県外の会社でも頼めますか？</summary><p>実証の期間中は、福井県内の企業に限らせていただいています。</p></details>
       <details><summary>いま被害が出ています。対応してもらえますか？</summary><p>緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。</p></details>
@@ -431,6 +428,9 @@
         <input type="text" name="お名前" required>
         <label>メールアドレス<span class="req">必須</span></label>
         <input type="email" name="メールアドレス" required>
+        <label>ホームページのURL<span class="req">必須</span></label>
+        <input type="url" name="_hp" id="lpHp" required placeholder="例：https://example.co.jp">
+        <p class="lead-note" style="text-align:left;margin:-6px 0 14px;color:var(--text-2)">※ 同名の別会社を間違えて調べないために確認します。このサイトだけを見るのではなく、ここを起点に採用サイト・ネットショップ・忘れられた公開環境まで外から探します。ホームページが無い企業は対象外です。</p>
         <label>電話番号<span class="opt">任意</span></label>
         <input type="tel" name="_tel" id="lpTel">
         <label>拠点・営業所の数<span class="opt">任意</span></label>
@@ -442,6 +442,7 @@
         <input type="text" name="_when" id="lpWhen" placeholder="例：平日の午前中、火曜か木曜の15時以降">
         <label>気になっていること<span class="opt">任意</span></label>
         <textarea name="_note" id="lpNote" placeholder="例：VPNの機器が古いままか心配。取引先からセキュリティ対策を聞かれた。"></textarea>
+        <label style="display:flex;gap:8px;align-items:flex-start;font-weight:400;font-size:.82rem;margin:6px 0 14px"><input type="checkbox" name="_agree" id="lpAgree" required style="width:auto;margin:3px 0 0;flex:none"><span>自社の公開情報・公開サイトを対象とした診断の実施に同意します（公開情報と通常アクセスの範囲。能動的な攻撃・侵入はしません。対象は基本1サイトを起点に、関連する公開資産まで）。</span></label>
         <button type="submit" class="btn btn-primary" id="lpSubmit">無料で相談する</button>
         <p class="lead-note"><a href="/privacy" target="_blank" rel="noopener" style="text-decoration:underline">プライバシーポリシー</a>に同意のうえ送信してください</p>
       </form>
@@ -513,6 +514,7 @@ form.addEventListener('submit',function(e){
   var note=document.getElementById('lpNote').value;
   if((note.match(/https?:\/\//gi)||[]).length>=3||SPAM.test(note)){alert('送信内容を確認してください。');return;}
   var lines=['【NGraph Cyber Drill】実証パートナーの相談',
+    'ホームページ: '+(document.getElementById('lpHp').value||'(未記入)'),
     '電話番号: '+(document.getElementById('lpTel').value||'(未記入)'),
     '拠点の数: '+(document.getElementById('lpSites').value||'(未選択)'),
     '希望の時間帯: '+(document.getElementById('lpWhen').value||'(未記入)'),
