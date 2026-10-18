@@ -1430,7 +1430,9 @@ export default function CasesPage() {
             企業の構造分析<span className="ml-3 text-base sm:text-lg font-bold text-muted-foreground">アルケー</span>
           </h1>
           <p className="text-[15px] leading-[1.9] text-foreground max-w-3xl">
-            世界を変えた企業{canonicalCases.length}社を、同じ物差しで並べました。
+            {/* 読点で折れるように2つのかたまりにする（「た。」だけが2行目に落ちていた） */}
+            <span className="inline-block">世界を変えた企業{canonicalCases.length}社を、</span>
+            <span className="inline-block">同じ物差しで並べました。</span>
           </p>
           {/* 採点の説明は折りたたむ（冒頭の文字が多すぎた・2026-10-18） */}
           <details className="group max-w-3xl text-[14px] leading-[1.9] text-muted-foreground">
