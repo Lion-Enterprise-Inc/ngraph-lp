@@ -309,20 +309,6 @@
 .ar .dot{fill:#c94a2e}
 .ar-m{display:none}
 /* ABC×状態：設計図の表 */
-.ar-grid{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid rgba(246,242,233,.35)}
-.ar-grid>div{padding:16px 18px;border-right:1px solid rgba(246,242,233,.18);border-bottom:1px solid rgba(246,242,233,.18);min-height:72px;display:flex;flex-direction:column;justify-content:center;gap:4px}
-.ar-grid>div:nth-child(3n){border-right:0}
-.ar-grid>div:nth-last-child(-n+3){border-bottom:0}
-.ar-grid .h{background:rgba(246,242,233,.05);min-height:56px}
-.ar-grid .h .lb{display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.62rem;letter-spacing:.22em;color:rgba(243,239,230,.5)}
-.ar-grid .h .t{font-family:var(--serif);font-size:.98rem;font-weight:600;color:#f3efe6}
-.ar-grid .h .t.red{color:#e8664a}
-.ar-grid .rh{background:rgba(246,242,233,.03)}
-.ar-grid .rh .code{font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.66rem;letter-spacing:.2em;color:#c94a2e}
-.ar-grid .rh .t{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:#f3efe6}
-.ar-grid .rh .d{font-size:.72rem;color:rgba(243,239,230,.5)}
-.ar-grid .v{font-family:var(--sans);font-size:.9rem;font-weight:500;color:#f3efe6;line-height:1.7}
-.ar-grid .v small{display:block;font-size:.7rem;color:rgba(243,239,230,.5);font-weight:400}
 .ar-rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
 .ar-rule{border:1px solid rgba(246,242,233,.2);padding:14px 16px;position:relative}
 .ar-rule .no{display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.62rem;letter-spacing:.22em;color:#c94a2e;margin-bottom:6px}
@@ -346,14 +332,6 @@
   .ar-m .ar-arrow::after{content:"";position:absolute;left:calc(50% - 4px);bottom:2px;border:4px solid transparent;border-top:6px solid rgba(246,242,233,.6)}
   .ar-m .ar-side{font-family:var(--sans);font-size:.68rem;letter-spacing:.22em;color:rgba(243,239,230,.5);margin:14px 0 8px}
   .ar-m .ar-loop{margin-top:14px;font-size:.76rem;color:#e8664a;text-align:center;border-top:1px dashed rgba(246,242,233,.3);padding-top:10px}
-  .ar-grid{grid-template-columns:1fr}
-  .ar-grid>div{border-right:0;min-height:0;padding:12px 14px}
-  .ar-grid>div:nth-last-child(-n+3){border-bottom:1px solid rgba(246,242,233,.18)}
-  .ar-grid>div:last-child{border-bottom:0}
-  .ar-grid .h.blank{display:none}
-  .ar-grid .h{min-height:0}
-  .ar-grid .rh{border-top:2px solid rgba(246,242,233,.35)}
-  .ar-grid .v::before{content:attr(data-k);display:block;font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:.6rem;letter-spacing:.2em;color:rgba(243,239,230,.5);margin-bottom:2px}
   .ar-rules{grid-template-columns:1fr}
   .ar-axes{display:none}
 }
@@ -447,7 +425,6 @@
   <div class="glow glow-1"></div>
   <div class="glow glow-2"></div>
   <div class="glow glow-3"></div>
-  <canvas class="binary-field" id="binaryField"></canvas>
 </div>
 
 <header class="header">
@@ -489,7 +466,6 @@
     <div class="section-head reveal">
       <div class="section-label">PROBLEM</div>
       <h2 class="section-title" id="s05_problem-t"><span class="nb">AI is brilliant.</span> <span class="nb">But it doesn't</span> <span class="nb">remember yesterday.</span></h2>
-      <p class="section-sub">Today's AI is like a genius employee who comes to work every day with no memory.</p>
     </div>
     <!-- fig:problem -->
     <div class="fg fg-problem reveal">
@@ -530,8 +506,6 @@
           </div>
         </figure>
       </div>
-      <p class="pb-lead"><span class="nb">The understanding you built yesterday</span> <span class="nb">can't be used today.</span></p>
-      <ul class="pb-sym"><li>You explain it again</li><li>The answers change</li><li>The history is lost</li></ul>
       <hr class="fg-rule">
     </div>
     <p class="fg-statement reveal"><span class="nb">As long as understanding <em>stays inside a chat</em>,</span> <span class="nb">neither the next person</span> <span class="nb">nor the next AI <em>can pick it up.</em></span></p>
@@ -573,9 +547,6 @@
           <div class="own-ov ov-red"><span class="nb">People choose the AI,</span> <span class="nb">the AI reads the Company Brain</span></div>
           <div class="own-ov ov-brain"><span class="k">One record =</span><span class="b">Company Brain</span></div>
         </div>
-        <p class="own-cap"><span class="nb">The AIs three people use</span> <span class="nb">connect to the same Company Brain.</span> <span class="nb">Whoever asks, the answer comes from the same record.</span></p>
-        <ul class="own-who"><li><strong>CEO</strong>Business decisions</li><li><strong>Manager</strong>Running the team</li><li><strong>Employee</strong>Getting the work done</li></ul>
-        <div class="own-ais"><span class="cap">Use whichever AI you like</span><span class="lk">AI</span>Anthropic<img src="/assets/brain/official-logos/openai-official.svg" alt="">OpenAI<img src="/assets/brain/official-logos/gemini-official.svg" alt="">Google Gemini</div>
       </figure>
       <ul class="own-list" aria-hidden="true">
         <li><strong>Until now</strong>Each person teaches their own AI. Cancel or switch, and the knowledge can't carry over</li>
@@ -623,288 +594,19 @@
   </div>
 </section>
 
-<section class="section dks" id="brain">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">SOLUTION</div>
-      <h2 class="section-title" id="s08_structure-t">The Company Brain at a glance</h2>
-      <p class="section-sub">Only correct information is kept in the record, and every AI reads it through the same entrance.</p>
-    </div>
-    <!-- fig:structure -->
-    <div class="fg fg-structure reveal">
-      <div class="st-head">
-        <div class="st-hw"><span class="st-side-lbl">Write side</span><i></i></div>
-        <div class="st-hc"><span class="nb">Shared standard |</span> <em><span class="nb">ABC sorting</span> × <span class="nb">Status sorting</span></em></div>
-        <div class="st-hr"><i></i><span class="st-side-lbl">Read side</span></div>
-      </div>
-      <div class="st-body">
-        <svg class="st-arrows" viewBox="0 0 1000 313" preserveAspectRatio="none" aria-hidden="true">
-          <path class="st-cv" d="M40 46 C-2 82 -2 152 44 186"/>
-          <path class="st-ah" d="M46 194 L30 190 L41 178 Z"/>
-          <circle class="st-dot" cx="40" cy="46" r="4.6"/>
-          <path class="st-cv" d="M244 248 C285 245 322 228 340 200"/>
-          <path class="st-ah" d="M345 192 L344 209 L330 202 Z"/>
-          <circle class="st-dot" cx="244" cy="248" r="4.6"/>
-          <path class="st-cv" d="M666 137 C672 100 712 60 745 42"/>
-          <path class="st-ah" d="M752 36 L743 49 L736 37 Z"/>
-          <circle class="st-dot" cx="666" cy="137" r="4.6"/>
-          <path class="st-cv" d="M970 142 C1000 164 998 208 974 232"/>
-          <path class="st-ah" d="M970 238 L974 222 L986 232 Z"/>
-          <circle class="st-dot" cx="970" cy="142" r="4.6"/>
-        </svg>
-        <div class="st-side st-write" data-side="Write side">
-          <div class="st-item">
-            <span class="st-no">01</span>
-            <strong>Put in</strong>
-            <span class="st-d">Decisions, changes, and lessons from the workplace</span>
-            <span class="st-r"><span class="nb">"Proposals" stay out</span> <span class="nb">until approved</span></span>
-          </div>
-          <div class="st-item">
-            <span class="st-no">02</span>
-            <strong>Check before it goes in</strong>
-            <span class="st-d">Classify by ABC and status</span>
-            <span class="st-r">If unclear, mark it "to be confirmed"</span>
-          </div>
-        </div>
-        <span class="st-lbl st-lw">Write</span>
-        <div class="st-hub">
-          <div class="fg-ic red st-hub-ic"><svg viewBox="0 0 41 34"><circle cx="20.5" cy="7" r="6"/><path d="M20.5 13V19M20.5 19H8M20.5 19H33M8 19V22M20.5 19V22M33 19V22"/><circle cx="8" cy="27" r="5.5"/><circle cx="20.5" cy="27" r="5.5"/><circle cx="33" cy="27" r="5.5"/></svg></div>
-          <span class="st-hub-cap">One record</span>
-          <strong>Company Brain</strong>
-          <span class="st-hub-sub"><span class="nb">Decisions, history,</span> <span class="nb">where each project stands</span></span>
-        </div>
-        <span class="st-lbl st-lr">Read</span>
-        <div class="st-side st-read" data-side="Read side">
-          <div class="st-item">
-            <span class="st-no">03</span>
-            <strong>Read</strong>
-            <span class="st-d">Every AI, the same entrance</span>
-            <span class="st-r"><span class="nb">Private files are</span> <span class="nb">blocked automatically</span></span>
-          </div>
-          <div class="fg-ic red st-eye"><svg viewBox="0 0 45 28"><path d="M2 14C10 3 35 3 43 14C35 25 10 25 2 14Z"/><circle cx="22.5" cy="14" r="6"/></svg></div>
-          <div class="st-item">
-            <span class="st-no">04</span>
-            <strong>Check before it goes out</strong>
-            <span class="st-d"><span class="nb">Confirm where things stand</span> <span class="nb">by the same standard</span></span>
-            <span class="st-r"><span class="nb">If it hasn't read the record,</span> <span class="nb">it doesn't get to answer</span></span>
-          </div>
-        </div>
-        <div class="st-foot">
-          <svg class="st-back" viewBox="0 0 1000 44" preserveAspectRatio="none" aria-hidden="true">
-            <path class="st-cv" d="M810 38 C640 52 330 52 150 20"/>
-            <path class="st-ah" d="M140 17 L157 15 L151 30 Z"/>
-          </svg>
-          <div class="fg-ic red st-shield st-shield-l"><svg viewBox="0 0 38 45"><path d="M19 3L33 9V21C33 31 27 39 19 42C11 39 5 31 5 21V9Z"/><path d="M13 22L18 27L27 16"/></svg></div>
-          <div class="fg-ic red st-shield st-shield-r"><svg viewBox="0 0 38 45"><path d="M19 3L33 9V21C33 31 27 39 19 42C11 39 5 31 5 21V9Z"/><path d="M13 22L18 27L27 16"/></svg></div>
-          <p class="st-loop"><span class="nb">Corrections and new decisions</span> <span class="nb">go back to the entrance</span></p>
-        </div>
-      </div>
-      <hr class="fg-rule">
-    </div>
-    <p class="fg-statement reveal"><span class="nb">Only <em>correct information</em> gets in,</span> <span class="nb">only <em>permitted AIs</em> read it,</span> <span class="nb">and they answer <em>with sources</em>.</span></p>
-    <!-- /fig -->
-  </div>
-</section>
-<section class="section dks section-alt" id="definition">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">DEFINITION</div>
-      <h2 class="section-title" id="s07_definition-t"><span class="nb">Turn information into</span> <span class="nb">the company's record.</span></h2>
-      <p class="section-sub">Organizing is not the goal. The goal is to put the company's facts and judgments <span class="hl">in a state ready for the next decision</span>.</p>
-    </div>
-    <!-- fig:definition -->
-    <div class="fg fg-definition reveal">
-      <p class="def-lead"><span class="nb">"Whose information is it?" × "What state is it in?"</span> <span class="nb">Two axes put AI and people on the same standard.</span></p>
-      <p class="def-title"><span class="nb">ABC sorting</span><span class="x">×</span><span class="nb">Status sorting</span></p>
-      <div class="def-scroll">
-        <table class="def-table">
-          <thead>
-            <tr class="axes">
-              <th scope="colgroup">ABC sorting | Whose information</th>
-              <th scope="colgroup" colspan="2">Status sorting | What state it is in</th>
-            </tr>
-            <tr class="cols">
-              <td></td>
-              <th scope="col">What is settled</th>
-              <th scope="col">What is in motion</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_jisha.png" alt="" loading="lazy"></span><span class="nb">A. Your company</span></span></th>
-              <td data-label="What is settled"><span class="nb">Rules, products, roles, decisions</span></td>
-              <td data-label="What is in motion"><span class="nb">Sales, costs, where each project stands</span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_aite.png" alt="" loading="lazy"></span><span class="nb">B. Counterparties</span></span></th>
-              <td data-label="What is settled"><span class="nb">Customer details, contacts, contracts</span></td>
-              <td data-label="What is in motion"><span class="nb">Deals, requests, where each relationship stands</span></td>
-            </tr>
-            <tr>
-              <th scope="row"><span class="rh"><span class="fg-ic df-ill"><img src="/assets/brain/ill/icons/icon07_gaibu.png" alt="" loading="lazy"></span><span class="nb">C. External environment</span></span></th>
-              <td data-label="What is settled"><span class="nb">Programs, laws, which competitors exist</span></td>
-              <td data-label="What is in motion"><span class="nb">Planned amendments, competitor moves, deadlines</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="def-rules">
-        <p class="cap"><span>Three rules for saving to the record</span></p>
-        <ol>
-          <li><strong>Keep the source</strong><span><span class="nb">Evidence, date checked, who updated it.</span> <span class="nb">Anything unsettled is marked "to be confirmed".</span></span></li>
-          <li><strong>One current state</strong><span><span class="nb">The latest goes in as current;</span> <span class="nb">older information moves to the history.</span></span></li>
-          <li><strong>Secrets: location only</strong><span><span class="nb">For personal data and credentials,</span> <span class="nb">record only where they are kept and who has access.</span></span></li>
-        </ol>
-      </div>
-    </div>
-    <p class="fg-statement reveal"><span class="nb">When the person in charge changes,</span> <span class="nb">when the AI changes,</span> <span class="nb">the basis for decisions remains.</span><em class="tail">That is the company's record.</em></p>
-    <!-- /fig -->
-  </div>
-</section>
 
-<section class="section dks" id="enables">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">WHAT BRAIN ENABLES</div>
-      <h2 class="section-title" id="s09_enables-t">Ask, and you get <span class="hl">the company's answer</span>.</h2>
-      <p class="section-sub">Until now, this was something staff had to look up and tally themselves.</p>
-    </div>
-    <!-- fig:enables -->
-    <div class="fg fg-enables reveal">
-      <div class="en-cols en-q">
-        <div class="en-bubble"><small>Head office</small><strong><span class="nb">"I want last month's sales</span> <span class="nb">by location"</span></strong></div>
-        <div class="en-bubble"><small>Site manager</small><strong><span class="nb">"Who's working the most overtime?"</span></strong></div>
-        <div class="en-bubble"><small>New hire</small><strong><span class="nb">"When do I have to</span> <span class="nb">request paid leave by?"</span></strong></div>
-      </div>
-      <div class="en-brain">
-        <span class="fg-ic en-ill"><img src="/assets/brain/ill/icons/icon10_brain.png" alt="" loading="lazy"></span>
-        <strong class="serif">Company Brain</strong>
-        <span class="desc"><span class="nb">Sales, orders, deliveries,</span> <span class="nb">attendance, and rules,</span> <span class="nb">in one record</span></span>
-      </div>
-      <div class="en-cols en-arrows" aria-hidden="true"><span>↓</span><span>↓</span><span>↓</span></div>
-      <div class="en-cols en-ans">
-        <div class="en-card">
-          <p class="en-cap">Comes back as a <em>chart</em></p>
-          <div class="en-bars" aria-hidden="true">
-            <span class="bar b1"><i></i><small>Site A</small></span>
-            <span class="bar b2"><i></i><small>Site B</small></span>
-            <span class="bar b3"><i></i><small>Site C</small></span>
-            <span class="bar b4 hi"><i></i><small>Site D</small></span>
-          </div>
-        </div>
-        <div class="en-card">
-          <p class="en-cap"><em>Imbalances</em> become visible</p>
-          <div class="en-heat" aria-hidden="true">
-            <span class="lbl">Tanaka</span><i class="l0"></i><i class="l1"></i><i class="l0"></i><i class="l2"></i><i class="l1"></i><i class="l0"></i>
-            <span class="lbl">Sato</span><i class="l0"></i><i class="l0"></i><i class="l1"></i><i class="l0"></i><i class="l0"></i><i class="l0"></i>
-            <span class="lbl">Suzuki</span><i class="l2"></i><i class="l2"></i><i class="l1"></i><i class="l2"></i><i class="l2"></i><i class="l1"></i>
-          </div>
-        </div>
-        <div class="en-card">
-          <p class="en-cap">Answered <em>on the spot</em></p>
-          <div class="en-replies">
-            <div class="en-reply"><strong>By the 20th of the previous month, using the request form</strong><small>Source: Work rules and internal policies</small></div>
-            <div class="en-reply"><strong>Payday is the 20th of the following month</strong><small>Source: Same as above</small></div>
-          </div>
-        </div>
-      </div>
-      <div class="en-band">
-        <span class="t serif"><span class="nb">Switch AIs <em>freely</em></span></span>
-        <span class="logos"><span class="lk">AI</span><img src="/assets/brain/official-logos/openai-official.svg" alt="OpenAI"><img src="/assets/brain/official-logos/gemini-official.svg" alt="Google Gemini"><span class="k">K</span></span>
-        <span class="d serif"><span class="nb">Whichever you ask,</span> <span class="nb">same record, same answer</span></span>
-      </div>
-    </div>
-    <p class="fg-statement reveal"><span class="nb lead">From work where people go looking,</span> <span class="nb">to work where you ask and get an answer.</span></p>
-    <!-- /fig -->
-    <!-- Ask the Company Brain (a bot that reads public documents only) -->
-    <div class="ask reveal" id="ask" hidden>
-      <div class="ask-head">
-        <span class="ask-kicker">Try it</span>
-        <h3 class="ask-title"><span class="nb">Ask the</span> <span class="nb">Company Brain.</span></h3>
-        <p class="ask-sub"><span class="nb">It answers using only NGraph's public information,</span> <span class="nb">with sources and dates.</span> <span class="nb">Anything not in the record comes back as "unconfirmed".</span></p>
-      </div>
-      <form class="ask-form" id="askForm" autocomplete="off">
-        <input type="text" id="askInput" name="q" maxlength="300" placeholder="e.g. How is pricing decided? Do we have to replace our existing systems?" aria-label="Question">
-        <button type="submit" class="btn btn-primary" id="askBtn">Ask</button>
-      </form>
-      <div class="ask-chips" aria-label="Example questions">
-        <button type="button" data-q="How is pricing decided?">How is pricing decided?</button>
-        <button type="button" data-q="Do we have to replace our existing business systems?">Do we have to replace existing systems?</button>
-        <button type="button" data-q="What remains with us at delivery?">What remains at delivery?</button>
-        <button type="button" data-q="Can we switch from ChatGPT to Claude?">Can we switch AIs?</button>
-      </div>
-      <div class="ask-out" id="askOut" hidden>
-        <div class="ask-q" id="askQ"></div>
-        <div class="ask-a" id="askA"></div>
-        <div class="ask-src" id="askSrc"></div>
-      </div>
-      <p class="ask-note"><span class="nb">This is a guide for customers.</span> <span class="nb">For a detailed conversation, book a</span> <a href="/en/entry">Free Consultation</a><span class="nb">.</span></p>
-    </div>
-  </div>
-</section>
-<section class="section dks section-alt" id="deliverables">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">DELIVERABLES</div>
-      <h2 class="section-title" id="s06_deliverables-t"><span class="nb">At delivery,</span> <span class="nb">three assets stay with you.</span></h2>
-      <p class="section-sub">Not the right to use an AI service, but a complete working set that your company keeps.</p>
-    </div>
-    <!-- fig:deliver -->
-    <div class="fg fg-deliver reveal">
-      <div class="dl-sheet">
-        <svg class="dl-shape" viewBox="0 0 1256 435" preserveAspectRatio="none" aria-hidden="true"><path d="M49 0L1087 0Q1105 0 1112 10L1256 48L1198 435L46 435L0 60Q1 45 22 26Q34 16 49 0Z"/></svg>
-        <div class="dl-head"><i></i><span>Delivered to you</span><i></i></div>
-        <div class="dl-cards">
-          <div class="dl-card">
-            <svg class="dl-fold" viewBox="0 0 45 45" aria-hidden="true"><path class="dl-fold-bg" d="M0 0H45V45Z"/><path d="M0 0L45 45"/></svg>
-            <span class="dl-no">01</span>
-            <div class="fg-ic dl-ic dl-ic-book"><svg viewBox="0 0 122 85"><path d="M6 26C6 18 16 13 32 13C46 13 56 18 61 27L61 72C56 63 46 58 32 58C16 58 6 63 6 71Z"/><path d="M61 27C66 18 76 13 90 13C106 13 116 18 116 26L116 71C116 63 106 58 90 58C76 58 66 63 61 72Z"/><path d="M17 30L46 27M17 40L48 37M17 50L46 47M22 60L46 58"/><path d="M105 30L76 27M105 40L74 37M105 50L76 47M100 60L76 58"/></svg></div>
-            <strong>The company's record</strong>
-            <span class="dl-d"><span class="nb">Decisions, rules,</span> <span class="nb">where each project stands</span></span>
-            <span class="dl-d">A set of files with history</span>
-          </div>
-          <div class="dl-card">
-            <svg class="dl-fold" viewBox="0 0 45 45" aria-hidden="true"><path class="dl-fold-bg" d="M0 0H45V45Z"/><path d="M0 0L45 45"/></svg>
-            <span class="dl-no">02</span>
-            <div class="fg-ic dl-ic dl-ic-shield"><svg viewBox="0 0 80 92"><path d="M40 4L73 16L73 42C73 66 58 80 40 87C22 80 7 66 7 42L7 16Z"/><path d="M22 46L34 58L58 30"/></svg></div>
-            <strong>Check rules</strong>
-            <span class="dl-d"><span class="nb">Stops information</span> <span class="nb">with no source</span></span>
-            <span class="dl-d"><span class="nb">No answers without</span> <span class="nb">reading the record</span></span>
-          </div>
-          <div class="dl-card">
-            <svg class="dl-fold" viewBox="0 0 45 45" aria-hidden="true"><path class="dl-fold-bg" d="M0 0H45V45Z"/><path d="M0 0L45 45"/></svg>
-            <span class="dl-no">03</span>
-            <div class="fg-ic dl-ic dl-ic-plug"><svg viewBox="0 0 132 76"><circle cx="17" cy="17" r="14"/><circle cx="17" cy="63" r="14"/><path d="M29 25L56 38M29 55L56 38M56 38L78 38"/><path d="M78 18C67 18 67 58 78 58L108 58L108 18Z"/><path d="M108 29L128 29M108 47L128 47"/></svg></div>
-            <strong>Connection point for AI</strong>
-            <span class="dl-d"><span class="nb">Connects to PCs, LINE,</span> <span class="nb">and smartphones</span></span>
-            <span class="dl-d"><span class="nb">Switch the AI,</span> <span class="nb">keep the same entrance</span></span>
-          </div>
-        </div>
-      </div>
-      <div class="dl-band">
-        <div class="fg-ic dl-ribbon"><svg viewBox="0 0 48 68"><circle cx="24" cy="24" r="23"/><path class="dl-check" d="M14 25L21 32L35 15"/><path d="M9 45L9 68L24 60L39 68L39 45"/></svg></div>
-        <p><span class="nb">All three are delivered</span> <span class="nb">as files</span> <span class="nb">your company manages.</span></p>
-      </div>
-    </div>
-    <p class="fg-statement reveal"><span class="nb">When people change,</span> <span class="nb">when the AI changes,</span> <span class="nb"><em>the company's judgment remains.</em></span></p>
-    <!-- /fig -->
-  </div>
-</section>
 <!-- ── Products ── -->
 <section class="section section-alt" id="products">
   <div class="container">
     <div class="section-head reveal">
       <div class="section-label">Products</div>
       <h2 class="section-title"><span class="nb">Things we build</span> <span class="nb">and use ourselves.</span></h2>
-      <p class="section-sub"><span class="nb">We run our own products, born from our structuring technology,</span> <span class="nb">in production.</span> <span class="nb">Our AI Adoption Support</span> <span class="nb">draws on that same ability to build.</span></p>
     </div>
     <ul class="prod-list reveal">
-      <li><a href="https://omiseai.com/" target="_blank" rel="noopener"><span class="pl-name">OMISEAI</span><span class="pl-desc">AI customer service for restaurants. It answers questions about dishes in multiple languages and is in live use at real restaurants in Fukui and Kanazawa.</span></a></li>
-      <li><a href="https://nicomachos.com/" target="_blank" rel="noopener"><span class="pl-name">Teles</span><span class="pl-desc">An AI advisor built on the structured thinking of great figures in history.</span></a></li>
-      <li><a href="/cases/"><span class="pl-name">Arche (JA)</span><span class="pl-desc">A structural analysis of companies that changed the world, scored on 12 items × 3 axes.</span></a></li>
-      <li><a href="https://autowrite.jp/" target="_blank" rel="noopener"><span class="pl-name">AutoWrite</span><span class="pl-desc">A SaaS where AI drafts business plans for Japanese subsidy applications.</span></a></li>
-      <li><span class="pl-name">Food Graph Japan</span><span class="pl-desc">A knowledge graph of Japanese food that AI can reference. Being built starting from Fukui's local cuisine (in preparation for release).</span></li>
-      <li><a href="/en/company#tech"><span class="pl-name">Structuring technology</span><span class="pl-desc">Meaning data for food, companies, and people (NFG / NCG / NHG). We also use this technology to make restaurant websites multilingual and ready for AEO (answer engine optimization).</span></a></li>
+      <li><a href="https://omiseai.com/" target="_blank" rel="noopener"><span class="pl-name">OMISEAI</span><span class="pl-desc">AI hospitality for restaurants. In live use at restaurants in Fukui and Kanazawa.</span></a></li>
+      <li><a href="https://nicomachos.com/" target="_blank" rel="noopener"><span class="pl-name">Teles</span><span class="pl-desc">An advisory AI built on the structured thinking of great figures.</span></a></li>
+      <li><a href="/cases/"><span class="pl-name">Arche (JA)</span><span class="pl-desc">A structural analysis that reads companies on 12 items × 3 axes.</span></a></li>
+      <li><a href="https://autowrite.jp/" target="_blank" rel="noopener"><span class="pl-name">AutoWrite</span><span class="pl-desc">AI drafts subsidy business plans.</span></a></li>
     </ul>
   </div>
 </section>
@@ -913,7 +615,7 @@
   <div class="container">
     <div class="contact reveal">
       <h2><span class="nb">The first thing to decide:</span> <span class="nb">just one task to start with.</span></h2>
-      <p><span class="nb">How we work (Foundation + Project),</span> <span class="nb">how fees are set,</span> <span class="nb">how we handle the data you entrust to us,</span> <span class="nb">and common questions</span> <span class="nb">are all on the AI Adoption Support page.</span> <span class="nb">Consultation and estimates are free.</span></p>
+      <p>Consultation and estimates are free.</p>
       <div class="contact-btns">
         <a href="/en/fde/" class="btn btn-primary">See how AI Adoption Support (FDE) works <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
         <a href="/en/entry" class="btn btn-ghost">Get a Free Consultation</a>

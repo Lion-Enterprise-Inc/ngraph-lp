@@ -206,9 +206,6 @@
 .fg-enables .en-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px 20px;display:flex;flex-direction:column;align-items:center;min-height:250px}
 .fg-enables .en-cap{font-family:var(--serif);font-size:1.18rem;font-weight:700;letter-spacing:.08em;text-align:center;margin:0 0 20px;line-height:1.5}
 .fg-enables .en-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:0 14px;align-items:end;width:100%;max-width:300px;margin-top:auto;border-bottom:2px solid var(--ink);padding:0 8px}
-.fg-enables .en-bars .bar{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:118px;position:relative}
-.fg-enables .en-bars .bar i{display:block;width:100%;background:var(--line2)}
-.fg-enables .en-bars .bar.hi i{background:var(--red)}
 .fg-enables .en-bars .b1 i{height:46%}
 .fg-enables .en-bars .b2 i{height:70%}
 .fg-enables .en-bars .b3 i{height:58%}
@@ -253,8 +250,6 @@
   .fg-enables .en-band>span+span{border-left:none;border-top:1px dashed var(--line);width:100%;justify-content:center}
 }
 
-.fg-enables .fg-ic.en-ill{width:56px;height:52px}
-.fg-enables .en-ill img{width:100%;height:100%;object-fit:contain}
 
 /* ── figures/estimate.css ── */
 /* ── 見積（費用は、対象業務と接続範囲で決まります。） ── */
