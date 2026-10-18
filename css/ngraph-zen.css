@@ -269,6 +269,8 @@ html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 .footer{background:#0b0b0d;color:rgba(243,239,230,.74);padding:72px 0 36px;margin-top:0;border-top:none}
 .footer a{color:rgba(243,239,230,.74);transition:color .2s}
 .footer a:hover{color:#fff}
+/* フッターのリンクは語の途中で折らない（スマホの2列で「アルケ｜ー」と折れた・2026-10-19）。折れるのは「（」の前など区切りだけ */
+.footer-nav a{word-break:keep-all;overflow-wrap:anywhere}
 .footer a:focus-visible{outline:1px solid #e0694c;outline-offset:3px}
 .footer-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:minmax(240px,1fr) 2.6fr;gap:56px}
 .footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
