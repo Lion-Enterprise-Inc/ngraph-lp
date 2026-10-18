@@ -687,7 +687,8 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
 }catch(e){}})();
 </script>
 <script>
-/* ヒーロー：ドームの中のオフィスで人が動く。会議の3人は座って話し、ときどき1人ずつ立って用事（扉の出入り・コピー・自席でPC作業）を済ませて戻る。倉庫は箱運びとシャッターの出入り。30fpsに間引き・タブ非表示で停止・reduced-motion対応 */
+/* ヒーロー：ドームの中のオフィスで人が動く。会議の3人は座って話し、ときどき1人ずつ立って用事（扉の出入り・コピー・自席でPC作業）を済ませて戻る。倉庫は作業台と荷物の見回り・箱運び。30fpsに間引き・タブ非表示で停止・reduced-motion対応
+   歩き方：道は床の2つの向き（右下へ約29°・左下へ約158°）だけでできている（画像から床と家具を読み取り、曲がる回数が少ない道を探して作った）。向きは区間に入るときに1回だけ決め、足の動きは進んだ距離に合わせる。 */
 (function(){try{
  var cv=document.getElementById('heroPeople');if(!cv)return;var ctx=cv.getContext('2d');if(!ctx)return;
  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
@@ -702,45 +703,69 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  /* 座標はすべて dome-office.webp(954x800)上の実測。部屋ごとの切り抜き（手前の壁の上端より下は壁に隠れる） */
  var OFFICE=[[150,250],[427,250],[427,400],[578,479],[390,554],[330,516],[200,443],[150,418]];
  var WARE=[[427,250],[800,250],[800,495],[750,500],[583,557],[578,479],[427,400]];
- /* 小物：扉（奥の白い扉）・コピー機の読み取り面・倉庫のシャッター */
+ /* 小物：扉（奥の白い扉）・コピー機の読み取り面 */
  var DOOR={p:[[337,387],[354,396],[354,439],[337,430]],o:0,goal:0};
  var COPY={p:[[487.5,462.5],[498.75,458.75],[509.4,464.4],[498.75,469.4]],f:0};
- var SH={bl:[652,381],br:[732,422],h:0,goal:0};
  /* 人物の絵：/assets/drill/people.webp（1コマ64x140・足元 y=133・腰 y=86）。行＝人ごとに [歩く手前向き, 歩く奥向き, その他]、最後の2行は箱を運ぶ人
     その他の列：0 立つ手前 1 立つ奥 2 座る手前 3 座る奥 4 座って話す 5 手を伸ばす。手前向き＝右下、奥向き＝左上へ向く（反対は左右反転） */
  var SPR=new Image();SPR.src='/assets/drill/people.webp';
  var FW=64,FH=140,U=60/124; /* 絵の人物は身長およそ60px（画像座標） */
- /* 人。seat があれば会議の席。face: f=手前向き b=後ろ向き l=左向き */
- function P(o){o.x=o.x||(o.seat?o.seat[0]:o.path[0][0]);o.y=o.y||(o.seat?o.seat[1]:o.path[0][1]);o.ph=R(0,6);o.a=1;o.mode=o.seat?'sit':'walk';o.i=0;o.w=0;o.dir=1;o.back=false;o.mv=0;return o;}
- var M1=P({ci:0,seat:[371,489],sit:[2,0],room:OFFICE,
-   trip:[[380,473],[372,458],[367,451]],act:'door'});
- var M2=P({ci:1,seat:[441,509],sit:[2,1],room:OFFICE,
-   trip:[[449,500],[467,497]],act:'copy'});
- var M3=P({ci:2,seat:[361,514],sit:[3,1],room:OFFICE,
-   trip:[[348,521],[331,503],[318,489]],act:'desk',desk:[300,477]});
- var W1=P({ci:3,path:[[630,477,35],[603,510,0],[667,500,30],[650,470,0],[650,450,0],[664,420,0],[672,397,-1],[664,420,0],[650,450,0],[630,477,0]],room:WARE});
- var W2=P({ci:4,path:[[620,446,25,'pick'],[606,466,0],[590,488,30,'drop'],[606,466,0]],room:WARE});
+ var SPEED=1.0,STRIDE=30,TURN=3; /* 1コマ(1/30秒)に進む距離・8コマで進む距離・角で止まるコマ数 */
+ /* 道（床の向きだけでできた折れ線）。座る人は「立つ位置」から行き先まで */
+ var RT={
+  M1:[[377,478],[399.2,469],[359.9,447.2]],
+  M2:[[456,506],[445.5,500.2],[470.5,490.1],[465.3,487.1]],
+  M3:[[349,522],[296.5,492.9],[313.2,486.1]],
+  W1a:[[605,486],[597.1,481.6],[655.5,458],[650.3,455.1]],
+  W1b:[[650.3,455.1],[660.5,461.8],[588.2,491.1],[640.7,520.2]],
+  W1c:[[640.7,520.2],[590.1,492.4],[605,486]],
+  W2go:[[643.1,440.6],[615.2,452.2],[659.8,477],[593.1,504],[619.3,518.5],[599.9,526.4]],
+  W2back:[[599.9,526.4],[627.8,514.8],[583.2,490],[658.3,459.6],[632,445.1],[643.1,440.6]]};
+ function rev(a){return a.slice().reverse();}
+ function P(o){o.ph=0;o.a=1;o.walk=0;o.back=false;o.flip=false;o.pause=0;o.seg=-1;o.face=-1;return o;}
+ var M1=P({ci:0,seat:[371,489],sit:[2,0],stand:RT.M1[0],go:RT.M1,act:'door',room:OFFICE});
+ var M2=P({ci:1,seat:[441,509],sit:[2,1],stand:RT.M2[0],go:RT.M2,act:'copy',room:OFFICE});
+ var M3=P({ci:2,seat:[361,514],sit:[3,1],stand:RT.M3[0],go:RT.M3,act:'desk',desk:[307,480],room:OFFICE});
+ var W1=P({ci:3,room:WARE,plan:[[RT.W1a,60],[RT.W1b,45],[RT.W1c,50]],k:0});
+ var W2=P({ci:4,room:WARE,plan:[[RT.W2go,30,'drop'],[RT.W2back,30,'pick']],k:0,box:1});
+ [M1,M2,M3].forEach(function(o){o.mode='sit';o.x=o.seat[0];o.y=o.seat[1];});
+ [W1,W2].forEach(function(o){o.mode='route';start(o,o.plan[0][0]);});
  var DBG=/[?&]pdebug/.test(location.search),MEET=[M1,M2,M3],ALL=[M1,M2,M3,W1,W2],away=null,nextTrip=DBG?20:R(150,260);
- /* 会議の人：sit → up → go（trip を進む）→ act → back（trip を戻る）→ down → sit */
- function moveTo(o,t,sp){var dx=t[0]-o.x,dy=t[1]-o.y,d=Math.hypot(dx,dy);if(d<=sp){o.x=t[0];o.y=t[1];return true;}
-  o.x+=dx/d*sp;o.y+=dy/d*sp;o.ph+=0.21;o.mv=2;if(Math.abs(dx)>0.05)o.dir=dx>0?1:-1;if(Math.abs(dy)>0.05)o.back=dy<0;return false;}
+ if(DBG)window.__ppl=ALL;
+ function start(o,route){o.route=route;o.seg=0;o.face=-1;o.pause=0;o.x=route[0][0];o.y=route[0][1];}
+ /* 折れ線を進む。返り値 true＝終点に着いた。余った移動量は次の区間へ持ち越す。角では少し止まる */
+ function follow(o){
+  if(o.pause>0){o.pause--;o.walk=0;return false;}
+  var left=SPEED;
+  while(left>0){
+   var t=o.route[o.seg+1];if(!t){o.walk=0;return true;}
+   var dx=t[0]-o.x,dy=t[1]-o.y,d=Math.hypot(dx,dy);
+   if(o.face!==o.seg){/* 区間に入るときに1回だけ向きを決める */
+    o.face=o.seg;if(d>0.01){o.back=dy<0;o.flip=o.back?dx>0:dx<0;}}
+   var st=Math.min(d,left);
+   if(d>0){o.x+=dx/d*st;o.y+=dy/d*st;}
+   o.ph=(o.ph+6.2832*st/STRIDE)%6.2832;left-=st;o.walk=1;
+   if(st>=d){o.x=t[0];o.y=t[1];o.seg++;
+    if(o.seg>=o.route.length-1){o.walk=0;return true;}
+    o.pause=TURN;return false;}}
+  return false;}
+ /* 会議の人：sit → up（立つ位置へ）→ go → act → back → down → sit */
  function stepMeet(o){
   if(o.mode==='sit')return;
-  if(o.mode==='up'){if(--o.w<=0){o.mode='go';o.i=1;}return;}
-  if(o.mode==='go'){if(moveTo(o,o.trip[o.i],1.0)){if(++o.i>=o.trip.length){o.mode='act';o.w=0;}}return;}
+  if(o.mode==='up'){if(--o.w<=0){o.mode='go';start(o,o.go);}return;}
+  if(o.mode==='go'){if(follow(o)){o.mode='act';o.w=0;}return;}
   if(o.mode==='act'){o.w++;
-   if(o.act==='door'){o.back=true;o.dir=-1;if(o.w===1)DOOR.goal=1;if(o.w>14&&o.w<26)o.a=Math.max(0,o.a-0.09);if(o.w===26)DOOR.goal=0;if(o.w===120){DOOR.goal=1;}if(o.w>132&&o.w<146)o.a=Math.min(1,o.a+0.09);if(o.w===150)DOOR.goal=0;if(o.w>=158){o.a=1;o.mode='back';o.i=o.trip.length-2;}}
-   else if(o.act==='copy'){o.back=true;o.dir=1;if(o.w%40===10)COPY.f=1;if(o.w>=130){o.mode='back';o.i=o.trip.length-2;}}
-   else if(o.act==='desk'){if(o.w>=210){o.mode='back';o.i=o.trip.length-2;}}
+   if(o.act==='door'){o.back=true;o.flip=false;if(o.w===1)DOOR.goal=1;if(o.w>14&&o.w<26)o.a=Math.max(0,o.a-0.09);if(o.w===26)DOOR.goal=0;if(o.w===120)DOOR.goal=1;if(o.w>132&&o.w<146)o.a=Math.min(1,o.a+0.09);if(o.w===150)DOOR.goal=0;if(o.w>=158){o.a=1;o.mode='back';start(o,rev(o.go));}}
+   else if(o.act==='copy'){o.back=true;o.flip=true;if(o.w%40===10)COPY.f=1;if(o.w>=130){o.mode='back';start(o,rev(o.go));}}
+   else if(o.act==='desk'){if(o.w>=210){o.mode='back';start(o,rev(o.go));}}
    return;}
-  if(o.mode==='back'){if(moveTo(o,o.trip[Math.max(0,o.i)],1.0)){if(o.i<=0){o.mode='down';o.w=8;}else o.i--;}return;}
+  if(o.mode==='back'){if(follow(o)){o.mode='down';o.w=8;}return;}
   if(o.mode==='down'){if(--o.w<=0){o.mode='sit';o.x=o.seat[0];o.y=o.seat[1];away=null;}}}
- function stepWalker(o){var t=o.path[o.i];
-  if(o.w>0){o.w--;if(o.w===1&&t[3]==='pick')o.box=1;if(o.w===1&&t[3]==='drop')o.box=0;return;}
-  if(!moveTo(o,t,0.95))return;
-  if(t[2]===-1){if(o.a>0){o.a=Math.max(0,o.a-0.08);return;}if(!o.out){o.out=90;return;}if(--o.out>0)return;o.out=0;o.a=1;}
-  else o.w=t[2];
-  o.i=(o.i+1)%o.path.length;}
+ /* 倉庫の人：plan の道を順に歩き、着いたら決めた時間だけ作業（箱を置く・取る） */
+ function stepWorker(o){
+  if(o.mode==='work'){o.walk=0;if(--o.w===8){var ev=o.plan[o.k][2];if(ev==='drop')o.box=0;if(ev==='pick')o.box=1;}
+   if(o.w<=0){o.k=(o.k+1)%o.plan.length;o.mode='route';start(o,o.plan[o.k][0]);}return;}
+  if(follow(o)){o.mode='work';o.w=o.plan[o.k][1];}}
  /* 1コマ描く。row/col＝スプライトの位置、(x,y)＝足元（座りは腰）の画像座標、ay＝コマ内の基準の高さ、flip＝左右反転 */
  function spr(row,col,x,y,ay,flip){if(!SPR.complete||!SPR.naturalWidth)return;var k=gs*U;
   ctx.save();ctx.translate(X(x),Y(y));if(flip)ctx.scale(-1,1);
@@ -756,18 +781,15 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
   else{
    /* 地面の影 */
    ctx.fillStyle='rgba(20,28,40,.18)';ctx.beginPath();ctx.ellipse(X(o.x),Y(o.y),9*gs,3.4*gs,0,0,6.2832);ctx.fill();
-   var walking=o.mv>0,fr=((o.ph/6.2832*8)|0)%8,flip=o.back?o.dir>0:o.dir<0;
-   if(o.box)spr(o.back?16:15,walking?fr:0,o.x,o.y,133,flip);
-   else if(walking)spr(base+(o.back?1:0),fr,o.x,o.y,133,flip);
-   else spr(base+2,o.back?1:0,o.x,o.y,133,flip);}
-  if(o.mv>0)o.mv--;
+   var fr=Math.floor(o.ph/6.2832*8)%8;
+   if(o.box)spr(o.back?16:15,o.walk?fr:0,o.x,o.y,133,o.flip);
+   else if(o.walk)spr(base+(o.back?1:0),fr,o.x,o.y,133,o.flip);
+   else spr(base+2,o.back?1:0,o.x,o.y,133,o.flip);}
   ctx.restore();}
  function drawProps(){
   if(DOOR.o>0.02){var d=DOOR.p,f=DOOR.o;ctx.fillStyle='rgba(18,26,40,'+(0.9*f)+')';poly([d[0],[d[0][0]+(d[1][0]-d[0][0])*f,d[0][1]+(d[1][1]-d[0][1])*f],[d[3][0]+(d[2][0]-d[3][0])*f,d[3][1]+(d[2][1]-d[3][1])*f],d[3]]);ctx.fill();
    ctx.fillStyle='#f4f6f8';ctx.strokeStyle='#2a2f38';ctx.lineWidth=1*gs;poly([[d[0][0],d[0][1]],[d[0][0]-9*f,d[0][1]+6*f],[d[3][0]-9*f,d[3][1]+6*f],[d[3][0],d[3][1]]]);ctx.fill();ctx.stroke();}
-  if(COPY.f>0.02){ctx.fillStyle='rgba(170,240,255,'+(0.85*COPY.f)+')';poly(COPY.p);ctx.fill();COPY.f*=0.86;}
-  var h=SH.h;if(h>0.3){var bl=SH.bl,br=SH.br,gg=ctx.createLinearGradient(0,Y(bl[1]-h),0,Y(bl[1]));gg.addColorStop(0,'#0c1424');gg.addColorStop(1,'#26405a');
-   ctx.fillStyle=gg;poly([bl,br,[br[0],br[1]-h],[bl[0],bl[1]-h]]);ctx.fill();ctx.strokeStyle='#3b4a5c';ctx.lineWidth=2*gs;ctx.beginPath();ctx.moveTo(X(bl[0]),Y(bl[1]-h));ctx.lineTo(X(br[0]),Y(br[1]-h));ctx.stroke();}}
+  if(COPY.f>0.02){ctx.fillStyle='rgba(170,240,255,'+(0.85*COPY.f)+')';poly(COPY.p);ctx.fill();COPY.f*=0.86;}}
  /* 会議の吹き出し：座っている2人以上のうち1人が話す */
  var speaker=null,talkT=0;
  function drawTalk(){var seated=MEET.filter(function(o){return o.mode==='sit';});
@@ -783,10 +805,9 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  var last=0;
  function loop(ti){if(ti-last>=32){last=ti;
    /* 一度に席を立つのは1人だけ */
-   if(!away&&--nextTrip<=0){away=MEET[(Math.random()*3)|0];away.mode='up';away.w=10;away.x=away.trip[0][0];away.y=away.trip[0][1];nextTrip=DBG?30:R(240,420);}
-   MEET.forEach(stepMeet);stepWalker(W1);stepWalker(W2);
+   if(!away&&--nextTrip<=0){away=MEET[(Math.random()*3)|0];away.mode='up';away.w=10;away.x=away.stand[0];away.y=away.stand[1];away.back=false;away.walk=0;nextTrip=DBG?30:R(240,420);}
+   MEET.forEach(stepMeet);stepWorker(W1);stepWorker(W2);
    DOOR.o+=(DOOR.goal-DOOR.o)*0.18;
-   var near=Math.hypot(W1.x-672,W1.y-397)<34||W1.out;SH.goal=near?46:0;SH.h+=(SH.goal-SH.h)*0.08;
    ctx.clearRect(0,0,W,H);drawProps();
    ALL.slice().sort(function(a,b){return zy(a)-zy(b);}).forEach(drawPerson);drawTalk();}
   if(!document.hidden)requestAnimationFrame(loop);else setTimeout(function(){requestAnimationFrame(loop);},400);}
