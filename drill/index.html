@@ -268,6 +268,7 @@
 .src-note{text-align:center;font-size:.76rem;color:var(--text-3);margin:18px auto 0;max-width:760px;line-height:1.7}
 .bridge{text-align:center;font-family:var(--serif);font-size:clamp(1.05rem,2.4vw,1.4rem);font-weight:700;margin-top:28px;line-height:1.7;color:var(--text)}
 @media(max-width:768px){.stats{grid-template-columns:1fr;gap:12px}.stat{padding:20px 16px}}
+.hero-fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -292,7 +293,7 @@
 <!-- ── Hero ── -->
 <section class="hero">
   <canvas id="heroShader" class="hero-shader" aria-hidden="true"></canvas>
-  <div class="hud"><span><b>NGraph</b> // Cyber Drill</span><span>SEC.RECON — v1</span></div>
+  <div class="hud"><span><b>NGraph</b> // Cyber Drill</span><span id="reconLine">SEC.RECON — v1</span></div>
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">NGraph Cyber Drill</span><small class="kana">エヌグラフ サイバードリル</small></span>
@@ -309,6 +310,7 @@
     </div>
     <div class="hero-visual" aria-hidden="true">
       <img src="/assets/drill/dome.webp" alt="" width="1200" height="800">
+      <canvas class="hero-fx" id="heroFx" aria-hidden="true"></canvas>
     </div>
   </div>
 </section>
@@ -644,10 +646,10 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  'float f=fbm(p*2.0+q*1.6+uM*0.25);',
  'vec3 navy=vec3(0.025,0.045,0.095);vec3 cyan=vec3(0.10,0.55,0.75);vec3 violet=vec3(0.33,0.16,0.55);',
  'vec3 col=navy;',
- 'col=mix(col,violet,smoothstep(0.05,0.7,f)*0.55);',
- 'col=mix(col,cyan,smoothstep(0.35,0.9,f+q.x*0.3)*0.5);',
- 'col+=cyan*0.05*smoothstep(0.6,1.0,fbm(p*4.0+t*2.0));',
- 'col*=1.0-0.4*length(uv-0.5);',
+ 'col=mix(col,violet,smoothstep(0.02,0.72,f)*0.78);',
+ 'col=mix(col,cyan,smoothstep(0.3,0.95,f+q.x*0.35)*0.72);',
+ 'col+=cyan*0.1*smoothstep(0.55,1.0,fbm(p*4.0+t*2.0));',
+ 'col*=1.0-0.28*length(uv-0.5);',
  'gl_FragColor=vec4(col,1.0);}'].join(' ');
  function sh(t,src){var s=gl.createShader(t);gl.shaderSource(s,src);gl.compileShader(s);return s;}
  var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(pr);
@@ -666,6 +668,49 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
   gl.drawArrays(gl.TRIANGLES,0,3);if(!reduce)requestAnimationFrame(frame);}
  if(reduce){gl.uniform2f(uRes,cv.width,cv.height);gl.uniform1f(uT,8.0);gl.uniform2f(uM,0,0);gl.drawArrays(gl.TRIANGLES,0,3);}
  else requestAnimationFrame(frame);
+}catch(e){}})();
+</script>
+<script>
+/* ヒーロー上部：偵察ステータスのタイプライター（reduced-motion対応） */
+(function(){try{
+ var el=document.getElementById('reconLine');if(!el)return;
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var L=['SEC.RECON // scanning public surface…','SEC.RECON // domains: 3 found (1 forgotten)','SEC.RECON // mail auth (DMARC): missing','SEC.RECON // admin panel: exposed','SEC.RECON // verdict: 2 items to check'];
+ if(reduce){el.textContent=L[L.length-1];return;}
+ var li=0,ci=0,del=false;
+ function tick(){var c=L[li];
+  if(!del){ci++;if(ci>=c.length){del=true;el.textContent=c;setTimeout(tick,1700);return;}}
+  else{ci--;if(ci<=0){del=false;li=(li+1)%L.length;}}
+  el.textContent=c.slice(0,ci)+(ci<c.length?'█':'');
+  setTimeout(tick,del?22:48);}
+ tick();
+}catch(e){}})();
+</script>
+<script>
+/* ヒーロー：赤い攻撃→シールドが弾く（軽量canvas・最大9発・タブ非表示で停止・reduced-motion対応） */
+(function(){try{
+ var cv=document.getElementById('heroFx');if(!cv)return;var ctx=cv.getContext('2d');if(!ctx)return;
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce)return;
+ var dpr=Math.min(window.devicePixelRatio||1,2),W,H,cx,cy,R;
+ function size(){var r=cv.getBoundingClientRect();W=cv.width=Math.max(1,r.width*dpr);H=cv.height=Math.max(1,r.height*dpr);cx=W*0.5;cy=H*0.44;R=Math.min(W,H)*0.30;}
+ window.addEventListener('resize',size);size();
+ var shots=[],rip=[],last=0;
+ function spawn(){var a=Math.random()*6.2832;var d=Math.max(W,H)*0.72;shots.push({x:cx+Math.cos(a)*d,y:cy+Math.sin(a)*d,a:a,sp:(2.2+Math.random()*1.5)*dpr,st:1,life:1});}
+ function loop(ti){ctx.clearRect(0,0,W,H);
+  if(ti-last>520){last=ti;if(shots.length<9)spawn();}
+  for(var i=shots.length-1;i>=0;i--){var s=shots[i];
+   if(s.st===1){s.x-=Math.cos(s.a)*s.sp;s.y-=Math.sin(s.a)*s.sp;var dx=s.x-cx,dy=s.y-cy,di=Math.hypot(dx,dy);
+    if(di<=R){rip.push({x:cx+dx/di*R,y:cy+dy/di*R,r:2*dpr,life:1});s.st=0;s.a=Math.atan2(dy,dx)+(Math.random()-0.5);s.sp*=0.75;}}
+   else{s.x+=Math.cos(s.a)*s.sp;s.y+=Math.sin(s.a)*s.sp;s.life-=0.03;}
+   var k=s.st===1?10:-10;var tx=s.x+Math.cos(s.a)*k*dpr,ty=s.y+Math.sin(s.a)*k*dpr;
+   ctx.strokeStyle='rgba(255,77,94,'+(s.st===1?0.9:0.9*s.life)+')';ctx.lineWidth=1.6*dpr;ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.lineTo(tx,ty);ctx.stroke();
+   ctx.fillStyle='rgba(255,130,140,'+(s.st===1?1:s.life)+')';ctx.beginPath();ctx.arc(s.x,s.y,1.8*dpr,0,6.2832);ctx.fill();
+   if(s.life<=0||s.x<-60||s.x>W+60||s.y<-60||s.y>H+60)shots.splice(i,1);}
+  for(var j=rip.length-1;j>=0;j--){var p=rip[j];p.r+=1.9*dpr;p.life-=0.045;
+   ctx.strokeStyle='rgba(54,230,255,'+(p.life*0.85)+')';ctx.lineWidth=2*dpr;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);ctx.stroke();
+   if(p.life<=0)rip.splice(j,1);}
+  if(!document.hidden)requestAnimationFrame(loop);else setTimeout(function(){requestAnimationFrame(loop);},400);}
+ requestAnimationFrame(loop);
 }catch(e){}})();
 </script>
 </body>
