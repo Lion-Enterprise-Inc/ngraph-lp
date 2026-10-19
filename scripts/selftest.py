@@ -29,7 +29,7 @@ sys.path.insert(0, HERE)
 
 # fixtureを当てられない検査は、黙って対象外にせず理由ごと明示する（検査の穴を見えるようにする）
 NOT_COVERED = [
-    ("url_canon / publish_check / crosslink_check / freshness_check / eyecatch_*",
+    ("url_canon / publish_check / crosslink_check / eyecatch_*",
      "blog/ と sitemap 等リポジトリ全体を突合する検査。fixture記事の注入が本番の blog/ を汚すため、"
      "負テストは変更時に手で行う（staged fixture方式・8/14実施記録がcommitにある）"),
     ("anecdote_lint / ai_tell_lint / title_lint",

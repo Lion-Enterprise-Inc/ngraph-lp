@@ -18,7 +18,8 @@
 
 抜け道を用意してある:
   - 複数記事をまとめて出すときは、メッセージに slug を並べれば通る
-  - どうしても通したいときは `git commit --no-verify`
+  - `--no-verify` は使わない。並行セッションの記事を巻き込んだら、自分の slug だけを
+    `git add` し直して commit する（memory feedback_parallel_sessions_shared_worktree）
 """
 import os
 import re
@@ -72,7 +73,7 @@ def main():
     print("")
     print("  自分の分だけ出す:  git commit -- <自分のファイル> ...")
     print("  まとめて出す    :  commit メッセージに上の slug を書く")
-    print("  検査を飛ばす    :  git commit --no-verify")
+    print("  --no-verify は使わない。巻き込んだ記事は git restore --staged -- <記事> で index から外す")
     return 1
 
 
