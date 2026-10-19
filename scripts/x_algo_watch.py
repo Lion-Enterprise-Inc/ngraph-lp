@@ -12,7 +12,7 @@ saitei_chingin_watch.py と同じ役割の装置。
     python scripts/x_algo_watch.py --update   # 現物を新しい正として snapshot を更新
 
 ネットワークに出るので gate.py には入れない（公開前ゲートを外部依存にしない）。
-記事の recheck 期限（freshness_check）から手動で回すのが導線。
+月に1回ほど手で回すのが導線（記事内の recheck 期限と freshness_check.py は 2026-10-19 に削除）。
 """
 import json
 import os
