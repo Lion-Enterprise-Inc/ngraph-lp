@@ -208,7 +208,29 @@ def check_css_version():
     ]
 
 
-CHECKS = [check_sitemap, check_llms, check_blog_lastmod, check_alt, check_css_version]
+COUNT_UP = re.compile(r'<[^>]*\bdata-to="([^"]+)"[^>]*>([^<]*)<')
+
+
+def check_count_up_text():
+    """数え上げる数字（data-to）の欄に、最初から本当の数字が書いてあるかを見る。
+
+    2026-10-19: /drill/ の脅威の数字が HTML では「0件」「+0%」のままで、JS を動かさない
+    検索エンジン・AI 要約に 0 と読まれていた。JS が動くときだけ 0 にしてから数え上げる。
+    """
+    out = []
+    for p in sorted(ROOT.rglob("*.html")):
+        if any(part.startswith(".") for part in p.relative_to(ROOT).parts) or "__pycache__" in p.parts:
+            continue
+        for m in COUNT_UP.finditer(p.read_text(encoding="utf-8")):
+            digits = re.sub(r"[^0-9.]", "", m.group(2))
+            want = m.group(1).replace(",", "")
+            if not digits or float(digits) != float(want):
+                out.append("数え上げる数字の欄に本当の数字が書いていない（JSなしで %r と読まれる。%s を書く）: %s"
+                           % (m.group(2), want, p.relative_to(ROOT).as_posix()))
+    return out
+
+
+CHECKS = [check_sitemap, check_llms, check_blog_lastmod, check_alt, check_css_version, check_count_up_text]
 # check_title_sync は CHECKS に入れない（gate.py が report-only で回す）。
 # 理由〔2026-08-20〕: 導入時点で既存14件が不一致で、fail-closed にすると公開が全部止まる。
 # しかも14件は性質が3つに分かれ、機械では正解を決められない——

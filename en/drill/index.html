@@ -345,9 +345,9 @@
       <p class="section-sub">These are National Police Agency figures for the first half of 2026 (January–June) — facts, not fear.</p>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="num" data-to="123">0</div><div class="lb">Ransomware cases reported (Jan–Jun 2026)</div><div class="meta"><b>The most for any half-year on record</b>. 79 were SMEs</div></div>
-      <div class="stat"><div class="num" data-to="51" data-prefix="+" data-suffix="%">+0%</div><div class="lb">Suspicious access (Jan–Jun 2026, year on year)</div><div class="meta">About 13,700 per IP address per day (about 9,100 a year earlier)</div></div>
-      <div class="stat"><div class="num" data-to="60" data-suffix="%">0%</div><div class="lb">Ransomware victims whose investigation and recovery cost ¥10 million or more</div><div class="meta">Jan–Jun 2026 — 21 of 35 responses</div></div>
+      <div class="stat"><div class="num" data-to="123">123</div><div class="lb">Ransomware cases reported (Jan–Jun 2026)</div><div class="meta"><b>The most for any half-year on record</b>. 79 were SMEs</div></div>
+      <div class="stat"><div class="num" data-to="51" data-prefix="+" data-suffix="%">+51%</div><div class="lb">Suspicious access (Jan–Jun 2026, year on year)</div><div class="meta">About 13,700 per IP address per day (about 9,100 a year earlier)</div></div>
+      <div class="stat"><div class="num" data-to="60" data-suffix="%">60%</div><div class="lb">Ransomware victims whose investigation and recovery cost ¥10 million or more</div><div class="meta">Jan–Jun 2026 — 21 of 35 responses</div></div>
     </div>
     <p class="src-note reveal">Source: National Police Agency, "Threats in Cyberspace in the First Half of 2026" (published September 2026). Growth rate calculated from the figures in that report</p>
     <p class="bridge reveal">This could be you. That is why we first check the entry points visible from outside.</p>
@@ -638,7 +638,8 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  function run(el){var to=parseFloat(el.getAttribute('data-to')),pre=el.getAttribute('data-prefix')||'',suf=el.getAttribute('data-suffix')||'';
    var dc=(to%1!==0)?1:0;if(reduce){el.textContent=pre+fmt(to,dc)+suf;return;}
    var s=null,d=1400;function step(t){if(!s)s=t;var p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=pre+fmt(to*e,dc)+suf;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
- if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:.4});nums.forEach(function(n){io.observe(n);});}
+ /* HTML には最初から本当の数字を書く（JS を動かさない検索・AI 要約が 0 と読んでいた）。動くときだけ 0 にしてから数え上げる */
+ if('IntersectionObserver' in window&&!reduce){nums.forEach(function(el){el.textContent=(el.getAttribute('data-prefix')||'')+'0'+(el.getAttribute('data-suffix')||'');});var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:.4});nums.forEach(function(n){io.observe(n);});}
  else nums.forEach(run);
 }catch(e){}})();
 </script>

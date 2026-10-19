@@ -345,9 +345,9 @@
       <p class="section-sub"><span class="nb">数字は2026年上半期（1〜6月）の警察庁の統計。</span><span class="nb">煽りではなく、事実です。</span></p>
     </div>
     <div class="stats reveal">
-      <div class="stat"><div class="num" data-to="123" data-suffix="件">0件</div><div class="lb"><span class="nb">ランサムウェア被害の報告</span><span class="nb">（2026年1〜6月）</span></div><div class="meta"><b>半期として過去最多</b>。うち中小企業が79件</div></div>
-      <div class="stat"><div class="num" data-to="51" data-prefix="+" data-suffix="%">+0%</div><div class="lb"><span class="nb">不審なアクセス</span><span class="nb">（2026年1〜6月・前年同期比）</span></div><div class="meta"><span class="nb">1日・1IPアドレスあたり約13,700件</span><span class="nb">（前年同期は約9,100件）</span></div></div>
-      <div class="stat"><div class="num" data-to="6" data-prefix="約" data-suffix="割">約0割</div><div class="lb">ランサム被害で、調査・復旧に<br>1,000万円以上かかった割合</div><div class="meta">2026年1〜6月・回答35件中21件</div></div>
+      <div class="stat"><div class="num" data-to="123" data-suffix="件">123件</div><div class="lb"><span class="nb">ランサムウェア被害の報告</span><span class="nb">（2026年1〜6月）</span></div><div class="meta"><b>半期として過去最多</b>。うち中小企業が79件</div></div>
+      <div class="stat"><div class="num" data-to="51" data-prefix="+" data-suffix="%">+51%</div><div class="lb"><span class="nb">不審なアクセス</span><span class="nb">（2026年1〜6月・前年同期比）</span></div><div class="meta"><span class="nb">1日・1IPアドレスあたり約13,700件</span><span class="nb">（前年同期は約9,100件）</span></div></div>
+      <div class="stat"><div class="num" data-to="6" data-prefix="約" data-suffix="割">約6割</div><div class="lb">ランサム被害で、調査・復旧に<br>1,000万円以上かかった割合</div><div class="meta">2026年1〜6月・回答35件中21件</div></div>
     </div>
     <p class="src-note reveal">出典：警察庁「令和8年上半期におけるサイバー空間をめぐる脅威の情勢等について」（2026年9月公表）。増加率は同資料の数値から算出</p>
     <p class="bridge reveal"><span class="nb">他人事ではありません。</span><span class="nb">だからこそ、まず外から見える&#8220;入口&#8221;を点検します。</span></p>
@@ -638,7 +638,8 @@ if(window.gtag&&src)gtag('event','drill_src',{src:src});
  function run(el){var to=parseFloat(el.getAttribute('data-to')),pre=el.getAttribute('data-prefix')||'',suf=el.getAttribute('data-suffix')||'';
    var dc=(to%1!==0)?1:0;if(reduce){el.textContent=pre+fmt(to,dc)+suf;return;}
    var s=null,d=1400;function step(t){if(!s)s=t;var p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=pre+fmt(to*e,dc)+suf;if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);}
- if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:.4});nums.forEach(function(n){io.observe(n);});}
+ /* HTML には最初から本当の数字を書く（JS を動かさない検索・AI 要約が 0 と読んでいた）。動くときだけ 0 にしてから数え上げる */
+ if('IntersectionObserver' in window&&!reduce){nums.forEach(function(el){el.textContent=(el.getAttribute('data-prefix')||'')+'0'+(el.getAttribute('data-suffix')||'');});var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){run(en.target);io.unobserve(en.target);}});},{threshold:.4});nums.forEach(function(n){io.observe(n);});}
  else nums.forEach(run);
 }catch(e){}})();
 </script>
