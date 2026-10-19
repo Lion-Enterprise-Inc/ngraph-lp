@@ -43,12 +43,12 @@
       "@id": "https://ngraph.jp/drill/#service",
       "name": "NGraph Cyber Drill（攻撃者目線のセキュリティ点検）",
       "alternateName": "エヌグラフ サイバードリル",
-      "serviceType": "セキュリティ点検（偵察・疑似攻撃・訓練メール）と、現場での対策・再検証",
+      "serviceType": "セキュリティ点検（偵察・疑似攻撃。社員への訓練メールは追加）と、現場での対策・再検証",
       "provider": { "@type": "Organization", "@id": "https://ngraph.jp/#organization", "name": "株式会社NGraph", "url": "https://ngraph.jp/" },
       "areaServed": [{ "@type": "AdministrativeArea", "name": "福井県" }],
       "audience": { "@type": "BusinessAudience", "name": "福井県内の企業（実証パートナー）" },
       "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/drill/#apply", "availableLanguage": ["ja"] },
-      "description": "外から見える入口・設定を洗い出し（偵察）、書面で許可した範囲のシステムと社員への訓練メールで試す（疑似攻撃）。確認した事実と確かめていない範囲、業務への影響、優先順位つきの改善計画を報告する。そのあと、現場で設定・権限・バックアップ・手順を一緒に直し（現場で直す）、同じやり方でもう一度試す（再検証）。福井県内の企業限定で実証パートナーを募集中。"
+      "description": "外から見える入口・設定を洗い出し（偵察）、書面で許可した範囲のシステムで試す（疑似攻撃）。社員への訓練メールは、希望する会社に追加で行う。確認した事実と確かめていない範囲、業務への影響、優先順位つきの改善計画を報告する。そのあと、現場で設定・権限・バックアップ・手順を一緒に直し（現場で直す）、同じやり方でもう一度試す（再検証）。福井県内の企業限定で実証パートナーを募集中。"
     },
     {
       "@type": "BreadcrumbList",
@@ -62,8 +62,8 @@
       "mainEntity": [
         { "@type": "Question", "name": "STEP1だけで終えてもいいですか？", "acceptedAnswer": { "@type": "Answer", "text": "はい。報告と改善計画は、自社で直すときにも、他社に頼むときにも使える形でお渡しします。" } },
         { "@type": "Question", "name": "仕事は止まりませんか？", "acceptedAnswer": { "@type": "Answer", "text": "影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。" } },
-        { "@type": "Question", "name": "どのくらいの期間がかかりますか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メールの期間も、この中に含みます。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。" } },
-        { "@type": "Question", "name": "費用はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。" } },
+        { "@type": "Question", "name": "どのくらいの期間がかかりますか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メール（追加）を行う場合の期間は、ご相談のときにお伝えします。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。" } },
+        { "@type": "Question", "name": "費用はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。社員への訓練メールは追加で、ご希望の場合に別途ご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。" } },
         { "@type": "Question", "name": "福井県外の会社でも頼めますか？", "acceptedAnswer": { "@type": "Answer", "text": "実証の期間中は、福井県内の企業に限らせていただいています。" } },
         { "@type": "Question", "name": "いま被害が出ています。対応してもらえますか？", "acceptedAnswer": { "@type": "Answer", "text": "緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。" } }
       ]
@@ -389,7 +389,7 @@
     <div class="what reveal">
       <ol class="what-list">
         <li><span class="n">1</span><div><b>外から見えている入口</b><p><span class="nb">忘れられた古いサイト、</span><span class="nb">外から開ける管理画面、</span><span class="nb">古いままのVPN機器など、</span><span class="nb">攻撃者に見えている入口。</span></p></div></li>
-        <li><span class="n">2</span><div><b>社員が偽のメールを見分けられるか</b><p><span class="nb">本物そっくりの</span><span class="nb">訓練メールを送り、</span><span class="nb">開いた人・報告した人の数を</span><span class="nb">確かめます。</span></p></div></li>
+        <li><span class="n">2</span><div><b>実際に入れるか</b><p><span class="nb">許可した範囲だけで、</span><span class="nb">攻撃者と同じやり方で</span><span class="nb">試します。</span></p></div></li>
         <li><span class="n">3</span><div><b>何から直せばいいか</b><p><span class="nb">業務への影響と、直す順番。</span><span class="nb">自社で直すときにも、</span><span class="nb">他社に頼むときにも</span><span class="nb">使える形にします。</span></p></div></li>
       </ol>
       <a class="what-sample" href="/assets/drill/cyber-drill-sample.pdf" target="_blank" rel="noopener">
@@ -460,8 +460,9 @@
         <h3>まず、弱点を知る</h3>
         <ol>
           <li><span class="n">01</span><div><b><span class="nb">外から見える入口を</span><span class="nb">洗い出す</span><em class="nb">（偵察）</em></b><small><span class="nb">VPN機器、</span><span class="nb">Web・メールの設定など。</span><span class="nb">相手のシステムには入りません</span></small></div></li>
-          <li><span class="n">02</span><div><b><span class="nb">許可した範囲で、</span><span class="nb">実際に試す</span><em class="nb">（疑似攻撃）</em></b><small><span class="nb">書面で決めたシステムと、</span><span class="nb">社員への訓練メールで</span></small></div></li>
+          <li><span class="n">02</span><div><b><span class="nb">許可した範囲で、</span><span class="nb">実際に試す</span><em class="nb">（疑似攻撃）</em></b><small><span class="nb">書面で決めたシステムで</span></small></div></li>
         </ol>
+        <p class="after">＋追加：社員への訓練メール（希望する会社だけ）</p>
         <div class="rep"><b>報告書</b>確認した事実と、確かめていない範囲。業務への影響と、優先順位つきの改善計画。STEP2のお見積り。</div>
       </div>
       <div class="stage-mid"><svg viewBox="0 0 36 20"><path d="M2 10h30m-7-7l7 7-7 7"/></svg>報告を見て<br>判断</div>
@@ -489,7 +490,7 @@
       <div class="menu-g"><span class="n">02</span><b><span class="nb">許可した範囲で、</span><span class="nb">実際に試す</span><span class="nb">（疑似攻撃）</span></b><small>書面で決めた範囲だけ</small></div>
       <ul class="menu-list">
         <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="1.5"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6"/></svg><b>システムへの疑似攻撃</b><small>決めた範囲・期間で、実際に試す</small></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="26" height="18" rx="2"/><path d="M5 10l13 9 13-9"/><path d="M38 14v18a6 6 0 0 1-12 0v-2l3 3"/></svg><b>社員への訓練メール</b><small>偽のメールを見分けられるか</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="26" height="18" rx="2"/><path d="M5 10l13 9 13-9"/><path d="M38 14v18a6 6 0 0 1-12 0v-2l3 3"/></svg><b>社員への訓練メール（追加）</b><small>希望する会社だけ。偽のメールを見分けられるか</small></li>
         <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 5h17l8 8v30H12z"/><path d="M29 5v8h8"/><path d="M17 22h14M17 28h14M17 34h9"/></svg><b>報告</b><small>事実・影響・優先順位つきの改善計画</small></li>
       </ul>
     </div>
@@ -526,7 +527,7 @@
       <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>持たない・絞る</b><p>保存の義務と業務上の必要を確かめたうえで、持たなくてよいデータを整理。見られる人・操作できる人を、必要な分だけに。</p></div>
       <div class="pol"><img src="/assets/starter/icon09_data.png" alt=""><b>切り離して残す</b><p>ネットワークから切り離したバックアップと、合意したデータで本当に戻せるかの確認。</p></div>
       <div class="pol"><img src="/assets/drill/icon_law_folder.png" alt=""><b>紙でも動ける</b><p>緊急連絡先や、受注・出荷の代わりの手順を紙でも用意。紙の置き場所と更新のしかたも決める。</p></div>
-      <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>人が備える</b><p>訓練メールの結果をもとに、怪しいメールの見分け方と報告のしかたを社員と共有する。</p></div>
+      <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>人が備える</b><p>怪しいメールの見分け方と報告のしかたを社員と共有する。訓練メールを行った場合は、その結果も使う。</p></div>
       <div class="pol acc"><img src="/assets/drill/icon16_shield.png" alt=""><b>必要な製品を、必要な範囲で</b><p>まず、運用の改善と既存システムの設定見直しから。追加の製品は、効果・費用・運用の負担を比べて選びます（自社製品も同じ基準）。</p></div>
     </div>
   </div>
@@ -573,8 +574,8 @@
     <div class="faq-list reveal">
       <details><summary>STEP1だけで終えてもいいですか？</summary><p>はい。報告と改善計画は、自社で直すときにも、他社に頼むときにも使える形でお渡しします。</p></details>
       <details><summary>仕事は止まりませんか？</summary><p>影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。</p></details>
-      <details><summary>どのくらいの期間がかかりますか？</summary><p>STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メールの期間も、この中に含みます。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。</p></details>
-      <details><summary>費用はいくらですか？</summary><p>STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。</p></details>
+      <details><summary>どのくらいの期間がかかりますか？</summary><p>STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メール（追加）を行う場合の期間は、ご相談のときにお伝えします。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。</p></details>
+      <details><summary>費用はいくらですか？</summary><p>STEP1（偵察・疑似攻撃・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。社員への訓練メールは追加で、ご希望の場合に別途ご案内します。STEP2（現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。</p></details>
       <details><summary>福井県外の会社でも頼めますか？</summary><p>実証の期間中は、福井県内の企業に限らせていただいています。</p></details>
       <details><summary>いま被害が出ています。対応してもらえますか？</summary><p>緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。</p></details>
       <details><summary>社内のAIの使い方も相談できますか？</summary><p>はい。会社の情報を社外のAIに出さずに使いたい場合は<a href="/security/" style="text-decoration:underline">ローカルAI Pack</a>、業務にAIを組み込みたい場合は<a href="/fde/" style="text-decoration:underline">FDE型AI導入支援</a>もご案内できます。</p></details>

@@ -43,12 +43,12 @@
       "@id": "https://ngraph.jp/drill/#service",
       "name": "NGraph Cyber Drill (security check from the attacker's point of view)",
       "alternateName": "NGraph Cyber Drill",
-      "serviceType": "Security check (reconnaissance, simulated attack, training emails), followed by on-site fixes and retesting",
+      "serviceType": "Security check (reconnaissance, simulated attack; training emails to staff as an add-on), followed by on-site fixes and retesting",
       "provider": { "@type": "Organization", "@id": "https://ngraph.jp/#organization", "name": "NGraph Inc.", "url": "https://ngraph.jp/en/" },
       "areaServed": [{ "@type": "AdministrativeArea", "name": "Fukui Prefecture" }],
       "audience": { "@type": "BusinessAudience", "name": "Companies in Fukui Prefecture (pilot partners)" },
       "availableChannel": { "@type": "ServiceChannel", "serviceUrl": "https://ngraph.jp/en/drill/#apply", "availableLanguage": ["ja"] },
-      "description": "We map the entry points and settings visible from outside (reconnaissance), then test the systems you authorize in writing and send training emails to staff (simulated attack). We report what we confirmed and what we did not check, the impact on your business, and a prioritized improvement plan. After that, we fix settings, permissions, backups and procedures with you on site (on-site fixes) and test again the same way (retest). Now seeking pilot partners, limited to companies in Fukui Prefecture."
+      "description": "We map the entry points and settings visible from outside (reconnaissance), then test the systems you authorize in writing (simulated attack). Training emails to staff are an optional add-on. We report what we confirmed and what we did not check, the impact on your business, and a prioritized improvement plan. After that, we fix settings, permissions, backups and procedures with you on site (on-site fixes) and test again the same way (retest). Now seeking pilot partners, limited to companies in Fukui Prefecture."
     },
     {
       "@type": "BreadcrumbList",
@@ -62,8 +62,8 @@
       "mainEntity": [
         { "@type": "Question", "name": "Can we stop after STEP 1?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company." } },
         { "@type": "Question", "name": "Will this disrupt our work?", "acceptedAnswer": { "@type": "Answer", "text": "We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back." } },
-        { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. This includes the period for the training emails to staff. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report." } },
-        { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
+        { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. If you add training emails to staff, we tell you how long they take during the consultation. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report." } },
+        { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. Training emails to staff are an add-on, quoted separately if you want them. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
         { "@type": "Question", "name": "Can companies outside Fukui Prefecture apply?", "acceptedAnswer": { "@type": "Answer", "text": "During the pilot period, we are limiting this to companies in Fukui Prefecture." } },
         { "@type": "Question", "name": "We are under attack right now. Can you help?", "acceptedAnswer": { "@type": "Answer", "text": "Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well." } }
       ]
@@ -387,7 +387,7 @@
     <div class="what reveal">
       <ol class="what-list">
         <li><span class="n">1</span><div><b>Which entry points are visible from outside</b><p>Old sites that were forgotten, admin pages reachable from outside, and VPN devices that are out of date.</p></div></li>
-        <li><span class="n">2</span><div><b>Whether staff can spot a fake email</b><p>We send realistic training emails and count how many people opened them and how many reported them.</p></div></li>
+        <li><span class="n">2</span><div><b>Whether someone could actually get in</b><p>Only within the scope you authorize, we test the way an attacker would.</p></div></li>
         <li><span class="n">3</span><div><b>What to fix first</b><p>The impact on your business and the order of fixes, in a form you can use yourselves or with another vendor.</p></div></li>
       </ol>
       <a class="what-sample" href="/assets/drill/cyber-drill-sample.pdf" target="_blank" rel="noopener">
@@ -458,8 +458,9 @@
         <h3>First, find your weak spots</h3>
         <ol>
           <li><span class="n">01</span><div><b>Reconnaissance</b><small>Map the VPN devices and web and email settings visible from outside</small></div></li>
-          <li><span class="n">02</span><div><b>Simulated attack</b><small>Test the systems you authorize in writing, and send training emails to staff</small></div></li>
+          <li><span class="n">02</span><div><b>Simulated attack</b><small>Test the systems you authorize in writing</small></div></li>
         </ol>
+        <p class="after">Add-on: training emails to staff (only if you want them)</p>
         <div class="rep"><b>Report</b>What we confirmed and what we did not check. The impact on your business and a prioritized improvement plan. A quote for STEP 2.</div>
       </div>
       <div class="stage-mid"><svg viewBox="0 0 36 20"><path d="M2 10h30m-7-7l7 7-7 7"/></svg>Decide after<br>the report</div>
@@ -487,7 +488,7 @@
       <div class="menu-g"><span class="n">02</span><b>Simulated attack</b><small>Only within the scope agreed in writing</small></div>
       <ul class="menu-list">
         <li><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="15"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="1.5"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6"/></svg><b>Simulated attack on systems</b><small>Tested within the agreed scope and period</small></li>
-        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="26" height="18" rx="2"/><path d="M5 10l13 9 13-9"/><path d="M38 14v18a6 6 0 0 1-12 0v-2l3 3"/></svg><b>Training emails to staff</b><small>Can staff spot a fake email?</small></li>
+        <li><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5" y="8" width="26" height="18" rx="2"/><path d="M5 10l13 9 13-9"/><path d="M38 14v18a6 6 0 0 1-12 0v-2l3 3"/></svg><b>Training emails to staff (add-on)</b><small>Only if you want them. Can staff spot a fake email?</small></li>
         <li><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 5h17l8 8v30H12z"/><path d="M29 5v8h8"/><path d="M17 22h14M17 28h14M17 34h9"/></svg><b>Report</b><small>Facts, impact, and a prioritized plan</small></li>
       </ul>
     </div>
@@ -524,7 +525,7 @@
       <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>Keep less, limit access</b><p>After checking legal retention duties and business needs, clear out data you don't need to keep. Limit who can view and operate things to only those who need to.</p></div>
       <div class="pol"><img src="/assets/starter/icon09_data.png" alt=""><b>Keep offline backups</b><p>Backups kept off the network, and a check, using data we agree on, that you can actually restore from them.</p></div>
       <div class="pol"><img src="/assets/drill/icon_law_folder.png" alt=""><b>Work on paper if needed</b><p>Keep emergency contacts and fallback procedures for orders and shipping on paper too, and decide where the paper is kept and how it is updated.</p></div>
-      <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>Prepare your people</b><p>Based on the training email results, share with staff how to spot suspicious emails and how to report them.</p></div>
+      <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>Prepare your people</b><p>Share with staff how to spot suspicious emails and how to report them, using the training email results if you added them.</p></div>
       <div class="pol acc"><img src="/assets/drill/icon16_shield.png" alt=""><b>Only the products you need, only where needed</b><p>We start by improving operations and reviewing the settings of your existing systems. Any additional products are chosen by comparing effect, cost and operating burden (our own products are judged by the same standard).</p></div>
     </div>
   </div>
@@ -571,8 +572,8 @@
     <div class="faq-list reveal">
       <details><summary>Can we stop after STEP 1?</summary><p>Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company.</p></details>
       <details><summary>Will this disrupt our work?</summary><p>We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back.</p></details>
-      <details><summary>How long does it take?</summary><p>STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. This includes the period for the training emails to staff. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report.</p></details>
-      <details><summary>How much does it cost?</summary><p>For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
+      <details><summary>How long does it take?</summary><p>STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. If you add training emails to staff, we tell you how long they take during the consultation. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report.</p></details>
+      <details><summary>How much does it cost?</summary><p>For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. Training emails to staff are an add-on, quoted separately if you want them. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
       <details><summary>Can companies outside Fukui Prefecture apply?</summary><p>During the pilot period, we are limiting this to companies in Fukui Prefecture.</p></details>
       <details><summary>We are under attack right now. Can you help?</summary><p>Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well.</p></details>
       <details><summary>Can we also ask about how we use AI internally?</summary><p>Yes. If you want to use AI without sending company information to outside AI services, see the <a href="/en/security/" style="text-decoration:underline">Local AI Pack</a>. If you want to build AI into your work, see <a href="/en/fde/" style="text-decoration:underline">AI Adoption Support (FDE)</a>.</p></details>
