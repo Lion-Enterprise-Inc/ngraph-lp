@@ -1,21 +1,15 @@
 // ngraph.jp Worker: /api/* をFunctionsへ、その他は静的アセットへ
-import { onRequestPost as kcheck } from './functions/api/kcheck.js';
-import { onRequestPost as lead } from './functions/api/lead.js';
 import { onRequestPost as ask } from './functions/api/ask.js';
 
 export default {
   async fetch(request, env, ctx) {
     const { pathname } = new URL(request.url);
-    if (pathname === '/api/kcheck') {
-      if (request.method === 'POST') return kcheck({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
-      return methodNotAllowed();
+    // 取引先チェックは 2026-10-19 に公開を終え、社内のスキルだけで使う（functions/ のコードは社内から呼ぶ）。
+    if (pathname === '/check' || pathname === '/check/' || pathname === '/api/kcheck' || pathname === '/api/lead') {
+      return gone();
     }
     if (pathname === '/api/ask') {
       if (request.method === 'POST') return ask({ request, env });
-      return methodNotAllowed();
-    }
-    if (pathname === '/api/lead') {
-      if (request.method === 'POST') return lead({ request, env, waitUntil: ctx.waitUntil.bind(ctx) });
       return methodNotAllowed();
     }
     return injectJpWrap(await env.ASSETS.fetch(request));
@@ -31,6 +25,11 @@ const injectJpWrap = (res) => {
     .on('head', { element(el) { el.append('<script defer src="/js/jp-wrap.js?v=2"></script>', { html: true }); } })
     .transform(res);
 };
+
+const gone = () => new Response('<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>公開を終了しました | 株式会社NGraph</title><p style="font-family:sans-serif;padding:40px 20px;line-height:2">取引先チェックの公開は終了しました。<br><a href="/">NGraph トップへ</a></p>', {
+  status: 410,
+  headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' },
+});
 
 const methodNotAllowed = () => new Response(JSON.stringify({ error: 'POSTのみ利用できます' }), {
   status: 405,

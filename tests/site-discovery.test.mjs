@@ -106,17 +106,3 @@ test('robotsのDisallowと、より具体的なAllowを適用する', () => {
   assert.equal(robotsAllows(robots, new URL('https://corp.example/private/public/info')), true);
 });
 
-test('画面の所感が未検出を不存在や取引忌避へ変換しない', async () => {
-  const html = await readFile(new URL('../check/index.html', import.meta.url), 'utf8');
-  assert.doesNotMatch(html, /電話番号を公開していない/);
-  assert.doesNotMatch(html, /発信の導線が一切ない/);
-  assert.match(html, /未検出は「存在しない」「安全」のどちらも意味しません/);
-});
-
-// 髙橋さんの明示決定（バッサリ書け・知らせなければ意味がない）。取得できた事実が3件重なった
-// ときだけ出る助言で、未検出を取引忌避へ変換したものではない。文言を消す変更を通さない。
-test('確認できた事実が重なったときの契約行動への助言は断言のまま残す', async () => {
-  const html = await readFile(new URL('../check/index.html', import.meta.url), 'utf8');
-  assert.match(html, /前払い・中途解約不可の契約に進むことは推奨できません/);
-  assert.match(html, /sig\.length>=3/);
-});

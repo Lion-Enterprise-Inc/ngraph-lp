@@ -44,7 +44,7 @@ ALLOW_PATH = os.path.join(HERE, "class_allow.json")
 
 # 検査するページ（対外ページ＝js_check.py と同じ並び＋一覧）
 PAGES = ["index.html", "fde/index.html", "en/index.html", "en/fde/index.html",
-         "company.html", "check/index.html", "entry.html", "page.html", "legal.html",
+         "company.html", "entry.html", "page.html", "legal.html",
          "blog/index.html"]
 
 SKIP_DIRS = {".claude", "node_modules", ".git", "__pycache__"}

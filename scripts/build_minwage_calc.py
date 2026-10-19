@@ -131,7 +131,9 @@ TOOL_DIR = os.path.join(ROOT, "tools", "gyomu-kaizen")
 TOOL = os.path.join(TOOL_DIR, "index.html")
 TOOL_URL = "https://ngraph.jp/tools/gyomu-kaizen/"
 os.makedirs(TOOL_DIR, exist_ok=True)
-chk = read_lf(os.path.join(ROOT, "check", "index.html"))
+# 雛形は以前 /check/ だったが、2026-10-19 に取引先チェックの公開を終えたため、このページ自身を使う
+# （head・ヘッダー・フッターは sync_chrome.py が全ページで揃えている）
+chk = read_lf(TOOL)
 head_common = chk[chk.find("<script async src=\"https://www.googletagmanager.com"):chk.find("<title>")]
 fonts = chk[chk.find("<link rel=\"icon\""):chk.find("<style>")]
 header = chk[chk.find("<header class=\"header scrolled\">"):chk.find("</header>") + len("</header>")]

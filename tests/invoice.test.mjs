@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
 import { invoiceChecks } from '../functions/api/kcheck.js';
@@ -154,13 +153,6 @@ test('照合できないときは断定せず、公表と登記の両方の値�
   const match = facts.find(f => f.label === 'インボイス公表情報と登記の照合');
   assert.match(match.value, /商号は一致を確認できず（公表: 国税インボイス公表 ／ 登記: 株式会社別名）/);
   assert.match(match.source, /更新時期の差でも不一致は生じます/);
-});
-
-test('画面は取消・失効を確認事項として拾い、手動確認の案内を原本確認へ置き換えている', async () => {
-  const html = await readFile(new URL('../check/index.html', import.meta.url), 'utf8');
-  assert.match(html, /登録取消\|登録失効/);
-  assert.match(html, /インボイス登録の原本を国税庁の公表サイトで確認する/);
-  assert.doesNotMatch(html, /インボイス登録を確認する（国税庁/);
 });
 
 test('登記情報が取れていないときは照合の事実を作らない', async () => {
