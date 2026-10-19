@@ -62,6 +62,7 @@
       "mainEntity": [
         { "@type": "Question", "name": "Can we stop after STEP 1?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company." } },
         { "@type": "Question", "name": "Will this disrupt our work?", "acceptedAnswer": { "@type": "Answer", "text": "We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back." } },
+        { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. This includes the period for the training emails to staff. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report." } },
         { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
         { "@type": "Question", "name": "Can companies outside Fukui Prefecture apply?", "acceptedAnswer": { "@type": "Answer", "text": "During the pilot period, we are limiting this to companies in Fukui Prefecture." } },
         { "@type": "Question", "name": "We are under attack right now. Can you help?", "acceptedAnswer": { "@type": "Answer", "text": "Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well." } }
@@ -289,6 +290,43 @@
 /* ドームの中のオフィスだけ元の色で重ねる（ドームは反転で光らせたまま） */
 .hero .hero-visual img.hero-office{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:contain;z-index:2;pointer-events:none;filter:brightness(.97) drop-shadow(0 0 18px rgba(54,230,255,.25))}
 .hero-people{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+/* ==== 2026-10-19 訴求の組み替え：何の商品か・対象・期間・受け取るもの ==== */
+.hero .hero-lead{color:#d6e7f5;font-size:1rem;line-height:1.95;margin:0 0 20px;max-width:34em}
+.hero-facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0;margin:0 0 26px;border:1px solid rgba(138,166,192,.4);border-radius:8px;background:rgba(8,16,30,.55)}
+.hero-facts>div{padding:12px 18px;border-left:1px solid rgba(138,166,192,.28)}
+.hero-facts>div:first-child{border-left:none}
+.hero-facts dt{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.12em;color:#7af1ff;margin-bottom:4px}
+.hero-facts dd{margin:0;color:#fff;font-weight:700;font-size:.98rem;line-height:1.45}
+.hero-facts dd small{display:block;font-weight:400;font-size:.78rem;color:#9fb6cc;margin-top:2px}
+.hero .hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.hero .hero-sample{color:#bfefff;font-size:.9rem;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.hero .hero-sample:hover{color:#fff}
+.what{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:center;max-width:980px;margin:0 auto}
+.what-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.what-list li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:18px 20px;background:rgba(255,255,255,.75);border:1px solid var(--border);border-radius:8px}
+.what-list .n{width:36px;height:36px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700}
+.what-list b{display:block;font-family:var(--serif);font-size:1.06rem;line-height:1.5;margin:4px 0 4px}
+.what-list p{font-size:.9rem;line-height:1.85;color:var(--text-2);margin:0}
+.what-sample{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--border-strong);border-radius:8px;overflow:hidden;box-shadow:0 18px 40px rgba(20,30,50,.12);transition:transform .2s}
+.what-sample:hover{transform:translateY(-3px)}
+.what-sample img{display:block;width:100%;height:auto}
+.what-cap{display:block;padding:12px 16px;border-top:1px solid var(--border);text-align:center}
+.what-cap b{display:block;color:var(--accent);font-size:.92rem}
+.what-cap small{display:block;font-size:.76rem;color:var(--text-3);margin-top:2px}
+.stage .st-time{display:inline-block;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--accent);color:#fff;letter-spacing:.06em;font-size:.7rem}
+.stage ol b em{font-style:normal;font-weight:400;font-size:.82em;color:var(--text-3);margin-left:4px}
+@media(max-width:900px){.what{grid-template-columns:1fr;gap:22px}.what-sample{max-width:420px;margin:0 auto}}
+@media(max-width:768px){
+  .hero .hero-lead{order:4;text-align:center;font-size:.9rem;line-height:1.85;margin:0 auto 14px}
+  .hero-facts{order:4;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 0 16px;width:100%}
+  .hero-facts>div{padding:10px 8px;text-align:center}
+  .hero-facts dd{font-size:.86rem}
+  .hero-facts dd small{font-size:.75rem}
+  .hero .hero-cta{justify-content:center;flex-direction:column;gap:12px}
+  .what-list li{grid-template-columns:36px 1fr;padding:14px 14px;gap:10px}
+  .what-list .n{width:30px;height:30px}
+}
+@media(max-width:360px){.hero-facts{grid-template-columns:1fr}.hero-facts>div{display:grid;grid-template-columns:6.2em 1fr;gap:0 10px;align-items:baseline;text-align:left;border-left:none;border-top:1px solid rgba(138,166,192,.28);padding:8px 12px}.hero-facts>div:first-child{border-top:none}.hero-facts dt{margin:0}}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -318,10 +356,11 @@
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">Cyber Drill</span></span>
       <p class="hero-sub">A security check from the attacker's side, for the AI era</p>
       <p class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">Before you are attacked,</span><br><span class="nb"><span class="hl">know your weak points.</span></span></p>
-      <div class="hero-chips">
-        <span class="acc">Fukui Prefecture companies only</span>
-        <span>Pilot partners wanted</span>
-      </div>
+      <dl class="hero-facts">
+        <div><dt>Who</dt><dd><span class="nb">Companies in Fukui</span><small>Pilot partners wanted</small></dd></div>
+        <div><dt>Time</dt><dd><span class="nb">About 2 weeks</span><small>From written scope to report</small></dd></div>
+        <div><dt>You get</dt><dd><span class="nb">A written report</span><small>Findings, impact, priorities</small></dd></div>
+      </dl>
       <div class="hero-cta">
         <a href="#apply" class="btn btn-primary">Free Consultation <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
       </div>
@@ -510,6 +549,7 @@
     <div class="faq-list reveal">
       <details><summary>Can we stop after STEP 1?</summary><p>Yes. We deliver the report and improvement plan in a form you can use whether you fix things yourselves or hire another company.</p></details>
       <details><summary>Will this disrupt our work?</summary><p>We follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back.</p></details>
+      <details><summary>How long does it take?</summary><p>STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. This includes the period for the training emails to staff. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report.</p></details>
       <details><summary>How much does it cost?</summary><p>For STEP 1 (reconnaissance, simulated attack, report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. For STEP 2 (on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
       <details><summary>Can companies outside Fukui Prefecture apply?</summary><p>During the pilot period, we are limiting this to companies in Fukui Prefecture.</p></details>
       <details><summary>We are under attack right now. Can you help?</summary><p>Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well.</p></details>
