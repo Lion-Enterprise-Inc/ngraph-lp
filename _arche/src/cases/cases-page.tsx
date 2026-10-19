@@ -1423,29 +1423,31 @@ export default function CasesPage() {
   }, []);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8">
-      <div className="space-y-6">
-        <header className="space-y-4">
-          <p className="text-xs font-bold tracking-[0.3em] text-primary">ARCHE — COMPANY CASES</p>
-          <h1 className="[font-family:var(--font-serif)] text-[26px] sm:text-[34px] font-bold leading-[1.4] text-foreground">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-5">
+      <div className="space-y-4">
+        {/* 冒頭は3段に詰める（メインの一覧まで遠かった・2026-10-19 本人）。英字の見出しは外した */}
+        <header className="space-y-2">
+          <h1 className="[font-family:var(--font-serif)] text-[24px] sm:text-[30px] font-bold leading-[1.35] text-foreground">
             企業の構造分析<span className="ml-3 text-base sm:text-lg font-bold text-muted-foreground">アルケー</span>
           </h1>
-          <p className="text-[15px] leading-[1.9] text-foreground max-w-3xl">
-            {/* 読点で折れるように2つのかたまりにする（「た。」だけが2行目に落ちていた） */}
-            <span className="inline-block">世界を変えた企業{canonicalCases.length}社を、</span>
-            <span className="inline-block">同じ物差しで並べました。</span>
-          </p>
-          {/* 採点の説明は折りたたむ（冒頭の文字が多すぎた・2026-10-18） */}
+          {/* 説明の一文と「採点のしかた」を同じ行に。開くと説明が下に出る */}
           <details className="group max-w-3xl text-[14px] leading-[1.9] text-muted-foreground">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-1.5 text-[13px] font-bold text-primary [&::-webkit-details-marker]:hidden">
-              採点のしかた
-              <span className="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+            <summary className="flex cursor-pointer list-none flex-wrap items-baseline gap-x-3 gap-y-1 [&::-webkit-details-marker]:hidden">
+              <span className="text-[15px] leading-[1.6] text-foreground">
+                {/* 読点で折れるように2つのかたまりにする（「た。」だけが2行目に落ちていた） */}
+                <span className="inline-block">世界を変えた企業{canonicalCases.length}社を、</span>
+                <span className="inline-block">同じ物差しで並べました。</span>
+              </span>
+              <span className="inline-flex items-center gap-1 text-[13px] font-bold text-primary">
+                採点のしかた
+                <span className="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
+              </span>
             </summary>
-            <p className="mt-2">
+            <p className="mt-1">
               市場・課題・チームなど12項目（各5点）と、世間・相手・自己の三軸（各10点）で採点し、100点満点で表しています。長く続いた会社と消えた会社の差が、どこに出るかを見るための一覧です。
             </p>
           </details>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground">
+          <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-foreground">
             <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-(--c-ex)" />卓越 {EXCELLENT_LINE}点以上</li>
             <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-(--c-mean)" />中庸 {SURVIVAL_LINE}点以上</li>
             <li className="flex items-center gap-2"><span className="h-3 w-3 rounded-sm bg-(--c-weak)" />脆弱 {SURVIVAL_LINE}点未満</li>
