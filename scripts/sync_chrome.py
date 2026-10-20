@@ -70,6 +70,20 @@ REL_RE = re.compile(r'<section class="rel"[^>]*>.*?</section>\s*', re.S)
 TITLE_RE = re.compile(r'(<h2 class="section-title"[^>]*>)([^<]+)(</h2>)')
 # 見出し下の説明文も同じ（2026-10-20「ローカルAI / Pack」と名前の途中で折れていた）。タグを含まない一文だけ対象
 SUB_RE = re.compile(r'(<p class="section-sub"[^>]*>)([^<]+)(</p>)')
+# トップのサービス一覧の説明文も同じ（2026-10-21「会社の脳に／整えて」「直／せる形で」と句の途中で折れていた）
+DESC_RE = re.compile(r'(<span class="svc-desc"[^>]*>)([^<]+)(</span>)')
+WRAP_RES = (TITLE_RE, SUB_RE, DESC_RE)
+# 包んだ句が長すぎるとスマホ幅（約17字）で句の中が折れ「。」だけが次の行に落ちる（2026-10-21 実測）
+DESC_NB_RE = re.compile(r'<span class="svc-desc">((?:<span class="nb">[^<]*</span>)+)</span>')
+NB_MAX = 17.5
+
+
+def nb_width(t):
+    return sum(1 if ord(c) > 255 else 0.55 for c in t)
+
+
+def long_phrases(html):
+    return [t for blk in DESC_NB_RE.findall(html) for t in re.findall(r'<span class="nb">([^<]*)</span>', blk) if nb_width(t) > NB_MAX]
 PHRASE_RE = re.compile(r"[^、。]+[、。]?")
 
 
@@ -149,7 +163,7 @@ def wrap_title(text):
 
 
 def bad_titles(html):
-    return [t for rx in (TITLE_RE, SUB_RE) for _, t, _ in rx.findall(html) if len(PHRASE_RE.findall(t)) >= 2]
+    return [t for rx in WRAP_RES for _, t, _ in rx.findall(html) if len(PHRASE_RE.findall(t)) >= 2]
 
 
 def check_html(html, lang, path=""):
@@ -176,6 +190,9 @@ def check_html(html, lang, path=""):
     bt = bad_titles(html)
     if bt:
         return False, "見出しが句の途中で折れる（nb で包んでいない）: " + bt[0]
+    lp = long_phrases(html)
+    if lp:
+        return False, "サービスの説明文の句が長く、スマホで句の中が折れる（句を分けるか言い換える）: " + lp[0]
     return True, "OK"
 
 
@@ -195,8 +212,8 @@ def apply_html(html, lang, path=""):
     if rel is not None:
         html = REL_RE.sub("", html)
         html = html.replace('<footer class="footer">', rel.replace("\n", nl) + nl + nl + '<footer class="footer">', 1)
-    html = TITLE_RE.sub(lambda m: m.group(1) + wrap_title(m.group(2)) + m.group(3), html)
-    html = SUB_RE.sub(lambda m: m.group(1) + wrap_title(m.group(2)) + m.group(3), html)
+    for rx in WRAP_RES:
+        html = rx.sub(lambda m: m.group(1) + wrap_title(m.group(2)) + m.group(3), html)
     return ZEN_RE.sub(lambda m: m.group(1) + ZEN_VERSION, html)
 
 
@@ -206,7 +223,9 @@ def selftest():
     ng, _ = check_html('<footer class="footer"><a href="/#fde">FDEとは</a></footer>', "ja")
     ok, _ = check_html(partial("ja"), "ja")
     ng2, _ = check_html(partial("ja") + '<h2 class="section-title">AIは使いたい。でも、出せない。</h2>', "ja")
-    if ng is not False or ok is not True or ng2 is not False:
+    ng3, _ = check_html(partial("ja") + '<span class="svc-desc">現場に入り、直せる形で渡します。</span>', "ja")
+    ng4, _ = check_html(partial("ja") + '<span class="svc-desc"><span class="nb">最後は御社の中で直せる形で渡します。</span></span>', "ja")
+    if ng is not False or ok is not True or ng2 is not False or ng3 is not False or ng4 is not False:
         print("sync_chrome の自己テストに失敗（検査が壊れている）")
         sys.exit(1)
 
