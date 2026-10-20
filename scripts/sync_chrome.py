@@ -68,6 +68,8 @@ RELATED = {"fde/index.html": "/fde/", "drill/index.html": "/drill/",
 REL_RE = re.compile(r'<section class="rel"[^>]*>.*?</section>\s*', re.S)
 # 見出しの改行位置（2026-10-14）：「、」「。」の途中で折れないよう句ごとに nb で包む
 TITLE_RE = re.compile(r'(<h2 class="section-title"[^>]*>)([^<]+)(</h2>)')
+# 見出し下の説明文も同じ（2026-10-20「ローカルAI / Pack」と名前の途中で折れていた）。タグを含まない一文だけ対象
+SUB_RE = re.compile(r'(<p class="section-sub"[^>]*>)([^<]+)(</p>)')
 PHRASE_RE = re.compile(r"[^、。]+[、。]?")
 
 
@@ -147,7 +149,7 @@ def wrap_title(text):
 
 
 def bad_titles(html):
-    return [t for _, t, _ in TITLE_RE.findall(html) if len(PHRASE_RE.findall(t)) >= 2]
+    return [t for rx in (TITLE_RE, SUB_RE) for _, t, _ in rx.findall(html) if len(PHRASE_RE.findall(t)) >= 2]
 
 
 def check_html(html, lang, path=""):
@@ -194,6 +196,7 @@ def apply_html(html, lang, path=""):
         html = REL_RE.sub("", html)
         html = html.replace('<footer class="footer">', rel.replace("\n", nl) + nl + nl + '<footer class="footer">', 1)
     html = TITLE_RE.sub(lambda m: m.group(1) + wrap_title(m.group(2)) + m.group(3), html)
+    html = SUB_RE.sub(lambda m: m.group(1) + wrap_title(m.group(2)) + m.group(3), html)
     return ZEN_RE.sub(lambda m: m.group(1) + ZEN_VERSION, html)
 
 
