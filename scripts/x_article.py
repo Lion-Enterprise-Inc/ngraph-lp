@@ -537,6 +537,24 @@ def ref_block(nodes, entities):
     return b
 
 
+def scrub_labels(art, mark_figs):
+    """本文中の「表N」「図N」の呼び名を、Xで通じる言い方に直す〔髙橋さん 2026-10-09「図1とか表1ってどれだよ」〕。
+
+    Xでは表は箇条書きに変わり、図は載せない（--figs 時のみ［図N］の目印を置く）ので、
+    記事の「表1は」「図1の」はどこを指すのか分からなくなる。注釈の頭の「表1 出所…」は呼び名だけ外す。
+    文字列を組み立てる前にsoup側で直すので、あとの装飾・リンクの位置がズレない。
+    """
+    for node in list(art.find_all(string=True)):
+        t = str(node)
+        new = re.sub(r"^(?:表|図)\d+[ 　]+", "", t)
+        new = re.sub(r"表\d+(?=[はをのに])", "この一覧", new)
+        if not mark_figs:
+            new = re.sub(r"図\d+の", "この", new)
+            new = re.sub(r"図\d+(?=[はをに])", "この図", new)
+        if new != t:
+            node.replace_with(NavigableString(new))
+
+
 def build(slug, teaser, heads=None, mark_figs=False):
     path = os.path.join(REPO, "blog", f"{slug}.html")
     if not os.path.exists(path):
@@ -545,6 +563,7 @@ def build(slug, teaser, heads=None, mark_figs=False):
     art = soup.find("article", class_="article-wrap")
     if art is None:
         sys.exit("article.article-wrap が見つかりません（記事の雛形か確認）")
+    scrub_labels(art, mark_figs)
     keep = tuple(heads) if heads else KEEP_HEADINGS
 
     title = art.find("h1").get_text(strip=True)
@@ -644,22 +663,29 @@ def build(slug, teaser, heads=None, mark_figs=False):
     article_url = f"{SITE}/blog/{slug}"
     blocks.append(text_block(article_url, link=article_url, entities=entities))
 
-    # ナレッジ型（N-KNOWLEDGE）は末尾に受注の一文を必ず置く（KNOWLEDGE-OPS §3）。
-    # リンクではなくテキスト＝リンク3本制限と衝突しない。
-    # 文言は記事の .a-cta から取る。ここで文面を組み立てると、記事とXでサービスの
-    # 呼び名がズレる（§0-2 が禁じているのはまさにそれ）
-    if blog_files.is_knowledge(slug):
-        offer = offer_sentence(art)
-        if not offer:
-            sys.exit("NG: ナレッジ型なのに末尾の一文が作れません。\n"
-                     "  記事の <div class=\"a-cta\"> に「…を承っております。」の一文が要ります"
-                     "（KNOWLEDGE-OPS §0-4／§3）")
-        # DM案内はKNOWLEDGE-OPS §0-4の確定文型（②随時募集 ③問い合わせ口）。読者は既にX上に
-        # いるので、口はDM一本に絞る〔髙橋さん指示 2026-08-18「お仕事ご依頼はDMにて、みたいな最後の案内いる」〕
-        blocks.append(text_block(offer + "ご依頼は随時募集しています。お気軽にDMください。",
-                                 entities=entities))
+    # Xの投稿に「お仕事待ってます」系の文を入れない〔髙橋さん決定 2026-10-05「これからはXで
+    # 投稿するとき、お仕事待ってます系の内容は入れないようにしよう」〕。2026-08-18に入れた
+    # ナレッジ型末尾の受注の一文（承っております＋随時募集＋DM案内）はこの決定で廃止。
+    # 記事本体の .a-cta（KNOWLEDGE-OPS §0-4）はブログ側の話なので変えない。
+    hit = solicitation_hit(b.get("text", "") for b in blocks)
+    if hit:
+        sys.exit("NG: Xに出す本文に受注の呼びかけが入っています → " + hit + "\n"
+                 "  Xの投稿には依頼募集・DM案内を入れません（X-OPS §6・2026-10-05決定）。"
+                 "--heads から該当の見出しを外すか、記事側の該当文を見直してください")
 
     return title, {"blocks": blocks, "entities": entities}, figs
+
+
+SOLICITATION = re.compile(r"随時募集|ご依頼は|承っております|お気軽にDM|DMください|お仕事(?:の)?(?:ご)?(?:依頼|相談)")
+
+
+def solicitation_hit(texts):
+    """受注の呼びかけ（お仕事待ってます系）に当たった文を返す。無ければ None。"""
+    for t in texts:
+        m = SOLICITATION.search(t or "")
+        if m:
+            return t[max(0, m.start() - 15):m.end() + 15]
+    return None
 
 
 def offer_sentence(art):

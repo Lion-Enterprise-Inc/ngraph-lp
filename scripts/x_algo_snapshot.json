@@ -5,7 +5,7 @@
  "BlockAuthorWeight": -31.2,
  "ColdStartFollowerCap": 1000.0,
  "ColdStartImpressionThreshold": 1000.0,
- "ColdStartMaxPostAgeSecs": 86400.0,
+ "ColdStartMaxPostAgeSecs": 172800.0,
  "ColdStartSlotMax": 16.0,
  "ColdStartSlotMin": 15.0,
  "FavoriteWeight": 0.5,

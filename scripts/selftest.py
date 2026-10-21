@@ -138,6 +138,19 @@ def run():
         return (got is None), f"got={got!r}"
     case("承っておりますが無ければ一文を作らない", t_offer_missing, expect_ok=True)
 
+    # ---- x_article: Xに受注の呼びかけを出さない（2026-10-05 髙橋さん決定）-----------
+    def t_solicit_ng():
+        got = x_article.solicitation_hit(
+            ["本文です。", "NGraphでは支援を承っております。ご依頼は随時募集しています。お気軽にDMください。"])
+        return (got is not None), f"got={got!r}"
+    case("Xの本文に受注の呼びかけがあれば止める", t_solicit_ng, expect_ok=True)
+
+    def t_solicit_ok():
+        got = x_article.solicitation_hit(
+            ["FDEは、一人のスーパーエンジニアではありません。", "発注前に役員が確かめる5つをまとめました。"])
+        return (got is None), f"got={got!r}"
+    case("普通の本文は受注の呼びかけに当たらない", t_solicit_ok, expect_ok=True)
+
     def t_fig_img():
         # 図はSVGとは限らない。img決め打ちで落とすと図が黙って全部消える
         _t, _cs, _f = None, None, None
