@@ -426,6 +426,15 @@
 .contact .btn-primary{background:var(--hot);color:#16202c}.contact .btn-primary:hover{background:var(--hot-2);color:#16202c}
 .flw .seam{fill:var(--hot)}.flw-k b{color:var(--hot-ink)}.flw-leg .d{background:var(--hot)}
 @media(max-width:640px){.as-chart .lb{font-size:24px}}
+
+/* サービス一覧：アイコン＋名前＋1行（2026-10-23）。細かい条件は各ページで */
+.svc-list a{grid-template-columns:72px minmax(0,1fr) 1.6em;align-items:center;gap:0 24px}
+.svc-ic{width:52px;height:52px;color:var(--accent)}
+.svc-ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc-list li:first-child .svc-ic{width:68px;height:68px;color:var(--hot-ink)}
+.svc-list .svc-desc{margin-top:6px}
+.svc-list li:first-child .svc-desc{margin-top:8px}
+@media(max-width:900px){.svc-list a{grid-template-columns:48px minmax(0,1fr) 1.2em;gap:0 16px}.svc-ic{width:40px;height:40px}.svc-list li:first-child .svc-ic{width:48px;height:48px}.svc-go{grid-column:3;grid-row:1}}
 </style>
 <script type="application/ld+json">
 {
@@ -666,27 +675,23 @@
     </div>
     <ol class="svc-list reveal">
       <li><a href="/en/fde/">
-        <span class="svc-no">01</span>
-        <span class="svc-body"><span class="svc-kind">Put AI into your work</span><b class="svc-name">AI Adoption Support (FDE)</b><span class="svc-desc">Our engineers come into your workplace, organize your records into a Company Brain, and leave AI in a form that gets used. At the end, we hand it over in a form your own team can fix.</span></span>
-        <span class="svc-facts"><span><i>Scope</i>From one task</span><span><i>Length</i>A few weeks to a few months</span></span>
+        <span class="svc-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="17" cy="14" r="5"/><path d="M8 34v-4a9 9 0 0 1 18 0v4"/><rect x="26" y="20" width="16" height="12" rx="2"/><path d="M30 36h8M34 32v4"/><path d="M30 26l2.5 2.5L38 23"/></svg></span>
+        <span class="svc-body"><b class="svc-name">AI Adoption Support (FDE)</b><span class="svc-desc">Our engineers come on site and leave AI in a form that gets used.</span></span>
         <span class="svc-go" aria-hidden="true">→</span>
       </a></li>
       <li><a href="/en/drill/">
-        <span class="svc-no">02</span>
-        <span class="svc-body"><span class="svc-kind">Prepare for attacks</span><b class="svc-name">NGraph Cyber Drill</b><span class="svc-desc">We look for weak spots from an attacker's point of view, fix them with you on site, and test again.</span></span>
-        <span class="svc-facts"><span><i>For</i>Companies in Fukui Prefecture</span><span><i>Seeking</i>Pilot partners</span></span>
+        <span class="svc-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l14 5v11c0 9-6 16-14 20-8-4-14-11-14-20V11z"/><path d="M18 24l4.5 4.5L31 20"/></svg></span>
+        <span class="svc-body"><b class="svc-name">NGraph Cyber Drill</b><span class="svc-desc">We look for weak spots like an attacker, then fix them with you.</span></span>
         <span class="svc-go" aria-hidden="true">→</span>
       </a></li>
       <li><a href="/en/security/">
-        <span class="svc-no">03</span>
-        <span class="svc-body"><span class="svc-kind">Keep information in-house</span><b class="svc-name">Local AI Pack</b><span class="svc-desc">We set up an AI that runs only inside your company. It can also handle documents you can't hand to a cloud AI.</span></span>
-        <span class="svc-facts"><span><i>Size</i>From 1–2 people</span><span><i>Hardware</i>Your company's asset</span></span>
+        <span class="svc-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="28" height="24" rx="3"/><path d="M16 20h6M16 26h10"/><circle cx="32" cy="20" r="1.6"/><path d="M6 40h36"/><path d="M33 26.5v4M31 28.5h4"/></svg></span>
+        <span class="svc-body"><b class="svc-name">Local AI Pack</b><span class="svc-desc">An AI that stays inside your company.</span></span>
         <span class="svc-go" aria-hidden="true">→</span>
       </a></li>
       <li><a href="/en/starter/">
-        <span class="svc-no">04</span>
-        <span class="svc-body"><span class="svc-kind">For companies new to AI</span><b class="svc-name">Generative AI Starter Set</b><span class="svc-desc">We visit, set up your computers, and finish one piece of real work together with you.</span></span>
-        <span class="svc-facts"><span><i>For</i>Up to about 20 employees</span><span><i>Length</i>5–7 business days</span></span>
+        <span class="svc-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="11" width="30" height="20" rx="2"/><path d="M5 37h38l-3-6H8z"/><path d="M19 21l3.5 3.5L30 17"/></svg></span>
+        <span class="svc-body"><b class="svc-name">Generative AI Starter Set</b><span class="svc-desc">We visit, set things up, and finish one real task with you.</span></span>
         <span class="svc-go" aria-hidden="true">→</span>
       </a></li>
     </ol>
