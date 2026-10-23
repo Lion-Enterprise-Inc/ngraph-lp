@@ -254,7 +254,7 @@
 .svc-facts{display:grid;gap:6px;font-size:.875rem;line-height:1.6;color:var(--text-2);align-self:center}
 .svc-facts i{font-style:normal;display:inline-block;min-width:3.2em;color:var(--text-3);font-size:.8125rem;letter-spacing:.1em}
 .svc-go{font-size:1.125rem;color:var(--text-3);align-self:center;justify-self:end;transition:transform .3s,color .3s}
-.svc-list a:hover{background:linear-gradient(90deg,rgba(36,66,122,.045),rgba(36,66,122,0) 70%)}
+.svc-list a:hover{background:none}
 .svc-list a:hover .svc-name,.svc-list a:hover .svc-go{color:var(--accent)}
 .svc-list a:hover .svc-go{transform:translateX(4px)}
 .svc-list a:focus-visible{outline:1px solid var(--accent);outline-offset:4px}
@@ -378,10 +378,10 @@
 .svc-head h2{font-size:var(--fs-h2)}
 .svc-head p{font-size:.875rem;color:var(--text-3)}
 .svc-kind,.svc-kana{letter-spacing:.04em}
-.svc-list a:hover{background:var(--bg-2)}
+.svc-list a:hover{background:none}
 .svc-list li:first-child a{padding:40px 4px 44px 0}
 .svc-list li:first-child .svc-kind{color:var(--accent);font-weight:700;font-size:.875rem}
-.svc-list li:first-child .svc-name{font-size:var(--fs-h2);margin-top:8px}
+.svc-list li:first-child .svc-name{font-size:clamp(1.75rem,2.6vw,2.25rem);margin-top:8px;white-space:nowrap}
 .svc-list li:first-child .svc-desc{font-size:1rem;color:var(--text);max-width:32em;margin-top:12px}
 .svc-list li:first-child .svc-facts{font-size:.875rem;color:var(--text)}
 .svc-list li:first-child .svc-go{color:var(--accent);font-size:1.5rem}
