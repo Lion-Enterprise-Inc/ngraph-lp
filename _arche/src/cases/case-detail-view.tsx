@@ -14,6 +14,10 @@ export function CaseDetailView({ c }: { c: CaseStudy }) {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 py-8 sm:py-12">
+      {/* ページの見出しを1つ置く（検索・AIがページの主題を読む所）。見た目は社名の h2 のまま（2026-10-23） */}
+      <h1 className="sr-only">
+        {ja ? `${c.name}の企業の構造分析（アルケー）` : `${c.nameEn ?? c.name}: company structure analysis (Arche)`}
+      </h1>
       <div className="mb-4">
         <Link
           href="/cases"

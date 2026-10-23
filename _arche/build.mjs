@@ -21,7 +21,15 @@ if (!js || !css) throw new Error("ビルド結果に arche-*.js / arche-*.css �
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 
-function page({ title, desc, path, body, slug }) {
+// 検索・AIがページの種類と会社名を読めるように、構造化データ（JSON-LD）を各ページに入れる（2026-10-23）
+const ORG = { "@type": "Organization", "@id": `${SITE}/#organization`, name: "株式会社NGraph", url: `${SITE}/` };
+const crumbs = (items) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map(([name, path], i) => ({ "@type": "ListItem", position: i + 1, name, item: `${SITE}${path}` })),
+});
+const ldTag = (graph) => `<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/</g, "\\u003c")}</script>`;
+
+function page({ title, desc, path, body, slug, ld }) {
   return `<!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,6 +49,10 @@ function page({ title, desc, path, body, slug }) {
 <meta property="og:type" content="website">
 <meta property="og:url" content="${SITE}${path}">
 <meta property="og:site_name" content="株式会社NGraph">
+<meta property="og:image" content="${SITE}/assets/ogp.jpg?v=3">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="${SITE}${path}">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +67,7 @@ function page({ title, desc, path, body, slug }) {
 @import url("/css/sp.css?v=3") layer(ngraph);
 </style>
 <link rel="stylesheet" href="/cases/_assets/${css}">
+${ldTag(ld)}
 </head>
 <body>
 <header class="header scrolled"></header>
@@ -76,6 +89,10 @@ writeFileSync(`${OUT}/index.html`, page({
   desc: `アルケーが世界を変えた企業${n}社を12項目×3軸で採点。NCG（Nicomachos Company Graph）100点満点、存続ライン47点、卓越ライン75点。`,
   path: "/cases/",
   body: server.render({ kind: "list" }),
+  ld: [
+    { "@type": "CollectionPage", "@id": `${SITE}/cases/#page`, url: `${SITE}/cases/`, name: "アルケー — 企業の構造分析", inLanguage: "ja", publisher: ORG },
+    crumbs([["ホーム", "/"], ["企業の構造分析", "/cases/"]]),
+  ],
 }));
 
 const slugs = server.slugs();
@@ -89,6 +106,22 @@ for (const slug of slugs) {
     path: `/cases/${slug}/`,
     body: server.render({ kind: "detail", slug }),
     slug,
+    ld: [
+      {
+        "@type": "Article",
+        "@id": `${SITE}/cases/${slug}/#article`,
+        url: `${SITE}/cases/${slug}/`,
+        headline: `${m.name}の企業の構造分析（NCG ${m.score}/100点）`,
+        description: d,
+        inLanguage: "ja",
+        image: `${SITE}/assets/ogp.jpg?v=3`,
+        about: { "@type": "Organization", name: m.name, ...(m.nameEn && m.nameEn !== m.name ? { alternateName: m.nameEn } : {}) },
+        author: ORG,
+        publisher: ORG,
+        isPartOf: { "@type": "CollectionPage", "@id": `${SITE}/cases/#page` },
+      },
+      crumbs([["ホーム", "/"], ["企業の構造分析", "/cases/"], [m.name, `/cases/${slug}/`]]),
+    ],
   }));
 }
 // 元ソースの指紋を残す（scripts/arche_check.py が「複写を直したのに作り直していない」を止める）
