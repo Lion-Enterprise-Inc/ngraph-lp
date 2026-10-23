@@ -146,6 +146,21 @@
 .result-notes{margin:18px 0 6px}
 .result-notes li{font-size:.875rem;color:var(--text-2);line-height:1.95;margin-bottom:4px;list-style:none;padding-left:16px;position:relative}
 .result-notes li::before{content:"•";color:var(--accent);position:absolute;left:0}
+/* Check v3: suggested entry point (AX1 / AX2 / AX2+AX3) */
+.tri-name{display:block;font-size:.9375rem;font-weight:700;color:var(--text);margin-top:6px}
+.tri-stages{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0 6px;padding:0}
+.tri-stages li{border:1px solid var(--border);border-radius:3px;padding:10px 10px;background:rgba(255,255,255,.5);font-size:.8125rem;line-height:1.6;color:var(--text-3)}
+.tri-stages li b{display:block;font-family:var(--serif);font-size:.9375rem;color:var(--text-2);margin-bottom:2px}
+.tri-stages li.on{border-color:var(--accent);background:rgba(36,66,122,.07);color:var(--text)}
+.tri-stages li.on b{color:var(--accent)}
+.tri-cases{list-style:none;margin:10px 0 0;padding:0}
+.tri-cases li{border:1px solid var(--border);border-radius:3px;padding:14px 16px;margin-bottom:10px;background:rgba(255,255,255,.5)}
+.tri-cases li b{display:block;font-size:.875rem;margin-bottom:4px}
+.tri-cases li p{font-size:.875rem;color:var(--text-2);line-height:1.9}
+.tri-src{display:block;font-size:.8125rem;color:var(--text-3);margin-top:6px}
+.tri-src a{text-decoration:underline}
+.tri-note{font-size:.8125rem;color:var(--text-3);line-height:1.9;margin-top:12px}
+@media(max-width:480px){.tri-stages{grid-template-columns:1fr}}
 .lead-gate{margin-top:26px;border-top:1px solid var(--border);padding-top:26px}
 .lead-gate h4{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:6px}
 .lead-gate p{font-size:.875rem;color:var(--text-2);line-height:1.9;margin-bottom:16px}
@@ -610,7 +625,7 @@
     <div class="section-head reveal">
       <div class="section-label">Free Check</div>
       <h2 class="section-title"><span class="nb">Free AI Readiness Check</span> <span class="nb">(8 questions, about 1 minute)</span></h2>
-      <p class="section-sub">Choose your industry and answer 8 questions. Your current position on 5 axes is shown on the spot (no sign-up).</p>
+      <p class="section-sub">Choose your industry and answer 8 questions. We suggest on the spot whether AX1, AX2 or AX3 is the right place to start (no sign-up).</p>
     </div>
     <div class="quiz-wrap reveal" id="quizBox">
       <!-- rendered by JS -->
@@ -885,9 +900,10 @@ form.addEventListener('submit',function(e){
   })();
 
 
-// ── AI readiness check v2 (industry → 8 questions → 5-axis radar → consultation) ──
+// ── AI readiness check v3 (industry → 8 questions → suggested entry point AX1 / AX2 / AX2+AX3. Source criteria: ngraph-brain projects/fde/AX-TRIAGE.md, 2026-10-23) ──
 (function(){
 var QUIZ_LOG_URL='';
+var QUIZ_NAME='ai_shindan_v3_triage_en';
 var INDS=[
  ['transport','Transport & logistics'],['care','Nursing & disability care'],
  ['security_bm','Security & building maintenance'],['cleaning','Cleaning services'],
@@ -898,7 +914,7 @@ var INDS=[
  ['clinic','Medical, dental & pharmacy'],['realestate','Property management'],
  ['agri','Agriculture'],['printing','Printing'],
  ['retail_chain','Retail chains'],['school','Tutoring & schools'],
- ['other','Other']
+ ['consult','Consulting, professional & planning'],['other','Other']
 ];
 var TIPS={
  transport:["An instant answer to \"what were this shipper's rules again?\"","Drafts of daily reports, incident reports and routine messages to shippers","Automating the same explanation for every new driver"],
@@ -919,82 +935,68 @@ var TIPS={
  printing:["An instant answer to \"what was this client's last spec?\"","Drafts of routine quote and proofing messages","Automating the same explanation for new staff"],
  retail_chain:["An instant answer on each store's floor rules and ordering decisions","Drafts of reports to HQ and notices to stores","Automating the same explanation for new store staff"],
  school:["An instant answer on each classroom's approach and student history","Drafts of parent notices and meeting reports","Automating the same explanation for new instructors"],
+ consult:["First drafts of proposals and plans","Research, summaries and translation of materials","Turning meeting notes into next actions"],
  other:["An instant answer to repeated questions","Drafts of documents with a fixed format","Automating the same explanation for new people"]
 };
-var AXES=['Where knowledge lives','Key-person risk','Repetition load','Freshness','AI usage'];
-// ax: 0=where knowledge lives 1=key-person risk 2=repetition load 3=freshness 4=AI usage / ax:-1 is not scored
+// k on each option is the key used for the judgment (not shown)
 var QS=[
- {id:'q1',ax:4,q:'How many AI apps are on your phone? (ChatGPT, Gemini, Claude, etc.)',
-  o:[['0–1',0],['2–3',1],['4–6',2],['7 or more',2]]},
- {id:'q2',ax:0,q:'Where does the answer to "the right way to do this job" mainly live?',
-  o:[['In the heads of veterans or the boss',0],['Paper files or Excel',1],['Chat or email history',1],['One fixed place',2]]},
- {id:'q3',ax:1,q:'If your most knowledgeable person took a week off, would any work stop?',
-  o:[['Yes, several things',0],['One or two things',1],['Almost nothing',2]]},
- {id:'q4',ax:2,q:'Do you answer the same question several times a month? (from new hires, stores, partners)',
-  o:[['All the time',0],['Sometimes',1],['Hardly ever',2]]},
- {id:'q5',ax:3,q:'Do you ever wonder which version of a manual or rule is the latest?',
-  o:[['Often / there is no manual',0],['Sometimes',1],['We have a system that prevents it',2]]},
- {id:'q6',ax:4,q:'Do you use AI (ChatGPT etc.) for work?',
-  o:[['No',0],['Personally, now and then',1],['Almost daily',2],['Several people, daily',2]]},
- null, // Q7 branches on the answer to Q6
- {id:'q8',ax:-1,q:'Which repetitive task eats the most time?',
-  o:[['Re-entering data',null],['Tallying & reports',null],['The same explanation (new hires, customers)',null],['Handling inquiries',null],['Preparing documents',null]]}
+ {id:'q1',q:'Which of these is closest to the work that takes the most effort?',
+  o:[['Thinking up and writing proposals, plans and documents','write'],['Research, translation and summaries','write'],['Answering the same questions or explanations again and again','info'],['Re-entering, typing in and tallying data','info'],['Building shifts, schedules and arrangements','info'],['Handoffs and checks between teams or process steps','flow']]},
+ {id:'q2',q:'Where does the information this work needs live today?',
+  o:[['In the head or on the desk of the person in charge','head'],['Scattered across paper, Excel and chat','scatter'],['In separate sheets or systems for each team or process step','silo'],['Together in one place','one']]},
+ {id:'q3',q:'If all the information it needs were in place, would that effort go away?',
+  o:[['Mostly, yes','info'],['No, not unless we also change the order of work, who does it or who approves it','flow'],['It is not about information (there is not enough time to think and write)','work'],['Not sure','unk']]},
+ {id:'q4',q:'Who would mainly use AI in this work?',
+  o:[['The person in charge, asking AI directly','self'],['Frontline staff or new hires, looking at a screen','view'],['People across several teams','multi']]},
+ {id:'q5',q:'How often does this work come up?',
+  o:[['Every day','daily'],['A few times a week','weekly'],['A few times a month','monthly'],['Only now and then','rare']]},
+ {id:'q6',q:'Does this work involve information that must not leave the company? (personal data, client information, formulas or machining conditions, etc.)',
+  o:[['A lot','hi'],['Some','mid'],['Hardly any','lo'],['Not sure','unk']]},
+ {id:'q7',q:'Who can decide to change how this work is done?',
+  o:[['The person in charge or the frontline','staff'],['The department head','mgr'],['It crosses teams, so management must decide','exec'],['It is not clear who decides','none']]},
+ {id:'q8',q:'Do you use AI (ChatGPT etc.) for work today?',
+  o:[['No','none'],['Personally, now and then','some'],['Yes, as a company','org']]}
 ];
-var Q7_USE={id:'q7',ax:0,q:'When you ask AI to do work, do you re-explain your company\'s context (products, rules, customers) every time?',
-  o:[['Every time',0],['It remembers some of it',1],['It has a way to reference company information',2]]};
-var Q7_NOUSE={id:'q7',ax:0,q:'Is onboarding for new hires done verbally by someone, every time?',
-  o:[['Someone does it every time',0],['We have documents, but it ends up verbal',1],['A system handles it',2]]};
-// TYPES min values are scaled to the 14-point maximum (converted from 13/9/5 of the old 16-point scale)
-var TYPES=[
- {min:11,name:'Self-running',note:'Your foundation is in place. Next: expanding to high-impact tasks and systematizing adoption.'},
- {min:8,name:'Partial use',note:'AI is used in places. Next: building each team\'s way of using it and automating re-entry and copy-paste work.'},
- {min:4,name:'Tools first',note:'Contracts came first; the workplace hasn\'t caught up. This is where FDE-style support pays off most.'},
- {min:0,name:'Not started',note:'You are at the beginning. The standard move is to start from the smallest point with visible impact.'}
-];
-// One "mirror" sentence per answer index of Q2
-var MIRRORS=[
- 'Your Company Brain currently lives mainly in the heads of veterans. When someone is away or leaves, the answers go with them.',
- 'Your Company Brain is currently scattered across paper and Excel. Time spent searching and "which one is the latest?" are the likely problems.',
- 'Your Company Brain is currently flowing through chat history. "It should be there, but we can\'t find it" is the likely problem.',
- 'You already have a place where knowledge lives. The next step is keeping it current and making it readable to AI.'
-];
+var STAGES={
+ ax1:{code:'AX1',name:'Start with employees using generative AI',desc:'The person in charge asks generative AI directly, cutting the time spent writing, researching and thinking.'},
+ ax2:{code:'AX2',name:'Start by connecting your internal information and data',desc:'We bring scattered information together and build AI into how the work runs. The people using it do not have to learn how to use AI.'},
+ ax23:{code:'AX2 + AX3',name:'Start by connecting data and changing the flow of work',desc:'We connect information split between teams or process steps, and rework the order of handoffs and who does what at the same time.'}
+};
+// Public cases (sources checked against the original text, 2026-10-23). A similar industry does not guarantee the same result
+var CASES={
+ ax1:[{t:'Optical equipment importer (Tokyo, 33 employees)',d:'The president led the adoption of generative AI and held study sessions on writing prompts. Staff use it to summarize papers, translate English manuals, and choose products and write copy for ads, and inquiries from ads increased.',src:'2026 White Paper on Small and Medium Enterprises in Japan, Case 2-2-3 (in Japanese)',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_1.html'}],
+ ax2:[{t:'Metal products manufacturer (Ishikawa, 85 employees)',d:'Records were kept on paper and in Excel, and re-entering data and searching for documents took time. The company built its own internal system with generative AI and brought inspection, inventory and other data into one place, cutting about 530 working hours a month.',src:'2026 White Paper on Small and Medium Enterprises in Japan, Case 2-2-14 (in Japanese)',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_2.html'},
+      {t:'Restaurant group headquarters (Fukui, 12 locations)',d:'Turning new-hire onboarding into an AI that answers from the headquarters documents. We started by building the system, not by teaching staff how to use AI.',src:'NGraph project (in progress; results not yet measured)',url:''}],
+ ax23:[{t:'Plastic parts manufacturer (Aichi, 126 employees)',d:'Orders and inventory were in the core system, production results in several Excel files and defect rates on paper, so the same data was entered two or three times. The company unified the data and, across teams, set up automatic alerts to managers when defect rates rise and automatic production instructions from orders and inventory.',src:'2026 White Paper on Small and Medium Enterprises in Japan, Case 2-2-15 (in Japanese)',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_2.html'}]
+};
 var box=document.getElementById('quizBox'),answers=[],step=-1,ind=null;
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p);}
 function indLabel(){for(var i=0;i<INDS.length;i++)if(INDS[i][0]===ind)return INDS[i][1];return '';}
-function getQ(i){
-  if(i!==6)return QS[i];
-  return (answers[5]&&answers[5].i===0)?Q7_NOUSE:Q7_USE;
-}
-function scoreOf(){var t=0;for(var i=0;i<7;i++)t+=(answers[i]&&answers[i].v)||0;return t;}
-function axisScores(){
-  var s=[0,0,0,0,0],m=[0,0,0,0,0];
-  for(var i=0;i<7;i++){var q=getQ(i);s[q.ax]+=(answers[i]&&answers[i].v)||0;m[q.ax]+=2;}
-  return s.map(function(v,i){return m[i]?v/m[i]:0;});
-}
+function k(i){return answers[i]?answers[i].k:'';}
 function renderInd(){
-  box.innerHTML='<div class="q-progress">To begin</div>'
+  box.innerHTML='<div class="q-progress">To start</div>'
     +'<div class="q-text">Choose your industry</div>'
     +'<div class="q-inds">'+INDS.map(function(x,i){return '<button data-i="'+i+'">'+esc(x[1])+'</button>';}).join('')+'</div>';
   box.querySelectorAll('.q-inds button').forEach(function(b){
     b.addEventListener('click',function(){
       ind=INDS[+b.getAttribute('data-i')][0];
-      ev('quiz_start',{quiz_name:'ai_shindan_v2_en',industry:ind});
+      ev('quiz_start',{quiz_name:QUIZ_NAME,industry:ind});
       answers=[];step=0;renderQ();
     });
   });
 }
 function renderQ(){
-  var q=getQ(step);
-  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+(q.ax>=0?(' — '+AXES[q.ax]):'')+'</div>'
+  var q=QS[step];
+  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+'</div>'
     +'<div class="q-text">'+esc(q.q)+'</div>'
     +'<div class="q-opts">'+q.o.map(function(o,i){return '<button data-i="'+i+'">'+esc(o[0])+'</button>';}).join('')+'</div>'
     +'<button class="q-back" id="qBack">← Back</button>';
   box.querySelectorAll('.q-opts button').forEach(function(b){
     b.addEventListener('click',function(){
       var i=+b.getAttribute('data-i');
-      answers[step]={i:i,v:q.o[i][1],t:q.o[i][0]};
-      ev('quiz_answer',{quiz_name:'ai_shindan_v2_en',question_id:q.id,answer_index:i,answer_label:q.o[i][0]});
+      answers[step]={i:i,k:q.o[i][1],t:q.o[i][0]};
+      ev('quiz_answer',{quiz_name:QUIZ_NAME,question_id:q.id,answer_index:i,answer_label:q.o[i][0]});
       step++;
       if(step<QS.length)renderQ();else renderResult();
     });
@@ -1004,61 +1006,94 @@ function renderQ(){
     if(step<0){ind=null;renderInd();}else renderQ();
   });
 }
-function drawRadar(scores){
-  var c=document.getElementById('radar');if(!c)return;
-  var ctx=c.getContext('2d'),W=420,H=330,cx=W/2,cy=H/2+8,R=Math.min(W,H)/2-52;ctx.setTransform(2,0,0,2,0,0); // 2x resolution; drawing coordinates unchanged
-  function pt(i,r){var a=-Math.PI/2+i/5*Math.PI*2;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];}
-  ctx.clearRect(0,0,W,H);
-  for(var g=1;g<=4;g++){ctx.beginPath();for(var i=0;i<=5;i++){var p=pt(i%5,R*g/4);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}
-    ctx.strokeStyle='rgba(22,32,44,.15)';ctx.stroke();}
-  for(var i2=0;i2<5;i2++){var p2=pt(i2,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p2[0],p2[1]);ctx.strokeStyle='rgba(22,32,44,.15)';ctx.stroke();}
-  ctx.beginPath();
-  for(var i3=0;i3<=5;i3++){var p3=pt(i3%5,R*Math.max(scores[i3%5],0.06));i3?ctx.lineTo(p3[0],p3[1]):ctx.moveTo(p3[0],p3[1]);}
-  ctx.closePath();ctx.fillStyle='rgba(36,66,122,.18)';ctx.fill();ctx.strokeStyle='rgba(36,66,122,.85)';ctx.lineWidth=2;ctx.stroke();
-  ctx.font='11px "Zen Kaku Gothic New",sans-serif';ctx.fillStyle='rgba(22,32,44,.85)';ctx.textAlign='center';
-  for(var i4=0;i4<5;i4++){var p4=pt(i4,R+26);ctx.fillText(AXES[i4],p4[0],p4[1]+4);}
+// Judgment: split first on whether the effort would go away with the information in place (Q3); only when unsure, lean on the other answers
+function judge(){
+  var q1=k(0),q2=k(1),q3=k(2),q4=k(3);
+  if(q3==='work')return 'ax1';
+  if(q3==='info')return 'ax2';
+  if(q3==='flow')return 'ax23';
+  var p={ax1:0,ax2:0,ax23:0};
+  if(q1==='write')p.ax1+=2;else if(q1==='info')p.ax2+=2;else if(q1==='flow')p.ax23+=2;
+  if(q2==='head')p.ax1+=1;else if(q2==='scatter'||q2==='one')p.ax2+=1;else if(q2==='silo'){p.ax2+=1;p.ax23+=1;}
+  if(q4==='self')p.ax1+=1;else if(q4==='view')p.ax2+=1;else if(q4==='multi')p.ax23+=1;
+  var best='ax2';['ax1','ax2','ax23'].forEach(function(s){if(p[s]>p[best])best=s;});
+  return best;
+}
+function reasons(stage){
+  var r=[],q1=answers[0],q2=k(1),q3=k(2),q4=k(3);
+  if(q1)r.push('Your biggest effort: "'+q1.t+'"');
+  if(q3==='work')r.push('For this work, cutting the time spent thinking and writing helps more than gathering information.');
+  if(q3==='info')r.push('The effort goes away once the information is in place, so bringing the information together is the core of the work.');
+  if(q3==='flow')r.push('Even with the information in place, the effort stays unless the order of work, who does it or who approves it changes.');
+  if(q3==='unk')r.push('It is not yet clear whether the effort would go away with the information in place, so the suggestion is based on your other answers.');
+  if(q2==='scatter')r.push('The information is scattered across paper, Excel and chat.');
+  if(q2==='silo')r.push('The information is split by team or process step.');
+  if(q2==='one'&&stage!=='ax1')r.push('The information is already in one place, which makes it easier to start.');
+  if(q4==='view'&&stage!=='ax1')r.push('It can be set up so the people using it only need to look at a screen.');
+  if(k(7)==='none'&&stage!=='ax1')r.push('You can start from this entry point even if you do not use AI yet.');
+  return r;
+}
+function checks(stage){
+  var c=[],q5=k(4),q6=k(5),q7=k(6);
+  if(k(2)==='unk')c.push('Whether the effort would go away with the information in place (we trace one real case together)');
+  if(q6==='hi'||q6==='unk')c.push('Where to draw the line between information that can and cannot go into AI');
+  if(stage==='ax23'&&(q7==='none'||q7==='staff'))c.push('Who decides on changing the flow of work across teams');
+  else if(q7==='none')c.push('Who decides to change how the work is done');
+  if(q5==='monthly'||q5==='rare')c.push('Whether the benefit justifies the frequency (sometimes reviewing your current tools or routines is enough, without AI)');
+  if(!c.length)c.push('What to try first, and how we will judge whether it worked');
+  return c;
+}
+function stagesHtml(stage){
+  return '<ol class="tri-stages">'+['ax1','ax2','ax23'].map(function(s){
+    var st=STAGES[s];
+    return '<li class="'+(s===stage?'on':'')+'"><b>'+esc(st.code)+'</b><span>'+esc(st.name)+'</span></li>';
+  }).join('')+'</ol>';
+}
+function casesHtml(stage){
+  return '<ul class="tri-cases">'+CASES[stage].map(function(c){
+    return '<li><b>'+esc(c.t)+'</b><p>'+esc(c.d)+'</p><span class="tri-src">'
+      +(c.url?'<a href="'+esc(c.url)+'" target="_blank" rel="noopener">'+esc(c.src)+'</a>':esc(c.src))
+      +'</span></li>';
+  }).join('')+'</ul>';
 }
 function renderResult(){
-  var total=scoreOf();
-  var type=TYPES.find(function(t){return total>=t.min;});
-  var sc=axisScores();
-  var label=indLabel();
-  var mirror=MIRRORS[(answers[1]&&answers[1].i)||0];
+  var stage=judge(),st=STAGES[stage],label=indLabel();
+  var low=(k(4)==='rare');
   var tips=TIPS[ind]||TIPS.other;
-  var start=(answers[7]&&answers[7].t)||'';
-  ev('quiz_complete',{quiz_name:'ai_shindan_v2_en',score:total,result_type:type.name,industry:ind,start_point:start});
+  var rs=reasons(stage),cs=checks(stage);
+  ev('quiz_complete',{quiz_name:QUIZ_NAME,result_type:stage,industry:ind,low_frequency:low});
   if(QUIZ_LOG_URL){
     try{
       fetch(QUIZ_LOG_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({
         ts:new Date().toISOString(),industry:ind,
-        answers:answers.map(function(a,i){return {id:getQ(i).id,index:a?a.i:null,label:a?a.t:null};}),
-        score:total,result:type.name,start_point:start
+        answers:answers.map(function(a,i){return {id:QS[i].id,index:a?a.i:null,label:a?a.t:null};}),
+        result:stage
       })}).catch(function(){});
     }catch(e){}
   }
   box.innerHTML='<div class="result-head">'
     +'<div class="q-progress">Your result</div>'
-    +'<div class="result-type">'+esc(type.name)+'</div>'
-    +'<div class="result-score">Total score '+total+' / 14</div>'
+    +'<div class="result-score">Suggested entry point</div>'
+    +'<div class="result-type">'+esc(st.code)+'<span class="tri-name">'+esc(st.name)+'</span></div>'
     +'</div>'
-    +'<canvas id="radar" width="840" height="660"></canvas>'
-    +'<ul class="result-notes"><li>'+esc(type.note)+'</li></ul>'
-    +'<p class="result-mirror">'+esc(mirror)+'</p>'
-    +'<div class="result-tips">'
-    +'<h4>'+esc(label)+': work you can hand to AI first</h4>'
-    +'<ul class="result-notes">'+tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>'
-    +'</div>'
-    +(start?'<p class="result-start">Your biggest burden is "'+esc(start)+'". This is the standard place to start.</p>':'')
+    +stagesHtml(stage)
+    +'<p class="result-mirror">'+esc(st.desc)+'</p>'
+    +(low?'<p class="result-start">For work that only comes up now and then, we suggest also considering not using AI. If you go ahead, this is the suggested entry point.</p>':'')
+    +'<div class="result-tips"><h4>Why we suggest this</h4><ul class="result-notes">'+rs.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>What we would like to check with you in a meeting</h4><ul class="result-notes">'+cs.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>'+esc(label)+': work you could hand to AI first</h4><ul class="result-notes">'+tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>Efforts that started from the same entry point</h4>'+casesHtml(stage)
+    +'<p class="tri-note">A similar industry does not guarantee the same result from the same entry point.</p></div>'
+    +'<p class="tri-note">This is a suggestion from a 1-minute check. We decide the entry point together in a meeting, looking at your actual work. You do not have to go through AX1 first.</p>'
     +'<div class="lead-gate">'
     +'<button class="btn btn-primary" id="qConsult">Discuss this result with us (free, 30 min)</button>'
     +'</div>'
     +'<button class="q-back" id="qRetry">← Take the check again</button>';
-  drawRadar(sc);
   document.getElementById('qRetry').addEventListener('click',function(){answers=[];step=-1;ind=null;renderInd();});
   document.getElementById('qConsult').addEventListener('click',function(){
-    ev('quiz_consult_click',{quiz_name:'ai_shindan_v2_en'});
+    ev('quiz_consult_click',{quiz_name:QUIZ_NAME,result_type:stage});
     var ta=document.querySelector('#lpForm [name="お問い合わせ内容"]');
-    if(ta)ta.value='[Free AI check result] Industry: '+label+' / Stage: '+type.name+' / Score '+total+'/14 / Repetitive work of concern: '+start;
+    if(ta)ta.value='[Free AI check result] Industry: '+label+' / Suggested entry point: '+st.code+' ('+st.name+') / Biggest effort: '+((answers[0]&&answers[0].t)||'')+' / Where the information lives: '+((answers[1]&&answers[1].t)||'');
     var tgt=document.getElementById('contact');
     if(tgt)tgt.scrollIntoView({behavior:'smooth',block:'start'});
   });

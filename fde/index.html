@@ -149,6 +149,21 @@
 .result-notes{margin:18px 0 6px}
 .result-notes li{font-size:.875rem;color:var(--text-2);line-height:1.95;margin-bottom:4px;list-style:none;padding-left:16px;position:relative}
 .result-notes li::before{content:"・";color:var(--accent);position:absolute;left:0}
+/* 診断 v3：入口の候補（AX1／AX2／AX2＋AX3） */
+.tri-name{display:block;font-size:.9375rem;font-weight:700;color:var(--text);margin-top:6px}
+.tri-stages{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:18px 0 6px;padding:0}
+.tri-stages li{border:1px solid var(--border);border-radius:3px;padding:10px 10px;background:rgba(255,255,255,.5);font-size:.8125rem;line-height:1.6;color:var(--text-3)}
+.tri-stages li b{display:block;font-family:var(--serif);font-size:.9375rem;color:var(--text-2);margin-bottom:2px}
+.tri-stages li.on{border-color:var(--accent);background:rgba(36,66,122,.07);color:var(--text)}
+.tri-stages li.on b{color:var(--accent)}
+.tri-cases{list-style:none;margin:10px 0 0;padding:0}
+.tri-cases li{border:1px solid var(--border);border-radius:3px;padding:14px 16px;margin-bottom:10px;background:rgba(255,255,255,.5)}
+.tri-cases li b{display:block;font-size:.875rem;margin-bottom:4px}
+.tri-cases li p{font-size:.875rem;color:var(--text-2);line-height:1.9}
+.tri-src{display:block;font-size:.8125rem;color:var(--text-3);margin-top:6px}
+.tri-src a{text-decoration:underline}
+.tri-note{font-size:.8125rem;color:var(--text-3);line-height:1.9;margin-top:12px}
+@media(max-width:480px){.tri-stages{grid-template-columns:1fr}}
 .lead-gate{margin-top:26px;border-top:1px solid var(--border);padding-top:26px}
 .lead-gate h4{font-family:var(--serif);font-size:1rem;font-weight:700;margin-bottom:6px}
 .lead-gate p{font-size:.875rem;color:var(--text-2);line-height:1.9;margin-bottom:16px}
@@ -615,7 +630,7 @@
     <div class="section-head reveal">
       <div class="section-label">Free Check</div>
       <h2 class="section-title"><span class="nb">無料AI導入診断</span><span class="nb">（8問・約1分）</span></h2>
-      <p class="section-sub"><span class="nb">業種を選んで8問。</span><span class="nb">現在地を5軸でその場に表示します（登録不要）。</span></p>
+      <p class="section-sub"><span class="nb">業種を選んで8問。</span><span class="nb">ＡＸ１・ＡＸ２・ＡＸ３の</span><span class="nb">どこから始めるのが合うか、</span><span class="nb">その場で候補を表示します（登録不要）。</span></p>
     </div>
     <div class="quiz-wrap reveal" id="quizBox">
       <!-- JSが描画 -->
@@ -889,9 +904,10 @@ form.addEventListener('submit',function(e){
     if(document.fonts&&document.fonts.ready)document.fonts.ready.then(draw);
   })();
 
-// ── AI導入診断 v2（業種選択→8問→5軸レーダー→相談導線） ──
+// ── AI導入診断 v3（業種選択→8問→入口の候補 AX1／AX2／AX2＋AX3。正本の基準は ngraph-brain projects/fde/AX-TRIAGE.md・2026-10-23） ──
 (function(){
 var QUIZ_LOG_URL='';
+var QUIZ_NAME='ai_shindan_v3_triage';
 var INDS=[
  ['transport','運送・物流'],['care','介護・障害福祉'],
  ['security_bm','警備・ビルメンテナンス'],['cleaning','清掃・ハウスクリーニング'],
@@ -902,7 +918,7 @@ var INDS=[
  ['clinic','医療・歯科・調剤'],['realestate','不動産管理'],
  ['agri','農業法人'],['printing','印刷'],
  ['retail_chain','小売チェーン'],['school','学習塾・スクール'],
- ['other','その他']
+ ['consult','コンサル・士業・企画'],['other','その他']
 ];
 var TIPS={
  transport:["「この荷主のルール、どうだった？」への即答係","日報・事故報告・荷主への定型連絡の下書き","新しいドライバーへの「同じ説明」の自動化"],
@@ -923,59 +939,45 @@ var TIPS={
  printing:["「この会社の前回の仕様は？」への即答係","見積・校正やりとりの定型文の下書き","新人への「同じ説明」の自動化"],
  retail_chain:["店ごとの売場ルール・発注判断への即答係","本部への報告・店舗への通達の下書き","新店スタッフへの「同じ説明」の自動化"],
  school:["教室ごとの進め方・生徒対応の経緯への即答係","保護者へのお知らせ・面談報告の下書き","新講師への「同じ説明」の自動化"],
+ consult:["提案書・企画書のたたき台づくり","調べもの・資料の要約・翻訳","議事録から次の打ち手の整理"],
  other:["くり返し質問への即答係","決まった形式の書類の下書き","新しい人への同じ説明の自動化"]
 };
-var AXES=['知識の置き場','属人化リスク','繰り返し負荷','情報の鮮度','AI活用度'];
-// ax: 0=知識の置き場 1=属人化リスク 2=繰り返し負荷 3=情報の鮮度 4=AI活用度 / ax:-1 はスコア外
+// 各選択肢の k は判定用のキー（表示はしない）
 var QS=[
- {id:'q1',ax:4,q:'あなたのスマホに、AIアプリはいくつ入っていますか？（ChatGPT・Gemini・Claudeなど）',
-  o:[['0〜1個',0],['2〜3個',1],['4〜6個',2],['7個以上',2]]},
- {id:'q2',ax:0,q:'「この仕事の正しいやり方」の答えは、主にどこにありますか？',
-  o:[['ベテランや社長の頭の中',0],['紙のファイルやExcel',1],['チャットやメールの履歴',1],['決まった置き場が1つある',2]]},
- {id:'q3',ax:1,q:'一番詳しい人が1週間休んだら、止まってしまう業務がありますか？',
-  o:[['ある。複数ある',0],['1つか2つある',1],['ほぼない',2]]},
- {id:'q4',ax:2,q:'同じ質問に、月に何度も答えていませんか？（新人・店舗・取引先などから）',
-  o:[['しょっちゅうある',0],['たまにある',1],['ほとんどない',2]]},
- {id:'q5',ax:3,q:'マニュアルやルールの「最新版がどれか」で迷うことはありますか？',
-  o:[['よくある／そもそも無い',0],['たまにある',1],['迷わない仕組みがある',2]]},
- {id:'q6',ax:4,q:'仕事でAI（ChatGPTなど）を使っていますか？',
-  o:[['使っていない',0],['個人でときどき',1],['ほぼ毎日',2],['複数人で日常的に',2]]},
- null, // Q7はQ6の回答で分岐
- {id:'q8',ax:-1,q:'一番時間を食っている「繰り返しの仕事」はどれですか？',
-  o:[['転記・入力',null],['集計・レポート',null],['同じ説明（新人・お客様）',null],['問い合わせ対応',null],['書類づくり',null]]}
+ {id:'q1',q:'いちばん手間がかかっている仕事は、どれに近いですか？',
+  o:[['提案書・企画書・資料を考えて書く','write'],['調べもの・翻訳・要約','write'],['同じ質問や説明に何度も答える','info'],['転記・入力・集計','info'],['シフト・予定・段取りを組む','info'],['部署や工程の間の受け渡し・確認','flow']]},
+ {id:'q2',q:'その仕事に必要な情報は、いまどこにありますか？',
+  o:[['担当者の頭の中や手元','head'],['紙・Excel・チャットに散らばっている','scatter'],['部署や工程ごとに、別の表やシステムにある','silo'],['1か所にまとまっている','one']]},
+ {id:'q3',q:'必要な情報が全部そろったら、その手間はなくなりますか？',
+  o:[['ほぼなくなる','info'],['そろっても、仕事の順番や担当・承認を変えないとなくならない','flow'],['情報の問題ではない（考える・書く時間が足りない）','work'],['わからない','unk']]},
+ {id:'q4',q:'その仕事でAIを使うことになるのは、主に誰ですか？',
+  o:[['担当者が自分でAIに頼む','self'],['現場の人や新人が、画面を見て使う','view'],['複数の部署の人','multi']]},
+ {id:'q5',q:'その仕事は、どれくらいの頻度で発生しますか？',
+  o:[['毎日','daily'],['週に数回','weekly'],['月に数回','monthly'],['たまに','rare']]},
+ {id:'q6',q:'その仕事には、外に出せない情報が関わりますか？（個人情報・取引先の情報・配合や加工条件など）',
+  o:[['多く関わる','hi'],['一部関わる','mid'],['ほとんど関わらない','lo'],['わからない','unk']]},
+ {id:'q7',q:'その仕事のやり方を変えると決められるのは、誰ですか？',
+  o:[['担当者や現場','staff'],['部門の責任者','mgr'],['部署をまたぐので、経営の判断が要る','exec'],['決める人がはっきりしない','none']]},
+ {id:'q8',q:'いま、仕事でAI（ChatGPTなど）を使っていますか？',
+  o:[['使っていない','none'],['個人でときどき','some'],['会社として使っている','org']]}
 ];
-var Q7_USE={id:'q7',ax:0,q:'AIに仕事を頼むとき、会社の事情（商品・ルール・お客様のこと）を毎回説明し直していますか？',
-  o:[['毎回説明している',0],['ある程度は覚えさせている',1],['会社の情報を参照する仕組みがある',2]]};
-var Q7_NOUSE={id:'q7',ax:0,q:'新しく入った人への説明は、毎回誰かが口頭でやっていますか？',
-  o:[['毎回誰かがやっている',0],['資料はあるが結局口頭',1],['仕組みで回っている',2]]};
-// TYPESのminは満点14に合わせた比例値（旧16点満点の13/9/5を換算）
-var TYPES=[
- {min:11,name:'自走期',note:'土台は整っています。次は効果の大きい業務への横展開と、定着の仕組み化が論点です。'},
- {min:8,name:'部分活用期',note:'一部では使えています。部署ごとの使い方づくりと、転記・コピペ作業の自動化が次の一段です。'},
- {min:4,name:'ツール先行期',note:'契約が先行し、現場への落とし込みが追いついていない状態です。FDE型支援の効果が最も出やすい段階です。'},
- {min:0,name:'着手前',note:'これから始める段階です。効果の見える最小の一点から着手するのが定石です。'}
-];
-// Q2の回答indexごとの「鏡の一文」
-var MIRRORS=[
- '御社の「会社の脳」は、いま主にベテランの頭の中にあります。人が休む・辞めると、答えも一緒に消える状態です。',
- '御社の「会社の脳」は、いま紙とExcelに散らばっています。探す時間と「どれが最新か」問題が起きやすい状態です。',
- '御社の「会社の脳」は、いまチャットの履歴に流れています。あるはずなのに見つからない、が起きやすい状態です。',
- '御社にはすでに知識の置き場があります。次の一歩は、それを最新に保ち、AIに読ませられる形にすることです。'
-];
+var STAGES={
+ ax1:{code:'ＡＸ１',name:'社員が生成AIを使うところから',desc:'担当者が自分で生成AIに頼み、書く・調べる・考える時間を減らします。'},
+ ax2:{code:'ＡＸ２',name:'社内の情報・データとつなぐところから',desc:'散らばった情報をまとめ、AIを仕事の仕組みに組み込みます。使う人がAIの使い方を学ばなくてよい形にできます。'},
+ ax23:{code:'ＡＸ２＋ＡＸ３',name:'データをつなぎ、仕事の流れも変えるところから',desc:'部署や工程の間で分かれた情報をつなぎ、受け渡しの順番や担当も一緒に見直します。'}
+};
+// 公開事例（出典を本文で確認済み・2026-10-23）。業種が似ていても同じ成果が出るとは限らない
+var CASES={
+ ax1:[{t:'光学機器の輸入商社（東京都・33名）',d:'社長が率先して生成AIを導入し、プロンプトの勉強会を開いた。論文の要約や英語マニュアルの翻訳、広告の商品選びとキャッチコピーづくりに使い、広告からの問い合わせが増えた。',src:'中小企業白書2026 事例2-2-3（株式会社オプトサイエンス）',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_1.html'}],
+ ax2:[{t:'金属製品製造（石川県・85名）',d:'紙とExcelで管理し、転記や資料探しに時間がかかっていた。生成AIを使って社内システムを自作し、検査実績や在庫などのデータを一元化。月530時間程度の労働時間を削減した。',src:'中小企業白書2026 事例2-2-14（岡田研磨株式会社）',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_2.html'},
+      {t:'飲食業グループ本部（福井県・12店舗）',d:'新人の入社案内を、本部の資料をもとに答えるAIにする取り組み。社員がAIの使い方を学ぶところからではなく、仕組みを作るところから始めています。',src:'NGraphの取り組み（進行中・成果の数字は測定前）',url:''}],
+ ax23:[{t:'プラスチック部品の製造（愛知県・126名）',d:'受注・在庫は基幹システム、製造実績は複数のExcel、不良率は紙と分かれ、二重三重の入力があった。データを一元化し、不良率が高いと管理者に自動で知らせる仕組みや、受注と在庫から生産指示を自動で出す機能まで、部署をまたいで整えた。',src:'中小企業白書2026 事例2-2-15（株式会社高瀬金型）',url:'https://www.chusho.meti.go.jp/pamflet/hakusyo/2026/chusho/b2_2_2.html'}]
+};
 var box=document.getElementById('quizBox'),answers=[],step=-1,ind=null;
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function ev(n,p){if(typeof gtag==='function')gtag('event',n,p);}
 function indLabel(){for(var i=0;i<INDS.length;i++)if(INDS[i][0]===ind)return INDS[i][1];return '';}
-function getQ(i){
-  if(i!==6)return QS[i];
-  return (answers[5]&&answers[5].i===0)?Q7_NOUSE:Q7_USE;
-}
-function scoreOf(){var t=0;for(var i=0;i<7;i++)t+=(answers[i]&&answers[i].v)||0;return t;}
-function axisScores(){
-  var s=[0,0,0,0,0],m=[0,0,0,0,0];
-  for(var i=0;i<7;i++){var q=getQ(i);s[q.ax]+=(answers[i]&&answers[i].v)||0;m[q.ax]+=2;}
-  return s.map(function(v,i){return m[i]?v/m[i]:0;});
-}
+function k(i){return answers[i]?answers[i].k:'';}
 function renderInd(){
   box.innerHTML='<div class="q-progress">はじめに</div>'
     +'<div class="q-text">業種を選んでください</div>'
@@ -983,22 +985,22 @@ function renderInd(){
   box.querySelectorAll('.q-inds button').forEach(function(b){
     b.addEventListener('click',function(){
       ind=INDS[+b.getAttribute('data-i')][0];
-      ev('quiz_start',{quiz_name:'ai_shindan_v2',industry:ind});
+      ev('quiz_start',{quiz_name:QUIZ_NAME,industry:ind});
       answers=[];step=0;renderQ();
     });
   });
 }
 function renderQ(){
-  var q=getQ(step);
-  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+(q.ax>=0?(' — '+AXES[q.ax]):'')+'</div>'
+  var q=QS[step];
+  box.innerHTML='<div class="q-progress">Q'+(step+1)+' / '+QS.length+'</div>'
     +'<div class="q-text">'+esc(q.q)+'</div>'
     +'<div class="q-opts">'+q.o.map(function(o,i){return '<button data-i="'+i+'">'+esc(o[0])+'</button>';}).join('')+'</div>'
     +'<button class="q-back" id="qBack">← ひとつ戻る</button>';
   box.querySelectorAll('.q-opts button').forEach(function(b){
     b.addEventListener('click',function(){
       var i=+b.getAttribute('data-i');
-      answers[step]={i:i,v:q.o[i][1],t:q.o[i][0]};
-      ev('quiz_answer',{quiz_name:'ai_shindan_v2',question_id:q.id,answer_index:i,answer_label:q.o[i][0]});
+      answers[step]={i:i,k:q.o[i][1],t:q.o[i][0]};
+      ev('quiz_answer',{quiz_name:QUIZ_NAME,question_id:q.id,answer_index:i,answer_label:q.o[i][0]});
       step++;
       if(step<QS.length)renderQ();else renderResult();
     });
@@ -1008,61 +1010,94 @@ function renderQ(){
     if(step<0){ind=null;renderInd();}else renderQ();
   });
 }
-function drawRadar(scores){
-  var c=document.getElementById('radar');if(!c)return;
-  var ctx=c.getContext('2d'),W=420,H=330,cx=W/2,cy=H/2+8,R=Math.min(W,H)/2-52;ctx.setTransform(2,0,0,2,0,0); // 2x解像度・描画座標は従来のまま
-  function pt(i,r){var a=-Math.PI/2+i/5*Math.PI*2;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];}
-  ctx.clearRect(0,0,W,H);
-  for(var g=1;g<=4;g++){ctx.beginPath();for(var i=0;i<=5;i++){var p=pt(i%5,R*g/4);i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]);}
-    ctx.strokeStyle='rgba(22,32,44,.15)';ctx.stroke();}
-  for(var i2=0;i2<5;i2++){var p2=pt(i2,R);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(p2[0],p2[1]);ctx.strokeStyle='rgba(22,32,44,.15)';ctx.stroke();}
-  ctx.beginPath();
-  for(var i3=0;i3<=5;i3++){var p3=pt(i3%5,R*Math.max(scores[i3%5],0.06));i3?ctx.lineTo(p3[0],p3[1]):ctx.moveTo(p3[0],p3[1]);}
-  ctx.closePath();ctx.fillStyle='rgba(36,66,122,.18)';ctx.fill();ctx.strokeStyle='rgba(36,66,122,.85)';ctx.lineWidth=2;ctx.stroke();
-  ctx.font='11px "Zen Kaku Gothic New",sans-serif';ctx.fillStyle='rgba(22,32,44,.85)';ctx.textAlign='center';
-  for(var i4=0;i4<5;i4++){var p4=pt(i4,R+26);ctx.fillText(AXES[i4],p4[0],p4[1]+4);}
+// 判定：まず「情報がそろえば解消するか」（Q3）で分け、分からないときだけ他の回答から寄せる
+function judge(){
+  var q1=k(0),q2=k(1),q3=k(2),q4=k(3);
+  if(q3==='work')return 'ax1';
+  if(q3==='info')return 'ax2';
+  if(q3==='flow')return 'ax23';
+  var p={ax1:0,ax2:0,ax23:0};
+  if(q1==='write')p.ax1+=2;else if(q1==='info')p.ax2+=2;else if(q1==='flow')p.ax23+=2;
+  if(q2==='head')p.ax1+=1;else if(q2==='scatter'||q2==='one')p.ax2+=1;else if(q2==='silo'){p.ax2+=1;p.ax23+=1;}
+  if(q4==='self')p.ax1+=1;else if(q4==='view')p.ax2+=1;else if(q4==='multi')p.ax23+=1;
+  var best='ax2';['ax1','ax2','ax23'].forEach(function(s){if(p[s]>p[best])best=s;});
+  return best;
+}
+function reasons(stage){
+  var r=[],q1=answers[0],q2=k(1),q3=k(2),q4=k(3);
+  if(q1)r.push('いちばんの手間：「'+q1.t+'」');
+  if(q3==='work')r.push('情報をそろえるより、考える・書く時間を減らすほうが効く仕事です。');
+  if(q3==='info')r.push('情報がそろえば手間がなくなる仕事です。情報をまとめることが本体になります。');
+  if(q3==='flow')r.push('情報がそろっても、仕事の順番や担当・承認を変えないと手間が残る仕事です。');
+  if(q3==='unk')r.push('「情報がそろえば手間がなくなるか」はまだ分からないため、ほかの回答から候補を出しています。');
+  if(q2==='scatter')r.push('情報が紙・Excel・チャットに散らばっています。');
+  if(q2==='silo')r.push('情報が部署や工程ごとに分かれています。');
+  if(q2==='one'&&stage!=='ax1')r.push('情報が1か所にまとまっているので、始めやすい状態です。');
+  if(q4==='view'&&stage!=='ax1')r.push('使う人は画面を見るだけでよい形にできます。');
+  if(k(7)==='none'&&stage!=='ax1')r.push('AIをまだ使っていなくても、この入口から始められます。');
+  return r;
+}
+function checks(stage){
+  var c=[],q5=k(4),q6=k(5),q7=k(6);
+  if(k(2)==='unk')c.push('情報がそろえば、その手間はなくなるか（実際の1件を一緒にたどって確かめます）');
+  if(q6==='hi'||q6==='unk')c.push('AIに入れてよい情報と、入れてはいけない情報の線引き');
+  if(stage==='ax23'&&(q7==='none'||q7==='staff'))c.push('部署をまたいで仕事の流れを変えると、誰が決めるか');
+  else if(q7==='none')c.push('やり方を変えると決める人');
+  if(q5==='monthly'||q5==='rare')c.push('頻度に見合う効果が出るか（AIを使わず、今のツールや運用の見直しで済む場合もあります）');
+  if(!c.length)c.push('最初に試す範囲と、うまくいったと判断する目安');
+  return c;
+}
+function stagesHtml(stage){
+  return '<ol class="tri-stages">'+['ax1','ax2','ax23'].map(function(s){
+    var st=STAGES[s];
+    return '<li class="'+(s===stage?'on':'')+'"><b>'+esc(st.code)+'</b><span>'+esc(st.name)+'</span></li>';
+  }).join('')+'</ol>';
+}
+function casesHtml(stage){
+  return '<ul class="tri-cases">'+CASES[stage].map(function(c){
+    return '<li><b>'+esc(c.t)+'</b><p>'+esc(c.d)+'</p><span class="tri-src">'
+      +(c.url?'<a href="'+esc(c.url)+'" target="_blank" rel="noopener">'+esc(c.src)+'</a>':esc(c.src))
+      +'</span></li>';
+  }).join('')+'</ul>';
 }
 function renderResult(){
-  var total=scoreOf();
-  var type=TYPES.find(function(t){return total>=t.min;});
-  var sc=axisScores();
-  var label=indLabel();
-  var mirror=MIRRORS[(answers[1]&&answers[1].i)||0];
+  var stage=judge(),st=STAGES[stage],label=indLabel();
+  var low=(k(4)==='rare');
   var tips=TIPS[ind]||TIPS.other;
-  var start=(answers[7]&&answers[7].t)||'';
-  ev('quiz_complete',{quiz_name:'ai_shindan_v2',score:total,result_type:type.name,industry:ind,start_point:start});
+  var rs=reasons(stage),cs=checks(stage);
+  ev('quiz_complete',{quiz_name:QUIZ_NAME,result_type:stage,industry:ind,low_frequency:low});
   if(QUIZ_LOG_URL){
     try{
       fetch(QUIZ_LOG_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({
         ts:new Date().toISOString(),industry:ind,
-        answers:answers.map(function(a,i){return {id:getQ(i).id,index:a?a.i:null,label:a?a.t:null};}),
-        score:total,result:type.name,start_point:start
+        answers:answers.map(function(a,i){return {id:QS[i].id,index:a?a.i:null,label:a?a.t:null};}),
+        result:stage
       })}).catch(function(){});
     }catch(e){}
   }
   box.innerHTML='<div class="result-head">'
     +'<div class="q-progress">診断結果</div>'
-    +'<div class="result-type">'+esc(type.name)+'</div>'
-    +'<div class="result-score">総合スコア '+total+' / 14</div>'
+    +'<div class="result-score">入口の候補</div>'
+    +'<div class="result-type">'+esc(st.code)+'<span class="tri-name">'+esc(st.name)+'</span></div>'
     +'</div>'
-    +'<canvas id="radar" width="840" height="660"></canvas>'
-    +'<ul class="result-notes"><li>'+esc(type.note)+'</li></ul>'
-    +'<p class="result-mirror">'+esc(mirror)+'</p>'
-    +'<div class="result-tips">'
-    +'<h4>'+esc(label)+'で、まずAIに任せられる仕事</h4>'
-    +'<ul class="result-notes">'+tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>'
-    +'</div>'
-    +(start?'<p class="result-start">一番のご負担は「'+esc(start)+'」——ここから始めるのが定石です。</p>':'')
+    +stagesHtml(stage)
+    +'<p class="result-mirror">'+esc(st.desc)+'</p>'
+    +(low?'<p class="result-start">発生がたまにの仕事は、AIを使わない選択も含めて考えるのがおすすめです。進めるなら、この入口が候補です。</p>':'')
+    +'<div class="result-tips"><h4>そう考えた理由</h4><ul class="result-notes">'+rs.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>面談で一緒に確かめたいこと</h4><ul class="result-notes">'+cs.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>'+esc(label)+'で、まずAIに任せられそうな仕事</h4><ul class="result-notes">'+tips.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul></div>'
+    +'<div class="result-tips"><h4>同じ入口から始めた取り組み</h4>'+casesHtml(stage)
+    +'<p class="tri-note">業種が似ていても、同じ入口で同じ成果が出るとは限りません。</p></div>'
+    +'<p class="tri-note">1分の回答から出した候補です。入口は、面談で実際の業務を一緒に見て決めます。ＡＸ１から順番に進める必要はありません。</p>'
     +'<div class="lead-gate">'
     +'<button class="btn btn-primary" id="qConsult">この結果をもとに相談する（無料・30分）</button>'
     +'</div>'
     +'<button class="q-back" id="qRetry">← もう一度診断する</button>';
-  drawRadar(sc);
   document.getElementById('qRetry').addEventListener('click',function(){answers=[];step=-1;ind=null;renderInd();});
   document.getElementById('qConsult').addEventListener('click',function(){
-    ev('quiz_consult_click',{quiz_name:'ai_shindan_v2'});
+    ev('quiz_consult_click',{quiz_name:QUIZ_NAME,result_type:stage});
     var ta=document.querySelector('#lpForm [name="お問い合わせ内容"]');
-    if(ta)ta.value='【無料診断の結果】業種:'+label+'／段階:'+type.name+'／スコア'+total+'/14／気になる繰り返し業務:'+start;
+    if(ta)ta.value='【無料診断の結果】業種:'+label+'／入口の候補:'+st.code+'（'+st.name+'）／いちばんの手間:'+((answers[0]&&answers[0].t)||'')+'／情報の置き場:'+((answers[1]&&answers[1].t)||'');
     var tgt=document.getElementById('contact');
     if(tgt)tgt.scrollIntoView({behavior:'smooth',block:'start'});
   });
