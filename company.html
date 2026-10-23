@@ -71,6 +71,26 @@
   .message-grid{grid-template-columns:1fr;gap:24px}
   .message-portrait{width:150px;margin:0 auto}
 }
+
+/* ===== 会社概要の構成と強弱（2026-10-23） ===== */
+/* 理念：黒地に炎（トップのヒーローと同じ絵）。ページで一番強く */
+.concept-img-wrap{background:#0b0b0d;border:none;border-radius:16px}
+.concept-img-wrap img{left:38%;right:-6%;width:auto;opacity:1;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
+.concept-overlay{min-height:520px;align-items:flex-start;text-align:left;padding:72px 64px;background:linear-gradient(90deg,rgba(11,11,13,.92) 0,rgba(11,11,13,.7) 48%,rgba(11,11,13,0) 72%)}
+.concept-overlay h2{font-family:var(--mincho);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.45;letter-spacing:.06em;margin-bottom:26px}
+.concept-overlay p{max-width:30em;color:rgba(243,239,230,.78)}
+.concept-creed{margin:34px 0 0;max-width:34em;border-top-color:rgba(243,239,230,.18)}
+.concept-creed span{color:var(--hot)}
+@media(max-width:768px){.concept-img-wrap img{left:-30%;right:-30%;top:0;bottom:auto;height:300px;opacity:1;object-position:50% 50%}.concept-overlay{min-height:0;padding:230px 22px 40px;background:linear-gradient(180deg,rgba(11,11,13,0) 0,rgba(11,11,13,0) 26%,rgba(11,11,13,.9) 40%,#0b0b0d 52%)}}
+/* 構造化技術：見出しが長いので一段小さく */
+#tech .section-title{font-size:clamp(1.6rem,3vw,2.3rem)}
+/* 人：チームの図のあとに代表の言葉 */
+.tm2-q{margin:64px auto 0;padding:40px 0 0;border-top:1px solid var(--border);max-width:820px;text-align:center}
+.q-lead{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:700;line-height:1.8}
+.q-body{margin-top:14px;font-size:.88rem;color:var(--text-2);line-height:2.1}
+.tm2-q footer{margin-top:18px;font-size:.8rem;color:var(--text-3)}
+/* 背景のリズム：白 → 灰（理念）→ 白（技術）→ 灰（人）→ 白（会社概要） */
+#team{background:var(--bg-2)}#company{background:var(--bg)}
 </style>
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
@@ -112,7 +132,6 @@
 <!-- ── Concept ── -->
 <section class="section section-alt">
   <div class="container">
-    <div class="section-head reveal"><div class="section-label">Concept</div></div>
     <div class="concept-img-wrap reveal">
       <img src="/assets/concept-visual.png" alt="">
       <div class="concept-overlay">
@@ -192,27 +211,6 @@
   </div>
 </section>
 
-<!-- ── Message ── -->
-<section class="section section-alt">
-  <div class="container">
-    <div class="section-head reveal"><div class="section-label">Message</div><h2 class="section-title">代表メッセージ</h2></div>
-    <div class="card message-card reveal">
-      <div class="message-grid">
-        <div class="message-portrait">
-          <img src="/assets/ceo-portrait.png" alt="代表取締役 髙橋 真吾">
-          <div class="message-caption">代表取締役 髙橋 真吾</div>
-        </div>
-        <div class="message-text">
-          <span class="lead">AIが進化するほど、「意味を定義する責任」は人間に戻ってくる。</span>
-          <p>私たちは、AIが万能になる未来を前提にしていません。むしろ、AIが社会に深く入り込むほど、誤り・曖昧さ・責任の所在が、より深刻な問題になると考えています。</p>
-          <p>これは単なるテクノロジーの話ではありません。次の社会の「前提」をどう設計するか、という挑戦です。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ── Team ── -->
 <section class="section" id="team">
   <div class="container">
@@ -264,11 +262,17 @@
     </div>
     <p class="fg-statement reveal"><span class="nb">聞いた本人と、</span><span class="nb">作る本人が<em>直接つながる。</em></span><br><small class="fg-team-sub"><span class="nb">伝言による劣化なく、</span><span class="nb">現場の現実をAIへ。</span></small></p>
     <!-- /fig -->
+    <blockquote class="tm2-q reveal">
+      <p class="q-lead">AIが進化するほど、「意味を定義する責任」は人間に戻ってくる。</p>
+      <p class="q-body">私たちは、AIが万能になる未来を前提にしていません。むしろ、AIが社会に深く入り込むほど、誤り・曖昧さ・責任の所在が、より深刻な問題になると考えています。</p>
+      <p class="q-body">これは単なるテクノロジーの話ではありません。次の社会の「前提」をどう設計するか、という挑戦です。</p>
+      <footer>代表取締役　髙橋 真吾</footer>
+    </blockquote>
   </div>
 </section>
 
 <!-- ── Company Profile ── -->
-<section class="section section-alt" id="company">
+<section class="section" id="company">
   <div class="container">
     <div class="section-head reveal"><div class="section-label">Company</div><h2 class="section-title">会社概要</h2></div>
     <div class="about-table reveal">
