@@ -117,7 +117,7 @@
 .menu-g b{font-family:var(--serif);font-size:1rem}.menu-g small{font-size:.8rem;color:var(--text-3)}
 .menu-list{list-style:none;padding:0;margin:0 0 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .menu-list li{display:grid;grid-template-columns:44px 1fr;column-gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--border);border-radius:6px;background:#fff}
-.menu-list svg{grid-row:span 2;width:28px;height:28px;padding:8px;box-sizing:content-box;border-radius:50%;background:rgba(166,58,36,.08);fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.menu-list svg{grid-row:span 2;width:28px;height:28px;padding:8px;box-sizing:content-box;border-radius:50%;background:rgba(36,66,122,.08);fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .menu-list b{font-size:.9rem;font-weight:700;line-height:1.45}.menu-list small{font-size:.76rem;color:var(--text-3);line-height:1.55}
 @media(max-width:900px){.menu-list{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.menu{padding:18px 14px 6px}.menu-list{grid-template-columns:1fr}}
@@ -142,7 +142,7 @@
 .stage h3{font-family:var(--serif);font-size:1.15rem;font-weight:700;margin:6px 0 16px}
 .stage ol{list-style:none;display:grid;gap:12px}
 .stage li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
-.stage li .n{font-family:var(--sans);font-size:.74rem;font-weight:700;color:#fdfaf4;background:var(--text);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
+.stage li .n{font-family:var(--sans);font-size:.74rem;font-weight:700;color:#ffffff;background:var(--text);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center}
 .stage.s1 li .n{background:var(--accent)}
 .stage li b{font-family:var(--serif);font-size:1rem;font-weight:700;display:block;line-height:1.5}
 .stage li small{display:block;font-size:.84rem;color:var(--text-2);line-height:1.8;margin-top:2px}
@@ -200,10 +200,10 @@
 /* 追従CTA */
 .float-cta{position:fixed;right:22px;bottom:22px;z-index:90;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .3s,transform .3s}
 .float-cta.show{opacity:1;pointer-events:auto;transform:none}
-.float-cta a{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:3px;background:var(--accent);color:#fdfaf4;font-weight:700;font-size:.86rem;box-shadow:0 8px 24px rgba(60,52,42,.2)}
+.float-cta a{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:3px;background:var(--accent);color:#ffffff;font-weight:700;font-size:.86rem;box-shadow:0 8px 24px rgba(22,32,44,.2)}
 /* ── SP ── */
 @media(max-width:768px){
-  .float-cta{right:0;left:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(246,242,233,.94);backdrop-filter:blur(10px);border-top:1px solid var(--border);transform:translateY(100%)}
+  .float-cta{right:0;left:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(245,246,247,.94);backdrop-filter:blur(10px);border-top:1px solid var(--border);transform:translateY(100%)}
   .float-cta.show{transform:none}
   .float-cta a{width:100%;justify-content:center;padding:15px}
   .section{padding:52px 0}
@@ -241,7 +241,7 @@
 }
 
 /* ==== Cyber Drill ダークヒーロー（A: dark hero + light body・2026-10-18）==== */
-.header:not(.scrolled){background:#f4efe6;box-shadow:0 1px 0 rgba(20,40,70,.05)}
+.header:not(.scrolled){background:#f5f6f7;box-shadow:0 1px 0 rgba(20,40,70,.05)}
 .hero{position:relative;overflow:hidden;color:#eaf6ff;
  background:radial-gradient(1200px 700px at 80% 45%,rgba(54,230,255,.14),transparent 60%),radial-gradient(900px 560px at 12% 16%,rgba(120,60,255,.18),transparent 60%),linear-gradient(160deg,#070b16 0%,#0b1226 46%,#140b2a 100%)}
 .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
