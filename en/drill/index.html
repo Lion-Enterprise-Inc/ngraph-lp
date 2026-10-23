@@ -327,7 +327,14 @@
   .what-list .n{width:30px;height:30px}
 }
 @media(max-width:360px){.hero-facts{grid-template-columns:1fr}.hero-facts>div{display:grid;grid-template-columns:6.2em 1fr;gap:0 10px;align-items:baseline;text-align:left;border-left:none;border-top:1px solid rgba(138,166,192,.28);padding:8px 12px}.hero-facts>div:first-child{border-top:none}.hero-facts dt{margin:0}}
+
+/* ===== 構成（2026-10-23）：困りごと → なぜ今 → 受け取るもの → 進め方 → 特徴 → 考え方 → 安心 → 人 → FAQ → 相談 ===== */
+#problem,#what,#feature,#safety,#faq{background:var(--bg)}
+#threat,#steps,#policy,#team,#apply{background:var(--bg-2)}
+.section+.section{border-top:none}
+#team .fg-statement{margin-top:32px}
 </style>
+<link rel="stylesheet" href="/css/figures.css?v=34">
 <link rel="stylesheet" href="/css/sp.css?v=3">
 </head>
 <body>
@@ -376,25 +383,20 @@
   </div>
 </section>
 
-<!-- ── What you learn ── -->
-<section class="section" id="what">
+<!-- ── If tomorrow ── -->
+<section class="section" id="problem">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">What you learn</div>
-      <h2 class="section-title"><span class="nb">In about two weeks,</span> <span class="nb">you will know three things.</span></h2>
-      <p class="section-sub"><span class="nb">We put the results in a written report,</span> <span class="nb">and state clearly what we did not check.</span></p>
+      <div class="section-label">Common worries</div>
+      <h2 class="section-title"><span class="nb">What if your computers</span> <span class="nb">stopped working tomorrow?</span></h2>
+      <p class="section-sub">Attackers use AI too. Let's look together at what could stop your business and how ready you are today.</p>
     </div>
-    <div class="what reveal">
-      <ol class="what-list">
-        <li><span class="n">1</span><div><b>Which entry points are visible from outside</b><p>Old sites that were forgotten, admin pages reachable from outside, and VPN devices that are out of date.</p></div></li>
-        <li><span class="n">2</span><div><b>Email spoofing protection</b><p>We check the settings (SPF, DKIM, DMARC) that stop fake emails sent in your name.</p></div></li>
-        <li><span class="n">3</span><div><b>What to fix first</b><p>The impact on your business and the order of fixes, in a form you can use yourselves or with another vendor.</p></div></li>
-      </ol>
-      <a class="what-sample" href="/assets/drill/cyber-drill-sample.pdf" target="_blank" rel="noopener">
-        <img src="/assets/drill/sample-report-p1.webp" alt="First page of the sample report: an overall rating gauge, three conclusions, and the number of items to check first" width="560" height="601" loading="lazy">
-        <span class="what-cap"><b>See the sample report (PDF, 7 pages, in Japanese)</b><small>A sample based on a fictional company</small></span>
-      </a>
-    </div>
+    <ul class="ifq reveal">
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 13h22v19H5z"/><path d="M27 19h8l6 7v6H27z"/><circle cx="13" cy="34" r="3.5"/><circle cx="34" cy="34" r="3.5"/><path d="M10 19h10M10 24h7"/></svg><span>01</span>Can you keep taking<br>and shipping orders?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h24a2 2 0 0 1 2 2v32a2 2 0 0 1-2 2H12z"/><path d="M8 13h6M8 21h6M8 29h6M8 37h6"/><circle cx="25" cy="18" r="4"/><path d="M18 30c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/><path d="M19 35h12"/></svg><span>02</span>Do you have contacts<br>on paper too?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="11" rx="12" ry="4.5"/><path d="M10 11v20c0 2.5 5.4 4.5 12 4.5"/><path d="M34 11v9"/><path d="M10 21c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5"/><path d="M42 33a8 8 0 1 1-2.6-5.9"/><path d="M40 22.5v5h-5"/></svg><span>03</span>Can you restore<br>from backups?</li>
+      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h28a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H18l-8 7v-7H6a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3z"/><path d="M20 15l7 2.5v4.5c0 4-3 6.5-7 7.5-4-1-7-3.5-7-7.5v-4.5z"/><path d="M17 22l2.2 2.2 4-4"/></svg><span>04</span>Can you explain your<br>security to partners?</li>
+    </ul>
   </div>
 </section>
 
@@ -417,29 +419,24 @@
   </div>
 </section>
 
-<!-- ── Features ── -->
-<section class="section" id="feature">
+<!-- ── What you learn ── -->
+<section class="section" id="what">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">Features</div>
-      <h2 class="section-title"><span class="nb">From testing attacks</span> <span class="nb">to fixing things on site.</span></h2>
+      <div class="section-label">What you learn</div>
+      <h2 class="section-title"><span class="nb">In about two weeks,</span> <span class="nb">you will know three things.</span></h2>
+      <p class="section-sub"><span class="nb">We put the results in a written report,</span> <span class="nb">and state clearly what we did not check.</span></p>
     </div>
-    <div class="trio reveal">
-      <div class="tcard">
-        <img src="/assets/starter/icon17_ai.png" alt="">
-        <h3>Use AI to see like an attacker</h3>
-        <p>Attackers use AI. So do we: with AI and testing tools, we map your entry points and test them.</p>
-      </div>
-      <div class="tcard">
-        <img src="/assets/drill/icon13_face2face.png" alt="">
-        <h3>Fix things together, on site</h3>
-        <p>We don't just hand over a report. Watching how you work, we fix settings, permissions and procedures with you.</p>
-      </div>
-      <div class="tcard">
-        <img src="/assets/drill/icon16_shield.png" alt="">
-        <h3>No product-first selling</h3>
-        <p>Protect yourself with settings, permissions, backups and paper procedures, and use products only where those fall short.</p>
-      </div>
+    <div class="what reveal">
+      <ol class="what-list">
+        <li><span class="n">1</span><div><b>Which entry points are visible from outside</b><p>Old sites that were forgotten, admin pages reachable from outside, and VPN devices that are out of date.</p></div></li>
+        <li><span class="n">2</span><div><b>Email spoofing protection</b><p>We check the settings (SPF, DKIM, DMARC) that stop fake emails sent in your name.</p></div></li>
+        <li><span class="n">3</span><div><b>What to fix first</b><p>The impact on your business and the order of fixes, in a form you can use yourselves or with another vendor.</p></div></li>
+      </ol>
+      <a class="what-sample" href="/assets/drill/cyber-drill-sample.pdf" target="_blank" rel="noopener">
+        <img src="/assets/drill/sample-report-p1.webp" alt="First page of the sample report: an overall rating gauge, three conclusions, and the number of items to check first" width="560" height="601" loading="lazy">
+        <span class="what-cap"><b>See the sample report (PDF, 7 pages, in Japanese)</b><small>A sample based on a fictional company</small></span>
+      </a>
     </div>
   </div>
 </section>
@@ -499,20 +496,30 @@
   </div>
 </section>
 
-<!-- ── If tomorrow ── -->
-<section class="section" id="problem">
+<!-- ── Features ── -->
+<section class="section" id="feature">
   <div class="container">
     <div class="section-head reveal">
-      <div class="section-label">Common worries</div>
-      <h2 class="section-title"><span class="nb">What if your computers</span> <span class="nb">stopped working tomorrow?</span></h2>
-      <p class="section-sub">Attackers use AI too. Let's look together at what could stop your business and how ready you are today.</p>
+      <div class="section-label">Features</div>
+      <h2 class="section-title"><span class="nb">From testing attacks</span> <span class="nb">to fixing things on site.</span></h2>
     </div>
-    <ul class="ifq reveal">
-      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M5 13h22v19H5z"/><path d="M27 19h8l6 7v6H27z"/><circle cx="13" cy="34" r="3.5"/><circle cx="34" cy="34" r="3.5"/><path d="M10 19h10M10 24h7"/></svg><span>01</span>Can you keep taking<br>and shipping orders?</li>
-      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M12 6h24a2 2 0 0 1 2 2v32a2 2 0 0 1-2 2H12z"/><path d="M8 13h6M8 21h6M8 29h6M8 37h6"/><circle cx="25" cy="18" r="4"/><path d="M18 30c1.5-4 4-5.5 7-5.5s5.5 1.5 7 5.5"/><path d="M19 35h12"/></svg><span>02</span>Do you have contacts<br>on paper too?</li>
-      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="11" rx="12" ry="4.5"/><path d="M10 11v20c0 2.5 5.4 4.5 12 4.5"/><path d="M34 11v9"/><path d="M10 21c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5"/><path d="M42 33a8 8 0 1 1-2.6-5.9"/><path d="M40 22.5v5h-5"/></svg><span>03</span>Can you restore<br>from backups?</li>
-      <li><svg class="ifq-ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h28a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H18l-8 7v-7H6a3 3 0 0 1-3-3V13a3 3 0 0 1 3-3z"/><path d="M20 15l7 2.5v4.5c0 4-3 6.5-7 7.5-4-1-7-3.5-7-7.5v-4.5z"/><path d="M17 22l2.2 2.2 4-4"/></svg><span>04</span>Can you explain your<br>security to partners?</li>
-    </ul>
+    <div class="trio reveal">
+      <div class="tcard">
+        <img src="/assets/starter/icon17_ai.png" alt="">
+        <h3>Use AI to see like an attacker</h3>
+        <p>Attackers use AI. So do we: with AI and testing tools, we map your entry points and test them.</p>
+      </div>
+      <div class="tcard">
+        <img src="/assets/drill/icon13_face2face.png" alt="">
+        <h3>Fix things together, on site</h3>
+        <p>We don't just hand over a report. Watching how you work, we fix settings, permissions and procedures with you.</p>
+      </div>
+      <div class="tcard">
+        <img src="/assets/drill/icon16_shield.png" alt="">
+        <h3>No product-first selling</h3>
+        <p>Protect yourself with settings, permissions, backups and paper procedures, and use products only where those fall short.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -558,10 +565,47 @@
       <div class="section-label">Team</div>
       <h2 class="section-title"><span class="nb">These two people</span> <span class="nb">will work with you.</span></h2>
     </div>
-    <div class="duo reveal">
-      <div class="p"><img src="/assets/brain/deck/b11e463075.jpg" alt="Shingo Takahashi" loading="lazy"><div><b>Shingo Takahashi</b><small>CEO / AI Planner</small><p>Listens to your team and decides what to fix first.</p></div></div>
-      <div class="p"><img src="/assets/brain/deck/516913d0d3.jpg" alt="Matt Chana" loading="lazy"><div><b>Matt Chana</b><small>CTO / AI Engineer</small><p>Builds the AI and the testing tools.</p></div></div>
+    <!-- fig:team -->
+    <div class="fg fg-team reveal">
+      <div class="tm-person tm-l">
+        <img class="tm-photo" src="/assets/brain/deck/b11e463075.jpg" alt="Shingo Takahashi" loading="lazy">
+        <div class="tm-txt">
+          <p class="tm-role">Workplace and business</p>
+          <p class="tm-name tm-name-en">Shingo Takahashi</p>
+          <p class="tm-en" lang="ja">髙橋 真吾</p>
+          <p class="tm-title"><span class="nb">CEO /</span> <span class="nb">AI Planner</span></p>
+          <p class="tm-tag"><span class="nb">Listens to the workplace</span><br><span class="nb">and turns it into requirements.</span></p>
+          <ul class="tm-list">
+            <li><span class="nb">Workplace interviews,</span> <span class="nb">process design</span></li>
+            <li><span class="nb">Adoption support,</span> <span class="nb">subsidy applications</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tm-center">
+        <div class="tm-link">
+          <span class="tm-ic"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 8h14l6 6v22H20z"/><path d="M34 8v6h6"/><path d="M30 22h6M30 27h6M30 32h4"/><circle class="w" cx="16" cy="27" r="9.5"/><path class="w" d="M10.5 34.5L7.5 40.5 14.5 37"/><circle class="dot" cx="12.5" cy="27" r="1.3"/><circle class="dot" cx="16" cy="27" r="1.3"/><circle class="dot" cx="19.5" cy="27" r="1.3"/></svg></span>
+          <span class="tm-line" aria-hidden="true"></span>
+          <span class="tm-ic"><svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="8" cy="8" r="5"/><circle cx="48" cy="8" r="5"/><circle cx="8" cy="48" r="5"/><circle cx="48" cy="48" r="5"/><path d="M11.6 11.6l7.9 7.9M44.4 11.6l-7.9 7.9M11.6 44.4l7.9-7.9M44.4 44.4l-7.9-7.9"/><circle class="w" cx="28" cy="28" r="12"/><text x="28" y="28" class="ai">AI</text></svg></span>
+        </div>
+        <p class="tm-lead">Planning and building, directly linked</p>
+        <p class="tm-sub">Two people handle your work directly</p>
+      </div>
+      <div class="tm-person tm-r">
+        <img class="tm-photo" src="/assets/brain/deck/516913d0d3.jpg" alt="Matt Chana" loading="lazy">
+        <div class="tm-txt">
+          <p class="tm-role">Technology and building</p>
+          <p class="tm-name tm-name-en">Matt Chana</p>
+          <p class="tm-en">Matthew John Chana</p>
+          <p class="tm-title"><span class="nb">CTO /</span> <span class="nb">AI Engineer</span></p>
+          <p class="tm-tag"><span class="nb">Turns requirements</span><br><span class="nb">into working AI.</span></p>
+          <ul class="tm-list">
+            <li><span class="nb">About 10 years at a robotics and AI company</span> <span class="nb">in Silicon Valley</span></li>
+            <li><span class="nb">AI agents / RAG / MCP</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
+    <p class="fg-statement reveal"><span class="nb">The person who listens</span> <span class="nb">and the person who builds <em>are directly connected.</em></span><br><small class="fg-team-sub"><span class="nb">Nothing lost in relay:</span> <span class="nb">the reality on site goes straight into the AI.</span></small></p>
   </div>
 </section>
 

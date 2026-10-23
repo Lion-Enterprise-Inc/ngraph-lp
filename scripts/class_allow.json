@@ -1,0 +1,3 @@
+{
+  "pr-step": "図の部品 figures/process.html でだけ使う（.fg-process .pr-step.s1）。figures.css を読む Cyber Drill のページが別の意味の .stage.s1 を持つため「取り違え」と誤って出る（2026-10-23）"
+}
