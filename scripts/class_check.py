@@ -47,7 +47,7 @@ PAGES = ["index.html", "fde/index.html", "en/index.html", "en/fde/index.html",
          "company.html", "entry.html", "page.html", "legal.html",
          "blog/index.html"]
 
-SKIP_DIRS = {".claude", "node_modules", ".git", "__pycache__"}
+SKIP_DIRS = {".claude", "node_modules", ".git", "__pycache__", "_lab"}  # _lab＝未公開の試作（git管理外・配信しない）
 
 JS_SET = re.compile(r"""classList\s*\.\s*(?:add|remove|toggle|replace)\s*\(([^)]*)\)""")
 JS_READ = re.compile(r"""(?:classList\s*\.\s*contains|closest|matches|querySelector(?:All)?|getElementsByClassName)\s*\(([^)]*)\)""")
