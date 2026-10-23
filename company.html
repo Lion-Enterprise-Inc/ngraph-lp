@@ -75,13 +75,13 @@
 /* ===== 会社概要の構成と強弱（2026-10-23） ===== */
 /* 理念：黒地に炎（トップのヒーローと同じ絵）。ページで一番強く */
 .concept-img-wrap{background:#0b0b0d;border:none;border-radius:16px}
-.concept-img-wrap img{left:38%;right:-6%;width:auto;opacity:1;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%)}
-.concept-overlay{min-height:520px;align-items:flex-start;text-align:left;padding:72px 64px;background:linear-gradient(90deg,rgba(11,11,13,.92) 0,rgba(11,11,13,.7) 48%,rgba(11,11,13,0) 72%)}
+.concept-img-wrap img{inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:translateX(24%) scale(1.05);opacity:1;-webkit-mask-image:radial-gradient(ellipse 46% 62% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 46% 62% at 50% 50%,#000 55%,transparent 100%)}
+.concept-overlay{min-height:520px;align-items:flex-start;text-align:left;padding:72px 64px;background:linear-gradient(90deg,rgba(11,11,13,.78) 0,rgba(11,11,13,.45) 46%,rgba(11,11,13,0) 66%)}
 .concept-overlay h2{font-family:var(--mincho);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.45;letter-spacing:.06em;margin-bottom:26px}
 .concept-overlay p{max-width:30em;color:rgba(243,239,230,.78)}
 .concept-creed{margin:34px 0 0;max-width:34em;border-top-color:rgba(243,239,230,.18)}
 .concept-creed span{color:var(--hot)}
-@media(max-width:768px){.concept-img-wrap img{left:-30%;right:-30%;top:0;bottom:auto;height:300px;opacity:1;object-position:50% 50%}.concept-overlay{min-height:0;padding:230px 22px 40px;background:linear-gradient(180deg,rgba(11,11,13,0) 0,rgba(11,11,13,0) 26%,rgba(11,11,13,.9) 40%,#0b0b0d 52%)}}
+@media(max-width:768px){.concept-img-wrap img{inset:0 0 auto 0;width:100%;height:340px;object-fit:cover;object-position:50% 50%;transform:scale(1.35);transform-origin:50% 45%;-webkit-mask-image:radial-gradient(ellipse 60% 55% at 50% 48%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 60% 55% at 50% 48%,#000 55%,transparent 100%)}.concept-overlay{min-height:0;padding:270px 22px 40px;background:linear-gradient(180deg,rgba(11,11,13,0) 0,rgba(11,11,13,0) 62%,rgba(11,11,13,.85) 76%,#0b0b0d 86%)}}
 /* 構造化技術：見出しが長いので一段小さく */
 #tech .section-title{font-size:clamp(1.6rem,3vw,2.3rem)}
 /* 人：チームの図のあとに代表の言葉 */
