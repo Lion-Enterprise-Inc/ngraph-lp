@@ -516,3 +516,8 @@ html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 .section-label{display:none}
 .section-title::after{display:none}
 .contact::before{display:none}
+
+/* ── アクセント（金茶・2026-10-23）：申し込みのボタンなど、目を止めたい所だけ。藍が主 ── */
+:root{--hot:#c8a24a;--hot-2:#b38d36;--hot-ink:#8a6a1e}
+.nav .nav-cta,.btn-primary,.float-cta a{background:var(--hot);color:#16202c}
+.nav .nav-cta:hover,.btn-primary:hover,.float-cta a:hover{background:var(--hot-2);color:#16202c}

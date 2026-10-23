@@ -725,3 +725,5 @@ html[lang="en"] .fg-structure .st-hub-sub .nb{display:inline}}
 .fg-problem .pb-midcap{color:var(--text-3);font-size:.72rem}
 .fg-own .own-tag{font-size:.86rem;color:var(--text-2)}
 .fg-team *{letter-spacing:.02em}
+
+.fg-statement em{background:linear-gradient(transparent 66%,rgba(200,162,74,.38) 66%)}
