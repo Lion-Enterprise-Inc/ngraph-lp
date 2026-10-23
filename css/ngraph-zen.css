@@ -35,7 +35,8 @@ body{
 }
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.nb{display:inline-block;word-break:keep-all;overflow-wrap:anywhere}
+/* 句ごとの箱。句が1行に入らないときは文節で折る（keep-all＋anywhere だと禁則が効かず「。」だけが次の行に落ちていた・2026-10-23） */
+.nb{display:inline-block;word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere}
 /* 英語ページ（2026-10-18）：anywhere だと英単語が途中で折れる（Counterparties 等）。語が収まらないときだけ割る */
 html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
@@ -110,7 +111,8 @@ html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 
 /* ── section primitives ── */
 .section{padding:100px 0;position:relative}
-.section-head{text-align:center;max-width:680px;margin:0 auto 64px}
+.section-head{text-align:center;max-width:920px;margin:0 auto 64px}
+.section-head .section-sub{max-width:680px;margin-left:auto;margin-right:auto}
 .section-label{font-family:var(--serif);font-size:.75rem;letter-spacing:.32em;font-weight:600;color:var(--accent);text-transform:uppercase;margin-bottom:18px}
 .section-title{font-family:var(--serif);font-size:clamp(1.9rem,4vw,3rem);font-weight:700;line-height:1.4;word-break:auto-phrase;margin-bottom:20px;letter-spacing:.03em}
 .section-title::after{content:"";display:block;width:44px;height:2px;background:var(--accent);margin:22px auto 0;opacity:.8}

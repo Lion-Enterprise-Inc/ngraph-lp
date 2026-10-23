@@ -51,6 +51,7 @@ CHECKS = [
     ("共通フッターのズレ（正本 scripts/chrome/・直すのは sync_chrome.py）", "sync_chrome.py", ["--check"], False),
     ("サイト内リンクの飛び先（ページと #アンカーが実在するか）", "link_check.py", [], False),
     ("図の文字が枠からはみ出していないか（ブラウザで実測）", "svg_fit_check.py", [], False),
+    ("句読点だけが1行に落ちていないか（ブラウザで3幅を実測）", "orphan_punct_check.py", [], False),
     ("アルケー（cases/）と元ソース・sitemap のズレ（直すのは _arche で npm run build・report-only）", "arche_check.py", [], False),
     ("日本語と英語（en/）のズレ（日本語を直したら英語も直して en_check.py --stamp・report-only）", "en_check.py", [], False),
     ("タイトルの弱い定型（report-only）", "title_lint.py", [], False),
