@@ -280,7 +280,9 @@
 .hero .hero-note{font-family:"JetBrains Mono",ui-monospace,monospace;color:#8aa6c0}
 .hero .hero-note::before{content:"// "}
 .hero .hero-visual img{filter:invert(1) hue-rotate(160deg) saturate(1.45) brightness(1.12) drop-shadow(0 0 30px rgba(54,230,255,.32))}
-@media(max-width:768px){.hero .hud{top:70px;font-size:.8125rem}}
+/* スマホ: 左上の「NGraph // Cyber Drill」はバッジと同じ内容でヘッダー直下に重なるので消し、ヘッダーとの間と各行の間をあける（css/sp.css が .hero を 88px !important にしているので section.hero で上書き・2026-10-26 本人「SPだとめちゃくちゃ詰まって見える」） */
+@media(max-width:768px){.hero .hud{display:none}section.hero{padding-top:112px!important}.hero .lp-badge{flex-wrap:nowrap;border-radius:999px;margin-bottom:18px}.hero .lp-badge .kana{flex-basis:auto;border-left:1px solid rgba(54,230,255,.3);padding-left:10px;margin-left:2px}.hero .hero-sub{margin-bottom:18px}}
+@media(max-width:360px){.hero .lp-badge{flex-wrap:wrap;border-radius:16px}.hero .lp-badge .kana{flex-basis:100%;border-left:none;padding-left:0;margin-left:0}}
 @media(max-width:380px){.hero .hero-tagline{font-size:1.5rem!important}}
 @media(max-width:768px){.hero .hero-tagline{white-space:normal}}
 
