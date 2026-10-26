@@ -64,6 +64,8 @@
         { "@type": "Question", "name": "仕事は止まりませんか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1の簡易点検は外から見るだけなので、仕事への影響はありません。STEP2の模擬攻撃は影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。" } },
         { "@type": "Question", "name": "どのくらいの期間がかかりますか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メール（追加）を行う場合の期間は、ご相談のときにお伝えします。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。" } },
         { "@type": "Question", "name": "費用はいくらですか？", "acceptedAnswer": { "@type": "Answer", "text": "STEP1（簡易点検：偵察・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。社員への訓練メールは追加で、ご希望の場合に別途ご案内します。STEP2（模擬攻撃・現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。" } },
+        { "@type": "Question", "name": "サイバー保険に入っていれば十分ですか？", "acceptedAnswer": { "@type": "Answer", "text": "保険は事故のあとの費用や損失を補うもので、業務が止まることそのものは防げません。補償の範囲（営業が止まった間の損失がオプションの商品もあります）は、保険会社・代理店にご確認ください。" } },
+        { "@type": "Question", "name": "一度点検すれば、もう安心ですか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。新しい弱点は次々に見つかります（2026年10月のPHPの重大な弱点など）。重大なものは公表されたらすぐ更新し、あわせて半年ごとなどの定期点検をおすすめします。" } },
         { "@type": "Question", "name": "福井県外の会社でも頼めますか？", "acceptedAnswer": { "@type": "Answer", "text": "実証の期間中は、福井県内の企業に限らせていただいています。" } },
         { "@type": "Question", "name": "いま被害が出ています。対応してもらえますか？", "acceptedAnswer": { "@type": "Answer", "text": "緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。" } }
       ]
@@ -152,6 +154,20 @@
 .stage-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:.8125rem;color:var(--text-2);text-align:center;line-height:1.6}
 .stage-mid svg{width:36px;height:20px;stroke:var(--text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .stage-note{text-align:center;font-size:.875rem;color:var(--text-2);margin-top:20px;line-height:1.9}
+/* 守りの3段 */
+.guard{max-width:1100px;margin:0 auto 40px}
+.guard-h{font-family:var(--serif);font-size:1.25rem;font-weight:700;text-align:center;margin:0 0 18px}
+.guard-row{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guard-row li{position:relative;background:#fff;border:1px solid var(--border-strong);border-radius:8px;padding:22px 20px 18px}
+.guard-row li+li::before{content:"";position:absolute;left:-12px;top:50%;width:10px;height:10px;border-top:2px solid var(--text);border-right:2px solid var(--text);transform:translate(-2px,-50%) rotate(45deg)}
+.guard-row .g-n{font-family:var(--sans);font-size:.8125rem;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.guard-row b{display:block;font-family:var(--serif);font-size:1.125rem;line-height:1.5;margin:4px 0 8px}
+.guard-row .g-we{display:block;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border-strong);font-size:.8125rem;line-height:1.7;color:var(--accent);font-weight:700}
+.guard-note{text-align:center;font-size:.875rem;color:var(--text-2);line-height:1.9;margin:16px 0 0}
+@media(max-width:900px){.guard-row{grid-template-columns:1fr;gap:12px}.guard-row li+li::before{left:50%;top:-12px;transform:translate(-50%,-4px) rotate(135deg)}}
+/* 自社診断の案内 */
+.selfcheck{max-width:960px;margin:28px auto 0;padding:16px 20px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.75);font-size:.875rem;line-height:1.85;color:var(--text-2);text-align:center}
+.selfcheck a{color:var(--accent);text-decoration:underline}
 @media(max-width:900px){.stages{grid-template-columns:1fr}.stage-mid{flex-direction:row}.stage-mid svg{transform:rotate(90deg)}}
 /* 考え方（対策の選択肢） */
 .pols{max-width:960px;margin:0 auto;border-top:1px solid var(--border-strong)}
@@ -440,6 +456,7 @@
         <span class="what-cap"><b>報告書の見本を見る（PDF・7ページ）</b><small>架空の企業を題材にした説明用の見本です</small></span>
       </a>
     </div>
+    <p class="selfcheck reveal"><span class="nb">社内のルールは、IPAの</span><a href="https://www.ipa.go.jp/security/guide/sme/5minutes.html" target="_blank" rel="noopener"><span class="nb">「5分でできる！</span><span class="nb">情報セキュリティ</span><span class="nb">自社診断」</span></a><span class="nb">（25問）で</span><span class="nb">確かめられます。</span></p>
   </div>
 </section>
 
@@ -450,6 +467,15 @@
       <div class="section-label">進め方</div>
       <h2 class="section-title"><span class="nb">まず、外から</span><span class="nb">御社の弱点を知る。</span></h2>
       <p class="section-sub"><span class="nb">見つけて終わりにはしません。</span><span class="nb">必要なら直して、もう一度試します。</span><span class="nb">STEP1だけで終えることもできます。</span></p>
+    </div>
+    <div class="guard reveal">
+      <h3 class="guard-h"><span class="nb">守りは、</span><span class="nb">3段で考えます。</span></h3>
+      <ol class="guard-row">
+        <li><span class="g-n">1 入られる前に</span><b>入口を減らす</b><span class="g-we">STEP1で見つけ、STEP2で直す</span></li>
+        <li><span class="g-n">2 入られたら</span><b>被害を広げない</b><span class="g-we">STEP2で止め方と連絡先を決める</span></li>
+        <li><span class="g-n">3 起きたあと</span><b>報告し、説明する</b><span class="g-we">STEP2で手順を紙にする</span></li>
+      </ol>
+      <p class="guard-note"><span class="nb">監視や駆けつけ・</span><span class="nb">復旧作業は行いません。</span></p>
     </div>
     <div class="stages reveal">
       <div class="stage s1">
@@ -464,13 +490,14 @@
       <div class="stage-mid"><svg viewBox="0 0 36 20"><path d="M2 10h30m-7-7l7 7-7 7"/></svg>報告を見て<br>判断</div>
       <div class="stage">
         <div class="st">STEP 2</div>
-        <h3>試して、直す</h3>
+        <h3>試して、直し、備える</h3>
         <ol>
           <li><span class="n">02</span><div><b><span class="nb">許可した範囲で、</span><span class="nb">実際に試す</span><em class="nb">（模擬攻撃）</em></b><small><span class="nb">書面で決めたシステムで</span></small></div></li>
           <li><span class="n">03</span><div><b>現場で直す</b><small><span class="nb">業務を見て、</span><span class="nb">合意した対策（設定・権限・</span><span class="nb">バックアップなど）を</span><span class="nb">一緒に進める</span></small></div></li>
-          <li><span class="n">04</span><div><b>再検証</b><small><span class="nb">同じやり方でもう一度試し、</span><span class="nb">残る課題を記録に残す</span></small></div></li>
+          <li><span class="n">04</span><div><b>初動の手順を決める</b><small><span class="nb">止め方と連絡先を紙に</span></small></div></li>
+          <li><span class="n">05</span><div><b>再検証</b><small><span class="nb">同じやり方でもう一度試し、</span><span class="nb">残る課題を記録に残す</span></small></div></li>
         </ol>
-        <p class="after">その後の定期点検・改善支援も、ご相談いただけます。</p>
+        <p class="after"><span class="nb">その後も、半年ごとなどの</span><span class="nb">定期点検ができます。</span></p>
       </div>
     </div>
     <div class="menu reveal">
@@ -534,7 +561,7 @@
       <p class="section-sub"><span class="nb">高価な製品が正解とは限りません。</span><span class="nb">STEP2では現場を見て、</span><span class="nb">次のような対策から組み合わせを選びます。</span></p>
     </div>
     <div class="pols reveal">
-      <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>持たない・絞る</b><p>保存の義務と業務上の必要を確かめたうえで、持たなくてよいデータを整理。見られる人・操作できる人を、必要な分だけに。</p></div>
+      <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>持たない・絞る</b><p>件数が多いほど、漏れたときの対応も増えます。保存の義務と業務上の必要を確かめたうえで、持たなくてよいデータを整理。見られる人・操作できる人を、必要な分だけに。</p></div>
       <div class="pol"><img src="/assets/starter/icon09_data.png" alt=""><b>切り離して残す</b><p>ネットワークから切り離したバックアップと、合意したデータで本当に戻せるかの確認。</p></div>
       <div class="pol"><img src="/assets/drill/icon_law_folder.png" alt=""><b>紙でも動ける</b><p>緊急連絡先や、受注・出荷の代わりの手順を紙でも用意。紙の置き場所と更新のしかたも決める。</p></div>
       <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>人が備える</b><p>怪しいメールの見分け方と報告のしかたを社員と共有する。訓練メールを行った場合は、その結果も使う。</p></div>
@@ -623,9 +650,11 @@
       <details><summary>仕事は止まりませんか？</summary><p>STEP1の簡易点検は外から見るだけなので、仕事への影響はありません。STEP2の模擬攻撃は影響を抑える手順で行いますが、影響ゼロは保証できません。中止の条件と元に戻す手順を、始める前に書面で決めます。</p></details>
       <details><summary>どのくらいの期間がかかりますか？</summary><p>STEP1は、点検する範囲を書面で決めてから、約2週間で報告書をお渡しします。社員への訓練メール（追加）を行う場合の期間は、ご相談のときにお伝えします。STEP2の期間は、直す内容によって変わるため、報告のときにお伝えします。</p></details>
       <details><summary>費用はいくらですか？</summary><p>STEP1（簡易点検：偵察・報告）は、拠点の数など対象の範囲を伺ったうえで、無料のご相談の中でご案内します。社員への訓練メールは追加で、ご希望の場合に別途ご案内します。STEP2（模擬攻撃・現場で直す・再検証）は、STEP1の結果を見て、報告のときにお見積りします。</p></details>
+      <details><summary>サイバー保険に入っていれば十分ですか？</summary><p>保険は事故のあとの費用や損失を補うもので、業務が止まることそのものは防げません。補償の範囲（営業が止まった間の損失がオプションの商品もあります）は、保険会社・代理店にご確認ください。</p></details>
+      <details><summary>一度点検すれば、もう安心ですか？</summary><p>いいえ。新しい弱点は次々に見つかります（2026年10月のPHPの重大な弱点など）。重大なものは公表されたらすぐ更新し、あわせて半年ごとなどの定期点検をおすすめします。</p></details>
       <details><summary>福井県外の会社でも頼めますか？</summary><p>実証の期間中は、福井県内の企業に限らせていただいています。</p></details>
-      <details><summary>いま被害が出ています。対応してもらえますか？</summary><p>緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。</p></details>
-      <details><summary>社内のAIの使い方も相談できますか？</summary><p>はい。会社の情報を社外のAIに出さずに使いたい場合は<a href="/security/" style="text-decoration:underline">ローカルAI Pack</a>、業務にAIを組み込みたい場合は<a href="/fde/" style="text-decoration:underline">FDE型AI導入支援</a>もご案内できます。</p></details>
+      <details><summary><span class="nb">いま被害が出ています。</span><span class="nb">対応してもらえますか？</span></summary><p>緊急の初期対応（被害を止める・復旧する）そのものは専門外です。まず被害の拡大を止めるため、警察のサイバー窓口やIPA（情報処理推進機構）へご連絡ください。そのうえで、落ち着いてからの原因調査・再発防止の診断はお手伝いできますので、あわせてご相談ください。</p></details>
+      <details><summary><span class="nb">社内のAIの使い方も</span><span class="nb">相談できますか？</span></summary><p>はい。会社の情報を社外のAIに出さずに使いたい場合は<a href="/security/" style="text-decoration:underline">ローカルAI Pack</a>、業務にAIを組み込みたい場合は<a href="/fde/" style="text-decoration:underline">FDE型AI導入支援</a>もご案内できます。</p></details>
     </div>
   </div>
 </section>

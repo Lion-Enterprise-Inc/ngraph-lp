@@ -64,6 +64,8 @@
         { "@type": "Question", "name": "Will this disrupt our work?", "acceptedAnswer": { "@type": "Answer", "text": "The STEP 1 quick check only looks from outside, so it does not affect your work. For the STEP 2 simulated attack, we follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back." } },
         { "@type": "Question", "name": "How long does it take?", "acceptedAnswer": { "@type": "Answer", "text": "STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. If you add training emails to staff, we tell you how long they take during the consultation. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report." } },
         { "@type": "Question", "name": "How much does it cost?", "acceptedAnswer": { "@type": "Answer", "text": "For STEP 1 (quick check: reconnaissance and report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. Training emails to staff are an add-on, quoted separately if you want them. For STEP 2 (simulated attack, on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results." } },
+        { "@type": "Question", "name": "Is cyber insurance enough?", "acceptedAnswer": { "@type": "Answer", "text": "Insurance covers costs and losses after an incident. It does not stop your business from being disrupted. For what is covered (some policies make lost business income an option), please check with your insurer or agent." } },
+        { "@type": "Question", "name": "Once we have a check, are we safe?", "acceptedAnswer": { "@type": "Answer", "text": "No. New weaknesses keep being found (for example, a serious PHP vulnerability in October 2026). Apply updates for serious ones as soon as they are announced, and we also recommend regular checkups, every six months or so." } },
         { "@type": "Question", "name": "Can companies outside Fukui Prefecture apply?", "acceptedAnswer": { "@type": "Answer", "text": "During the pilot period, we are limiting this to companies in Fukui Prefecture." } },
         { "@type": "Question", "name": "We are under attack right now. Can you help?", "acceptedAnswer": { "@type": "Answer", "text": "Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well." } }
       ]
@@ -152,6 +154,20 @@
 .stage-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:.8125rem;color:var(--text-2);text-align:center;line-height:1.6}
 .stage-mid svg{width:36px;height:20px;stroke:var(--text);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .stage-note{text-align:center;font-size:.875rem;color:var(--text-2);margin-top:20px;line-height:1.9}
+/* Three layers of defense */
+.guard{max-width:1100px;margin:0 auto 40px}
+.guard-h{font-family:var(--serif);font-size:1.25rem;font-weight:700;text-align:center;margin:0 0 18px}
+.guard-row{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.guard-row li{position:relative;background:#fff;border:1px solid var(--border-strong);border-radius:8px;padding:22px 20px 18px}
+.guard-row li+li::before{content:"";position:absolute;left:-12px;top:50%;width:10px;height:10px;border-top:2px solid var(--text);border-right:2px solid var(--text);transform:translate(-2px,-50%) rotate(45deg)}
+.guard-row .g-n{font-family:var(--sans);font-size:.8125rem;font-weight:700;letter-spacing:.14em;color:var(--accent)}
+.guard-row b{display:block;font-family:var(--serif);font-size:1.125rem;line-height:1.5;margin:4px 0 8px}
+.guard-row .g-we{display:block;margin-top:12px;padding-top:10px;border-top:1px dashed var(--border-strong);font-size:.8125rem;line-height:1.7;color:var(--accent);font-weight:700}
+.guard-note{text-align:center;font-size:.875rem;color:var(--text-2);line-height:1.9;margin:16px 0 0}
+@media(max-width:900px){.guard-row{grid-template-columns:1fr;gap:12px}.guard-row li+li::before{left:50%;top:-12px;transform:translate(-50%,-4px) rotate(135deg)}}
+/* IPA self-check */
+.selfcheck{max-width:960px;margin:28px auto 0;padding:16px 20px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.75);font-size:.875rem;line-height:1.85;color:var(--text-2);text-align:center}
+.selfcheck a{color:var(--accent);text-decoration:underline}
 @media(max-width:900px){.stages{grid-template-columns:1fr}.stage-mid{flex-direction:row}.stage-mid svg{transform:rotate(90deg)}}
 /* Approach (countermeasure options) */
 .pols{max-width:960px;margin:0 auto;border-top:1px solid var(--border-strong)}
@@ -438,6 +454,7 @@
         <span class="what-cap"><b>See the sample report (PDF, 7 pages, in Japanese)</b><small>A sample based on a fictional company</small></span>
       </a>
     </div>
+    <p class="selfcheck reveal">For internal rules, you can use IPA's <a href="https://www.ipa.go.jp/security/guide/sme/5minutes.html" target="_blank" rel="noopener"><span class="nb">5-minute</span> information security <span class="nb">self-check</span></a> (25 questions, in Japanese).</p>
   </div>
 </section>
 
@@ -448,6 +465,15 @@
       <div class="section-label">How it works</div>
       <h2 class="section-title"><span class="nb">First, find where you are weak.</span></h2>
       <p class="section-sub">We don't stop there — if needed, we fix it and test again. You can also stop after STEP 1.</p>
+    </div>
+    <div class="guard reveal">
+      <h3 class="guard-h">Think of defense in three layers.</h3>
+      <ol class="guard-row">
+        <li><span class="g-n">1 Before a break-in</span><b>Reduce the entry points</b><span class="g-we">Found in STEP 1, fixed in STEP 2</span></li>
+        <li><span class="g-n">2 If someone gets in</span><b>Keep the damage from spreading</b><span class="g-we">STEP 2: set shutdown steps and contacts</span></li>
+        <li><span class="g-n">3 Afterward</span><b>Report and explain</b><span class="g-we">STEP 2: put the steps on paper</span></li>
+      </ol>
+      <p class="guard-note">We do not provide monitoring, on-site emergency response, or recovery work.</p>
     </div>
     <div class="stages reveal">
       <div class="stage s1">
@@ -462,13 +488,14 @@
       <div class="stage-mid"><svg viewBox="0 0 36 20"><path d="M2 10h30m-7-7l7 7-7 7"/></svg>Decide after<br>the report</div>
       <div class="stage">
         <div class="st">STEP 2</div>
-        <h3>Test, then fix</h3>
+        <h3>Test, fix, and prepare</h3>
         <ol>
           <li><span class="n">02</span><div><b>Simulated attack</b><small>Test the systems you authorize in writing</small></div></li>
           <li><span class="n">03</span><div><b>On-site fixes</b><small>Watching how you work, we carry out the agreed measures (settings, permissions, backups and so on) with you</small></div></li>
-          <li><span class="n">04</span><div><b>Retest</b><small>Test again the same way and record any remaining issues</small></div></li>
+          <li><span class="n">04</span><div><b>Set first-response steps</b><small>How to shut things down and who to call, on paper</small></div></li>
+          <li><span class="n">05</span><div><b>Retest</b><small>Test again the same way and record any remaining issues</small></div></li>
         </ol>
-        <p class="after">Regular checkups and ongoing improvement support afterward are also available on request.</p>
+        <p class="after">Regular checkups afterward, every six months or so, are also available.</p>
       </div>
     </div>
     <div class="menu reveal">
@@ -532,7 +559,7 @@
       <p class="section-sub">An expensive product is not always the answer. In STEP 2, we look at how you work and choose a combination of measures like these.</p>
     </div>
     <div class="pols reveal">
-      <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>Keep less, limit access</b><p>After checking legal retention duties and business needs, clear out data you don't need to keep. Limit who can view and operate things to only those who need to.</p></div>
+      <div class="pol"><img src="/assets/drill/icon18_trash.png" alt=""><b>Keep less, limit access</b><p>The more records you hold, the more work a leak creates. After checking legal retention duties and business needs, clear out data you don't need to keep. Limit who can view and operate things to only those who need to.</p></div>
       <div class="pol"><img src="/assets/starter/icon09_data.png" alt=""><b>Keep offline backups</b><p>Backups kept off the network, and a check, using data we agree on, that you can actually restore from them.</p></div>
       <div class="pol"><img src="/assets/drill/icon_law_folder.png" alt=""><b>Work on paper if needed</b><p>Keep emergency contacts and fallback procedures for orders and shipping on paper too, and decide where the paper is kept and how it is updated.</p></div>
       <div class="pol"><img src="/assets/drill/icon16_people.png" alt=""><b>Prepare your people</b><p>Share with staff how to spot suspicious emails and how to report them, using the training email results if you added them.</p></div>
@@ -621,6 +648,8 @@
       <details><summary>Will this disrupt our work?</summary><p>The STEP 1 quick check only looks from outside, so it does not affect your work. For the STEP 2 simulated attack, we follow procedures that keep the impact low, but we cannot guarantee zero impact. Before we start, we agree in writing on when to stop and how to roll back.</p></details>
       <details><summary>How long does it take?</summary><p>STEP 1 takes about two weeks from the day we agree the scope in writing to the day you receive the report. If you add training emails to staff, we tell you how long they take during the consultation. The length of STEP 2 depends on what needs fixing, so we tell you when we deliver the report.</p></details>
       <details><summary>How much does it cost?</summary><p>For STEP 1 (quick check: reconnaissance and report), we ask about the scope, such as how many sites you have, and give you the price during the free consultation. Training emails to staff are an add-on, quoted separately if you want them. For STEP 2 (simulated attack, on-site fixes, retest), we quote when we deliver the report, based on the STEP 1 results.</p></details>
+      <details><summary>Is cyber insurance enough?</summary><p>Insurance covers costs and losses after an incident. It does not stop your business from being disrupted. For what is covered (some policies make lost business income an option), please check with your insurer or agent.</p></details>
+      <details><summary>Once we have a check, are we safe?</summary><p>No. New weaknesses keep being found (for example, a serious PHP vulnerability in October 2026). Apply updates for serious ones as soon as they are announced, and we also recommend regular checkups, every six months or so.</p></details>
       <details><summary>Can companies outside Fukui Prefecture apply?</summary><p>During the pilot period, we are limiting this to companies in Fukui Prefecture.</p></details>
       <details><summary>We are under attack right now. Can you help?</summary><p>Immediate incident response itself (containing the breach and restoring systems) is outside our scope. To stop the damage from spreading, please contact the police cyber desk or the IPA (Information-technology Promotion Agency, Japan) first. After things settle, we can help investigate the cause and run a prevention-focused assessment, so feel free to reach out to us as well.</p></details>
       <details><summary>Can we also ask about how we use AI internally?</summary><p>Yes. If you want to use AI without sending company information to outside AI services, see the <a href="/en/security/" style="text-decoration:underline">Local AI Pack</a>. If you want to build AI into your work, see <a href="/en/fde/" style="text-decoration:underline">AI Adoption Support (FDE)</a>.</p></details>
