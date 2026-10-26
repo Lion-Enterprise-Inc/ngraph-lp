@@ -31,7 +31,7 @@ JS = r"""() => {
   while ((n = walker.nextNode())) {
     if (!n.nodeValue.trim()) continue;
     const el = n.parentElement;
-    if (!el || el.closest('script,style,svg,noscript,[aria-hidden="true"],.sr-only')) continue;
+    if (!el || el.closest('script,style,svg,noscript,[aria-hidden="true"],.sr-only,pre,code')) continue;
     const cs = getComputedStyle(el);
     if (cs.display === 'none' || cs.visibility === 'hidden') continue;
     let blk = el;
