@@ -1,7 +1,7 @@
 /* ── 体制（現実を、AIが読める形に構造化する。） ── */
-.fg-team{display:grid;grid-template-columns:1fr minmax(220px,300px) 1fr;gap:22px;align-items:start}
-.fg-team .tm-person{display:grid;grid-template-columns:minmax(120px,158px) 1fr;gap:22px;align-items:start;min-width:0}
-.fg-team .tm-r{grid-template-columns:1fr minmax(120px,158px)}
+.fg-team{display:grid;grid-template-columns:1fr minmax(200px,220px) 1fr;gap:22px;align-items:start}
+.fg-team .tm-person{display:grid;grid-template-columns:minmax(110px,132px) 1fr;gap:18px;align-items:start;min-width:0}
+.fg-team .tm-r{grid-template-columns:1fr minmax(110px,132px)}
 .fg-team .tm-r .tm-photo{grid-column:2;grid-row:1}
 .fg-team .tm-r .tm-txt{grid-column:1;grid-row:1}
 .fg-team .tm-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:10px;display:block;background:var(--bg-2)}
@@ -28,7 +28,11 @@
 .fg-team .tm-lead{font-family:var(--serif);font-size:clamp(1.15rem,1.8vw,1.3rem);font-weight:700;color:var(--red);line-height:1.5;margin:0;letter-spacing:.04em}
 .fg-team .tm-sub{font-family:var(--serif);font-size:.9rem;font-weight:700;letter-spacing:.24em;line-height:1.5;margin:0}
 .fg-team-sub{display:block;font-size:.72em;font-weight:700;letter-spacing:.14em;color:var(--text);margin-top:6px}
-@media(max-width:900px){
+/* 英語: 一言と真ん中の文は語数が多いので一段小さく、字間を詰める（2026-10-26） */
+:lang(en) .fg-team .tm-tag{font-size:1.125rem;line-height:1.5}
+:lang(en) .fg-team .tm-lead{font-size:1.125rem}
+:lang(en) .fg-team .tm-sub{letter-spacing:.06em}
+@media(max-width:1100px){
   .fg-team{grid-template-columns:1fr 1fr;gap:24px 20px}
   .fg-team .tm-center{margin-top:0;grid-column:1/-1;grid-row:2;max-width:360px;justify-self:center;width:100%}
   .fg-team .tm-person{grid-template-columns:minmax(100px,130px) 1fr;gap:16px;align-items:start}
@@ -36,12 +40,23 @@
   .fg-team .tm-r .tm-photo{grid-column:1}
   .fg-team .tm-r .tm-txt{grid-column:2}
 }
+@media(max-width:900px){
+  .fg-team .tm-person,.fg-team .tm-r{grid-template-columns:110px 1fr;column-gap:16px;row-gap:0;align-items:start}
+  .fg-team .tm-txt{display:contents}
+  .fg-team .tm-person .tm-photo{grid-column:1;grid-row:1/span 4;align-self:start}
+  .fg-team .tm-role,.fg-team .tm-name,.fg-team .tm-en,.fg-team .tm-title{grid-column:2}
+  .fg-team .tm-tag,.fg-team .tm-list{grid-column:1/-1}
+}
 @media(max-width:640px){
   .fg-team{grid-template-columns:1fr;gap:18px}
   .fg-team .tm-center{order:2}
   .fg-team .tm-r{order:3}
   .fg-team .tm-center{grid-column:auto;grid-row:auto}
-  .fg-team .tm-person,.fg-team .tm-r{grid-template-columns:minmax(88px,110px) 1fr;gap:14px}
+  .fg-team .tm-person,.fg-team .tm-r{grid-template-columns:96px 1fr;column-gap:14px;row-gap:0;align-items:start}
+  .fg-team .tm-txt{display:contents}
+  .fg-team .tm-person .tm-photo{grid-column:1;grid-row:1/span 4;align-self:start}
+  .fg-team .tm-role,.fg-team .tm-name,.fg-team .tm-en,.fg-team .tm-title{grid-column:2}
+  .fg-team .tm-tag,.fg-team .tm-list{grid-column:1/-1}
   .fg-team .tm-en{letter-spacing:.1em}
   .fg-team .tm-list li{letter-spacing:0}
 }
