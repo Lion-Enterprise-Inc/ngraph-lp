@@ -2,6 +2,10 @@
   // ngraph.jp（Workers + 静的アセット）。Workers Builds が git push で読む正本
   "name": "ngraph-lp",
   "main": "worker.js",
+  "routes": [
+    { "pattern": "ngraph.jp", "custom_domain": true },
+    { "pattern": "www.ngraph.jp", "custom_domain": true }
+  ],
   "compatibility_date": "2026-08-01",
   "assets": {
     "directory": ".",
@@ -14,6 +18,6 @@
     "enabled": true
   },
   "kv_namespaces": [
-    { "binding": "LEADS", "id": "dd4f7a0f052b40fd818d38933c506304" }
+    { "binding": "LEADS", "id": "4e92e8d384bc45dcb908c43a529edf37" }
   ]
 }
