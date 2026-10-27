@@ -1,0 +1,24 @@
+# main に送られたら ngraph.jp（NGraph の Cloudflare の Worker「ngraph-lp」）へ公開する。
+# 2026-10-26 新設：ngraph.jp を NGraph の Cloudflare へ移したあと、Workers Builds の代わり。
+# 必要な GitHub の Secret：CLOUDFLARE_API_TOKEN（NGraph の Cloudflare の Workers 編集用）。
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: deploy-ngraph-lp
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Deploy to Cloudflare
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: c7b601cca2ef3084839480d8d64c8da8
+        run: npx --yes wrangler@4.152.0 deploy
