@@ -339,13 +339,14 @@
 /* ===== 構成と強弱（2026-10-23）：課題 → 考え方 → 頼めること → 実績 → 人 → 相談 ===== */
 .tz-h1{font-family:var(--mincho)}
 /* 背景のリズム：黒 → 白 → 灰 → 白 → 灰 → 白 → 藍 */
-#problem{background:var(--bg)}#ownership{background:var(--bg-2)}#services{background:var(--bg-2)}#products{background:var(--bg)}
+#problem{background:var(--bg)}#ownership{background:var(--bg-2)}#services{background:var(--bg)}#products{background:var(--bg-2)}
 /* 考え方の2段（置き場所／時間がたつと） */
 .as-h{font-weight:700;font-size:var(--fs-h3);text-align:center;margin:8px 0 18px}
 .as-h em{font-style:normal;color:var(--accent)}
 .as-part{margin-top:96px;padding-top:72px;border-top:1px solid var(--border)}
 /* 2026-10-29 本人「AIは借りる。資産は持つ。の次に今回の資料で作ったやつを」「やっぱ3Pの内容を入れるだけに」→ 壁打ち会資料3枚目（同じAIから、文脈で分かれる）をサイトの色で */
-#context{background:var(--bg)}
+.cx-part{margin:8px 0 96px;padding-bottom:72px;border-bottom:1px solid var(--border)}
+.cx-sub{text-align:center;margin:0 0 20px}
 .cx{max-width:1000px;margin:8px auto 0}
 .cx-ai{max-width:620px;margin:0 auto;background:#fff;border:1.5px solid var(--text);border-radius:12px;padding:18px 20px;text-align:center}
 .cx-ai b{display:block;font-family:var(--serif);font-size:1.125rem;line-height:1.6}
@@ -628,6 +629,20 @@
       <h2 class="section-title" id="s04_ownership-t"><span class="nb">Rent the AI.</span> <span class="nb">Own the asset.</span></h2>
       <p class="section-sub"><span class="nb">AI memory connects conversations.</span> <span class="nb">The Company Brain keeps the grounds for decisions.</span></p>
     </div>
+    <div class="cx-part">
+    <p class="as-sub cx-sub reveal"><span class="nb">The difference is not the model.</span> <span class="nb">It is whether AI can read</span> <span class="nb">your company's rules and ways of judging.</span></p>
+    <div class="cx reveal">
+      <div class="cx-ai"><b>The same smart AI. Any company can choose and rent it.</b><ul><li><img src="/assets/brain/ill/logos/anthropic.png" alt="" width="20" height="20" loading="lazy">Anthropic</li><li><img src="/assets/brain/ill/logos/openai.png" alt="" width="20" height="20" loading="lazy">OpenAI</li><li><img src="/assets/brain/ill/logos/gemini.png" alt="" width="20" height="20" loading="lazy">Gemini</li><li><img src="/assets/brain/ill/logos/kimi.png" alt="" width="20" height="20" loading="lazy">Kimi</li></ul></div>
+      <svg class="cx-fork" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true"><path class="g" d="M500 0V28H250V56"/><path class="a" d="M500 28H750V56"/></svg>
+      <div class="cx-two">
+        <div class="cx-card"><img class="cx-ic" src="/assets/brain/ill/icons/icon18_trash.png" alt="" loading="lazy"><div><h3>Companies that just hand work to AI</h3><ul><li>Everyone asks their own AI</li><li>Only generic answers come back</li><li>Switch AI, and nothing carries over</li></ul></div></div>
+        <div class="cx-card on"><img class="cx-ic" src="/assets/brain/ill/icons/icon10_brain.png" alt="" loading="lazy"><div><h3>Companies that record their context</h3><ul><li>Everyone reads the same company record</li><li>AI answers by the company's rules and judgment</li><li>Switch AI, and it stays</li></ul><div class="cx-chips"><span>Decisions</span><span>Where each project stands</span><span>Lessons and procedures</span></div></div></div>
+      </div>
+      <p class="cx-q">“AI does not have an intelligence problem. It has a context problem.” — Ali Ghodsi (CEO, Databricks)</p>
+    </div>
+    <p class="fg-statement reveal"><span class="nb">What makes the difference is</span> <span class="nb"><em>moving context into a record.</em></span> <span class="nb">That is NGraph's FDE.</span></p>
+    <p class="cx-gloss reveal"><span class="nb">FDE = Forward Deployed Engineer:</span> <span class="nb">engineers who work on site</span> <span class="nb">and leave AI in a form people actually use.</span></p>
+    </div>
     <h3 class="as-h"><span class="nb">Move knowledge from the chat</span> <span class="nb">to the company.</span></h3>
     <!-- fig:own -->
     <div class="fg fg-own reveal">
@@ -685,26 +700,6 @@
       </div>
     </div>
     <!-- /fig -->
-  </div>
-</section>
-<section class="section" id="context">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">CONTEXT</div>
-      <h2 class="section-title"><span class="nb">AI is smart enough.</span> <span class="nb">What it lacks</span> <span class="nb">is your company's context.</span></h2>
-      <p class="section-sub"><span class="nb">The difference is not the model.</span> <span class="nb">It is whether AI can read</span> <span class="nb">your company's rules and ways of judging.</span></p>
-    </div>
-    <div class="cx reveal">
-      <div class="cx-ai"><b>The same smart AI. Any company can choose and rent it.</b><ul><li><img src="/assets/brain/ill/logos/anthropic.png" alt="" width="20" height="20" loading="lazy">Anthropic</li><li><img src="/assets/brain/ill/logos/openai.png" alt="" width="20" height="20" loading="lazy">OpenAI</li><li><img src="/assets/brain/ill/logos/gemini.png" alt="" width="20" height="20" loading="lazy">Gemini</li><li><img src="/assets/brain/ill/logos/kimi.png" alt="" width="20" height="20" loading="lazy">Kimi</li></ul></div>
-      <svg class="cx-fork" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true"><path class="g" d="M500 0V28H250V56"/><path class="a" d="M500 28H750V56"/></svg>
-      <div class="cx-two">
-        <div class="cx-card"><img class="cx-ic" src="/assets/brain/ill/icons/icon18_trash.png" alt="" loading="lazy"><div><h3>Companies that just hand work to AI</h3><ul><li>Everyone asks their own AI</li><li>Only generic answers come back</li><li>Switch AI, and nothing carries over</li></ul></div></div>
-        <div class="cx-card on"><img class="cx-ic" src="/assets/brain/ill/icons/icon10_brain.png" alt="" loading="lazy"><div><h3>Companies that record their context</h3><ul><li>Everyone reads the same company record</li><li>AI answers by the company's rules and judgment</li><li>Switch AI, and it stays</li></ul><div class="cx-chips"><span>Decisions</span><span>Where each project stands</span><span>Lessons and procedures</span></div></div></div>
-      </div>
-      <p class="cx-q">“AI does not have an intelligence problem. It has a context problem.” — Ali Ghodsi (CEO, Databricks)</p>
-    </div>
-    <p class="fg-statement reveal"><span class="nb">What makes the difference is</span> <span class="nb"><em>moving context into a record.</em></span> <span class="nb">That is NGraph's FDE.</span></p>
-    <p class="cx-gloss reveal"><span class="nb">FDE = Forward Deployed Engineer:</span> <span class="nb">engineers who work on site</span> <span class="nb">and leave AI in a form people actually use.</span></p>
   </div>
 </section>
 <section class="svc" id="services">

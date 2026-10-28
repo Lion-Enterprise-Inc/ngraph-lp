@@ -343,13 +343,14 @@
 /* ===== 構成と強弱（2026-10-23）：課題 → 考え方 → 頼めること → 実績 → 人 → 相談 ===== */
 .tz-h1{font-family:var(--mincho)}
 /* 背景のリズム：黒 → 白 → 灰 → 白 → 灰 → 白 → 藍 */
-#problem{background:var(--bg)}#ownership{background:var(--bg-2)}#services{background:var(--bg-2)}#products{background:var(--bg)}
+#problem{background:var(--bg)}#ownership{background:var(--bg-2)}#services{background:var(--bg)}#products{background:var(--bg-2)}
 /* 考え方の2段（置き場所／時間がたつと） */
 .as-h{font-weight:700;font-size:var(--fs-h3);text-align:center;margin:8px 0 18px}
 .as-h em{font-style:normal;color:var(--accent)}
 .as-part{margin-top:96px;padding-top:72px;border-top:1px solid var(--border)}
 /* 2026-10-29 本人「AIは借りる。資産は持つ。の次に今回の資料で作ったやつを」「やっぱ3Pの内容を入れるだけに」→ 壁打ち会資料3枚目（同じAIから、文脈で分かれる）をサイトの色で */
-#context{background:var(--bg)}
+.cx-part{margin:8px 0 96px;padding-bottom:72px;border-bottom:1px solid var(--border)}
+.cx-sub{text-align:center;margin:0 0 20px}
 .cx{max-width:1000px;margin:8px auto 0}
 .cx-ai{max-width:620px;margin:0 auto;background:#fff;border:1.5px solid var(--text);border-radius:12px;padding:18px 20px;text-align:center}
 .cx-ai b{display:block;font-family:var(--serif);font-size:1.125rem;line-height:1.6}
@@ -633,6 +634,20 @@
       <h2 class="section-title" id="s04_ownership-t"><span class="nb">AIは借りる。</span><span class="nb">資産は持つ。</span></h2>
       <p class="section-sub"><span class="nb">AIのメモリは会話をつなぐ。</span><span class="nb">会社の脳は判断の根拠を残す。</span></p>
     </div>
+    <div class="cx-part">
+    <p class="as-sub cx-sub reveal"><span class="nb">差がつくのは、AIの性能ではなく、</span><span class="nb">その会社の決まりや判断の型を</span><span class="nb">AIが読めるかどうかです。</span></p>
+    <div class="cx reveal">
+      <div class="cx-ai"><b>同じ賢いAI。どの会社も、自由に選んで借りられる</b><ul><li><img src="/assets/brain/ill/logos/anthropic.png" alt="" width="20" height="20" loading="lazy">Anthropic</li><li><img src="/assets/brain/ill/logos/openai.png" alt="" width="20" height="20" loading="lazy">OpenAI</li><li><img src="/assets/brain/ill/logos/gemini.png" alt="" width="20" height="20" loading="lazy">Gemini</li><li><img src="/assets/brain/ill/logos/kimi.png" alt="" width="20" height="20" loading="lazy">Kimi</li></ul></div>
+      <svg class="cx-fork" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true"><path class="g" d="M500 0V28H250V56"/><path class="a" d="M500 28H750V56"/></svg>
+      <div class="cx-two">
+        <div class="cx-card"><img class="cx-ic" src="/assets/brain/ill/icons/icon18_trash.png" alt="" loading="lazy"><div><h3>AIに預けるだけの会社</h3><ul><li>一人ひとりが、自分のAIに聞く</li><li>一般論しか返ってこない</li><li>AIを替えると、引き継げない</li></ul></div></div>
+        <div class="cx-card on"><img class="cx-ic" src="/assets/brain/ill/icons/icon10_brain.png" alt="" loading="lazy"><div><h3>文脈を記録した会社</h3><ul><li>全員が、同じ会社の記録を見る</li><li>会社の決まりと判断で答える</li><li>AIを替えても、残る</li></ul><div class="cx-chips"><span>決定事項</span><span>案件の現在地</span><span>教訓・手順</span></div></div></div>
+      </div>
+      <p class="cx-q">“AI does not have an intelligence problem. It has a context problem.” — Ali Ghodsi（Databricks CEO）</p>
+    </div>
+    <p class="fg-statement reveal"><span class="nb">差をつくるのは、</span><span class="nb"><em>文脈を記録に移す仕事。</em></span><span class="nb">それが、NGraphのFDE。</span></p>
+    <p class="cx-gloss reveal"><span class="nb">FDE＝Forward Deployed Engineer。</span><span class="nb">エンジニアが現場に入り、</span><span class="nb">AIが使われる形にして残す仕事です。</span></p>
+    </div>
     <h3 class="as-h"><span class="nb">知識の置き場所を、</span><span class="nb">会話から会社へ。</span></h3>
     <!-- fig:own -->
     <div class="fg fg-own reveal">
@@ -690,26 +705,6 @@
       </div>
     </div>
     <!-- /fig -->
-  </div>
-</section>
-<section class="section" id="context">
-  <div class="container">
-    <div class="section-head reveal">
-      <div class="section-label">CONTEXT</div>
-      <h2 class="section-title"><span class="nb">AIは十分に賢い。</span><span class="nb">足りないのは、</span><span class="nb">会社の文脈。</span></h2>
-      <p class="section-sub"><span class="nb">差がつくのは、AIの性能ではなく、</span><span class="nb">その会社の決まりや判断の型を</span><span class="nb">AIが読めるかどうかです。</span></p>
-    </div>
-    <div class="cx reveal">
-      <div class="cx-ai"><b>同じ賢いAI。どの会社も、自由に選んで借りられる</b><ul><li><img src="/assets/brain/ill/logos/anthropic.png" alt="" width="20" height="20" loading="lazy">Anthropic</li><li><img src="/assets/brain/ill/logos/openai.png" alt="" width="20" height="20" loading="lazy">OpenAI</li><li><img src="/assets/brain/ill/logos/gemini.png" alt="" width="20" height="20" loading="lazy">Gemini</li><li><img src="/assets/brain/ill/logos/kimi.png" alt="" width="20" height="20" loading="lazy">Kimi</li></ul></div>
-      <svg class="cx-fork" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true"><path class="g" d="M500 0V28H250V56"/><path class="a" d="M500 28H750V56"/></svg>
-      <div class="cx-two">
-        <div class="cx-card"><img class="cx-ic" src="/assets/brain/ill/icons/icon18_trash.png" alt="" loading="lazy"><div><h3>AIに預けるだけの会社</h3><ul><li>一人ひとりが、自分のAIに聞く</li><li>一般論しか返ってこない</li><li>AIを替えると、引き継げない</li></ul></div></div>
-        <div class="cx-card on"><img class="cx-ic" src="/assets/brain/ill/icons/icon10_brain.png" alt="" loading="lazy"><div><h3>文脈を記録した会社</h3><ul><li>全員が、同じ会社の記録を見る</li><li>会社の決まりと判断で答える</li><li>AIを替えても、残る</li></ul><div class="cx-chips"><span>決定事項</span><span>案件の現在地</span><span>教訓・手順</span></div></div></div>
-      </div>
-      <p class="cx-q">“AI does not have an intelligence problem. It has a context problem.” — Ali Ghodsi（Databricks CEO）</p>
-    </div>
-    <p class="fg-statement reveal"><span class="nb">差をつくるのは、</span><span class="nb"><em>文脈を記録に移す仕事。</em></span><span class="nb">それが、NGraphのFDE。</span></p>
-    <p class="cx-gloss reveal"><span class="nb">FDE＝Forward Deployed Engineer。</span><span class="nb">エンジニアが現場に入り、</span><span class="nb">AIが使われる形にして残す仕事です。</span></p>
   </div>
 </section>
 <section class="svc" id="services">
