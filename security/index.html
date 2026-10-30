@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=14">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=15">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -342,6 +342,7 @@
 .cmp .h.ours{color:var(--accent)}
 .cmp .ours b{color:var(--accent)}
 @media(max-width:768px){.cmp{grid-template-columns:5.2em 1fr 1fr}.cmp>div{padding:10px 8px;font-size:.875rem;line-height:1.6}.cmp .h{font-size:.875rem}.cmp .k{font-size:.8125rem;letter-spacing:.04em}}
+@media(max-width:640px){.cmp{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.cmp>.h:first-child{display:none}.cmp .k{grid-column:1/-1;padding:7px 12px 6px;letter-spacing:.08em}.cmp .k+div,.cmp .k+div+div{border-top:none}.cmp>div{padding:10px 8px;font-size:.8125rem;line-height:1.65}.cmp .k{font-size:.8125rem}}
 /* 料金プラン */
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto}
 .plan{background:rgba(255,255,255,.75);border:1px solid var(--border-strong);border-radius:4px;padding:28px 24px;display:flex;flex-direction:column;position:relative}
@@ -368,7 +369,7 @@
 @media(max-width:768px){.duo{grid-template-columns:1fr;gap:10px}}
 #apply{scroll-margin-top:84px}
 </style>
-<link rel="stylesheet" href="/css/sp.css?v=3">
+<link rel="stylesheet" href="/css/sp.css?v=4">
 </head>
 <body>
 
@@ -659,7 +660,7 @@
     <div class="footer-top">
       <a href="/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
       <p class="footer-tag">現実世界の意味を、AIが読める形に。</p>
-      <p class="footer-addr">株式会社NGraph<br>〒918-8231 福井県福井市問屋町1丁目124番地 <span class="nb">ラフォーレ北野201</span></p>
+      <p class="footer-addr">株式会社NGraph<br><span class="nb">〒918-8231 福井県福井市問屋町1丁目124番地</span> <span class="nb">ラフォーレ北野201</span></p>
       <a href="/entry" class="footer-cta">無料で相談する →</a>
     </div>
     <nav class="footer-nav" aria-label="サイトマップ">

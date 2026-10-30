@@ -535,3 +535,9 @@ body{font-size:var(--fs-body)}
 @media(max-width:768px){.section-title{font-size:1.875rem;line-height:1.45}.section-sub{font-size:.875rem}.fg-statement{font-size:1.25rem}}
 /* ボタンや入力欄も同じ書体に（既定だと Arial になる） */
 button,input,select,textarea{font-family:inherit}
+
+/* ── SPの折返し（2026-10-31）：見出し・札・ボタンは行を均し、本文は1〜2字の孤立行を作らない ── */
+@media(max-width:768px){
+  h3,h4,summary,figcaption,.btn,button,.tm-title,.sf-s{text-wrap:balance}
+  p,li,dd,td{text-wrap:pretty}
+}

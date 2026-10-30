@@ -309,3 +309,14 @@
   .about-table th{padding:14px 18px 0}
   .about-table td{padding:4px 18px 14px;line-height:1.8}
 }
+
+/* ── 12. 折返しの整理（2026-10-31）：余白があるのに折れる／語の途中で折れる箇所 ── */
+@media(max-width:640px){
+  /* fde のバッジ：字間を詰めて1行に収める（収まらない幅では「現場に入るエンジニア」の塊ごと次の行へ） */
+  .hero .lp-badge{letter-spacing:.06em;padding:8px 14px;gap:6px;text-align:center}
+  /* drill の「報告を見て判断」：横並びのときは手動改行を外す（短い2行になっていた） */
+  .stage-mid br{display:none}
+  /* 会社概要の事業内容：並べた項目の「・」は、SPでは1項目1行にして外す（行末に「・」だけ残っていた） */
+  .about-table .sep{display:none}
+  .about-table .sep+.nb{display:block}
+}
