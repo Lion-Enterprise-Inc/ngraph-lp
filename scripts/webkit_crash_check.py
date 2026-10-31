@@ -154,6 +154,11 @@ def main(argv):
     jobs = [(t, w) for t in targets for w in (WIDTHS_CASES if t.startswith("cases/") else WIDTHS)]
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         for t, w, res in ex.map(probe_one, jobs):
+            if res["state"] == "ok":
+                continue
+            # 並列の負荷で読み込みが切れることがあるので、落ちた以外は1つずつ開き直して確かめる
+            if res["state"] != "crash":
+                t, w, res = probe_one((t, w))
             if res["state"] != "ok":
                 bad.append("%s（幅%d）%s: %s" % (t, w, label[res["state"]], res.get("msg", "")))
     srv.shutdown()
