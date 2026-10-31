@@ -30,7 +30,6 @@ import threading
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WIDTHS = (320, 375, 390, 393, 402, 414, 430)  # 2026-10-31 393・402 は実機に多い幅。ここを測らず本番の全ページが落ちていた
-WIDTHS_CASES = (320, 390, 414)  # cases/ は同じ型の生成ページが120本あるので元の3幅
 WORKERS = 4
 LOAD_LIMIT = 60
 
@@ -47,6 +46,9 @@ def is_page(p):
     if not p.endswith(".html"):
         return False
     if p.startswith(("_", ".", "scripts/", "figures/")) or "/_" in p:
+        return False
+    # 2026-10-31 本人「企業分析ページはデザイン不要」。cases/ は対象外
+    if p.startswith(("cases/", "en/cases/")):
         return False
     if p.startswith(("blog/", "en/blog/")) and not p.endswith("index.html"):
         return False
@@ -151,7 +153,7 @@ def main(argv):
         return t, w, res
 
     # 2026-10-31 全ページに効く変更で1時間を超えたので並列にする（検査の中身は同じ）
-    jobs = [(t, w) for t in targets for w in (WIDTHS_CASES if t.startswith("cases/") else WIDTHS)]
+    jobs = [(t, w) for t in targets for w in WIDTHS]
     with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
         for t, w, res in ex.map(probe_one, jobs):
             if res["state"] == "ok":
