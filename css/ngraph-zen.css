@@ -21,7 +21,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:72px}
 body{
   font-family:'Zen Kaku Gothic New','Noto Sans JP',sans-serif;
   background:var(--bg);
@@ -92,7 +92,7 @@ html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 .hero-stats .num{font-family:var(--serif);font-size:1.5rem;font-weight:700;line-height:1;color:var(--accent)}
 .hero-stats .num small{font-size:.8125rem;font-weight:700;margin-left:3px;color:var(--text-2)}
 .hero-stats .cap{font-size:.8125rem;color:var(--text-3);letter-spacing:.02em}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:3px;font-weight:700;font-size:.875rem;transition:all .2s;cursor:pointer;border:1px solid transparent;letter-spacing:.04em}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:16px 32px;border-radius:3px;font-weight:700;font-size:1rem;transition:all .2s;cursor:pointer;border:1px solid transparent;letter-spacing:.04em}
 .btn-primary{background:var(--accent);color:#ffffff}
 .btn-primary:hover{background:var(--accent-2);transform:translateY(-1px);color:#ffffff}
 .btn-ghost{background:transparent;border-color:var(--border-strong);color:var(--text)}
@@ -280,6 +280,7 @@ html[lang="en"] body,html[lang="en"] body *{overflow-wrap:break-word}
 .footer-brand img{height:26px;width:26px;border-radius:50%;filter:invert(1)}
 .footer .footer-brand span{font-family:var(--mincho);font-size:1.25rem;letter-spacing:.08em;color:#f3efe6}
 .footer-tag{font-family:var(--mincho);font-size:1rem;color:#f3efe6;letter-spacing:.06em;line-height:1.9}
+.biz{display:block}
 .footer-addr{font-size:.8125rem;line-height:1.9;margin-top:14px;color:rgba(243,239,230,.6)}
 .footer .footer-cta{display:inline-block;margin-top:22px;font-size:.875rem;letter-spacing:.1em;color:#f3efe6;border:1px solid rgba(245,246,247,.32);padding:10px 18px;border-radius:2px}
 .footer .footer-cta:hover{border-color:#9fb3dc;color:#fff}

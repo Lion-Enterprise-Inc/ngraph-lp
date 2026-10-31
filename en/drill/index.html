@@ -32,8 +32,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=15">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=16">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -75,11 +75,11 @@
 </script>
 <style>
 /* ── /en/drill/ page styles (same pattern as /starter/ and /security/) ── */
-.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:3px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge img{width:26px;height:19px;object-fit:contain}
 .lp-badge .kana{font-family:var(--sans);font-size:.8125rem;letter-spacing:.08em;color:var(--text-3);font-weight:500;padding-left:10px;margin-left:2px;border-left:1px solid var(--border-strong)}
 .lp-badge .nm{white-space:nowrap}
-@media(max-width:768px){.hero .lp-badge{flex-wrap:wrap;justify-content:center;row-gap:3px;border-radius:16px;padding:8px 18px}.lp-badge .kana{flex-basis:100%;text-align:center;border-left:none;padding-left:0;margin-left:0;font-size:.8125rem}}
+@media(max-width:768px){.hero .lp-badge{flex-wrap:wrap;justify-content:center;row-gap:3px;border-radius:3px;padding:8px 18px}.lp-badge .kana{flex-basis:100%;text-align:center;border-left:none;padding-left:0;margin-left:0;font-size:.8125rem}}
 .hero{padding:150px 0 100px}
 .hero .hero-grid{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:24px;align-items:center;position:relative}
 .hero .hero-copy{max-width:640px;position:relative;z-index:2}
@@ -281,8 +281,8 @@
 .hero .hero-note::before{content:"// "}
 .hero .hero-visual img{filter:invert(1) hue-rotate(160deg) saturate(1.45) brightness(1.12) drop-shadow(0 0 30px rgba(54,230,255,.32))}
 /* スマホ: 左上の「NGraph // Cyber Drill」はバッジと同じ内容でヘッダー直下に重なるので消し、ヘッダーとの間と各行の間をあける（css/sp.css が .hero を 88px !important にしているので section.hero で上書き・2026-10-26 本人「SPだとめちゃくちゃ詰まって見える」） */
-@media(max-width:768px){.hero .hud{display:none}section.hero{padding-top:112px!important}.hero .lp-badge{flex-wrap:nowrap;border-radius:999px;margin-bottom:18px}.hero .lp-badge .kana{flex-basis:auto;border-left:1px solid rgba(54,230,255,.3);padding-left:10px;margin-left:2px}.hero .hero-sub{margin-bottom:18px}}
-@media(max-width:360px){.hero .lp-badge{flex-wrap:wrap;border-radius:16px}.hero .lp-badge .kana{flex-basis:100%;border-left:none;padding-left:0;margin-left:0}}
+@media(max-width:768px){.hero .hud{display:none}section.hero{padding-top:112px!important}.hero .lp-badge{flex-wrap:nowrap;border-radius:3px;margin-bottom:18px}.hero .lp-badge .kana{flex-basis:auto;border-left:1px solid rgba(54,230,255,.3);padding-left:10px;margin-left:2px}.hero .hero-sub{margin-bottom:18px}}
+@media(max-width:360px){.hero .lp-badge{flex-wrap:wrap;border-radius:3px}.hero .lp-badge .kana{flex-basis:100%;border-left:none;padding-left:0;margin-left:0}}
 @media(max-width:380px){.hero .hero-tagline{font-size:1.5rem!important}}
 @media(max-width:360px){.hero .hero-tagline{font-size:1.25rem!important}} /* 英語は320pxで4行に分かれていた */
 @media(max-width:768px){.hero .hero-tagline{white-space:normal}}
@@ -353,7 +353,7 @@
 #team .fg-statement{margin-top:32px}
 </style>
 <link rel="stylesheet" href="/css/figures.css?v=35">
-<link rel="stylesheet" href="/css/sp.css?v=5">
+<link rel="stylesheet" href="/css/sp.css?v=6">
 </head>
 <body>
 
@@ -379,7 +379,7 @@
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="lp-badge"><img src="/assets/drill/icon_drill.png" alt=""><span class="nm">Cyber Drill</span></span>
-      <h1 class="hero-tagline" style="font-size:clamp(1.7rem,3.8vw,2.6rem);line-height:1.5"><span class="nb">Before you are attacked,</span><br><span class="nb"><span class="hl">know your weak points.</span></span></h1>
+      <h1 class="hero-tagline" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.2"><span class="nb">Before you are attacked,</span><br><span class="nb"><span class="hl">know your weak points.</span></span></h1>
       <p class="hero-lead">We check the entry points that small and <span class="nb">mid-sized</span> companies show to the outside, the same way an attacker would.</p>
       <dl class="hero-facts">
         <div><dt>Who</dt><dd><span class="nb">Companies in Fukui</span></dd></div>
@@ -714,7 +714,7 @@
     <div class="footer-top">
       <a href="/en/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
       <p class="footer-tag">Making the meaning of the real world readable by AI.</p>
-      <p class="footer-addr">NGraph Inc.<br>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
+      <p class="footer-addr"><span class="biz">NGraph Inc.</span>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
       <a href="/en/entry" class="footer-cta">Free consultation →</a>
     </div>
     <nav class="footer-nav" aria-label="Sitemap">

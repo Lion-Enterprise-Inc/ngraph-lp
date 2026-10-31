@@ -26,7 +26,7 @@ ROOT = os.path.dirname(HERE)
 CHROME = os.path.join(HERE, "chrome")
 
 # ngraph-zen.css を変えたら上げる（ブラウザ・CDNの古いCSSと新しいHTMLの組み合わせを防ぐ）
-ZEN_VERSION = "15"
+ZEN_VERSION = "16"
 
 FOOTER_RE = re.compile(r'<footer class="footer">.*?</footer>', re.S)
 ZEN_RE = re.compile(r'(/css/ngraph-zen\.css\?v=)(\d+)')

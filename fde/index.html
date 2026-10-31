@@ -32,8 +32,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=15">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=16">
 <link rel="stylesheet" href="/css/figures.css?v=35">
 <script type="application/ld+json">
 {
@@ -88,7 +88,7 @@
      本文との間に空白ができる。本文右端〜画面右端の中間へ寄せる（狭幅は従来位置をmaxで維持） */
   .hero-visual{position:fixed;top:64px;right:max(calc(25vw - 412px), -2%)}
 }
-.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:3px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .hero-trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
 .hero-trust span{font-size:.8125rem;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
@@ -368,7 +368,7 @@
 .contact .btn-primary{background:var(--hot);color:#16202c}.contact .btn-primary:hover{background:var(--hot-2);color:#16202c}
 .flw .seam{fill:var(--hot)}.flw-k b{color:var(--hot-ink)}.flw-leg .d{background:var(--hot)}
 </style>
-<link rel="stylesheet" href="/css/sp.css?v=5">
+<link rel="stylesheet" href="/css/sp.css?v=6">
 </head>
 <body>
 
@@ -393,7 +393,7 @@
   <div class="container hero-grid">
     <div class="hero-copy" style="max-width:680px">
       <span class="lp-badge"><span class="dot"></span><span>FDE型AI導入支援 — <span class="nb">現場に入るエンジニア</span></span></span>
-      <h1 class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">AIを、</span><span class="nb">業務の<span class="hl">成果</span>に変える。</span></h1>
+      <h1 class="hero-tagline" style="font-size:clamp(2.25rem,4.4vw,3.5rem);line-height:1.4"><span class="nb">AIを、</span><span class="nb">業務の<span class="hl">成果</span>に変える。</span></h1>
       <p class="lead"><span class="nb">業務を理解したうえで</span><span class="nb">AIを組み込み、</span><span class="nb">現場で使われ続ける形にして</span><span class="nb">残します。</span></p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">無料で相談する <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
@@ -401,7 +401,7 @@
       <p class="cta-micro">まずは試したい方へ — <a href="#shindan" style="text-decoration:underline">1分の無料AI導入診断</a></p>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <img src="/assets/brain/ill/enter-office.png" alt="" class="hero-enter">
+      <img src="/assets/brain/ill/enter-office.webp" alt="" class="hero-enter" width="1000" height="877" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -434,7 +434,7 @@
         <div class="fg-panel model-card after">
           <span class="model-side">NGraph</span>
           <strong class="ttl"><span class="nb">御社の中に入り、</span><span class="nb">一緒に育てる</span></strong>
-          <img class="model-ill" src="/assets/brain/ill/enter-office.png" alt="" loading="lazy">
+          <img class="model-ill" src="/assets/brain/ill/enter-office.webp" alt="" loading="lazy">
           <p>中に入る担当が業務を知り、成果に責任を持つ。いま使う道具の上にAIの道具を足して組む</p>
         </div>
 
@@ -748,7 +748,7 @@
     <div class="footer-top">
       <a href="/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
       <p class="footer-tag">現実世界の意味を、AIが読める形に。</p>
-      <p class="footer-addr">株式会社NGraph<br><span class="nb">〒918-8231 福井県福井市問屋町1丁目124番地</span> <span class="nb">ラフォーレ北野201</span></p>
+      <p class="footer-addr"><span class="biz">株式会社NGraph</span><span class="nb">〒918-8231 福井県福井市問屋町1丁目124番地</span> <span class="nb">ラフォーレ北野201</span></p>
       <a href="/entry" class="footer-cta">無料で相談する →</a>
     </div>
     <nav class="footer-nav" aria-label="サイトマップ">

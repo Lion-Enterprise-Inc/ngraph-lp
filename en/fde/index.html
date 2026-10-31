@@ -32,8 +32,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/css/ngraph-zen.css?v=15">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/ngraph-zen.css?v=16">
 <link rel="stylesheet" href="/css/figures.css?v=35">
 <script type="application/ld+json">
 {
@@ -89,7 +89,7 @@
   /* fixed is viewport-relative: on wide screens right:-2% sticks to the edge. Center it between the content and the screen edge */
   .hero-visual{position:fixed;top:64px;right:max(calc(25vw - 412px), -2%)}
 }
-.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:999px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
+.lp-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--serif);font-size:.8125rem;letter-spacing:.2em;font-weight:600;color:var(--accent);border:1px solid var(--border-strong);border-radius:3px;padding:8px 18px;margin-bottom:24px;background:rgba(255,255,255,.5)}
 .lp-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 .hero-trust{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
 .hero-trust span{font-size:.8125rem;color:var(--text-2);display:inline-flex;align-items:center;gap:6px}
@@ -364,7 +364,7 @@
 .contact .btn-primary{background:var(--hot);color:#16202c}.contact .btn-primary:hover{background:var(--hot-2);color:#16202c}
 .flw .seam{fill:var(--hot)}.flw-k b{color:var(--hot-ink)}.flw-leg .d{background:var(--hot)}
 </style>
-<link rel="stylesheet" href="/css/sp.css?v=5">
+<link rel="stylesheet" href="/css/sp.css?v=6">
 </head>
 <body>
 
@@ -388,7 +388,7 @@
   <div class="container hero-grid">
     <div class="hero-copy" style="max-width:680px">
       <span class="lp-badge"><span class="dot"></span>FDE-style AI Adoption Support — Engineers on site</span>
-      <h1 class="hero-tagline" style="font-size:clamp(1.6rem,3.6vw,2.5rem);line-height:1.5"><span class="nb">Turn AI into</span> <span class="nb">business <span class="hl">results</span>.</span></h1>
+      <h1 class="hero-tagline" style="font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.2"><span class="nb">Turn AI into</span> <span class="nb">business <span class="hl">results</span>.</span></h1>
       <p class="lead"><span class="nb">We understand your work first,</span> <span class="nb">build AI into it,</span> <span class="nb">and leave it in a form</span> <span class="nb">your team keeps using.</span></p>
       <div class="hero-cta">
         <a href="#contact" class="btn btn-primary">Talk to us free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10h12m-4-4l4 4-4 4"/></svg></a>
@@ -396,7 +396,7 @@
       <p class="cta-micro">Want to try first? — <a href="#shindan" style="text-decoration:underline">the free 1-minute AI check</a></p>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <img src="/assets/brain/ill/enter-office.png" alt="" class="hero-enter">
+      <img src="/assets/brain/ill/enter-office.webp" alt="" class="hero-enter" width="1000" height="877" fetchpriority="high">
     </div>
   </div>
 </section>
@@ -429,7 +429,7 @@
         <div class="fg-panel model-card after">
           <span class="model-side">NGraph</span>
           <strong class="ttl"><span class="nb">We come inside your company</span> <span class="nb">and grow it with you</span></strong>
-          <img class="model-ill" src="/assets/brain/ill/enter-office.png" alt="" loading="lazy">
+          <img class="model-ill" src="/assets/brain/ill/enter-office.webp" alt="" loading="lazy">
           <p>The person who comes inside learns the work and takes responsibility for results. We add AI tools on top of the tools you use now</p>
         </div>
 
@@ -743,7 +743,7 @@
     <div class="footer-top">
       <a href="/en/" class="footer-brand"><img src="/assets/ngraph-logo-circle.png" alt=""><span>NGraph</span></a>
       <p class="footer-tag">Making the meaning of the real world readable by AI.</p>
-      <p class="footer-addr">NGraph Inc.<br>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
+      <p class="footer-addr"><span class="biz">NGraph Inc.</span>Laforet Kitano 201, 1-124 Toiyacho, Fukui City, Fukui 918-8231, Japan</p>
       <a href="/en/entry" class="footer-cta">Free consultation →</a>
     </div>
     <nav class="footer-nav" aria-label="Sitemap">

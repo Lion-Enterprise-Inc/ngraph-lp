@@ -18,6 +18,7 @@
 
 使い方: python scripts/webkit_crash_check.py [ページ...]   （NG があれば exit 1）
 """
+import concurrent.futures
 import functools
 import http.server
 import json
@@ -28,7 +29,9 @@ import threading
 
 sys.stdout.reconfigure(encoding="utf-8")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WIDTHS = (320, 390, 414)
+WIDTHS = (320, 375, 390, 393, 402, 414, 430)  # 2026-10-31 393・402 は実機に多い幅。ここを測らず本番の全ページが落ちていた
+WIDTHS_CASES = (320, 390, 414)  # cases/ は同じ型の生成ページが120本あるので元の3幅
+WORKERS = 4
 LOAD_LIMIT = 60
 
 
@@ -135,16 +138,22 @@ def main(argv):
         return 1
     bad = []
     label = {"crash": "落ちた", "notfound": "開けない", "error": "読み込みに失敗", "timeout": "時間切れ"}
-    for t in targets:
+    def probe_one(job):
+        t, w = job
         url = "http://127.0.0.1:%d/%s" % (port, t[:-len("index.html")] if t.endswith("index.html") else t)
-        for w in WIDTHS:
-            try:
-                r = subprocess.run([sys.executable, os.path.abspath(__file__), "--one", url, str(w)],
-                                   capture_output=True, text=True, encoding="utf-8", timeout=LOAD_LIMIT)
-                lines = [x for x in r.stdout.splitlines() if x.startswith("{")]
-                res = json.loads(lines[-1]) if lines else {"state": "crash", "msg": (r.stderr.strip().splitlines() or ["結果なし"])[-1][:80]}
-            except subprocess.TimeoutExpired:
-                res = {"state": "timeout", "msg": "%d 秒で終わらない" % LOAD_LIMIT}
+        try:
+            r = subprocess.run([sys.executable, os.path.abspath(__file__), "--one", url, str(w)],
+                               capture_output=True, text=True, encoding="utf-8", timeout=LOAD_LIMIT)
+            lines = [x for x in r.stdout.splitlines() if x.startswith("{")]
+            res = json.loads(lines[-1]) if lines else {"state": "crash", "msg": (r.stderr.strip().splitlines() or ["WebKit が結果を返さない"])[-1][:120]}
+        except subprocess.TimeoutExpired:
+            res = {"state": "timeout", "msg": "%d 秒で終わらない" % LOAD_LIMIT}
+        return t, w, res
+
+    # 2026-10-31 全ページに効く変更で1時間を超えたので並列にする（検査の中身は同じ）
+    jobs = [(t, w) for t in targets for w in (WIDTHS_CASES if t.startswith("cases/") else WIDTHS)]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        for t, w, res in ex.map(probe_one, jobs):
             if res["state"] != "ok":
                 bad.append("%s（幅%d）%s: %s" % (t, w, label[res["state"]], res.get("msg", "")))
     srv.shutdown()
