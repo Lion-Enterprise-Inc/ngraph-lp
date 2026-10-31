@@ -187,6 +187,7 @@
   .fg-team .tm-sub{font-size:.875rem}
   .fg-team .tm-name{font-size:1.25rem}
   .fg-team .tm-tag{font-size:1.125rem;margin-top:10px;padding-top:10px}
+  .fg-team .tm-tag br{display:none}
   .fg-team .tm-list{margin-top:6px}
   .fg-team .tm-list li{font-size:.875rem}
 }
