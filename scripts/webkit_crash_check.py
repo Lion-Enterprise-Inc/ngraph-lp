@@ -47,10 +47,10 @@ def is_page(p):
         return False
     if p.startswith(("_", ".", "scripts/", "figures/")) or "/_" in p:
         return False
-    # 2026-10-31 本人「企業分析ページはデザイン不要」。cases/ は対象外
+    # 2026-10-31 本人「企業分析ページはデザイン不要」「ブログも別」。cases/ と blog/ は対象外
     if p.startswith(("cases/", "en/cases/")):
         return False
-    if p.startswith(("blog/", "en/blog/")) and not p.endswith("index.html"):
+    if p.startswith(("blog/", "en/blog/")):
         return False
     return True
 
